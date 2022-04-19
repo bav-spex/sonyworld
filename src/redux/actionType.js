@@ -1,0 +1,7 @@
+export const GET__CLIENT__BANNER__DATA = "GET__CLIENT__BANNER__DATA"
+export const GET__CLIENT__PRODUCT__DATA = "GET__CLIENT__PRODUCT__DATA"
+export const GET__CLIENT__APPLICATION__DATA = "GET__CLIENT__APPLICATION__DATA"// export const GET__CLIENT__ = "GET__CLIENT__"
+
+
+export const LOGIN = "LOGIN"
+export const LOGOUT = "LOGOUT"

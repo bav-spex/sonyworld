@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+@font-face {
+  font-family: 'arialregular';
+  src: url('./font/arial-webfont.woff2') format('woff2'),
+       url('./font/arial-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'arialbold';
+  src: url('./font/arial-bold-webfont.woff2') format('woff2'),
+       url('./font/arial-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'arialmedium';
+  src: url('./font/arial-medium-webfont.woff2') format('woff2'),
+       url('./font/arial-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
