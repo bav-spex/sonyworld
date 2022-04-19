@@ -1,0 +1,48 @@
+.dealsOfTheWeek__container {
+  .dealsOfTheWeek__block {
+    width: 1190px;
+    padding: 0px;
+    .section__title {
+      font-family: "arialbold";
+      font-size: 40px;
+    }
+    .deals__block {
+      overflow: hidden;
+      height: 320px;
+      border-radius: 15px;
+      display: flex;
+      // justify-content: center;
+      // align-items: center;
+      .deals__image {
+        border-radius: 15px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .deals__block {
+    height: 260px !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .deals__block {
+    overflow: hidden;
+    height: 255px !important;
+  }
+  .dealsOfTheWeek__block {
+    min-width: 100% !important;
+    margin: 0px auto;
+    
+  }
+}
+@media screen and (max-width: 768px) {
+  .dealsOfTheWeek__block {
+    width: 100% !important;
+   
+  }
+  .deals__block {
+    height: 200px !important;
+  }
+}
+

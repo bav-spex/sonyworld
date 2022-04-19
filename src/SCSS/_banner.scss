@@ -1,0 +1,125 @@
+.banner__container {
+  display: flex;
+  justify-content: center;
+  //   align-items: center;
+  position: relative;
+  padding: 0px;
+  
+  //   overflow-y: hidden !important;
+
+  .banner__block {
+    padding: 0px;
+    margin:112px auto 20px;
+    height: 467px;
+    width: 1190px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    .navbar__area{
+      height: 112px;
+    }
+    .banner {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: all 0.7s ease-in-out;
+      transform: scale(50%);
+
+      .banner__image {
+        width: 100%;
+        // height: auto;
+      }
+      .banner__title {
+        width: 700px;
+        text-align: left;
+        line-height: 120px;
+        font-family: "Bebas Neue", cursive;
+        font-size: 120px;
+        color: rgb(255, 255, 255);
+        // -webkit-text-stroke-width: 2px;
+        // -webkit-text-stroke-color: rgb(255, 255, 255);
+        position: absolute;
+        top: 270px;
+        left: 250px;
+        margin: 0px;
+      }
+    }
+
+    .activeBanner {
+      opacity: 1;
+      transform: translateX(0%) scale(100%);
+    }
+    .prevBanner {
+      opacity: 0;
+      transform: translateX(-100%) scale(50%);
+    }
+    .nextBanner {
+      opacity: 0;
+      transform: translateX(100%) scale(50%);
+    }
+    .banner__arrow__block {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: absolute;
+      padding: 0px 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      // bottom: 300px;
+      // left: 250px;
+
+      .icon__block {
+        cursor: pointer;
+        // width: 5px;
+        // height: 5px;
+        // margin: 0px 8px;
+        // border-radius: 10px;
+      }
+    }
+  }
+
+
+}
+
+@media screen and (max-width: 1400px) {
+  .banner__block {
+    height: 447px !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .banner__block {
+    height: 377px !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .banner__block {
+    min-width: 100% !important;
+    margin: 0px auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .banner__block {
+    height: 301px !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .banner__block {
+    height: 216px !important;
+  }
+}
+@media screen and (max-width: 414px) {
+  .banner__block {
+    height: 162px !important;
+  }
+}
+@media screen and (max-width: 375px) {
+  .banner__block {
+    height: 147px !important;
+  }
+}
