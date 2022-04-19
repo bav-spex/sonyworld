@@ -1,0 +1,56 @@
+.product__block {
+  width: 255px;
+  margin: 0px 16px 0px 0px;
+  background-color: #ffffff;
+  .product__image__block {
+    height: 255px;
+    overflow: hidden;
+    .product__image {
+      height: 100%;
+      width: auto;
+      object-fit: cover;
+    }
+  }
+
+  .product__name__favourite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0px 0px 0px;
+    .product__name {
+      font-family: "arialbold";
+      margin: 0px;
+    }
+    .product__favourite__icon {
+      display: block;
+    }
+    .product__favourite__icon__disable {
+      display: none;
+    }
+  }
+  .rating__block {
+    padding: 0px;
+    .bGVcoD {
+      padding: 0px;
+    }
+  }
+  .prize__block {
+    display: flex;
+    .old__prize {
+      font-family: "arialregular";
+font-size: 18px;
+      text-decoration-line: line-through;
+      color: #c8c8c8;
+    }
+    .new__prize {
+      font-family: "arialbold";font-size: 18px;
+
+      margin: 0px 0px 0px 5px;
+    }
+  }
+}
+
+.product__block:last-child{
+  margin: 0px 16px 0px 0px;
+
+}

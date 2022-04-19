@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import './App.css';
+import Details_Page from "./Pages/Details_Page";
+import Home from "./Pages/Home";
+import Play_Station_Page from "./Pages/Play_Station_Page";
+import TeleVision_Page from "./Pages/TeleVision_Page";
+import Camera_Page from "./Pages/Camera_Page";
+import Audio_Page from "./Pages/Audio_Page";
+import Services from "./Pages/Services";
+import Support from "./Pages/Support";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Routes>
+      <Route exact path="/" element={<Home />}></Route>
+      <Route exact path="/playstation" element={<Play_Station_Page/>}></Route>
+      <Route exact path="/television" element={<TeleVision_Page/>}></Route>
+      <Route exact path="/camera" element={<Camera_Page/>}></Route>
+      <Route exact path="/audio" element={<Audio_Page/>}></Route>
+      <Route exact path="/services" element={<Services/>}></Route>
+      <Route exact path="/support" element={<Support/>}></Route>
+      <Route exact path="/products/:id" element={<Details_Page />}></Route>
+      {/* <Route exact path="/about" element={<About />}></Route>
+      <Route exact path="/contact" element={<Contact />}></Route> */}
+    </Routes>
+  </>
   );
 }
 

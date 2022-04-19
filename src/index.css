@@ -1,13 +1,43 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Arial', sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+@font-face {
+  font-family: 'arialregular';
+  src: url('./font/arial-webfont.woff2') format('woff2'),
+       url('./font/arial-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'arialbold';
+  src: url('./font/arial-bold-webfont.woff2') format('woff2'),
+       url('./font/arial-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'arialmedium';
+  src: url('./font/arial-medium-webfont.woff2') format('woff2'),
+       url('./font/arial-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
 }
