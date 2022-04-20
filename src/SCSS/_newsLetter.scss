@@ -1,0 +1,120 @@
+.newsLetter__container {
+  background-color: #3b3b3b;
+  padding: 40px 12px;
+  .newsLetter__block {
+    width: 1190px;
+    padding: 0px;
+    .newsLetter__row {
+      .newsLetter__text {
+        .newsLetter__title {
+          font-family: "arialbold";
+          font-size: 18px;
+          color: #ffffff;
+          margin: 0px 0px 20px;
+        }
+        .newsLetter__description {
+          font-size: 16px;
+          color: #ffffff;
+          margin: 0px;
+        }
+      }
+      .newsLetter__form__block {
+        display: flex;
+        align-items: center;
+        .newsLetter__form {
+          display: flex;
+          align-items: center;
+          .form__field {
+            .input__field {
+              width: 450px;
+              border: none;
+              font-size: 16px;
+              padding: 10px 16px;
+              font-family: "arialregular";
+              border-radius: 3px;
+              height: 50px;
+            }
+            .input__button {
+              background-color: #ffffff00;
+              border: 2px solid #ffffff;
+              border-radius: 3px;
+              color: white;
+              height: 50px;
+              width: 190px;
+              padding: 0px 20px;
+              text-align: center;
+              margin: 0px 0px 0px 36px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .input__field {
+    width: 350px !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .newsLetter__block {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0px auto;
+  }
+  .newsLetter__form {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .input__button {
+    margin: 10px 0px 0px 0px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .newsLetter__block {
+    width: 100% !important;
+  }
+  .newsLetter__text {
+    display: flex;
+    align-items: center !important;
+    flex-direction: column !important;
+    margin: 0px 0px 20px !important;
+  }
+  .newsLetter__title {
+    margin: 0px !important;
+    text-align: center;
+  }
+  .newsLetter__description {
+    width: 80%;
+    margin: 0px !important;
+    text-align: center;
+  }
+  .newsLetter__form__block {
+    justify-content: center !important;
+  }
+  .newsLetter__form {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  .input__field {
+    height: 40px !important;
+    width: 300px !important;
+  }
+  .input__button {
+    width: 140px !important;
+    height: 40px !important;
+    margin: 0px 0px 0px 36px !important;
+}
+}
+@media screen and (max-width: 576px) {
+    .newsLetter__block {
+        width: 100% !important;
+    }
+    .input__field {
+        width: 100% !important;
+    }
+    .input__button {
+        width: fit-content !important;
+        margin: 0px 0px 0px 18px !important;
+  }
+}

@@ -1,0 +1,101 @@
+.services__container {
+  background-color: #f1f1f1;
+  padding: 50px 12px;
+  margin: 50px 0px 0px 0px;
+  .services__block {
+    width: 1190px;
+    padding: 0px;
+
+    .services__row {
+      .service {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 0px 10px;
+        .service__image__block {
+          width: 120px;
+          height: 120px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #fff;
+          border-radius: 60px;
+          padding: 20px;
+          box-shadow: 0px 3px 6px #0000000a;
+          .service__image {
+          }
+        }
+        .service__title {
+          margin: 10px 0px;
+          font-size: 24px;
+          text-align: center;
+          font-family: "arialbold";
+          //   height: 72px;
+          //   width: 70%;
+        }
+        .service__description {
+          margin: 0px;
+          font-size: 15px;
+          font-family: "arialregular";
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1400px) {
+  .service__title {
+    height: 72px !important;
+    width: 55% !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .service__title {
+    height: 72px !important;
+    width: 65% !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .services__block {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0px auto;
+  }
+  .service__title {
+    font-size: 20px !important;
+    height: 54px !important;
+    width: 65% !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .services__block {
+    width: 100% !important;
+  }
+  .service__title {
+    font-size: 24px !important;
+    height: 30px !important;
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 580px) {
+  
+  .service__title {
+    font-size: 24px !important;
+    height: 60px !important;
+    width: 65% !important;
+  }
+}
+@media screen and (max-width: 580px) {
+  .services__block {
+    width: 100% !important;
+  }
+
+}
+@media screen and (max-width: 500px) {
+  
+    .service__title {
+      font-size: 24px !important;
+      height: 60px !important;
+      width: 100% !important;
+    }
+  }

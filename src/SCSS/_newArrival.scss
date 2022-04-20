@@ -74,17 +74,12 @@
   }
 }
 @media screen and (max-width: 992px) {
-  .arrow__block {
-    width: 720px !important;
-  }
-}
-@media screen and (max-width: 992px) {
   .carousel__block {
     min-width: 100% !important;
     margin: 0px auto;
   }
   .arrow__block {
-    width: 720px !important;
+    width: 100% !important;
   }
 }
 @media screen and (max-width: 768px) {
@@ -92,7 +87,7 @@
     width: 100% !important;
   }
   .arrow__block {
-    width: 540px !important;
+    width: 100% !important;
   }
 }
 @media screen and (max-width: 576px) {
@@ -100,6 +95,6 @@
     width: 100% !important;
   }
   .arrow__block {
-    width: 540px !important;
+    width: 100% !important;
   }
 }

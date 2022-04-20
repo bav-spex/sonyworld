@@ -10,7 +10,7 @@ function TopRatedProducts({ productData }) {
         <div className="row topRatedproduct__firstRow">
           {productData.slice(0, 4).map((product, productIndex) => {
             return (
-              <div className="col-3 topRatedproduct__first__block">
+              <div key={product.id}  className="col-3 topRatedproduct__first__block">
                 <div className="topRatedproduct__image__block">
                   <img src={product.image} alt="" className="topRatedproduct__image" />
                 </div>
@@ -18,7 +18,7 @@ function TopRatedProducts({ productData }) {
                 <div className="rating__block">
                   <Rating
                     // onClick={handleRating}
-                    size={20}
+                    size={15}
                     fillColor="#FCC153"
                     emptyColor="#C8C8C8"
                     readonly={true}
@@ -34,7 +34,7 @@ function TopRatedProducts({ productData }) {
         <div className="row topRatedproduct__secondRow">
           {productData.slice(4, 8).map((product, productIndex) => {
             return (
-              <div className="col-3 topRatedproduct__second__block">
+              <div key={product.id} className="col-3 topRatedproduct__second__block">
                 <div className="topRatedproduct__image__block">
                   <img src={product.image} alt="" className="topRatedproduct__image" />
                 </div>
@@ -42,7 +42,7 @@ function TopRatedProducts({ productData }) {
                 <div className="rating__block">
                   <Rating
                     // onClick={handleRating}
-                    size={20}
+                    size={15}
                     fillColor="#FCC153"
                     emptyColor="#C8C8C8"
                     readonly={true}

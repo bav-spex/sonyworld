@@ -361,10 +361,20 @@ function TopNavbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [window.pageYOffset]);
 
+
   useEffect(() => {
     if (height > 112) {
+      // if(window.screen.width <= 576){
+
+      //   document.querySelector(".main__navbar__container").style.position =
+      //     "absolute";
+      // }else if (window.screen.width > 576){
+      //   document.querySelector(".main__navbar__container").style.position =
+      //     "fixed";
+      // }
       document.querySelector(".main__navbar__container").style.position =
-        "fixed";
+          "fixed";
+
     } else if (height < 112) {
       document.querySelector(".main__navbar__container").style.position =
         "absolute";

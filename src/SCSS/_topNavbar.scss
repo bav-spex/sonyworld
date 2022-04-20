@@ -208,6 +208,11 @@
     min-width: 100% !important;
     margin: 0px auto;
   }
+  .topnavbar__icon__block {
+    padding: 0px 0px 0px 20px !important;
+   
+    justify-content: space-between !important;
+  }
   .navbar {
     min-width: 100% !important;
     margin: 0px auto;
@@ -258,6 +263,9 @@
     align-items: flex-end;
     justify-content: flex-end !important;
   }
+  .topnavbar {
+    width: 100% !important;
+  }
   .navbar__link_block {
     display: none !important;
   }
@@ -284,6 +292,9 @@
     width: 100% !important;
   }
   .navbar {
+    width: 100% !important;
+  }
+  .topnavbar {
     width: 100% !important;
   }
   .topnavbar__logo {
