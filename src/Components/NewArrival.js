@@ -53,7 +53,7 @@ function NewArrival({ sectionTitle, carouselData }) {
   return (
     <>
       <div className="container-fluid carousel__container">
-        <div className="container carousel__block">
+        <div className="carousel__block">
           <p className="section__title">{sectionTitle}</p>
           <div className="arrow__block">
             <div

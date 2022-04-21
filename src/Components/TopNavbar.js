@@ -445,7 +445,7 @@ function TopNavbar() {
           className="topnavbar__container"
           onMouseEnter={() => navbarTab__mouseTab(false, "")}
         >
-          <div className="container  topnavbar">
+          <div className="  topnavbar">
             <div className="row topnavbar__row">
               <Link
                 className="col-5  col-sm-4 col-xl-2  topnavbar__link"
@@ -491,7 +491,7 @@ function TopNavbar() {
           </div>
         </div>
         <div className="navbar__container">
-          <div className="container navbar">
+          <div className="navbar">
             <div className="navbar__link_block">
               <Link
                 // onClick={() => setShowPopup(true)}
@@ -707,7 +707,7 @@ function TopNavbar() {
           }
           onMouseLeave={() => navbarTab__mouseTab(false, "")}
         >
-          <div className="container product__popup__block">
+          <div className="product__popup__block">
             {categoryData.map((mainProduct, mainProductIndex) => {
               return (
                 <div

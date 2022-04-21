@@ -5,7 +5,7 @@ import instafeed from "./../Assets/Feed/instafeed.png"
 function Feeds() {
   return (
     <div className="container-fluid feed__container">
-      <div className="container feed__block">
+      <div className="feed__block">
         <div className="row feed__row">
           <div className="col-12 col-sm-12 col-md-4 feed">
             <p className="feed__title">Latest News</p>

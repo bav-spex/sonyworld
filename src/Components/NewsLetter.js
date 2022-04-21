@@ -10,7 +10,7 @@ function NewsLetter() {
   };
   return (
     <div className="container-fluid newsLetter__container">
-      <div className="container newsLetter__block">
+      <div className="newsLetter__block">
         <div className="row newsLetter__row">
           <div className="col-sm-12 col-md-4 col-lg-4 col-xl-3 newsLetter__text">
             <div className="newsLetter__title">Newsletter Subscriptions</div>

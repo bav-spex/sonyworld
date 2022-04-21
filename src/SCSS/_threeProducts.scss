@@ -2,7 +2,8 @@
 .three__products__container {
     margin: 20px 0px;
     .three__products__block {
-      width: 1190px;
+      width: 90%;
+      margin: 0px auto;
       padding: 0px;
       .three__products__row {
         .three__product__block {
@@ -74,6 +75,7 @@
     }
     .ineer__three__product__block {
       padding: 10px !important;
+      margin: 0px 0px 20px !important;
     }
     .three__product__image__block {
       height: 96px !important;

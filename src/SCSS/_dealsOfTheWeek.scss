@@ -1,21 +1,25 @@
 .dealsOfTheWeek__container {
   .dealsOfTheWeek__block {
-    width: 1190px;
+    width: 90%;
     padding: 0px;
+    margin: 0px auto;
     .section__title {
       font-family: "arialbold";
       font-size: 40px;
     }
     .deals__block {
       overflow: hidden;
-      height: 320px;
+      height: auto;
       border-radius: 15px;
       display: flex;
+      margin: 0px 0px 20px 0px;
       // justify-content: center;
       // align-items: center;
       .deals__image {
+        width: 100%;
+        height: 100%;
         border-radius: 15px;
-        object-fit: contain;
+        object-fit: cover;
       }
     }
   }

@@ -4,7 +4,7 @@ import calender from "./../Assets/Icon/calender.svg";
 function OurBlogs({ ourBlogsData }) {
   return (
     <div className="container-fluid ourBlogs__container">
-      <div className="container ourBlogs__block">
+      <div className="ourBlogs__block">
         <div className="section__title__block">
           <p className="section__title">Our Blogs</p>
           <button className="viewall__button">View All</button>

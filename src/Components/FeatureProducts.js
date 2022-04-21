@@ -10,7 +10,7 @@ import feature_product_05 from "./../Assets/FeatureProduct/feature_product_05.pn
 function FeatureProducts() {
   return (
     <div className="container-fluid feature__category__container">
-        <div className="container feature__category__block">
+        <div className=" feature__category__block">
           <div className="row inner__feature__category__block">
             <div className="first__feature__category__block">
               <div className="first__feature__category">

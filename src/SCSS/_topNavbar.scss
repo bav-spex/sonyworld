@@ -13,8 +13,10 @@
     height: 60px;
     display: flex;
     align-items: center;
+    width: 100%;
     .topnavbar {
-      width: 1190px;
+      margin: 0px auto;
+      width: 90%;
       padding: 0px;
 
       .topnavbar__row {
@@ -54,14 +56,17 @@
   .navbar__container {
     background-color: #000000;
     border-top: 1px solid #707070;
+    padding: 0px 10px;
+
     .navbar {
-      width: 1190px;
+      width: 90%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0px;
       height: 52px;
       background-color: #000000;
+      margin: 0px auto;
       .navbar__link_block {
         display: flex;
         .navbar__link {
@@ -135,10 +140,12 @@
     border: 1px solid #d1d1d1;
     min-height: 86vh;
     overflow-y: scroll;
+    
     .product__popup__block {
-      padding: 26px 0px 16px;
-      width: 1190px;
+      padding: 26px 10px 16px;
+      width: 90%;
       background-color: white;
+      margin: 0px auto;
       .inner__product__popup__block {
         display: flex;
         .category__block {
@@ -254,6 +261,9 @@
 @media screen and (max-width: 768px) {
   .main__navbar__container{
     width: 100% !important;
+  }
+  .product__popup__container{
+    display: none !important;
   }
   .mobile__navbar {
     display: block !important;

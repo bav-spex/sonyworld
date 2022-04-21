@@ -1,9 +1,10 @@
 .carousel__container {
   margin: 30px 0px 0px;
   .carousel__block {
-    width: 1190px;
+    width: 90%;
     padding: 0px;
     position: relative;
+    margin: 0px auto;
   }
   .section__title {
     font-family: "arialbold";
@@ -14,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1230px;
+    width: 103%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -51,7 +52,7 @@
 
 @media screen and (max-width: 1400px) {
   .arrow__block {
-    width: 1180px !important;
+    width: 103% !important;
 
     .left__arrow {
     }
@@ -61,7 +62,7 @@
 }
 @media screen and (max-width: 1200px) {
   .arrow__block {
-    width: 960px !important;
+    width: 100% !important;
 
     .left__arrow {
       filter: none !important;

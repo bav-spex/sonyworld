@@ -5,7 +5,7 @@ import ReactPlayer from "react-player/youtube";
 function VideoLogs({ videoLogsData }) {
   return (
     <div className="container-fluid videoLogs__container">
-      <div className="container videoLogs__block">
+      <div className="videoLogs__block">
         <div className="section__title__block">
           <p className="section__title">How to Video Logs</p>
           <button className="viewall__button">View All</button>

@@ -3,7 +3,7 @@ import "./../SCSS/_services.scss"
 function Services({servicesData}) {
   return (
     <div className="container-fluid services__container">
-    <div className="container services__block">
+    <div className="services__block">
      
       <div className="row services__row">
         {servicesData.map((service, blogIndex) => {

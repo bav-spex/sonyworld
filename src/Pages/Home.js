@@ -431,7 +431,7 @@ function Home() {
       <DealsOfTheWeek dealsoftheweekData={dealsoftheweekData} />
       <TopRatedProducts productData={topRatedProductsData} />
       <div className="container-fluid adImage__container">
-        <div className="container adImage">
+        <div className=" adImage">
           <div className="adImage__block">
             <img src={banner_01} alt="" className="adImage__image" />
           </div>
@@ -463,7 +463,7 @@ function Home() {
       <NewsLetter/>
       <Footer/>
 
-      <Banner />
+      {/* <Banner /> */}
     </>
   );
 }

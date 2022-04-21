@@ -1,6 +1,7 @@
 .feed__container {
   .feed__block {
-    width: 1190px;
+    width: 90%;
+    margin: 0px auto;
     padding: 0px;
     .feed__row {
       .feed {
@@ -37,6 +38,7 @@
   .feed__block {
     width: 100% !important;
   }
+  
 }
 @media screen and (max-width: 576px) {
   .feed__block {
