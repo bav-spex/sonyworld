@@ -119,6 +119,12 @@
       }
     }
   }
+  @media screen and (max-width: 1702px) {
+    .footer__block {
+      width: 90% !important;
+    }
+  
+  }
   @media screen and (max-width: 992px) {
     .footer__block {
       width: 100% !important;

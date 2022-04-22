@@ -208,6 +208,18 @@
     }
   }
 }
+@media screen and (max-width: 1702px) {
+  .topnavbar {
+    width: 90% !important;
+  }
+  .navbar {
+    width: 90% !important;
+  }
+  .product__popup__block{
+    width: 90% !important;
+
+  }
+}
 @media screen and (max-width: 1280px) {
   .popup__product__block {
     margin: 0px 12px 12px 0px !important;

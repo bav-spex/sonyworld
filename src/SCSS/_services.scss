@@ -44,6 +44,12 @@
     }
   }
 }
+@media screen and (max-width: 1702px) {
+  .services__block {
+    width: 90% !important;
+  }
+
+}
 @media screen and (max-width: 1400px) {
   .service__title {
     height: 72px !important;

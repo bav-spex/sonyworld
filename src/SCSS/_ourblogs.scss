@@ -62,6 +62,12 @@
     }
   }
 }
+@media screen and (max-width: 1702px) {
+  .ourBlogs__block {
+    width: 90% !important;
+  }
+
+}
 @media screen and (max-width: 992px) {
   .ourBlogs__block {
     width: 100% !important;

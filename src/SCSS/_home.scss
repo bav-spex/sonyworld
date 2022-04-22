@@ -28,6 +28,12 @@
     }
   }
 }
+@media screen and (max-width: 1702px) {
+  .adImage {
+    width: 90% !important;
+  }
+
+}
 @media screen and (max-width: 1200px) {
   .adImage__block {
     height: 180px !important;
