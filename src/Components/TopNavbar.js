@@ -453,7 +453,7 @@ function TopNavbar() {
               >
                 <img src={navbar_logo} alt="logo" className="topnavbar__logo" />
               </Link>
-              <div className="col-5  col-sm-4  col-xl-7 search__box__block">
+              <div className="col-5  col-sm-4  col-xl-8 search__box__block">
                 <div className="search__box">
                   <input
                     type="text"
@@ -464,7 +464,7 @@ function TopNavbar() {
                   <img src={search} alt="" className="topnavbar__icon" />
                 </div>
               </div>
-              <div className="col-2 col-sm-4  col-xl-3  topnavbar__icon__block">
+              <div className="col-2 col-sm-4  col-xl-2  topnavbar__icon__block">
                 <img
                   src={location}
                   alt=""
@@ -705,7 +705,7 @@ function TopNavbar() {
               ? "container-fluid product__popup__container"
               : "container-fluid product__popup__container__disable"
           }
-          onMouseLeave={() => navbarTab__mouseTab(false, "")}
+          // onMouseLeave={() => navbarTab__mouseTab(false, "")}
         >
           <div className="product__popup__block">
             {categoryData.map((mainProduct, mainProductIndex) => {
@@ -727,10 +727,10 @@ function TopNavbar() {
                       );
                     })}
                   </div>
-                  <div className="col-sm-8 col-md-7  col-lg-6 productList__block">
+                  <div className="col-sm-8 col-md-7  col-lg-7 productList__block">
                     {mainProduct.productList.map((product, productIndex) => {
                       return (
-                        <div key={product.id} className="product__block">
+                        <div key={product.id} className="popup__product__block">
                           <img
                             src={product_01}
                             alt=""
@@ -746,7 +746,7 @@ function TopNavbar() {
                       );
                     })}
                   </div>
-                  <div className="col-sm-12 col-md-3 col-lg-4 adsBanner__block">
+                  <div className="col-sm-12 col-md-3 col-lg-3 adsBanner__block">
                     {mainProduct.adBanner.map((adBanner, adBannerIndex) => {
                       return (
                         <img

@@ -16,7 +16,7 @@
     width: 100%;
     .topnavbar {
       margin: 0px auto;
-      width: 90%;
+      width: 1702px;
       padding: 0px;
 
       .topnavbar__row {
@@ -59,7 +59,7 @@
     padding: 0px 10px;
 
     .navbar {
-      width: 90%;
+      width: 1702px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -100,9 +100,10 @@
     }
   }
   .mobile__navbar {
+    min-height: 100%;
     max-height: 80vh;
     overflow-y: scroll;
-    
+
     display: none;
     background-color: #000000;
     .mobile__navbar__link_block {
@@ -138,12 +139,12 @@
     background: #ffffff 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #d1d1d1;
-    min-height: 86vh;
+    min-height: 100%;
     overflow-y: scroll;
-    
+
     .product__popup__block {
       padding: 26px 10px 16px;
-      width: 90%;
+      width: 1702px;
       background-color: white;
       margin: 0px auto;
       .inner__product__popup__block {
@@ -161,9 +162,9 @@
           flex-wrap: wrap;
           align-content: flex-start;
           padding: 0px 0px 0px 12px;
-          .product__block {
+          .popup__product__block {
             padding: 14px;
-            width: 30%;
+            width: 22.5%;
             height: fit-content;
             margin: 0px 16px 16px 0px;
             background: #ffffff 0% 0% no-repeat padding-box;
@@ -207,8 +208,14 @@
     }
   }
 }
+@media screen and (max-width: 1280px) {
+  .popup__product__block {
+    margin: 0px 12px 12px 0px !important;
+    width: 30% !important;
+  }
+}
 @media screen and (max-width: 992px) {
-  .main__navbar__container{
+  .main__navbar__container {
     min-width: 100% !important;
   }
   .topnavbar {
@@ -217,7 +224,7 @@
   }
   .topnavbar__icon__block {
     padding: 0px 0px 0px 20px !important;
-   
+
     justify-content: space-between !important;
   }
   .navbar {
@@ -238,7 +245,7 @@
       }
       .productList__block {
         padding: 0px 0px 0px 12px !important;
-        .product__block {
+        .popup__product__block {
           margin: 0px 12px 12px 0px !important;
 
           .product__image {
@@ -259,10 +266,10 @@
   }
 }
 @media screen and (max-width: 768px) {
-  .main__navbar__container{
+  .main__navbar__container {
     width: 100% !important;
   }
-  .product__popup__container{
+  .product__popup__container {
     display: none !important;
   }
   .mobile__navbar {
@@ -298,7 +305,7 @@
   }
 }
 @media screen and (max-width: 576px) {
-  .main__navbar__container{
+  .main__navbar__container {
     width: 100% !important;
   }
   .navbar {
