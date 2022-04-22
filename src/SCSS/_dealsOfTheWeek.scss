@@ -24,6 +24,12 @@
     }
   }
 }
+@media screen and (max-width: 1702px) {
+  .dealsOfTheWeek__block {
+    width: 90% !important;
+  }
+
+}
 @media screen and (max-width: 1200px) {
   .deals__block {
     height: 260px !important;

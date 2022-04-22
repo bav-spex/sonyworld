@@ -88,7 +88,12 @@
     }
   }
 }
+@media screen and (max-width: 1702px) {
+  .topRatedproduct__block {
+    width: 90% !important;
+  }
 
+}
 @media screen and (max-width: 1200px) {
   .topRatedproduct__image__block {
     height: 210px !important;

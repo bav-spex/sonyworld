@@ -49,7 +49,12 @@
     // transition: all 0.2s ease-in;
   }
 }
+@media screen and (max-width: 1702px) {
+  .carousel__block {
+    width: 90% !important;
+  }
 
+}
 @media screen and (max-width: 1400px) {
   .arrow__block {
     width: 103% !important;

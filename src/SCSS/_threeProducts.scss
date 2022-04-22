@@ -41,7 +41,12 @@
       }
     }
   }
+  @media screen and (max-width: 1702px) {
+    .three__products__block {
+      width: 90% !important;
+    }
   
+  }
   @media screen and (max-width: 1200px) {
     .three__product__image__block {
       height: 137px !important;

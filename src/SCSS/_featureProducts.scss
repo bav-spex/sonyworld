@@ -72,7 +72,12 @@
       }
     }
   }
+  @media screen and (max-width: 1702px) {
+    .feature__category__block {
+      width: 90% !important;
+    }
   
+  }
   @media screen and (max-width: 1200px) {
     .first__feature__category__title {
       margin: 0px 0px 0px 100px !important;

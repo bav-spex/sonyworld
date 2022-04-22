@@ -52,6 +52,12 @@
     }
   }
 }
+@media screen and (max-width: 1702px) {
+  .newsLetter__block {
+    width: 90% !important;
+  }
+
+}
 @media screen and (max-width: 1200px) {
   .input__field {
     width: 350px !important;
