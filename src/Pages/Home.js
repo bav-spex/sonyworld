@@ -4,6 +4,8 @@ import Navbar from "../Components/Navbar";
 import TopNavbar from "../Components/TopNavbar";
 import "./../SCSS/_home.scss";
 
+
+
 import newArrivals_01 from "./../Assets/NewArrivals/newArrivals_01.png";
 import newArrivals_02 from "./../Assets/NewArrivals/newArrivals_02.png";
 import newArrivals_03 from "./../Assets/NewArrivals/newArrivals_03.png";
@@ -37,6 +39,8 @@ import threeProducts_03 from "./../Assets/ThreeProducts/threeProducts_03.png";
 import blog_01 from "./../Assets/Blog/blog_01.png";
 import blog_02 from "./../Assets/Blog/blog_02.png";
 import blog_03 from "./../Assets/Blog/blog_03.png";
+
+
 
 import shipping from "./../Assets/Services/shipping.svg"
 import secure_payments from "./../Assets/Services/secure_payments.svg"

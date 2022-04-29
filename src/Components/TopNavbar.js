@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import navbar_logo from "./../Assets/Logo/navbar_logo.svg";
-import down_arrow from "./../Assets/Icon/down_arrow.svg";
+import navbar_white_down_arrow from "./../Assets/Icon/navbar_white_down_arrow.svg";
 import "./../SCSS/_topNavbar.scss";
 import { useLocation } from "react-router";
 // import "./../SCSS/_variables.scss"
@@ -513,7 +513,7 @@ function TopNavbar() {
                 // to="/playstation"
               >
                 PlayStation
-                <img src={down_arrow} alt="" className="down__arrow__icon" />
+                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
               </div>
               <div
                 onClick={() => setShowPopup(true)}
@@ -527,7 +527,7 @@ function TopNavbar() {
                 // to="/television"
               >
                 Television
-                <img src={down_arrow} alt="" className="down__arrow__icon" />
+                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
               </div>
               <div
                 onClick={() => setShowPopup(true)}
@@ -541,7 +541,7 @@ function TopNavbar() {
                 // to="/camera"
               >
                 Camera
-                <img src={down_arrow} alt="" className="down__arrow__icon" />
+                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
               </div>
               <div
                 onClick={() => setShowPopup(true)}
@@ -555,7 +555,7 @@ function TopNavbar() {
                 // to="/audio"
               >
                 Audio
-                <img src={down_arrow} alt="" className="down__arrow__icon" />
+                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
               </div>
               <Link
                 onMouseEnter={() => navbarTab__mouseTab(false, "")}
@@ -609,7 +609,7 @@ function TopNavbar() {
               // to="/playstation"
             >
               PlayStation
-              <img src={down_arrow} alt="" className="down__arrow__icon" />
+              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
             </div>
             {navIndex === "playstation" &&
             menuIndex === 1 &&
@@ -632,7 +632,7 @@ function TopNavbar() {
               // to="/television"
             >
               Television
-              <img src={down_arrow} alt="" className="down__arrow__icon" />
+              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
             </div>
             {navIndex === "television" && menuIndex === 2 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
@@ -653,7 +653,7 @@ function TopNavbar() {
               // to="/camera"
             >
               Camera
-              <img src={down_arrow} alt="" className="down__arrow__icon" />
+              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
             </div>
             {navIndex === "camera" && menuIndex === 3 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
@@ -674,7 +674,7 @@ function TopNavbar() {
               // to="/audio"
             >
               Audio
-              <img src={down_arrow} alt="" className="down__arrow__icon" />
+              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
             </div>
             {navIndex === "audio" && menuIndex === 3 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
@@ -705,7 +705,7 @@ function TopNavbar() {
               ? "container-fluid product__popup__container"
               : "container-fluid product__popup__container__disable"
           }
-          // onMouseLeave={() => navbarTab__mouseTab(false, "")}
+          onMouseLeave={() => navbarTab__mouseTab(false, "")}
         >
           <div className="product__popup__block">
             {categoryData.map((mainProduct, mainProductIndex) => {

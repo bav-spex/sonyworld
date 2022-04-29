@@ -1,0 +1,25 @@
+.breadcrumbs__container {
+    padding: 113px 12px 0px;
+  .breadcrumbs__block {
+    padding: 0px;
+    width: 1702px;
+    margin: 0px auto;
+    h5{
+        color: #303030;
+        margin: 0px;
+        padding: 10px 0px;
+    }
+  }
+}
+@media screen and (max-width: 1702px) {
+    .breadcrumbs__block {
+      width: 90% !important;
+    }
+  }
+  
+@media screen and (max-width: 992px) {
+    .breadcrumbs__block {
+      width: 100% !important;
+    }
+  }
+  

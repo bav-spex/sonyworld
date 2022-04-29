@@ -1,0 +1,342 @@
+.carousel__main__container {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  display: flex;
+  align-items: flex-start;
+  .carousel__dots__main__block {
+    margin: 0px 10px 0px 0px;
+    // padding: 0px !important;
+    z-index: 1;
+    width: 16% !important;
+    height: 540px;
+    overflow-y: scroll;
+    position: relative;
+    display: flex;
+    align-items: center;
+    .carousel__dots__block {
+      margin: 0px;
+      z-index: 1;
+      width: 100%;
+
+      overflow-y: scroll;
+      height: 87%;
+      scroll-behavior: smooth;
+
+      .carousel__dot {
+        margin: 0px 0px 10px;
+        border: 1px solid #c8c8c8;
+        width: 100%;
+        height: 76px;
+        overflow: hidden;
+        .carousel__thumbnail__image {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .overlay {
+          position: sticky; /* Sit on top of the page content */
+          display: block; /* Hidden by default */
+          width: 100%; /* Full width (cover the whole page) */
+          height: 100%; /* Full height (cover the whole page) */
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+          ); /* Black background with opacity */
+          z-index: 15; /* Specify a stack order in case you're using a different order for other elements */
+          cursor: pointer; /* Add a pointer on hover */
+        }
+      }
+
+      .carousel__dotActive {
+        // background-color: rgb(255, 0, 0);
+      }
+    }
+
+    .carousel__dots__block::-webkit-scrollbar {
+      display: none;
+
+      /* transform: translateY(100%); */
+    }
+    .carousel__dots__arrow__block {
+      position: absolute;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .carousel__main__block {
+    width: 100%;
+
+    .carousel__block {
+      padding: 0px;
+      margin: 0 0px 20px;
+      height: 540px;
+      width: 100% !important;
+      overflow: hidden;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      border: 1px solid #c8c8c8;
+      background-color: #f8f8f8;
+      .carousel {
+        position: absolute;
+        padding: 10px;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all 0.7s ease-in-out;
+        transform: scale(50%);
+
+        .carousel__image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .carousel__title {
+          width: 700px;
+          text-align: left;
+          line-height: 120px;
+          font-family: "Bebas Neue", cursive;
+          font-size: 120px;
+          color: rgb(255, 255, 255);
+          // -webkit-text-stroke-width: 2px;
+          // -webkit-text-stroke-color: rgb(255, 255, 255);
+          position: absolute;
+          top: 270px;
+          left: 250px;
+          margin: 0px;
+        }
+      }
+
+      .activeCarousel {
+        opacity: 1;
+        transform: translateX(0%) scale(100%);
+      }
+      .prevCarousel {
+        opacity: 0;
+        transform: translateX(-100%) scale(50%);
+      }
+      .nextCarousel {
+        opacity: 0;
+        transform: translateX(100%) scale(50%);
+      }
+      .carousel__arrow__block {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        padding: 0px 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        // filter:invert(1)
+        // bottom: 300px;
+        // left: 250px;
+
+        .arrow__icon__block {
+          cursor: pointer;
+          // width: 5px;
+          // height: 5px;
+          // margin: 0px 8px;
+          // border-radius: 10px;
+        }
+      }
+    }
+    .pd__social__media__compare__block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .pd__social__media__icon__block {
+        display: flex;
+        align-items: center;
+        .pd__share__text {
+          font-size: 18px;
+          font-family: "arialbold";
+          margin: 0px 20px 0px 0px;
+        }
+        .pd__social__media__icon {
+          margin: 0px 10px 0px 0px;
+        }
+      }
+      .pd__compare__block {
+        display: flex;
+        align-items: center;
+        .pd__compare__input__check {
+          accent-color: #000000;
+          height: 30px;
+          width: 30px;
+          border-radius: 10px;
+          margin: 0px 16px 0px 0px;
+          border: 30px solid #303030;
+          text-transform: uppercase;
+        }
+        .pd__compare__text {
+          font-size: 16px;
+          font-family: "arialregular";
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
+// @media screen and (max-width: 1702px) {
+//   .carousel__dots__main__block  {
+//     height: 100% !important;
+//   }
+//   .carousel__main__block {
+//     height: 100% !important;
+//   }
+// }
+@media screen and (max-width: 1600px) {
+  .carousel__dots__main__block {
+    height: 500px !important;
+  }
+  .carousel__block {
+    height: 500px !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .carousel__dots__main__block {
+    height: 500px !important;
+  }
+  .carousel__block {
+    height: 500px !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .carousel__dots__main__block {
+    height: 408px !important;
+  }
+  .carousel__block {
+    height: 408px !important;
+  }
+  .carousel__dot {
+    height: 50px !important;
+  }
+  .carousel__dots__block {
+    height: 84% !important;
+  }
+  .arrow__icon__block {
+    // transform: scale(70%);
+  }
+  .pd__social__media__icon__block {
+    
+    margin: 0px 0px 20px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .carousel__dots__main__block {
+    height: 630px !important;
+  }
+  .carousel__block {
+    height: 630px !important;
+  }
+  .carousel__dot {
+    height: 84px !important;
+  }
+  .carousel__dots__block {
+    height: 84% !important;
+  }
+  .arrow__icon__block {
+    // transform: scale(100%) !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .carousel__dots__main__block {
+    height: 474px !important;
+  }
+  .carousel__block {
+    height: 474px !important;
+  }
+  .carousel__dot {
+    height: 70px !important;
+  }
+  .carousel__dots__block {
+    height: 86% !important;
+  }
+  .arrow__icon__block {
+    // transform: scale(100%) !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .carousel__dots__main__block {
+    height: 380px !important;
+  }
+  .carousel__block {
+    height: 380px !important;
+  }
+  .carousel__dot {
+    height: 56px !important;
+  }
+  .carousel__dots__block {
+    height: 86% !important;
+  }
+  .arrow__icon__block {
+    // transform: scale(70%) !important;
+  }
+}
+@media screen and (max-width: 414px) {
+  .carousel__dots__main__block {
+    height: 327px !important;
+  }
+  .carousel__block {
+    height: 327px !important;
+  }
+  .carousel__dot {
+    height: 48px !important;
+  }
+  .carousel__dots__block {
+    height: 82% !important;
+  }
+  .arrow__icon__block {
+    // transform: scale(60%) !important;
+  }
+}
+@media screen and (max-width: 390px) {
+  .carousel__dots__main__block {
+    height: 306px !important;
+  }
+  .carousel__block {
+    height: 306px !important;
+  }
+  .carousel__dot {
+    height: 45px !important;
+  }
+  .carousel__dots__block {
+    height: 82% !important;
+  }
+  .arrow__icon__block {
+    // transform: scale(60%) !important;
+  }
+}
+@media screen and (max-width: 375px) {
+  .carousel__dots__main__block {
+    height: 293px !important;
+  }
+  .carousel__block {
+    height: 293px !important;
+  }
+  .carousel__dot {
+    height: 43px !important;
+  }
+  .carousel__dots__block {
+    height: 82% !important;
+  }
+  .arrow__icon__block {
+    // transform: scale(60%) !important;
+  }
+}

@@ -58,8 +58,7 @@ function ProductOne({ product }) {
           readonly={true}
           ratingValue={(product.rating*100)/5} /* Available Props */
         />
-      
-      </div>
+            </div>
       <div className="prize__block">
         <p className="old__prize">{`SAR${product.oldPrize.toString().slice(0,-3)},${product.oldPrize.toString().slice(-3)}.00`}</p>
         <p className="new__prize">{`SAR${product.prize.toString().slice(0,-3)},${product.prize.toString().slice(-3)}.00`}</p>
