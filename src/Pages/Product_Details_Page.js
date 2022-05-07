@@ -28,6 +28,7 @@ import add_to_cart from "./../Assets/Icon/add_to_cart.svg";
 import super_coin_image from "./../Assets/Icon/super_coin_image.svg";
 import coin from "./../Assets/Icon/coin.svg";
 import add_cart_white from "./../Assets/Icon/add_cart_white.svg";
+import add_cart_black from "./../Assets/Icon/add_cart_black.svg";
 
 import facebook from "./../Assets/Icon/facebook.png";
 import twitter from "./../Assets/Icon/twitter.png";
@@ -48,6 +49,10 @@ import newArrivals_04 from "./../Assets/NewArrivals/newArrivals_04.png";
 import newArrivals_05 from "./../Assets/NewArrivals/newArrivals_05.png";
 import { Link } from "react-router-dom";
 import { renderIntoDocument } from "react-dom/test-utils";
+import ExpertProducts from "../Components/ExpertProducts";
+import Accordian from "../Components/Accordian";
+import SimilarProducts from "../Components/SimilarProducts";
+import NewsLetter from "../Components/NewsLetter";
 
 const product = {
   id: 1,
@@ -139,7 +144,7 @@ const peopleUltimatelyBoughtData = [
     id: 1,
     logo: sony_logo,
     image: product_01,
-    name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+    productName: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.6,
     totalRatings: 6183,
@@ -225,7 +230,7 @@ const peopleUltimatelyBoughtData = [
     id: 2,
     logo: sony_logo,
     image: product_02,
-    name: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.0,
     totalRatings: 2183,
@@ -311,7 +316,7 @@ const peopleUltimatelyBoughtData = [
     id: 3,
     logo: sony_logo,
     image: product_03,
-    name: "SONY X85J Smart TV 50' 4K Ultra HD High Dynamic Range(Google TV)",
+    productName: "SONY X85J Smart TV 50' 4K Ultra HD High Dynamic Range(Google TV)",
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 5.0,
     totalRatings: 4183,
@@ -397,7 +402,7 @@ const peopleUltimatelyBoughtData = [
     id: 4,
     logo: sony_logo,
     image: product_04,
-    name: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.0,
     totalRatings: 2183,
@@ -483,7 +488,7 @@ const peopleUltimatelyBoughtData = [
     id: 5,
     logo: sony_logo,
     image: product_05,
-    name: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.0,
     totalRatings: 6183,
@@ -572,82 +577,246 @@ const peopleUltimatelyBoughtData = [
 //     image: newArrivals_01,
 //     productName: "Camera",
 //     rating: 4.5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 1,
 //     image: newArrivals_02,
 //     productName: "Silver Porto Headset",
 //     rating: 3,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 3,
 //     image: newArrivals_03,
 //     productName: "Car Audio Speaker KM100",
 //     rating: 3.5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 4,
 //     image: newArrivals_04,
 //     productName: "Sony Viao Laptop",
 //     rating: 2.5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 5,
 //     image: newArrivals_05,
 //     productName: "Network Camera",
 //     rating: 5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 6,
 //     image: newArrivals_01,
 //     productName: "Camera",
 //     rating: 3.2,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 7,
 //     image: newArrivals_02,
 //     productName: "Silver Porto Headset",
 //     rating: 4.8,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 8,
 //     image: newArrivals_03,
 //     productName: "Car Audio Speaker KM100",
 //     rating: 2,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 9,
 //     image: newArrivals_04,
 //     productName: "Sony Viao Laptop",
 //     rating: 1,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 10,
 //     image: newArrivals_05,
 //     productName: "Network Camera",
 //     rating: 3,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 // ];
+
+const productOverviewData = {
+  title: "Product Overview",
+  description:
+    "Improve your viewing experience with this 55-inch Samsung smart TV. The variety of applications offer easy access to content on popular streaming services, and the intuitive interface makes finding your favorite shows simple. Boasting native 4K resolution and advanced HDR technology, this Samsung smart TV enriches your movie nights with stunningly detailed visuals and lifelike colors.",
+  keyValueTitle: "Features",
+  keyValueData: [
+    {
+      id: 0,
+      key: "Crystal Processor 4K",
+      value:
+        "The ultrafast processor transforms everything you watch into stunning 4K.",
+    },
+    {
+      id: 1,
+      key: "Crystal display",
+      value:
+        "Experience crystal-clear colors that are fine-tuned to deliver a naturally crisp and vivid picture.",
+    },
+    {
+      id: 2,
+      key: "Universal guide",
+      value:
+        "Powerful AI technology recommends streaming and live TV content all in one simple onscreen guide.",
+    },
+    {
+      id: 3,
+      key: "Boundless design",
+      value: "An ultra-thin bezel on all sides for a stunningly clean look.",
+    },
+    {
+      id: 4,
+      key: "4K Ultra HD (2160p resolution)",
+      value:
+        "Enjoy breathtaking 4K movies and TV shows at 4x the resolution of Full HD, and upscale your current content to Ultra HD-level picture quality.",
+    },
+    {
+      id: 5,
+      key: "Smart TV powered by Tizen",
+      value:
+        "Go beyond Smart TV with next-generation apps, super easy control, and a host of enhancements that elevate your TV-watching experience.",
+    },
+  ],
+};
+
+const productSpecificationData = {
+  title: "Specifications",
+  keyValueTitle: "Key Specs",
+  keyValueData: [
+    {
+      id: 0,
+      key: "Model",
+      value: "UN55TU7000FXZASKU",
+    },
+    {
+      id: 1,
+      key: "SKU",
+      value: "6401735",
+    },
+    {
+      id: 2,
+      key: "Display Type",
+      value: "LED",
+    },
+    {
+      id: 3,
+      key: "Resolution",
+      value: "4K (2160p)",
+    },
+    {
+      id: 4,
+      key: "HDR (High Definition Range)",
+      value: "Yes",
+    },
+    {
+      id: 5,
+      key: "Specific Manufacturer Technologies",
+      value:
+        "Crystal Processor 4K, Digital Clean View, Contrast Enhancer, PurColor, Game Enhancer, LED Clear Motion",
+    },
+  ],
+};
+const newArrivalData = [
+  {
+    id: 0,
+    image: newArrivals_01,
+    productName: "Camera",
+    rating: 4.5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 1,
+    image: newArrivals_02,
+    productName: "Silver Porto Headset",
+    rating: 3,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 3,
+    image: newArrivals_03,
+    productName: "Car Audio Speaker KM100",
+    rating: 3.5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 4,
+    image: newArrivals_04,
+    productName: "Sony Viao Laptop",
+    rating: 2.5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 5,
+    image: newArrivals_05,
+    productName: "Network Camera",
+    rating: 5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 6,
+    image: newArrivals_01,
+    productName: "Camera",
+    rating: 3.2,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 7,
+    image: newArrivals_02,
+    productName: "Silver Porto Headset",
+    rating: 4.8,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 8,
+    image: newArrivals_03,
+    productName: "Car Audio Speaker KM100",
+    rating: 2,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 9,
+    image: newArrivals_04,
+    productName: "Sony Viao Laptop",
+    rating: 1,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 10,
+    image: newArrivals_05,
+    productName: "Network Camera",
+    rating: 3,
+    oldPrice: 1999,
+    price: 1699,
+  },
+];
 function Product_Details_Page() {
   const [productData, setProductData] = useState(product);
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
@@ -668,7 +837,6 @@ function Product_Details_Page() {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
-  console.log(document.querySelector(".pd__return__block"));
   return (
     <>
       <TopNavbar />
@@ -676,9 +844,10 @@ function Product_Details_Page() {
       <div className="container-fluid product__details__page__container">
         <div className="row product__details__page__block">
           <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-9 row product__details__left__block">
-            <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
-              <div className="product__carousel__block">
-                {/* <ImageGallery
+            <div className="row products__details__inner__block">
+              <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
+                <div className="product__carousel__block">
+                  {/* <ImageGallery
                 className="image__gallery"
                 // originalClass  ="original__image"
                 showPlayButton={false}
@@ -686,293 +855,47 @@ function Product_Details_Page() {
                 thumbnailPosition="left"
                 items={images}
               /> */}
-                <ProductCarousel />
-              </div>
-            </div>
-            <div className="col-12 col-sm-12 col-md-6 product__details__block">
-              <img
-                src={product.logo}
-                alt=""
-                className="pd__product__company__logo"
-              />
-              <p className="pd__product__name">{product.name}</p>
-              <div className="pd__category__favourite__button__block">
-                <button className="pd__catrgory__button">ALL TV's</button>
-                <button className="pd__favourie__button">
-                  <img
-                    onMouseEnter={() => setIsFavouriteHover(true)}
-                    onClick={handleFavourite}
-                    onMouseLeave={() => setIsFavouriteHover(false)}
-                    className={
-                      !isFavourite
-                        ? "pd__favourite__icon"
-                        : "pd__favourite__icon__disable"
-                    }
-                    src={isFavouriteHover ? fulfill_favourite : empty_favourite}
-                    alt=""
-                  />
-                  <img
-                    onClick={handleFavourite}
-                    className={
-                      isFavourite
-                        ? "pd__favourite__icon"
-                        : "pd__favourite__icon__disable"
-                    }
-                    src={fulfill_favourite}
-                    alt=""
-                  />
-                </button>
-              </div>
-              <p className="pd__product__categoryTagline">
-                {product.categoryTagline}
-              </p>
-              <div className="pd__rating__block">
-                <div className="rating__block">
-                  <Rating
-                    // onClick={handleRating}
-                    size={22}
-                    fillColor="#DC3A1A"
-                    emptyColor="#C8C8C8"
-                    readonly={true}
-                    ratingValue={
-                      (product.rating * 100) / 5
-                    } /* Available Props */
-                  />
+                  <ProductCarousel />
                 </div>
+              </div>
+              <div className="col-12 col-sm-12 col-md-6 product__details__block">
                 <img
-                  src={black_down_arrow}
+                  src={product.logo}
                   alt=""
-                  className="pd__product__rating__icon"
+                  className="pd__product__company__logo"
                 />
-                <p className="pd__product__rating">{product.rating}</p>
-                <p className="pd__product__totalRating">
-                  {product.totalRatings.toString().length > 3
-                    ? `(${product.totalRatings
-                        .toString()
-                        .slice(0, -3)},${product.totalRatings
-                        .toString()
-                        .slice(-3)}) Rating`
-                    : `(${product.totalRatings.toString().slice(-3)}) Rating`}
-                </p>
-              </div>
-              <hr className="pd__block__bottom__line" />
-
-              <div className="row pd__product__price__block ">
-                <div className="col-4 col-sm-4 col-md-5 pd__total__price__block">
-                  <p className="pd__product__total__price">
-                    {product.price.toString().length > 3
-                      ? `SAR${product.price
-                          .toString()
-                          .slice(0, -3)},${product.price
-                          .toString()
-                          .slice(-3)}.00`
-                      : `SAR${product.price.toString().slice(-3)}.00`}
-                  </p>
-                  <div className="pd__save__price__button">{`SAVE SAR${Math.ceil(
-                    product.price * 0.1
-                  )}`}</div>
-                  <p className="pd__product__old__price">
-                    {" "}
-                    {product.oldPrice.toString().length > 3
-                      ? `SAR${product.oldPrice
-                          .toString()
-                          .slice(0, -3)},${product.oldPrice
-                          .toString()
-                          .slice(-3)}.00`
-                      : `SAR${product.oldPrice.toString().slice(-3)}.00`}
-                  </p>
-                </div>
-                <div className="col-2 col-sm-2 col-md-2 pd__or__block">
-                  <div className="pd__or__text__block">
-                    <p className="pd__or__text">OR</p>
-                  </div>
-                  <div className="pd__mid__line"></div>
-                </div>
-                <div className="col-5 col-sm-6 col-md-5 pd__product__monthly__price__block">
-                  <p className="pd__product__total__price">
-                    {product.price.toString().length > 3
-                      ? `SAR${product.price
-                          .toString()
-                          .slice(0, -3)},${product.price
-                          .toString()
-                          .slice(-3)}.00`
-                      : `SAR${product.price.toString().slice(-3)}.00`}
-                  </p>
-                  <p className="pd__monthly__save__tagline">
-                    {product.monthlySavingTagline}
-                  </p>
-                  <Link to="/knowmore" className="pd__know__more">
-                    {"know more >"}
-                  </Link>
-                </div>
-              </div>
-              <div className="pd__unlock__membership__block ">
-                <div className="pd__unlock__membership">
-                  <div className="pd__icon__block">
-                    <img src={unlock} alt="" className="pd__unlock__icon" />
-                  </div>
-                  <p className="pd__unlock__membership__text">
-                    Unlock up to 24 months of Best Buy Protection with our Sony
-                    Membership
-                  </p>
-                </div>
-                <img
-                  src={grey_right_arrow}
-                  alt=""
-                  className="pd__gret__right__arrow__icon"
-                />
-              </div>
-              <div className="pd__return__block ">
-                <div className="pd__icon__block">
-                  <img
-                    src={return_period}
-                    alt=""
-                    className="pd__return_period_icon"
-                  />
-                </div>
-                <div className="pd__returntext__block">
-                  <p className="pd__return__policy__text">
-                    {product.returnPeriod}-Days Return Policy
-                  </p>
-                  <p className="pd__return__policy__condition">
-                    If received today, the last day to return this item would be
-                    Apr 15.
-                  </p>
-                  <Link to="/learnmore" className="pd__learn__more__link">
-                    {"Learn more >"}
-                  </Link>
-                </div>
-              </div>
-              <hr className="pd__block__bottom__line" />
-
-              <div className="pd__avilable__offers__block pd__common__main__block">
-                <p className="pd__block__title">Available Offers</p>
-                {product.availableOffer.map((offer, offerIndex) => {
-                  return (
-                    <div key={offer.id} className="pd__offer__block">
-                      <img src={offer_tag} alt="" className="pd__offer__icon" />
-                      <div className="pd__offer__text__box">
-                        <p className="pd__offertype">
-                          {`${offer.offerType}${"    "}`}
-                          <span className="pd__offerText">
-                            {offer.offerText}
-                          </span>
-                          <Link
-                            to="/termsAndConditions"
-                            className="pd__termsAndConditions__link"
-                          >
-                            {offer.termsAndConditions}
-                          </Link>
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <hr className="pd__block__bottom__line" />
-
-              <div className="pd__warranty__size__block pd__common__main__block">
-                <div className="row pd__warranty__block">
-                  <p className="col-3 pd__warranty__title">Warranty :</p>
-                  <p className="col-9 pd__warranty__text">
-                    {product.warrantyText}
-                  </p>
-                </div>
-                <div className="row pd__size__block">
-                  <p className="col-3 col-sm-3 col-md-12 col-lg-3 pd__size__title">
-                    Size :
-                  </p>
-                  <div className="col-9 col-sm-9 col-md-12 col-lg-9 pd__size__button__block">
-                    {product.size.map((size, sizeIndex) => {
-                      return (
-                        <button
-                          key={size.id}
-                          onClick={() =>
-                            sizeButtonClick(sizeIndex, size.cm, size.inch)
-                          }
-                          className={
-                            sizeButtonIndex === sizeIndex
-                              ? "pd__size__button__active"
-                              : "pd__size__button"
-                          }
-                        >{`${size.cm} cm (${size.inch})`}</button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-              <hr className="pd__block__bottom__line" />
-
-              <div className="pd__delivery__block pd__common__main__block">
-                <p className="pd__block__title">Delivery</p>
-                <div className="pd__form__block">
-                  <div className="pd__form__field">
-                    <input
-                      type="number"
-                      inputmode="numeric"
-                      className="pd__input__field"
-                      placeholder="Enter Delivery Code"
-                      name="pincode"
-                      value={pincode}
-                      onChange={handleChange}
+                <p className="pd__product__productName">{product.name}</p>
+                <div className="pd__category__favourite__button__block">
+                  <button className="pd__category__button">ALL TV's</button>
+                  <button className="pd__favourite__button">
+                    <img
+                      onMouseEnter={() => setIsFavouriteHover(true)}
+                      onClick={handleFavourite}
+                      onMouseLeave={() => setIsFavouriteHover(false)}
+                      className={
+                        !isFavourite
+                          ? "pd__favourite__icon"
+                          : "pd__favourite__icon__disable"
+                      }
+                      src={
+                        isFavouriteHover ? fulfill_favourite : empty_favourite
+                      }
+                      alt=""
                     />
-                  </div>
-                  <div className="pd__form__field">
-                    <button
-                      type="submit"
-                      className="pd__input__button"
-                      onClick={handleSubmit}
-                    >
-                      CHECK
-                    </button>
-                  </div>
+                    <img
+                      onClick={handleFavourite}
+                      className={
+                        isFavourite
+                          ? "pd__favourite__icon"
+                          : "pd__favourite__icon__disable"
+                      }
+                      src={fulfill_favourite}
+                      alt=""
+                    />
+                  </button>
                 </div>
-                <p className="pd__delivery__text">
-                  {product.delivery.deliveryText}
-                </p>
-                <p className="pd__delivery__note">
-                  Enter pincode for exact delivery dates/charges
-                </p>
-                <div className="pd__pickup__block">
-                  <p className="pd__block__title">Pick Up From Store</p>
-                  {product.delivery.pickupStore.map((store, storeIndex) => {
-                    return (
-                      <div key={store.id} className="pd__store__block">
-                        <img
-                          src={pickup_store}
-                          alt=""
-                          className="pd__store__icon"
-                        />
-                        <div className="pickup__text__block">
-                          <p className="pd__pickup__text">
-                            <span className="pd__pickup__only__text">
-                              Pickup:
-                            </span>
-                            {` ${store.pickupText}`}
-                          </p>
-                          {storeIndex === 0 ? (
-                            <Link
-                              className="pd__store__location__link"
-                              to="/store"
-                            >{`See all pickup locations >`}</Link>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <hr className="pd__block__bottom__line" />
-
-              <div className="pd__protect__block pd__common__main__block">
-                <p className="pd__title__block">
-                  {`Protect your TV`}
-                  {"  "}
-                </p>
-                <p className="pd__block__title__span">
-                  (Most popular protection plan for your product)
+                <p className="pd__product__categoryTagline">
+                  {product.categoryTagline}
                 </p>
                 <div className="pd__rating__block">
                   <div className="rating__block">
@@ -987,7 +910,7 @@ function Product_Details_Page() {
                       } /* Available Props */
                     />
                   </div>
-                  <img
+                  <img 
                     src={black_down_arrow}
                     alt=""
                     className="pd__product__rating__icon"
@@ -1003,94 +926,406 @@ function Product_Details_Page() {
                       : `(${product.totalRatings.toString().slice(-3)}) Rating`}
                   </p>
                 </div>
-                <div className="pd__protect__selection__block">
-                  {product.protection.map((protect, protectIndex) => {
+                <hr className="pd__block__bottom__line" />
+
+                <div className="row pd__product__price__block ">
+                  <div className="col-4 col-sm-4 col-md-5 pd__total__price__block">
+                    <p className="pd__product__total__price">
+                      {product.price.toString().length > 3
+                        ? `SAR${product.price
+                            .toString()
+                            .slice(0, -3)},${product.price
+                            .toString()
+                            .slice(-3)}.00`
+                        : `SAR${product.price.toString().slice(-3)}.00`}
+                    </p>
+                    <div className="pd__save__price__button">{`SAVE SAR${Math.ceil(
+                      product.price * 0.1
+                    )}`}</div>
+                    <p className="pd__product__old__price">
+                      {" "}
+                      {product.oldPrice.toString().length > 3
+                        ? `SAR${product.oldPrice
+                            .toString()
+                            .slice(0, -3)},${product.oldPrice
+                            .toString()
+                            .slice(-3)}.00`
+                        : `SAR${product.oldPrice.toString().slice(-3)}.00`}
+                    </p>
+                  </div>
+                  <div className="col-2 col-sm-2 col-md-2 pd__or__block">
+                    <div className="pd__or__text__block">
+                      <p className="pd__or__text">OR</p>
+                    </div>
+                    <div className="pd__mid__line"></div>
+                  </div>
+                  <div className="col-5 col-sm-6 col-md-5 pd__product__monthly__price__block">
+                    <p className="pd__product__total__price">
+                      {product.price.toString().length > 3
+                        ? `SAR${product.price
+                            .toString()
+                            .slice(0, -3)},${product.price
+                            .toString()
+                            .slice(-3)}.00`
+                        : `SAR${product.price.toString().slice(-3)}.00`}
+                    </p>
+                    <p className="pd__monthly__save__tagline">
+                      {product.monthlySavingTagline}
+                    </p>
+                    <Link to="/knowmore" className="pd__know__more">
+                      {"know more >"}
+                    </Link>
+                  </div>
+                </div>
+                <div className="pd__unlock__membership__block">
+                  <div className="pd__unlock__membership">
+                    <div className="pd__icon__block">
+                      <img src={unlock} alt="" className="pd__unlock__icon" />
+                    </div>
+                    <p className="pd__unlock__membership__text">
+                      Unlock up to 24 months of Best Buy Protection with our
+                      Sony Membership
+                    </p>
+                  </div>
+                  <img
+                    src={grey_right_arrow}
+                    alt=""
+                    className="pd__gret__right__arrow__icon"
+                  />
+                </div>
+                <div className="pd__return__block ">
+                  <div className="pd__icon__block">
+                    <img
+                      src={return_period}
+                      alt=""
+                      className="pd__return_period_icon"
+                    />
+                  </div>
+                  <div className="pd__returntext__block">
+                    <p className="pd__return__policy__text">
+                      {product.returnPeriod}-Days Return Policy
+                    </p>
+                    <p className="pd__return__policy__condition">
+                      If received today, the last day to return this item would
+                      be Apr 15.
+                    </p>
+                    <Link to="/learnmore" className="pd__learn__more__link">
+                      {"Learn more >"}
+                    </Link>
+                  </div>
+                </div>
+                <hr className="pd__block__bottom__line" />
+
+                <div className="pd__avilable__offers__block pd__common__main__block">
+                  <p className="pd__block__title">Available Offers</p>
+                  {product.availableOffer.map((offer, offerIndex) => {
                     return (
-                      <div
-                        key={protect.id}
-                        className="pd__protection__selection"
-                      >
-                        <div className="pd__protection__form__block">
-                          <input
-                            type="checkbox"
-                            className="pd__input__check"
-                            name="pincode"
-                            value={1}
-                            onChange={handleChange}
-                          />
-                          <p className="pd__protection__text">
-                            {protect.protectionText}
-                          </p>
-                        </div>
-                        <div className="pd__protection__price__block">
-                          <p className="pd__protection__price">
-                            {" "}
-                            {protect.price.toString().length > 3
-                              ? `SAR${protect.price
-                                  .toString()
-                                  .slice(0, -3)},${protect.price
-                                  .toString()
-                                  .slice(-3)}.00`
-                              : `SAR${protect.price.toString().slice(-3)}.00`}
-                          </p>
-                          <p className="pd__protection__monthly__price">
-                            {" "}
-                            {protect.price.toString().length > 3
-                              ? `About SAR${protect.price
-                                  .toString()
-                                  .slice(0, -3)},${protect.price
-                                  .toString()
-                                  .slice(-3)}.00`
-                              : `About SAR${protect.price
-                                  .toString()
-                                  .slice(-3)}.00`}
+                      <div key={offer.id} className="pd__offer__block">
+                        <img
+                          src={offer_tag}
+                          alt=""
+                          className="pd__offer__icon"
+                        />
+                        <div className="pd__offer__text__box">
+                          <p className="pd__offertype">
+                            {`${offer.offerType}${"    "}`}
+                            <span className="pd__offerText">
+                              {offer.offerText}
+                            </span>
+                            <Link
+                              to="/termsAndConditions"
+                              className="pd__termsAndConditions__link"
+                            >
+                              {offer.termsAndConditions}
+                            </Link>
                           </p>
                         </div>
                       </div>
                     );
                   })}
                 </div>
-              </div>
-              <hr className="pd__block__bottom__line" />
+                <hr className="pd__block__bottom__line" />
 
-              <div className="row pd__super__coin__block pd__common__main__block">
-                <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-5 pd__super__coin__image__block">
-                  <img
-                    src={super_coin_image}
-                    alt=""
-                    className="ps__super__coin__image"
-                  />
+                <div className="pd__warranty__size__block pd__common__main__block">
+                  <div className="row pd__warranty__block">
+                    <p className="col-3 pd__warranty__title">Warranty :</p>
+                    <p className="col-9 pd__warranty__text">
+                      {product.warrantyText}
+                    </p>
+                  </div>
+                  <div className="row pd__size__block">
+                    <p className="col-3 col-sm-3 col-md-12 col-lg-3 pd__size__title">
+                      Size :
+                    </p>
+                    <div className="col-9 col-sm-9 col-md-12 col-lg-9 pd__size__button__block">
+                      {product.size.map((size, sizeIndex) => {
+                        return (
+                          <button
+                            key={size.id}
+                            onClick={() =>
+                              sizeButtonClick(sizeIndex, size.cm, size.inch)
+                            }
+                            className={
+                              sizeButtonIndex === sizeIndex
+                                ? "pd__size__button__active"
+                                : "pd__size__button"
+                            }
+                          >{`${size.cm} cm (${size.inch})`}</button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-                <div className="col-8 col-sm-6 col-md-8 col-lg-8 col-xl-7 pd__super__coin__text__block">
-                  <p className="pd__super__coin__title">
-                    For every SAR200 Spent,
-                  </p>
-                  <p className="pd__super__coin__title">
-                    you earn <img src={coin} alt="" className="pd__coin" /> 2
-                    SuperCoins
-                  </p>
-                  <p className="pd__super__coin__condition">
-                    Max 50 coins per order
-                  </p>
-                </div>
-              </div>
-              <hr className="pd__block__bottom__line" />
+                <hr className="pd__block__bottom__line" />
 
-              <div className="row pd__bundle__cart__button__block pd__common__main__block">
-                <div className="col-6 pd__bundle__button__block">
-                  <div className="pd__bundle__button">Build A Bundle</div>
+                <div className="pd__delivery__block pd__common__main__block">
+                  <p className="pd__block__title">Delivery</p>
+                  <div className="pd__form__block">
+                    <div className="pd__form__field">
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        className="pd__input__field"
+                        placeholder="Enter Delivery Code"
+                        name="pincode"
+                        value={pincode}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="pd__form__field">
+                      <button
+                        type="submit"
+                        className="pd__input__button"
+                        onClick={handleSubmit}
+                      >
+                        CHECK
+                      </button>
+                    </div>
+                  </div>
+                  <p className="pd__delivery__text">
+                    {product.delivery.deliveryText}
+                  </p>
+                  <p className="pd__delivery__note">
+                    Enter pincode for exact delivery dates/charges
+                  </p>
+                  <div className="pd__pickup__block">
+                    <p className="pd__block__title">Pick Up From Store</p>
+                    {product.delivery.pickupStore.map((store, storeIndex) => {
+                      return (
+                        <div key={store.id} className="pd__store__block">
+                          <img
+                            src={pickup_store}
+                            alt=""
+                            className="pd__store__icon"
+                          />
+                          <div className="pickup__text__block">
+                            <p className="pd__pickup__text">
+                              <span className="pd__pickup__only__text">
+                                Pickup:
+                              </span>
+                              {` ${store.pickupText}`}
+                            </p>
+                            {storeIndex === 0 ? (
+                              <Link
+                                className="pd__store__location__link"
+                                to="/store"
+                              >{`See all pickup locations >`}</Link>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                <div className="col-6 pd__addToCart__button__block">
-                  <div className="pd__addToCart__button">
+                <hr className="pd__block__bottom__line" />
+
+                <div className="pd__protect__block pd__common__main__block">
+                  <p className="pd__title__block">
+                    {`Protect your TV`}
+                    {"  "}
+                  </p>
+                  <p className="pd__block__title__span">
+                    (Most popular protection plan for your product)
+                  </p>
+                  <div className="pd__rating__block">
+                    <div className="rating__block">
+                      <Rating
+                        // onClick={handleRating}
+                        size={22}
+                        fillColor="#DC3A1A"
+                        emptyColor="#C8C8C8"
+                        readonly={true}
+                        ratingValue={
+                          (product.rating * 100) / 5
+                        } /* Available Props */
+                      />
+                    </div>
                     <img
-                      src={add_cart_white}
+                      src={black_down_arrow}
                       alt=""
-                      className="pd__addToCart__icon"
+                      className="pd__product__rating__icon"
                     />
-                    Add To Cart
+                    <p className="pd__product__rating">{product.rating}</p>
+                    <p className="pd__product__totalRating">
+                      {product.totalRatings.toString().length > 3
+                        ? `(${product.totalRatings
+                            .toString()
+                            .slice(0, -3)},${product.totalRatings
+                            .toString()
+                            .slice(-3)}) Rating`
+                        : `(${product.totalRatings
+                            .toString()
+                            .slice(-3)}) Rating`}
+                    </p>
+                  </div>
+                  <div className="pd__protect__selection__block">
+                    {product.protection.map((protect, protectIndex) => {
+                      return (
+                        <div
+                          key={protect.id}
+                          className="pd__protection__selection"
+                        >
+                          <div className="pd__protection__form__block">
+                            <input
+                              type="checkbox"
+                              className="pd__input__check"
+                              name="pincode"
+                              value={1}
+                              onChange={handleChange}
+                            />
+                            <p className="pd__protection__text">
+                              {protect.protectionText}
+                            </p>
+                          </div>
+                          <div className="pd__protection__price__block">
+                            <p className="pd__protection__price">
+                              {" "}
+                              {protect.price.toString().length > 3
+                                ? `SAR${protect.price
+                                    .toString()
+                                    .slice(0, -3)},${protect.price
+                                    .toString()
+                                    .slice(-3)}.00`
+                                : `SAR${protect.price.toString().slice(-3)}.00`}
+                            </p>
+                            <p className="pd__protection__monthly__price">
+                              {" "}
+                              {protect.price.toString().length > 3
+                                ? `About SAR${protect.price
+                                    .toString()
+                                    .slice(0, -3)},${protect.price
+                                    .toString()
+                                    .slice(-3)}.00`
+                                : `About SAR${protect.price
+                                    .toString()
+                                    .slice(-3)}.00`}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <hr className="pd__block__bottom__line" />
+
+                <div className="row pd__super__coin__block pd__common__main__block">
+                  <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-5 pd__super__coin__image__block">
+                    <img
+                      src={super_coin_image}
+                      alt=""
+                      className="ps__super__coin__image"
+                    />
+                  </div>
+                  <div className="col-8 col-sm-6 col-md-8 col-lg-8 col-xl-7 pd__super__coin__text__block">
+                    <p className="pd__super__coin__title">
+                      For every SAR200 Spent,
+                    </p>
+                    <p className="pd__super__coin__title">
+                      you earn <img src={coin} alt="" className="pd__coin" /> 2
+                      SuperCoins
+                    </p>
+                    <p className="pd__super__coin__condition">
+                      Max 50 coins per order
+                    </p>
+                  </div>
+                </div>
+                <hr className="pd__block__bottom__line" />
+
+                <div className="row pd__bundle__cart__button__block pd__common__main__block">
+                  <div className="col-6 pd__bundle__button__block">
+                    <div className="pd__bundle__button">Build A Bundle</div>
+                  </div>
+                  <div className="col-6 pd__addToCart__button__block">
+                    <div className="pd__addToCart__button">
+                      <img
+                        src={add_cart_white}
+                        alt=""
+                        className="pd__addToCart__icon"
+                      />
+                      Add To Cart
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="col-12 exp__rd__block">
+              <p className="exp__rd__title">Our experts Recommendation</p>
+              <div className="row exp__rd__main__block">
+                <div className="col-12 col-lg-12 col-xl-9 row exp__rd__left__block">
+                  {peopleUltimatelyBoughtData
+                    .slice(0, 4)
+                    .map((product, productIndex) => {
+                      return (
+                        <div key={product.id} className="col-6 col-sm-6 col-md-3">
+                          <ExpertProducts product={product} />
+                        </div>
+                      );
+                    })}
+                </div>
+                <div className="col-12 col-lg-12 col-xl-3 exp__rd__package__block">
+                  <div className="exp__rd__package__inner__block">
+                    <div className="exp__rd__package__saving__block">
+                      <p className="package__saving__text">Package Savings</p>
+                      <p className="package__saving__price">SAR 99.00</p>
+                    </div>
+                    <div className="exp__rd__package__total__block">
+                      <p className="package__total__text">Package Total</p>
+                      <p className="package__total__price">SAR 1,699.00</p>
+                    </div>
+
+                    <div className="exp__rd__addToCart__button">
+                      <img
+                        src={add_cart_black}
+                        alt=""
+                        className="exp__rd__addToCart__icon"
+                      />
+                      ADD 4 ITEMS TO CART
+                    </div>
+
+                    <p className="exp__rd__package__link__text">
+                      <Link to="/products/1" className="exp__rd__package__link">
+                        {`Build your own package>`}{" "}
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Accordian data={productOverviewData} isDescription={true} />
+            <Accordian data={productSpecificationData} isDescription={false} />
+            <div className="pd__newArrival__block">
+              <NewArrival productDetailPage={true}
+                sectionTitle="People Who Bought Also Bought"
+                carouselData={newArrivalData}
+              />
+            </div>
+            <div className="pd__similarProducts__block">
+              <SimilarProducts productDetailPage={true}
+                sectionTitle="Similar Products"
+                carouselData={peopleUltimatelyBoughtData}
+              />
             </div>
           </div>
           <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-3 product__details__right__block">
@@ -1126,7 +1361,7 @@ function Product_Details_Page() {
                         className="pd__product__rating__icon"
                       />
                       <div className="pd__mb__rating__text__block">
-                        <p className="pd__product__rating">{product.rating}</p>
+                        <p className="pd__product__rating">{`${product.rating}\s`}</p>
                         <p className="pd__product__totalRating">
                           {product.totalRatings.toString().length > 3
                             ? `(${product.totalRatings
@@ -1174,9 +1409,7 @@ function Product_Details_Page() {
           </div>
         </div>
       </div>
-      {/* <ImageGallery
-   thumbnailPosition="left"
-   items={images} /> */}
+      <NewsLetter/>
       <Footer />
     </>
   );
