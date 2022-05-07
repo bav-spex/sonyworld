@@ -5,7 +5,7 @@ import right_arrow from "./../Assets/Icon/right_arrow.svg";
 import "./../SCSS/_newArrival.scss";
 import ProductOne from "./ProductOne";
 
-function NewArrival({ sectionTitle, carouselData }) {
+function NewArrival({ productDetailPage,sectionTitle, carouselData }) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
   const [arrowState, setArrowState] = useState(true);
@@ -33,8 +33,8 @@ function NewArrival({ sectionTitle, carouselData }) {
 
   return (
     <>
-      <div className="container-fluid carousel__container">
-        <div className="carousel__block">
+      <div className={!productDetailPage ? "container-fluid carousel__container" : "carousel__container"}>
+        <div className={!productDetailPage ?"carousel__block": "less__width__carousel__block"}>
           <p className="section__title">{sectionTitle}</p>
           <div className="arrow__block">
             <div className="arrow left__arrow" onClick={leftSide}>
@@ -46,7 +46,7 @@ function NewArrival({ sectionTitle, carouselData }) {
           </div>
           <div className="new__arrival__block">
             {carouselData.map((product, productIndex) => {
-              return <ProductOne key={product.id} product={product} />;
+              return <ProductOne productDetailPage={productDetailPage} key={product.id} product={product} />;
             })}
           </div>
         </div>

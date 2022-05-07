@@ -19,10 +19,7 @@ function FeatureProducts() {
                   Find out Why This Is the Go-To Lens for So many Photographers
                 </p>
 
-                <img
-                  src={feature_product_01}
-                  alt=""
-                  className="first__feature__category__image"
+                <img   src={feature_product_01}  alt=""  className="first__feature__category__image"
                 />
               </div>
             </div>
