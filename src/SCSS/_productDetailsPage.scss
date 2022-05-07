@@ -636,10 +636,21 @@
           }
         }
       }
+      .pd__newArrival__block{
+        width: 100%;
+        padding: 0px;
+    
+      }
+      .pd__similarProducts__block{
+        width: 100%;
+        padding: 0px;
+        margin: 0px 0px 50px;
+      }
     }
     .product__details__right__block {
       border-left: 1px solid #eeeeee;
       padding: 0px 12px 0px 50px;
+      height: fit-content;
       .pd__mb__block__title {
         font-size: 24px;
         font-family: "arialbold";

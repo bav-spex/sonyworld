@@ -50,6 +50,9 @@ import newArrivals_05 from "./../Assets/NewArrivals/newArrivals_05.png";
 import { Link } from "react-router-dom";
 import { renderIntoDocument } from "react-dom/test-utils";
 import ExpertProducts from "../Components/ExpertProducts";
+import Accordian from "../Components/Accordian";
+import SimilarProducts from "../Components/SimilarProducts";
+import NewsLetter from "../Components/NewsLetter";
 
 const product = {
   id: 1,
@@ -141,7 +144,7 @@ const peopleUltimatelyBoughtData = [
     id: 1,
     logo: sony_logo,
     image: product_01,
-    name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+    productName: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.6,
     totalRatings: 6183,
@@ -227,7 +230,7 @@ const peopleUltimatelyBoughtData = [
     id: 2,
     logo: sony_logo,
     image: product_02,
-    name: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.0,
     totalRatings: 2183,
@@ -313,7 +316,7 @@ const peopleUltimatelyBoughtData = [
     id: 3,
     logo: sony_logo,
     image: product_03,
-    name: "SONY X85J Smart TV 50' 4K Ultra HD High Dynamic Range(Google TV)",
+    productName: "SONY X85J Smart TV 50' 4K Ultra HD High Dynamic Range(Google TV)",
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 5.0,
     totalRatings: 4183,
@@ -399,7 +402,7 @@ const peopleUltimatelyBoughtData = [
     id: 4,
     logo: sony_logo,
     image: product_04,
-    name: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.0,
     totalRatings: 2183,
@@ -485,7 +488,7 @@ const peopleUltimatelyBoughtData = [
     id: 5,
     logo: sony_logo,
     image: product_05,
-    name: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
     categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
     rating: 4.0,
     totalRatings: 6183,
@@ -574,82 +577,246 @@ const peopleUltimatelyBoughtData = [
 //     image: newArrivals_01,
 //     productName: "Camera",
 //     rating: 4.5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 1,
 //     image: newArrivals_02,
 //     productName: "Silver Porto Headset",
 //     rating: 3,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 3,
 //     image: newArrivals_03,
 //     productName: "Car Audio Speaker KM100",
 //     rating: 3.5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 4,
 //     image: newArrivals_04,
 //     productName: "Sony Viao Laptop",
 //     rating: 2.5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 5,
 //     image: newArrivals_05,
 //     productName: "Network Camera",
 //     rating: 5,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 6,
 //     image: newArrivals_01,
 //     productName: "Camera",
 //     rating: 3.2,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 7,
 //     image: newArrivals_02,
 //     productName: "Silver Porto Headset",
 //     rating: 4.8,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 8,
 //     image: newArrivals_03,
 //     productName: "Car Audio Speaker KM100",
 //     rating: 2,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 9,
 //     image: newArrivals_04,
 //     productName: "Sony Viao Laptop",
 //     rating: 1,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 //   {
 //     id: 10,
 //     image: newArrivals_05,
 //     productName: "Network Camera",
 //     rating: 3,
-//     oldPrize: 1999,
-//     prize: 1699,
+//     oldPrice: 1999,
+//     price: 1699,
 //   },
 // ];
+
+const productOverviewData = {
+  title: "Product Overview",
+  description:
+    "Improve your viewing experience with this 55-inch Samsung smart TV. The variety of applications offer easy access to content on popular streaming services, and the intuitive interface makes finding your favorite shows simple. Boasting native 4K resolution and advanced HDR technology, this Samsung smart TV enriches your movie nights with stunningly detailed visuals and lifelike colors.",
+  keyValueTitle: "Features",
+  keyValueData: [
+    {
+      id: 0,
+      key: "Crystal Processor 4K",
+      value:
+        "The ultrafast processor transforms everything you watch into stunning 4K.",
+    },
+    {
+      id: 1,
+      key: "Crystal display",
+      value:
+        "Experience crystal-clear colors that are fine-tuned to deliver a naturally crisp and vivid picture.",
+    },
+    {
+      id: 2,
+      key: "Universal guide",
+      value:
+        "Powerful AI technology recommends streaming and live TV content all in one simple onscreen guide.",
+    },
+    {
+      id: 3,
+      key: "Boundless design",
+      value: "An ultra-thin bezel on all sides for a stunningly clean look.",
+    },
+    {
+      id: 4,
+      key: "4K Ultra HD (2160p resolution)",
+      value:
+        "Enjoy breathtaking 4K movies and TV shows at 4x the resolution of Full HD, and upscale your current content to Ultra HD-level picture quality.",
+    },
+    {
+      id: 5,
+      key: "Smart TV powered by Tizen",
+      value:
+        "Go beyond Smart TV with next-generation apps, super easy control, and a host of enhancements that elevate your TV-watching experience.",
+    },
+  ],
+};
+
+const productSpecificationData = {
+  title: "Specifications",
+  keyValueTitle: "Key Specs",
+  keyValueData: [
+    {
+      id: 0,
+      key: "Model",
+      value: "UN55TU7000FXZASKU",
+    },
+    {
+      id: 1,
+      key: "SKU",
+      value: "6401735",
+    },
+    {
+      id: 2,
+      key: "Display Type",
+      value: "LED",
+    },
+    {
+      id: 3,
+      key: "Resolution",
+      value: "4K (2160p)",
+    },
+    {
+      id: 4,
+      key: "HDR (High Definition Range)",
+      value: "Yes",
+    },
+    {
+      id: 5,
+      key: "Specific Manufacturer Technologies",
+      value:
+        "Crystal Processor 4K, Digital Clean View, Contrast Enhancer, PurColor, Game Enhancer, LED Clear Motion",
+    },
+  ],
+};
+const newArrivalData = [
+  {
+    id: 0,
+    image: newArrivals_01,
+    productName: "Camera",
+    rating: 4.5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 1,
+    image: newArrivals_02,
+    productName: "Silver Porto Headset",
+    rating: 3,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 3,
+    image: newArrivals_03,
+    productName: "Car Audio Speaker KM100",
+    rating: 3.5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 4,
+    image: newArrivals_04,
+    productName: "Sony Viao Laptop",
+    rating: 2.5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 5,
+    image: newArrivals_05,
+    productName: "Network Camera",
+    rating: 5,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 6,
+    image: newArrivals_01,
+    productName: "Camera",
+    rating: 3.2,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 7,
+    image: newArrivals_02,
+    productName: "Silver Porto Headset",
+    rating: 4.8,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 8,
+    image: newArrivals_03,
+    productName: "Car Audio Speaker KM100",
+    rating: 2,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 9,
+    image: newArrivals_04,
+    productName: "Sony Viao Laptop",
+    rating: 1,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 10,
+    image: newArrivals_05,
+    productName: "Network Camera",
+    rating: 3,
+    oldPrice: 1999,
+    price: 1699,
+  },
+];
 function Product_Details_Page() {
   const [productData, setProductData] = useState(product);
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
@@ -670,7 +837,6 @@ function Product_Details_Page() {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
-  console.log(document.querySelector(".pd__return__block"));
   return (
     <>
       <TopNavbar />
@@ -698,7 +864,7 @@ function Product_Details_Page() {
                   alt=""
                   className="pd__product__company__logo"
                 />
-                <p className="pd__product__name">{product.name}</p>
+                <p className="pd__product__productName">{product.name}</p>
                 <div className="pd__category__favourite__button__block">
                   <button className="pd__category__button">ALL TV's</button>
                   <button className="pd__favourite__button">
@@ -744,7 +910,7 @@ function Product_Details_Page() {
                       } /* Available Props */
                     />
                   </div>
-                  <img
+                  <img 
                     src={black_down_arrow}
                     alt=""
                     className="pd__product__rating__icon"
@@ -811,7 +977,7 @@ function Product_Details_Page() {
                     </Link>
                   </div>
                 </div>
-                <div className="pd__unlock__membership__block ">
+                <div className="pd__unlock__membership__block">
                   <div className="pd__unlock__membership">
                     <div className="pd__icon__block">
                       <img src={unlock} alt="" className="pd__unlock__icon" />
@@ -918,7 +1084,7 @@ function Product_Details_Page() {
                     <div className="pd__form__field">
                       <input
                         type="number"
-                        inputmode="numeric"
+                        inputMode="numeric"
                         className="pd__input__field"
                         placeholder="Enter Delivery Code"
                         name="pincode"
@@ -1112,7 +1278,7 @@ function Product_Details_Page() {
                     .slice(0, 4)
                     .map((product, productIndex) => {
                       return (
-                        <div className="col-6 col-sm-6 col-md-3">
+                        <div key={product.id} className="col-6 col-sm-6 col-md-3">
                           <ExpertProducts product={product} />
                         </div>
                       );
@@ -1120,34 +1286,46 @@ function Product_Details_Page() {
                 </div>
                 <div className="col-12 col-lg-12 col-xl-3 exp__rd__package__block">
                   <div className="exp__rd__package__inner__block">
+                    <div className="exp__rd__package__saving__block">
+                      <p className="package__saving__text">Package Savings</p>
+                      <p className="package__saving__price">SAR 99.00</p>
+                    </div>
+                    <div className="exp__rd__package__total__block">
+                      <p className="package__total__text">Package Total</p>
+                      <p className="package__total__price">SAR 1,699.00</p>
+                    </div>
 
-                 
-                  <div className="exp__rd__package__saving__block">
-                    <p className="package__saving__text">Package Savings</p>
-                    <p className="package__saving__price">SAR 99.00</p>
-                  </div>
-                  <div className="exp__rd__package__total__block">
-                    <p className="package__total__text">Package Total</p>
-                    <p className="package__total__price">SAR 1,699.00</p>
-                  </div>
+                    <div className="exp__rd__addToCart__button">
+                      <img
+                        src={add_cart_black}
+                        alt=""
+                        className="exp__rd__addToCart__icon"
+                      />
+                      ADD 4 ITEMS TO CART
+                    </div>
 
-                  <div className="exp__rd__addToCart__button">
-                    <img
-                      src={add_cart_black}
-                      alt=""
-                      className="exp__rd__addToCart__icon"
-                    />
-                    ADD 4 ITEMS TO CART
-                  </div>
-
-                  <p className="exp__rd__package__link__text">
-                    <Link to="/products/1" className="exp__rd__package__link">
-                      {`Build your own package>`}{" "}
-                    </Link>
-                  </p>
+                    <p className="exp__rd__package__link__text">
+                      <Link to="/products/1" className="exp__rd__package__link">
+                        {`Build your own package>`}{" "}
+                      </Link>
+                    </p>
                   </div>
                 </div>
               </div>
+            </div>
+            <Accordian data={productOverviewData} isDescription={true} />
+            <Accordian data={productSpecificationData} isDescription={false} />
+            <div className="pd__newArrival__block">
+              <NewArrival productDetailPage={true}
+                sectionTitle="People Who Bought Also Bought"
+                carouselData={newArrivalData}
+              />
+            </div>
+            <div className="pd__similarProducts__block">
+              <SimilarProducts productDetailPage={true}
+                sectionTitle="Similar Products"
+                carouselData={peopleUltimatelyBoughtData}
+              />
             </div>
           </div>
           <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-3 product__details__right__block">
@@ -1231,9 +1409,7 @@ function Product_Details_Page() {
           </div>
         </div>
       </div>
-      {/* <ImageGallery
-   thumbnailPosition="left"
-   items={images} /> */}
+      <NewsLetter/>
       <Footer />
     </>
   );
