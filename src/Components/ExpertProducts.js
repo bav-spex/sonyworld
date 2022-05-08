@@ -5,6 +5,8 @@ import empty_check from "./../Assets/Icon/empty_check.svg";
 import black_down_arrow from "./../Assets/Icon/black_down_arrow.svg";
 
 import { Rating } from "react-simple-star-rating";
+import Price from "./Font/Price";
+import OldPrice from "./Font/OldPrice";
 function ExpertProducts({ product }) {
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
   const [isCheckBox, setIsCheckBox] = useState(false);
@@ -45,20 +47,15 @@ function ExpertProducts({ product }) {
           </p>
         </div>
       </div>
-      <p className="exp__rd__product__price">
-        {product.price.toString().length > 3
-          ? `SAR${product.price.toString().slice(0, -3)},${product.price
-              .toString()
-              .slice(-3)}.00`
-          : `SAR${product.price.toString().slice(-3)}.00`}
-      </p>
-      <p className="exp__rd__product__oldPrice">
-        {product.oldPrice.toString().length > 3
-          ? `SAR${product.oldPrice.toString().slice(0, -3)},${product.oldPrice
-              .toString()
-              .slice(-3)}.00`
-          : `SAR${product.oldPrice.toString().slice(-3)}.00`}
-      </p>
+
+      <Price price={product.price} size="heading6" />
+      <OldPrice
+        oldPrice={product.oldPrice}
+        size="text3"
+        color="#808080"
+        marginBottom={0}
+        lineThrough={true}
+      />
       <div className="exp__rd__select__block">
         <img
           onMouseEnter={() => setIsCheckBoxHover(true)}

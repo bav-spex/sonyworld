@@ -1,0 +1,77 @@
+.product__protect__block {
+  padding: 20px 0px;
+  .product__title__block {
+    font-size: 20px;
+    font-family: "arialbold";
+    margin: 0px 0px 0px;
+    .product__block__title__span {
+      font-size: 14px;
+      font-family: "arialmedium";
+      margin: 0px;
+      color: #3b3b3b;
+    }
+  }
+  .product__rating__block {
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 10px;
+    .product__star__rating__block {
+    }
+    .product__product__rating__icon {
+      margin: 6px 10px 0px;
+    }
+    .product__product__rating {
+      margin: 6px 4px 0px;
+      font-size: 14px;
+      color: #dc3a1a;
+      font-family: "arialbold";
+    }
+    .product__product__totalRating {
+      margin: 6px 0px 0px;
+      font-size: 14px;
+      color: #101010;
+      font-family: "arialregular";
+    }
+  }
+  .product__protect__selection__block {
+    .product__protection__selection {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px 0px 0px 0px;
+      .product__protection__form__block {
+        display: flex;
+        align-items: center;
+        .product__input__check {
+          accent-color: #000000;
+          height: 30px;
+          width: 30px;
+          border-radius: 10px;
+          margin: 0px 16px 0px 0px;
+          border: 30px solid #303030;
+          text-transform: uppercase;
+        }
+        .product__protection__text {
+          width: 60%;
+          margin: 0px;
+        }
+      }
+      .product__protection__price__block {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .product__protection__price {
+          text-align: right;
+          margin: 0px;
+        }
+        .product__protection__monthly__price {
+          color: #808080;
+          margin: 0px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

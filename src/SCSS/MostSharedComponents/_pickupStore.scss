@@ -1,0 +1,32 @@
+.product__pickup__block {
+  margin: 16px 0px;
+  .product__block__title {
+    font-size: 20px;
+    font-family: "arialbold";
+    margin: 0px 0px 30px;
+  }
+  .product__store__block {
+    display: flex;
+    align-items: flex-start;
+    margin: 0px 0px 10px;
+    .product__store__icon {
+      width: 32px;
+      margin: 0px 16px 0px 0px;
+    }
+    .pickup__text__block {
+      .product__pickup__text {
+        width: 60%;
+        margin: 0px;
+        font-size: 16px;
+        font-family: "arialregular";
+        .product__pickup__only__text {
+          font-size: 16px;
+          font-family: "arialbold";
+        }
+      }
+      .product__store__location__link {
+        color: #003cb4;
+      }
+    }
+  }
+}

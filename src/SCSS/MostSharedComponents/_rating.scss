@@ -1,0 +1,21 @@
+.main__rating__block {
+  display: flex;
+  align-items: center;
+  padding: 0px 0px 10px;
+
+  .product__rating__icon {
+    margin: 6px 10px 0px;
+  }
+  .product__rating {
+    margin: 6px 4px 0px;
+    font-size: 14px;
+    color: #dc3a1a;
+    font-family: "arialbold";
+  }
+  .product__totalRating {
+    margin: 6px 0px 0px;
+    font-size: 14px;
+    color: #101010;
+    font-family: "arialregular";
+  }
+}

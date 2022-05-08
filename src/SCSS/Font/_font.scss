@@ -1,0 +1,82 @@
+.heading1 {
+  font-size: 36px;
+  font-family: "arialbold";
+  
+}
+.heading2 {
+  font-size: 30px;
+  font-family: "arialbold";
+  
+}
+.heading3 {
+  font-size: 24px;
+  font-family: "arialbold";
+  
+}
+.heading4 {
+  font-size: 24px;
+  font-family: "arialbold";
+  
+}
+.heading5 {
+  font-size: 20px;
+  font-family: "arialbold";
+  
+}
+.heading6 {
+  font-size: 18px;
+  font-family: "arialbold";
+  
+}
+.heading7 {
+  font-size: 16px;
+  font-family: "arialbold";
+  
+}
+
+.text1 {
+  font-size: 20px;
+  font-family: "arialregular";
+}
+.text2 {
+  font-size: 18px;
+  font-family: "arialregular";
+}
+.text3 {
+  font-size: 16px;
+  font-family: "arialregular";
+}
+.text4 {
+  font-size: 14px;
+  font-family: "arialregular";
+}
+.text5 {
+  font-size: 12px;
+  font-family: "arialregular";
+}
+.text6 {
+  font-size: 10px;
+  font-family: "arialregular";
+}
+
+@media screen and (max-width: 1600px) {
+  .heading1 {
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .heading1 {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .heading1 {
+    font-size: 18px;
+  }
+  .heading3 {
+    font-size: 18px;
+  }
+  .text2{
+      font-size: 14px;
+  }
+}
