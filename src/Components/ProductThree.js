@@ -2,14 +2,17 @@ import React from "react";
 import "./../SCSS/_productThree.scss";
 import product_01 from "./../Assets/Product/product_01.png";
 import black_down_arrow from "./../Assets/Icon/black_down_arrow.svg";
-import { Rating } from "react-simple-star-rating";
+
 import pickup_store from "./../Assets/Icon/pickup_store.svg";
 import { Link } from "react-router-dom";
+import Heading1 from "./Font/Heading1";
+import RatingBlock from "./MostSharedComponent/RatingBlock"
 
 function ProductThree({ product }) {
   const handleChange = (e) => {
     console.log(e.target.value);
   };
+  console.log("===>",product.rating, product.totalRatings);
   return (
     <div className="row productThree__product__block">
       <div className="col-12 col-sm-3 productThree__product__left__block">
@@ -27,35 +30,11 @@ function ProductThree({ product }) {
           alt=""
           className="productThree__product__company__logo"
         />
-        <p className="productThree__product__productName">{product.name}</p>
+        {/* <p className="productThree__product__productName">{product.name}</p> */}
+        <Heading1 text={product.name}/>
 
-        <div className="productThree__rating__block">
-          <div className="rating__block">
-            <Rating
-              // onClick={handleRating}
-              size={22}
-              fillColor="#DC3A1A"
-              emptyColor="#C8C8C8"
-              readonly={true}
-              ratingValue={(product.rating * 100) / 5} /* Available Props */
-            />
-          </div>
-          <img
-            src={black_down_arrow}
-            alt=""
-            className="productThree__product__rating__icon"
-          />
-          <p className="productThree__product__rating">{product.rating}</p>
-          <p className="productThree__product__totalRating">
-            {product.totalRatings.toString().length > 3
-              ? `(${product.totalRatings
-                  .toString()
-                  .slice(0, -3)},${product.totalRatings
-                  .toString()
-                  .slice(-3)}) Rating`
-              : `(${product.totalRatings.toString().slice(-3)}) Rating`}
-          </p>
-        </div>
+
+        <RatingBlock size={22} rating={product.rating} totalRatings={product.totalRatings} fillColor="#DC3A1A" emptyColor="#C8C8C8"   />
 
         <div className="productThree__pickup__block">
           <p className="productThree__block__title">Get it Today</p>

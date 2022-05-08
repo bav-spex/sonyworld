@@ -1,0 +1,35 @@
+.super__coin__block {
+    display: flex;
+    align-items: center;
+    padding: 20px 12px;
+    .super__coin__image__block {
+      padding: 0px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .super__coin__image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .super__coin__text__block {
+      padding: 0px 0px 0px 12px;
+      .super__coin__title {
+        font-size: 18px;
+        font-family: "arialbold";
+        color: #000000;
+        margin: 0px 0px 5px;
+        .coin {
+          height: 18px;
+        }
+      }
+      .super__coin__condition {
+        font-size: 18px;
+        font-family: "arialregular";
+        color: #808080;
+        margin: 5px 0px 0px;
+      }
+    }
+  }
