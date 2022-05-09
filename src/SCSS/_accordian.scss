@@ -1,15 +1,13 @@
 .accordian__block {
-    border-top: 1px solid #eeeeee;
-padding:  0px;
-.accordian__header__block {
+  border-top: 1px solid #eeeeee;
+  padding: 0px;
+  .accordian__header__block {
     display: flex;
     justify-content: space-between;
     padding: 20px 0px;
     cursor: pointer;
     .accordian__title {
-      font-family: "arialbold";
-      font-size: 40px;
-      margin: 0px;
+    
     }
     .accordian__arrow__icon {
     }
@@ -21,15 +19,10 @@ padding:  0px;
     display: block;
     .accordian__description__block {
       .data__title {
-        font-family: "arialbold";
-        font-size: 24px;
-        margin: 0px 0px 20px 0px;
+       
       }
       .accordian__detail__description {
-        font-family: "arialregular";
-        font-size: 16px;
-        margin: 0px 0px 20px 0px;
-
+    
       }
     }
     .accordian__data__block {
@@ -41,16 +34,8 @@ padding:  0px;
       .accordian__keyValue__block {
         .keyValue {
           .key {
-            font-family: "arialbold";
-            font-size: 16px;
-        margin: 0px 0px 20px 0px;
-
           }
           .value {
-            font-family: "arialregular";
-            font-size: 16px;
-        margin: 0px 0px 20px 0px;
-
           }
         }
       }

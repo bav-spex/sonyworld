@@ -247,7 +247,6 @@
             }
           }
 
-         
           .pd__bundle__cart__button__block {
             .pd__bundle__button__block {
               padding: 0px 10px 0px 0px;
@@ -310,12 +309,9 @@
                 flex-wrap: wrap;
                 margin: 0px 0px 20px;
                 .package__saving__text {
-                  font-size: 16px;
                   margin: 0px 20px 0px 0px;
                 }
                 .package__saving__price {
-                  font-size: 20px;
-                  font-family: "arialbold";
                   margin: 0px;
                 }
               }
@@ -326,13 +322,9 @@
                 flex-wrap: wrap;
                 margin: 0px 0px 80px;
                 .package__total__text {
-                  font-size: 16px;
-                  font-family: "arialbold";
                   margin: 0px 20px 0px 0px;
                 }
                 .package__total__price {
-                  font-size: 20px;
-                  font-family: "arialbold";
                   margin: 0px;
                 }
               }
@@ -399,29 +391,14 @@
           }
         }
         .pd__mb__product__detail__block {
-          .pd__mb__product__name {
-            font-size: 16px;
-            font-family: "arialbold";
-            letter-spacing: 0.24px;
-            line-height: 20px;
-            margin: 0px 0px 6px;
+          .pd__mb__product__oldPrice {
+            margin: 0px 10px 0px 10px;
           }
-         
-          .pd__mb__product__price {
-            font-size: 18px;
-            font-family: "arialbold";
-            margin: 0px 0px 6px;
-            .pd__mb__product__oldPrice {
-              font-size: 16px;
-              font-family: "arialregular";
-              color: #808080;
-              text-decoration: line-through;
-              margin: 0px 0px 0px 10px;
-            }
-          }
+
           .pd__compare__block {
             display: flex;
             align-items: center;
+            margin: 10px 0px 0px;
             .pd__compare__input__check {
               accent-color: #000000;
               height: 20px;

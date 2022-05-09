@@ -3,6 +3,7 @@ import Carousel from "react-elastic-carousel";
 import left_arrow from "./../Assets/Icon/left_arrow.svg";
 import right_arrow from "./../Assets/Icon/right_arrow.svg";
 import "./../SCSS/_newArrival.scss";
+import Heading1 from "./Font/Heading1";
 import ProductOne from "./ProductOne";
 
 function NewArrival({ productDetailPage,sectionTitle, carouselData }) {
@@ -35,7 +36,7 @@ function NewArrival({ productDetailPage,sectionTitle, carouselData }) {
     <>
       <div className={!productDetailPage ? "container-fluid carousel__container" : "carousel__container"}>
         <div className={!productDetailPage ?"carousel__block": "less__width__carousel__block"}>
-          <p className="section__title">{sectionTitle}</p>
+        <Heading1 text={sectionTitle} marginBottom={20} />
           <div className="arrow__block">
             <div className="arrow left__arrow" onClick={leftSide}>
               <img src={left_arrow} alt="" />

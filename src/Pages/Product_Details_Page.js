@@ -65,6 +65,7 @@ import Heading5 from "../Components/Font/Heading5";
 import SuperCoin from "../Components/MostSharedComponent/SuperCoin";
 import PriceBlock from "../Components/MostSharedComponent/PriceBlock";
 import Heading1 from "../Components/Font/Heading1";
+import Heading6 from "../Components/Font/Heading6";
 
 const product = {
   id: 1,
@@ -1105,12 +1106,23 @@ function Product_Details_Page() {
                 <div className="col-12 col-lg-12 col-xl-3 exp__rd__package__block">
                   <div className="exp__rd__package__inner__block">
                     <div className="exp__rd__package__saving__block">
-                      <p className="package__saving__text">Package Savings</p>
-                      <p className="package__saving__price">SAR 99.00</p>
+                      <p className="package__saving__text">
+                        {" "}
+                        <Text3 text="Package Savings" marginBottom={0} />
+                      </p>
+                      <p className="package__saving__price">
+                        <Price price={99} size="heading5" />
+                      </p>
                     </div>
                     <div className="exp__rd__package__total__block">
-                      <p className="package__total__text">Package Total</p>
-                      <p className="package__total__price">SAR 1,699.00</p>
+                      <p className="package__total__text">
+                        {" "}
+                        <Heading6 text="Package Total" marginBottom={0} />
+                      </p>
+                      <p className="package__total__price">
+                        {" "}
+                        <Price price={1999} size="heading5" />
+                      </p>
                     </div>
 
                     <div className="exp__rd__addToCart__button">
@@ -1170,24 +1182,17 @@ function Product_Details_Page() {
                       fillColor="#DC3A1A"
                       emptyColor="#C8C8C8"
                     />
-                    <p className="pd__mb__product__price">
-                      {product.price.toString().length > 3
-                        ? `SAR${product.price
-                            .toString()
-                            .slice(0, -3)},${product.price
-                            .toString()
-                            .slice(-3)}.00`
-                        : `SAR${product.price.toString().slice(-3)}.00`}
-                      <span className="pd__mb__product__oldPrice">
-                        {product.oldPrice.toString().length > 3
-                          ? `SAR${product.oldPrice
-                              .toString()
-                              .slice(0, -3)},${product.oldPrice
-                              .toString()
-                              .slice(-3)}.00`
-                          : `SAR${product.oldPrice.toString().slice(-3)}.00`}
-                      </span>
-                    </p>
+                    <Price price={product.price} size="heading6" span={true} />
+
+                    <OldPrice
+                      oldPrice={product.oldPrice}
+                      size="text3"
+                      color="#808080"
+                      marginLeft={5}
+                      marginBottom={0}
+                      lineThrough={true}
+                      span={true}
+                    />
 
                     <div className="pd__compare__block">
                       <input

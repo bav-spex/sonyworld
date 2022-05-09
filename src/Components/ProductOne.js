@@ -5,6 +5,11 @@ import { Rating } from "react-simple-star-rating";
 import empty_favourite from "./../Assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../Assets/Icon/fulfill_favourite.svg";
 import "./../SCSS/_productOne.scss";
+import Heading5 from "./Font/Heading5";
+import Heading6 from "./Font/Heading6";
+import Heading7 from "./Font/Heading7";
+import Price from "./Font/Price";
+import OldPrice from "./Font/OldPrice";
 
 function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
@@ -20,12 +25,17 @@ function ProductOne({ productDetailPage, product }) {
   };
   // console.log(rating);
   return (
-    <div key={product.id} className={!productDetailPage? "productOne__block": "pd__productOne__block"}>
+    <div
+      key={product.id}
+      className={
+        !productDetailPage ? "productOne__block" : "pd__productOne__block"
+      }
+    >
       <div className="productOne__image__block">
         <img src={product.image} alt="" className="productOne__image" />
       </div>
       <div className="productOne__name__favourite">
-        <p className="productOne__name">{product.productName}</p>
+        <Heading7 text={product.productName} />
         <img
           onMouseEnter={() => setIsFavouriteHover(true)}
           onClick={handleFavourite}
@@ -51,7 +61,6 @@ function ProductOne({ productDetailPage, product }) {
       </div>
       <div className="rating__block">
         <Rating
-          // onClick={handleRating}
           size={15}
           fillColor="#303030"
           emptyColor="#C8C8C8"
@@ -59,13 +68,17 @@ function ProductOne({ productDetailPage, product }) {
           ratingValue={(product.rating * 100) / 5} /* Available Props */
         />
       </div>
+
       <div className="prize__block">
-        <p className="old__prize">{`SAR${product.oldPrice
-          .toString()
-          .slice(0, -3)},${product.oldPrice.toString().slice(-3)}.00`}</p>
-        <p className="new__prize">{`SAR${product.price
-          .toString()
-          .slice(0, -3)},${product.price.toString().slice(-3)}.00`}</p>
+      <OldPrice
+          oldPrice={product.oldPrice}
+          size="text3"
+          color="#c8c8c8"
+          marginBottom={10}
+          lineThrough={true}
+          span={true}
+        />
+        <Price price={product.price} marginLeft={5} size="heading6" span={true} />
       </div>
       {productDetailPage ? (
         <div className="addToCart__button">ADD TO CART</div>
