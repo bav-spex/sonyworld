@@ -14,6 +14,13 @@ import { Rating } from "react-simple-star-rating";
 import ProductThree from "../Components/ProductThree";
 import NewsLetter from "../Components/NewsLetter";
 import Footer from "../Components/Footer";
+import Heading3 from "../Components/Font/Heading3";
+import Text3 from "../Components/Font/Text3";
+import Protection from "../Components/MostSharedComponent/Protection";
+import Heading2 from "../Components/Font/Heading2";
+import Price from "../Components/Font/Price";
+import Heading6 from "../Components/Font/Heading6";
+
 const product = {
   id: 1,
   logo: sony_logo,
@@ -123,7 +130,7 @@ function Create_Bundle_Page() {
   const [arrowState, setArrowState] = useState(true);
   const [selectCategoryIndex, setSelectCategoryIndex] = useState(0);
   const productCategorySelect = (categoryIndex, category) => {
-    console.log(category);
+    console.log(categoryIndex, category);
     setSelectCategoryIndex(categoryIndex);
   };
   const handleChange = (e) => {
@@ -156,123 +163,74 @@ function Create_Bundle_Page() {
       <TopNavbar />
       <BreadCrumbs />
       <div className="container-fluid create__bundle__page__container">
-        <div className="row create__bundle__page__block">
-          <p className="cb__page__title">Build a bundle that works for you.</p>
-          <p className="cb__page__description">
-            These protection plans and accessories are popular with customers
-            who bought this item.
+        <div className="create__bundle__page__block">
+          <p className="cb__page__title">
+            {" "}
+            <Heading3 text="Build a bundle that works for you." />
           </p>
-          <div className="col-md-12 col-xl-9 row create__bundle__left__block">
-            <div className="row cb__product__block">
-              <div className="col-12 col-sm-3 cb__product__left__block">
-                <div className="cb__product__image__block">
-                  <img src={product_01} alt="" className="cb__product__image" />
+          <p className="cb__page__description">
+            <Text3
+              text="These protection plans and accessories are popular with customers
+            who bought this item."
+              color="#808080"
+            />
+          </p>
+          <div className="row create__bundle__page__inner__block">
+            <div className="col-md-12 col-xl-9 row create__bundle__left__block">
+              <div className="row cb__product__block">
+                <div className="col-12 col-sm-3 cb__product__left__block">
+                  <div className="cb__product__image__block">
+                    <img
+                      src={product_01}
+                      alt=""
+                      className="cb__product__image"
+                    />
+                  </div>
+                </div>
+                <div className="col-12 col-sm-9 cb__product__right__block">
+                  <img
+                    src={product.logo}
+                    alt=""
+                    className="cb__product__company__logo"
+                  />
+                  <Heading3 text={product.name} marginBottom={0} />
+                  <Protection
+                    title="Protect your TV"
+                    tagline="Most popular protection plan for your product"
+                    rating={product.rating}
+                    totalRatings={product.totalRatings}
+                    protection={product.protection}
+                  />
                 </div>
               </div>
-              <div className="col-12 col-sm-9 cb__product__right__block">
-                <img
-                  src={product.logo}
-                  alt=""
-                  className="cb__product__company__logo"
+              <hr className="cb__page__horizontal__line"></hr>
+              <p className="cb__page__button__block__title">
+                <Heading3
+                  text="Best-selling items to go with it"
+                  marginBottom={0}
                 />
-                <p className="cb__product__productName">{product.name}</p>
-                <div className="cb__protect__block cb__common__main__block">
-                  <p className="cb__title__block">
-                    {`Protect your TV`}
-                    {"  "}
-                  </p>
-                  <p className="cb__block__title__span">
-                    (Most popular protection plan for your product)
-                  </p>
-                  <div className="cb__rating__block">
-                    <div className="rating__block">
-                      <Rating
-                        // onClick={handleRating}
-                        size={22}
-                        fillColor="#DC3A1A"
-                        emptyColor="#C8C8C8"
-                        readonly={true}
-                        ratingValue={
-                          (product.rating * 100) / 5
-                        } /* Available Props */
-                      />
-                    </div>
-                    <img
-                      src={black_down_arrow}
-                      alt=""
-                      className="cb__product__rating__icon"
-                    />
-                    <p className="cb__product__rating">{product.rating}</p>
-                    <p className="cb__product__totalRating">
-                      {product.totalRatings.toString().length > 3
-                        ? `(${product.totalRatings
-                            .toString()
-                            .slice(0, -3)},${product.totalRatings
-                            .toString()
-                            .slice(-3)}) Rating`
-                        : `(${product.totalRatings
-                            .toString()
-                            .slice(-3)}) Rating`}
-                    </p>
-                  </div>
-                  <div className="cb__protect__selection__block">
-                    {product.protection.map((protect, protectIndex) => {
+              </p>
+              <div className="cb__page__category__button__block">
+                <div className="cb__page__button__main__block">
+                  <div className="cb__page__button__block">
+                    {productCategory.map((category, categoryIndex) => {
                       return (
-                        <div
-                          key={protect.id}
-                          className="cb__protection__selection"
+                        <button
+                          key={categoryIndex}
+                          onClick={() =>
+                            productCategorySelect(categoryIndex, category)
+                          }
+                          className={
+                            selectCategoryIndex === categoryIndex
+                              ? "cb__page__button__active"
+                              : "cb__page__button"
+                          }
                         >
-                          <div className="cb__protection__form__block">
-                            <input
-                              type="checkbox"
-                              className="cb__input__check"
-                              name="pincode"
-                              value={1}
-                              onChange={handleChange}
-                            />
-                            <p className="cb__protection__text">
-                              {protect.protectionText}
-                            </p>
-                          </div>
-                          <div className="cb__protection__price__block">
-                            <p className="cb__protection__price">
-                              {" "}
-                              {protect.price.toString().length > 3
-                                ? `SAR${protect.price
-                                    .toString()
-                                    .slice(0, -3)},${protect.price
-                                    .toString()
-                                    .slice(-3)}.00`
-                                : `SAR${protect.price.toString().slice(-3)}.00`}
-                            </p>
-                            <p className="cb__protection__monthly__price">
-                              {" "}
-                              {protect.price.toString().length > 3
-                                ? `About SAR${protect.price
-                                    .toString()
-                                    .slice(0, -3)},${protect.price
-                                    .toString()
-                                    .slice(-3)}.00`
-                                : `About SAR${protect.price
-                                    .toString()
-                                    .slice(-3)}.00`}
-                            </p>
-                          </div>
-                        </div>
+                          {category}
+                        </button>
                       );
                     })}
                   </div>
-                </div>
-              </div>
-            </div>
-            <hr className="cb__page__horizontal__line"></hr>
-
-            <p className="cb__page__button__block__title">
-              Best-selling items to go with it
-            </p>
-            <div className="cb__page__category__button__block">
-              <div className="cb__page__button__main__block">
-                <div className="arrow__block">
                   <div className="arrow left__arrow" onClick={leftSide}>
                     <img src={left_arrow} alt="" />
                   </div>
@@ -280,69 +238,56 @@ function Create_Bundle_Page() {
                     <img src={right_arrow} alt="" />
                   </div>
                 </div>
-                <div className="cb__page__button__block">
-                  {productCategory.map((category, categoryIndex) => {
-                    return (
-                      <button
-                        key={categoryIndex}
-                        onClick={() =>
-                          productCategorySelect(categoryIndex, category)
-                        }
-                        className={
-                          selectCategoryIndex === categoryIndex
-                            ? "cb__page__button__active"
-                            : "cb__page__button"
-                        }
-                      >
-                        {category}
-                      </button>
-                    );
-                  })}
-                </div>
               </div>
-            </div>
-            <hr className="cb__page__horizontal__line"></hr>
+              <hr className="cb__page__horizontal__line"></hr>
 
-            <p className="cb__page__button__block__title">
-              Our experts recommend the following products:
-            </p>
-            <ProductThree product={product} />
-            <hr className="cb__page__horizontal__line"></hr>
-            <ProductThree product={product} />
-          </div>
-          {/* package Summary */}
-          <div className="col-md-12 col-xl-3  create__bundle__right__block">
-            <div className="cb__package__summary__block">
-              <p className="cb__ps__title">Package Summary</p>
-              <div className="cb__ps__detail__block">
-                <div className="cb__ps__detail__inner__block">
-                  <p className="cb__ps__detail__title">Shipping</p>
-                  <p className="cb__ps__detail__price">SAR20.00</p>
-                </div>
-                <div className="cb__ps__detail__inner__block">
-                  <p className="cb__ps__detail__title">Sub Total</p>
-                  <p className="cb__ps__detail__price">SAR195.00</p>
-                </div>
-                <div className="cb__ps__detail__inner__block">
-                  <p className="cb__ps__detail__title">Discount</p>
-                  <p className="cb__ps__detail__price">SAR30.00</p>
-                </div>
-                <div className="cb__ps__detail__inner__block">
-                  <p className="cb__ps__detail__title">Tax</p>
-                  <p className="cb__ps__detail__price">SAR10.00</p>
-                </div>
-                <div className="cb__ps__detail__total__order__block">
-                  <p className="cb__ps__detail__total__order">Order Total</p>
-                  <p className="cb__ps__detail__total__order">SAR3275.00</p>
-                </div>
-                <div className="col-6 cb__addToCart__button__block">
-                  <div className="cb__addToCart__button">
-                    <img
-                      src={add_cart_white}
-                      alt=""
-                      className="cb__addToCart__icon"
-                    />
-                    Add To Cart
+              <p className="cb__page__button__block__title">
+                <Heading2
+                  text="Our experts recommend the following products:"
+                  marginBottom={0}
+                />
+              </p>
+              <ProductThree product={product} />
+              <hr className="cb__page__horizontal__line"></hr>
+              <ProductThree product={product} />
+            </div>
+            {/* package Summary */}
+            <div className="col-md-12 col-xl-3  create__bundle__right__block">
+              <div className="cb__package__summary__block">
+                <p className="cb__ps__title">
+                  {" "}
+                  <Heading3 text="Package Summary" />
+                </p>
+                <div className="cb__ps__detail__block">
+                  <div className="cb__ps__detail__inner__block">
+                    <Text3 text="Shipping" color="#000000" />
+                    <Price price={20} size="heading7" />
+                  </div>
+                  <div className="cb__ps__detail__inner__block">
+                    <Text3 text="Sub Total" color="#000000" />
+                    <Price price={195} size="heading7" />
+                  </div>
+                  <div className="cb__ps__detail__inner__block">
+                    <Text3 text="Discount" color="#000000" />
+                    <Price price={30} size="heading7" />
+                  </div>
+                  <div className="cb__ps__detail__inner__block">
+                    <Text3 text="Tax" color="#000000" />
+                    <Price price={10} size="heading7" />
+                  </div>
+                  <div className="cb__ps__detail__total__order__block">
+                    <Heading6 text="Order Total" color="#000000" />
+                    <Price price={3275} size="heading7" />
+                  </div>
+                  <div className="col-6 cb__addToCart__button__block">
+                    <div className="cb__addToCart__button">
+                      <img
+                        src={add_cart_white}
+                        alt=""
+                        className="cb__addToCart__icon"
+                      />
+                      Add To Cart
+                    </div>
                   </div>
                 </div>
               </div>

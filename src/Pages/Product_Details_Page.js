@@ -1047,7 +1047,7 @@ function Product_Details_Page() {
                     color="#808080"
                     marginBottom={0}
                   />
-                  <PickupStore delivery={product.delivery} />
+                  <PickupStore delivery={product.delivery} title="Pick Up From Store"/>
                 </div>
 
                 <hr className="pd__block__bottom__line" />

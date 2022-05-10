@@ -37,14 +37,14 @@ function NewArrival({ productDetailPage,sectionTitle, carouselData }) {
       <div className={!productDetailPage ? "container-fluid carousel__container" : "carousel__container"}>
         <div className={!productDetailPage ?"carousel__block": "less__width__carousel__block"}>
         <Heading1 text={sectionTitle} marginBottom={20} />
-          <div className="arrow__block">
             <div className="arrow left__arrow" onClick={leftSide}>
               <img src={left_arrow} alt="" />
             </div>
             <div className="arrow right__arrow" onClick={rightSide}>
               <img src={right_arrow} alt="" />
             </div>
-          </div>
+          {/* <div className="arrow__block">
+          </div> */}
           <div className="new__arrival__block">
             {carouselData.map((product, productIndex) => {
               return <ProductOne productDetailPage={productDetailPage} key={product.id} product={product} />;

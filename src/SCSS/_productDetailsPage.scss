@@ -59,59 +59,7 @@
           .pd__block__bottom__line {
             margin: 10px 0px !important;
           }
-          .pd__product__price__block {
-            display: flex;
-            align-items: center;
-            padding: 0px;
-            margin: 16px 0px;
-
-            .pd__total__price__block {
-              padding: 0px 0px 0px 0px;
-
-              .pd__save__price__button {
-                width: fit-content;
-                font-size: 14px;
-                font-family: "arialbold";
-                margin: 4px 0px 12px;
-                padding: 2px 10px;
-                color: #ffffff;
-                background: #ff4f04;
-                border-radius: 3px;
-                text-transform: uppercase;
-              }
-            }
-            .pd__or__block {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              padding: 0px;
-              .pd__mid__line {
-                height: 1px;
-                width: 100%;
-                background-color: #dbdbdb;
-                z-index: -1;
-                transform: translateY(-20px);
-              }
-              .pd__or__text__block {
-                background-color: #f6f6f6;
-                width: fit-content;
-                padding: 10px;
-                border-radius: 50%;
-                .pd__or__text {
-                  font-size: 14px;
-                  font-family: "arialbold";
-                  margin: 0px;
-                }
-              }
-            }
-            .pd__product__monthly__price__block {
-              padding: 0px 0px 0px 16px;
-
-              .pd__know__more {
-                color: #003cb4;
-              }
-            }
-          }
+        
           .pd__unlock__membership__block {
             border: 1px solid #707070;
             border-radius: 3px;
