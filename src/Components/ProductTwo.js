@@ -6,6 +6,11 @@ import empty_favourite from "./../Assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../Assets/Icon/fulfill_favourite.svg";
 import productTwo_quality_icon from "./../Assets/Product/productTwo_quality_icon.png";
 import "./../SCSS/_productTwo.scss";
+import Heading7 from "./Font/Heading7";
+import Text4 from "./Font/Text4";
+import OldPrice from "./Font/OldPrice";
+import Price from "./Font/Price";
+import Heading6 from "./Font/Heading6";
 
 function ProductTwo({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
@@ -69,10 +74,10 @@ function ProductTwo({ productDetailPage, product }) {
           <p className="productTwo__compare__text">Select to Compare</p>
         </div>
       </div>
-
-      <p className="productTwo__name">{product.productName}</p>
-      <p className="productTwo__series">Z8H SERIES</p>
-
+      <p className="productTwo__name">
+        <Heading6 text={product.productName} marginBottom={10} />
+      </p>
+      <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
       <div className="rating__block">
         <Rating
           // onClick={handleRating}
@@ -100,14 +105,22 @@ function ProductTwo({ productDetailPage, product }) {
         })}
       </div>
       <div className="prize__block">
-        <p className="old__prize">{`SAR${product.oldPrice
-          .toString()
-          .slice(0, -3)},${product.oldPrice.toString().slice(-3)}.00`}</p>
-        <p className="new__prize">{`SAR${product.price
-          .toString()
-          .slice(0, -3)},${product.price.toString().slice(-3)}.00`}</p>
+        <OldPrice
+          oldPrice={product.oldPrice}
+          size="text3"
+          color="#c8c8c8"
+          marginBottom={10}
+          lineThrough={true}
+          span={true}
+        />
+        <Price
+          price={product.price}
+          marginLeft={5}
+          marginBottom={10}
+          size="heading6"
+          span={true}
+        />
       </div>
-
       <div className="addToCart__button">ADD TO CART</div>
     </div>
   );

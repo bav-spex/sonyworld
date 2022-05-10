@@ -5,6 +5,8 @@
   .productTwo__header__block {
       background-color: #F1F4F9 ;
       padding: 14px;
+      margin: 0px 0px 20px;
+
     .productTwo__quality__favourite__block {
       display: flex;
       justify-content: space-between;
@@ -99,6 +101,7 @@
   }
   .prize__block {
     display: flex;
+    align-items: flex-end;
     .old__prize {
       font-family: "arialregular";
       font-size: 18px;

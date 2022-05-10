@@ -1,0 +1,28 @@
+.product__shipping__block {
+    margin: 30px 0px 20px;
+    .product__ship__block {
+      display: flex;
+      align-items: flex-start;
+      margin: 0px 0px 10px;
+      .product__ship__icon {
+        width: 32px;
+        margin: 0px 16px 0px 0px;
+      }
+      .shipping__text__block {
+        .product__shipping__text {
+          width: 60%;
+          margin: 0px;
+          font-size: 16px;
+          font-family: "arialregular";
+          .product__shipping__only__text {
+            font-size: 16px;
+            font-family: "arialbold";
+          }
+        }
+        .product__shipping__location__link {
+          color: #003cb4;
+        }
+      }
+    }
+  }
+  

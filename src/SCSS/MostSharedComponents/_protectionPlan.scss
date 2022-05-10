@@ -1,0 +1,16 @@
+.protection__plan__block {
+  .selected__plan__block {
+    margin: 10px 0px;
+    .protection__icon__block {
+      padding: 0px;
+      .protection__icon {
+        width: 24px;
+      }
+    }
+    .selected__plan__detail {
+    }
+    .remove__plan {
+        cursor: pointer;
+    }
+  }
+}

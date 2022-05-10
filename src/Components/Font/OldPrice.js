@@ -13,7 +13,7 @@ import Text4 from "./Text4"
 import Text5 from "./Text5"
 import Text6 from "./Text6"
 import "./../../SCSS/Font/_font.scss";
-function OldPrice({preText,postText, oldPrice, size ,color,marginBottom,lineThrough}) {
+function OldPrice({preText,postText, oldPrice, size ,color,marginLeft,marginBottom,lineThrough,span}) {
   const finalPrice =
   oldPrice.toString().length > 3
   ? `${preText ? preText : ""} SAR${oldPrice.toString().slice(0, -3)},${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`
@@ -22,31 +22,31 @@ function OldPrice({preText,postText, oldPrice, size ,color,marginBottom,lineThro
   return (
     <>
       {size === "heading1" ? (
-        <Heading1 text={finalPrice} marginBottom={marginBottom} />
+        <Heading1 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom}  span={span} />
       ) : size === "heading2" ? (
-        <Heading2 text={finalPrice} marginBottom={marginBottom} />
+        <Heading2 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} />
       ) : size === "heading3" ? (
-        <Heading3 text={finalPrice} marginBottom={marginBottom} />
+        <Heading3 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} />
       ) : size === "heading4" ? (
-        <Heading4 text={finalPrice} marginBottom={marginBottom} />
+        <Heading4 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} />
       ) : size === "heading5" ? (
-        <Heading5 text={finalPrice} marginBottom={marginBottom} />
+        <Heading5 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} />
       ) : size === "heading6" ? (
-        <Heading6 text={finalPrice} marginBottom={marginBottom} />
+        <Heading6 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} />
       ) : size === "heading6" ? (
-        <Heading6 text={finalPrice} marginBottom={marginBottom} />
+        <Heading6 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} />
       ):size === "text1" ? (
-        <Text1 text={finalPrice} color={color} marginBottom={marginBottom} lineThrough={lineThrough} />
+        <Text1 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} lineThrough={lineThrough} />
       ):size === "text2" ? (
-        <Text2 text={finalPrice} color={color} marginBottom={marginBottom} lineThrough={lineThrough} />
+        <Text2 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} lineThrough={lineThrough} />
       ):size === "text3" ? (
-        <Text3 text={finalPrice} color={color} marginBottom={marginBottom} lineThrough={lineThrough} />
+        <Text3 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} lineThrough={lineThrough} />
       ):size === "text4" ? (
-        <Text4 text={finalPrice} color={color} marginBottom={marginBottom} lineThrough={lineThrough} />
+        <Text4 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} lineThrough={lineThrough} />
       ):size === "text5" ? (
-        <Text5 text={finalPrice} color={color} marginBottom={marginBottom} lineThrough={lineThrough} />
+        <Text5 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} lineThrough={lineThrough} />
       ):size === "text6" ? (
-        <Text6 text={finalPrice} color={color} marginBottom={marginBottom} lineThrough={lineThrough} />
+        <Text6 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} lineThrough={lineThrough} />
       ):""
       
       }

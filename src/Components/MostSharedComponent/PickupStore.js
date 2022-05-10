@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import './../../SCSS/MostSharedComponents/_pickupStore.scss'
 import pickup_store from "./../../Assets/Icon/pickup_store.svg";
 import Heading5 from "../Font/Heading5";
-function PickupStore({delivery}) {
+function PickupStore({delivery, title}) {
   return (
     <div className="product__pickup__block">
-       <Heading5 text="Pick Up From Store" marginBottom={20} />
+       <Heading5 text={title} marginBottom={20} />
      
       {delivery.pickupStore.map((store, storeIndex) => {
         return (
