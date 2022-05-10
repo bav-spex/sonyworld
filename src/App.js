@@ -10,6 +10,7 @@ import Services from "./Pages/Services";
 import Support from "./Pages/Support";
 import Product_Details_Page from "./Pages/Product_Details_Page";
 import Create_Bundle_Page from "./Pages/Create_Bundle_Page";
+import Cart_Page from "./Pages/Cart_Page";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route exact path="/support" element={<Support/>}></Route>
       <Route exact path="/products/:id" element={<Product_Details_Page />}></Route>
       <Route exact path="/create_bundle" element={<Create_Bundle_Page />}></Route>
+      <Route exact path="/cart_page" element={<Cart_Page />}></Route>
       {/* <Route exact path="/contact" element={<Contact />}></Route> */}
     </Routes>
   </>

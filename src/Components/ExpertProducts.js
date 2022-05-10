@@ -53,7 +53,7 @@ function ExpertProducts({ product }) {
         oldPrice={product.oldPrice}
         size="text3"
         color="#808080"
-        marginBottom={0}
+        marginBottom={10}
         lineThrough={true}
       />
       <div className="exp__rd__select__block">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import OldPrice from "../Font/OldPrice";
 import Price from "../Font/Price";
 import Text4 from "../Font/Text4";
-
+import "./../../SCSS/MostSharedComponents/_priceBlock.scss"
 function PriceBlock({ oldPrice, price, monthlySavingTagline }) {
   return (
     <div className="row pd__product__price__block ">

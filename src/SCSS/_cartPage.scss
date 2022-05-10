@@ -1,98 +1,99 @@
-.create__bundle__page__container {
+.shopping__cart__page__container {
   padding: 0px 12px;
   background-color: #f5f5f5;
-  .create__bundle__page__block {
+  .shopping__cart__page__block {
     padding: 10px 0px;
     width: 1702px;
     margin: 0px auto;
-    .cb__page__title {
+    .sc__page__title {
       padding: 0px;
-      margin: 0px 0px 0px;
+      margin: 0px 0px 10px;
     }
-    .cb__page__description {
+    .sc__page__description {
       padding: 0px;
       margin: 0px 0px 20px 0px;
     }
-    .create__bundle__page__inner__block {
+    .shopping__cart__page__inner__block {
       padding: 0px 12px;
-      .create__bundle__left__block {
+      .shopping__cart__left__block {
         padding: 0px;
         margin: 0px 0px 50px 0px;
-        background-color: #ffffff;
         box-shadow: 0px 3px 6px #0000000a;
-        .cb__product__block {
+        .sc__product__block {
+          background-color: #ffffff;
           width: 100%;
           height: fit-content;
           padding: 20px 0px;
           margin: 0px;
-          .cb__product__left__block {
+          .sc__product__left__block {
             padding: 0px 20px 0px;
 
-            .cb__product__image__block {
+            .sc__product__image__block {
               width: 100%;
-              height: 250px;
+              height: 172px;
               padding: 10px;
 
               background-color: #e9f3f3;
               border: 1px solid #c8c8c8;
-              .cb__product__image {
+              .sc__product__image {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
               }
             }
           }
-          .cb__product__right__block {
+
+          .sc__product__middle__block {
             padding: 0px 20px 0px;
-            .cb__product__company__logo {
+            .sc__product__company__logo {
               margin: 0px 0px 16px;
             }
-            .cb__product__productName {
+            .sc__product__productName {
             }
-            .cb__protect__block {
-              .cb__title__block {
+            .sc__protect__block {
+              .sc__title__block {
                 font-size: 20px;
                 font-family: "arialbold";
                 margin: 0px 0px 0px;
-                .cb__block__title__span {
+                .sc__block__title__span {
                   font-size: 14px;
                   font-family: "arialmedium";
                   margin: 0px;
                   color: #3b3b3b;
                 }
               }
-              .cb__rating__block {
+              .sc__rating__block {
                 display: flex;
                 align-items: center;
                 padding: 0px 0px 10px;
-                .cb__star__rating__block {
+                .sc__star__rating__block {
                 }
-                .cb__product__rating__icon {
+                .sc__product__rating__icon {
                   margin: 6px 10px 0px;
                 }
-                .cb__product__rating {
+                .sc__product__rating {
                   margin: 6px 4px 0px;
                   font-size: 14px;
                   color: #dc3a1a;
                   font-family: "arialbold";
                 }
-                .cb__product__totalRating {
+                .sc__product__totalRating {
                   margin: 6px 0px 0px;
                   font-size: 14px;
                   color: #101010;
                   font-family: "arialregular";
                 }
               }
-              .cb__protect__selection__block {
-                .cb__protection__selection {
+              .sc__protect__selection__block {
+                .sc__protection__selection {
                   display: flex;
                   align-items: center;
                   justify-content: space-between;
                   margin: 20px 0px 0px 0px;
-                  .cb__protection__form__block {
+                  .sc__protection__form__block {
                     display: flex;
                     align-items: center;
-                    .cb__input__check {
+                    .sc__input__check {
                       accent-color: #000000;
                       height: 30px;
                       width: 30px;
@@ -101,7 +102,7 @@
                       border: 30px solid #303030;
                       text-transform: uppercase;
                     }
-                    .cb__protection__text {
+                    .sc__protection__text {
                       margin: 0px;
                       width: 60%;
                       font-size: 16px;
@@ -110,19 +111,19 @@
                       line-height: 20px;
                     }
                   }
-                  .cb__protection__price__block {
+                  .sc__protection__price__block {
                     width: 30%;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-end;
 
-                    .cb__protection__price {
+                    .sc__protection__price {
                       font-size: 18px;
                       font-family: "arialbold";
                       text-align: right;
                       margin: 0px;
                     }
-                    .cb__protection__monthly__price {
+                    .sc__protection__monthly__price {
                       font-size: 14px;
                       font-family: "arialregular";
                       color: #808080;
@@ -134,19 +135,25 @@
               }
             }
           }
+          .sc__product__right__block {
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            padding: 0px 20px;
+          }
         }
-        .cb__page__button__block__title {
+        .sc__page__button__block__title {
           margin: 30px 0px 10px;
           padding: 0px 20px 0px;
         }
-        .cb__page__horizontal__line {
+        .sc__page__horizontal__line {
           border-bottom: 1px solid #acacac;
           margin: 0px;
         }
-        .cb__page__category__button__block {
+        .sc__page__category__button__block {
           padding: 30px 20px;
 
-          .cb__page__button__main__block {
+          .sc__page__button__main__block {
             width: 100%;
             position: relative;
             margin: 0px auto;
@@ -177,14 +184,14 @@
               right: 1%;
               transform: translateY(-70%);
             }
-            .cb__page__button__block {
+            .sc__page__button__block {
               z-index: 5;
               display: flex;
               align-items: center;
               overflow-x: hidden;
               scroll-behavior: smooth;
               width: 96%;
-              .cb__page__button__active {
+              .sc__page__button__active {
                 text-align: center;
                 font-size: 14px;
                 font-family: "arialbold";
@@ -200,7 +207,7 @@
                 letter-spacing: 0.3px;
                 cursor: pointer;
               }
-              .cb__page__button {
+              .sc__page__button {
                 cursor: pointer;
                 text-align: center;
                 min-width: fit-content;
@@ -218,70 +225,109 @@
             }
           }
         }
-      }
 
-      .create__bundle__right__block {
+        .sc__offers__discounts__block {
+          padding: 20px 0px 0px;
+          .sc__form__block {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin: 20px 0px;
+            .sc__form__field {
+              width: 70%;
+              .sc__input__field {
+                width: 100%;
+                border: 1px solid #c8c8c8;
+                border-radius: 4px 0px 0px 4px;
+                outline: none;
+                padding: 15px 5px 16px 15px;
+                font-size: 14px;
+                font-family: "arialregular";
+              }
+
+              .sc__input__button {
+                border-radius: 0px 4px 4px 0px;
+                color: #ffffff;
+                padding: 15px 30px;
+                background-color: #000000;
+                width: fit-content;
+                outline: none;
+                border: none;
+                font-size: 16px;
+                font-family: "arialbold";
+              }
+            }
+          }
+        }
+      }
+      .sc__newArrival__block {
+        margin: 20px 0px;
+        width: 100%;
+        padding: 0px 40px 40px;
+        background-color: #ffffff;
+      }
+      .shopping__cart__right__block {
         padding: 0px 0px 0px 20px;
-        .cb__package__summary__block {
+        .sc__package__summary__block {
           box-shadow: 0px 3px 6px #0000000a;
           background-color: #ffffff;
 
-          .cb__ps__title {
+          .sc__ps__title {
             font-size: 24px;
             font-family: "arialbold";
             padding: 20px;
             border-bottom: 1px solid rgb(224, 224, 224);
             margin: 0px;
           }
-          .cb__ps__detail__block {
+          .sc__ps__detail__block {
             padding: 10px 20px 20px;
-            .cb__ps__detail__inner__block {
+            .sc__ps__detail__inner__block {
               display: flex;
               justify-content: space-between;
               align-items: center;
               border-bottom: 1px solid rgb(224, 224, 224);
               padding: 20px 0px;
 
-              .cb__ps__detail__title {
+              .sc__ps__detail__title {
                 margin: 0px;
                 font-size: 16px;
                 font-family: "arialregular";
               }
-              .cb__ps__detail__price {
+              .sc__ps__detail__price {
                 margin: 0px;
                 font-size: 16px;
                 font-family: "arialbold";
               }
             }
-            .cb__ps__detail__total__order__block {
+            .sc__ps__detail__total__order__block {
               display: flex;
               justify-content: space-between;
               align-items: center;
               padding: 30px 0px;
-              .cb__ps__detail__total__order {
+              .sc__ps__detail__total__order {
                 font-size: 18px;
                 font-family: "arialbold";
                 margin: 0px;
               }
             }
-            .cb__addToCart__button__block {
-              width: 100%;
-              padding: 0px;
-
-              .cb__addToCart__button {
-                border-radius: 10px;
-                color: #ffffff;
-                font-size: 16px;
-                font-family: "arialbold";
-                letter-spacing: 0.85px;
-                padding: 18px 0px;
-                background-color: #000000;
-                text-align: center;
-                text-transform: uppercase;
-                .cb__addToCart__icon {
-                  margin: 0px 20px 0px 0px;
-                }
-              }
+          }
+        }
+        .sc__addToCart__button__block {
+          width: 100%;
+          padding: 0px;
+          margin: 20px 0px;
+          .sc__addToCart__button {
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: "arialbold";
+            letter-spacing: 0.85px;
+            padding: 18px 0px;
+            background-color: #000000;
+            text-align: center;
+            text-transform: uppercase;
+            .sc__addToCart__icon {
+              margin: 0px 0px 0px 20px;
             }
           }
         }
@@ -290,21 +336,21 @@
   }
 }
 @media screen and (max-width: 1702px) {
-  .create__bundle__page__block {
+  .shopping__cart__page__block {
     width: 90% !important;
   }
 }
 @media screen and (max-width: 1200px) {
-  .create__bundle__page__block {
+  .shopping__cart__page__block {
     width: 100% !important;
   }
-  .create__bundle__right__block {
+  .shopping__cart__right__block {
     padding: 0px !important;
     margin: 10px 0px;
   }
 }
 @media screen and (max-width: 992px) {
-  .create__bundle__page__block {
+  .shopping__cart__page__block {
     width: 100% !important;
   }
 }
