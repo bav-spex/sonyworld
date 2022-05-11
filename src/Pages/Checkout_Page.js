@@ -80,7 +80,7 @@ function Checkout_Page() {
                   />
                 </div>
                 <div className="row address__select__block">
-                  {addressData.map((add, addIndex) => 
+                  {addressData.map((add, addIndex) => {
                     return (
                       <div key={add.id} className="col-12 col-sm-6 address__block">
                         <div
