@@ -5,20 +5,13 @@ import TopNavbar from "../Components/TopNavbar";
 
 import product_01 from "./../Assets/Product/product_01.png";
 import sony_logo from "./../Assets/Icon/sony_logo.svg";
-import black_down_arrow from "./../Assets/Icon/black_down_arrow.svg";
-import add_cart_white from "./../Assets/Icon/add_cart_white.svg";
-import left_arrow from "./../Assets/Icon/left_arrow.svg";
-import right_arrow from "./../Assets/Icon/right_arrow.svg";
 import checkout_white_right_arrow from "./../Assets/Icon/checkout_white_right_arrow.svg";
 
-import { Rating } from "react-simple-star-rating";
-import ProductThree from "../Components/ProductThree";
 import NewsLetter from "../Components/NewsLetter";
 import Footer from "../Components/Footer";
 import Heading3 from "../Components/Font/Heading3";
 import Text3 from "../Components/Font/Text3";
 import Protection from "../Components/MostSharedComponent/Protection";
-import Heading2 from "../Components/Font/Heading2";
 import Price from "../Components/Font/Price";
 import Heading6 from "../Components/Font/Heading6";
 import Text1 from "../Components/Font/Text1";
@@ -34,7 +27,6 @@ import newArrivals_02 from "./../Assets/NewArrivals/newArrivals_02.png";
 import newArrivals_03 from "./../Assets/NewArrivals/newArrivals_03.png";
 import newArrivals_04 from "./../Assets/NewArrivals/newArrivals_04.png";
 import newArrivals_05 from "./../Assets/NewArrivals/newArrivals_05.png";
-import Text5 from "../Components/Font/Text5";
 const product = {
   id: 1,
   logo: sony_logo,

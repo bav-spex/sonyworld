@@ -6,6 +6,7 @@ function Heading3({ text , color, marginBottom,marginLeft,span }) {
       {!span ? (
         <p
           style={{
+            color: `${color}`,
             margin: `0px 0px ${marginBottom ? marginBottom : 0}px ${marginLeft ? marginLeft : 0}px`,
           }}
           className="heading4"
