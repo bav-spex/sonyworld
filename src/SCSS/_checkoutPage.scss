@@ -2,7 +2,7 @@
   padding: 0px 12px;
   background-color: #f5f5f5;
   .checkout__page__block {
-    padding: 10px 0px;
+    padding: 20px 0px;
     width: 1702px;
     margin: 0px auto;
 
@@ -63,51 +63,27 @@
             }
           }
         }
-        .delivery__address__block {
+        .user__delivery__address__block {
           background-color: #ffffff;
           box-shadow: 0px 3px 6px #0000000a;
-          padding: 16px 0px;
-          margin: 12px 0px;
-          .delivery__address__title__block {
-            display: flex;
-            align-items: center;
-            padding: 0px 16px;
-          }
-          .address__select__block {
-            padding: 0px 0px;
-            margin: 20px 0px;
-            .address__block {
-             
-              .selected__address__inner__block {
-                box-shadow: 0px 3px 6px #00000029;
-                border: 2px solid #000000;
-                padding: 16px;
-                .address__tag {
-                  width: fit-content;
-                  padding: 10px 20px;
-                  background: #eeeeee;
-                  border: 1px solid #eeeeee;
-                  border-radius: 3px;
-                  margin: 0px 0px 10px;
-                }
-                .white__address__tag {
-                  width: fit-content;
-                  padding: 10px 20px;
-                  background: #ffffff;
-                  border: 1px solid #ffffff;
-                  border-radius: 3px;
-                  margin: 0px 0px 10px;
-                }
-                .full__address {
-                  width: 30%;
-                }
-              }
-              .address__inner__block{
-                background: #FFFFFF ;
-                box-shadow: 0px 3px 6px #00000029;
-                border: 2px solid #D1D1D1;
-                padding: 16px;
-                .address__tag {
+          margin: 20px 0px;
+          .delivery__address__block {
+            padding: 16px 0px;
+            .delivery__address__title__block {
+              display: flex;
+              align-items: center;
+              padding: 0px 16px;
+            }
+            .address__select__block {
+              padding: 0px 0px;
+              margin: 20px 0px;
+              .address__block {
+                padding: 0px 16px;
+                .selected__address__inner__block {
+                  box-shadow: 0px 3px 6px #00000029;
+                  border: 2px solid #000000;
+                  padding: 16px;
+                  .address__tag {
                     width: fit-content;
                     padding: 10px 20px;
                     background: #eeeeee;
@@ -126,13 +102,119 @@
                   .full__address {
                     width: 30%;
                   }
+                }
+                .address__inner__block {
+                  background: #ffffff;
+                  box-shadow: 0px 3px 6px #00000029;
+                  border: 2px solid #d1d1d1;
+                  padding: 16px;
+                  .address__tag {
+                    width: fit-content;
+                    padding: 10px 20px;
+                    background: #eeeeee;
+                    border: 1px solid #eeeeee;
+                    border-radius: 3px;
+                    margin: 0px 0px 10px;
+                  }
+                  .white__address__tag {
+                    width: fit-content;
+                    padding: 10px 20px;
+                    background: #ffffff;
+                    border: 1px solid #ffffff;
+                    border-radius: 3px;
+                    margin: 0px 0px 10px;
+                  }
+                  .full__address {
+                    width: 30%;
+                  }
+                }
               }
             }
           }
+          .add__new__address__block {
+            .add__new__address__title__block {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 16px;
+              .location__button {
+                cursor: pointer;
+                text-align: center;
+                min-width: fit-content;
+                font-size: 14px;
+                font-family: "arialbold";
+                border: 1px solid #707070;
+                border-radius: 3px;
+                padding: 6px 15px;
+                color: #808080;
+                background-color: #ffffff;
+                outline: none;
+                letter-spacing: 0.3px;
+                .location__icon {
+                  margin: 0px 10px 0px 0px;
+                }
+              }
+            }
+          }
+          .delivery__selcetion__pickup__store {
+            padding: 20px 16px;
+            .delivery__preferences__block {
+              .delivery__preferences__title__block {
+              }
+              .delivery__selection__block {
+                .delivery__selection {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin: 20px 0px 0px 0px;
+                  .delivery__selection__form__block {
+                    display: flex;
+                    align-items: center;
+                    .delivery__input__check {
+                      accent-color: #ff4f04;
+                      height: 30px;
+                      width: 30px;
+                      border-radius: 10px;
+                      margin: 0px 16px 0px 0px;
+                      border: 30px solid #303030;
+                      text-transform: uppercase;
+                    }
+                    .delivery__selection__text {
+                      margin: 0px;
+                    }
+                  }
+                  .delivery__price__block {
+                    width: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+
+                    .delivery__price {
+                      text-align: right;
+                      margin: 0px;
+                    }
+                  }
+                }
+              }
+            }
+            .delivery__pickup__store {
+            }
+          }
+          .checkout__page__horizontal__line {
+            border-bottom: 1px solid #acacac;
+            margin: 0px;
+          }
         }
-        .checkout__page__horizontal__line {
-          border-bottom: 1px solid #acacac;
-          margin: 0px;
+        .order__summary__block {
+          background-color: #ffffff;
+          box-shadow: 0px 3px 6px #0000000a;
+          padding: 16px 0px;
+          .order__summary__title__block {
+            display: flex;
+            align-items: center;
+            padding: 0px 16px;
+            margin: 0px 0px 10px 0px;
+          }
         }
       }
 
