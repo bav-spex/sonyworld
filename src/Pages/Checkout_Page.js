@@ -12,9 +12,21 @@ import "./../SCSS/_checkoutPage.scss";
 import user_black_fill from "./../Assets/Icon/user_black_fill.svg";
 import check from "./../Assets/Icon/check.svg";
 import shipping from "./../Assets/Icon/shipping.svg";
+import sony_logo from "./../Assets/Icon/sony_logo.svg";
+import black_location from "./../Assets/Icon/black_location.svg";
+import product_01 from "./../Assets/Product/product_01.png";
+
+import SmallWarrantyBlock from "../Components/MostSharedComponent/SmallWarrantyBlock";
+import ProtectionPlan from "../Components/MostSharedComponent/ProtectionPlan";
+
 import Text5 from "../Components/Font/Text5";
 import Heading7 from "../Components/Font/Heading7";
 import Text4 from "../Components/Font/Text4";
+import PickupStore from "./../Components/MostSharedComponent/PickupStore";
+import AvailableOffers from "../Components/MostSharedComponent/AvailableOffers";
+import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
+import Heading2 from "../Components/Font/Heading2";
+import ProductThree from "../Components/ProductThree";
 const addressData = [
   {
     id: 0,
@@ -33,11 +45,128 @@ const addressData = [
     contact: "+1123456789",
   },
 ];
+
+const product = {
+  id: 1,
+  logo: sony_logo,
+  name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+  categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+  rating: 4.6,
+  totalRatings: 6183,
+  price: 799,
+  oldPrice: 1050,
+  saving: 10,
+  monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+  returnPeriod: 15,
+  availableOffer: [
+    {
+      id: 1,
+      offerType: "",
+      offerText: "Save $50-$300 on a sound bar with TV",
+      termsAndConditions: "",
+    },
+    {
+      id: 2,
+      offerType: "Bank Offer",
+      offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+      termsAndConditions: "T&C",
+    },
+    {
+      id: 3,
+      offerType: "Credit Card Offer",
+      offerText: "5% Unlimited Cashback on Sony Credit Card",
+      termsAndConditions: "T&C",
+    },
+  ],
+  warrantyText: "1 Year Warranty on Product",
+  size: [
+    {
+      id: 1,
+      cm: 139,
+      inch: 55,
+    },
+    {
+      id: 2,
+      cm: 164,
+      inch: 65,
+    },
+    {
+      id: 3,
+      cm: 195,
+      inch: 77,
+    },
+  ],
+  delivery: {
+    deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+    pickupStore: [
+      {
+        id: 1,
+        pickupText:
+          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+      },
+      {
+        id: 2,
+        pickupText:
+          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+      },
+      {
+        id: 3,
+        pickupText:
+          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+      },
+    ],
+  },
+  protection: [
+    {
+      id: 1,
+      protectionText: "2-Year Standard Geek Squad Protection",
+      price: 79,
+      month: 12,
+    },
+    {
+      id: 2,
+      protectionText: "1-Year Standard Geek Squad Protection",
+      price: 89,
+      month: 12,
+    },
+  ],
+};
+const deliveryType = [
+  {
+    id: 1,
+    type: "Standard",
+    protectionText: "delivery by Mon, Apr 4",
+    price: 0,
+  },
+  {
+    id: 2,
+    type: "Express",
+    protectionText: "Same Day Delivery",
+    price: 10,
+  },
+  {
+    id: 3,
+    type: "Lightening",
+    protectionText: "Shipping",
+    price: 15,
+  },
+];
 function Checkout_Page() {
   const [selectedAddressId, setSelectedAddressID] = useState(0);
+  const [couponCode, setCouponCode] = useState("");
+
+  const handleSubmit = (code) => {
+    console.log(code);
+  };
   const selectAddress = (addIndex, addId, add) => {
     setSelectedAddressID(addIndex);
     console.log(addId, add);
+  };
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+  const remove = (id) => {
+    console.log(id);
   };
   return (
     <>
@@ -69,45 +198,152 @@ function Checkout_Page() {
                   </div>
                 </div>
               </div>
-              <div className="delivery__address__block">
-                <div className="delivery__address__title__block">
-                  <img src={shipping} alt="" className="user__icon" />
-                  <Heading5
-                    text="DELIVERY ADDRESS"
-                    color="#808080"
-                    marginLeft={10}
-                    marginBottom={0}
-                  />
-                </div>
-                <div className="row address__select__block">
-                  {addressData.map((add, addIndex) => {
-                    return (
-                      <div key={add.id} className="col-12 col-sm-6 address__block">
+              <div className="user__delivery__address__block">
+                <div className="delivery__address__block">
+                  <div className="delivery__address__title__block">
+                    <img src={shipping} alt="" className="user__icon" />
+                    <Heading5
+                      text="DELIVERY ADDRESS"
+                      color="#808080"
+                      marginLeft={10}
+                      marginBottom={0}
+                    />
+                  </div>
+                  <div className="row address__select__block">
+                    {addressData.map((add, addIndex) => {
+                      return (
                         <div
-                          className={selectedAddressId===addIndex ? "selected__address__inner__block" : "address__inner__block"}
-                          onClick={() => selectAddress(addIndex, add.id, add)}
+                          key={add.id}
+                          className="col-12 col-sm-6 address__block"
                         >
-                          {add.isDefault ? (
-                            <div className="address__tag">
-                              <Heading7 text="DEFAULT" span={true} />
-                            </div>
-                          ) : (
-                            <div className="white__address__tag">
-                              <Text5 text="NONE" span={true} color="#ffffff" />
-                            </div>
-                          )}
-                          <Heading7 text={add.userName} />
-                          <p className="full__address">
-                            <Text4 text={add.adddress} marginBottom={20} />
-                          </p>
-                          <Text4 text={add.contact} />
+                          <div
+                            className={
+                              selectedAddressId === addIndex
+                                ? "selected__address__inner__block"
+                                : "address__inner__block"
+                            }
+                            onClick={() => selectAddress(addIndex, add.id, add)}
+                          >
+                            {add.isDefault ? (
+                              <div className="address__tag">
+                                <Heading7 text="DEFAULT" span={true} />
+                              </div>
+                            ) : (
+                              <div className="white__address__tag">
+                                <Text5
+                                  text="NONE"
+                                  span={true}
+                                  color="#ffffff"
+                                />
+                              </div>
+                            )}
+                            <Heading7 text={add.userName} />
+                            <p className="full__address">
+                              <Text4 text={add.adddress} marginBottom={20} />
+                            </p>
+                            <Text4 text={add.contact} />
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
+                </div>
+                <hr className="checkout__page__horizontal__line"></hr>
+                <div className=" add__new__address__block">
+                  <div className="add__new__address__title__block">
+                    <Heading5
+                      text="Add New Address"
+                      marginBottom={0}
+                      color="#000000"
+                    />
+                    <button className="location__button">
+                      <img
+                        src={black_location}
+                        alt=""
+                        className="location__icon"
+                      />
+                      Locate me
+                    </button>
+                  </div>
+                </div>
+                <hr className="checkout__page__horizontal__line"></hr>
+
+                <div className="row delivery__selcetion__pickup__store">
+                  <div className="col-12 col-sm-12 col-md-7 delivery__preferences__block">
+                    <div className="delivery__preferences__title__block">
+                      <Heading6 text="Delivery Preferences" />
+                    </div>
+                    <div className="delivery__selection__block">
+                      {deliveryType.map((delivery, deliveryIndex) => {
+                        return (
+                          <div
+                            key={delivery.id}
+                            className="delivery__selection"
+                          >
+                            <div className="delivery__selection__form__block">
+                              <input
+                                type="radio"
+                                className="delivery__input__check"
+                                name="deliveryType"
+                                value={delivery.type}
+                                onChange={handleChange}
+                              />
+                              <p className="delivery__selection__text">
+                                <Heading4 text={delivery.type} />
+                                <Text3
+                                  text={delivery.protectionText}
+                                  color="#3b3b3b"
+                                  marginBottom={0}
+                                />
+                              </p>
+                            </div>
+                            <div className="delivery__price__block">
+                              <p className="delivery__price">
+                                {delivery.price <= 0 ? (
+                                  <Heading4 text="FREE" color="#FF4F04" />
+                                ) : (
+                                  <Price
+                                    price={delivery.price}
+                                    size="heading6"
+                                  />
+                                )}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-5  delivery__pickup__store">
+                    <PickupStore
+                      delivery={product.delivery}
+                      title="Pick Up From Store"
+                    />
+                  </div>
                 </div>
               </div>
+              <div className="order__summary__block">
+              <div className="order__summary__title__block">
+                    <img src={shipping} alt="" className="user__icon" />
+                    <Heading5
+                      text="ORDER SUMMARY"
+                      color="#808080"
+                      marginLeft={10}
+                      marginBottom={0}
+                    />
+                  </div>
+                <ShoppipngCartProduct product={product} />
+                <hr className="checkout__page__horizontal__line"></hr>
+                <p className="checkout__page__block__title">
+                <Heading2
+                  text="Our experts recommend the following products:"
+                  marginBottom={0}
+                  marginLeft={16}
+                />
+              </p>
+              <ProductThree product={product} />
               <hr className="checkout__page__horizontal__line"></hr>
+              </div>
             </div>
             {/* package Summary */}
             <div className="col-md-12 col-xl-3  checkout__right__block">

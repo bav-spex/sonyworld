@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './../../SCSS/MostSharedComponents/_pickupStore.scss'
 import pickup_store from "./../../Assets/Icon/pickup_store.svg";
 import Heading5 from "../Font/Heading5";
+
 function PickupStore({delivery, title}) {
   return (
     <div className="product__pickup__block">
