@@ -20,7 +20,6 @@ import Protection from "../Components/MostSharedComponent/Protection";
 import Heading2 from "../Components/Font/Heading2";
 import Price from "../Components/Font/Price";
 import Heading6 from "../Components/Font/Heading6";
-
 const product = {
   id: 1,
   logo: sony_logo,
@@ -241,7 +240,7 @@ function Create_Bundle_Page() {
               </div>
               <hr className="cb__page__horizontal__line"></hr>
 
-              <p className="cb__page__button__block__title">
+              <p className="cb__page__block__title">
                 <Heading2
                   text="Our experts recommend the following products:"
                   marginBottom={0}
