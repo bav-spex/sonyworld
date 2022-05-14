@@ -241,7 +241,7 @@ function Checkout_Page() {
                             <p className="full__address">
                               <Text4 text={add.adddress} marginBottom={20} />
                             </p>
-                            <Text4 text={add.contact} />
+                            <Heading7 text="Phone Number:" color="#808080" span={true} />  <Text4 text={add.contact} marginLeft={10} span={true}/>
                           </div>
                         </div>
                       );
