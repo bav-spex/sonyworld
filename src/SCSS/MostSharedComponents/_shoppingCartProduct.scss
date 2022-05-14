@@ -1,157 +1,72 @@
 .sc__product__block {
-    background-color: #ffffff;
-    width: 100%;
-    height: fit-content;
-    padding: 20px 0px;
-    margin: 0px;
-    .sc__product__left__block {
-      padding: 0px 20px 0px;
+  background-color: #ffffff;
+  width: 100%;
+  height: fit-content;
+  padding: 20px 0px;
+  margin: 0px;
+  .sc__product__left__block {
+    padding: 0px 20px 0px;
 
-      .sc__product__image__block {
+    .sc__product__image__block {
+      width: 100%;
+      height: 172px;
+      padding: 10px;
+
+      background-color: #e9f3f3;
+      border: 1px solid #c8c8c8;
+      .sc__product__image {
         width: 100%;
-        height: 172px;
-        padding: 10px;
-
-        background-color: #e9f3f3;
-        border: 1px solid #c8c8c8;
-        .sc__product__image {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
+        height: 100%;
+        object-fit: contain;
       }
-    }
-
-    .sc__product__middle__block {
-      padding: 0px 20px 0px;
-      .sc__product__company__logo {
-        margin: 0px 0px 16px;
-      }
-      .sc__product__productName {
-      }
-      .sc__protect__block {
-        .sc__title__block {
-          font-size: 20px;
-          font-family: "arialbold";
-          margin: 0px 0px 0px;
-          .sc__block__title__span {
-            font-size: 14px;
-            font-family: "arialmedium";
-            margin: 0px;
-            color: #3b3b3b;
-          }
-        }
-        .sc__rating__block {
-          display: flex;
-          align-items: center;
-          padding: 0px 0px 10px;
-          .sc__star__rating__block {
-          }
-          .sc__product__rating__icon {
-            margin: 6px 10px 0px;
-          }
-          .sc__product__rating {
-            margin: 6px 4px 0px;
-            font-size: 14px;
-            color: #dc3a1a;
-            font-family: "arialbold";
-          }
-          .sc__product__totalRating {
-            margin: 6px 0px 0px;
-            font-size: 14px;
-            color: #101010;
-            font-family: "arialregular";
-          }
-        }
-        .sc__protect__selection__block {
-          .sc__protection__selection {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px 0px 0px 0px;
-            .sc__protection__form__block {
-              display: flex;
-              align-items: center;
-              .sc__input__check {
-                accent-color: #000000;
-                height: 30px;
-                width: 30px;
-                border-radius: 10px;
-                margin: 0px 16px 0px 0px;
-                border: 30px solid #303030;
-                text-transform: uppercase;
-              }
-              .sc__protection__text {
-                margin: 0px;
-                width: 60%;
-                font-size: 16px;
-                color: #3b3b3b;
-                font-family: "arialregular";
-                line-height: 20px;
-              }
-            }
-            .sc__protection__price__block {
-              width: 30%;
-              display: flex;
-              flex-direction: column;
-              align-items: flex-end;
-
-              .sc__protection__price {
-                font-size: 18px;
-                font-family: "arialbold";
-                text-align: right;
-                margin: 0px;
-              }
-              .sc__protection__monthly__price {
-                font-size: 14px;
-                font-family: "arialregular";
-                color: #808080;
-                margin: 0px;
-                text-align: right;
-              }
-            }
-          }
-        }
-      }
-      
-      .sc__offers__discounts__block {
-        padding: 20px 0px 0px;
-        .sc__form__block {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          margin: 20px 0px;
-          .sc__form__field {
-            width: 70%;
-            .sc__input__field {
-              width: 100%;
-              border: 1px solid #c8c8c8;
-              border-radius: 4px 0px 0px 4px;
-              outline: none;
-              padding: 15px 5px 16px 15px;
-              font-size: 14px;
-              font-family: "arialregular";
-            }
-
-            .sc__input__button {
-              border-radius: 0px 4px 4px 0px;
-              color: #ffffff;
-              padding: 15px 30px;
-              background-color: #000000;
-              width: fit-content;
-              outline: none;
-              border: none;
-              font-size: 16px;
-              font-family: "arialbold";
-            }
-          }
-        }
-      }
-    }
-    .sc__product__right__block {
-      display: flex;
-      align-items: flex-end;
-      flex-direction: column;
-      padding: 0px 20px;
     }
   }
+
+  .sc__product__middle__block {
+    padding: 0px 20px 0px;
+    .sc__product__company__logo {
+      margin: 0px 0px 16px;
+    }
+    }
+    
+    .sc__offers__discounts__block {
+      padding: 20px 0px 0px;
+      .sc__form__block {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 20px 0px;
+        .sc__form__field {
+          width: 70%;
+          .sc__input__field {
+            width: 100%;
+            border: 1px solid #c8c8c8;
+            border-radius: 4px 0px 0px 4px;
+            outline: none;
+            padding: 15px 5px 16px 15px;
+            font-size: 14px;
+            font-family: "arialregular";
+          }
+
+          .sc__input__button {
+            border-radius: 0px 4px 4px 0px;
+            color: #ffffff;
+            padding: 15px 30px;
+            background-color: #000000;
+            width: fit-content;
+            outline: none;
+            border: none;
+            font-size: 16px;
+            font-family: "arialbold";
+          }
+        }
+      }
+    }
+  
+  .sc__product__right__block {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 0px 20px;
+  }
+}
