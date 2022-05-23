@@ -19,21 +19,7 @@ function ExpertProducts({ product }) {
         <img src={product.image} alt="" className="exp__product__image" />
       </div>
       <div className="exp__rd__rating__block">
-        <div className="rating__block">
-          <Rating
-            // onClick={handleRating}
-            size={20}
-            fillColor="#DC3A1A"
-            emptyColor="#C8C8C8"
-            readonly={true}
-            ratingValue={(product.rating * 100) / 5} /* Available Props */
-          />
-          <img
-            src={black_down_arrow}
-            alt=""
-            className="pd__product__rating__icon"
-          />
-        </div>
+        
         <div className="exp__rd__rating__text__block">
           <p className="exp__rd__product__rating">{product.rating}</p>
           <p className="exp__rd__product__totalRating">
