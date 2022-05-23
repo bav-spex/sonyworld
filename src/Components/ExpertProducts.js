@@ -62,7 +62,7 @@ function ExpertProducts({ product }) {
           onClick={handleFavourite}
           onMouseLeave={() => setIsCheckBoxHover(false)}
           className={
-            !isCheckBox
+            !isCheckBox 
               ? "exp__rd__check__icon"
               : "exp__rd__check__icon__disable"
           }

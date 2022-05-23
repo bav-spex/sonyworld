@@ -51,7 +51,7 @@ function MyOrderProduct({ product }) {
               span={true}
             />
           </div>
-        </div>
+        </div>                                                                                                             
         <div className="row mo__order__details__row">
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="ORDER #:" color="#727272" span={true} />
@@ -60,7 +60,7 @@ function MyOrderProduct({ product }) {
             <Text3
               text={product.orderId}
               span={true}
-            />
+            />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
           </div>
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="TOTAL AMOUNT:" color="#727272" span={true} />

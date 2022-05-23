@@ -4,6 +4,9 @@ import navbar_logo from "./../Assets/Logo/navbar_logo.svg";
 import navbar_white_down_arrow from "./../Assets/Icon/navbar_white_down_arrow.svg";
 import "./../SCSS/_topNavbar.scss";
 import { useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import cookies from "js-cookie";
 // import "./../SCSS/_variables.scss"
 
 import search from "./../Assets/Icon/search.svg";
@@ -353,14 +356,43 @@ function TopNavbar() {
 
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileShowPopup, setMobileShowPopup] = useState(false);
-
+const [lang, setLang]=useState("en")
+  const languages = [
+    {
+      code: "fr",
+      name: "Français",
+      country_code: "fr",
+    },
+    {
+      code: "en",
+      name: "English",
+      country_code: "gb",
+    },
+    {
+      code: "ar",
+      name: "العربية",
+      dir: "rtl",
+      country_code: "sa",
+    },
+  ];
+  const currentLanguageCode = cookies.get("i18next") || "en";
+  const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+  const { t } = useTranslation();
+  useEffect(() => {
+    console.log("Setting page stuff");
+    document.body.dir = currentLanguage.dir || "ltr";
+    document.title = t("app_title");
+  }, [currentLanguage, t]);
+  const handleChange = (e) => {
+    setLang(e.target.value)
+    i18next.changeLanguage(e.target.value);
+  };
   useEffect(() => {
     const onScroll = () => setHeight(window.pageYOffset);
     window.removeEventListener("scroll", onScroll);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, [window.pageYOffset]);
-
 
   useEffect(() => {
     if (height > 112) {
@@ -373,8 +405,7 @@ function TopNavbar() {
       //     "fixed";
       // }
       document.querySelector(".main__navbar__container").style.position =
-          "fixed";
-
+        "fixed";
     } else if (height < 112) {
       document.querySelector(".main__navbar__container").style.position =
         "absolute";
@@ -486,6 +517,44 @@ function TopNavbar() {
                   alt=""
                   className="shopping_cart topnavbar__icon"
                 />
+                <select value={lang} onChange={handleChange}>
+                  {languages.map(({ code, name, country_code }) => {
+                    return (
+                      <option key={country_code} value={code}>
+                        {name}
+                      </option>
+                    );
+                  })}
+                </select>
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  <li>
+                    <span className="dropdown-item-text">{t("language")}</span>
+                  </li>
+                  {languages.map(({ code, name, country_code }) => (
+                    <li key={country_code}>
+                      <a
+                        href="#"
+                        // className={classNames("dropdown-item", {
+                        //   disabled: currentLanguageCode === code,
+                        // })}
+                        onClick={() => {
+                          i18next.changeLanguage(code);
+                        }}
+                      >
+                        <span
+                          // className={`flag-icon flag-icon-${country_code} mx-2`}
+                          style={{
+                            opacity: currentLanguageCode === code ? 0.5 : 1,
+                          }}
+                        ></span>
+                        {name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -500,6 +569,7 @@ function TopNavbar() {
                 to="/"
               >
                 Home
+                {t("welcome_message")}
               </Link>
               <div
                 onClick={() => setShowPopup(true)}
@@ -513,7 +583,11 @@ function TopNavbar() {
                 // to="/playstation"
               >
                 PlayStation
-                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+                <img
+                  src={navbar_white_down_arrow}
+                  alt=""
+                  className="down__arrow__icon"
+                />
               </div>
               <div
                 onClick={() => setShowPopup(true)}
@@ -527,7 +601,11 @@ function TopNavbar() {
                 // to="/television"
               >
                 Television
-                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+                <img
+                  src={navbar_white_down_arrow}
+                  alt=""
+                  className="down__arrow__icon"
+                />
               </div>
               <div
                 onClick={() => setShowPopup(true)}
@@ -541,7 +619,11 @@ function TopNavbar() {
                 // to="/camera"
               >
                 Camera
-                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+                <img
+                  src={navbar_white_down_arrow}
+                  alt=""
+                  className="down__arrow__icon"
+                />
               </div>
               <div
                 onClick={() => setShowPopup(true)}
@@ -555,7 +637,11 @@ function TopNavbar() {
                 // to="/audio"
               >
                 Audio
-                <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+                <img
+                  src={navbar_white_down_arrow}
+                  alt=""
+                  className="down__arrow__icon"
+                />
               </div>
               <Link
                 onMouseEnter={() => navbarTab__mouseTab(false, "")}
@@ -609,7 +695,11 @@ function TopNavbar() {
               // to="/playstation"
             >
               PlayStation
-              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+              <img
+                src={navbar_white_down_arrow}
+                alt=""
+                className="down__arrow__icon"
+              />
             </div>
             {navIndex === "playstation" &&
             menuIndex === 1 &&
@@ -632,7 +722,11 @@ function TopNavbar() {
               // to="/television"
             >
               Television
-              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+              <img
+                src={navbar_white_down_arrow}
+                alt=""
+                className="down__arrow__icon"
+              />
             </div>
             {navIndex === "television" && menuIndex === 2 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
@@ -653,7 +747,11 @@ function TopNavbar() {
               // to="/camera"
             >
               Camera
-              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+              <img
+                src={navbar_white_down_arrow}
+                alt=""
+                className="down__arrow__icon"
+              />
             </div>
             {navIndex === "camera" && menuIndex === 3 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
@@ -674,7 +772,11 @@ function TopNavbar() {
               // to="/audio"
             >
               Audio
-              <img src={navbar_white_down_arrow} alt="" className="down__arrow__icon" />
+              <img
+                src={navbar_white_down_arrow}
+                alt=""
+                className="down__arrow__icon"
+              />
             </div>
             {navIndex === "audio" && menuIndex === 3 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
