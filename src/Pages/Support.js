@@ -6,7 +6,7 @@ import TopNavbar from '../Components/TopNavbar'
 function Support() {
   return (
       <>
-      <TopNavbar/>
+      {/* <TopNavbar/> */}
     <Banner/>
       <div>Support</div>
 

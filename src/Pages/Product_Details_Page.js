@@ -854,7 +854,7 @@ function Product_Details_Page() {
   };
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid product__details__page__container">
         <div className="row product__details__page__block">
@@ -1210,8 +1210,8 @@ function Product_Details_Page() {
           </div>
         </div>
       </div>
-      <NewsLetter />
-      <Footer />
+      {/* <NewsLetter /> */}
+      {/* <Footer /> */}
     </>
   );
 }

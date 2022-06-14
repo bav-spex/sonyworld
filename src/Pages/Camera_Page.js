@@ -5,8 +5,8 @@ import TopNavbar from "../Components/TopNavbar";
 function Camera_Page() {
   return (
     <>
-      <TopNavbar />
-      <Navbar />
+      {/* <TopNavbar /> */}
+      {/* <Navbar /> */}
       <div>Camera_Page</div>
     </>
   );

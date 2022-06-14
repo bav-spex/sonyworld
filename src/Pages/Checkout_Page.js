@@ -170,7 +170,7 @@ function Checkout_Page() {
   };
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid checkout__page__container">
         <div className="checkout__page__block">

@@ -496,6 +496,15 @@ const [lang, setLang]=useState("en")
                 </div>
               </div>
               <div className="col-2 col-sm-4  col-xl-2  topnavbar__icon__block">
+              <select value={lang} onChange={handleChange}>
+                  {languages.map(({ code, name, country_code }) => {
+                    return (
+                      <option key={country_code} value={code}>
+                        {name}
+                      </option>
+                    );
+                  })}
+                </select>
                 <img
                   src={location}
                   alt=""
@@ -517,16 +526,8 @@ const [lang, setLang]=useState("en")
                   alt=""
                   className="shopping_cart topnavbar__icon"
                 />
-                <select value={lang} onChange={handleChange}>
-                  {languages.map(({ code, name, country_code }) => {
-                    return (
-                      <option key={country_code} value={code}>
-                        {name}
-                      </option>
-                    );
-                  })}
-                </select>
-                <ul
+                
+                {/* <ul
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton1"
                 >
@@ -554,7 +555,7 @@ const [lang, setLang]=useState("en")
                       </a>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>

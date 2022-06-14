@@ -106,7 +106,7 @@ const product = {
 function Order_Details() {
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid orderDetails__container">
         <div className="orderDetails__block">
@@ -263,8 +263,8 @@ function Order_Details() {
           </div>
         </div>
       </div>
-      <NewsLetter />
-      <Footer />
+      {/* <NewsLetter /> */}
+      {/* <Footer /> */}
     </>
   );
 }
