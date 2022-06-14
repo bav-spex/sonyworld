@@ -159,7 +159,7 @@ function Create_Bundle_Page() {
   };
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid create__bundle__page__container">
         <div className="create__bundle__page__block">
@@ -294,8 +294,8 @@ function Create_Bundle_Page() {
           </div>
         </div>
       </div>
-      <NewsLetter />
-      <Footer />
+      {/* <NewsLetter /> */}
+      {/* <Footer /> */}
     </>
   );
 }

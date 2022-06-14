@@ -421,10 +421,11 @@ const servicesData = [
   
 ];
 
-function Home() {
+function Home(props) {
+  console.log(props.log);
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       {/* <Navbar/> */}
       <Banner />
 
@@ -464,10 +465,8 @@ function Home() {
       <OurBlogs ourBlogsData={ourBlogsData} />
       <VideoLogs videoLogsData={videoLogsData} />
       <Services servicesData={servicesData} />
-      <NewsLetter/>
-      <Footer/>
-
-      {/* <Banner /> */}
+      {/* <NewsLetter/> */}
+      {/* <Footer/> */}
     </>
   );
 }

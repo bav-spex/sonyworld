@@ -72,7 +72,7 @@ const dashboardData = [
 function Dashboard() {
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid dashboard__page__container">
         <div className="dashboard__page__block">
@@ -90,8 +90,8 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <NewsLetter/>
-      <Footer/>
+      {/* <NewsLetter/> */}
+      {/* <Footer/> */}
     </>
   );
 }

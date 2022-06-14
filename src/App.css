@@ -35,4 +35,9 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #303030;
   }
-  
+  .main_header{
+
+  }
+  .main_wrapper{
+    /* margin-top: 112px; */
+  }

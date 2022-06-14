@@ -5,8 +5,8 @@ import TopNavbar from '../Components/TopNavbar'
 function TeleVision_Page() {
   return (
    <>
-   <TopNavbar/>
-   <Navbar/>
+   {/* <TopNavbar/> */}
+   {/* <Navbar/> */}
    <h1>Television_Page</h1>
    </>
   )

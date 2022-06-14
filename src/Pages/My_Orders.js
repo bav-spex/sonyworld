@@ -118,7 +118,7 @@ function My_Orders() {
   };
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid myOrders__container">
         <div className="myOrders__block">
@@ -186,8 +186,8 @@ function My_Orders() {
           </div>
         </div>
       </div>
-      <NewsLetter />
-      <Footer />
+      {/* <NewsLetter /> */}
+      {/* <Footer /> */}
     </>
   );
 }

@@ -218,13 +218,11 @@ function Cart_Page() {
   const [arrowState, setArrowState] = useState(true);
   const [selectCategoryIndex, setSelectCategoryIndex] = useState(0);
 
-  
   const productCategorySelect = (categoryIndex, category) => {
     console.log(categoryIndex, category);
     setSelectCategoryIndex(categoryIndex);
   };
 
- 
   const leftSide = (e) => {
     setArrowState(!arrowState);
     setDisableRightArrow(false);
@@ -248,7 +246,7 @@ function Cart_Page() {
   };
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid shopping__cart__page__container">
         <div className="shopping__cart__page__block">
@@ -260,9 +258,9 @@ function Cart_Page() {
 
           <div className="row shopping__cart__page__inner__block">
             <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
-            <ShoppipngCartProduct product={product}/>
+              <ShoppipngCartProduct product={product} />
               <hr className="sc__page__horizontal__line"></hr>
-              <ShoppipngCartProduct product={product}/>
+              <ShoppipngCartProduct product={product} />
               <div className="sc__newArrival__block">
                 <NewArrival
                   productDetailPage={true}
@@ -315,8 +313,8 @@ function Cart_Page() {
           </div>
         </div>
       </div>
-      <NewsLetter />
-      <Footer />
+      {/* <NewsLetter /> */}
+       {/* <Footer /> */}
     </>
   );
 }
