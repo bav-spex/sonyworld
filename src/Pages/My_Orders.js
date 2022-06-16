@@ -3,10 +3,8 @@ import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCar
 import "./../SCSS/_myOrders.scss";
 import sony_logo from "./../Assets/Icon/sony_logo.svg";
 import search from "./../Assets/Icon/search.svg";
-import TopNavbar from "../Components/TopNavbar";
+import TopNavbar from "../Components/Common/TopNavbar";
 import BreadCrumbs from "../Components/BreadCrumbs";
-import NewsLetter from "../Components/NewsLetter";
-import Footer from "../Components/Footer";
 import MyOrderProduct from "../Components/MostSharedComponent/MyOrderProduct";
 import Heading3 from "../Components/Font/Heading4";
 import Heading7 from "../Components/Font/Heading7";
@@ -118,7 +116,6 @@ function My_Orders() {
   };
   return (
     <>
-      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid myOrders__container">
         <div className="myOrders__block">

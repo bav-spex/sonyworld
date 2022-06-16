@@ -9,9 +9,9 @@ import {
 import "./App.css";
 
 import { Helmet } from "react-helmet-async";
-import TopNavbar from "./Components/TopNavbar";
+import TopNavbar from "./Components/Common/TopNavbar";
 import AllRoutes from "./routes";
-import Footer from "./Components/Footer";
+import Footer from "./Components/Common/Footer";
 
 function App() {
   const location = useLocation();

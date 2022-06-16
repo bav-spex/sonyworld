@@ -1,16 +1,16 @@
 import React from "react";
-import "./../SCSS/_productThree.scss";
-import product_01 from "./../Assets/Product/product_01.png";
-import black_down_arrow from "./../Assets/Icon/black_down_arrow.svg";
+import "./../../SCSS/ProductType/_productThree.scss";
+import product_01 from "./../../Assets/Product/product_01.png";
+import black_down_arrow from "./../../Assets/Icon/black_down_arrow.svg";
 
-import pickup_store from "./../Assets/Icon/pickup_store.svg";
+import pickup_store from "./../../Assets/Icon/pickup_store.svg";
 import { Link } from "react-router-dom";
-import Heading1 from "./Font/Heading1";
-import RatingBlock from "./MostSharedComponent/RatingBlock";
-import Heading4 from "./Font/Heading4";
-import PickupStore from "./MostSharedComponent/PickupStore";
-import Price from "./Font/Price";
-import ShippingBlock from "./MostSharedComponent/ShippingBlock";
+import Heading1 from "./../Font/Heading1";
+import RatingBlock from "./../MostSharedComponent/RatingBlock";
+import Heading4 from "./../Font/Heading4";
+import PickupStore from "./../MostSharedComponent/PickupStore";
+import Price from "./../Font/Price";
+import ShippingBlock from "./../MostSharedComponent/ShippingBlock";
 
 function ProductThree({ product }) {
   const handleChange = (e) => {

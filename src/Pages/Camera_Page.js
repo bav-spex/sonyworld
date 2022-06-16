@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
-import TopNavbar from "../Components/TopNavbar";
+import TopNavbar from "../Components/Common/TopNavbar";
 
 function Camera_Page() {
   return (

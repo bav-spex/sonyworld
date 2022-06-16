@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Rating } from "react-simple-star-rating";
 import "./../SCSS/_topRatedProducts.scss";
 import "./../SCSS/_newArrival.scss";
-import ProductOne from "./../Components/ProductOne.js"
+import ProductOne from "./../Components/ProductType/ProductOne.js"
 import left_arrow from "./../Assets/Icon/left_arrow.svg";
 import right_arrow from "./../Assets/Icon/right_arrow.svg";
 

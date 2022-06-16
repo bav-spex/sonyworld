@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./../SCSS/_createBundlePage.scss";
 import BreadCrumbs from "../Components/BreadCrumbs";
-import TopNavbar from "../Components/TopNavbar";
+import TopNavbar from "../Components/Common/TopNavbar";
 
 import product_01 from "./../Assets/Product/product_01.png";
 import sony_logo from "./../Assets/Icon/sony_logo.svg";
@@ -11,9 +11,7 @@ import left_arrow from "./../Assets/Icon/left_arrow.svg";
 import right_arrow from "./../Assets/Icon/right_arrow.svg";
 
 import { Rating } from "react-simple-star-rating";
-import ProductThree from "../Components/ProductThree";
-import NewsLetter from "../Components/NewsLetter";
-import Footer from "../Components/Footer";
+import ProductThree from "../Components/ProductType/ProductThree";
 import Heading3 from "../Components/Font/Heading3";
 import Text3 from "../Components/Font/Text3";
 import Protection from "../Components/MostSharedComponent/Protection";

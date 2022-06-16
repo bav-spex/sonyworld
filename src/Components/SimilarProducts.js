@@ -4,7 +4,7 @@ import left_arrow from "./../Assets/Icon/left_arrow.svg";
 import right_arrow from "./../Assets/Icon/right_arrow.svg";
 import "./../SCSS/_newArrival.scss";
 
-import ProductTwo from "./ProductTwo";
+import ProductTwo from "./ProductType/ProductTwo";
 function SimilarProducts({ productDetailPage,sectionTitle, carouselData }) {
     const [disableLeftArrow, setDisableLeftArrow] = useState(true);
     const [disableRightArrow, setDisableRightArrow] = useState(false);

@@ -67,6 +67,84 @@
 }
 .mobile__product__popup__container__disable {
 }
+
+  .mobile__product__popup__container {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    min-height: 86vh;
+    overflow-y: scroll;
+    
+    .mobile__product__popup__block {
+      .mobile__inner__product__popup__block {
+        padding: 10px;
+        width: 100%;
+      }
+      .mobile__category__block {
+        margin: 10px;
+
+        .mobile__category__title {
+          padding: 0px;
+          font-size: 18px;
+          color: #202020;
+          margin: 0px 0px 20px 0px;
+        }
+      }
+      .mobile__productList__block {
+        width: 100%;
+        margin: 10px 10px 0px;
+
+        .mobile__product__block {
+          width: 30%;
+          padding: 14px;
+          height: fit-content;
+          margin: 0px 16px 16px 0px;
+          background: #ffffff 0% 0% no-repeat padding-box;
+          box-shadow: 0px 3px 6px #00000014;
+          border: 1px solid #f2f2f2;
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .mobile__product__image {
+            margin: 0px 0px 10px 0px;
+            width: 100%;
+          }
+          .mobile__product__title {
+            margin: 0px;
+            text-align: left;
+            font-size: 13px;
+            letter-spacing: 0px;
+            color: #202020;
+          }
+        }
+      }
+      .mobile__adsBanner__block {
+        margin: 0px 10px 10px;
+        width: 100%;
+        padding: 12px;
+        .mobile__adBanner__images__block {
+          width: 30%;
+          height: fit-content;
+          margin: 0px 16px 0px 0px;
+          box-shadow: 0px 3px 6px #00000014;
+          border-radius: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          padding: 0px;
+          .mobile__adBanner__image {
+            width: 100%;
+            border-radius: 5px;
+          }
+        }
+      }
+      .mobile__inner__product__popup__block__disable {
+        display: none;
+      }
+      .mobile__product__popup__container__disable {
+      }
+    }
+  }
+
 @media screen and (max-width: 768px) {
   .mobile__product__popup__container {
     background: #ffffff 0% 0% no-repeat padding-box;

@@ -7,7 +7,7 @@ import Heading6 from "../Components/Font/Heading6";
 import Price from "../Components/Font/Price";
 import Text3 from "../Components/Font/Text3";
 import SuperCoin from "../Components/MostSharedComponent/SuperCoin";
-import TopNavbar from "../Components/TopNavbar";
+import TopNavbar from "../Components/Common/TopNavbar";
 import "./../SCSS/_checkoutPage.scss";
 import user_black_fill from "./../Assets/Icon/user_black_fill.svg";
 import check from "./../Assets/Icon/check.svg";
@@ -26,7 +26,7 @@ import PickupStore from "./../Components/MostSharedComponent/PickupStore";
 import AvailableOffers from "../Components/MostSharedComponent/AvailableOffers";
 import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
 import Heading2 from "../Components/Font/Heading2";
-import ProductThree from "../Components/ProductThree";
+import ProductThree from "../Components/ProductType/ProductThree";
 const addressData = [
   {
     id: 0,
