@@ -1,9 +1,6 @@
 import React from "react";
 import Banner from "../Components/Banner";
 import BreadCrumbs from "../Components/BreadCrumbs";
-import TopNavbar from "../Components/TopNavbar";
-import NewsLetter from "../Components/NewsLetter";
-import Footer from "../Components/Footer";
 import "./../SCSS/_dashboardPage.scss";
 import dashboard_icon_01 from "./../Assets/Icon/dashboard_icon_01.svg";
 import Heading6 from "../Components/Font/Heading6";

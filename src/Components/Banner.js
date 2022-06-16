@@ -51,10 +51,33 @@ function Banner() {
   //     return () => clearInterval(slider);
   //   });
 
+  //Getting current width of window
+  const [windowWidth, setWindowWidth] = useState(0);
+  let resizeWindow = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    resizeWindow();
+    window.addEventListener("resize", resizeWindow);
+    return () => window.removeEventListener("resize", resizeWindow);
+  }, []);
+
+  // updating block height similar to banner_image
+  useEffect(() => {
+    if (
+      document.getElementsByClassName("banner__image")[0].offsetHeight !== 0
+    ) {
+      document.getElementById("banner__block").style.height = `${
+        document.getElementsByClassName("banner__image")[0].offsetHeight
+      }px`;
+    }
+  }, [windowWidth]);
+
   return (
     <>
       <div className="container-fluid banner__container">
-        <div className="banner__block">
+        <div className="banner__block" id="banner__block">
           {banner.map((ban, banIndex) => {
             let position = "banner nextBanner";
             if (banIndex === index) {

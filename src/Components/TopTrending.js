@@ -3,7 +3,7 @@ import Carousel from "react-elastic-carousel";
 import left_arrow from "./../Assets/Icon/left_arrow.svg";
 import right_arrow from "./../Assets/Icon/right_arrow.svg";
 import "./../SCSS/_newArrival.scss";
-import ProductOne from "./ProductOne";
+import ProductOne from "./ProductType/ProductOne";
 
 function TopTrending({ sectionTitle, carouselData }) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./../SCSS/_cartPage.scss";
 import BreadCrumbs from "../Components/BreadCrumbs";
-import TopNavbar from "../Components/TopNavbar";
+import TopNavbar from "../Components/Common/TopNavbar";
 
 import product_01 from "./../Assets/Product/product_01.png";
 import sony_logo from "./../Assets/Icon/sony_logo.svg";
 import checkout_white_right_arrow from "./../Assets/Icon/checkout_white_right_arrow.svg";
 
-import NewsLetter from "../Components/NewsLetter";
-import Footer from "../Components/Footer";
 import Heading3 from "../Components/Font/Heading3";
 import Text3 from "../Components/Font/Text3";
 import Protection from "../Components/MostSharedComponent/Protection";

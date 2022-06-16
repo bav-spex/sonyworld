@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
-import empty_favourite from "./../Assets/Icon/empty_favourite.svg";
-import fulfill_favourite from "./../Assets/Icon/fulfill_favourite.svg";
-import productTwo_quality_icon from "./../Assets/Product/productTwo_quality_icon.png";
-import "./../SCSS/_productTwo.scss";
-import Heading7 from "./Font/Heading7";
-import Text4 from "./Font/Text4";
-import OldPrice from "./Font/OldPrice";
-import Price from "./Font/Price";
-import Heading6 from "./Font/Heading6";
+import empty_favourite from "./../../Assets/Icon/empty_favourite.svg";
+import fulfill_favourite from "./../../Assets/Icon/fulfill_favourite.svg";
+import productTwo_quality_icon from "./../../Assets/Product/productTwo_quality_icon.png";
+import "./../../SCSS/ProductType/_productTwo.scss";
+import Heading7 from "./../Font/Heading7";
+import Text4 from "./../Font/Text4";
+import OldPrice from "./../Font/OldPrice";
+import Price from "./../Font/Price";
+import Heading6 from "./../Font/Heading6";
 
 function ProductTwo({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);

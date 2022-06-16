@@ -1,17 +1,17 @@
 import React from "react";
-import "./../SCSS/_footer.scss";
+import "./../../SCSS/Common/_footer.scss";
 import { Link } from "react-router-dom";
-import footer_logo from "./../Assets/Footer/footer_logo.svg";
-import facebook from "./../Assets/Footer/facebook.svg";
-import instagram from "./../Assets/Footer/instagram.svg";
-import twitter from "./../Assets/Footer/twitter.svg";
-import card_01 from "./../Assets/Banner/banner_01.jpg";
-// import card_01 from "./../Assets/Footer/card_01.png";
-import card_02 from "./../Assets/Footer/card_02.png";
-import card_03 from "./../Assets/Footer/card_03.png";
-import card_04 from "./../Assets/Footer/card_04.png";
-import card_05 from "./../Assets/Footer/card_05.png";
-import card_06 from "./../Assets/Footer/card_06.png";
+import footer_logo from "./../../Assets/Footer/footer_logo.svg";
+import facebook from "./../../Assets/Footer/facebook.svg";
+import instagram from "./../../Assets/Footer/instagram.svg";
+import twitter from "./../../Assets/Footer/twitter.svg";
+import card_01 from "./../../Assets/Banner/banner_01.jpg";
+// import card_01 from "./../../Assets/Footer/card_01.png";
+import card_02 from "./../../Assets/Footer/card_02.png";
+import card_03 from "./../../Assets/Footer/card_03.png";
+import card_04 from "./../../Assets/Footer/card_04.png";
+import card_05 from "./../../Assets/Footer/card_05.png";
+import card_06 from "./../../Assets/Footer/card_06.png";
 function Footer() {
   return (
     <div className="container-fluid footer__container">

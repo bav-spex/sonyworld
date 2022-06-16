@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import navbar_logo from "./../Assets/Logo/navbar_logo.svg";
-import navbar_white_down_arrow from "./../Assets/Icon/navbar_white_down_arrow.svg";
-import "./../SCSS/_topNavbar.scss";
+import navbar_logo from "./../../Assets/Logo/navbar_logo.svg";
+import white_side_menu_icon from "./../../Assets/Icon/white_side_menu_icon.svg";
+import navbar_white_down_arrow from "./../../Assets/Icon/navbar_white_down_arrow.svg";
+import white_down_arrow from "./../../Assets/Icon/white_down_arrow.svg";
+import "./../../SCSS/Common/_topNavbar.scss";
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import cookies from "js-cookie";
-// import "./../SCSS/_variables.scss"
+// import "./../../SCSS/_variables.scss"
 
-import search from "./../Assets/Icon/search.svg";
-import customer_support from "./../Assets/Icon/customer_support.svg";
-import favourite from "./../Assets/Icon/favourite.svg";
-import location from "./../Assets/Icon/location.svg";
-import shopping_cart from "./../Assets/Icon/shopping_cart.svg";
-import user from "./../Assets/Icon/user.svg";
+import search from "./../../Assets/Icon/search.svg";
+import white_search from "./../../Assets/Icon/white_search.svg";
+import language from "./../../Assets/Icon/language.svg";
+import customer_support from "./../../Assets/Icon/customer_support.svg";
+import favourite from "./../../Assets/Icon/favourite.svg";
+import location from "./../../Assets/Icon/location.svg";
+import shopping_cart from "./../../Assets/Icon/shopping_cart.svg";
+import user from "./../../Assets/Icon/user.svg";
 
-import menu from "./../Assets/Icon/menu.svg";
+import menu from "./../../Assets/Icon/menu.svg";
 
-import product_01 from "./../Assets/Product/product_01.jpg";
-import NavbarAdBanner_01 from "./../Assets/NavbarAdBanner/NavbarAdBanner_01.jpg";
-import MobilePopup from "./MobilePopup";
+import product_01 from "./../../Assets/Product/product_01.jpg";
+import NavbarAdBanner_01 from "./../../Assets/NavbarAdBanner/NavbarAdBanner_01.jpg";
+import MobilePopup from "../MobilePopup";
+import Text5 from "../Font/Text5";
+import { withTheme } from "styled-components";
 const categoryData = [
   {
     id: 1,
@@ -172,60 +178,60 @@ const categoryData = [
   },
   {
     id: 3,
-    productName: "Camera",
+    productName: "Home AV",
     category: [
-      "Gaming Camera 4K",
-      "Gaming Camera 8K",
-      "2021 Camera's",
-      "Smart 4K Camera",
-      "Smart 4K Camera",
-      "Smart 8K Camera",
-      "Smart OLED Camera",
+      "Gaming Home AV 4K",
+      "Gaming Home AV 8K",
+      "2021 Home AV's",
+      "Smart 4K Home AV",
+      "Smart 4K Home AV",
+      "Smart 8K Home AV",
+      "Smart OLED Home AV",
     ],
     productList: [
       {
         id: 0,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 1,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 2,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 3,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 4,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 5,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 6,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 7,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
       {
         id: 8,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Camera',
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
         image: product_01,
       },
     ],
@@ -321,42 +327,8 @@ const categoryData = [
 ];
 
 function TopNavbar() {
-  const { pathname } = useLocation();
-  const [showPopup, setShowPopup] = useState(false);
-  const [height, setHeight] = useState(0);
-  const [navIndex, setNavIndex] = useState("");
-  const [menuIndex, setMenuIndex] = useState(0);
-  const [className, setClassName] = useState({
-    home: "navbar__link active__navbar__link",
-    playstation: "navbar__link",
-    television: "navbar__link",
-    camera: "navbar__link",
-    audio: "navbar__link",
-    services: "navbar__link",
-    support: "navbar__link",
-  });
-  const [mobileClassName, setMobileClassName] = useState({
-    home: "mobile__navbar__link active__mobile__navbar__link",
-    playstation: "mobile__navbar__link",
-    television: "mobile__navbar__link",
-    camera: "mobile__navbar__link",
-    audio: "mobile__navbar__link",
-    services: "mobile__navbar__link",
-    support: "mobile__navbar__link",
-  });
-  // const [mobileClassName, setMobileClassName] = useState({
-  //   home: "mobile__navbar__link active__mobile__navbar__link",
-  //   playstation: "mobile__navbar__link",
-  //   television: "mobile__navbar__link",
-  //   camera: "mobile__navbar__link",
-  //   audio: "mobile__navbar__link",
-  //   services: "mobile__navbar__link",
-  //   support: "mobile__navbar__link",
-  // });
-
-  const [mobileNavbar, setMobileNavbar] = useState(false);
-  const [mobileShowPopup, setMobileShowPopup] = useState(false);
-const [lang, setLang]=useState("en")
+  // language changing in project //
+  const [lang, setLang] = useState("en");
   const languages = [
     {
       code: "fr",
@@ -375,18 +347,59 @@ const [lang, setLang]=useState("en")
       country_code: "sa",
     },
   ];
+
+  // Find Current language from {language} object
   const currentLanguageCode = cookies.get("i18next") || "en";
-  const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+  const [currentLanguage, setCurentLanguage] = useState(
+    languages.find((l) => l.code === currentLanguageCode)
+  );
+
   const { t } = useTranslation();
+
+  // changing layout from right to left for arabic language"
   useEffect(() => {
     console.log("Setting page stuff");
     document.body.dir = currentLanguage.dir || "ltr";
     document.title = t("app_title");
   }, [currentLanguage, t]);
-  const handleChange = (e) => {
-    setLang(e.target.value)
-    i18next.changeLanguage(e.target.value);
+
+  // language dropdown open and close
+
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const handleLanguageChange = (lang) => {
+    setIsLanguageMenuOpen(!isLanguageMenuOpen);
+    setCurentLanguage(lang);
+
+    i18next.changeLanguage(lang.code);
   };
+
+  const [height, setHeight] = useState(0);
+
+  const { pathname } = useLocation();
+  const [showPopup, setShowPopup] = useState(false);
+
+  const [navIndex, setNavIndex] = useState("");
+  const [menuIndex, setMenuIndex] = useState(0);
+  const [className, setClassName] = useState({
+    allCategories: "navbar__link active__navbar__link",
+    topDeals: "navbar__link",
+    dealsOfTheDay: "navbar__link",
+    digitalCards: "navbar__link",
+    topSellers: "navbar__link",
+    others: "navbar__link",
+    services: "navbar__link",
+  });
+  const [mobileClassName, setMobileClassName] = useState({
+    home: "mobile__navbar__link active__mobile__navbar__link",
+    playstation: "mobile__navbar__link",
+    television: "mobile__navbar__link",
+    camera: "mobile__navbar__link",
+    audio: "mobile__navbar__link",
+    services: "mobile__navbar__link",
+  });
+  const [mobileNavbar, setMobileNavbar] = useState(false);
+  const [mobileShowPopup, setMobileShowPopup] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setHeight(window.pageYOffset);
     window.removeEventListener("scroll", onScroll);
@@ -396,14 +409,6 @@ const [lang, setLang]=useState("en")
 
   useEffect(() => {
     if (height > 112) {
-      // if(window.screen.width <= 576){
-
-      //   document.querySelector(".main__navbar__container").style.position =
-      //     "absolute";
-      // }else if (window.screen.width > 576){
-      //   document.querySelector(".main__navbar__container").style.position =
-      //     "fixed";
-      // }
       document.querySelector(".main__navbar__container").style.position =
         "fixed";
     } else if (height < 112) {
@@ -413,13 +418,13 @@ const [lang, setLang]=useState("en")
   }, [height]);
   useEffect(() => {
     let path = {
-      home: "navbar__link ",
-      playstation: "navbar__link",
-      television: "navbar__link",
-      camera: "navbar__link",
-      audio: "navbar__link",
+      allCategories: "navbar__link",
+      topDeals: "navbar__link",
+      dealsOfTheDay: "navbar__link",
+      digitalCards: "navbar__link",
+      topSellers: "navbar__link",
+      others: "navbar__link",
       services: "navbar__link",
-      support: "navbar__link",
     };
     let mobilepath = {
       home: "mobile__navbar__link ",
@@ -428,36 +433,62 @@ const [lang, setLang]=useState("en")
       camera: "mobile__navbar__link",
       audio: "mobile__navbar__link",
       services: "mobile__navbar__link",
-      support: "mobile__navbar__link",
     };
-
     if (pathname.includes("/playstation")) {
-      path.playstation = "navbar__link active__navbar__link";
+      // path.playstation = "navbar__link active__navbar__link";
       mobilepath.playstation =
         "mobile__navbar__link active__mobile__navbar__link";
     } else if (pathname.includes("/television")) {
-      path.television = "navbar__link active__navbar__link";
+      // path.television = "navbar__link active__navbar__link";
       mobilepath.television =
         "mobile__navbar__link active__mobile__navbar__link";
     } else if (pathname.includes("/camera")) {
-      path.camera = "navbar__link active__navbar__link";
+      // path.camera = "navbar__link active__navbar__link";
       mobilepath.camera = "mobile__navbar__link active__mobile__navbar__link";
     } else if (pathname.includes("/audio")) {
-      path.audio = "navbar__link active__navbar__link";
+      // path.audio = "navbar__link active__navbar__link";
       mobilepath.audio = "mobile__navbar__link active__mobile__navbar__link";
+    } else if (pathname.includes("/top-deals")) {
+      path.topDeals = "navbar__link active__navbar__link";
+      // mobilepath.topDeals = "mobile__navbar__link active__mobile__navbar__link";
+    } else if (pathname.includes("/deals-of-the-day")) {
+      path.dealsOfTheDay = "navbar__link active__navbar__link";
+      // mobilepath.dealsOfTheDay = "mobile__navbar__link active__mobile__navbar__link";
+    } else if (pathname.includes("/digital-cards")) {
+      path.digitalCards = "navbar__link active__navbar__link";
+      // mobilepath.digitalCards = "mobile__navbar__link active__mobile__navbar__link";
+    } else if (pathname.includes("/top-sellers")) {
+      path.topSellers = "navbar__link active__navbar__link";
+      // mobilepath.topSellers = "mobile__navbar__link active__mobile__navbar__link";
+    } else if (pathname.includes("/others")) {
+      path.others = "navbar__link active__navbar__link";
+      // mobilepath.others = "mobile__navbar__link active__mobile__navbar__link";
     } else if (pathname.includes("/services")) {
       path.services = "navbar__link active__navbar__link";
       mobilepath.services = "mobile__navbar__link active__mobile__navbar__link";
-    } else if (pathname.includes("/support")) {
-      path.support = "navbar__link active__navbar__link";
-      mobilepath.support = "mobile__navbar__link active__mobile__navbar__link";
     } else {
-      path.home = "active__navbar__link navbar__link";
-      mobilepath.home = "mobile__navbar__link active__mobile__navbar__link";
+      path = {
+        allCategories: "navbar__link",
+        topDeals: "navbar__link",
+        dealsOfTheDay: "navbar__link",
+        digitalCards: "navbar__link",
+        topSellers: "navbar__link",
+        others: "navbar__link",
+        services: "navbar__link",
+      };
+      mobilepath = {
+        allCategories: "mobile__navbar__link",
+        topDeals: "mobile__navbar__link",
+        dealsOfTheDay: "mobile__navbar__link",
+        digitalCards: "mobile__navbar__link",
+        topSellers: "mobile__navbar__link",
+        others: "mobile__navbar__link",
+        services: "mobile__navbar__link",
+      };
     }
     setClassName(path);
     setMobileClassName(mobilepath);
-  }, []);
+  }, [pathname]);
 
   const navbarTab__mouseTab = (popupValue, navIndex, menuIndex) => {
     setShowPopup(popupValue);
@@ -479,12 +510,18 @@ const [lang, setLang]=useState("en")
           <div className="  topnavbar">
             <div className="row topnavbar__row">
               <Link
-                className="col-5  col-sm-4 col-xl-2  topnavbar__link"
+                className="col-4  col-sm-6 col-lg-3  col-xl-2  topnavbar__link"
                 to="/"
               >
+                <img
+                  src={white_side_menu_icon}
+                  alt="topnavbar__sidemenu__icon"
+                  className="topnavbar__sidemenu__icon"
+                  onClick={() => setMobileNavbar(!mobileNavbar)}
+                />
                 <img src={navbar_logo} alt="logo" className="topnavbar__logo" />
               </Link>
-              <div className="col-5  col-sm-4  col-xl-8 search__box__block">
+              <div className="col-0  col-sm-0  col-lg-5 col-xl-7  search__box__block">
                 <div className="search__box">
                   <input
                     type="text"
@@ -495,175 +532,126 @@ const [lang, setLang]=useState("en")
                   <img src={search} alt="" className="topnavbar__icon" />
                 </div>
               </div>
-              <div className="col-2 col-sm-4  col-xl-2  topnavbar__icon__block">
-              <select value={lang} onChange={handleChange}>
-                  {languages.map(({ code, name, country_code }) => {
-                    return (
-                      <option key={country_code} value={code}>
-                        {name}
-                      </option>
-                    );
-                  })}
-                </select>
-                <img
-                  src={location}
-                  alt=""
-                  className="location topnavbar__icon"
-                />
-                <img
-                  src={customer_support}
-                  alt=""
-                  className=" customer_support topnavbar__icon"
-                />
-                <img
-                  src={favourite}
-                  alt=""
-                  className="favourite topnavbar__icon"
-                />
-                <img src={user} alt="" className="user topnavbar__icon" />
-                <img
-                  src={shopping_cart}
-                  alt=""
-                  className="shopping_cart topnavbar__icon"
-                />
-                
-                {/* <ul
-                  className="dropdown-menu"
-                  aria-labelledby="dropdownMenuButton1"
-                >
-                  <li>
-                    <span className="dropdown-item-text">{t("language")}</span>
-                  </li>
-                  {languages.map(({ code, name, country_code }) => (
-                    <li key={country_code}>
-                      <a
-                        href="#"
-                        // className={classNames("dropdown-item", {
-                        //   disabled: currentLanguageCode === code,
-                        // })}
-                        onClick={() => {
-                          i18next.changeLanguage(code);
-                        }}
+              <div className="col-8 col-sm-6 col-lg-4  col-xl-3  ">
+                <div className="topnavbar__icon__block">
+                  <div></div>
+                  <div className="topnavbar__icon__inner__block">
+                    <img
+                      src={white_search}
+                      alt=""
+                      className="topnavbar__search__icon topnavbar__icon"
+                    />
+                    <div className="main__language__selection">
+                      <img
+                        src={language}
+                        alt=""
+                        className="topnavbar__language__icon topnavbar__icon"
+                        onClick={() =>
+                          setIsLanguageMenuOpen(!isLanguageMenuOpen)
+                        }
+                      />
+                      <div
+                        className="language__selction"
+                        onClick={() =>
+                          setIsLanguageMenuOpen(!isLanguageMenuOpen)
+                        }
                       >
-                        <span
-                          // className={`flag-icon flag-icon-${country_code} mx-2`}
-                          style={{
-                            opacity: currentLanguageCode === code ? 0.5 : 1,
-                          }}
-                        ></span>
-                        {name}
-                      </a>
-                    </li>
-                  ))}
-                </ul> */}
+                        <p className="language">{currentLanguage.name} </p>
+                        <img
+                          src={white_down_arrow}
+                          alt=""
+                          className="down__arrow__icon"
+                        />
+                      </div>
+                      <div
+                        className={
+                          isLanguageMenuOpen
+                            ? "language__option__dropdown"
+                            : "language__option__dropdown__disable"
+                        }
+                      >
+                        {languages.map((lang, langIndex) => {
+                          return (
+                            <p
+                              onClick={() => handleLanguageChange(lang)}
+                              className="language__option"
+                              key={lang.country_code}
+                              value={lang.code}
+                            >
+                              {lang.name}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <img
+                      src={location}
+                      alt=""
+                      className="location topnavbar__icon"
+                    />
+                    <img
+                      src={favourite}
+                      alt=""
+                      className="favourite topnavbar__icon"
+                    />
+                    <img src={user} alt="" className="user topnavbar__icon" />
+                    <div className="cart__icon__block">
+                      <img
+                        src={shopping_cart}
+                        alt=""
+                        className="shopping_cart topnavbar__icon"
+                      />
+                      <p className="cart__item__count">{99}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="navbar__container">
-          <div className="navbar">
-            <div className="navbar__link_block">
-              <Link
-                // onClick={() => setShowPopup(true)}
-                onMouseEnter={() => navbarTab__mouseTab(false, "")}
-                className={className.home}
-                to="/"
-              >
-                Home
-                {t("welcome_message")}
-              </Link>
-              <div
-                onClick={() => setShowPopup(true)}
-                onMouseEnter={() => navbarTab__mouseTab(true, "playstation", 1)}
-                // onMouseEnter={() => setNavIndex("playstation")}
-                className={
-                  navIndex === "playstation"
-                    ? "active__navbar__link navbar__link"
-                    : className.playstation
-                }
-                // to="/playstation"
-              >
-                PlayStation
-                <img
+        <div className=" navbar__container">
+          <div className="row navbar__row">
+            <div className="col-4  col-sm-6 col-lg-0  col-xl-2"></div>
+            <div className="col-8  col-sm-6 col-lg-12  col-xl-10 navbar">
+              <div className="navbar__link__block">
+                <div
+                  onClick={() => setShowPopup(true)}
+                  className="navbar__allCategories"
+                >
+                  <img src={menu} alt="" className="navbar__menu__icon" />
+                  All Categories
+                </div>
+                <Link className={className.topDeals} to="/top-deals">
+                  Top Deals
+                </Link>
+                <Link
+                  className={className.dealsOfTheDay}
+                  to="/deals-of-the-day"
+                >
+                  Deals of the Day
+                </Link>
+                <Link className={className.digitalCards} to="/digital-cards">
+                  Digital Cards
+                </Link>
+                <Link className={className.topSellers} to="/top-sellers">
+                  Top Sellers
+                </Link>
+                <Link className={className.others} to="/others">
+                  Others
+                </Link>
+                <Link className={className.services} to="/services">
+                  Services
+                  <img
                   src={navbar_white_down_arrow}
                   alt=""
                   className="down__arrow__icon"
                 />
+
+                </Link>
               </div>
-              <div
-                onClick={() => setShowPopup(true)}
-                onMouseEnter={() => navbarTab__mouseTab(true, "television", 2)}
-                // onMouseEnter={() => setNavIndex("television")}
-                className={
-                  navIndex === "television"
-                    ? "active__navbar__link navbar__link"
-                    : className.television
-                }
-                // to="/television"
-              >
-                Television
-                <img
-                  src={navbar_white_down_arrow}
-                  alt=""
-                  className="down__arrow__icon"
-                />
+              <div className="icon__block">
+                <img src={menu} alt="" className="menu__icon" />
               </div>
-              <div
-                onClick={() => setShowPopup(true)}
-                onMouseEnter={() => navbarTab__mouseTab(true, "camera", 3)}
-                // onMouseEnter={() => setNavIndex("camera")}
-                className={
-                  navIndex === "camera"
-                    ? "active__navbar__link navbar__link"
-                    : className.camera
-                }
-                // to="/camera"
-              >
-                Camera
-                <img
-                  src={navbar_white_down_arrow}
-                  alt=""
-                  className="down__arrow__icon"
-                />
-              </div>
-              <div
-                onClick={() => setShowPopup(true)}
-                onMouseEnter={() => navbarTab__mouseTab(true, "audio", 4)}
-                // onMouseEnter={() => setNavIndex("audio")}
-                className={
-                  navIndex === "audio"
-                    ? "active__navbar__link navbar__link"
-                    : className.audio
-                }
-                // to="/audio"
-              >
-                Audio
-                <img
-                  src={navbar_white_down_arrow}
-                  alt=""
-                  className="down__arrow__icon"
-                />
-              </div>
-              <Link
-                onMouseEnter={() => navbarTab__mouseTab(false, "")}
-                className={className.services}
-                to="/services"
-              >
-                Services
-              </Link>
-              <Link
-                onMouseEnter={() => navbarTab__mouseTab(false, "")}
-                className={className.support}
-                to="/support"
-              >
-                Support
-              </Link>
-            </div>
-            <div
-              className="icon__block"
-              onClick={() => setMobileNavbar(!mobileNavbar)}
-            >
-              <img src={menu} alt="" className="menu__icon" />
             </div>
           </div>
         </div>
@@ -673,27 +661,36 @@ const [lang, setLang]=useState("en")
             mobileNavbar ? "mobile__navbar" : "mobile__navbar__disable"
           }
         >
-          <div className="mobile__navbar__link_block">
-            <Link
-              // onClick={() => setShowPopup(true)}
-              // onMouseEnter={() => navbarTab__mouseTab(false, "")}
-              className={mobileClassName.home}
-              to="/"
-            >
+          <div className="mobile__navbar__link__block">
+            <Link className={mobileClassName.home} to="/">
               Home
             </Link>
             <div
               onClick={() =>
+                mobileNavbarTab__mouseTab(!mobileShowPopup, "television", 2)
+              }
+              className={
+                navIndex === "television"
+                  ? "active__mobile__navbar__link mobile__navbar__link"
+                  : mobileClassName.television
+              }
+            >
+              Television
+              <img
+                src={navbar_white_down_arrow}
+                alt=""
+                className="down__arrow__icon"
+              />
+            </div>
+            <div
+              onClick={() =>
                 mobileNavbarTab__mouseTab(!mobileShowPopup, "playstation", 1)
               }
-              // onMouseEnter={() => navbarTab__mouseTab(true, "playstation", 1)}
-              // onMouseEnter={() => setNavIndex("playstation")}
               className={
                 navIndex === "playstation"
                   ? "active__mobile__navbar__link mobile__navbar__link"
                   : mobileClassName.playstation
               }
-              // to="/playstation"
             >
               PlayStation
               <img
@@ -709,26 +706,7 @@ const [lang, setLang]=useState("en")
             ) : (
               ""
             )}
-            <div
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "television", 2)
-              }
-              // onMouseEnter={() => navbarTab__mouseTab(true, "television", 2)}
-              // onMouseEnter={() => setNavIndex("television")}
-              className={
-                navIndex === "television"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.television
-              }
-              // to="/television"
-            >
-              Television
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </div>
+
             {navIndex === "television" && menuIndex === 2 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
             ) : (
@@ -736,25 +714,22 @@ const [lang, setLang]=useState("en")
             )}
             <div
               onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "camera", 3)
+                mobileNavbarTab__mouseTab(!mobileShowPopup, "homeAV", 3)
               }
-              // onMouseEnter={() => navbarTab__mouseTab(true, "camera", 3)}
-              // onMouseEnter={() => setNavIndex("camera")}
               className={
-                navIndex === "camera"
+                navIndex === "homeAV"
                   ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.camera
+                  : mobileClassName.homeAV
               }
-              // to="/camera"
             >
-              Camera
+              Home AV
               <img
                 src={navbar_white_down_arrow}
                 alt=""
                 className="down__arrow__icon"
               />
             </div>
-            {navIndex === "camera" && menuIndex === 3 && mobileShowPopup ? (
+            {navIndex === "homeAV" && menuIndex === 3 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
             ) : (
               ""
@@ -763,14 +738,11 @@ const [lang, setLang]=useState("en")
               onClick={() =>
                 mobileNavbarTab__mouseTab(!mobileShowPopup, "audio", 3)
               }
-              // onMouseEnter={() => navbarTab__mouseTab(true, "audio", 3)}
-              // onMouseEnter={() => setNavIndex("audio")}
               className={
                 navIndex === "audio"
                   ? "active__mobile__navbar__link mobile__navbar__link"
                   : mobileClassName.audio
               }
-              // to="/audio"
             >
               Audio
               <img
@@ -785,18 +757,10 @@ const [lang, setLang]=useState("en")
               ""
             )}
 
-            <Link
-              // onMouseEnter={() => navbarTab__mouseTab(false, "")}
-              className={mobileClassName.services}
-              to="/services"
-            >
+            <Link className={mobileClassName.services} to="/services">
               Services
             </Link>
-            <Link
-              // onMouseEnter={() => navbarTab__mouseTab(false, "")}
-              className={mobileClassName.support}
-              to="/support"
-            >
+            <Link className={mobileClassName.support} to="/support">
               Support
             </Link>
           </div>

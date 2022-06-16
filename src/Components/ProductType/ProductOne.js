@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
-import empty_favourite from "./../Assets/Icon/empty_favourite.svg";
-import fulfill_favourite from "./../Assets/Icon/fulfill_favourite.svg";
-import "./../SCSS/_productOne.scss";
-import Heading5 from "./Font/Heading5";
-import Heading6 from "./Font/Heading6";
-import Heading7 from "./Font/Heading7";
-import Price from "./Font/Price";
-import OldPrice from "./Font/OldPrice";
+import empty_favourite from "./../../Assets/Icon/empty_favourite.svg";
+import fulfill_favourite from "./../../Assets/Icon/fulfill_favourite.svg";
+import "./../../SCSS/ProductType/_productOne.scss";
+import Heading5 from "./../Font/Heading5";
+import Heading6 from "./../Font/Heading6";
+import Heading7 from "./../Font/Heading7";
+import Price from "./../Font/Price";
+import OldPrice from "./../Font/OldPrice";
 
 function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);

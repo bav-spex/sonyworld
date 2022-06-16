@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./../SCSS/_productDetailsPage.scss";
-import TopNavbar from "../Components/TopNavbar";
-import Footer from "../Components/Footer";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -50,7 +48,6 @@ import { renderIntoDocument } from "react-dom/test-utils";
 import ExpertProducts from "../Components/ExpertProducts";
 import Accordian from "../Components/Accordian";
 import SimilarProducts from "../Components/SimilarProducts";
-import NewsLetter from "../Components/NewsLetter";
 import Protecttion from "../Components/MostSharedComponent/Protection";
 import Heading3 from "../Components/Font/Heading3";
 import RatingBlock from "../Components/MostSharedComponent/RatingBlock";

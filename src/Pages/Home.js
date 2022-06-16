@@ -1,10 +1,6 @@
 import React from "react";
 import Banner from "../Components/Banner";
-import Navbar from "../Components/Navbar";
-import TopNavbar from "../Components/TopNavbar";
 import "./../SCSS/_home.scss";
-
-
 
 import newArrivals_01 from "./../Assets/NewArrivals/newArrivals_01.png";
 import newArrivals_02 from "./../Assets/NewArrivals/newArrivals_02.png";
@@ -40,12 +36,10 @@ import blog_01 from "./../Assets/Blog/blog_01.png";
 import blog_02 from "./../Assets/Blog/blog_02.png";
 import blog_03 from "./../Assets/Blog/blog_03.png";
 
-
-
-import shipping from "./../Assets/Services/shipping.svg"
-import secure_payments from "./../Assets/Services/secure_payments.svg"
-import exclusive_offers from "./../Assets/Services/exclusive_offers.svg"
-import installation from "./../Assets/Services/installation.svg"
+import shipping from "./../Assets/Services/shipping.svg";
+import secure_payments from "./../Assets/Services/secure_payments.svg";
+import exclusive_offers from "./../Assets/Services/exclusive_offers.svg";
+import installation from "./../Assets/Services/installation.svg";
 
 import NewArrival from "../Components/NewArrival";
 import TopTrending from "../Components/TopTrending";
@@ -57,8 +51,7 @@ import Feeds from "../Components/Feeds";
 import OurBlogs from "../Components/OurBlogs";
 import VideoLogs from "../Components/VideoLogs";
 import Services from "../Components/Services";
-import NewsLetter from "../Components/NewsLetter";
-import Footer from "../Components/Footer";
+import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 
 const newArrivalData = [
   {
@@ -300,8 +293,6 @@ const topRatedProductsData = [
     oldPrice: 1999,
     price: 1699,
   },
-
-
 ];
 const threeProductsData = [
   {
@@ -417,22 +408,20 @@ const servicesData = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo nemo temporibus repellat similique autem quisquam. Expedita ipsam iure alias error sint laborum nemo eius repudiandae",
   },
-
-  
 ];
 
 function Home(props) {
   console.log(props.log);
   return (
-    <>
+    <div className="homePage">
       {/* <TopNavbar /> */}
       {/* <Navbar/> */}
       <Banner />
-
+      <HomePageCategoryBlock />
       <FeatureProducts />
 
-      <NewArrival sectionTitle="New Arriaval" carouselData={newArrivalData} />
-      <TopTrending sectionTitle="Top Trending" carouselData={topTrendingData} />
+      {/* <NewArrival sectionTitle="New Arriaval" carouselData={newArrivalData} /> */}
+      {/* <TopTrending sectionTitle="Top Trending" carouselData={topTrendingData} /> */}
       <DealsOfTheWeek dealsoftheweekData={dealsoftheweekData} />
       <TopRatedProducts productData={topRatedProductsData} />
       <div className="container-fluid adImage__container">
@@ -450,15 +439,14 @@ function Home(props) {
               <h1 className="feed__title">Latest News</h1>
             </div>
             <div className="col-4 feed">
-              <h1 className="feed__title">Facebook Feeds</h1>
+            <h1 className="feed__title">Facebook Feeds</h1>
             </div>
             <div className="col-4 feed">
-              <h1 className="feed__title">Instagram Feeds</h1>
+            <h1 className="feed__title">Instagram Feeds</h1>
             </div>
           </div>
         </div>
       </div> */}
-      
 
       <ThreeProducts threeProductsData={threeProductsData} />
       <Feeds />
@@ -467,7 +455,7 @@ function Home(props) {
       <Services servicesData={servicesData} />
       {/* <NewsLetter/> */}
       {/* <Footer/> */}
-    </>
+    </div>
   );
 }
 
