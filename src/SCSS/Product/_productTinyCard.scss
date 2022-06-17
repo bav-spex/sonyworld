@@ -1,0 +1,89 @@
+.productTinyCard__container {
+    padding-top: 100px;
+    display: flex;
+    align-items: end;
+    width: 100%;
+    height: 1rem;
+    background: #000000 0% 0% no-repeat padding-box;
+    opacity: 1;
+    .card {
+      display: flex;
+      width: 10%;
+      height: 90px;
+      align-items: center;
+      margin-left: 25px;
+  
+      img {
+        height: 50px;
+        width: 80px;
+      }
+    }
+    .active_background {
+      background: #fff !important;
+      color: #000 !important;
+    }
+    .inActive_background {
+      background: #000;
+      color: #fff;
+    }
+    .title__font {
+      font-size: 48px;
+    }
+  
+    @media screen and (max-width: 1400px) {
+      .card {
+        // display: flex;
+        // background: #fff 0% 0% no-repeat padding-box;
+        width: 10%;
+        height: 90px;
+        // align-items: center;
+      }
+    }
+    @media screen and (max-width: 1200px) {
+      .card {
+        width: 10%;
+        height: 90px;
+      }
+    }
+    @media screen and (max-width: 992px) {
+      .card {
+        width: 10%;
+        height: 90px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .card {
+        width: 20%;
+        height: 90px;
+      }
+    }
+    @media screen and (max-width: 576px) {
+      .card {
+        width: 25%;
+        height: 90px;
+        font-size: small;
+      }
+    }
+    @media screen and (max-width: 414px) {
+      .card {
+        width: 25%;
+        height: 90px;
+        font-size: small;
+      }
+    }
+    @media screen and (min-width: 320px) and (max-width: 375px) {
+      .card {
+        width: 25%;
+        height: 90px;
+        font-size: smaller;
+      }
+    }
+  
+    @media screen and (max-width: 280px) {
+      .card {
+        width: 50%;
+        height: 90px;
+        font-size: smaller;
+      }
+    }
+  }
