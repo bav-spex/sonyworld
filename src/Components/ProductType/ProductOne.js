@@ -10,12 +10,13 @@ import Heading6 from "./../Font/Heading6";
 import Heading7 from "./../Font/Heading7";
 import Price from "./../Font/Price";
 import OldPrice from "./../Font/OldPrice";
+import RatingBlock from "../MostSharedComponent/RatingBlock";
 
 function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
-  // console.log(product.rating);
+  console.log(product);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
@@ -59,15 +60,7 @@ function ProductOne({ productDetailPage, product }) {
           alt=""
         />
       </div>
-      <div className="rating__block">
-        <Rating
-          size={15}
-          fillColor="#303030"
-          emptyColor="#C8C8C8"
-          readonly={true}
-          ratingValue={(product.rating * 100) / 5} /* Available Props */
-        />
-      </div>
+      <RatingBlock rating={product.rating} totalRatings={product.totalRatings} />
 
       <div className="prize__block">
       <OldPrice

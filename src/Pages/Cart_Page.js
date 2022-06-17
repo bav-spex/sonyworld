@@ -18,7 +18,7 @@ import SmallWarrantyBlock from "../Components/MostSharedComponent/SmallWarrantyB
 import ProtectionPlan from "../Components/MostSharedComponent/ProtectionPlan";
 import Heading5 from "../Components/Font/Heading5";
 import AvailableOffers from "../Components/MostSharedComponent/AvailableOffers";
-import NewArrival from "../Components/NewArrival";
+import ProductContainer from "../Components/ProductContainer";
 
 import newArrivals_01 from "./../Assets/NewArrivals/newArrivals_01.png";
 import newArrivals_02 from "./../Assets/NewArrivals/newArrivals_02.png";
@@ -260,7 +260,7 @@ function Cart_Page() {
               <hr className="sc__page__horizontal__line"></hr>
               <ShoppipngCartProduct product={product} />
               <div className="sc__newArrival__block">
-                <NewArrival
+                <ProductContainer
                   productDetailPage={true}
                   sectionTitle="People Who Bought Also Bought"
                   carouselData={newArrivalData}

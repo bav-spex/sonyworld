@@ -17,31 +17,40 @@ function FeatureProducts() {
   return (
     <div className="container-fluid feature__category__container">
       <div className=" feature__category__block">
+        <p className="section__title">Televisions</p>
         <div className="row inner__feature__category__block">
           <div className="first__feature__category__block">
             <div className="first__feature__category">
-              <img
-                src={feature_product_01}
-                alt=""
-                className="first__feature__category__image"
-              />
-              <Heading7 marginBottom={10} text='Sony 55" Class XR55X90J Bravia XR Full Array LED 4K Ultra HD Smart Google TV with Dolby Vision HDR X90J S eries 2021 Model' />
-              <RatingBlock rating={4.5} totalRatings={2143} />
-              <OldPrice
-                oldPrice={1999}
-                size="text3"
-                color="#c8c8c8"
-                marginBottom={10}
-                lineThrough={true}
-                span={true}
-              />
-              <Price
-                price={1699}
-                marginLeft={5}
-                marginBottom={10}
-                size="heading6"
-                span={true}
-              />
+              {/* <div></div> */}
+              <div className="first__feature__category__image__block">
+                <img
+                  src={feature_product_01}
+                  alt=""
+                  className="first__feature__category__image"
+                />
+              </div>
+              <div>
+                <Heading7
+                  marginBottom={10}
+                  text='Sony 55" Class XR55X90J Bravia XR Full Array LED 4K Ultra HD Smart Google TV with Dolby Vision HDR X90J S eries 2021 Model'
+                />
+                <RatingBlock rating={4.5} totalRatings={2143} />
+                <OldPrice
+                  oldPrice={1999}
+                  size="text3"
+                  color="#c8c8c8"
+                  marginBottom={10}
+                  lineThrough={true}
+                  span={true}
+                />
+                <Price
+                  price={1699}
+                  marginLeft={5}
+                  marginBottom={10}
+                  size="heading6"
+                  span={true}
+                />
+              </div>
             </div>
           </div>
           <div className=" second__feature__category__block">
@@ -53,9 +62,12 @@ function FeatureProducts() {
                   className="second__feature__category__image"
                 />
               </div>
-              <Heading7 marginBottom={10} text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV' />
+              <Heading7
+                marginBottom={10}
+                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+              />
               <div className="featureProduct__rating__block">
-              <RatingBlock rating={4.5} totalRatings={2143} />
+                <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
                 oldPrice={1999}
@@ -81,9 +93,12 @@ function FeatureProducts() {
                   className="second__feature__category__image"
                 />
               </div>
-              <Heading7 marginBottom={10} text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV' />
+              <Heading7
+                marginBottom={10}
+                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+              />
               <div className="featureProduct__rating__block">
-              <RatingBlock rating={4.5} totalRatings={2143} />
+                <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
                 oldPrice={1999}
@@ -111,9 +126,12 @@ function FeatureProducts() {
                   className="second__feature__category__image"
                 />
               </div>
-              <Heading7 marginBottom={10} text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV' />
-               <div className="featureProduct__rating__block">
-              <RatingBlock rating={4.5} totalRatings={2143} />
+              <Heading7
+                marginBottom={10}
+                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+              />
+              <div className="featureProduct__rating__block">
+                <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
                 oldPrice={1999}
@@ -139,9 +157,12 @@ function FeatureProducts() {
                   className="second__feature__category__image"
                 />
               </div>
-              <Heading7 marginBottom={0} text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV' />
-               <div className="featureProduct__rating__block">
-              <RatingBlock rating={4.5} totalRatings={2143} />
+              <Heading7
+                marginBottom={0}
+                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+              />
+              <div className="featureProduct__rating__block">
+                <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
                 oldPrice={1999}

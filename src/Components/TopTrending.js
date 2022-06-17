@@ -1,7 +1,7 @@
 import React, { useState, useRef, Component, useEffect } from "react";
 import Carousel from "react-elastic-carousel";
-import left_arrow from "./../Assets/Icon/left_arrow.svg";
-import right_arrow from "./../Assets/Icon/right_arrow.svg";
+import black_left_arrow from "./../Assets/Icon/black_left_arrow.svg";
+import black_right_arrow from "./../Assets/Icon/black_right_arrow.svg";
 import "./../SCSS/_newArrival.scss";
 import ProductOne from "./ProductType/ProductOne";
 
@@ -55,32 +55,18 @@ function TopTrending({ sectionTitle, carouselData }) {
       <div className="container-fluid carousel__container">
         <div className="carousel__block">
           <p className="section__title">{sectionTitle}</p>
-          <div className="arrow__block">
-            <div
-              className={
-                disableLeftArrow
-                  ? "arrow arrow__disable left__arrow"
-                  : "arrow left__arrow"
-              }
-              onClick={leftSide}
-            >
-              <img src={left_arrow} alt="" />
-            </div>
-            <div
-              className={
-                disableRightArrow
-                  ? "arrow arrow__disable right__arrow"
-                  : "arrow right__arrow"
-              }
-              onClick={rightSide}
-            >
-              <img src={right_arrow} alt="" />
-            </div>
+          <div className="arrow left__arrow" onClick={leftSide}>
+            <img src={black_left_arrow} alt="" />
           </div>
-          <div className="top__trending__block">
-            {carouselData.map((product, productIndex) => {
-              return <ProductOne key={product.id} product={product} />;
-            })}
+          <div className="arrow right__arrow" onClick={rightSide}>
+            <img src={black_right_arrow} alt="" />
+          </div>
+          <div className="main__top__trending__block">
+            <div className="top__trending__block">
+              {carouselData.map((product, productIndex) => {
+                return <ProductOne key={product.id} product={product} />;
+              })}
+            </div>
           </div>
         </div>
       </div>

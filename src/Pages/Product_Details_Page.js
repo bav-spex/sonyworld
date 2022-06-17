@@ -8,7 +8,7 @@ import { Rating } from "react-simple-star-rating";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import CarouselTypeTwo from "../Components/CarouselTypeTwo";
 import ProductCarousel from "../Components/ProductCarousel";
-import NewArrival from "../Components/NewArrival";
+import ProductContainer from "../Components/ProductContainer";
 
 // import product_01 from "./../Assets/NewArrivals/newArrivals_01.png";
 
@@ -1143,7 +1143,7 @@ function Product_Details_Page() {
             <Accordian data={productOverviewData} isDescription={true} />
             <Accordian data={productSpecificationData} isDescription={false} />
             <div className="pd__newArrival__block">
-              <NewArrival
+              <ProductContainer
                 productDetailPage={true}
                 sectionTitle="People Who Bought Also Bought"
                 carouselData={newArrivalData}

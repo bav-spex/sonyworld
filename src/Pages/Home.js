@@ -41,7 +41,7 @@ import secure_payments from "./../Assets/Services/secure_payments.svg";
 import exclusive_offers from "./../Assets/Services/exclusive_offers.svg";
 import installation from "./../Assets/Services/installation.svg";
 
-import NewArrival from "../Components/NewArrival";
+import ProductContainer from "../Components/ProductContainer";
 import TopTrending from "../Components/TopTrending";
 import DealsOfTheWeek from "../Components/DealsOfTheWeek";
 import TopRatedProducts from "../Components/TopRatedProducts";
@@ -52,6 +52,7 @@ import OurBlogs from "../Components/OurBlogs";
 import VideoLogs from "../Components/VideoLogs";
 import Services from "../Components/Services";
 import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
+import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 
 const newArrivalData = [
   {
@@ -59,6 +60,7 @@ const newArrivalData = [
     image: newArrivals_01,
     productName: "Camera",
     rating: 4.5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -67,6 +69,7 @@ const newArrivalData = [
     image: newArrivals_02,
     productName: "Silver Porto Headset",
     rating: 3,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -75,6 +78,7 @@ const newArrivalData = [
     image: newArrivals_03,
     productName: "Car Audio Speaker KM100",
     rating: 3.5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -83,6 +87,7 @@ const newArrivalData = [
     image: newArrivals_04,
     productName: "Sony Viao Laptop",
     rating: 2.5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -91,6 +96,7 @@ const newArrivalData = [
     image: newArrivals_05,
     productName: "Network Camera",
     rating: 5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -99,6 +105,7 @@ const newArrivalData = [
     image: newArrivals_01,
     productName: "Camera",
     rating: 3.2,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -107,6 +114,7 @@ const newArrivalData = [
     image: newArrivals_02,
     productName: "Silver Porto Headset",
     rating: 4.8,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -115,6 +123,7 @@ const newArrivalData = [
     image: newArrivals_03,
     productName: "Car Audio Speaker KM100",
     rating: 2,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -123,6 +132,7 @@ const newArrivalData = [
     image: newArrivals_04,
     productName: "Sony Viao Laptop",
     rating: 1,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -131,6 +141,7 @@ const newArrivalData = [
     image: newArrivals_05,
     productName: "Network Camera",
     rating: 3,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -419,11 +430,12 @@ function Home(props) {
       <Banner />
       <HomePageCategoryBlock />
       <FeatureProducts />
-
-      {/* <NewArrival sectionTitle="New Arriaval" carouselData={newArrivalData} /> */}
-      {/* <TopTrending sectionTitle="Top Trending" carouselData={topTrendingData} /> */}
+      <RecentlyViewedProducts />
+      <ProductContainer sectionTitle="New Arriaval" carouselData={newArrivalData} />
+      <ProductContainer sectionTitle="Top Trending" carouselData={newArrivalData} />
       <DealsOfTheWeek dealsoftheweekData={dealsoftheweekData} />
-      <TopRatedProducts productData={topRatedProductsData} />
+      <ProductContainer sectionTitle="Top Rated Products" carouselData={newArrivalData} />
+      {/* <TopRatedProducts productData={topRatedProductsData} /> */}
       <div className="container-fluid adImage__container">
         <div className=" adImage">
           <div className="adImage__block">
@@ -448,11 +460,11 @@ function Home(props) {
         </div>
       </div> */}
 
-      <ThreeProducts threeProductsData={threeProductsData} />
-      <Feeds />
-      <OurBlogs ourBlogsData={ourBlogsData} />
-      <VideoLogs videoLogsData={videoLogsData} />
-      <Services servicesData={servicesData} />
+      {/* <ThreeProducts threeProductsData={threeProductsData} /> */}
+      {/* <Feeds /> */}
+      {/* <OurBlogs ourBlogsData={ourBlogsData} /> */}
+      {/* <VideoLogs videoLogsData={videoLogsData} /> */}
+      {/* <Services servicesData={servicesData} /> */}
       {/* <NewsLetter/> */}
       {/* <Footer/> */}
     </div>
