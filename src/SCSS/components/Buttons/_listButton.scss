@@ -1,0 +1,16 @@
+._listButton__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 40px;
+    text-align: center;
+    margin-left: 2px;
+  }
+  
+  .active {
+    fill: #ff4f04;
+  }
+  .inactive {
+    fill: #727272;
+  }
