@@ -330,11 +330,7 @@ function Header() {
   // language changing in project //
   const [lang, setLang] = useState("en");
   const languages = [
-    {
-      code: "fr",
-      name: "Français",
-      country_code: "fr",
-    },
+    
     {
       code: "en",
       name: "English",
@@ -345,7 +341,7 @@ function Header() {
       name: "العربية",
       dir: "rtl",
       country_code: "sa",
-    },
+    }
   ];
 
   // Find Current language from {language} object

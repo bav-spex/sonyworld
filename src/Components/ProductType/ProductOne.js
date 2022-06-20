@@ -71,7 +71,7 @@ function ProductOne({ productDetailPage, product }) {
           lineThrough={true}
           span={true}
         />
-        <Price price={product.price_rounded} marginLeft={5} size="heading6" span={true} />
+        <Price price={product.price_rounded? product.price_rounded : 1699} marginLeft={5} size="heading6" span={true} />
       </div>
       {productDetailPage ? (
         <div className="addToCart__button">ADD TO CART</div>

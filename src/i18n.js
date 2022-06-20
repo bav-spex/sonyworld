@@ -18,7 +18,7 @@ i18next
     defaultNS: "default",
 
     // Tt shows the supported languages
-    supportedLngs: ['en', 'ar', 'fr'],
+    supportedLngs: ['en', 'ar'],
     detection: {
       order: ['path', 'cookie', 'htmlTag'],
       caches: ['cookie'],

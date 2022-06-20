@@ -2,14 +2,14 @@ import React from "react";
 import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 import "./../../SCSS/Product/_productCard.scss";
-import { ReactComponent as LikeIcon } from "./../../Assets/Icon/like.svg";
-import { ReactComponent as StarIcon } from "./../../Assets/Icon/single_star.svg";
-import { ReactComponent as AddToCart } from "./../../Assets/Icon/shopping_cart.svg";
-import productTwo_quality_icon from "./../../Assets/Product/productTwo_quality_icon.png";
-import product_01 from "./../../Assets/Product/product_01.png";
-import product_02 from "./../../Assets/Product/product_02.png";
-import product_03 from "./../../Assets/Product/product_03.png";
-import product_04 from "./../../Assets/Product/product_04.png";
+import { ReactComponent as LikeIcon } from "./../../assets/Icon/like.svg";
+import { ReactComponent as StarIcon } from "./../../assets/Icon/single_star.svg";
+import { ReactComponent as AddToCart } from "./../../assets/Icon/shopping_cart.svg";
+import productTwo_quality_icon from "./../../assets/Product/productTwo_quality_icon.png";
+import product_01 from "./../../assets/Product/product_01.png";
+import product_02 from "./../../assets/Product/product_02.png";
+import product_03 from "./../../assets/Product/product_03.png";
+import product_04 from "./../../assets/Product/product_04.png";
 
 function ProductCard({ isNew, resolution, isLiked }) {
   return (
