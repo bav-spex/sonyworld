@@ -99,17 +99,18 @@
   }
 }
 @media screen and (max-width: 1200px) {
+  .main__product__container__block{
+    padding: 20px !important;
+  }
   .arrow__block {
     width: 100% !important;
 
-    .left__arrow {
-      filter: none !important;
-      transform: translateX(40%) !important;
-    }
-    .right__arrow {
-      filter: none !important;
-      transform: translateX(-40%) !important;
-    }
+  }
+  .left__arrow {
+    transform: translateX(0%) !important;
+  }
+  .right__arrow {
+    transform: translateX(0%) !important;
   }
 }
 @media screen and (max-width: 992px) {

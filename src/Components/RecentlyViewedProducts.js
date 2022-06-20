@@ -10,13 +10,9 @@ import rv_product_06 from "./../assets/FeatureProduct/feature_product_01.png";
 import banner_02 from "./../assets/Banner/image_02.jpg";
 
 import Heading6 from "./Font/Heading6";
-function RecentlyViewedProducts() {
-  const rv_product_001 = rv_product_01;
-  const rv_product_002 = rv_product_02;
-  const rv_product_003 = rv_product_03;
-  const rv_product_004 = rv_product_04;
-  const rv_product_005 = rv_product_05;
-  const rv_product_006 = rv_product_06;
+import CarouselTypeTwo from "./CarouselTypeTwo";
+
+function RecentlyViewedProducts({ categoryData }) {
   return (
     <div className="container-fluid recentlyViewed__container">
       <div className="recentlyViewed__block">
@@ -25,22 +21,33 @@ function RecentlyViewedProducts() {
           <div className="inner__rv__block">
             <div className="rv__left__block">
               <div className="row rv__desktop__screen">
-                {[1, 2, 3, 4].map((pro, proIndex) => {
+                {categoryData.map((cat, catIndex) => {
                   return (
-                    <div key={proIndex} className="col-3 rv__product__block">
+                    <div key={catIndex} className="col-3 rv__product__block">
                       <div className="rv__product__image__block">
                         <img
-                          src={eval(`rv_product_00${pro}`)}
+                          src={cat.image}
                           alt="category-image"
                           className="rv__product__image"
                         />
                       </div>
-                      <Heading6 text="DualSense Wireless Controller" textAlign="center"></Heading6>
+                      <Heading6 text={cat.name} textAlign="center"></Heading6>
                     </div>
                   );
                 })}
               </div>
-              <div className="rv__mobile__screen"></div>
+              <div className="rv__mobile__screen">
+                {/* <CarouselTypeTwo
+                  carouselData={carouselData}
+                  containerClassName="rv__inner__mobile__screen"
+                  productType="productone"
+                /> */}
+                <CarouselTypeTwo
+                  carouselData={categoryData}
+                  productType="productFive"
+                  containerClassName="rv__inner__mobile__screen"
+                />
+              </div>
             </div>
             <div className="rv__right__block">
               <img

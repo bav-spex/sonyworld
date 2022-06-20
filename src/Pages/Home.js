@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Banner from "../Components/Banner";
 import "./../SCSS/_home.scss";
 
@@ -36,6 +36,14 @@ import blog_01 from "./../assets/Blog/blog_01.png";
 import blog_02 from "./../assets/Blog/blog_02.png";
 import blog_03 from "./../assets/Blog/blog_03.png";
 
+import rv_product_01 from "./../assets/FeatureProduct/feature_product_01.png";
+import rv_product_02 from "./../assets/FeatureProduct/feature_product_02.png";
+import rv_product_03 from "./../assets/FeatureProduct/feature_product_03.png";
+import rv_product_04 from "./../assets/FeatureProduct/feature_product_04.png";
+import rv_product_05 from "./../assets/FeatureProduct/feature_product_05.png";
+import rv_product_06 from "./../assets/FeatureProduct/feature_product_01.png";
+
+
 import shipping from "./../assets/Services/shipping.svg";
 import secure_payments from "./../assets/Services/secure_payments.svg";
 import exclusive_offers from "./../assets/Services/exclusive_offers.svg";
@@ -52,181 +60,204 @@ import VideoLogs from "../Components/VideoLogs";
 import Services from "../Components/Services";
 import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
-
-const newArrivalData = [
-  {
-    id: 0,
-    image: newArrivals_01,
-    productName: "Camera",
-    rating: 4.5,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 1,
-    image: newArrivals_02,
-    productName: "Silver Porto Headset",
-    rating: 3,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 3,
-    image: newArrivals_03,
-    productName: "Car Audio Speaker KM100",
-    rating: 3.5,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 4,
-    image: newArrivals_04,
-    productName: "Sony Viao Laptop",
-    rating: 2.5,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 5,
-    image: newArrivals_05,
-    productName: "Network Camera",
-    rating: 5,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 6,
-    image: newArrivals_01,
-    productName: "Camera",
-    rating: 3.2,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 7,
-    image: newArrivals_02,
-    productName: "Silver Porto Headset",
-    rating: 4.8,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 8,
-    image: newArrivals_03,
-    productName: "Car Audio Speaker KM100",
-    rating: 2,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 9,
-    image: newArrivals_04,
-    productName: "Sony Viao Laptop",
-    rating: 1,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 10,
-    image: newArrivals_05,
-    productName: "Network Camera",
-    rating: 3,
-    totalRatings:2183,
-    oldPrice: 1999,
-    price: 1699,
-  },
-];
-const topTrendingData = [
-  {
-    id: 0,
-    image: topTrending_01,
-    productName: "SONY, ILCE-7M3",
-    rating: 4.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 1,
-    image: topTrending_02,
-    productName: "Smart TV (Android TV)",
-    rating: 3,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 3,
-    image: topTrending_03,
-    productName: "Portable Wireless Speaker",
-    rating: 3.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 4,
-    image: topTrending_04,
-    productName: "DualSense Wireless Controller",
-    rating: 2.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 5,
-    image: topTrending_05,
-    productName: "Charger Cable",
-    rating: 5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 6,
-    image: topTrending_01,
-    productName: "SONY, ILCE-7M3",
-    rating: 3.2,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 7,
-    image: topTrending_02,
-    productName: "Smart TV (Android TV)",
-    rating: 4.8,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 8,
-    image: topTrending_03,
-    productName: "Portable Wireless Speaker",
-    rating: 2,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 9,
-    image: topTrending_04,
-    productName: "DualSense Wireless Controller",
-    rating: 1,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 10,
-    image: topTrending_05,
-    productName: "Charger Cable",
-    rating: 3,
-    oldPrice: 1999,
-    price: 1699,
-  },
-];
+const categoryData = [
+    {
+      id: 1,
+      image:rv_product_01,
+      name:"Television"
+    },
+    {
+      id:2,
+      image:rv_product_02,
+      name:"Camera"
+    },
+    {
+      id:3,
+      image:rv_product_03,
+      name:"Headphone"
+    },
+    {
+      id:4,
+      image:rv_product_04,
+      name:"Playstation"
+    },
+   
+  ]
+  
+// const newArrivalData = [
+//   {
+//     id: 0,
+//     image: newArrivals_01,
+//     productName: "Camera",
+//     rating: 4.5,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 1,
+//     image: newArrivals_02,
+//     productName: "Silver Porto Headset",
+//     rating: 3,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 3,
+//     image: newArrivals_03,
+//     productName: "Car Audio Speaker KM100",
+//     rating: 3.5,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 4,
+//     image: newArrivals_04,
+//     productName: "Sony Viao Laptop",
+//     rating: 2.5,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 5,
+//     image: newArrivals_05,
+//     productName: "Network Camera",
+//     rating: 5,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 6,
+//     image: newArrivals_01,
+//     productName: "Camera",
+//     rating: 3.2,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 7,
+//     image: newArrivals_02,
+//     productName: "Silver Porto Headset",
+//     rating: 4.8,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 8,
+//     image: newArrivals_03,
+//     productName: "Car Audio Speaker KM100",
+//     rating: 2,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 9,
+//     image: newArrivals_04,
+//     productName: "Sony Viao Laptop",
+//     rating: 1,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 10,
+//     image: newArrivals_05,
+//     productName: "Network Camera",
+//     rating: 3,
+//     totalRatings:2183,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+// ];
+// const topTrendingData = [
+//   {
+//     id: 0,
+//     image: topTrending_01,
+//     productName: "SONY, ILCE-7M3",
+//     rating: 4.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 1,
+//     image: topTrending_02,
+//     productName: "Smart TV (Android TV)",
+//     rating: 3,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 3,
+//     image: topTrending_03,
+//     productName: "Portable Wireless Speaker",
+//     rating: 3.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 4,
+//     image: topTrending_04,
+//     productName: "DualSense Wireless Controller",
+//     rating: 2.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 5,
+//     image: topTrending_05,
+//     productName: "Charger Cable",
+//     rating: 5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 6,
+//     image: topTrending_01,
+//     productName: "SONY, ILCE-7M3",
+//     rating: 3.2,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 7,
+//     image: topTrending_02,
+//     productName: "Smart TV (Android TV)",
+//     rating: 4.8,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 8,
+//     image: topTrending_03,
+//     productName: "Portable Wireless Speaker",
+//     rating: 2,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 9,
+//     image: topTrending_04,
+//     productName: "DualSense Wireless Controller",
+//     rating: 1,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 10,
+//     image: topTrending_05,
+//     productName: "Charger Cable",
+//     rating: 3,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+// ];
 
 const dealsoftheweekData = [
   {
@@ -238,72 +269,72 @@ const dealsoftheweekData = [
     image: deals_02,
   },
 ];
-const topRatedProductsData = [
-  {
-    id: 0,
-    image: topRated_01,
-    productName: "DualSense Wireless Controller",
-    rating: 4.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 1,
-    image: topRated_02,
-    productName: "HD Camera for PlayStation 5",
-    rating: 3,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 2,
-    image: topRated_03,
-    productName: "Playstation Media Controller",
-    rating: 3.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 3,
-    image: topRated_04,
-    productName: "Playstation Wireless Headset",
-    rating: 2.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 4,
-    image: topRated_05,
-    productName: "ODS-D380U",
-    rating: 5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 5,
-    image: topRated_06,
-    productName: "Network Camera System",
-    rating: 3.2,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 6,
-    image: topRated_07,
-    productName: "Bravia TV HD",
-    rating: 4.8,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 7,
-    image: topRated_08,
-    productName: "Portable Wireless Speaker",
-    rating: 2,
-    oldPrice: 1999,
-    price: 1699,
-  },
-];
+// const topRatedProductsData = [
+//   {
+//     id: 0,
+//     image: topRated_01,
+//     productName: "DualSense Wireless Controller",
+//     rating: 4.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 1,
+//     image: topRated_02,
+//     productName: "HD Camera for PlayStation 5",
+//     rating: 3,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 2,
+//     image: topRated_03,
+//     productName: "Playstation Media Controller",
+//     rating: 3.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 3,
+//     image: topRated_04,
+//     productName: "Playstation Wireless Headset",
+//     rating: 2.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 4,
+//     image: topRated_05,
+//     productName: "ODS-D380U",
+//     rating: 5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 5,
+//     image: topRated_06,
+//     productName: "Network Camera System",
+//     rating: 3.2,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 6,
+//     image: topRated_07,
+//     productName: "Bravia TV HD",
+//     rating: 4.8,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 7,
+//     image: topRated_08,
+//     productName: "Portable Wireless Speaker",
+//     rating: 2,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+// ];
 const threeProductsData = [
   {
     id: 0,
@@ -14497,17 +14528,38 @@ const data ={
   "updated_at": "2022-06-17T14:31:43Z"
 }
 function Home(props) {
-  console.log(JSON.parse(JSON.stringify(data)));
+  const contentData = JSON.parse(JSON.stringify(data)).content
+  const [bannerData,setBannerData] =useState(contentData.find((con)=>{
+    return con.type === "multiple_banner"
+  }).items)
+  const [newArrivalData,setNewArrivalData] =useState(contentData.find((con)=>{
+    return con.type === "slider"&& con.title==="New Arrivals"
+  }).products)
+  const [topTrendingData,setTopTRendingData] =useState(contentData.find((con)=>{
+    return con.type === "slider"&& con.title==="Top Trending"
+  }).products)
+  const [topRatedData,setTopRatedData] =useState(contentData.find((con)=>{
+    return con.type === "slider"&& con.title==="Top Rated Products"
+  }).products)
+  console.log(contentData.filter((con)=>{
+    return con.type === "slider"
+  }));
+  
+console.log(contentData);
+console.log(contentData.find((con)=>{
+    return con.type === "multiple_banner"
+  }));
+  
   return (
     <div className="homePage">
-      <Banner />
+      <Banner bannerData={bannerData} />
       <HomePageCategoryBlock />
       <FeatureProducts />
-      <RecentlyViewedProducts />
+      <RecentlyViewedProducts carouselData={newArrivalData} categoryData={categoryData} />
       <ProductContainer sectionTitle="New Arriaval" carouselData={newArrivalData} containerClassName="new__arrival__pc__block"/>
-      <ProductContainer sectionTitle="Top Trending" carouselData={newArrivalData} containerClassName="top__trending__pc__block"/>
+      <ProductContainer sectionTitle="Top Trending" carouselData={topTrendingData} containerClassName="top__trending__pc__block"/>
       <DealsOfTheWeek dealsoftheweekData={dealsoftheweekData} />
-      <ProductContainer sectionTitle="Top Rated Products" carouselData={newArrivalData} containerClassName="top__rated__pc__block" />
+      <ProductContainer sectionTitle="Top Rated Products" carouselData={topRatedData} containerClassName="top__rated__pc__block" />
       {/* <TopRatedProducts productData={topRatedProductsData} /> */}
       <div className="container-fluid adImage__container">
         <div className=" adImage">

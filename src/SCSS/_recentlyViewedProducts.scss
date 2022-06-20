@@ -16,8 +16,9 @@
           width: 65.67%;
           background-color: #ffffff;
           border-radius: 10px;
+          padding: 20px;
           .rv__desktop__screen {
-            padding: 60px 20px 40px;
+            padding: 40px 0px 20px;
             .rv__product__block {
               display: flex;
               flex-direction: column;
@@ -36,6 +37,7 @@
             }
           }
           .rv__mobile__screen {
+            display: none;
           }
         }
         .rv__right__block {
@@ -63,10 +65,28 @@
   }
 }
 @media screen and (max-width: 1200px) {
+  .rv__desktop__screen{
+    display: none;
+  }
+  .rv__mobile__screen{
+    display: block !important;
+  }
 }
 @media screen and (max-width: 992px) {
+  .recentlyViewed__block {
+    width: 100% !important;  }
 }
 @media screen and (max-width: 768px) {
+  .inner__rv__block{
+flex-direction: column !important;
+  }
+  .rv__left__block{
+    width: 100% !important;
+    margin: 0px 0px 20px !important;
+  }
+  .rv__right__block{
+    width: 100% !important;
+  }
 }
 @media screen and (max-width: 576px) {
 }

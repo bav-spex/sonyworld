@@ -33,10 +33,10 @@ function ProductOne({ productDetailPage, product }) {
       }
     >
       <div className="productOne__image__block">
-        <img src={product.image} alt="" className="productOne__image" />
+        <img src={product.baseImage} alt="" className="productOne__image" />
       </div>
       <div className="productOne__name__favourite">
-        <Heading7 text={product.productName} />
+        <Heading7 text={product.name} />
         <img
           onMouseEnter={() => setIsFavouriteHover(true)}
           onClick={handleFavourite}
@@ -60,18 +60,18 @@ function ProductOne({ productDetailPage, product }) {
           alt=""
         />
       </div>
-      <RatingBlock rating={product.rating} totalRatings={product.totalRatings} />
+      <RatingBlock rating={4.2} totalRatings={2183} />
 
       <div className="prize__block">
       <OldPrice
-          oldPrice={product.oldPrice}
+          oldPrice={526341}
           size="text3"
           color="#c8c8c8"
           marginBottom={10}
           lineThrough={true}
           span={true}
         />
-        <Price price={product.price} marginLeft={5} size="heading6" span={true} />
+        <Price price={product.price_rounded} marginLeft={5} size="heading6" span={true} />
       </div>
       {productDetailPage ? (
         <div className="addToCart__button">ADD TO CART</div>

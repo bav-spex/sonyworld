@@ -23,7 +23,7 @@ import return_period from "./../assets/Icon/return_period.svg";
 import pickup_store from "./../assets/Icon/pickup_store.svg";
 import add_to_cart from "./../assets/Icon/add_to_cart.svg";
 
-import add_cart_white from "./../assets/Icon/add_cart_white.svg";
+import shopping_cart from "./../assets/Icon/shopping_cart.svg";
 import add_cart_black from "./../assets/Icon/add_cart_black.svg";
 
 import facebook from "./../assets/Icon/facebook.png";
@@ -1002,7 +1002,7 @@ function Product_Details_Page() {
                   <div className="col-6 pd__addToCart__button__block">
                     <div className="pd__addToCart__button">
                       <img
-                        src={add_cart_white}
+                        src={shopping_cart}
                         alt=""
                         className="pd__addToCart__icon"
                       />
@@ -1053,7 +1053,7 @@ function Product_Details_Page() {
 
                     <div className="exp__rd__addToCart__button">
                       <img
-                        src={add_cart_black}
+                        src={shopping_cart}
                         alt=""
                         className="exp__rd__addToCart__icon"
                       />
@@ -1076,6 +1076,8 @@ function Product_Details_Page() {
                 productDetailPage={true}
                 sectionTitle="People Who Bought Also Bought"
                 carouselData={newArrivalData}
+                productType="productOne"
+                containerClassName="carouselTypeTwo__inner__block"
               />
             </div>
             <div className="pd__similarProducts__block">

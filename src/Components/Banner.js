@@ -29,7 +29,7 @@ const bannerDataJSON = [
   },
 ];
 
-function Banner() {
+function Banner({bannerData}) {
   const [index, setIndex] = useState(0);
   const [banner, setBanner] = useState(bannerDataJSON);
 

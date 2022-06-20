@@ -45,6 +45,14 @@
     scroll-behavior: smooth;
     // transition: all 0.2s ease-in;
   }
+  .rv__inner__mobile__screen {
+    // position: relative;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    // transition: all 0.2s ease-in;
+  }
   .top__trending__block {
     // position: relative;
     display: flex;
@@ -74,12 +82,10 @@
     width: 100% !important;
 
     .left__arrow {
-      filter: none !important;
-      transform: translateX(40%) !important;
+      transform: translateX(-50%) !important;
     }
     .right__arrow {
-      filter: none !important;
-      transform: translateX(-40%) !important;
+      transform: translateX(50%) !important;
     }
   }
 }
@@ -90,6 +96,12 @@
   }
   .arrow__block {
     width: 100% !important;
+    .left__arrow {
+      transform: translateX(-10%) !important;
+    }
+    .right__arrow {
+      transform: translateX(20%) !important;
+    }
   }
 }
 @media screen and (max-width: 768px) {

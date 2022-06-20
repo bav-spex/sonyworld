@@ -1,0 +1,20 @@
+.productFive__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    .productFive__image__block {
+      height: 140px;
+      // width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0px 0px 20px;
+      .productFive__image {
+        // height: 100%;
+        width: 90%;
+        object-fit: cover;
+        //   margin: 0px 0px 10px 0px;
+      }
+    }
+  }

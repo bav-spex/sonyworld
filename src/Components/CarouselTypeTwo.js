@@ -1,12 +1,19 @@
 import React, { useState, useRef, Component, useEffect } from "react";
-import "./../SCSS/_carouselTypeTwo.scss"
+import "./../SCSS/_carouselTypeTwo.scss";
 import Carousel from "react-elastic-carousel";
 import black_left_arrow from "./../assets/Icon/black_left_arrow.svg";
 import black_right_arrow from "./../assets/Icon/black_right_arrow.svg";
 import "./../SCSS/_carouselTypeTwo.scss";
 import ProductOne from "./ProductType/ProductOne";
+import ProductTwo from "./ProductType/ProductTwo";
+import ProductFive from "./ProductType/ProductFive";
 
-function CarouselTypeTwo({ sectionTitle, carouselData }) {
+function CarouselTypeTwo({
+  sectionTitle,
+  carouselData,
+  containerClassName,
+  productType,
+}) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
   const [arrowState, setArrowState] = useState(true);
@@ -15,28 +22,27 @@ function CarouselTypeTwo({ sectionTitle, carouselData }) {
     setArrowState(!arrowState);
     setDisableRightArrow(false);
     e.preventDefault();
-    document.querySelector(".carouselTypeTwo__inner__block").scrollLeft =
-      document.querySelector(".carouselTypeTwo__inner__block").scrollLeft -
-      document.querySelector(".carouselTypeTwo__inner__block").clientWidth -
-      100;
-    let scroll = document.querySelector(".carouselTypeTwo__inner__block").scrollLeft;
+    document.querySelector(`.${containerClassName}`).scrollLeft =
+      document.querySelector(`.${containerClassName}`).scrollLeft -
+      document.querySelector(`.${containerClassName}`).clientWidth +50;
+    let scroll = document.querySelector(`.${containerClassName}`).scrollLeft;
   };
   const rightSide = (e) => {
     setArrowState(!arrowState);
     setDisableLeftArrow(false);
     e.preventDefault();
 
-    document.querySelector(".carouselTypeTwo__inner__block").scrollLeft =
-      document.querySelector(".carouselTypeTwo__inner__block").scrollLeft +
-      document.querySelector(".carouselTypeTwo__inner__block").clientWidth -
+    document.querySelector(`.${containerClassName}`).scrollLeft =
+      document.querySelector(`.${containerClassName}`).scrollLeft +
+      document.querySelector(`.${containerClassName}`).clientWidth -
       100;
   };
 
   return (
     <>
       <div className="container-fluid carouselTypeTwo__container">
+        <p className="section__title">{sectionTitle}</p>
         <div className="carouselTypeTwo__block">
-          <p className="section__title">{sectionTitle}</p>
           <div className="arrow__block">
             <div className="arrow left__arrow" onClick={leftSide}>
               <img src={black_left_arrow} alt="" />
@@ -45,11 +51,22 @@ function CarouselTypeTwo({ sectionTitle, carouselData }) {
               <img src={black_right_arrow} alt="" />
             </div>
           </div>
-          <div className="carouselTypeTwo__inner__block">
-            {carouselData.map((product, productIndex) => {
-              return <ProductOne key={product.id} product={product} />;
-            })}
-          </div>
+          {/* {?:?:} */}
+          {productType === "productOne" ? (
+            <div className={containerClassName}>
+              {carouselData.map((product, productIndex) => {
+                return <ProductOne key={product.id} product={product} />;
+              })}
+            </div>
+          ) : productType === "productFive" ? (
+            <div className={containerClassName}>
+              {carouselData.map((product, productIndex) => {
+                return <ProductFive key={product.id} product={product} />;
+              })}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>
