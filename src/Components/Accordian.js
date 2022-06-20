@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import grey_down_arrow from "./../Assets/Icon/grey_down_arrow.svg";
-import grey_up_arrow from "./../Assets/Icon/grey_up_arrow.svg";
+import grey_down_arrow from "./../assets/Icon/grey_down_arrow.svg";
+import grey_up_arrow from "./../assets/Icon/grey_up_arrow.svg";
 import "./../SCSS/_accordian.scss";
 import Heading1 from "./Font/Heading1";
 import Heading3 from "./Font/Heading3";
@@ -18,7 +18,7 @@ function Accordian({ data, isDescription }) {
       >
         <Heading1 text={data.title} />
         <img
-          src={isOpen ? grey_up_arrow : grey_down_arrow}
+          src={isOpen ? grey_up_arrow : "/assets/grey_down_arrow.svg"}
           alt=""
           className="accordian__arrow__icon"
         />

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./../../SCSS/MostSharedComponents/_availableOffers.scss";
-import offer_tag from "./../../Assets/Icon/offer_tag.svg";
+import offer_tag from "./../../assets/Icon/offer_tag.svg";
 import Heading5 from "../Font/Heading5";
 
 function AvailableOffers({ availableOffer, title }) {

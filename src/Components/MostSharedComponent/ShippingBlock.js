@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import shipping from "./../../Assets/Icon/shipping.svg"
+import shipping from "./../../assets/Icon/shipping.svg"
 import "./../../SCSS/MostSharedComponents/_shippingBlock.scss"
 function ShippingBlock({shipment}) {
   return (

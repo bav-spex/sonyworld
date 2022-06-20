@@ -4,7 +4,7 @@ import OldPrice from "../Font/OldPrice";
 import Price from "../Font/Price";
 import Text3 from "../Font/Text3";
 import Text4 from "../Font/Text4";
-import protection_icon from "./../../Assets/Icon/protection_icon.png";
+import protection_icon from "./../../assets/Icon/protection_icon.png";
 import "./../../SCSS/MostSharedComponents/_protectionPlan.scss"
 function ProtectionPlan({ title, protection,remove }) {
   return (

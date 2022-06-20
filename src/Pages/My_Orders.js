@@ -1,9 +1,8 @@
 import React,{useState} from "react";
 import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
 import "./../SCSS/_myOrders.scss";
-import sony_logo from "./../Assets/Icon/sony_logo.svg";
-import search from "./../Assets/Icon/search.svg";
-import TopNavbar from "../Components/Common/TopNavbar";
+import sony_logo from "./../assets/Icon/sony_logo.svg";
+import search from "./../assets/Icon/search.svg";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import MyOrderProduct from "../Components/MostSharedComponent/MyOrderProduct";
 import Heading3 from "../Components/Font/Heading4";
@@ -147,7 +146,7 @@ function My_Orders() {
                       placeholder="Search"
                       onChange={handleChange}
                     />
-                    <img src={search} alt="" className="topnavbar__icon" />
+                    <img src={search} alt="" className="header__icon" />
                   </div>
                 </div>
               </div>

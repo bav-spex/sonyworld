@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./../SCSS/_cartPage.scss";
 import BreadCrumbs from "../Components/BreadCrumbs";
-import TopNavbar from "../Components/Common/TopNavbar";
 
-import product_01 from "./../Assets/Product/product_01.png";
-import sony_logo from "./../Assets/Icon/sony_logo.svg";
-import checkout_white_right_arrow from "./../Assets/Icon/checkout_white_right_arrow.svg";
+import product_01 from "./../assets/Product/product_01.png";
+import sony_logo from "./../assets/Icon/sony_logo.svg";
+import checkout_white_right_arrow from "./../assets/Icon/checkout_white_right_arrow.svg";
 
 import Heading3 from "../Components/Font/Heading3";
 import Text3 from "../Components/Font/Text3";
@@ -20,11 +19,11 @@ import Heading5 from "../Components/Font/Heading5";
 import AvailableOffers from "../Components/MostSharedComponent/AvailableOffers";
 import ProductContainer from "../Components/ProductContainer";
 
-import newArrivals_01 from "./../Assets/NewArrivals/newArrivals_01.png";
-import newArrivals_02 from "./../Assets/NewArrivals/newArrivals_02.png";
-import newArrivals_03 from "./../Assets/NewArrivals/newArrivals_03.png";
-import newArrivals_04 from "./../Assets/NewArrivals/newArrivals_04.png";
-import newArrivals_05 from "./../Assets/NewArrivals/newArrivals_05.png";
+import newArrivals_01 from "./../assets/NewArrivals/newArrivals_01.png";
+import newArrivals_02 from "./../assets/NewArrivals/newArrivals_02.png";
+import newArrivals_03 from "./../assets/NewArrivals/newArrivals_03.png";
+import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
+import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
 const product = {
   id: 1,
@@ -244,7 +243,6 @@ function Cart_Page() {
   };
   return (
     <>
-      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid shopping__cart__page__container">
         <div className="shopping__cart__page__block">

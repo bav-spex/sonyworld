@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
-import empty_favourite from "./../../Assets/Icon/empty_favourite.svg";
-import fulfill_favourite from "./../../Assets/Icon/fulfill_favourite.svg";
+import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
+import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import "./../../SCSS/ProductType/_productOne.scss";
 import Heading5 from "./../Font/Heading5";
 import Heading6 from "./../Font/Heading6";
@@ -16,7 +16,7 @@ function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
-  console.log(product);
+  // console.log(product);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };

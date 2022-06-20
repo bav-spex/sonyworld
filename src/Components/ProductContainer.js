@@ -1,12 +1,12 @@
 import React, { useState, useRef, Component, useEffect } from "react";
 import Carousel from "react-elastic-carousel";
-import black_left_arrow from "./../Assets/Icon/black_left_arrow.svg";
-import black_right_arrow from "./../Assets/Icon/black_right_arrow.svg";
+import black_left_arrow from "./../assets/Icon/black_left_arrow.svg";
+import black_right_arrow from "./../assets/Icon/black_right_arrow.svg";
 import "./../SCSS/_newArrival.scss";
 import Heading1 from "./Font/Heading1";
 import ProductOne from "./ProductType/ProductOne";
 
-function ProductContainer({ productDetailPage, sectionTitle, carouselData }) {
+function ProductContainer({ productDetailPage, sectionTitle, carouselData, containerClassName }) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
   const [arrowState, setArrowState] = useState(true);
@@ -15,20 +15,20 @@ function ProductContainer({ productDetailPage, sectionTitle, carouselData }) {
     setArrowState(!arrowState);
     setDisableRightArrow(false);
     e.preventDefault();
-    document.querySelector(".product__container__block").scrollLeft =
-      document.querySelector(".product__container__block").scrollLeft -
-      document.querySelector(".product__container__block").clientWidth -
+    document.querySelector(`.${containerClassName}`).scrollLeft =
+      document.querySelector(`.${containerClassName}`).scrollLeft -
+      document.querySelector(`.${containerClassName}`).clientWidth -
       100;
-    let scroll = document.querySelector(".product__container__block").scrollLeft;
+    let scroll = document.querySelector(`.${containerClassName}`).scrollLeft;
   };
   const rightSide = (e) => {
     setArrowState(!arrowState);
     setDisableLeftArrow(false);
     e.preventDefault();
 
-    document.querySelector(".product__container__block").scrollLeft =
-      document.querySelector(".product__container__block").scrollLeft +
-      document.querySelector(".product__container__block").clientWidth -
+    document.querySelector(`.${containerClassName}`).scrollLeft =
+      document.querySelector(`.${containerClassName}`).scrollLeft +
+      document.querySelector(`.${containerClassName}`).clientWidth -
       100;
   };
 
@@ -44,7 +44,7 @@ function ProductContainer({ productDetailPage, sectionTitle, carouselData }) {
         <div
           className={
             !productDetailPage
-              ? "carousel__block"
+              ? "pc__block"
               : "less__width__carousel__block"
           }
         >
@@ -58,7 +58,7 @@ function ProductContainer({ productDetailPage, sectionTitle, carouselData }) {
           {/* <div className="arrow__block">
           </div> */}
           <div className="main__product__container__block">
-            <div className="product__container__block">
+            <div className={containerClassName} >
               {carouselData.map((product, productIndex) => {
                 return (
                   <ProductOne

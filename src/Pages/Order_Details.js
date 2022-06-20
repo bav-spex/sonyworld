@@ -6,9 +6,9 @@ import Heading7 from "../Components/Font/Heading7";
 import Price from "../Components/Font/Price";
 import Text3 from "../Components/Font/Text3";
 import Text4 from "../Components/Font/Text4";
-import sony_logo from "./../Assets/Icon/sony_logo.svg";
-import card_05 from "./../Assets/Footer/card_05.png";
-import product_01 from "./../Assets/Product/product_01.png";
+import sony_logo from "./../assets/Icon/sony_logo.svg";
+import card_05 from "./../assets/Footer/card_05.png";
+import product_01 from "./../assets/Product/product_01.png";
 import "./../SCSS/_orderDetails.scss";
 import Heading5 from "../Components/Font/Heading5";
 const product = {
@@ -103,7 +103,6 @@ const product = {
 function Order_Details() {
   return (
     <>
-      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid orderDetails__container">
         <div className="orderDetails__block">

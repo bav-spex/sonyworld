@@ -1,7 +1,7 @@
 import React from "react";
 import "./../../SCSS/MostSharedComponents/_superCoin.scss";
-import super_coin_image from "./../../Assets/Icon/super_coin_image.svg";
-import coin from "./../../Assets/Icon/coin.svg";
+import super_coin_image from "./../../assets/Icon/super_coin_image.svg";
+import coin from "./../../assets/Icon/coin.svg";
 import Heading6 from "../Font/Heading6";
 function SuperCoin() {
   return (

@@ -1,0 +1,41 @@
+{
+  "app_title": "عنوان",
+  "language": "اللغة",
+  "welcome_message": "اهلا بكم",
+  "days_since_release": "لقد مرت {{number_of_days}} أيام على إصدار هذا الفيديو",
+  "navbar": {
+    "all_catetegories": "جميع الفئات",
+    "top_deals": "أفضل الصفقات",
+    "delas_of_the_day": "صفقات اليوم",
+    "digital_cards": "البطاقات الرقمية",
+    "top_sellers": "أفضل البائعين",
+    "others": "آحرون",
+    "services": "خدمات"
+  },
+  "footer": {
+    "about": "حول",
+    "about_us": "معلومات عنا",
+    "terms_and_conditions": "الأحكام والشروط",
+    "secured_payment": "الدفع الآمن",
+    "our_stores": "متاجرنا",
+    "service_centers": "مراكز الخدمة",
+    "account_info": "معلومات الحساب",
+    "my_account": "حسابي",
+    "order_history": "تاريخ الطلب",
+    "address_book": "دليل العناوين",
+    "change_passwords": "تغيير كلمات المرور",
+    "contact_us": "اتصل بنا",
+    "quick_links": "روابط سريعة",
+    "support": "الدعم",
+    "exchange_and_return_policy": "سياسة الاستبدال والإرجاع",
+    "warranty_policy": "سياسة الضمان",
+    "installment": "تقسيط",
+    "email": "البريد الإلكتروني",
+    "toll_free_number": "الرقم المجاني",
+    "all_rights_reserved": "حقوق الطبع والنشر © 2022 SONY MIDDLE EAST AND AFRICA FZE. كل الحقوق محفوظة",
+    "disclaimer_1": "إخلاء المسؤولية: تم تشغيل منتجات Sony",
+    "disclaimer_2": "يتم بيعها وفوترتها وتسليمها من قبل موزع سوني الرسمي في المملكة العربية السعودية ، شركة الإلكترونيات الحديثة المحدودة",
+    "terms_conditions": "البنود و الظروف",
+    "privacy_policy": "سياسة الخصوصية"
+  }
+}

@@ -1,9 +1,9 @@
 import React, { useState, useRef, Component, useEffect } from "react";
 import "./../SCSS/_carouselTypeTwo.scss"
 import Carousel from "react-elastic-carousel";
-import left_arrow from "./../Assets/Icon/left_arrow.svg";
-import right_arrow from "./../Assets/Icon/right_arrow.svg";
-import "./../SCSS/_newArrival.scss";
+import black_left_arrow from "./../assets/Icon/black_left_arrow.svg";
+import black_right_arrow from "./../assets/Icon/black_right_arrow.svg";
+import "./../SCSS/_carouselTypeTwo.scss";
 import ProductOne from "./ProductType/ProductOne";
 
 function CarouselTypeTwo({ sectionTitle, carouselData }) {
@@ -39,10 +39,10 @@ function CarouselTypeTwo({ sectionTitle, carouselData }) {
           <p className="section__title">{sectionTitle}</p>
           <div className="arrow__block">
             <div className="arrow left__arrow" onClick={leftSide}>
-              <img src={left_arrow} alt="" />
+              <img src={black_left_arrow} alt="" />
             </div>
             <div className="arrow right__arrow" onClick={rightSide}>
-              <img src={right_arrow} alt="" />
+              <img src={black_right_arrow} alt="" />
             </div>
           </div>
           <div className="carouselTypeTwo__inner__block">

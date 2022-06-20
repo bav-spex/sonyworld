@@ -27,9 +27,33 @@
   // border-bottom: 1px solid red;
   background-color: blue;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 1200px) {
+  .category__image {
+    height: 80px !important;
+  }
+  
+}
+@media screen and (max-width: 992px) {
+  .home__page__category__inner__block{
+    padding: 20px 0px 20px !important;
+  }
   .category__image {
     height: 72px !important;
+  }
+  
+}
+@media screen and (max-width: 768px) {
+  .category__image {
+    height: 72px !important;
+  }
+  .category__block{
+    margin: 0px 0px 20px !important;
+  }
+  
+}
+@media screen and (max-width: 576px) {
+  .category__image {
+    height: 50px !important;
   }
   .category__block {
     // border-bottom: 1px solid red;

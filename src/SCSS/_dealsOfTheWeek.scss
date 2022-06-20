@@ -18,7 +18,7 @@
       // align-items: center;
       .deals__image {
         width: 100%;
-        height: 100%;
+        // height: 100%;
         // border-radius: 15px;
         object-fit: cover;
       }
@@ -39,7 +39,7 @@
 @media screen and (max-width: 992px) {
   .deals__block {
     overflow: hidden;
-    height: 255px !important;
+    max-height: 255px !important;
   }
   .dealsOfTheWeek__block {
     min-width: 100% !important;
@@ -53,7 +53,7 @@
    
   }
   .deals__block {
-    height: 200px !important;
+    // height: 200px !important;
   }
 }
 

@@ -1,13 +1,13 @@
 import React from "react";
 import "./../SCSS/_recentlyViewedProducts.scss";
-import rv_product_01 from "./../Assets/FeatureProduct/feature_product_01.png";
-import rv_product_02 from "./../Assets/FeatureProduct/feature_product_02.png";
-import rv_product_03 from "./../Assets/FeatureProduct/feature_product_03.png";
-import rv_product_04 from "./../Assets/FeatureProduct/feature_product_04.png";
-import rv_product_05 from "./../Assets/FeatureProduct/feature_product_05.png";
-import rv_product_06 from "./../Assets/FeatureProduct/feature_product_01.png";
+import rv_product_01 from "./../assets/FeatureProduct/feature_product_01.png";
+import rv_product_02 from "./../assets/FeatureProduct/feature_product_02.png";
+import rv_product_03 from "./../assets/FeatureProduct/feature_product_03.png";
+import rv_product_04 from "./../assets/FeatureProduct/feature_product_04.png";
+import rv_product_05 from "./../assets/FeatureProduct/feature_product_05.png";
+import rv_product_06 from "./../assets/FeatureProduct/feature_product_01.png";
 
-import banner_02 from "./../Assets/Banner/image_02.jpg";
+import banner_02 from "./../assets/Banner/image_02.jpg";
 
 import Heading6 from "./Font/Heading6";
 function RecentlyViewedProducts() {

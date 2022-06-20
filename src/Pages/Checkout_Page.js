@@ -7,14 +7,13 @@ import Heading6 from "../Components/Font/Heading6";
 import Price from "../Components/Font/Price";
 import Text3 from "../Components/Font/Text3";
 import SuperCoin from "../Components/MostSharedComponent/SuperCoin";
-import TopNavbar from "../Components/Common/TopNavbar";
 import "./../SCSS/_checkoutPage.scss";
-import user_black_fill from "./../Assets/Icon/user_black_fill.svg";
-import check from "./../Assets/Icon/check.svg";
-import shipping from "./../Assets/Icon/shipping.svg";
-import sony_logo from "./../Assets/Icon/sony_logo.svg";
-import black_location from "./../Assets/Icon/black_location.svg";
-import product_01 from "./../Assets/Product/product_01.png";
+import user_black_fill from "./../assets/Icon/user_black_fill.svg";
+import check from "./../assets/Icon/check.svg";
+import shipping from "./../assets/Icon/shipping.svg";
+import sony_logo from "./../assets/Icon/sony_logo.svg";
+import black_location from "./../assets/Icon/black_location.svg";
+import product_01 from "./../assets/Product/product_01.png";
 
 import SmallWarrantyBlock from "../Components/MostSharedComponent/SmallWarrantyBlock";
 import ProtectionPlan from "../Components/MostSharedComponent/ProtectionPlan";
@@ -170,7 +169,6 @@ function Checkout_Page() {
   };
   return (
     <>
-      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid checkout__page__container">
         <div className="checkout__page__block">

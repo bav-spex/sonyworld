@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import "./../SCSS/_mobilePopup.scss"
-import product_01 from "./../Assets/Product/product_01.jpg";
-import NavbarAdBanner_01 from "./../Assets/NavbarAdBanner/NavbarAdBanner_01.jpg";
+import product_01 from "./../assets/Product/product_01.jpg";
+import NavbarAdBanner_01 from "./../assets/NavbarAdBanner/NavbarAdBanner_01.jpg";
 const categoryData = [
     {
       id: 1,

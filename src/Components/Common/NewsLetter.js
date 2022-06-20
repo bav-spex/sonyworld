@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import "./../SCSS/Common/_newsLetter.scss"
+import "./../../SCSS/Common/_newsLetter.scss"
 function NewsLetter() {
   const [email, setEmail] = useState("");
   const handleChange = (e) => {

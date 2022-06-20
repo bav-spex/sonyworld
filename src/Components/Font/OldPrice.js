@@ -13,7 +13,7 @@ import Text4 from "./Text4"
 import Text5 from "./Text5"
 import Text6 from "./Text6"
 import "./../../SCSS/Font/_font.scss";
-function OldPrice({preText,postText, oldPrice, size ,color,marginLeft,marginBottom,lineThrough,span,textAlign}) {
+function OldPrice({preText,postText, oldPrice, size ,color,marginLeft,marginBottom,lineThrough,span,textAlign,textTransform}) {
   const finalPrice =
   oldPrice.toString().length > 3
   ? `${preText ? preText : ""} SAR${oldPrice.toString().slice(0, -3)},${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`
@@ -22,31 +22,31 @@ function OldPrice({preText,postText, oldPrice, size ,color,marginLeft,marginBott
   return (
     <>
       {size === "heading1" ? (
-        <Heading1 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom}  span={span} textAlign={textAlign} />
+        <Heading1 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom}  span={span} textAlign={textAlign} textTransform={textTransform} />
       ) : size === "heading2" ? (
-        <Heading2 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} />
+        <Heading2 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} />
       ) : size === "heading3" ? (
-        <Heading3 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} />
+        <Heading3 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} />
       ) : size === "heading4" ? (
-        <Heading4 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} />
+        <Heading4 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} />
       ) : size === "heading5" ? (
-        <Heading5 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} />
+        <Heading5 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} />
       ) : size === "heading6" ? (
-        <Heading6 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} />
+        <Heading6 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} />
       ) : size === "heading6" ? (
-        <Heading6 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} />
+        <Heading6 text={finalPrice} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} />
       ):size === "text1" ? (
-        <Text1 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} lineThrough={lineThrough} />
+        <Text1 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} lineThrough={lineThrough} />
       ):size === "text2" ? (
-        <Text2 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} lineThrough={lineThrough} />
+        <Text2 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} lineThrough={lineThrough} />
       ):size === "text3" ? (
-        <Text3 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} lineThrough={lineThrough} />
+        <Text3 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} lineThrough={lineThrough} />
       ):size === "text4" ? (
-        <Text4 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} lineThrough={lineThrough} />
+        <Text4 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} lineThrough={lineThrough} />
       ):size === "text5" ? (
-        <Text5 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} lineThrough={lineThrough} />
+        <Text5 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} lineThrough={lineThrough} />
       ):size === "text6" ? (
-        <Text6 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} lineThrough={lineThrough} />
+        <Text6 text={finalPrice} color={color} marginLeft={marginLeft} marginBottom={marginBottom} span={span} textAlign={textAlign} textTransform={textTransform} lineThrough={lineThrough} />
       ):""
       
       }

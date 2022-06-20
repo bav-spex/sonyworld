@@ -10,39 +10,39 @@ import CarouselTypeTwo from "../Components/CarouselTypeTwo";
 import ProductCarousel from "../Components/ProductCarousel";
 import ProductContainer from "../Components/ProductContainer";
 
-// import product_01 from "./../Assets/NewArrivals/newArrivals_01.png";
+// import product_01 from "./../assets/NewArrivals/newArrivals_01.png";
 
-import sony_logo from "./../Assets/Icon/sony_logo.svg";
-import black_favorite from "./../Assets/Icon/black_favorite.svg";
-import empty_favourite from "./../Assets/Icon/empty_favourite.svg";
-import fulfill_favourite from "./../Assets/Icon/fulfill_favourite.svg";
-import black_down_arrow from "./../Assets/Icon/black_down_arrow.svg";
-import unlock from "./../Assets/Icon/unlock.svg";
-import grey_right_arrow from "./../Assets/Icon/grey_right_arrow.svg";
-import return_period from "./../Assets/Icon/return_period.svg";
-import pickup_store from "./../Assets/Icon/pickup_store.svg";
-import add_to_cart from "./../Assets/Icon/add_to_cart.svg";
+import sony_logo from "./../assets/Icon/sony_logo.svg";
+import black_favorite from "./../assets/Icon/black_favorite.svg";
+import empty_favourite from "./../assets/Icon/empty_favourite.svg";
+import fulfill_favourite from "./../assets/Icon/fulfill_favourite.svg";
+import black_down_arrow from "./../assets/Icon/black_down_arrow.svg";
+import unlock from "./../assets/Icon/unlock.svg";
+import grey_right_arrow from "./../assets/Icon/grey_right_arrow.svg";
+import return_period from "./../assets/Icon/return_period.svg";
+import pickup_store from "./../assets/Icon/pickup_store.svg";
+import add_to_cart from "./../assets/Icon/add_to_cart.svg";
 
-import add_cart_white from "./../Assets/Icon/add_cart_white.svg";
-import add_cart_black from "./../Assets/Icon/add_cart_black.svg";
+import add_cart_white from "./../assets/Icon/add_cart_white.svg";
+import add_cart_black from "./../assets/Icon/add_cart_black.svg";
 
-import facebook from "./../Assets/Icon/facebook.png";
-import twitter from "./../Assets/Icon/twitter.png";
-import messanger from "./../Assets/Icon/messanger.png";
-import whatsapp from "./../Assets/Icon/whatsapp.png";
-import pinterest from "./../Assets/Icon/pinterest.png";
+import facebook from "./../assets/Icon/facebook.png";
+import twitter from "./../assets/Icon/twitter.png";
+import messanger from "./../assets/Icon/messanger.png";
+import whatsapp from "./../assets/Icon/whatsapp.png";
+import pinterest from "./../assets/Icon/pinterest.png";
 
-import product_01 from "./../Assets/Product/product_01.png";
-import product_02 from "./../Assets/Product/product_02.png";
-import product_03 from "./../Assets/Product/product_03.png";
-import product_04 from "./../Assets/Product/product_04.png";
-import product_05 from "./../Assets/Product/product_05.png";
+import product_01 from "./../assets/Product/product_01.png";
+import product_02 from "./../assets/Product/product_02.png";
+import product_03 from "./../assets/Product/product_03.png";
+import product_04 from "./../assets/Product/product_04.png";
+import product_05 from "./../assets/Product/product_05.png";
 
-import newArrivals_01 from "./../Assets/NewArrivals/newArrivals_01.png";
-import newArrivals_02 from "./../Assets/NewArrivals/newArrivals_02.png";
-import newArrivals_03 from "./../Assets/NewArrivals/newArrivals_03.png";
-import newArrivals_04 from "./../Assets/NewArrivals/newArrivals_04.png";
-import newArrivals_05 from "./../Assets/NewArrivals/newArrivals_05.png";
+import newArrivals_01 from "./../assets/NewArrivals/newArrivals_01.png";
+import newArrivals_02 from "./../assets/NewArrivals/newArrivals_02.png";
+import newArrivals_03 from "./../assets/NewArrivals/newArrivals_03.png";
+import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
+import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import { Link } from "react-router-dom";
 import { renderIntoDocument } from "react-dom/test-utils";
 import ExpertProducts from "../Components/ExpertProducts";
@@ -583,88 +583,7 @@ const peopleUltimatelyBoughtData = [
     ],
   },
 ];
-// const newArrivalData = [
-//   {
-//     id: 0,
-//     image: newArrivals_01,
-//     productName: "Camera",
-//     rating: 4.5,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 1,
-//     image: newArrivals_02,
-//     productName: "Silver Porto Headset",
-//     rating: 3,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 3,
-//     image: newArrivals_03,
-//     productName: "Car Audio Speaker KM100",
-//     rating: 3.5,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 4,
-//     image: newArrivals_04,
-//     productName: "Sony Viao Laptop",
-//     rating: 2.5,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 5,
-//     image: newArrivals_05,
-//     productName: "Network Camera",
-//     rating: 5,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 6,
-//     image: newArrivals_01,
-//     productName: "Camera",
-//     rating: 3.2,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 7,
-//     image: newArrivals_02,
-//     productName: "Silver Porto Headset",
-//     rating: 4.8,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 8,
-//     image: newArrivals_03,
-//     productName: "Car Audio Speaker KM100",
-//     rating: 2,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 9,
-//     image: newArrivals_04,
-//     productName: "Sony Viao Laptop",
-//     rating: 1,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-//   {
-//     id: 10,
-//     image: newArrivals_05,
-//     productName: "Network Camera",
-//     rating: 3,
-//     oldPrice: 1999,
-//     price: 1699,
-//   },
-// ];
+
 
 const productOverviewData = {
   title: "Product Overview",
@@ -753,6 +672,7 @@ const newArrivalData = [
     image: newArrivals_01,
     productName: "Camera",
     rating: 4.5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -761,6 +681,7 @@ const newArrivalData = [
     image: newArrivals_02,
     productName: "Silver Porto Headset",
     rating: 3,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -769,6 +690,7 @@ const newArrivalData = [
     image: newArrivals_03,
     productName: "Car Audio Speaker KM100",
     rating: 3.5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -777,6 +699,7 @@ const newArrivalData = [
     image: newArrivals_04,
     productName: "Sony Viao Laptop",
     rating: 2.5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -785,6 +708,7 @@ const newArrivalData = [
     image: newArrivals_05,
     productName: "Network Camera",
     rating: 5,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -793,6 +717,7 @@ const newArrivalData = [
     image: newArrivals_01,
     productName: "Camera",
     rating: 3.2,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -801,6 +726,7 @@ const newArrivalData = [
     image: newArrivals_02,
     productName: "Silver Porto Headset",
     rating: 4.8,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -809,6 +735,7 @@ const newArrivalData = [
     image: newArrivals_03,
     productName: "Car Audio Speaker KM100",
     rating: 2,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -817,6 +744,7 @@ const newArrivalData = [
     image: newArrivals_04,
     productName: "Sony Viao Laptop",
     rating: 1,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -825,6 +753,7 @@ const newArrivalData = [
     image: newArrivals_05,
     productName: "Network Camera",
     rating: 3,
+    totalRatings:2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -1143,7 +1072,7 @@ function Product_Details_Page() {
             <Accordian data={productOverviewData} isDescription={true} />
             <Accordian data={productSpecificationData} isDescription={false} />
             <div className="pd__newArrival__block">
-              <ProductContainer
+              <CarouselTypeTwo
                 productDetailPage={true}
                 sectionTitle="People Who Bought Also Bought"
                 carouselData={newArrivalData}

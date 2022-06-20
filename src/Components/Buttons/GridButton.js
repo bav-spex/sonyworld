@@ -1,6 +1,6 @@
 import React from "react";
 import "./../../SCSS/components/Buttons/_gridButton.scss";
-import { ReactComponent as GridIcon } from "./../../Assets/Icon/grid_icon.svg";
+import { ReactComponent as GridIcon } from "./../../assets/Icon/grid_icon.svg";
 
 function GridButton({ isActive }) {
   console.log(isActive);

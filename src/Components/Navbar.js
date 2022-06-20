@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import down_arrow from "./../Assets/Icon/down_arrow.svg";
+import down_arrow from "./../assets/Icon/down_arrow.svg";
 // import "./../SCSS/_navbar.scss";
 import { useLocation } from "react-router";
 function Navbar() {

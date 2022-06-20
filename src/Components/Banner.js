@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./../SCSS/_banner.scss";
-// import white_banner_pin  from "./../Assets/Icon/white_banner_pin.svg";
-// import banner_01 from "./../Assets/Banner/banner_01.jpg";
-import banner_02 from "./../Assets/Banner/banner_01.jpg";
-import left_arrow from "./../Assets/Icon/left_arrow.svg";
-import right_arrow from "./../Assets/Icon/right_arrow.svg";
+// import white_banner_pin  from "./../assets/Icon/white_banner_pin.svg";
+// import banner_01 from "/Banner/banner_01.jpg";
+import banner_02 from "./../assets/Banner/banner_01.jpg";
+import left_arrow from "./../assets/Icon/left_arrow.svg";
+import right_arrow from "./../assets/Icon/right_arrow.svg";
 
 const bannerDataJSON = [
   {
