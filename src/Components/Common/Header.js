@@ -4,6 +4,7 @@ import navbar_logo from "./../../assets/Logo/navbar_logo.svg";
 import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
 import navbar_white_down_arrow from "./../../assets/Icon/navbar_white_down_arrow.svg";
 import white_down_arrow from "./../../assets/Icon/white_down_arrow.svg";
+import popup_right_arrow from "./../../assets/Icon/popup_right_arrow.svg";
 import "./../../SCSS/Common/_header.scss";
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
@@ -26,11 +27,12 @@ import product_01 from "./../../assets/Product/product_01.jpg";
 import NavbarAdBanner_01 from "./../../assets/NavbarAdBanner/NavbarAdBanner_01.jpg";
 import MobilePopup from "../MobilePopup";
 import Text5 from "../Font/Text5";
+import Heading3 from "../Font/Heading3";
 import { withTheme } from "styled-components";
 const categoryData = [
   {
     id: 1,
-    productName: "Play Station",
+    mainCategory: "Play Station",
     category: [
       "Gaming PlayStation 4K",
       "Gaming PlayStation 8K",
@@ -104,7 +106,7 @@ const categoryData = [
   },
   {
     id: 2,
-    productName: "Television",
+    mainCategory: "Television",
     category: [
       "Gaming TV 4K",
       "Gaming TV 8K",
@@ -178,7 +180,7 @@ const categoryData = [
   },
   {
     id: 3,
-    productName: "Home AV",
+    mainCategory: "Home AV",
     category: [
       "Gaming Home AV 4K",
       "Gaming Home AV 8K",
@@ -252,7 +254,155 @@ const categoryData = [
   },
   {
     id: 4,
-    productName: "Audio",
+    mainCategory: "Audio",
+    category: [
+      "Gaming Audio 4K",
+      "Gaming Audio 8K",
+      "2021 Audio's",
+      "Smart 4K Audio",
+      "Smart 4K Audio",
+      "Smart 8K Audio",
+      "Smart OLED Audio",
+    ],
+    productList: [
+      {
+        id: 0,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 1,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 2,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 3,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 4,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 5,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 6,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 7,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 8,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+    ],
+    adBanner: [
+      {
+        id: 0,
+        image: NavbarAdBanner_01,
+      },
+      {
+        id: 1,
+        image: NavbarAdBanner_01,
+      },
+      {
+        id: 2,
+        image: NavbarAdBanner_01,
+      },
+    ],
+  },
+  {
+    id: 5,
+    mainCategory: "Home HV",
+    category: [
+      "Gaming Audio 4K",
+      "Gaming Audio 8K",
+      "2021 Audio's",
+      "Smart 4K Audio",
+      "Smart 4K Audio",
+      "Smart 8K Audio",
+      "Smart OLED Audio",
+    ],
+    productList: [
+      {
+        id: 0,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 1,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 2,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 3,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 4,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 5,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 6,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 7,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+      {
+        id: 8,
+        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+        image: product_01,
+      },
+    ],
+    adBanner: [
+      {
+        id: 0,
+        image: NavbarAdBanner_01,
+      },
+      {
+        id: 1,
+        image: NavbarAdBanner_01,
+      },
+      {
+        id: 2,
+        image: NavbarAdBanner_01,
+      },
+    ],
+  },
+  {
+    id: 6,
+    mainCategory: "Sounds",
     category: [
       "Gaming Audio 4K",
       "Gaming Audio 8K",
@@ -330,7 +480,6 @@ function Header() {
   // language changing in project //
   const [lang, setLang] = useState("en");
   const languages = [
-    
     {
       code: "en",
       name: "English",
@@ -341,7 +490,7 @@ function Header() {
       name: "العربية",
       dir: "rtl",
       country_code: "sa",
-    }
+    },
   ];
 
   // Find Current language from {language} object
@@ -365,14 +514,28 @@ function Header() {
   const handleLanguageChange = (lang) => {
     setIsLanguageMenuOpen(!isLanguageMenuOpen);
     setCurentLanguage(lang);
-
     i18next.changeLanguage(lang.code);
   };
 
   const [height, setHeight] = useState(0);
 
   const { pathname } = useLocation();
+  const [loginPopup, setLoginPopup] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+
+  const [selectedCategory, setSelectedCategory] = useState({
+    id: 1,
+    mainCategory: "Play Station",
+    category: [
+      "Gaming PlayStation 4K",
+      "Gaming PlayStation 8K",
+      "2021 PlayStation's",
+      "Smart 4K PlayStation",
+      "Smart 4K PlayStation",
+      "Smart 8K PlayStation",
+      "Smart OLED PlayStation",
+    ],
+  });
 
   const [navIndex, setNavIndex] = useState("");
   const [menuIndex, setMenuIndex] = useState(0);
@@ -590,7 +753,7 @@ function Header() {
                       alt=""
                       className="favourite header__icon"
                     />
-                    <img src={user} alt="" className="user header__icon" />
+                    <img src={user} alt="" className="user header__icon" onClick={()=>setLoginPopup(!loginPopup)} />
                     <div className="cart__icon__block">
                       <img
                         src={shopping_cart}
@@ -606,9 +769,8 @@ function Header() {
           </div>
         </div>
         <div className=" navbar__container">
-          <div className="row navbar__row">
-            <div className="col-4  col-sm-6 col-lg-0  col-xl-2"></div>
-            <div className="col-8  col-sm-6 col-lg-12  col-xl-10 navbar">
+          <div className=" navbar__row">
+            <div className=" navbar">
               <div className="navbar__link__block">
                 <div
                   onClick={() => setShowPopup(true)}
@@ -620,25 +782,25 @@ function Header() {
                   </span>
                 </div>
                 <Link className={className.topDeals} to="/top-deals">
-                {t("navbar.top_deals")}
+                  {t("navbar.top_deals")}
                 </Link>
                 <Link
                   className={className.dealsOfTheDay}
                   to="/deals-of-the-day"
                 >
-                   {t("navbar.delas_of_the_day")}
+                  {t("navbar.delas_of_the_day")}
                 </Link>
                 <Link className={className.digitalCards} to="/digital-cards">
-                {t("navbar.digital_cards")}
+                  {t("navbar.digital_cards")}
                 </Link>
                 <Link className={className.topSellers} to="/top-sellers">
-                {t("navbar.top_sellers")}
+                  {t("navbar.top_sellers")}
                 </Link>
                 <Link className={className.others} to="/others">
-                {t("navbar.others")}
+                  {t("navbar.others")}
                 </Link>
                 <Link className={className.services} to="/services">
-                {t("navbar.services")}
+                  {t("navbar.services")}
                   <img
                     src={navbar_white_down_arrow}
                     alt=""
@@ -769,63 +931,60 @@ function Header() {
               ? "container-fluid product__popup__container"
               : "container-fluid product__popup__container__disable"
           }
-          onMouseLeave={() => navbarTab__mouseTab(false, "")}
+         
         >
-          <div className="product__popup__block">
-            {categoryData.map((mainProduct, mainProductIndex) => {
-              return (
-                <div
-                  key={mainProduct.id}
-                  className={
-                    menuIndex === mainProduct.id
-                      ? "row inner__product__popup__block"
-                      : "row inner__product__popup__block__disable"
-                  }
-                >
-                  <div className="col-sm-4 col-md-2 col-lg-2 category__block">
-                    {mainProduct.category.map((category, categoryIndex) => {
-                      return (
-                        <p className="category__title" key={categoryIndex}>
-                          {category}
-                        </p>
-                      );
-                    })}
-                  </div>
-                  <div className="col-sm-8 col-md-7  col-lg-7 productList__block">
-                    {mainProduct.productList.map((product, productIndex) => {
-                      return (
-                        <div key={product.id} className="popup__product__block">
-                          <img
-                            src={product_01}
-                            alt=""
-                            className="product__image"
-                          />
-                          {/* <img
-                              src={product.image}
-                              alt=""
-                              className="product__image"
-                            /> */}
-                          <p className="product__title">{product.title}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="col-sm-12 col-md-3 col-lg-3 adsBanner__block">
-                    {mainProduct.adBanner.map((adBanner, adBannerIndex) => {
-                      return (
-                        <img
-                          key={adBanner.id}
-                          src={NavbarAdBanner_01}
-                          alt=""
-                          className="adBanner__image"
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
+          <div className="row product__popup__block"  onMouseLeave={() => navbarTab__mouseTab(false, "")}>
+            <div className="col-6 col-sm-6 col-md-3 popup__left__block">
+              {categoryData.map((catObj, catIndex) => {
+                return (
+                  <>
+                    <div
+                      key={catObj.id}
+                      onClick={() => setSelectedCategory(catObj)}
+                      className={selectedCategory.mainCategory === catObj.mainCategory ?"selected__mainCategory__block" :"mainCategory__block"}
+                    >
+                      <p className="mainCategory__left__block">
+                        {catObj.mainCategory}
+                      </p>
+                      <img
+                        src={popup_right_arrow}
+                        alt=""
+                        className="popup__right__arrow"
+                      />
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+            <div className="col-6 col-sm-6 col-md-9 popup__right__block">
+              <div className="mainCategory__title__block">
+                <p className="mainCategory__right__block">
+                  {selectedCategory.mainCategory}
+                </p>
+              </div>
+              <div className="subCategory__block">
+                {selectedCategory.category.map((subcat, subcatIndex) => {
+                  return(
+
+                    <Link className="subcategory" to={`/${selectedCategory.mainCategory}/${subcat.replaceAll(" ","")}`}>
+                  <p >{subcat}</p>
+                  </Link>
+                    ) 
+                })}
+              </div>
+            </div>
           </div>
+        </div>
+        <div
+          className={
+            loginPopup
+              ? "container-fluid login__popup__container"
+              : "container-fluid login__popup__container__disable"
+          }
+         
+        >
+
+          
         </div>
       </div>
     </>

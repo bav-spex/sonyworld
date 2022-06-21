@@ -77,7 +77,7 @@ function Banner({bannerData}) {
   return (
     <>
       <div className="container-fluid banner__container">
-        <div className="banner__block" id="banner__block">
+        <div className=" banner__block" id="banner__block">
           {banner.map((ban, banIndex) => {
             let position = "banner nextBanner";
             if (banIndex === index) {
