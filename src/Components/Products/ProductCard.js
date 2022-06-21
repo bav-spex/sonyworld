@@ -10,6 +10,11 @@ import productTwo_quality_icon from "./../../assets/Product/productTwo_quality_i
 // import product_02 from "./../../assets/Product/product_02.png";
 // import product_03 from "./../../assets/Product/product_03.png";
 // import product_04 from "./../../assets/Product/product_04.png";
+import product_01 from "./../../assets/Product/product_01.png";
+import product_02 from "./../../assets/Product/product_02.png";
+import product_03 from "./../../assets/Product/product_03.png";
+import product_04 from "./../../assets/Product/product_04.png";
+import product_05 from "./../../assets/Product/product_04.png";
 
 function ProductCard({ isNew, resolution, isLiked }) {
   return (
