@@ -29,6 +29,7 @@ import MobilePopup from "../MobilePopup";
 import Text5 from "../Font/Text5";
 import Heading3 from "../Font/Heading3";
 import { withTheme } from "styled-components";
+import LoginWrapper from "../Login/LoginWrapper";
 const categoryData = [
   {
     id: 1,
@@ -521,8 +522,25 @@ function Header() {
 
   const { pathname } = useLocation();
   const [loginPopup, setLoginPopup] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [categoryPopup, setCategoryPopup] = useState(false);
+  const [loginMode, setLoginMode] = useState(false);
+  const [loginWrapper, setLoginWrapper] = useState(false);
+  const [userLoginPopup, setUserLoginPopup] = useState(false);
+  const openLoginPopup = () => {
+    setUserLoginPopup(true)
+    setCategoryPopup(false);
+    setLoginPopup(!loginPopup);
+  };
+  const openProductPopup = () => {
+    setCategoryPopup(!categoryPopup);
+    setLoginPopup(false);
+  };
 
+  const openLoginWrapper = (mode)=>{
+    setLoginMode(mode)
+    setLoginWrapper(true)
+    setUserLoginPopup(false)
+  }
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
     mainCategory: "Play Station",
@@ -650,7 +668,7 @@ function Header() {
   }, [pathname]);
 
   const navbarTab__mouseTab = (popupValue, navIndex, menuIndex) => {
-    setShowPopup(popupValue);
+    setCategoryPopup(popupValue);
     setNavIndex(navIndex);
     setMenuIndex(menuIndex);
   };
@@ -753,7 +771,18 @@ function Header() {
                       alt=""
                       className="favourite header__icon"
                     />
-                    <img src={user} alt="" className="user header__icon" onClick={()=>setLoginPopup(!loginPopup)} />
+                    <div className="header__user__block">
+                    <img
+                      src={user}
+                      alt=""
+                      className="user header__icon"
+                      onClick={() => openLoginPopup()}
+                      />
+                      <div className={userLoginPopup ?"signin__signup__popup" :"signin__signup__popup__disable"}>
+                        <button onClick={()=>openLoginWrapper("signin")} className="signin__button">SIGN IN</button>
+                        <button onClick={()=>openLoginWrapper("signup")} className="signup__button">SIGN UP</button>
+                      </div>
+                      </div>
                     <div className="cart__icon__block">
                       <img
                         src={shopping_cart}
@@ -773,7 +802,7 @@ function Header() {
             <div className=" navbar">
               <div className="navbar__link__block">
                 <div
-                  onClick={() => setShowPopup(true)}
+                  onClick={() => openProductPopup()}
                   className="navbar__allCategories"
                 >
                   <img src={menu} alt="" className="navbar__menu__icon" />
@@ -927,21 +956,27 @@ function Header() {
 
         <div
           className={
-            showPopup
-              ? "container-fluid product__popup__container"
-              : "container-fluid product__popup__container__disable"
+            categoryPopup
+              ? "container-fluidcategory__popup__container"
+              : "container-fluid category__popup__container__disable"
           }
-         
         >
-          <div className="row product__popup__block"  onMouseLeave={() => navbarTab__mouseTab(false, "")}>
-            <div className="col-6 col-sm-6 col-md-3 popup__left__block">
+          <div
+            className="row category__popup__block"
+            onMouseLeave={() => navbarTab__mouseTab(false, "")}
+          >
+            <div className="col-6 col-sm-6 col-md-3 category__popup__left__block">
               {categoryData.map((catObj, catIndex) => {
                 return (
                   <>
                     <div
                       key={catObj.id}
                       onClick={() => setSelectedCategory(catObj)}
-                      className={selectedCategory.mainCategory === catObj.mainCategory ?"selected__mainCategory__block" :"mainCategory__block"}
+                      className={
+                        selectedCategory.mainCategory === catObj.mainCategory
+                          ? "selected__mainCategory__block"
+                          : "mainCategory__block"
+                      }
                     >
                       <p className="mainCategory__left__block">
                         {catObj.mainCategory}
@@ -956,7 +991,7 @@ function Header() {
                 );
               })}
             </div>
-            <div className="col-6 col-sm-6 col-md-9 popup__right__block">
+            <div className="col-6 col-sm-6 col-md-9 category__popup__right__block">
               <div className="mainCategory__title__block">
                 <p className="mainCategory__right__block">
                   {selectedCategory.mainCategory}
@@ -964,12 +999,16 @@ function Header() {
               </div>
               <div className="subCategory__block">
                 {selectedCategory.category.map((subcat, subcatIndex) => {
-                  return(
-
-                    <Link className="subcategory" to={`/${selectedCategory.mainCategory}/${subcat.replaceAll(" ","")}`}>
-                  <p >{subcat}</p>
-                  </Link>
-                    ) 
+                  return (
+                    <Link
+                      className="subcategory"
+                      to={`/${
+                        selectedCategory.mainCategory
+                      }/${subcat.replaceAll(" ", "")}`}
+                    >
+                      <p>{subcat}</p>
+                    </Link>
+                  );
                 })}
               </div>
             </div>
@@ -981,10 +1020,8 @@ function Header() {
               ? "container-fluid login__popup__container"
               : "container-fluid login__popup__container__disable"
           }
-         
         >
-
-          
+        {loginWrapper ? <LoginWrapper loginMode={loginMode}/>:""}
         </div>
       </div>
     </>

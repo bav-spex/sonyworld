@@ -4,6 +4,7 @@
   padding: 0px;
   z-index: 10;
   position: fixed;
+
   // overflow-y: scroll;
   width: 100%;
   height: auto;
@@ -14,9 +15,10 @@
     display: flex;
     align-items: center;
     width: 100%;
+    position: relative;
     .header {
-      margin: 0px 0px;
-      width: 100%;
+      margin: 0px auto;
+      width: 1702px;
       padding: 0px;
       .header__sidemenu__icon {
         display: none;
@@ -30,7 +32,7 @@
           align-items: center;
           padding: 0px;
           .header__logo {
-            margin-left: 10px;
+            // margin-left: 10px;
           }
         }
         .search__box__block {
@@ -39,7 +41,7 @@
             padding: 0px 6px 0px 0px;
             background-color: white;
             height: 30px;
-            width: 60%;
+            width: 80%;
             border-radius: 5px;
             display: flex;
             align-items: center;
@@ -70,6 +72,47 @@
             .header__icon {
               margin: 0px 5px 0px;
               cursor: pointer;
+            }
+            .header__user__block {
+              position: relative;
+              .signin__signup__popup__disable{
+                display: none;
+              }
+              .signin__signup__popup {
+                position: absolute;
+                top: 40px;
+                right: 0px;
+                z-index: 2;
+                background-color: #ffffff;
+                width: 230px;
+                padding: 32px 18px;
+                .signin__button {
+                  background: #dc3a1a 0% 0% no-repeat padding-box;
+                  box-shadow: 0px 3px 6px #00000005;
+                  border-radius: 5px;
+                  color: white;
+                  outline: none;
+                  border: none;
+                  width: 100%;
+                  font-size: 16px;
+                  font-family: "arialbold";
+                  padding: 16px 0px;
+                  margin: 0px 0px 16px;
+                }
+                .signup__button {
+                  background: #ffffff 0% 0% no-repeat padding-box;
+                  box-shadow: 0px 3px 6px #00000005;
+                  border: 2px solid #000000;
+                  border-radius: 5px;
+                  color: black;
+                  outline: none;
+                  width: 100%;
+                  font-size: 16px;
+                  font-family: "arialbold";
+                  padding: 16px 0px;
+                }
+              }
+              
             }
             .main__language__selection {
               margin: 0px 5px 0px;
@@ -153,11 +196,11 @@
           display: flex;
           align-items: center;
           padding: 0px 0px 5px;
-
+          margin: 0px auto;
           .navbar__allCategories {
             font-family: "arialbold";
             color: white;
-            margin: 0px 30px 0px 8px;
+            margin: 0px 30px 0px 30px;
             display: flex;
             align-items: center;
             cursor: pointer;
@@ -236,19 +279,19 @@
   .mobile__navbar__disable {
     display: none;
   }
-  .product__popup__container {
+  .category__popup__container {
     // background: #ffffff 0% 0% no-repeat padding-box;
 
     min-height: 100%;
     overflow-y: scroll;
 
-    .product__popup__block {
-      width: 1000px;
+    .category__popup__block {
+      width: 900px;
       min-height: 560px;
       background: #ffffff 0% 0% no-repeat padding-box;
       box-shadow: 0px 3px 6px #00000029;
       margin: 0px auto;
-      .popup__left__block {
+      .category__popup__left__block {
         padding: 40px 30px 0px 46px;
         background: #f1f1f1 0% 0% no-repeat padding-box;
         .mainCategory__block {
@@ -283,7 +326,7 @@
           }
         }
       }
-      .popup__right__block {
+      .category__popup__right__block {
         padding: 0px 30px 0px;
         background: #ffffff 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 6px #00000029;
@@ -312,17 +355,22 @@
       }
     }
   }
-  .product__popup__container__disable {
+  .category__popup__container__disable {
     display: none;
   }
   .login__popup__container {
-    padding: 0px;
+    position: absolute;
+    top: 70px;
     margin: 0px;
     width: 100%;
-    min-height: 100vh;
+    z-index: 1;
+    height: 94vh;
     overflow-y: scroll;
-    background-color: #00000050;
-    
+    background-color: #02020250;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    // padding: 100px;
   }
   .login__popup__container__disable {
     display: none;
