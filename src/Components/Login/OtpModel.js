@@ -26,7 +26,7 @@ function OtpModel({ handleChangePopupMode, closeLoginPopup }) {
           <Heading7 text="+966 50 655 2835" span={true} />
           <button className="change__button">Change</button>
         </div>
-        <Text3 text="We’ve sent a One Time Password (OTP) to the mobile number above. Please enter it to complete verification" />
+        <Text3 text="We’ve sent a One Time Password (OTP) to the mobile number above. Please enter it to complete verification" marginBottom={10} />
         <div className="main__form__field__block">
           {/* <p className="form__label">First Name</p> */}
           <Heading7 text="Enter OTP" marginBottom={10} />
