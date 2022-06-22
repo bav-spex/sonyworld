@@ -527,10 +527,12 @@ function Header() {
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
   const openLoginPopup = () => {
-    setUserLoginPopup(true)
+    setUserLoginPopup(!userLoginPopup)
+    setLoginPopup(userLoginPopup ? false : true)
     setCategoryPopup(false);
-    setLoginPopup(!loginPopup);
+    setLoginMode("")
   };
+  console.log(userLoginPopup,loginPopup);
   const openProductPopup = () => {
     setCategoryPopup(!categoryPopup);
     setLoginPopup(false);
@@ -540,6 +542,7 @@ function Header() {
     setLoginMode(mode)
     setLoginWrapper(true)
     setUserLoginPopup(false)
+    console.log(loginWrapper);
   }
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
@@ -677,6 +680,9 @@ function Header() {
     setNavIndex(navIndex);
     setMenuIndex(menuIndex);
   };
+  const closeLoginPopup=()=>{
+    setLoginPopup(false)
+  }
   return (
     <>
       <div className="container-fluid main__navbar__container">
@@ -957,7 +963,7 @@ function Header() {
         <div
           className={
             categoryPopup
-              ? "container-fluidcategory__popup__container"
+              ? "container-fluid category__popup__container"
               : "container-fluid category__popup__container__disable"
           }
         >
@@ -1021,7 +1027,7 @@ function Header() {
               : "container-fluid login__popup__container__disable"
           }
         >
-        {loginWrapper ? <LoginWrapper loginMode={loginMode}/>:""}
+        {loginWrapper ? <LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>:""}
         </div>
       </div>
     </>

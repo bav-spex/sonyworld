@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="empty_orange_check" transform="translate(-515 -734)">
+    <g id="Rectangle_2681" data-name="Rectangle 2681" transform="translate(515 734)" fill="none" stroke="#dc3a1a" stroke-width="1">
+      <rect width="24" height="24" rx="4" stroke="none"/>
+      <rect x="0.5" y="0.5" width="23" height="23" rx="3.5" fill="none"/>
+    </g>
+    <g id="tick" transform="translate(521 673.002)">
+      <g id="Group_2022" data-name="Group 2022" transform="translate(0 67.997)">
+        <path id="Path_8461" data-name="Path 8461" d="M11.823,68.173a.6.6,0,0,0-.848,0L3.787,75.361,1.024,72.6a.6.6,0,0,0-.848.848l3.187,3.187a.6.6,0,0,0,.848,0l7.612-7.612a.6.6,0,0,0,0-.85Z" transform="translate(0 -67.998)" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

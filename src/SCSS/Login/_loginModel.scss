@@ -1,18 +1,21 @@
 .loginModel__container{
-    color: white;
     margin: 100px 0px 0px 0px;
     width: 400px;
-    background-color: #ffffff;
     .loginModel__header{
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 24px 30px;
         border-bottom: 1px solid #818181;
+    background-color: #ffffff;
+    .cancel__button{
+     cursor: pointer;
+  }
     }
     .loginModel__content{
         padding: 30px 30px;
-     .grtOtp__button{
+    background-color: #ffffff;
+     .getOtp__button{
         background: #ffffff 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 6px #00000005;
         border: 2px solid #000000;
@@ -36,7 +39,7 @@
         font-size: 16px;
         font-family: "arialregular";
         padding: 16px 20px;
-        margin: 0px 0px 16px;
+        margin: 0px 0px 10px;
         display: flex;
         align-items: center;
         .signin__button__icon{
@@ -44,10 +47,57 @@
         }
      }   
      .facebook__signin__button{
+        background: #2C5A98 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000005;
+        border-radius: 5px;
+        color: white;
+        outline: none;
+        border: none;
         width: 100%;
+        font-size: 16px;
+        font-family: "arialregular";
+        padding: 16px 20px;
+        margin: 0px 0px 10px;
+        display: flex;
+        align-items: center;
+        .signin__button__icon{
+          margin: 0px 30px 0px 0px;  
+        }
      }   
      .apple__signin__button{
+        background: #101010 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000005;
+        border-radius: 5px;
+        color: white;
+        outline: none;
+        border: none;
         width: 100%;
-     }   
+        font-size: 16px;
+        font-family: "arialregular";
+        padding: 16px 20px;
+        margin: 0px 0px 10px;
+        display: flex;
+        align-items: center;
+        .signin__button__icon{
+          margin: 0px 30px 0px 0px;  
+        }
+     }  
+     .loginModel__footer {
+      padding: 10px 0px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .footer__text {
+        font-size: 18px;
+        font-family: "arialbold";
+        margin: 0px ;
+      }
+      .footer__link__text {
+        color: #ff4f04;
+        font-size: 18px;
+        font-family: "arialbold";
+        margin: 0px 0px 0px 5px;
+      }
+    }
     }
 }
