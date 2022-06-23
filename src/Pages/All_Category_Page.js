@@ -579,8 +579,8 @@ const All_Category_Page = () => {
       </div>
       <CategoryThreeBanner
         bannerImage={[
-          tvAccessoriesImage3,
-          tvAccessoriesImage3,
+          tvAccessoriesImage1,
+          tvAccessoriesImage2,
           tvAccessoriesImage3,
         ]}
         title="TV Accessories"
