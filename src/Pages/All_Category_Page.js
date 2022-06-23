@@ -538,7 +538,7 @@ const bestSellersData = [
     ],
   },
 ];
-const All_Category = () => {
+const All_Category_Page = () => {
   console.log("AllCategory");
   return (
     <div className="container-fluid allCategory">
@@ -584,4 +584,4 @@ const All_Category = () => {
   );
 };
 
-export default All_Category;
+export default All_Category_Page;

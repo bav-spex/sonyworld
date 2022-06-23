@@ -21,7 +21,7 @@ import Dashboard from "./../Pages/Dashboard";
 import My_Orders from "./../Pages/My_Orders";
 import Order_Details from "./../Pages/Order_Details";
 import Category_Page from "./../Pages/Category_Page";
-import AllCategory from "./../Pages/All_Category";
+import All_Category_Page from "./../Pages/All_Category_Page";
 
 
 function AllRoutes(props) {
@@ -29,7 +29,7 @@ function AllRoutes(props) {
     <Routes>
       <Route exact path="/" element={<Home log="log" />}></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
-      <Route exact path="/category" element={<AllCategory />} ></Route>
+      <Route exact path="/category" element={<All_Category_Page />} ></Route>
       <Route exact path="/playstation" element={<Play_Station_Page />}></Route>
       <Route exact path="/television" element={<TeleVision_Page />}></Route>
       <Route exact path="/camera" element={<Camera_Page />}></Route>
