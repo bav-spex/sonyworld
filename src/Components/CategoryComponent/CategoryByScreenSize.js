@@ -2,12 +2,12 @@ import React from "react";
 import "./../../SCSS/_categoryByScreenSize.scss";
 
 const categoryScreenSize = [
-  "Upto 32",
-  "Upto 32",
-  "Upto 32",
-  "Upto 32",
-  "Upto 32",
-  "Upto 32",
+  `Upto 32"`,
+  `32-40"`,
+  `40-50"`,
+  `50-60"`,
+  `60-70"`,
+  `Above 70"`,
 ];
 const Category_By_ScreenSize = () => {
   return (

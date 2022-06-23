@@ -13,19 +13,59 @@
       .first__feature__category__block {
         width: 50%;
         margin: 0px 0px 20px;
-        .first__feature__category {
-          background: #ffffff;
 
+        .first__feature__category {
+          // background: #ffffff;
           height: 100%;
           overflow: hidden;
           border-radius: 15px;
-          padding: 32px;
+          // padding: 32px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          .deal__of__day__container {
+            background: #ffffff;
+
+            display: flex;
+            .triangle-right {
+              // background: transparent
+              //   linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0% no-repeat
+              //   padding-box;
+              // width: 280px;
+              // height: 74px;
+              // position: relative;
+              width: 0;
+              height: 0;
+              border-top: 20px solid transparent;
+              border-left: 15px solid #ffdb3b;
+              border-bottom: 20px solid transparent;
+            }
+            .rectangle {
+              width: 260px;
+              height: 40px;
+              background: transparent
+                linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0%
+                no-repeat padding-box;
+              display: flex;
+              align-items: center;
+              text-align: center;
+              justify-content: center;
+              font-family: "arialbold";
+              font-size: 25px;
+            }
+            .rectangleLeft {
+              width: 31px;
+              height: 77px;
+              background: #ffad2e;
+              border-bottom-left-radius: 15px;
+              border-top-left-radius: 15px;
+            }
+          }
           .first__feature__category__image__block {
             width: 100%;
-            margin: 20px auto 40px;
+            // margin: 20px auto 40px;
+            background: #ffffff;
+            margin-left: 31px;
             height: 100%;
             display: flex;
             justify-content: center;
@@ -36,6 +76,10 @@
               margin: 0px auto;
               // width: 100%;
             }
+          }
+          .heading__inner__text {
+            margin-left: 31px;
+            background: #ffffff;
           }
         }
       }

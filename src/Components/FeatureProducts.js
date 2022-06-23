@@ -20,8 +20,22 @@ function FeatureProducts() {
         <p className="section__title">Televisions</p>
         <div className="row inner__feature__category__block">
           <div className="first__feature__category__block">
+            {/* <div className="deal__of__the__day">
+                <p className="inner__text">DEALS OF THE DAY</p>
+              </div> */}
+
             <div className="first__feature__category">
+              {/* <div className="deal__of__the__day">
+                <p className="inner__text">DEALS OF THE DAY</p>
+              </div> */}
               {/* <div></div> */}
+
+              <div className="deal__of__day__container">
+                <div className="rectangleLeft"></div>
+                <div className="rectangle">Deal of the day</div>
+                <div className="triangle-right"></div>
+              </div>
+
               <div className="first__feature__category__image__block">
                 <img
                   src={feature_product_01}
@@ -29,7 +43,7 @@ function FeatureProducts() {
                   className="first__feature__category__image"
                 />
               </div>
-              <div>
+              <div className="heading__inner__text">
                 <Heading7
                   marginBottom={10}
                   text='Sony 55" Class XR55X90J Bravia XR Full Array LED 4K Ultra HD Smart Google TV with Dolby Vision HDR X90J S eries 2021 Model'
