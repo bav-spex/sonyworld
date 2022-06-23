@@ -21,19 +21,31 @@
     top: 50%;
     transform: translateY(-50%);
     .arrow {
-      filter: invert(1);
+      // filter: invert(1);
       cursor: pointer;
+      padding: 10px 15px;
+      background: #ffffff 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 6px #00000029;
     }
     .arrow__disable {
       visibility: hidden;
     }
     .left__arrow {
-      transform: translateX(-200%);
+      transform: translateX(-50%);
     }
     .right__arrow {
+      transform: translateX(5%);
     }
   }
   .carouselTypeTwo__inner__block {
+    // position: relative;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    // transition: all 0.2s ease-in;
+  }
+  .rv__inner__mobile__screen {
     // position: relative;
     display: flex;
     align-items: center;
@@ -52,7 +64,7 @@
 }
 @media screen and (max-width: 1702px) {
   .carouselTypeTwo__block {
-    width: 90% !important;
+    width: 100% !important;
   }
 }
 @media screen and (max-width: 1400px) {
@@ -70,12 +82,10 @@
     width: 100% !important;
 
     .left__arrow {
-      filter: none !important;
-      transform: translateX(40%) !important;
+      transform: translateX(-50%) !important;
     }
     .right__arrow {
-      filter: none !important;
-      transform: translateX(-40%) !important;
+      transform: translateX(50%) !important;
     }
   }
 }
@@ -86,6 +96,12 @@
   }
   .arrow__block {
     width: 100% !important;
+    .left__arrow {
+      transform: translateX(-10%) !important;
+    }
+    .right__arrow {
+      transform: translateX(20%) !important;
+    }
   }
 }
 @media screen and (max-width: 768px) {

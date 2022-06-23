@@ -1,12 +1,12 @@
 import React from "react";
 import "./../SCSS/_homePageCategoryBlock.scss";
 
-import feature_product_01 from "./../Assets/FeatureProduct/feature_product_01.png";
-import feature_product_02 from "./../Assets/FeatureProduct/feature_product_02.png";
-import feature_product_03 from "./../Assets/FeatureProduct/feature_product_03.png";
-import feature_product_04 from "./../Assets/FeatureProduct/feature_product_04.png";
-import feature_product_05 from "./../Assets/FeatureProduct/feature_product_05.png";
-import feature_product_06 from "./../Assets/FeatureProduct/feature_product_01.png";
+import feature_product_01 from "./../assets/FeatureProduct/feature_product_01.png";
+import feature_product_02 from "./../assets/FeatureProduct/feature_product_02.png";
+import feature_product_03 from "./../assets/FeatureProduct/feature_product_03.png";
+import feature_product_04 from "./../assets/FeatureProduct/feature_product_04.png";
+import feature_product_05 from "./../assets/FeatureProduct/feature_product_05.png";
+import feature_product_06 from "./../assets/FeatureProduct/feature_product_01.png";
 import Heading6 from "./Font/Heading6";
 
 function HomePageCategoryBlock() {

@@ -9,7 +9,7 @@ import {
 import "./App.css";
 
 import { Helmet } from "react-helmet-async";
-import TopNavbar from "./Components/Common/TopNavbar";
+import Header from "./Components/Common/Header";
 import AllRoutes from "./routes";
 import Footer from "./Components/Common/Footer";
 
@@ -24,7 +24,7 @@ function App() {
         <link rel="canonical" href={getCurrentPageUrl} />
       </Helmet>
       <div className="main_header">
-        <TopNavbar />
+        <Header />
       </div>
       
       <div className="main_wrapper">

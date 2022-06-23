@@ -1,6 +1,6 @@
 import React from "react";
 import "./../SCSS/_ourblogs.scss";
-import calender from "./../Assets/Icon/calender.svg";
+import calender from "./../assets/Icon/calender.svg";
 function OurBlogs({ ourBlogsData }) {
   return (
     <div className="container-fluid ourBlogs__container">

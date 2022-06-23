@@ -1,9 +1,9 @@
 import React from "react";
 import "./../../SCSS/ProductType/_productThree.scss";
-import product_01 from "./../../Assets/Product/product_01.png";
-import black_down_arrow from "./../../Assets/Icon/black_down_arrow.svg";
+import product_01 from "./../../assets/Product/product_01.png";
+import black_down_arrow from "./../../assets/Icon/black_down_arrow.svg";
 
-import pickup_store from "./../../Assets/Icon/pickup_store.svg";
+import pickup_store from "./../../assets/Icon/pickup_store.svg";
 import { Link } from "react-router-dom";
 import Heading1 from "./../Font/Heading1";
 import RatingBlock from "./../MostSharedComponent/RatingBlock";

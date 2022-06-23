@@ -1,6 +1,6 @@
 import React from "react";
 import "./../../SCSS/MostSharedComponents/_smallWarrantyBlock.scss";
-import warranty_icon from "./../../Assets/Icon/warranty.png";
+import warranty_icon from "./../../assets/Icon/warranty.png";
 import Heading7 from "../Font/Heading7";
 function SmallWarrantyBlock({ warranty }) {
   return (

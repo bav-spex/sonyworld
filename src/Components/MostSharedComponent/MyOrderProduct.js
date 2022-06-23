@@ -8,7 +8,7 @@ import AvailableOffers from "./AvailableOffers";
 import ProtectionPlan from "./ProtectionPlan";
 import SmallWarrantyBlock from "./SmallWarrantyBlock";
 
-import product_01 from "./../../Assets/Product/product_01.png";
+import product_01 from "./../../assets/Product/product_01.png";
 import "./../../SCSS/MostSharedComponents/_myOrderProduct.scss";
 import Protection from "./Protection";
 function MyOrderProduct({ product }) {

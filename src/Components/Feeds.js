@@ -1,7 +1,7 @@
 import React from "react";
 import "./../SCSS/_feeds.scss";
-import newsfeed from "./../Assets/Feed/newsfeed.png"
-import instafeed from "./../Assets/Feed/instafeed.png"
+import newsfeed from "./../assets/Feed/newsfeed.png"
+import instafeed from "./../assets/Feed/instafeed.png"
 function Feeds() {
   return (
     <div className="container-fluid feed__container">

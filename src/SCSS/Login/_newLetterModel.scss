@@ -1,0 +1,84 @@
+.newsLetterModel__container{
+    margin: 100px 0px 0px 0px;
+    width: 400px;
+    .newsLetterModel__header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 30px;
+        border-bottom: 1px solid #818181;
+    background-color: #ffffff;
+    .cancel__button {
+        cursor: pointer;
+      }
+    }
+    .newsLetterModel__content{
+        padding: 30px 30px;
+    background-color: #ffffff;
+    .main__form__field__block {
+        margin: 0px 0px 30px;
+        .form__label {
+        }
+        .field__block {
+          border: 1px solid #c8c8c8;
+          border-radius: 4px;
+          padding: 10px 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .form__field {
+            outline: none;
+            border: none;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+          }
+        }
+      }
+      .subscribe__button{
+        background: #dc3a1a 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 6px #00000005;
+      border-radius: 5px;
+      color: white;
+      outline: none;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      font-family: "arialbold";
+      padding: 16px 0px;
+      
+      }
+     .getOtp__button{
+        background: #ffffff 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000005;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        color: black;
+        outline: none;
+        width: 100%;
+        font-size: 16px;
+        font-family: "arialbold";
+        padding: 16px 0px;
+        margin: 0px 0px 10px;
+     }   
+     .google__signin__button{
+        background: #FF3D2B 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000005;
+        border-radius: 5px;
+        color: white;
+        outline: none;
+        border: none;
+        width: 100%;
+        font-size: 16px;
+        font-family: "arialregular";
+        padding: 16px 20px;
+        margin: 0px 0px 10px;
+        display: flex;
+        align-items: center;
+        .signin__button__icon{
+          margin: 0px 30px 0px 0px;  
+        }
+     }   
+   
+     
+    }
+}

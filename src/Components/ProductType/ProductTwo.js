@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
-import empty_favourite from "./../../Assets/Icon/empty_favourite.svg";
-import fulfill_favourite from "./../../Assets/Icon/fulfill_favourite.svg";
-import productTwo_quality_icon from "./../../Assets/Product/productTwo_quality_icon.png";
+import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
+import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
+import productTwo_quality_icon from "./../../assets/Product/productTwo_quality_icon.png";
 import "./../../SCSS/ProductType/_productTwo.scss";
 import Heading7 from "./../Font/Heading7";
 import Text4 from "./../Font/Text4";
 import OldPrice from "./../Font/OldPrice";
 import Price from "./../Font/Price";
 import Heading6 from "./../Font/Heading6";
+import RatingBlock from "../MostSharedComponent/RatingBlock";
 
 function ProductTwo({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
@@ -79,13 +80,10 @@ function ProductTwo({ productDetailPage, product }) {
       </p>
       <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
       <div className="rating__block">
-        <Rating
-          // onClick={handleRating}
-          size={22}
-          fillColor="#303030"
-          emptyColor="#C8C8C8"
-          readonly={true}
-          ratingValue={(product.rating * 100) / 5} /* Available Props */
+        <RatingBlock
+          rating={product.rating}
+          totalRatings={product.totalRatings}
+         
         />
       </div>
       <p className="productTwo__series">Model and Price</p>

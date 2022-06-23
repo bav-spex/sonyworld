@@ -1,0 +1,41 @@
+{
+  "app_title": "Title",
+  "language": "Language",
+  "welcome_message": "Welcome",
+  "days_since_release": "it's been {{number_of_days}} days since this video was released",
+  "navbar": {
+    "all_catetegories": "All Categories",
+    "top_deals": "Top Deals",
+    "delas_of_the_day": "Deals of the Day",
+    "digital_cards": "Digital Cards",
+    "top_sellers": "Top Sellers",
+    "others": "Others",
+    "services": "Services"
+  },
+  "footer": {
+    "about": "About",
+    "about_us": "About Us",
+    "terms_and_conditions": "Terms and Conditions",
+    "secured_payment": "Secured Payment",
+    "our_stores": "Our Stores",
+    "service_centers": "Service Centers",
+    "account_info": "Account Info",
+    "my_account": "My Account",
+    "order_history": "Order History",
+    "address_book": "Address Book",
+    "change_passwords": "Change Passwords",
+    "contact_us": "Contact Us",
+    "quick_links": "Quick Links",
+    "support": "Support",
+    "exchange_and_return_policy": "Exchange & Return Policy",
+    "warranty_policy": "Warrenty Policy",
+    "installment": "Installment",
+    "email": "Email",
+    "toll_free_number": "Toll-free Number",
+    "all_rights_reserved": "COPYRIGHT © 2022 SONY MIDDLE EAST AND AFRICA FZE. ALL RIGHTS RESERVED",
+    "disclaimer_1": "DISCLAIMER: The Sony Products on",
+    "disclaimer_2": " are sold, invoiced, and delivered by Sony’s official distributor in KSA, Modern Electronics Co. Ltd. LLC",
+    "terms_conditions": "TERMS & CONDITIONS",
+    "privacy_policy": "PRIVACY POLICY"
+  }
+}

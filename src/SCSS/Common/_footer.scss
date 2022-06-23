@@ -7,7 +7,7 @@
     padding: 0px;
     .footer__row {
       padding: 0px 12px 20px;
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 1px solid #202020;
       .logo__social__row {
         padding: 0px;
         .footer__logo___link {
@@ -69,41 +69,20 @@
         }
       }
     }
-    .copyright__row {
+    .card__and__live__row {
       padding: 30px 0px;
       display: flex;
-      align-items: center;
-      .copyright__block {
-        padding: 0px;
-        .copyright__text__block {
-          display: flex;
-          align-items: flex-end;
-          margin: 0px 0px 30px 0px;
-          .copyright__text {
-            font-family: "arialregular";
-            font-size: 16px;
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0px;
-          }
-          .copyright__small__text {
-            font-family: "arialregular";
-            font-size: 14px;
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0px 0px 0px 10px;
-          }
-        }
-        .card__block {
-          display: flex;
-          .card {
-            object-fit: cover;
-            width: 59px;
-            height: 38px;
-            // width: 100%;
-            // height: 100%;
-            margin: 0px 10px 0px 0px;
-          }
+      align-items: flex-start;
+
+      .card__block {
+        display: flex;
+        .card {
+          object-fit: cover;
+          width: 59px;
+          height: 38px;
+          // width: 100%;
+          // height: 100%;
+          margin: 0px 10px 0px 0px;
         }
       }
       .sony__expert__block {
@@ -111,20 +90,42 @@
         justify-content: flex-end;
         padding: 0px;
         .expert__button {
-          font-family: "arialbold";
-          font-size: 18px;
-          background: #ffffff 0% 0% no-repeat padding-box;
-          border: 0px solid #ffffff;
-          border-radius: 3px;
-          padding: 5px 20px;
+          background: none;
+          border: none;
           outline: none;
         }
       }
     }
   }
 }
+.footer__bottom__container {
+  background-color: #ffffff;
+  padding: 40px 12px 20px;
+  .footer__bottom__block {
+    width: 1702px;
+    margin: 0px auto;
+    padding: 0px;
+    .inner__footer__bottom__block {
+      .copyright__text__block {
+        .copyright__text {
+          margin-bottom: 20px;
+          .footer__bottom__link {
+            text-decoration: underline;
+            color: #000000;
+          }
+        }
+      }
+      .mestores__footer__logo {
+        object-fit: contain;
+      }
+    }
+  }
+}
 @media screen and (max-width: 1702px) {
   .footer__block {
+    width: 90% !important;
+  }
+  .footer__bottom__block {
     width: 90% !important;
   }
 }
@@ -134,8 +135,13 @@
     min-width: 100% !important;
     margin: 0px auto;
   }
-  .copyright__row {
-    padding: 30px 12px !important;
+  .footer__bottom__block {
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0px auto;
+  }
+  .card__and__live__row {
+    padding: 30px 0px !important;
   }
 }
 @media screen and (max-width: 768px) {

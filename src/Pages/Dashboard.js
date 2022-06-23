@@ -2,7 +2,7 @@ import React from "react";
 import Banner from "../Components/Banner";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import "./../SCSS/_dashboardPage.scss";
-import dashboard_icon_01 from "./../Assets/Icon/dashboard_icon_01.svg";
+import dashboard_icon_01 from "./../assets/Icon/dashboard_icon_01.svg";
 import Heading6 from "../Components/Font/Heading6";
 const dashboardData = [
   {
@@ -69,7 +69,6 @@ const dashboardData = [
 function Dashboard() {
   return (
     <>
-      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid dashboard__page__container">
         <div className="dashboard__page__block">

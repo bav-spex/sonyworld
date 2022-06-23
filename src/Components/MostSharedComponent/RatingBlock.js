@@ -1,9 +1,10 @@
 import React from "react";
 import { Rating } from "react-simple-star-rating";
-import star from "./../../Assets/Icon/star.svg";
+import star from "./../../assets/Icon/star.svg";
 
 import "./../../SCSS/MostSharedComponents/_rating.scss";
-function RatingBlock({ size, rating, totalRatings, fillColor, emptyColor }) {
+function RatingBlock({  rating, totalRatings}) {
+  // console.log(totalRatings);
   return (
     <div className="main__rating__block">
       {/* <div className="rating__block">

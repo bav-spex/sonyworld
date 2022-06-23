@@ -1,0 +1,21 @@
+._gridButton__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 40px;
+    text-align: center;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    margin-right: 3px;
+    margin-left: 10px;
+    border-radius: 3px;
+  }
+  
+  .active {
+    fill: #ff4f04;
+    border: 1px solid #ff4f04;
+  }
+  .inactive {
+    fill: #727272;
+    border: 1px solid #727272;
+  }

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import "./../SCSS/_createBundlePage.scss";
 import BreadCrumbs from "../Components/BreadCrumbs";
-import TopNavbar from "../Components/Common/TopNavbar";
 
-import product_01 from "./../Assets/Product/product_01.png";
-import sony_logo from "./../Assets/Icon/sony_logo.svg";
-import black_down_arrow from "./../Assets/Icon/black_down_arrow.svg";
-import add_cart_white from "./../Assets/Icon/add_cart_white.svg";
-import left_arrow from "./../Assets/Icon/left_arrow.svg";
-import right_arrow from "./../Assets/Icon/right_arrow.svg";
+import product_01 from "./../assets/Product/product_01.png";
+import sony_logo from "./../assets/Icon/sony_logo.svg";
+import black_down_arrow from "./../assets/Icon/black_down_arrow.svg";
+import add_cart_white from "./../assets/Icon/add_cart_white.svg";
+import left_arrow from "./../assets/Icon/left_arrow.svg";
+import right_arrow from "./../assets/Icon/right_arrow.svg";
 
 import { Rating } from "react-simple-star-rating";
 import ProductThree from "../Components/ProductType/ProductThree";
@@ -157,7 +156,6 @@ function Create_Bundle_Page() {
   };
   return (
     <>
-      {/* <TopNavbar /> */}
       <BreadCrumbs />
       <div className="container-fluid create__bundle__page__container">
         <div className="create__bundle__page__block">

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./../SCSS/_productCarousel.scss";
 
-import product_carousal_01 from "./../Assets/ProductCarousal/product_carousal_01.png";
-import product_carousal_02 from "./../Assets/ProductCarousal/product_carousal_02.png";
-import product_carousal_03 from "./../Assets/ProductCarousal/product_carousal_03.png";
-import product_carousal_04 from "./../Assets/ProductCarousal/product_carousal_04.png";
-import product_carousal_05 from "./../Assets/ProductCarousal/product_carousal_05.png";
-import carousel_up_arrow from "./../Assets/Icon/carousel_up_arrow.svg";
-import carousel_down_arrow from "./../Assets/Icon/carousel_down_arrow.svg";
+import product_carousal_01 from "./../assets/ProductCarousal/product_carousal_01.png";
+import product_carousal_02 from "./../assets/ProductCarousal/product_carousal_02.png";
+import product_carousal_03 from "./../assets/ProductCarousal/product_carousal_03.png";
+import product_carousal_04 from "./../assets/ProductCarousal/product_carousal_04.png";
+import product_carousal_05 from "./../assets/ProductCarousal/product_carousal_05.png";
+import carousel_up_arrow from "./../assets/Icon/carousel_up_arrow.svg";
+import carousel_down_arrow from "./../assets/Icon/carousel_down_arrow.svg";
 
-import facebook from "./../Assets/Icon/facebook.png";
-import twitter from "./../Assets/Icon/twitter.png";
-import messanger from "./../Assets/Icon/messanger.png";
-import whatsapp from "./../Assets/Icon/whatsapp.png";
-import pinterest from "./../Assets/Icon/pinterest.png";
+import facebook from "./../assets/Icon/facebook.png";
+import twitter from "./../assets/Icon/twitter.png";
+import messanger from "./../assets/Icon/messanger.png";
+import whatsapp from "./../assets/Icon/whatsapp.png";
+import pinterest from "./../assets/Icon/pinterest.png";
 const productDataJSON = [
   {
     id: 1,

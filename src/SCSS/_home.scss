@@ -9,21 +9,23 @@
 .homePage {
   background-color: #E6E6E6 ;
   .adImage__container {
-    margin: 50px 0px;
+    background-color: #E6E6E6 ;
+    padding: 50px 12px;
     .adImage {
       width: 1702px;
       margin: 0px auto;
       padding: 0px;
       .adImage__block {
         width: 100%;
+        height: 300px;
         overflow: hidden;
-        height: 223px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         .adImage__image {
           width: 100%;
+          // height: 100%;
           object-fit: cover;
         }
       }
@@ -42,25 +44,26 @@
 }
 @media screen and (max-width: 992px) {
   .adImage__container {
-    margin: 20px 0px !important;
+    margin: 0px 0px !important;
   }
   .adImage {
     min-width: 100% !important;
     margin: 0px auto;
   }
   .adImage__block {
-    height: 135px !important;
+    max-height: 150 !important;
   }
 }
 @media screen and (max-width: 768px) {
   .adImage__container {
-    margin: 10px 0px !important;
+    padding: 30px 12px !important;
+    margin: 0px 0px !important;
   }
   .adImage {
     width: 100% !important;
   }
   .adImage__block {
-    height: 102px !important;
+    // height: 102px !important;
   }
 }
 @media screen and (max-width: 768px) {

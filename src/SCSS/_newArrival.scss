@@ -1,19 +1,22 @@
 .carousel__container {
   margin: 30px 0px 0px;
-  .less__width__carousel__block{
+  position: relative;
+  
+  .less__width__carousel__block {
     width: 100%;
     padding: 0px;
     position: relative;
     margin: 0px auto;
   }
-  .carousel__block {
+  .pc__block {
     width: 1702px;
     padding: 0px;
     position: relative;
     margin: 0px auto;
   }
   .section__title {
-   
+    font-family: "arialbold";
+      font-size: 48px;
   }
   // .arrow__block {
   //   z-index: 2;
@@ -25,57 +28,83 @@
   //   top: 50%;
   //   transform: translateY(-50%);
   // }
-    .arrow {
-      filter: invert(1);
-      cursor: pointer;
+  .arrow {
+    // filter: invert(0);
+    cursor: pointer;
+    padding: 10px 15px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    z-index: 1;
+  }
+  .arrow__disable {
+    visibility: hidden;
+  }
+  .left__arrow {
+    position: absolute;
+    top: 50%;
+    left: -1.5%;
+    // transform: translateY(-50%);
+    // transform: translateX(-100%);
+  }
+  .right__arrow {
+    position: absolute;
+    top: 50%;
+    right: -1.5%;
+    // transform: translateY(-70%);
+  }
+  .main__product__container__block {
+    background-color: #ffffff;
+    padding: 40px 40px 20px;
+    border-radius: 10px;
+    .new__arrival__pc__block{
+      display: flex;
+      align-items: center;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    .top__trending__pc__block {
+      // position: relative;
+      display: flex;
+      align-items: center;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
       
     }
-    .arrow__disable {
-      visibility: hidden;
+    .top__rated__pc__block {
+      display: flex;
+      align-items: center;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-    .left__arrow {
-      position: absolute;
-      top: 50%;
-      left: -2%;
-      transform: translateY(-70%);
-      // transform: translateX(-100%);
-    }
-    .right__arrow {
-      position: absolute;
-      top: 50%;
-      right: -2%;
-      transform: translateY(-70%);
-    }
-  .new__arrival__block {
-    // position: relative;
+  }
+  .bestSellers__block {
     display: flex;
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    // transition: all 0.2s ease-in;
+     position: relative;
   }
-  .top__trending__block {
-    // position: relative;
+
+  .budgetTV__block {
     display: flex;
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    // transition: all 0.2s ease-in;
+     position: relative;
   }
+
   .pd__similar__products__block {
-    // position: relative;
     display: flex;
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    // transition: all 0.2s ease-in;
+     position: relative;
   }
 }
 @media screen and (max-width: 1702px) {
-  .carousel__block {
+  .pc__block {
     width: 90% !important;
   }
-
 }
 @media screen and (max-width: 1400px) {
   .arrow__block {
@@ -88,34 +117,35 @@
   }
 }
 @media screen and (max-width: 1200px) {
+  .main__product__container__block{
+    padding: 20px !important;
+  }
   .arrow__block {
     width: 100% !important;
 
-    .left__arrow {
-      filter: none !important;
-      transform: translateX(40%) !important;
-    }
-    .right__arrow {
-      filter: none !important;
-      transform: translateX(-40%) !important;
-    }
+  }
+  .left__arrow {
+    transform: translateX(0%) !important;
+  }
+  .right__arrow {
+    transform: translateX(0%) !important;
   }
 }
 @media screen and (max-width: 992px) {
-  .carousel__block {
+  .pc__block {
     min-width: 100% !important;
     margin: 0px auto;
   }
   .arrow__block {
     width: 100% !important;
   }
-  .arrow{
+  .arrow {
     padding: 10px;
     background-color: #81818150;
   }
 }
 @media screen and (max-width: 768px) {
-  .carousel__block {
+  .pc__block {
     width: 100% !important;
   }
   .arrow__block {
@@ -123,7 +153,7 @@
   }
 }
 @media screen and (max-width: 576px) {
-  .carousel__block {
+  .pc__block {
     width: 100% !important;
   }
   .arrow__block {

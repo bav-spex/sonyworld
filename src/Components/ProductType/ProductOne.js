@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
-import empty_favourite from "./../../Assets/Icon/empty_favourite.svg";
-import fulfill_favourite from "./../../Assets/Icon/fulfill_favourite.svg";
+import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
+import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import "./../../SCSS/ProductType/_productOne.scss";
 import Heading5 from "./../Font/Heading5";
 import Heading6 from "./../Font/Heading6";
 import Heading7 from "./../Font/Heading7";
 import Price from "./../Font/Price";
 import OldPrice from "./../Font/OldPrice";
+import RatingBlock from "../MostSharedComponent/RatingBlock";
 
 function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
-  // console.log(product.rating);
+  // console.log(product);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
@@ -32,10 +33,10 @@ function ProductOne({ productDetailPage, product }) {
       }
     >
       <div className="productOne__image__block">
-        <img src={product.image} alt="" className="productOne__image" />
+        <img src={product.baseImage} alt="" className="productOne__image" />
       </div>
       <div className="productOne__name__favourite">
-        <Heading7 text={product.productName} />
+        <Heading7 text={product.name} />
         <img
           onMouseEnter={() => setIsFavouriteHover(true)}
           onClick={handleFavourite}
@@ -59,26 +60,18 @@ function ProductOne({ productDetailPage, product }) {
           alt=""
         />
       </div>
-      <div className="rating__block">
-        <Rating
-          size={15}
-          fillColor="#303030"
-          emptyColor="#C8C8C8"
-          readonly={true}
-          ratingValue={(product.rating * 100) / 5} /* Available Props */
-        />
-      </div>
+      <RatingBlock rating={4.2} totalRatings={2183} />
 
       <div className="prize__block">
       <OldPrice
-          oldPrice={product.oldPrice}
+          oldPrice={526341}
           size="text3"
           color="#c8c8c8"
           marginBottom={10}
           lineThrough={true}
           span={true}
         />
-        <Price price={product.price} marginLeft={5} size="heading6" span={true} />
+        <Price price={product.price_rounded? product.price_rounded : 1699} marginLeft={5} size="heading6" span={true} />
       </div>
       {productDetailPage ? (
         <div className="addToCart__button">ADD TO CART</div>
