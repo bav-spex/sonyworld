@@ -2,6 +2,7 @@ import React from "react";
 import "./../SCSS/_allCategory.scss";
 import CategoryBanner from "../Components/CategoryComponent/CategoryBanner";
 import CategoryByScreenSize from "../Components/CategoryComponent/CategoryByScreenSize";
+import CategoryThreeBanner from "../Components/CategoryComponent/CategoryThreeBanner";
 
 import sony_logo from "./../assets/Icon/sony_logo.svg";
 import product_01 from "./../assets/Product/product_01.png";
@@ -18,6 +19,17 @@ import ProductContainer from "../Components/ProductContainer";
 import SimilarProducts from "../Components/SimilarProducts";
 
 import bannerImg1 from "./../assets/Categories/category_banner12.jpg";
+import bannerImg2 from "./../assets/Categories/category_banner2.png";
+import bannerImg3 from "./../assets/Categories/category_banner3.png";
+
+import adImage1 from "./../assets/Categories/laptop.png";
+import adImage2 from "./../assets/Categories/headphone.png";
+import adImage3 from "./../assets/Categories/soundbar.png";
+
+import tvAccessoriesImage1 from "./../assets/Categories/tv_Accessories1.png";
+import tvAccessoriesImage2 from "./../assets/Categories/tv_Accessories2.png";
+import tvAccessoriesImage3 from "./../assets/Categories/tv_Accessories3.png";
+
 const bestSellersData = [
   {
     id: 1,
@@ -542,7 +554,7 @@ const All_Category_Page = () => {
   console.log("AllCategory");
   return (
     <div className="container-fluid allCategory">
-      <CategoryBanner />
+      <CategoryBanner bannerImage={bannerImg1} />
       <CategoryByScreenSize />
       <div className="main__bestSellers__block">
         <SimilarProducts
@@ -552,34 +564,27 @@ const All_Category_Page = () => {
           containerClassName="bestSellers__block"
           productType="productSeven"
         />
-        <div className="three__ad__banner__container">
-          <div className=" three__ad__banner__block">
-            <div className="row inner__three__ad__banner__block">
-              <div className="col-12 col-sm-4 ad__banner__block">
-                <img
-                  src={bannerImg1}
-                  alt=""
-                  className="ad__banner__image"
-                ></img>
-              </div>
-              <div className="col-12 col-sm-4 ad__banner__block">
-                <img
-                  src={bannerImg1}
-                  alt=""
-                  className="ad__banner__image"
-                ></img>
-              </div>
-              <div className="col-12 col-sm-4 ad__banner__block">
-                <img
-                  src={bannerImg1}
-                  alt=""
-                  className="ad__banner__image"
-                ></img>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CategoryBanner bannerImage={bannerImg2} />
+        <CategoryThreeBanner bannerImage={[adImage1, adImage2, adImage3]} />
       </div>
+      <div className="main__budgetTv__block">
+        <SimilarProducts
+          productDetailPage={false}
+          sectionTitle="Budget TVs"
+          carouselData={bestSellersData}
+          containerClassName="budgetTV__block"
+          productType="productSeven"
+        />
+        <CategoryBanner bannerImage={bannerImg3} />
+      </div>
+      <CategoryThreeBanner
+        bannerImage={[
+          tvAccessoriesImage3,
+          tvAccessoriesImage3,
+          tvAccessoriesImage3,
+        ]}
+        title="TV Accessories"
+      />
     </div>
   );
 };
