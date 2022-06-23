@@ -24,7 +24,8 @@ function CarouselTypeTwo({
     e.preventDefault();
     document.querySelector(`.${containerClassName}`).scrollLeft =
       document.querySelector(`.${containerClassName}`).scrollLeft -
-      document.querySelector(`.${containerClassName}`).clientWidth +50;
+      document.querySelector(`.${containerClassName}`).clientWidth +
+      50;
     let scroll = document.querySelector(`.${containerClassName}`).scrollLeft;
   };
   const rightSide = (e) => {

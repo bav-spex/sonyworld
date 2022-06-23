@@ -11,13 +11,15 @@ const categoryScreenSize = [
 ];
 const Category_By_ScreenSize = () => {
   return (
-    <div className="category__screensize__container">
+    <div className="category__screensize__block">
       <p className="section__title">Shop By Screen Size</p>
-      <div className="category__screensize__block">
+      <div className="row inner__category__screensize__block">
         {categoryScreenSize.map((item) => {
           return (
-            <div className="screensize__block">
-              <p className="screensize_text">{item}</p>
+            <div className=" col-2 main__screensize__block">
+              <div className="screensize__block">
+                <p className="screensize_text">{item}</p>
+              </div>
             </div>
           );
         })}

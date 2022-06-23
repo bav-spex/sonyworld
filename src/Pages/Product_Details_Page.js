@@ -15163,8 +15163,10 @@ function Product_Details_Page() {
             </div>
             <div className="pd__similarProducts__block">
               <SimilarProducts
+              productType="productTwo"
                 productDetailPage={true}
                 sectionTitle="Similar Products"
+                containerClassName="pd__similar__products__block"
                 carouselData={peopleUltimatelyBoughtData}
               />
             </div>
