@@ -11,8 +11,8 @@ function Protection({ title, tagline, rating, totalRatings, protection }) {
   };
   return (
     <div className="product__protect__block">
-      <Heading5 text={`${title} `} />
-      <p className="product__block__title__span">{`(${tagline})`}</p>
+      <Heading5 text={`${title} `} span={true} />
+      <span className="product__block__title__span">{`(${tagline})`}</span>
       <RatingBlock
         size={22}
         rating={rating}

@@ -8,15 +8,21 @@ import Price from "../Components/Font/Price";
 import Text3 from "../Components/Font/Text3";
 import SuperCoin from "../Components/MostSharedComponent/SuperCoin";
 import "./../SCSS/_checkoutPage.scss";
-import user_black_fill from "./../assets/Icon/user_black_fill.svg";
+import signin_initial from "./../assets/Icon/signin_initial.svg";
+import signin_inprogress from "./../assets/Icon/signin_inprogress.svg";
+import signin_done from "./../assets/Icon/signin_done.svg";
+import delivery_initial from "./../assets/Icon/delivery_initial.svg";
+import delivery_inprogress from "./../assets/Icon/delivery_inprogress.svg";
+import delivery_done from "./../assets/Icon/delivery_done.svg";
+import payment_initial from "./../assets/Icon/payment_initial.svg";
+import payment_inprogress from "./../assets/Icon/payment_inprogress.svg";
+import payment_done from "./../assets/Icon/payment_done.svg";
+import done from "./../assets/Icon/done.svg";
 import check from "./../assets/Icon/check.svg";
 import shipping from "./../assets/Icon/shipping.svg";
 import sony_logo from "./../assets/Icon/sony_logo.svg";
 import black_location from "./../assets/Icon/black_location.svg";
-import product_01 from "./../assets/Product/product_01.png";
 
-import SmallWarrantyBlock from "../Components/MostSharedComponent/SmallWarrantyBlock";
-import ProtectionPlan from "../Components/MostSharedComponent/ProtectionPlan";
 
 import Text5 from "../Components/Font/Text5";
 import Heading7 from "../Components/Font/Heading7";
@@ -150,7 +156,7 @@ const deliveryType = [
     price: 15,
   },
 ];
-function Checkout_Page() {
+function Checkout_Page({reloadingHeader}) {
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
 
@@ -167,6 +173,24 @@ function Checkout_Page() {
   const remove = (id) => {
     console.log(id);
   };
+  const [iconType,setIconType]=useState({
+    signin:"done",
+    delivery:"inprogress",
+    payment:"initial"
+  })
+  const [loginWrapper, setLoginWrapper]=useState(false)
+  const openLoginWrapperFromAnywhere =()=>{
+    // console.log(document.querySelector(".login__popup__container__disable"));
+    // reloadingHeader()
+    const element = document.querySelector(".login__popup__container__disable")
+    element.classList.remove("login__popup__container__disable")
+    element.classList.add("login__popup__container")
+    localStorage.setItem("loginWrapper",JSON.stringify(true))
+    localStorage.setItem("loginMode",JSON.stringify("signin"))
+  localStorage.setItem("loginPopup",JSON.stringify(true))
+    window.scrollTo(500, 0);
+    
+  }
   return (
     <>
       <BreadCrumbs />
@@ -174,27 +198,26 @@ function Checkout_Page() {
         <div className="checkout__page__block">
           <div className="row checkout__page__inner__block">
             <div className="col-md-12 col-xl-9  checkout__left__block">
-              <div className="checkout__login__main__block">
-                <img src={user_black_fill} alt="" className="user__icon" />
-                <div className="row checkout__login__block">
-                  <div className="col-12 col-sm-10 login__details">
-                    <div className="login__text__icon__block">
-                      <Heading5 text="LOGIN" color="#808080" marginBottom={0} />
-                      <img src={check} alt="" className="check__icon" />
-                    </div>
-                    <Heading5 text="John Doe" span={true} marginBottom={10} />
-                    <Heading5
-                      text="johndoe@gmail.com"
-                      color="#808080"
-                      span={true}
-                      marginLeft={10}
-                      marginBottom={10}
-                    />
-                  </div>
-                  <div className="col-12 col-sm-2 change__button__block">
-                    <button className="change__button">Change</button>
-                  </div>
+              <div className="row checkout__login__main__block">
+               <div onClick={()=>openLoginWrapperFromAnywhere()} className="col-2 checkout__signin__button">
+                <img src={iconType.signin === "inprogress"? signin_inprogress :iconType.signin === "done"? signin_done:signin_initial} alt="" />
+                <Heading5 text="SIGN IN" marginLeft={10} color={iconType.signin === "inprogress"?"#DC3A1A":iconType.signin === "done"?"#585858":"#C8C8C8"} span={true}/>
+                {iconType.signin === "done"?<img className="done__icon" src={done} alt="done"/> :""}
+
                 </div>
+               <div className="col-3 checkout__middle__line__block">
+               </div>
+               <div className="col-2 checkout__delivery__button">
+                   <img src={iconType.delivery === "inprogress"? delivery_inprogress :iconType.delivery === "done"? delivery_done:delivery_initial} alt="" />
+                <Heading5 text="DELIVERY" marginLeft={10} color={iconType.delivery === "inprogress"?"#DC3A1A":iconType.delivery === "done"?"#585858":"#C8C8C8"} span={true}/>
+                {iconType.delivery === "done"?<img className="done__icon" src={done} alt="done"/> :""}
+               </div>
+               <div className="col-3 checkout__middle__line__block"></div>
+               <div className="col-2 checkout__payment__button">
+               <img src={iconType.payment === "inprogress"? payment_inprogress :iconType.payment === "done"? payment_done:payment_initial} alt="" />
+                <Heading5 text="PAYMENT" marginLeft={10} color={iconType.payment === "inprogress"?"#DC3A1A":iconType.payment === "done"?"#585858":"#C8C8C8"} span={true}/>
+                {iconType.payment === "done"?<img className="done__icon" src={done} alt="done"/> :""}
+               </div>
               </div>
               <div className="user__delivery__address__block">
                 <div className="delivery__address__block">
@@ -320,7 +343,7 @@ function Checkout_Page() {
                   </div>
                 </div>
               </div>
-              <div className="order__summary__block">
+              {/* <div className="order__summary__block">
               <div className="order__summary__title__block">
                     <img src={shipping} alt="" className="user__icon" />
                     <Heading5
@@ -341,7 +364,7 @@ function Checkout_Page() {
               </p>
               <ProductThree product={product} />
               <hr className="checkout__page__horizontal__line"></hr>
-              </div>
+              </div> */}
             </div>
             {/* package Summary */}
             <div className="col-md-12 col-xl-3  checkout__right__block">

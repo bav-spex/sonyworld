@@ -18,13 +18,13 @@ import Create_Bundle_Page from "./../Pages/Create_Bundle_Page";
 import Cart_Page from "./../Pages/Cart_Page";
 import Checkout_Page from "./../Pages/Checkout_Page";
 import Dashboard from "./../Pages/Dashboard";
-import My_Orders from "./../Pages/My_Orders";
+import My_Orders from "./../Pages/My_Orders"; 
 import Order_Details from "./../Pages/Order_Details";
 import Category_Page from "./../Pages/Category_Page";
 import All_Category_Page from "./../Pages/All_Category_Page";
 
 
-function AllRoutes(props) {
+function AllRoutes({reloadingHandle,log}) {
   return (
     <Routes>
       <Route exact path="/" element={<Home log="log" />}></Route>
@@ -47,7 +47,7 @@ function AllRoutes(props) {
         element={<Create_Bundle_Page />}
       ></Route>
       <Route exact path="/cart_page" element={<Cart_Page />}></Route>
-      <Route exact path="/checkout" element={<Checkout_Page />}></Route>
+      <Route exact path="/checkout" element={<Checkout_Page reloadingHandle={reloadingHandle} />}></Route>
       <Route exact path="/dashboard" element={<Dashboard />}></Route>
       <Route exact path="/user/orders" element={<My_Orders />}></Route>
       <Route exact path="/user/orders/1" element={<Order_Details />}></Route>

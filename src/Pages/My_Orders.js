@@ -179,6 +179,8 @@ function My_Orders() {
               </div>
 
             <MyOrderProduct product={product} />
+            <MyOrderProduct product={product} />
+            <MyOrderProduct product={product} />
           </div>
         </div>
       </div>

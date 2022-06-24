@@ -9,6 +9,7 @@ import ProductTwo from "./ProductType/ProductTwo";
 import ProductFive from "./ProductType/ProductFive";
 
 function CarouselTypeTwo({
+  productDetailPage,
   sectionTitle,
   carouselData,
   containerClassName,
@@ -56,7 +57,7 @@ function CarouselTypeTwo({
           {productType === "productOne" ? (
             <div className={containerClassName}>
               {carouselData.map((product, productIndex) => {
-                return <ProductOne key={product.id} product={product} />;
+                return <ProductOne key={product.id} product={product} productDetailPage={productDetailPage}/>;
               })}
             </div>
           ) : productType === "productFive" ? (

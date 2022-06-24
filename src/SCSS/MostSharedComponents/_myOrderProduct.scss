@@ -2,8 +2,9 @@
   background-color: #ffffff;
   width: 100%;
   height: fit-content;
-  padding: 20px 0px;
+  padding: 30px 0px;
   margin: 0px;
+  border-bottom: 2px solid #dbdbdb;
   .mo__product__left__block {
     padding: 0px 20px 0px;
 
@@ -46,13 +47,16 @@
       min-width: fit-content;
       color: #ffffff;
       padding: 10px 15px;
-      background-color: #000000;
-      border: 1px solid #000000;
+      background-color: #dc3a1a;
       margin: 0px 0px 10px 0px;
       outline: none;
       border: none;
       letter-spacing: 0.3px;
       cursor: pointer;
     }
+  }
+  .write_Review__link {
+    color: #000000;
+    margin: 0px 0px 0px 10px;
   }
 }

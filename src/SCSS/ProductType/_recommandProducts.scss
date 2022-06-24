@@ -1,0 +1,31 @@
+.main__recommand__product__block {
+    padding: 0px 12px 0px;
+    .recommand__product__block {
+      padding: 30px 0px 30px;
+    border-bottom: 1px solid #eeeeee;
+    background-color: #ffffff;
+    .recommand__product__image__block {
+      // height: 100%;
+      // width: 100%;
+      .recommand__product__image {
+        height: 50%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+    .recommand__product__detail__block {
+      .see__all__buying__option__button {
+        background: #ffffff 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000005;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        color: black;
+        outline: none;
+        font-size: 16px;
+        font-family: "arialbold";
+        padding: 6px 10px;
+        margin: 10px 0px 0px;
+      }
+    }
+  }
+}

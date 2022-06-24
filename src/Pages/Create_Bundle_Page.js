@@ -5,7 +5,7 @@ import BreadCrumbs from "../Components/BreadCrumbs";
 import product_01 from "./../assets/Product/product_01.png";
 import sony_logo from "./../assets/Icon/sony_logo.svg";
 import black_down_arrow from "./../assets/Icon/black_down_arrow.svg";
-import add_cart_white from "./../assets/Icon/add_cart_white.svg";
+import shopping_cart from "./../assets/Icon/shopping_cart.svg";
 import left_arrow from "./../assets/Icon/left_arrow.svg";
 import right_arrow from "./../assets/Icon/right_arrow.svg";
 
@@ -255,29 +255,29 @@ function Create_Bundle_Page() {
                 </p>
                 <div className="cb__ps__detail__block">
                   <div className="cb__ps__detail__inner__block">
-                    <Text3 text="Shipping" color="#000000" />
+                    <Text3 text="Shipping" color="#727272" />
                     <Price price={20} size="heading7" />
                   </div>
                   <div className="cb__ps__detail__inner__block">
-                    <Text3 text="Sub Total" color="#000000" />
+                    <Text3 text="Sub Total" color="#727272" />
                     <Price price={195} size="heading7" />
                   </div>
                   <div className="cb__ps__detail__inner__block">
-                    <Text3 text="Discount" color="#000000" />
+                    <Text3 text="Discount" color="#727272" />
                     <Price price={30} size="heading7" />
                   </div>
                   <div className="cb__ps__detail__inner__block">
-                    <Text3 text="Tax" color="#000000" />
+                    <Text3 text="Tax" color="#727272" />
                     <Price price={10} size="heading7" />
                   </div>
                   <div className="cb__ps__detail__total__order__block">
                     <Heading6 text="Order Total" color="#000000" />
-                    <Price price={3275} size="heading7" />
+                    <Price price={3275} size="heading5" />
                   </div>
                   <div className="col-6 cb__addToCart__button__block">
                     <div className="cb__addToCart__button">
                       <img
-                        src={add_cart_white}
+                        src={shopping_cart}
                         alt=""
                         className="cb__addToCart__icon"
                       />

@@ -477,7 +477,7 @@ const categoryData = [
   },
 ];
 
-function Header() {
+function Header({reloadingHandle,reloadHeader}) {
   // language changing in project //
   const [lang, setLang] = useState("en");
   const languages = [
@@ -518,21 +518,69 @@ function Header() {
     i18next.changeLanguage(lang.code);
   };
 
+ 
   const [height, setHeight] = useState(0);
-
   const { pathname } = useLocation();
   const [loginPopup, setLoginPopup] = useState(false);
   const [categoryPopup, setCategoryPopup] = useState(false);
   const [loginMode, setLoginMode] = useState(false);
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
+  
+//   useEffect(() => {
+//     // debugger
+//     if(localStorage.getItem('loginWrapper') ){
+
+//       async function init() {
+//         const latestLoginWrapper = await localStorage.getItem('loginWrapper'); 
+//         const latestLoginPopup = await localStorage.getItem('loginPopup'); 
+//         console.log(JSON.parse(latestLoginWrapper));
+//         console.log(JSON.parse(latestLoginPopup));
+//         setLoginWrapper(JSON.parse(latestLoginWrapper));
+//         setLoginPopup(JSON.parse(latestLoginPopup));
+//       }
+//       init();
+//     }
+// }, [])
+  useEffect(() => {
+    // debugger
+ 
+
+       function init() {
+        const latestLoginWrapper =  localStorage.getItem('loginWrapper'); 
+        const latestLoginPopup = localStorage.getItem('loginPopup'); 
+        console.log(JSON.parse(latestLoginWrapper));
+        console.log(JSON.parse(latestLoginPopup));
+        setLoginWrapper(JSON.parse(latestLoginWrapper));
+        setLoginPopup(JSON.parse(latestLoginPopup));
+      }
+      init();
+    
+}, [JSON.parse(localStorage.getItem('loginWrapper')),JSON.parse(localStorage.getItem('loginPopup')),JSON.parse(localStorage.getItem('loginMode')) ])
+
+//   useEffect(() => {
+//     // debugger
+//     if(localStorage.getItem('loginWrapper') ){
+
+//       async function init() {
+//         const latestLoginWrapper = await localStorage.getItem('loginWrapper'); 
+//         const latestLoginPopup = await localStorage.getItem('loginPopup'); 
+//         console.log(JSON.parse(latestLoginWrapper));
+//         console.log(JSON.parse(latestLoginPopup));
+//         setLoginWrapper(JSON.parse(latestLoginWrapper));
+//         setLoginPopup(JSON.parse(latestLoginPopup));
+//       }
+//       init();
+//     }
+// }, [reloadHeader])
+console.log(loginWrapper);
   const openLoginPopup = () => {
     setUserLoginPopup(!userLoginPopup)
     setLoginPopup(userLoginPopup ? false : true)
+    localStorage.setItem("loginPopup", JSON.stringify(true))
     setCategoryPopup(false);
     setLoginMode("")
   };
-  console.log(userLoginPopup,loginPopup);
   const openProductPopup = () => {
     setCategoryPopup(!categoryPopup);
     setLoginPopup(false);
@@ -543,6 +591,23 @@ function Header() {
     setLoginWrapper(true)
     setUserLoginPopup(false)
     console.log(loginWrapper);
+    localStorage.setItem("loginMode", JSON.stringify(mode))
+    localStorage.setItem("loginWrapper", JSON.stringify(true))
+    localStorage.setItem("loginPopup", JSON.stringify(true))
+  }
+  const closeLoginPopup=()=>{
+    if(document.querySelector(".login__popup__container")){
+      // reloadingHeader()
+      const element = document.querySelector(".login__popup__container")
+      element.classList.remove("login__popup__container")
+      element.classList.add("login__popup__container__disable")
+        }
+    localStorage.setItem("loginMode", JSON.stringify("signin"))
+    localStorage.setItem("loginWrapper", JSON.stringify(false))
+    localStorage.setItem("loginPopup", JSON.stringify(false))
+    setLoginMode("")
+    setLoginPopup(false)
+    setLoginWrapper(false)
   }
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
@@ -680,9 +745,7 @@ function Header() {
     setNavIndex(navIndex);
     setMenuIndex(menuIndex);
   };
-  const closeLoginPopup=()=>{
-    setLoginPopup(false)
-  }
+
   return (
     <>
       <div className="container-fluid main__navbar__container">
@@ -1027,7 +1090,7 @@ function Header() {
               : "container-fluid login__popup__container__disable"
           }
         >
-        {loginWrapper ? <LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>:""}
+        {loginWrapper ? <LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>:``}
         </div>
       </div>
     </>

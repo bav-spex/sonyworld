@@ -1,5 +1,5 @@
 .carousel__container {
-  margin: 30px 0px 0px;
+  margin: 0px 0px 0px;
   position: relative;
   
   .less__width__carousel__block {
@@ -86,6 +86,13 @@
   }
 
   .budgetTV__block {
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+     position: relative;
+  }
+  .people__also__bought__block {
     display: flex;
     align-items: center;
     overflow-x: hidden;

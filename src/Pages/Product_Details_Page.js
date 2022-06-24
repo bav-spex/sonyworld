@@ -45,7 +45,7 @@ import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
 import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import { Link } from "react-router-dom";
 import { renderIntoDocument } from "react-dom/test-utils";
-import ExpertProducts from "../Components/ExpertProducts";
+import ExpertProducts from "../Components/ProductType/ExpertProducts";
 import Accordian from "../Components/Accordian";
 import SimilarProducts from "../Components/SimilarProducts";
 import Protecttion from "../Components/MostSharedComponent/Protection";
