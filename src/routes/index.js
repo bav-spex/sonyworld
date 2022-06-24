@@ -22,12 +22,13 @@ import My_Orders from "./../Pages/My_Orders";
 import Order_Details from "./../Pages/Order_Details";
 import Category_Page from "./../Pages/Category_Page";
 import All_Category_Page from "./../Pages/All_Category_Page";
-
+import AllProducts from "./../Pages/All_Products";
 
 function AllRoutes({reloadingHandle,log}) {
   return (
     <Routes>
       <Route exact path="/" element={<Home log="log" />}></Route>
+      <Route exact path="/products" element={<AllProducts />} ></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
       <Route exact path="/category" element={<All_Category_Page />} ></Route>
       <Route exact path="/playstation" element={<Play_Station_Page />}></Route>

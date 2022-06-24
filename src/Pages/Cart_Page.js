@@ -684,7 +684,7 @@ function Cart_Page() {
   };
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs title="Shopping Cart"/>
       <div className="container-fluid shopping__cart__page__container">
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">

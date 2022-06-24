@@ -156,7 +156,7 @@ function Create_Bundle_Page() {
   };
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs title="Create Bundle"/>
       <div className="container-fluid create__bundle__page__container">
         <div className="create__bundle__page__block">
           <p className="cb__page__title">

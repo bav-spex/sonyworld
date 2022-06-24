@@ -115,7 +115,7 @@ function My_Orders() {
   };
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs title="My Orders"/>
       <div className="container-fluid myOrders__container">
         <div className="myOrders__block">
           <div className=" myOrders__inner__block">
