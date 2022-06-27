@@ -4,7 +4,7 @@ import "./../SCSS/AllProducts/_productSections.scss";
 
 import ProductSectionOne from "../Components/ProductSections/ProductSectionOne";
 import ProductCategorySection from "../Components/ProductSections/ProductCategorySection";
-// import AllProducts from "../Components/ProductSections/ProductList";
+import AllProducts from "../Components/ProductSections/ProductList";
 
 import feature_product_04 from "./../assets/FeatureProduct/feature_product_04.png";
 import White_tv from "./../assets/Icon/white_tv.svg";
@@ -44,7 +44,7 @@ const All_Products = () => {
     <div className="container-fluid allProducts">
       <ProductSectionOne bannerImage={feature_product_04} title="Television" />
       <ProductCategorySection categoryData={categoryLists} />
-      {/* <AllProducts /> */}
+      <AllProducts />
     </div>
   );
 };

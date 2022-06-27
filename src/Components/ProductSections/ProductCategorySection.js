@@ -10,7 +10,7 @@ const Product_Category_Section = (props) => {
               <img
                 className="category__section__image"
                 src={item.image}
-                alt="telivision"
+                alt="television"
               />
             </div>
             <div className="category__section__title__block">
@@ -19,6 +19,7 @@ const Product_Category_Section = (props) => {
           </div>
         );
       })}
+      
     </div>
   );
 };
