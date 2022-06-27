@@ -216,6 +216,20 @@ const peopleUltimatelyBoughtData = [
         month: 12,
       },
     ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
+      },
+    ],
   },
   {
     id: 3,
@@ -301,6 +315,20 @@ const peopleUltimatelyBoughtData = [
         protectionText: "1-Year Standard Geek Squad Protection",
         price: 89,
         month: 12,
+      },
+    ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
       },
     ],
   },
@@ -389,6 +417,20 @@ const peopleUltimatelyBoughtData = [
         month: 12,
       },
     ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
+      },
+    ],
   },
   {
     id: 5,
@@ -473,6 +515,20 @@ const peopleUltimatelyBoughtData = [
         protectionText: "1-Year Standard Geek Squad Protection",
         price: 89,
         month: 12,
+      },
+    ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
       },
     ],
   },

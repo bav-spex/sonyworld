@@ -196,7 +196,7 @@ const handleChangeClassName = (className)=>{
   }
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs title="Checkout" />
       <div className="container-fluid checkout__page__container">
         <div className="checkout__page__block">
           <div className="row checkout__page__inner__block">

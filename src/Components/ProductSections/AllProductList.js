@@ -33,7 +33,7 @@ const ProductLists = ({ productDetailPage, products }) => {
   };
   return products.map((product) => {
     return (
-      <div className="col-sm-4 productList__main__container">
+      <div key={product.id} className="col-sm-4 productList__main__container">
         <div key={product.id} className="productList__block">
           <div className="product__card__top">
             <div className="new__product__title">
@@ -78,15 +78,6 @@ const ProductLists = ({ productDetailPage, products }) => {
                   className="productList__image"
                 />
               </div>
-              {/* <div className="productList__compare__block">
-              <input
-                type="checkbox"
-                className="productList__compare__input__check"
-                name="compare"
-                // onChange={handleChange}
-              />
-              <p className="productList__compare__text">Select to Compare</p>
-            </div> */}
             </div>
             <p className="productList__name">
               <Heading6 text={product.productName} marginBottom={10} />
@@ -148,9 +139,6 @@ const ProductLists = ({ productDetailPage, products }) => {
               </p>
               <span className="delivery__day">May, 7:00 am - 9:00 pm</span>
             </div>
-            {/* <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} /> */}
-
-            {/* <p className="productList__series">Model and Price</p> */}
 
             <div className="addToCart__button">
               <img src={shopping_cart} alt="" className="addToCart__icon" />
