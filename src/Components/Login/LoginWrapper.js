@@ -5,21 +5,49 @@ import OtpModel from "./OtpModel";
 import SignUpModel from "./SignUpModel";
 
 function LoginWrapper({ loginMode, closeLoginPopup }) {
+  console.log(loginMode);
   const [popupMode, setPopupMode] = useState(loginMode);
   useEffect(() => {
-    // debugger
+    function init() {
+      const data = JSON.parse(localStorage.getItem("loginMode"));
+      setPopupMode(data.slice(1, data.length - 1));
+    }
+    init();
+  }, []);
+  // useEffect(() => {
+  //   //
   
-      async function init() {
-        const data = await localStorage.getItem("loginMode");
-        setPopupMode(data.slice(1, data.length-1));
-      }
-      init();
+  //     setPopupMode(");
    
-    
-  }, [JSON.parse(localStorage.getItem('loginWrapper')),JSON.parse(localStorage.getItem('loginPopup')),JSON.parse(localStorage.getItem('loginMode')) ]);
+  // }, [JSON.parse(localStorage.getItem('loginMode'))]);
+
   useEffect(() => {
     setPopupMode(loginMode);
   }, [loginMode]);
+  useEffect(() => {
+    // debugger;
+    if (
+      window.location.pathname.includes("/checkout") &&
+      popupMode === "signin"
+    ) {
+      setPopupMode("signin");
+    } else if (
+      window.location.pathname.includes("/checkout") &&
+      popupMode === "signup"
+    ) {
+      setPopupMode("signup");
+    } else if (
+      window.location.pathname.includes("/checkout") &&
+      popupMode === "otp"
+    ) {
+      setPopupMode("newsletter");
+    } else if (
+      window.location.pathname.includes("/checkout") &&
+      popupMode === "newsletter"
+    ) {
+      setPopupMode("newsletter");
+    }
+  },[popupMode]);
   const handleChangePopupMode = (mode) => {
     setPopupMode(mode);
   };
@@ -55,7 +83,10 @@ function LoginWrapper({ loginMode, closeLoginPopup }) {
       />
     );
   }
-  return <h1>Hello from wrapper</h1>;
+  return  <LoginModel
+  closeLoginPopup={closeLoginPopup}
+  handleChangePopupMode={handleChangePopupMode}
+/>;
 }
 
 export default LoginWrapper;

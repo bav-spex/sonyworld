@@ -31,9 +31,14 @@ function FeatureProducts() {
               {/* <div></div> */}
 
               <div className="deal__of__day__container">
-                <div className="rectangleLeft"></div>
-                <div className="rectangle">Deal of the day</div>
-                <div className="triangle-right"></div>
+                  <div className="rectangleLeft"></div>
+                  <div className="upper__rectangle__block">
+                    <div className="rectangle">
+                      <span>Deal of the day</span>{" "}
+                    </div>
+                  <div className="triangle-right"></div>
+                  </div>
+               
               </div>
 
               <div className="first__feature__category__image__block">

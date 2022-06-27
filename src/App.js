@@ -16,7 +16,7 @@ import Footer from "./Components/Common/Footer";
 function App() {
   const location = useLocation();
   const history = useNavigate();
-  localStorage.setItem("loginMode", JSON.stringify("signin"))
+  localStorage.setItem("loginMode", JSON.stringify(""))
   localStorage.setItem("loginWrapper", JSON.stringify(false))
   localStorage.setItem("loginPopup", JSON.stringify(false))
   const getCurrentPageUrl = window.location.href;

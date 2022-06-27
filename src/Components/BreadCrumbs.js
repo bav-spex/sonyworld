@@ -17,12 +17,36 @@ function BreadCrumbs(props) {
         <div className="home__image">
           <img src={Home} alt="Home" className="home__icon" />
         </div>
-        <div className="right__arrow">
+        {/* <div className="right__arrow">
           <img src={RightArrow} alt="Home" className="right__icon" />
         </div>
         <div className="page__title">
-          <p className="page__title__text">{props.title || "Breadcrumbs"}</p>
-        </div>
+          <p className="page__title__text">{props.title || ""}</p>
+        </div> */}
+        {props.title ? (
+          <>
+            <div className="right__arrow">
+              <img src={RightArrow} alt="Home" className="right__icon" />
+            </div>
+            <div className="page__title">
+              <p className="page__title__text">{props.title || ""}</p>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
+        {props.subTitle ? (
+          <>
+            <div className="right__arrow">
+              <img src={RightArrow} alt="Home" className="right__icon" />
+            </div>
+            <div className="page__title">
+              <p className="page__title__text">{props.subTitle || ""}</p>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

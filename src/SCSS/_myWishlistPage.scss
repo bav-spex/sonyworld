@@ -1,0 +1,85 @@
+.wishlist__page__container {
+  padding: 0px 12px;
+  background-color: #f5f5f5;
+  .wishlist__page__block {
+    padding: 20px 0px;
+    width: 1702px;
+    margin: 0px auto;
+
+    .wishlist__title__block {
+      background: #ffffff 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 6px #0000000a;
+      border: 1px solid #f1f1f1;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .wishlist__right__part {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .mw__search__box__block {
+          padding-left: 20px;
+          .mw__search__box {
+            border: 1px solid #dfdfdf;
+            border-radius: 5px;
+            padding: 2px 7px 2px 0px;
+            background-color: white;
+            height: 32px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            .mw__search__input {
+              font-size: 14px;
+              padding: 10px 10px;
+              margin: 0px;
+              background: none;
+              outline: none;
+              border: 0px;
+              width: 96%;
+            }
+
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 30px white inset !important;
+            }
+          }
+        }
+      }
+    }
+    .wishlist__page__product__block{
+      background: #ffffff 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 6px #0000000a;
+      border: 1px solid #f1f1f1;
+      padding: 16px;
+      margin: 0px auto;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .wishlist__product__block{
+        margin: 0px 0px 20px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1702px) {
+  .wishlist__page__block {
+    width: 90% !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .checkout__right__block {
+    padding: 0px !important;
+    margin: 10px 0px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .wishlist__page__block {
+    width: 100% !important;
+  }
+}
+

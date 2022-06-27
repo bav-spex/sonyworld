@@ -178,7 +178,10 @@ function Checkout_Page({reloadingHeader}) {
     delivery:"inprogress",
     payment:"initial"
   })
-  const [loginWrapper, setLoginWrapper]=useState(false)
+const [checkoutClassName, setCheckoutClassName]= useState("delivery")
+const handleChangeClassName = (className)=>{
+  setCheckoutClassName(className)
+}
   const openLoginWrapperFromAnywhere =()=>{
     // console.log(document.querySelector(".login__popup__container__disable"));
     // reloadingHeader()
@@ -207,19 +210,19 @@ function Checkout_Page({reloadingHeader}) {
                 </div>
                <div className="col-3 checkout__middle__line__block">
                </div>
-               <div className="col-2 checkout__delivery__button">
+               <div onClick={()=> handleChangeClassName("delivery")}  className="col-2 checkout__delivery__button">
                    <img src={iconType.delivery === "inprogress"? delivery_inprogress :iconType.delivery === "done"? delivery_done:delivery_initial} alt="" />
                 <Heading5 text="DELIVERY" marginLeft={10} color={iconType.delivery === "inprogress"?"#DC3A1A":iconType.delivery === "done"?"#585858":"#C8C8C8"} span={true}/>
                 {iconType.delivery === "done"?<img className="done__icon" src={done} alt="done"/> :""}
                </div>
                <div className="col-3 checkout__middle__line__block"></div>
-               <div className="col-2 checkout__payment__button">
+               <div onClick={()=> handleChangeClassName("payment")} className="col-2 checkout__payment__button">
                <img src={iconType.payment === "inprogress"? payment_inprogress :iconType.payment === "done"? payment_done:payment_initial} alt="" />
                 <Heading5 text="PAYMENT" marginLeft={10} color={iconType.payment === "inprogress"?"#DC3A1A":iconType.payment === "done"?"#585858":"#C8C8C8"} span={true}/>
                 {iconType.payment === "done"?<img className="done__icon" src={done} alt="done"/> :""}
                </div>
               </div>
-              <div className="user__delivery__address__block">
+              <div  className={checkoutClassName === "delivery"? "user__delivery__address__block":"user__delivery__address__block__disable"}>
                 <div className="delivery__address__block">
                   <div className="delivery__address__title__block">
                     <img src={shipping} alt="" className="user__icon" />
@@ -342,6 +345,9 @@ function Checkout_Page({reloadingHeader}) {
                     />
                   </div>
                 </div>
+              </div>
+              <div className={checkoutClassName === "payment"?  "user__payment__block" :"user__payment__block__disable" }>
+                <h1>Payment</h1>
               </div>
               {/* <div className="order__summary__block">
               <div className="order__summary__title__block">
