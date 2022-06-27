@@ -1,6 +1,6 @@
 import React from "react";
 
-const Product_Category_Section = (props) => {
+const AllProductCategorySection = (props) => {
   return (
     <div className="allproducts__category__section">
       {props.categoryData.map((item) => {
@@ -24,4 +24,4 @@ const Product_Category_Section = (props) => {
   );
 };
 
-export default Product_Category_Section;
+export default AllProductCategorySection;

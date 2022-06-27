@@ -523,7 +523,7 @@ function Header({reloadingHandle,reloadHeader}) {
   const { pathname } = useLocation();
   const [loginPopup, setLoginPopup] = useState(false);
   const [categoryPopup, setCategoryPopup] = useState(false);
-  const [loginMode, setLoginMode] = useState(false);
+  const [loginMode, setLoginMode] = useState("");
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
   
@@ -573,7 +573,6 @@ function Header({reloadingHandle,reloadHeader}) {
 //       init();
 //     }
 // }, [reloadHeader])
-console.log(loginWrapper);
   const openLoginPopup = () => {
     setUserLoginPopup(!userLoginPopup)
     setLoginPopup(userLoginPopup ? false : true)
@@ -609,6 +608,9 @@ console.log(loginWrapper);
     setLoginPopup(false)
     setLoginWrapper(false)
   }
+  useEffect(()=>{
+setLoginMode(loginMode)
+  },[loginWrapper])
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
     mainCategory: "Play Station",
@@ -1090,7 +1092,7 @@ console.log(loginWrapper);
               : "container-fluid login__popup__container__disable"
           }
         >
-        {loginWrapper ? <LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>:``}
+        {loginWrapper ? <LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>:<LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>}
         </div>
       </div>
     </>

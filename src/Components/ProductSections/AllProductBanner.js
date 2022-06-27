@@ -1,6 +1,6 @@
 import React from "react";
 
-const Product_Section_One = (props) => {
+const AllProductBanner = (props) => {
   return (
     <div>
       <div className="row allproducts__section__one">
@@ -19,4 +19,4 @@ const Product_Section_One = (props) => {
   );
 };
 
-export default Product_Section_One;
+export default AllProductBanner
