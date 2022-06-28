@@ -4,7 +4,8 @@ import see_password from "./../../assets/Icon/see_password.svg"
 import hide_password from "./../../assets/Icon/hide_password.svg"
 import "./../../SCSS/Form/_passwordForm.scss"
 function PasswordForm() {
-    const [isPassword, setIsPassword] = useState(true);
+    const [isOldPassword, setIsOldPassword] = useState(true);
+    const [isNewPassword, setIsNewPassword] = useState(true);
     const [isConfirmPassword, setIsConfirmPassword] = useState(true);
     const [passwordData, setPasswordData] = useState({
         oldPassword:"",
@@ -12,7 +13,8 @@ function PasswordForm() {
         confirmPassword:""
     })
     const [errors, setErrors] = useState([]);
-    const togglePassword = () => setIsPassword(!isPassword);
+    const toggleOldPassword = () => setIsOldPassword(!isOldPassword);
+    const toggleNewPassword = () => setIsNewPassword(!isNewPassword);
     const toggleConfirmPassword = () => setIsConfirmPassword(!isConfirmPassword);
     const handleChange = (event) => {
         let value = event.target.value;
@@ -46,7 +48,7 @@ function PasswordForm() {
           <Heading7 text="Old Password" marginBottom={10} />
           <div className="field__block">
             <input
-              type={isPassword ? "password" : "text"}
+              type={isOldPassword ? "password" : "text"}
               placeholder=""
               className="form__field"
               id="oldPassword"
@@ -54,8 +56,8 @@ function PasswordForm() {
               value={passwordData.oldPassword}
               onChange={(e) => handleChange(e)}
             />
-            <a onClick={() => togglePassword()}>
-              {isPassword ? (
+            <a onClick={() => toggleOldPassword()}>
+              {isOldPassword ? (
                 <img src={see_password} alt="" />
               ) : (
                 <img src={hide_password} alt="" />
@@ -69,7 +71,7 @@ function PasswordForm() {
           <Heading7 text="New Password" marginBottom={10} />
           <div className="field__block">
             <input
-              type={isPassword ? "password" : "text"}
+              type={isNewPassword ? "password" : "text"}
               placeholder=""
               className="form__field"
               id="newPassword"
@@ -77,8 +79,8 @@ function PasswordForm() {
               value={passwordData.newPassword}
               onChange={(e) => handleChange(e)}
             />
-            <a onClick={() => togglePassword()}>
-              {isPassword ? (
+            <a onClick={() => toggleNewPassword()}>
+              {isNewPassword ? (
                 <img src={see_password} alt="" />
               ) : (
                 <img src={hide_password} alt="" />
