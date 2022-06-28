@@ -1,5 +1,7 @@
 import React from "react";
 import "./../SCSS/AllProducts/_allProducts.scss";
+//productListingPage.scss
+//_productLiustingPageBanner.scss
 import "./../SCSS/AllProducts/_productSections.scss";
 
 import AllProductBanner from "../Components/ProductSections/AllProductBanner";
@@ -39,7 +41,8 @@ const categoryLists = [
     image: Accessories_white,
   },
 ];
-
+// Product_Listing_Page
+// ProductListingPageBanner
 const AllProductList = () => {
   return (
     <div className="container-fluid allProducts">

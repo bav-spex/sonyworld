@@ -3,7 +3,7 @@ import React from "react";
 const AllProductBanner = (props) => {
   return (
     <div>
-      <div className="row allproducts__section__one">
+           <div className="row allproducts__section__one">
         <div className="col-6 section__one__title__block">
           <p className="section__title">{props.title}</p>
         </div>
