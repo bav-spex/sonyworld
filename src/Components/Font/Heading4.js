@@ -1,6 +1,6 @@
 import React from "react";
 import "./../../SCSS/Font/_font.scss";
-function Heading3({ text , color, marginBottom,marginLeft,span,textAlign,textTransform }) {
+function Heading4({ text , color, marginBottom,marginLeft,span,textAlign,textTransform }) {
   return (
     <>
       {!span ? (
@@ -34,4 +34,4 @@ function Heading3({ text , color, marginBottom,marginLeft,span,textAlign,textTra
   );
 }
 
-export default Heading3;
+export default Heading4;

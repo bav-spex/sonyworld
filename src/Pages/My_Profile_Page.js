@@ -9,83 +9,55 @@ import { emailValidator } from "../Components/helpers/utils/validators";
 
 import edit_black from "./../assets/Icon/edit_black.svg";
 import "./../SCSS/_myProfilePage.scss";
+import PersonalInfoForm from "../Components/Form/PersonalInfoForm";
+import AddressForm from "../Components/Form/AddressForm";
+import AddressPopup from "../Components/Popup/AddressPopup";
+import PasswordForm from "../Components/Form/PasswordForm";
+
+const addressData = [
+  {
+    id: 0,
+    isDefault: true,
+    addressType: "Home",
+    userName: "John Doe",
+    adddress: "21 West 52nd Street New York, New York, 10021 United States",
+    contact: "+1123456789",
+  },
+  {
+    id: 1,
+    isDefault: false,
+    addressType: "Office",
+    userName: "Martin Smith",
+    adddress: "21 West 52nd Street New York, New York, 10021 United States",
+    contact: "+1123456789",
+  },
+];
 function My_Profile_Page() {
   const [tab, setTab] = useState("personal");
-  const [personalData, setPersonalData] = useState({
-    firstName: "",
-    lastName: "",
-    gender: "",
-    email: "",
-    mobileNumber: "",
-    password: "",
-    confirmPassword: "",
-    preferenceSettings: [],
-  });
-  const handleChange = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-    let getErr = errors.filter((val, i) => val !== name);
-    if (value) {
-      if (name === "email") {
-        let emailStatus = emailValidator(value);
-        if (emailStatus === "error") {
-          getErr.push("email_invalid");
-          let tempErr = getErr.filter((val, i) => val !== "email");
-          getErr = tempErr;
-        } else {
-          let tempErr = getErr.filter((val, i) => val !== "email_invalid");
-          getErr = tempErr;
-        }
-      }
-      if (name === "confirmPassword") {
-        if (personalData.password) {
-          if (personalData.confirmPassword !== personalData.password) {
-            getErr.push("confirmPassword");
-          }
-        }
-      }
-      if (name === "preferences") {
-        const selectedPreferences = [];
-        const checkboxes = document.querySelectorAll(
-          "input[type=checkbox]:checked"
-        );
-        for (var i = 0; i < checkboxes.length; i++) {
-          selectedPreferences.push(checkboxes[i].value);
-        }
-        personalData.preferenceSettings = selectedPreferences;
-      }
-    } else {
-      getErr.push(name);
+  const [addressPopup, setAddressPopup] = useState(false);
+  // const togglePassword = () => setIsPassword(!isPassword);
+  // const toggleConfirmPassword = () => setIsConfirmPassword(!isConfirmPassword);
+  const closeLoginPopup = () => {
+    if (document.querySelector(".address__popup__container")) {
+      // reloadingHeader()
+      const element = document.querySelector(".address__popup__container");
+      element.classList.remove("address__popup__container");
+      element.classList.add("address__popup__container__disable");
     }
-    setErrors(getErr);
-    setPersonalData({ ...personalData, [name]: value });
+    setAddressPopup(false)
   };
-  const handleSubmit = () => {
-    console.log(personalData);
-  };
-  const handleCancel = () => {
-    console.log(personalData);
-  };
-  const [errors, setErrors] = useState([]);
-  const [isPassword, setIsPassword] = useState(true);
-  const [isConfirmPassword, setIsConfirmPassword] = useState(true);
-  const togglePassword = () => setIsPassword(!isPassword);
-  const toggleConfirmPassword = () => setIsConfirmPassword(!isConfirmPassword);
 
-  const [currentEditField, setCurrentEditField] = useState("");
-  const handleCurrentEditField = (currentField, focusField) => {
-    console.log("firstLast");
-    setCurrentEditField(currentField);
-    // console.log(document.getElementById(`${focusField}`));
-    // document.getElementById(`${focusField}`).focus()
-  };
+  const handleAddressPopup=(value)=>{
+setAddressPopup(value)
+  }
+ 
   return (
     <>
       <BreadCrumbs title="My Account" subTitle="My Profile" />
       <div className="container-fluid profile__page__container ">
         <div className="profile__page__block">
           <div className="profile__page__title__block">
-            <Heading3 text="My Wishlist" />
+            <Heading3 text="My Profile" />
           </div>
           <div className="profile__page__content__block">
             <div className="profile__tab__button__block">
@@ -127,245 +99,14 @@ function My_Profile_Page() {
                   : "personal__block__disable"
               }
             >
-              <div className="profile__firstname__lastname">
-                <div className="main__form__field__block" id="firstName__block">
-                  {/* <p className="form__label">First Name</p> */}
-                  <Heading7 text="First Name" marginBottom={10} />
-                  <div className="field__block">
-                    <input
-                      type="text"
-                      placeholder=""
-                      className="form__field"
-                      id="firstName"
-                      name="firstName"
-                      value={personalData.firstName}
-                      disabled={currentEditField === "firstLast" ? false : true}
-                      onChange={handleChange}
-                      autoFocus
-                    />
-                  </div>
-                  {errors.includes("firstName") && (
-                    <p className="invalid__message">invalid firstName</p>
-                  )}
-                </div>
-                <div className="main__form__field__block">
-                  {/* <p className="form__label">First Name</p> */}
-                  <Heading7 text="Last Name" marginBottom={10} />
-                  <div className="field__block">
-                    <input
-                      type="text"
-                      placeholder=""
-                      className="form__field"
-                      id="lastname"
-                      name="lastname"
-                      value={personalData.lastname}
-                      disabled={currentEditField === "firstLast" ? false : true}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  {errors.includes("lastname") && (
-                    <p className="invalid__message">invalid lastname</p>
-                  )}
-                </div>
-                <div
-                  onClick={() =>
-                    handleCurrentEditField("firstLast", "firstName__block")
-                  }
-                  className="form__edit__block"
-                >
-                  <img src={edit_black} alt="" />
-                  <Heading6 text="Edit" marginLeft={5} />
-                </div>
-              </div>
-              <Heading7 text="Your Gender" marginBottom={20} />
-              <div className="profile__gender__block">
-                <input
-                  type="radio"
-                  className="delivery__input__check"
-                  name="gender"
-                  value={personalData.gender}
-                  id="male"
-                  onChange={handleChange}
-                />
-                <label className="delivery__selection__text">Male</label>
-                <input
-                  type="radio"
-                  className="delivery__input__check"
-                  name="gender"
-                  value={personalData.gender}
-                  id="female"
-                  onChange={handleChange}
-                />
-                <label className="delivery__selection__text">Female</label>
-              </div>
-
-              <div className="profile__email__block">
-                <div className="main__form__field__block">
-                  {/* <p className="form__label">Email Address</p> */}
-                  <Heading7 text="Email Address" marginBottom={10} />
-                  <div className="field__block">
-                    <input
-                      type="text"
-                      placeholder=""
-                      className="form__field"
-                      id="email"
-                      name="email"
-                      value={personalData.email}
-                      disabled={currentEditField === "email" ? false : true}
-                      onChange={(e) => handleChange(e)}
-                      autoFocus
-                    />
-                  </div>
-                  {errors.includes("email") && (
-                    <span className="invalid__message">invalid email</span>
-                  )}
-                  {errors.includes("email_invalid") && (
-                    <span className="invalid__message">invalid type email</span>
-                  )}
-                </div>
-                <div
-                  onClick={() => handleCurrentEditField("email", "email")}
-                  className="form__edit__block"
-                >
-                  <img src={edit_black} alt="" />
-                  <Heading6 text="Edit" marginLeft={5} />
-                </div>
-              </div>
-              <div className="profile__mobile__block">
-                <div className="main__form__field__block">
-                  {/* <p className="form__label">Mobile Number</p> */}
-                  <Heading7 text="Mobile Number" marginBottom={10} />
-                  <div className="field__block">
-                    <input
-                      type="text"
-                      placeholder=""
-                      className="form__field"
-                      id="mobileNumber"
-                      name="mobileNumber"
-                      value={personalData.mobileNumber}
-                      disabled={
-                        currentEditField === "mobileNumber" ? false : true
-                      }
-                      onChange={(e) => handleChange(e)}
-                    />
-                  </div>
-                  {errors.includes("mobileNumber") && (
-                    <p className="invalid__message">mobile Number</p>
-                  )}
-                </div>
-                <div
-                  onClick={() =>
-                    handleCurrentEditField("mobileNumber", "mobileNumber")
-                  }
-                  className="form__edit__block"
-                >
-                  <img src={edit_black} alt="" />
-                  <Heading6 text="Edit" marginLeft={5} />
-                </div>
-              </div>
-              <div className="profile__preferences__block">
-                <Heading3 text="Preferences Settings" marginBottom={10} />
-
-                <div className="pd__compare__block">
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Notification Preferences"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">Notification Preferences</p>
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Order Notifications"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">Order Notifications</p>
-                </div>
-                <div className="pd__compare__block">
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Returns and Claims Notifications"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">
-                    Returns and Claims Notifications
-                  </p>
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Listing Notifications"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">Listing Notifications</p>
-                </div>
-                <div className="pd__compare__block">
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Special Offers"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">Special Offers</p>
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Newsletter Subscriptions"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">Newsletter Subscriptions</p>
-                </div>
-                <div className="pd__compare__block">
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Email Notifications"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">Email Notifications</p>
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="Gift Cards Notifications"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">Gift Cards Notifications</p>
-                </div>
-                <div className="pd__compare__block">
-                  <input
-                    type="checkbox"
-                    className="pd__compare__input__check"
-                    name="preferences"
-                    value="SMS & Text Messages"
-                    onChange={handleChange}
-                  />
-                  <p className="pd__compare__text">SMS & Text Messages</p>
-                </div>
-              </div>
-              <div className="profile__form__button__block">
-                <button className="form__save__button" onClick={handleSubmit}>
-                  SAVE
-                </button>
-                <button className="form__cancel__button" onClick={handleCancel}>
-                  CANCEL
-                </button>
-              </div>
+             <PersonalInfoForm/>
             </div>
             <div
               className={
                 tab === "address" ? "address__block" : "address__block__disable"
               }
             >
-              <h1>Address</h1>
+              <AddressForm addressData={addressData} closeLoginPopup={closeLoginPopup} handleAddressPopup={handleAddressPopup}/>
             </div>
             <div
               className={
@@ -374,10 +115,19 @@ function My_Profile_Page() {
                   : "password__block__disable"
               }
             >
-              <h1>Change Password</h1>
+              <PasswordForm/>
             </div>
           </div>
         </div>
+      </div>
+      <div
+        className={
+          addressPopup
+            ? "container-fluid address__popup__container"
+            : "container-fluid address__popup__container__disable"
+        }
+      >
+        <AddressPopup closeLoginPopup={closeLoginPopup}/>
       </div>
     </>
   );

@@ -2,74 +2,85 @@ import React from "react";
 import Banner from "../Components/Banner";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import "./../SCSS/_dashboardPage.scss";
-import dashboard_icon_01 from "./../assets/Icon/dashboard_icon_01.svg";
+import my_orders from "./../assets/Icon/my_orders.svg";
+import my_profile from "./../assets/Icon/my_profile.svg";
+import my_payments from "./../assets/Icon/my_payments.svg";
+import my_wishlist from "./../assets/Icon/my_wishlist.svg";
+import my_wallet from "./../assets/Icon/my_wallet.svg";
+import my_tickets from "./../assets/Icon/my_tickets.svg";
+import my_returns from "./../assets/Icon/my_returns.svg";
+import gift_card from "./../assets/Icon/gift_card.svg";
+import my_subscriptions from "./../assets/Icon/my_subscriptions.svg";
+import my_reward_points from "./../assets/Icon/my_reward_points.svg";
+import extended_warrenty from "./../assets/Icon/extended_warrenty.svg";
+import free_installations from "./../assets/Icon/free_installations.svg";
 import Heading6 from "../Components/Font/Heading6";
 const dashboardData = [
   {
     id: 0,
     name: "My Orders",
-    icon: dashboard_icon_01,
+    icon: my_orders,
   },
   {
     id: 1,
     name: "MY PROFILE",
-    icon: dashboard_icon_01,
+    icon: my_profile,
   },
   {
     id: 2,
     name: "MY PAYMENTS",
-    icon: dashboard_icon_01,
+    icon: my_payments,
   },
   {
     id: 3,
     name: "MY WISHLISTS",
-    icon: dashboard_icon_01,
+    icon: my_wishlist,
   },
   {
     id: 4,
     name: "MY WALLET",
-    icon: dashboard_icon_01,
+    icon: my_wallet,
   },
   {
     id: 5,
     name: "MY TICKETS",
-    icon: dashboard_icon_01,
+    icon: my_tickets,
   },
   {
     id: 6,
     name: "MY RETURNS",
-    icon: dashboard_icon_01,
+    icon: my_returns,
   },
   {
     id: 7,
     name: "GIFT CARD",
-    icon: dashboard_icon_01,
+    icon: gift_card,
   },
   {
     id: 8,
     name: "MY SUBSCRIPTIONS",
-    icon: dashboard_icon_01,
+    icon: my_subscriptions,
   },
   {
     id: 9,
     name: "MY REWARD POINTS",
-    icon: dashboard_icon_01,
+    icon: my_reward_points,
   },
   {
     id: 10,
     name: "EXTENDED WARRANTIES",
-    icon: dashboard_icon_01,
+    icon: extended_warrenty,
   },
   {
     id: 11,
     name: "FREE INSTALLATIONS",
-    icon: dashboard_icon_01,
+    icon: free_installations,
   },
 ];
 function Dashboard() {
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs title="My Account" />
       <div className="container-fluid dashboard__page__container">
         <div className="dashboard__page__block">
           <div className="row  dashboard__page__inner__block">

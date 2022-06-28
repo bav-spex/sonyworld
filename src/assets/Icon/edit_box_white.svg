@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <g id="edit_box_white" transform="translate(-370 -376)">
+    <g id="Rectangle_2539" data-name="Rectangle 2539" transform="translate(370 376)" fill="#fff" stroke="gray" stroke-width="1">
+      <rect width="36" height="36" rx="3" stroke="none"/>
+      <rect x="0.5" y="0.5" width="35" height="35" rx="2.5" fill="none"/>
+    </g>
+    <path id="iconfinder_728966_edit_pen_pencil_writing_draw_icon" d="M17.984,2.333,16.334.683a2.334,2.334,0,0,0-3.3,0L3.017,10.7c-.455.456-1.849,2.218-1.85,2.815L0,18.667,5.15,17.5a28.427,28.427,0,0,0,2.817-1.85L17.984,5.633a2.333,2.333,0,0,0,0-3.3ZM1.547,17.121,2.3,13.774a1.157,1.157,0,0,0,.023-.145c0-.007.009-.017.011-.024l2.638,2.639-.264.16Zm5.6-2.3A11.608,11.608,0,0,1,6,15.613L2.974,12.59a10.476,10.476,0,0,1,.868-1.064l7.543-7.542,3.3,3.3ZM17.159,4.808l-1.65,1.65-3.3-3.3,1.65-1.65a1.166,1.166,0,0,1,1.65,0l1.65,1.65a1.167,1.167,0,0,1,0,1.65Z" transform="translate(379 385)" fill="gray"/>
+  </g>
+</svg>
