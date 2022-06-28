@@ -30,28 +30,32 @@ const categoryLists = [
   {
     title: "TELEVISION",
     image: White_tv,
-    active: true,
+    bannerImage: feature_product_04,
   },
   {
     title: "OLED",
     image: White_tv,
-    active: true,
+    bannerImage: product_01,
   },
   {
     title: "FULL ARRAY LED",
     image: White_tv,
+    bannerImage: feature_product_04,
   },
   {
     title: "ALL LEDS",
     image: White_tv,
+    bannerImage: product_04,
   },
   {
     title: "GOOGLE TV",
     image: White_tv,
+    bannerImage: product_05,
   },
   {
     title: "ACCESSORIES",
     image: Accessories_white,
+    bannerImage: feature_product_04,
   },
 ];
 
@@ -576,10 +580,24 @@ const bestSellersData = [
   },
 ];
 
+const bannerImageData = [
+  {
+    image: feature_product_04,
+    title: "Television",
+  },
+  {
+    image: feature_product_04,
+    title: "",
+  },
+  {
+    image: feature_product_04,
+    title: "Television",
+  },
+];
+
 const Product_List_Page = () => {
   return (
     <div className="container-fluid allProducts">
-      <ProductListBannerSection bannerImage={feature_product_04} title="Television" />
       <ProductListCategorySection categoryData={categoryLists} />
       <ProductListPageProduct />
       <ProductListingPageBannerTwo bannerImage={bannerImg1} />
