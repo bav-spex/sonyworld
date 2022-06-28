@@ -28,7 +28,7 @@ function ProductThree({ product }) {
           />
         </div>
       </div>
-      <div className="col-12 col-sm-6 productThree__product__middle__block">
+      <div className="col-12 col-sm-7 productThree__product__middle__block">
         <img
           src={product.logo}
           alt=""
@@ -46,7 +46,7 @@ function ProductThree({ product }) {
         <PickupStore delivery={product.delivery} title="Get it today" />
         <ShippingBlock shipment={product.delivery}/>
       </div>
-      <div className="col-12 col-sm-3 productThree__product__right__block">
+      <div className="col-12 col-sm-2 productThree__product__right__block">
         <Price price={product.price} size="heading3" />
         <button className="productThree__addToPackage__button">
           Add To Package

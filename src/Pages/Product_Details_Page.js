@@ -45,7 +45,7 @@ import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
 import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import { Link } from "react-router-dom";
 import { renderIntoDocument } from "react-dom/test-utils";
-import ExpertProducts from "../Components/ExpertProducts";
+import ExpertProducts from "../Components/ProductType/ExpertProducts";
 import Accordian from "../Components/Accordian";
 import SimilarProducts from "../Components/SimilarProducts";
 import Protecttion from "../Components/MostSharedComponent/Protection";
@@ -14862,7 +14862,7 @@ function Product_Details_Page() {
   return (
     <>
       {/* <TopNavbar /> */}
-      <BreadCrumbs />
+      <BreadCrumbs title="Z8H | Full Array LED | 8K | High Dynamic Range"/>
       <div className="container-fluid product__details__page__container">
         <div className="row product__details__page__block">
           <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-9 row product__details__left__block">

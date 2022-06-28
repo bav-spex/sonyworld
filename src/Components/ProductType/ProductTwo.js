@@ -4,6 +4,7 @@ import { Rating } from "react-simple-star-rating";
 
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
+import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
 import productTwo_quality_icon from "./../../assets/Product/productTwo_quality_icon.png";
 import "./../../SCSS/ProductType/_productTwo.scss";
 import Heading7 from "./../Font/Heading7";
@@ -119,7 +120,14 @@ function ProductTwo({ productDetailPage, product }) {
           span={true}
         />
       </div>
-      <div className="addToCart__button">ADD TO CART</div>
+      <div className="addToCart__button">
+       <img
+         src={shopping_cart}
+         alt=""
+         className="addToCart__icon"
+       />
+       Add To Cart
+     </div>
     </div>
   );
 }

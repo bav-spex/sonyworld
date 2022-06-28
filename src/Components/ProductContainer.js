@@ -6,7 +6,12 @@ import "./../SCSS/_newArrival.scss";
 import Heading1 from "./Font/Heading1";
 import ProductOne from "./ProductType/ProductOne";
 
-function ProductContainer({ productDetailPage, sectionTitle, carouselData, containerClassName }) {
+function ProductContainer({
+  productDetailPage,
+  sectionTitle,
+  carouselData,
+  containerClassName,
+}) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
   const [arrowState, setArrowState] = useState(true);
@@ -43,9 +48,7 @@ function ProductContainer({ productDetailPage, sectionTitle, carouselData, conta
       >
         <div
           className={
-            !productDetailPage
-              ? "pc__block"
-              : "less__width__carousel__block"
+            !productDetailPage ? "pc__block" : "less__width__carousel__block"
           }
         >
           <p className="section__title">{sectionTitle}</p>
@@ -55,10 +58,8 @@ function ProductContainer({ productDetailPage, sectionTitle, carouselData, conta
           <div className="arrow right__arrow" onClick={rightSide}>
             <img src={black_right_arrow} alt="" />
           </div>
-          {/* <div className="arrow__block">
-          </div> */}
           <div className="main__product__container__block">
-            <div className={containerClassName} >
+            <div className={containerClassName}>
               {carouselData.map((product, productIndex) => {
                 return (
                   <ProductOne

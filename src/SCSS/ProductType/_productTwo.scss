@@ -119,12 +119,17 @@ width: 100%;
     }
   }
   .addToCart__button {
-    font-family: "arialmedium";
-    font-size: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: "arialbold";
+    letter-spacing: 0.85px;
+    padding: 20px 0px;
+    background-color: #DC3A1A;
     text-align: center;
-    width: 100%;
-    color: white;
-    background-color: #dc3a1a;
-    padding: 16px 0px;
+    text-transform: uppercase;
+    .addToCart__icon{
+      margin: 0px 20px 0px 0px; 
+    }
   }
 }

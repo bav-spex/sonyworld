@@ -7,13 +7,15 @@ import Text3 from "../Font/Text3";
 import AvailableOffers from "./AvailableOffers";
 import ProtectionPlan from "./ProtectionPlan";
 import SmallWarrantyBlock from "./SmallWarrantyBlock";
+import rating_star from "./../../assets/Icon/rating_star.svg";
 
 import product_01 from "./../../assets/Product/product_01.png";
 import "./../../SCSS/MostSharedComponents/_myOrderProduct.scss";
 import Protection from "./Protection";
+import { Link } from "react-router-dom";
 function MyOrderProduct({ product }) {
   const [couponCode, setCouponCode] = useState("");
-  
+
   const handleSubmit = (code) => {
     console.log(code);
   };
@@ -37,43 +39,29 @@ function MyOrderProduct({ product }) {
             <Heading7 text="SKU" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Text3
-              text={product.sku}
-              span={true}
-            />
+            <Text3 text={product.sku} span={true} />
           </div>
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="ORDER PLACED:" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Text3
-              text={product.orderPlaced}
-              span={true}
-            />
+            <Text3 text={product.orderPlaced} span={true} />
           </div>
-        </div>                                                                                                             
+        </div>
         <div className="row mo__order__details__row">
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="ORDER #:" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Text3
-              text={product.orderId}
-              span={true}
-            />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+            <Text3 text={product.orderId} span={true} />
           </div>
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="TOTAL AMOUNT:" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Price
-            price={product.totalAmount}
-              span={true}
-              size="heading7"
-            />
+            <Price price={product.totalAmount} span={true} size="heading6" />
           </div>
         </div>
-       
 
         <Protection
           title="Protection Plan"
@@ -84,9 +72,13 @@ function MyOrderProduct({ product }) {
         />
       </div>
       <div className="col-12 col-sm-3 mo__product__right__block">
-          <button className="mo__order__detail__button">ORDER DETAIL</button>
-          
-        <Text3 text="Write review of this product" color="#07A41B" span={true}  />
+        <button className="mo__order__detail__button">ORDER DETAIL</button>
+        <div>
+          <img src={rating_star} alt="" />
+          <Link className="write_Review__link" to="#">
+            Write review of this product
+          </Link>
+        </div>
       </div>
     </div>
   );

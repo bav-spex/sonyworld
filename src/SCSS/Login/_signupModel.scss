@@ -29,11 +29,16 @@
         justify-content: space-between;
         align-items: center;
         .form__field {
+          width: 100%;
           outline: none;
           border: none;
           font-size: 16px;
           letter-spacing: 0.3px;
         }
+      }
+      .invalid__message{
+        color: red;
+        margin: 5px 0px 0px;
       }
     }
     .main__policy__check__block {

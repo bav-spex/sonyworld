@@ -1,0 +1,139 @@
+.productEight__block {
+    width: 100%;
+  background-color: #ffffff;
+  .productEight__header__block {
+    background-color: #f1f4f9;
+    padding: 14px;
+    margin: 0px 0px 20px;
+    width: 100%;
+    .productEight__quality__favourite__block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .productEight__quality__icon {
+        margin: 0px 0px 10px;
+       
+      }
+      .productEight__favourite__icon {
+        margin: 10px 0px;
+        display: block;
+      }
+      .productEight__favourite__icon__disable {
+        margin: 10px 0px;
+        display: none;
+      }
+    }
+    .productEight__image__block {
+        height: 252px;
+        width: auto;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .productEight__image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: 50% 50%;
+      }
+    }
+    .productEight__compare__block {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      .productEight__compare__input__check {
+        accent-color: #000000;
+        height: 25px;
+        width: 25px;
+        border-radius: 10px;
+        margin: 0px 16px 0px 0px;
+        border: 30px solid #303030;
+        text-transform: uppercase;
+      }
+      .productEight__compare__text {
+        font-size: 16px;
+        font-family: "arialregular";
+        margin: 0px;
+      }
+    }
+  }
+
+  .productEight__name {
+    font-family: "arialbold";
+    font-size: 18px;
+    margin: 10px 0px 10px 0px;
+    height: 82px;
+  }
+  .productEight__series {
+    font-family: "arialregular";
+    font-size: 14px;
+    margin: 0px 0px 10px 0px;
+    color: #808080;
+    letter-spacing: 0.5px;
+  }
+
+  .rating__block {
+    padding: 0px;
+    margin: 0px 0px 10px 0px;
+    .bGVcoD {
+      padding: 0px;
+    }
+  }
+  .productEight__size__button__block {
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 10px 0px;
+    .productEight__size__button__active {
+      font-size: 12px;
+      border-radius: 3px;
+      color: #ffffff;
+      padding: 10px 8px;
+      background-color: #000000;
+      border: 1px solid #000000;
+      outline: none;
+      border: none;
+      margin: 0px 10px 0px 0px;
+    }
+    .productEight__size__button {
+      font-size: 12px;
+      border: 1px solid #707070;
+      border-radius: 3px;
+      padding: 10px 8px;
+      background-color: #ffffff;
+      outline: none;
+      margin: 0px 10px 0px 0px;
+
+    }
+  }
+  .prize__block {
+    display: flex;
+    align-items: flex-end;
+    .old__prize {
+      font-family: "arialregular";
+      font-size: 18px;
+      text-decoration-line: line-through;
+      color: #c8c8c8;
+    }
+    .new__prize {
+      font-family: "arialbold";
+      font-size: 18px;
+
+      margin: 0px 0px 0px 5px;
+    }
+  }
+  .addToCart__button {
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: "arialbold";
+    letter-spacing: 0.85px;
+    padding: 20px 0px;
+    background-color: #dc3a1a;
+    text-align: center;
+    text-transform: uppercase;
+    .addToCart__icon {
+      margin: 0px 20px 0px 0px;
+    }
+  }
+}

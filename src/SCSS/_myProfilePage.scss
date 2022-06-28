@@ -1,0 +1,211 @@
+.profile__page__container {
+  padding: 0px 12px;
+  background-color: #f5f5f5;
+  .profile__page__block {
+    padding: 20px 0px;
+    width: 1702px;
+    margin: 0px auto;
+
+    .profile__page__title__block {
+      background: #ffffff 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 6px #0000000a;
+      border: 1px solid #f1f1f1;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .profile__page__content__block {
+      background: #ffffff 0% 0% no-repeat padding-box;
+      box-shadow: 0px 3px 6px #0000000a;
+      border: 1px solid #f1f1f1;
+      padding: 16px;
+      margin: 0px auto;
+      .profile__tab__button__block {
+        margin: 0px 0px 20px;
+        .profile__page__button__active {
+          text-align: center;
+          font-size: 14px;
+          font-family: "arialbold";
+          border-radius: 5px;
+          min-width: fit-content;
+          color: #ffffff;
+          padding: 10px 25px;
+          background-color: #000000;
+          border: 1px solid #000000;
+          margin: 0px 12px 10px 0px;
+          outline: none;
+          border: none;
+          letter-spacing: 0.3px;
+          cursor: pointer;
+        }
+        .profile__page__button {
+          cursor: pointer;
+          text-align: center;
+          min-width: fit-content;
+          font-size: 14px;
+          font-family: "arialbold";
+          border: 1px solid #707070;
+          border-radius: 5px;
+          padding: 10px 25px;
+          color: #808080;
+          background-color: #ffffff;
+          margin: 0px 12px 10px 0px;
+          outline: none;
+          letter-spacing: 0.3px;
+        }
+      }
+      .personal__block__disable {
+        display: none;
+      }
+      .personal__block {
+        display: block;
+        .profile__email__block,
+        .profile__mobile__block,
+        .profile__firstname__lastname {
+          display: flex;
+          align-items: center;
+
+          .main__form__field__block {
+            width: 370px;
+            height: 110px;
+            margin: 0px 20px 10px 0px;
+            .form__label {
+            }
+            .field__block {
+              border: 1px solid #c8c8c8;
+              border-radius: 4px;
+              padding: 10px 16px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              .form__field {
+                background: none;
+                width: 100%;
+                outline: none;
+                border: none;
+                font-size: 16px;
+                letter-spacing: 0.3px;
+              }
+            }
+            .invalid__message {
+              color: red;
+              margin: 5px 0px 0px;
+              height: 24px;
+            }
+          }
+
+          .form__edit__block {
+            display: flex;
+            align-items: center;
+          }
+        }
+        .profile__gender__block {
+          display: flex;
+          align-items: center;
+          margin: 0px 0px 50px;
+          .delivery__input__check {
+            accent-color: #ff4f04;
+            height: 30px;
+            width: 30px;
+            border-radius: 10px;
+            margin: 0px 16px 0px 0px;
+            border: 30px solid #303030;
+            text-transform: uppercase;
+          }
+          .delivery__selection__text {
+            margin: 0px 20px 0px 0px;
+            font-family: "arialregular";
+          }
+        }
+        .profile__preferences__block {
+          margin: 30px 0px;
+          .pd__compare__block {
+            display: flex;
+            align-items: center;
+            margin: 0px 0px 20px 0px;
+            .pd__compare__input__check {
+              accent-color: #000000;
+              height: 25px;
+              width: 25px;
+              border-radius: 10px;
+              margin: 0px 16px 0px 0px;
+              // border: 30px solid #303030;
+              text-transform: uppercase;
+            }
+            .pd__compare__text {
+              font-size: 18px;
+              font-family: "arialregular";
+              margin: 0px;
+              width: 400px;
+            }
+          }
+        }
+        .profile__form__button__block {
+          margin: 50px 0px 0px;
+          .form__save__button {
+            text-align: center;
+            font-size: 14px;
+            font-family: "arialbold";
+            border-radius: 5px;
+            min-width: 150px;
+            color: #ffffff;
+            padding: 10px 25px;
+            background-color: #dc3a1a;
+            margin: 0px 12px 10px 0px;
+            outline: none;
+            border: none;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            text-transform: uppercase;
+
+          }
+          .form__cancel__button {
+            cursor: pointer;
+            text-align: center;
+            min-width: 150px;
+            font-size: 14px;
+            font-family: "arialbold";
+            border: 1px solid #707070;
+            border-radius: 5px;
+            padding: 10px 25px;
+            color: #808080;
+            background-color: #ffffff;
+            margin: 0px 12px 10px 0px;
+            outline: none;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+          }
+        }
+      }
+      .address__block__disable {
+        display: none;
+      }
+      .address__block {
+        display: block;
+      }
+      .password__block__disable {
+        display: none;
+      }
+      .password__block {
+        display: block;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1702px) {
+  .profile__page__block {
+    width: 90% !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .checkout__right__block {
+    padding: 0px !important;
+    margin: 10px 0px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .profile__page__block {
+    width: 100% !important;
+  }
+}

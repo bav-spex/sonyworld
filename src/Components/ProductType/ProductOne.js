@@ -4,6 +4,7 @@ import { Rating } from "react-simple-star-rating";
 
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
+import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
 import "./../../SCSS/ProductType/_productOne.scss";
 import Heading5 from "./../Font/Heading5";
 import Heading6 from "./../Font/Heading6";
@@ -16,15 +17,12 @@ function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
-  // console.log(product);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
-
   const handleRating = (score) => {
     setRating(score);
   };
-  // console.log(rating);
   return (
     <div
       key={product.id}
@@ -63,7 +61,7 @@ function ProductOne({ productDetailPage, product }) {
       <RatingBlock rating={4.2} totalRatings={2183} />
 
       <div className="prize__block">
-      <OldPrice
+        <OldPrice
           oldPrice={526341}
           size="text3"
           color="#c8c8c8"
@@ -71,10 +69,18 @@ function ProductOne({ productDetailPage, product }) {
           lineThrough={true}
           span={true}
         />
-        <Price price={product.price_rounded? product.price_rounded : 1699} marginLeft={5} size="heading6" span={true} />
+        <Price
+          price={product.price_rounded ? product.price_rounded : 1699}
+          marginLeft={5}
+          size="heading6"
+          span={true}
+        />
       </div>
       {productDetailPage ? (
-        <div className="addToCart__button">ADD TO CART</div>
+        <div className="addToCart__button">
+          <img src={shopping_cart} alt="" className="addToCart__icon" />
+          Add To Cart
+        </div>
       ) : (
         ""
       )}
