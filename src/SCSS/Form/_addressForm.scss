@@ -1,0 +1,208 @@
+.address__select__block {
+  padding: 0px 0px 50px;
+  margin: 20px 0px;
+  border-bottom: 1px solid #818181;
+  .address__block {
+    padding: 0px 16px;
+    .selected__address__inner__block {
+      box-shadow: 0px 3px 6px #00000029;
+      border: 2px solid #000000;
+      padding: 20px 30px;
+      .address__title__block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0px 0px 20px 0px;
+        .address__tag {
+          width: fit-content;
+          padding: 10px 20px;
+          background: #eeeeee;
+          border: 1px solid #eeeeee;
+          border-radius: 3px;
+        }
+        .white__address__tag {
+          width: fit-content;
+          padding: 10px 20px;
+          background: #ffffff;
+          border: 1px solid #ffffff;
+          border-radius: 3px;
+        }
+        .inner__address__button__block {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .edit__button,
+          .delete__button {
+            outline: none;
+            border: none;
+            cursor: pointer;
+            background-color: white;
+          }
+        }
+        .full__address {
+          width: 30%;
+        }
+      }
+    }
+    .address__inner__block {
+      background: #ffffff;
+      box-shadow: 0px 3px 6px #00000029;
+      border: 2px solid #d1d1d1;
+      padding: 20px 30px;
+      .address__title__block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0px 0px 20px 0px;
+        .address__tag {
+          width: fit-content;
+          padding: 10px 20px;
+          background: #eeeeee;
+          border: 1px solid #eeeeee;
+          border-radius: 3px;
+        }
+        .white__address__tag {
+          width: fit-content;
+          padding: 10px 20px;
+          background: #ffffff;
+          border: 1px solid #ffffff;
+          border-radius: 3px;
+        }
+        .inner__address__button__block {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .edit__button,
+          .delete__button {
+            background-color: white;
+            margin: 0px 0px 10px 0px;
+            outline: none;
+            border: none;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            text-transform: uppercase;
+          }
+        }
+        .full__address {
+          width: 30%;
+        }
+      }
+    }
+  }
+}
+.newAddress__block {
+  max-width: 1200px;
+  padding: 6px;
+  .newAddress__title__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 14px 20px;
+    background-color: #ffffff;
+    .cancel__button {
+      cursor: pointer;
+    }
+  }
+  .newAddress__form__field__row {
+    margin: 0px 0px 20px 0px;
+    height: 110px;
+    .main__form__field__block {
+      margin: 0px 0px 10px;
+      .form__label {
+      }
+      .field__block {
+        border: 1px solid #c8c8c8;
+        border-radius: 4px;
+        padding: 10px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .form__field {
+          width: 100%;
+          outline: none;
+          border: none;
+          font-size: 16px;
+          letter-spacing: 0.3px;
+        }
+      }
+      .invalid__message {
+        color: red;
+        margin: 5px 0px 0px;
+      }
+    }
+  }
+  .addressType__block {
+    display: flex;
+    align-items: center;
+    padding: 0px 14px 20px;
+    .delivery__input__check {
+      accent-color: #ff4f04;
+      height: 30px;
+      width: 30px;
+      border-radius: 10px;
+      margin: 0px 16px 0px 0px;
+      border: 30px solid #303030;
+      text-transform: uppercase;
+    }
+    .delivery__selection__text {
+      margin: 0px 20px 0px 0px;
+    }
+  }
+  .preferences__select__block {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+    padding: 0px 14px 0px;
+    .preferences__select__input__check {
+      accent-color: #DC3A1A;
+      height: 25px;
+      width: 25px;
+      border-radius: 10px;
+      margin: 0px 16px 0px 0px;
+      // border: 30px solid #303030;
+      text-transform: uppercase;
+    }
+    .preferences__select__text {
+      font-size: 18px;
+      font-family: "arialregular";
+      margin: 0px;
+      width: 400px;
+    }
+  }
+  .newAddress__form__button__block {
+    margin: 0px;
+    padding: 0px 0px 0px 10px;
+    .form__save__button {
+      text-align: center;
+      font-size: 14px;
+      font-family: "arialbold";
+      border-radius: 5px;
+      min-width: 150px;
+      color: #ffffff;
+      padding: 10px 25px;
+      background-color: #dc3a1a;
+      margin: 0px 12px 10px 0px;
+      outline: none;
+      border: none;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .form__cancel__button {
+      cursor: pointer;
+      text-align: center;
+      min-width: 150px;
+      font-size: 14px;
+      font-family: "arialbold";
+      border: 1px solid #707070;
+      border-radius: 5px;
+      padding: 10px 25px;
+      color: #808080;
+      background-color: #ffffff;
+      margin: 0px 12px 10px 0px;
+      outline: none;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+  }
+}

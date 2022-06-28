@@ -19,10 +19,10 @@ import payment_inprogress from "./../assets/Icon/payment_inprogress.svg";
 import payment_done from "./../assets/Icon/payment_done.svg";
 import done from "./../assets/Icon/done.svg";
 import check from "./../assets/Icon/check.svg";
+import cancel_grey from "./../assets/Icon/cancel_grey.svg";
 import shipping from "./../assets/Icon/shipping.svg";
 import sony_logo from "./../assets/Icon/sony_logo.svg";
 import black_location from "./../assets/Icon/black_location.svg";
-
 
 import Text5 from "../Components/Font/Text5";
 import Heading7 from "../Components/Font/Heading7";
@@ -32,6 +32,7 @@ import AvailableOffers from "../Components/MostSharedComponent/AvailableOffers";
 import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
 import Heading2 from "../Components/Font/Heading2";
 import ProductThree from "../Components/ProductType/ProductThree";
+import AddressPopup from "../Components/Popup/AddressPopup";
 const addressData = [
   {
     id: 0,
@@ -156,9 +157,10 @@ const deliveryType = [
     price: 15,
   },
 ];
-function Checkout_Page({reloadingHeader}) {
+function Checkout_Page({ reloadingHeader }) {
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
+  const [addressPopup, setAddressPopup] = useState(false);
 
   const handleSubmit = (code) => {
     console.log(code);
@@ -173,27 +175,35 @@ function Checkout_Page({reloadingHeader}) {
   const remove = (id) => {
     console.log(id);
   };
-  const [iconType,setIconType]=useState({
-    signin:"done",
-    delivery:"inprogress",
-    payment:"initial"
-  })
-const [checkoutClassName, setCheckoutClassName]= useState("delivery")
-const handleChangeClassName = (className)=>{
-  setCheckoutClassName(className)
-}
-  const openLoginWrapperFromAnywhere =()=>{
+  const [iconType, setIconType] = useState({
+    signin: "done",
+    delivery: "inprogress",
+    payment: "initial",
+  });
+  const [checkoutClassName, setCheckoutClassName] = useState("delivery");
+  const handleChangeClassName = (className) => {
+    setCheckoutClassName(className);
+  };
+  const openLoginWrapperFromAnywhere = () => {
     // console.log(document.querySelector(".login__popup__container__disable"));
     // reloadingHeader()
-    const element = document.querySelector(".login__popup__container__disable")
-    element.classList.remove("login__popup__container__disable")
-    element.classList.add("login__popup__container")
-    localStorage.setItem("loginWrapper",JSON.stringify(true))
-    localStorage.setItem("loginMode",JSON.stringify("signin"))
-  localStorage.setItem("loginPopup",JSON.stringify(true))
+    const element = document.querySelector(".login__popup__container__disable");
+    element.classList.remove("login__popup__container__disable");
+    element.classList.add("login__popup__container");
+    localStorage.setItem("loginWrapper", JSON.stringify(true));
+    localStorage.setItem("loginMode", JSON.stringify("signin"));
+    localStorage.setItem("loginPopup", JSON.stringify(true));
     window.scrollTo(500, 0);
-    
-  }
+  };
+  const closeLoginPopup = () => {
+    if (document.querySelector(".address__popup__container")) {
+      // reloadingHeader()
+      const element = document.querySelector(".address__popup__container");
+      element.classList.remove("address__popup__container");
+      element.classList.add("address__popup__container__disable");
+    }
+    setAddressPopup(false)
+  };
   return (
     <>
       <BreadCrumbs title="Checkout" />
@@ -202,27 +212,112 @@ const handleChangeClassName = (className)=>{
           <div className="row checkout__page__inner__block">
             <div className="col-md-12 col-xl-9  checkout__left__block">
               <div className="row checkout__login__main__block">
-               <div onClick={()=>openLoginWrapperFromAnywhere()} className="col-2 checkout__signin__button">
-                <img src={iconType.signin === "inprogress"? signin_inprogress :iconType.signin === "done"? signin_done:signin_initial} alt="" />
-                <Heading5 text="SIGN IN" marginLeft={10} color={iconType.signin === "inprogress"?"#DC3A1A":iconType.signin === "done"?"#585858":"#C8C8C8"} span={true}/>
-                {iconType.signin === "done"?<img className="done__icon" src={done} alt="done"/> :""}
-
+                <div
+                  onClick={() => openLoginWrapperFromAnywhere()}
+                  className="col-2 checkout__signin__button"
+                >
+                  <img
+                    src={
+                      iconType.signin === "inprogress"
+                        ? signin_inprogress
+                        : iconType.signin === "done"
+                        ? signin_done
+                        : signin_initial
+                    }
+                    alt=""
+                  />
+                  <Heading5
+                    text="SIGN IN"
+                    marginLeft={10}
+                    color={
+                      iconType.signin === "inprogress"
+                        ? "#DC3A1A"
+                        : iconType.signin === "done"
+                        ? "#585858"
+                        : "#C8C8C8"
+                    }
+                    span={true}
+                  />
+                  {iconType.signin === "done" ? (
+                    <img className="done__icon" src={done} alt="done" />
+                  ) : (
+                    ""
+                  )}
                 </div>
-               <div className="col-3 checkout__middle__line__block">
-               </div>
-               <div onClick={()=> handleChangeClassName("delivery")}  className="col-2 checkout__delivery__button">
-                   <img src={iconType.delivery === "inprogress"? delivery_inprogress :iconType.delivery === "done"? delivery_done:delivery_initial} alt="" />
-                <Heading5 text="DELIVERY" marginLeft={10} color={iconType.delivery === "inprogress"?"#DC3A1A":iconType.delivery === "done"?"#585858":"#C8C8C8"} span={true}/>
-                {iconType.delivery === "done"?<img className="done__icon" src={done} alt="done"/> :""}
-               </div>
-               <div className="col-3 checkout__middle__line__block"></div>
-               <div onClick={()=> handleChangeClassName("payment")} className="col-2 checkout__payment__button">
-               <img src={iconType.payment === "inprogress"? payment_inprogress :iconType.payment === "done"? payment_done:payment_initial} alt="" />
-                <Heading5 text="PAYMENT" marginLeft={10} color={iconType.payment === "inprogress"?"#DC3A1A":iconType.payment === "done"?"#585858":"#C8C8C8"} span={true}/>
-                {iconType.payment === "done"?<img className="done__icon" src={done} alt="done"/> :""}
-               </div>
+                <div className="col-3 checkout__middle__line__block"></div>
+                <div
+                  onClick={() => handleChangeClassName("delivery")}
+                  className="col-2 checkout__delivery__button"
+                >
+                  <img
+                    src={
+                      iconType.delivery === "inprogress"
+                        ? delivery_inprogress
+                        : iconType.delivery === "done"
+                        ? delivery_done
+                        : delivery_initial
+                    }
+                    alt=""
+                  />
+                  <Heading5
+                    text="DELIVERY"
+                    marginLeft={10}
+                    color={
+                      iconType.delivery === "inprogress"
+                        ? "#DC3A1A"
+                        : iconType.delivery === "done"
+                        ? "#585858"
+                        : "#C8C8C8"
+                    }
+                    span={true}
+                  />
+                  {iconType.delivery === "done" ? (
+                    <img className="done__icon" src={done} alt="done" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="col-3 checkout__middle__line__block"></div>
+                <div
+                  onClick={() => handleChangeClassName("payment")}
+                  className="col-2 checkout__payment__button"
+                >
+                  <img
+                    src={
+                      iconType.payment === "inprogress"
+                        ? payment_inprogress
+                        : iconType.payment === "done"
+                        ? payment_done
+                        : payment_initial
+                    }
+                    alt=""
+                  />
+                  <Heading5
+                    text="PAYMENT"
+                    marginLeft={10}
+                    color={
+                      iconType.payment === "inprogress"
+                        ? "#DC3A1A"
+                        : iconType.payment === "done"
+                        ? "#585858"
+                        : "#C8C8C8"
+                    }
+                    span={true}
+                  />
+                  {iconType.payment === "done" ? (
+                    <img className="done__icon" src={done} alt="done" />
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
-              <div  className={checkoutClassName === "delivery"? "user__delivery__address__block":"user__delivery__address__block__disable"}>
+              <div
+                className={
+                  checkoutClassName === "delivery"
+                    ? "user__delivery__address__block"
+                    : "user__delivery__address__block__disable"
+                }
+              >
                 <div className="delivery__address__block">
                   <div className="delivery__address__title__block">
                     <img src={shipping} alt="" className="user__icon" />
@@ -265,7 +360,32 @@ const handleChangeClassName = (className)=>{
                             <p className="full__address">
                               <Text4 text={add.adddress} marginBottom={20} />
                             </p>
-                            <Heading7 text="Phone Number:" color="#808080" span={true} />  <Text4 text={add.contact} marginLeft={10} span={true}/>
+                            <Heading7
+                              text="Phone Number:"
+                              color="#808080"
+                              span={true}
+                            />{" "}
+                            <Text4
+                              text={add.contact}
+                              marginLeft={10}
+                              span={true}
+                            />
+                            <div className="address__button__block">
+                              <button className="delivery__button">
+                                DELIVER TO THIS ADDRESS
+                              </button>
+                              <div className="inner__address__button__block">
+                                <button
+                                  onClick={() => setAddressPopup(true)}
+                                  className="edit__button"
+                                >
+                                  EDIT
+                                </button>
+                                <button className="delete__button">
+                                  DELETE
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       );
@@ -274,21 +394,18 @@ const handleChangeClassName = (className)=>{
                 </div>
                 <hr className="checkout__page__horizontal__line"></hr>
                 <div className=" add__new__address__block">
-                  <div className="add__new__address__title__block">
+                    <button onClick={() => setAddressPopup(true)} className="location__button">
+                    <img
+                      src={black_location}
+                      alt=""
+                      className="location__icon"
+                    />
                     <Heading5
                       text="Add New Address"
                       marginBottom={0}
                       color="#000000"
                     />
-                    <button className="location__button">
-                      <img
-                        src={black_location}
-                        alt=""
-                        className="location__icon"
-                      />
-                      Locate me
                     </button>
-                  </div>
                 </div>
                 <hr className="checkout__page__horizontal__line"></hr>
 
@@ -346,7 +463,13 @@ const handleChangeClassName = (className)=>{
                   </div>
                 </div>
               </div>
-              <div className={checkoutClassName === "payment"?  "user__payment__block" :"user__payment__block__disable" }>
+              <div
+                className={
+                  checkoutClassName === "payment"
+                    ? "user__payment__block"
+                    : "user__payment__block__disable"
+                }
+              >
                 <h1>Payment</h1>
               </div>
               {/* <div className="order__summary__block">
@@ -406,6 +529,15 @@ const handleChangeClassName = (className)=>{
             </div>
           </div>
         </div>
+      </div>
+      <div
+        className={
+          addressPopup
+            ? "container-fluid address__popup__container"
+            : "container-fluid address__popup__container__disable"
+        }
+      >
+        <AddressPopup closeLoginPopup={closeLoginPopup}/>
       </div>
     </>
   );
