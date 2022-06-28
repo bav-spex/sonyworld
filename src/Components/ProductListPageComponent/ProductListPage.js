@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ProductLists from "./AllProductList";
+import ProductLists from "./ProductListPageProduct";
+import AllProductFilter from "./ProductListPageFilter";
+
 import Dropdown from "../DropDown";
 // import GridButton from "../../Components/Buttons/GridButton";
 // import ListButton from "../../Components/Buttons/ListButton";
@@ -534,10 +536,11 @@ const peopleUltimatelyBoughtData = [
   },
 ];
 
-const Product_List = (props) => {
+const Product_List_Page = (props) => {
   const [singleGrid, setSingleGrid] = useState(false);
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   const [productView, setProductView] = useState("grid");
+
   useEffect(() => {
     console.log(selectedOption);
   }, [selectedOption]);
@@ -557,7 +560,7 @@ const Product_List = (props) => {
   };
   return (
     <div>
-      <div className=" allproducts__product__list">
+      <div className="product__list__page">
         <div className="product__header">
           <div className="product__count">22 Products</div>
           <div className="product__sortby__grid">
@@ -587,13 +590,13 @@ const Product_List = (props) => {
                 className="grid__block"
                 onClick={() => onClickGridList("grid")}
               >
-                <img className="grid__view" src={GridIcon} />
+                <img className="grid__view" src={GridIcon} alt="" />
               </div>
               <div
                 className="list__block"
                 onClick={() => onClickGridList("list")}
               >
-                <img className="list__view" src={ListIcon} />
+                <img className="list__view" src={ListIcon} alt=""/>
 
                 {/* <ListButton isActive={false} /> */}
               </div>
@@ -601,7 +604,9 @@ const Product_List = (props) => {
           </div>
         </div>
         <div className="row product__filter__list">
-          <div className="col-sm-4 product__filter">test 1</div>
+          <div className="col-sm-4 product__filter">
+            <AllProductFilter />
+          </div>
           <div className="col-sm-8 product__list">
             {singleGrid ? (
               <div className="row">
@@ -623,20 +628,9 @@ const Product_List = (props) => {
             )}
           </div>
         </div>
-
-        {/* <div className="col-6 section__one__title__block">
-        <p className="section__title">{props.title}</p>
-      </div>
-      <div className="col-6 section__one__image__block">
-        <img
-          className="section__one__image"
-          src={props.bannerImage}
-          alt="telivision"
-        />
-      </div> */}
       </div>
     </div>
   );
 };
 
-export default Product_List;
+export default Product_List_Page;

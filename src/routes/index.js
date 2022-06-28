@@ -22,7 +22,7 @@ import My_Orders from "./../Pages/My_Orders";
 import Order_Details from "./../Pages/Order_Details";
 import Category_Page from "./../Pages/Category_Page";
 import All_Category_Page from "./../Pages/All_Category_Page";
-import AllProducts from "./../Pages/All_Products";
+import Product_List_Page from "./../Pages/Product_List_Page";
 import My_Wishlists_Page from "../Pages/My_Wishlists_Page";
 import My_Profile_Page from "../Pages/My_Profile_Page";
 import Confirm_Order_Page from "../Pages/Confirm_Order_Page";
@@ -31,7 +31,7 @@ function AllRoutes({reloadingHandle,log}) {
   return (
     <Routes>
       <Route exact path="/" element={<Home log="log" />}></Route>
-      <Route exact path="/products" element={<AllProducts />} ></Route>
+      <Route exact path="/products" element={<Product_List_Page />} ></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
       <Route exact path="/category" element={<All_Category_Page />} ></Route>
       <Route exact path="/services" element={<Services />}></Route>

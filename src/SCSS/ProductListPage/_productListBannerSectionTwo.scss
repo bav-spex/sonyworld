@@ -1,0 +1,20 @@
+.productListing__banner__two__container {
+  display: flex;
+  justify-content: center;
+  //   align-items: center;
+  padding: 0px;
+  margin-bottom: 49px;
+  .productListing__banner__two__block {
+    width: 1702px;
+    padding: 0px;
+    margin: 0px auto;
+    .productListing__banner__two__image__block {
+      width: 100%;
+      .banner__image {
+        width: 100%;
+        // height: 100%;
+        // object-fit: cover;
+      }
+    }
+  }
+}

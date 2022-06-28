@@ -1,0 +1,93 @@
+.allProducts {
+  background-color: #e6e6e6;
+  padding: 113px 12px 0px;
+}
+
+.product__list__page {
+  width: 1702px;
+  padding: 0px;
+  margin: 0px auto;
+  background: #e6e6e6;
+}
+// .product__filter{
+//   min-height: 1869px;
+//   width: 320px;
+//   background: white;
+// }
+.product__header {
+  min-height: 81px;
+  display: flex;
+  justify-content: space-between;
+  background: #f9f9f9;
+  .product__count {
+    color: #000000;
+    font-family: "arialbold";
+    font-size: 24px;
+    margin: 27px 0px 27px 81px;
+  }
+  .product__sortby__grid {
+    display: flex;
+    justify-content: flex-end;
+    .product__sortby {
+      min-height: 52px;
+      width: 255px;
+      .sortby__block {
+        display: flex;
+
+        .sortby__text {
+          color: #808080;
+          font-family: "arial";
+          font-size: 16px;
+          width: 62px;
+          min-height: 17px;
+          text-align: center;
+          margin: auto;
+        }
+        .sortby__select {
+          // -moz-appearance:none; /* Firefox */
+          // -webkit-appearance:none; /* Safari and Chrome */
+          // appearance:none;
+          margin: 8px 0px 21px 8px;
+          width: 185px;
+          min-height: 60px;
+          background: #ffffff 0% 0% no-repeat padding-box;
+          border: 1px solid #c8c8c8;
+          border-radius: 3px;
+          opacity: 1;
+          padding: 10px;
+          .sortby__options {
+            color: #808080;
+            font-family: "arial";
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .product__view {
+      display: flex;
+      margin: 14px 27px 27px 10px;
+      .grid__block {
+        margin-right: 5px;
+        width: 45px;
+        min-height: 40px;
+        background: #ffffff;
+        border: 1px solid #ff4f04;
+        border-radius: 3px;
+        .grid__view {
+          padding: 7px;
+        }
+      }
+      .list__block {
+        width: 45px;
+        min-height: 40px;
+        background: #ffffff;
+        border: 1px solid #727272;
+        border-radius: 3px;
+        .list__view {
+          width: 45px;
+          min-height: 40px;
+        }
+      }
+    }
+  }
+}
