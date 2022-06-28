@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Heading3 from "../Font/Heading3";
 import Heading6 from "../Font/Heading6";
 import Heading7 from "../Font/Heading7";
@@ -67,8 +67,13 @@ function NewsLetterModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("email") && <p>invalid email</p>}
-          {errors.includes("email_invalid") && <p>invalid type email</p>}
+          {errors.includes("email") && (
+            <span className="invalid__message">invalid email</span>
+          )}
+          {"  "}
+          {errors.includes("email_invalid") && (
+            <span className="invalid__message">invalid type email</span>
+          )}
         </div>
         <button
           onClick={() => handleChangePopupMode("signin")}

@@ -91,7 +91,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("firstName") && <p>invalid firstName</p>}
+          {errors.includes("firstName") && <p className="invalid__message">invalid firstName</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Last Name</p> */}
@@ -107,7 +107,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("lastName") && <p>invalid lastName</p>}
+          {errors.includes("lastName") && <p className="invalid__message">invalid lastName</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Email Address</p> */}
@@ -123,8 +123,8 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("email") && <p>invalid email</p>}
-          {errors.includes("email_invalid") && <p>invalid type email</p>}
+          {errors.includes("email") && <p className="invalid__message">invalid email</p>}
+          {errors.includes("email_invalid") && <p className="invalid__message">invalid type email</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Mobile Number</p> */}
@@ -163,7 +163,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               )}
             </a>
           </div>
-          {errors.includes("password") && <p>invalid password</p>}
+          {errors.includes("password") && <p className="invalid__message">invalid password</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Confirm Password</p> */}
@@ -186,7 +186,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               )}
             </a>
           </div>
-          {errors.includes("confirmPassword") && <p>invalid confirmPassword</p>}
+          {errors.includes("confirmPassword") && <p className="invalid__message">invalid confirmPassword</p>}
         </div>
         <div className="main__policy__check__block">
           <div className="policy__check__block">

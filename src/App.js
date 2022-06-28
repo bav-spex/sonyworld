@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "./Components/Common/Header";
 import AllRoutes from "./routes";
 import Footer from "./Components/Common/Footer";
+import NewsLetter from "./Components/Common/NewsLetter";
 
 function App() {
   const location = useLocation();
@@ -38,6 +39,7 @@ function App() {
       
       
       </div>
+      <NewsLetter/>
       <Footer/>
     
     </>
