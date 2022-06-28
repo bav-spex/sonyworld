@@ -1,12 +1,16 @@
 import React from "react";
-import "./../SCSS/AllProducts/_allProducts.scss";
-import "./../SCSS/AllProducts/_productSections.scss";
 
-import AllProductBanner from "../Components/ProductSections/AllProductBanner";
-import AllProductCategorySection from "../Components/ProductSections/AllProductCategorySection";
-import AllProducts from "../Components/ProductSections/ProductList";
-import ProductListingPageBannerTwo from "../Components/ProductSections/ProductListingPageBannerTwo";
-import ProductListingPageSimilarProduct from "../Components/ProductSections/ProductListingPageSimilarProduct";
+import "./../SCSS/ProductListPage/_productListPage.scss";
+import "./../SCSS/ProductListPage/_productListBannerSection.scss";
+import "./../SCSS/ProductListPage/_productListCategorySection.scss";
+import "./../SCSS/ProductListPage/_productListFilter.scss";
+
+import ProductListBannerSection from "../Components/ProductListPageComponent/ProductListBannerSection";
+import ProductListCategorySection from "../Components/ProductListPageComponent/ProductListCategorySection";
+import ProductListPageProduct from "../Components/ProductListPageComponent/ProductListPage";
+import ProductListingPageBannerTwo from "../Components/ProductListPageComponent/ProductListPageBannerTwo";
+import ProductListingPageSimilarProduct from "../Components/ProductListPageComponent/ProductListingPageSimilarProduct";
+import CarouselTypeTwo from "../Components/CarouselTypeTwo";
 
 import SimilarProducts from "../Components/SimilarProducts";
 
@@ -572,14 +576,21 @@ const bestSellersData = [
   },
 ];
 
-const AllProductList = () => {
+const Product_List_Page = () => {
   return (
     <div className="container-fluid allProducts">
-      <AllProductBanner bannerImage={feature_product_04} title="Television" />
-      <AllProductCategorySection categoryData={categoryLists} />
-      <AllProducts />
+      <ProductListBannerSection bannerImage={feature_product_04} title="Television" />
+      <ProductListCategorySection categoryData={categoryLists} />
+      <ProductListPageProduct />
       <ProductListingPageBannerTwo bannerImage={bannerImg1} />
-      <ProductListingPageSimilarProduct carouselData={bestSellersData} containerClassName="productListingPage__similarproduct__block"/>
+      {/* <CarouselTypeTwo
+        productDetailPage={false} 
+        sectionTitle="People Who Bought Also Bought"
+        carouselData={bestSellersData}
+        productType="productOne"
+        containerClassName="carouselTypeTwo__inner__block"
+      /> */}
+      {/* <ProductListingPageSimilarProduct carouselData={bestSellersData} containerClassName="productListingPage__similarproduct__block"/> */}
       {/* <SimilarProducts
         productDetailPage={false}
         sectionTitle="Budget TVs"
@@ -591,4 +602,4 @@ const AllProductList = () => {
   );
 };
 
-export default AllProductList;
+export default Product_List_Page;

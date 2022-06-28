@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ProductLists from "./AllProductList";
-import AllProductFilter from "./AllproductFilters";
+import ProductLists from "./ProductListPageProduct";
+import AllProductFilter from "./ProductListPageFilter";
 
 import Dropdown from "../DropDown";
 // import GridButton from "../../Components/Buttons/GridButton";
@@ -536,7 +536,7 @@ const peopleUltimatelyBoughtData = [
   },
 ];
 
-const Product_List = (props) => {
+const Product_List_Page = (props) => {
   const [singleGrid, setSingleGrid] = useState(false);
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   const [productView, setProductView] = useState("grid");
@@ -560,7 +560,7 @@ const Product_List = (props) => {
   };
   return (
     <div>
-      <div className=" allproducts__product__list">
+      <div className="product__list__page">
         <div className="product__header">
           <div className="product__count">22 Products</div>
           <div className="product__sortby__grid">
@@ -628,20 +628,9 @@ const Product_List = (props) => {
             )}
           </div>
         </div>
-
-        {/* <div className="col-6 section__one__title__block">
-        <p className="section__title">{props.title}</p>
-      </div>
-      <div className="col-6 section__one__image__block">
-        <img
-          className="section__one__image"
-          src={props.bannerImage}
-          alt="telivision"
-        />
-      </div> */}
       </div>
     </div>
   );
 };
 
-export default Product_List;
+export default Product_List_Page;

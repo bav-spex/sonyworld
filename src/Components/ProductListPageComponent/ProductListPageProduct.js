@@ -7,14 +7,14 @@ import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
 import productTwo_quality_icon from "./../../assets/Product/productTwo_quality_icon.png";
 import "./../../SCSS/ProductType/_productLists.scss";
-import Heading7 from "./../Font/Heading7";
-import Text4 from "./../Font/Text4";
-import OldPrice from "./../Font/OldPrice";
-import Price from "./../Font/Price";
-import Heading6 from "./../Font/Heading6";
+import Heading7 from "../Font/Heading7";
+import Text4 from "../Font/Text4";
+import OldPrice from "../Font/OldPrice";
+import Price from "../Font/Price";
+import Heading6 from "../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 
-const ProductLists = ({ productDetailPage, products }) => {
+const Product_List_Page_Product = ({ productDetailPage, products }) => {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
@@ -151,4 +151,4 @@ const ProductLists = ({ productDetailPage, products }) => {
   });
 };
 
-export default ProductLists;
+export default Product_List_Page_Product;

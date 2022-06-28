@@ -166,7 +166,7 @@ const filterData = [
   },
 ];
 
-const AllProductFilter = (props) => {
+const Product_List_Page_Filter = (props) => {
   return (
     filterData && (
       <div className="product__filter__container">
@@ -217,4 +217,4 @@ const AllProductFilter = (props) => {
   );
 };
 
-export default AllProductFilter;
+export default Product_List_Page_Filter;
