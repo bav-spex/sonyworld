@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProductLists from "./AllProductList";
+import AllProductFilter from "./AllproductFilters";
+
 import Dropdown from "../DropDown";
 // import GridButton from "../../Components/Buttons/GridButton";
 // import ListButton from "../../Components/Buttons/ListButton";
@@ -538,6 +540,7 @@ const Product_List = (props) => {
   const [singleGrid, setSingleGrid] = useState(false);
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   const [productView, setProductView] = useState("grid");
+
   useEffect(() => {
     console.log(selectedOption);
   }, [selectedOption]);
@@ -587,13 +590,13 @@ const Product_List = (props) => {
                 className="grid__block"
                 onClick={() => onClickGridList("grid")}
               >
-                <img className="grid__view" src={GridIcon} />
+                <img className="grid__view" src={GridIcon} alt="" />
               </div>
               <div
                 className="list__block"
                 onClick={() => onClickGridList("list")}
               >
-                <img className="list__view" src={ListIcon} />
+                <img className="list__view" src={ListIcon} alt=""/>
 
                 {/* <ListButton isActive={false} /> */}
               </div>
@@ -601,7 +604,9 @@ const Product_List = (props) => {
           </div>
         </div>
         <div className="row product__filter__list">
-          <div className="col-sm-4 product__filter">test 1</div>
+          <div className="col-sm-4 product__filter">
+            <AllProductFilter />
+          </div>
           <div className="col-sm-8 product__list">
             {singleGrid ? (
               <div className="row">

@@ -1,0 +1,79 @@
+.productList__similar__product__container {
+    display: flex;
+  .productListPage__similar__product__card {
+    padding: 20px;
+    .productListPage__similar__product__header__block {
+      padding: 14px;
+      margin: 0px 0px 20px;
+      width: 100%;
+
+      .productListPage__similar__product__image__block {
+        width: 272px;
+        height: 252px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .productList__similar__product__image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: 50% 50%;
+        }
+      }
+    }
+
+    .productList__similar__product__name {
+      font-family: "arialbold";
+      font-size: 18px;
+      margin: 10px 0px 10px 0px;
+      height: 82px;
+    }
+    .productList__series {
+      font-family: "arialregular";
+      font-size: 14px;
+      margin: 0px 0px 10px 0px;
+      color: #808080;
+      letter-spacing: 0.5px;
+    }
+
+    .productList__similar__product__rating__block {
+      padding: 0px;
+      margin: 0px 0px 10px 0px;
+      .bGVcoD {
+        padding: 0px;
+      }
+    }
+    .productList__similar__product__prize__block {
+      display: flex;
+      align-items: flex-end;
+      .old__prize {
+        font-family: "arialregular";
+        font-size: 18px;
+        text-decoration-line: line-through;
+        color: #c8c8c8;
+      }
+      .new__prize {
+        font-family: "arialbold";
+        font-size: 18px;
+
+        margin: 0px 0px 0px 5px;
+      }
+    }
+
+    .productList__similar__product__addToCart__button {
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 16px;
+      font-family: "arialbold";
+      letter-spacing: 0.85px;
+      padding: 20px 0px;
+      background-color: #dc3a1a;
+      text-align: center;
+      text-transform: uppercase;
+      .productList__similar__product__addToCart__icon {
+        margin: 0px 20px 0px 0px;
+      }
+    }
+  }
+}

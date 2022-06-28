@@ -142,7 +142,7 @@ const ProductLists = ({ productDetailPage, products }) => {
 
             <div className="addToCart__button">
               <img src={shopping_cart} alt="" className="addToCart__icon" />
-              Add To Cart
+              Buy
             </div>
           </div>
         </div>

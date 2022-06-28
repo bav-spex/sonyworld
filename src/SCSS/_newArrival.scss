@@ -1,7 +1,7 @@
 .carousel__container {
   margin: 0px 0px 0px;
   position: relative;
-  
+
   .less__width__carousel__block {
     width: 100%;
     padding: 0px;
@@ -16,7 +16,7 @@
   }
   .section__title {
     font-family: "arialbold";
-      font-size: 48px;
+    font-size: 48px;
   }
   // .arrow__block {
   //   z-index: 2;
@@ -56,7 +56,7 @@
     background-color: #ffffff;
     padding: 40px 40px 20px;
     border-radius: 10px;
-    .new__arrival__pc__block{
+    .new__arrival__pc__block {
       display: flex;
       align-items: center;
       overflow-x: hidden;
@@ -68,7 +68,6 @@
       align-items: center;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      
     }
     .top__rated__pc__block {
       display: flex;
@@ -82,7 +81,7 @@
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-     position: relative;
+    position: relative;
   }
 
   .budgetTV__block {
@@ -90,14 +89,21 @@
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-     position: relative;
+    position: relative;
+  }
+  .productListingPage__similarproduct__block {
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    position: relative;
   }
   .people__also__bought__block {
     display: flex;
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-     position: relative;
+    position: relative;
   }
 
   .pd__similar__products__block {
@@ -105,7 +111,7 @@
     align-items: center;
     overflow-x: hidden;
     scroll-behavior: smooth;
-     position: relative;
+    position: relative;
   }
 }
 @media screen and (max-width: 1702px) {
@@ -124,12 +130,11 @@
   }
 }
 @media screen and (max-width: 1200px) {
-  .main__product__container__block{
+  .main__product__container__block {
     padding: 20px !important;
   }
   .arrow__block {
     width: 100% !important;
-
   }
   .left__arrow {
     transform: translateX(0%) !important;
