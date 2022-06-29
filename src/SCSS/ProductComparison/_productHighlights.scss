@@ -1,0 +1,24 @@
+.product__highlight__container {
+  display: flex;
+  background: #f1f1f1;
+  min-height: 380px;
+  align-items: center;
+  .product__highlight__block {
+    // background: white;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+
+    .product__highlight__image {
+      //   margin: 0px 0px;
+      background: #ffffff;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      //   display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+}

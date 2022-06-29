@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import "./../../SCSS/ProductListPage/_plpFilterProductBlock.scss";
 
 import ProductComparisonBlock from "./ProductComparisonBlock";
 // import list_grey from "./../../assets/Icon/list_grey.svg";
+import ProductHighlights from "./ProductHighlights";
 
-import sony_logo from "./../../assets/Icon/sony_logo.svg";
 import shipped from "./../../assets/Icon/shipped.svg";
 import return_box from "./../../assets/Icon/return_box.svg";
 import payment_method from "./../../assets/Icon/payment_method.svg";
 import wrench from "./../../assets/Icon/wrench.svg";
+
+import sony_logo from "./../../assets/Icon/sony_logo.svg";
 
 import product_01 from "./../../assets/Product/product_01.png";
 import product_02 from "./../../assets/Product/product_02.png";
@@ -718,6 +719,28 @@ const peopleUltimatelyBoughtData1 = [
   },
 ];
 
+const ProductHighlightsData = [
+  {
+    image: shipped,
+    title: "Free Delivery",
+    text: "Lorem ipsum dolor sit amet, consectetur ",
+  },
+  {
+    image: wrench,
+    title: "Easy Installation",
+    text: "Lorem ipsum dolor sit amet, consectetur ",
+  },
+  {
+    image: return_box,
+    title: "Hassle Free Returns",
+    text: "Lorem ipsum dolor sit amet, consectetur ",
+  },
+  {
+    image: payment_method,
+    title: "Hassle Free Payment",
+    text: "Lorem ipsum dolor sit amet, consectetur ",
+  },
+];
 const ProductComparisonList = (props) => {
   return (
     <div className="product__comparison__list__container">
@@ -730,9 +753,7 @@ const ProductComparisonList = (props) => {
       <div className="product__comparison__list bg-white py-3">
         <ProductComparisonBlock productsData={peopleUltimatelyBoughtData1} />
       </div>
-      <div>
-        
-      </div>
+      <ProductHighlights ProductHighlightsData={ProductHighlightsData} />
     </div>
   );
 };
