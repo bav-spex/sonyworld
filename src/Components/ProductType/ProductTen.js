@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./../../SCSS/ProductType/_productNine.scss";
+import "./../../SCSS/ProductType/_productTen.scss";
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
@@ -17,11 +17,7 @@ import product_01 from "./../../assets/Product/product_01.jpg";
 import product_02 from "./../../assets/Product/product_02.jpg";
 import product_03 from "./../../assets/Product/product_03.jpg";
 import product_04 from "./../../assets/Product/product_04.jpg";
-import product_05 from "./../../assets/Product/product_05.jpg";
-import product_06 from "./../../assets/Product/product_06.jpg";
-import product_07 from "./../../assets/Product/product_07.jpg";
-import product_08 from "./../../assets/Product/product_08.jpg";
-function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup }) {
+function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
@@ -38,37 +34,39 @@ function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
-
-
   return (
-    <div key={product.id} className="productNine__block">
-      <div className="productNine__header">
-        <div className="productNine__new__sticker__block">
-          <p className="productNine__new__sticker__text">New</p>
+    <div key={product.id} className="row productNine__block">
+      <div className="col-4 productTen__left__block">
+        <div className="productTen__header">
+          <div className="productTen__new__sticker__block">
+            <p className="productTen__new__sticker__text">New</p>
+          </div>
+          <div className="quality__favourite__block">
+            <img
+              src={productTwo_quality_icon}
+              alt=""
+              className="quality__icon"
+            />
+            <img
+              onMouseEnter={() => setIsFavouriteHover(true)}
+              onClick={handleFavourite}
+              onMouseLeave={() => setIsFavouriteHover(false)}
+              className={
+                !isFavourite ? "favourite__icon" : "favourite__icon__disable"
+              }
+              src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+              alt=""
+            />
+            <img
+              onClick={handleFavourite}
+              className={
+                isFavourite ? "favourite__icon" : "favourite__icon__disable"
+              }
+              src={fulfill_favourite}
+              alt=""
+            />
+          </div>
         </div>
-        <div className="quality__favourite__block">
-          <img src={productTwo_quality_icon} alt="" className="quality__icon" />
-          <img
-            onMouseEnter={() => setIsFavouriteHover(true)}
-            onClick={handleFavourite}
-            onMouseLeave={() => setIsFavouriteHover(false)}
-            className={
-              !isFavourite ? "favourite__icon" : "favourite__icon__disable"
-            }
-            src={isFavouriteHover ? fulfill_favourite : empty_favourite}
-            alt=""
-          />
-          <img
-            onClick={handleFavourite}
-            className={
-              isFavourite ? "favourite__icon" : "favourite__icon__disable"
-            }
-            src={fulfill_favourite}
-            alt=""
-          />
-        </div>
-      </div>
-      <div className="productNine__content">
         <div className="productNine__image__slider">
           <AwesomeSlider transitionDelay={0.2}>
             {[product_01, product_02, product_03, product_04].map(
@@ -80,24 +78,15 @@ function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup
             )}
           </AwesomeSlider>
         </div>
-
+        <div className="productNine__quickView__compare__block">
+            <button onClick={() => handleChangeProductPopup(true,product)} className="productNine__button__block"><img className="productNine__button__icon" src={quick_view} alt="" /><Heading7 text="Quick View"/></button>
+            <button onClick={() => handleChangeComparePopup(true)} className="productNine__button__block"><img className="productNine__button__icon" src={compare} alt="" /><Heading7 text="Compare"/></button>
+        </div>
+      </div>
+      <div className="col-6 productTen__middle__block">
         <Heading6 text={product.productName} marginBottom={10} />
 
-        <OldPrice
-          oldPrice={product.oldPrice}
-          size="text2"
-          color="#c8c8c8"
-          marginBottom={10}
-          lineThrough={true}
-          span={true}
-        />
-        <Price
-          price={product.price}
-          marginLeft={5}
-          marginBottom={10}
-          size="heading4"
-          span={true}
-        />
+       
 
         <RatingBlock
           rating={product.rating}
@@ -135,19 +124,29 @@ function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup
         <Text4 text="Free delivery by" span={true} />
         <Heading7 text="Tomorrow," span={true} />
         <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
-      
-
-        <div className="addToCart__button">
+      </div>
+      <div className="col-2 productTen__right__block">
+      <Price
+          price={product.price}
+          marginLeft={5}
+          textAlign="right"
+          size="heading3"
+        />
+      <OldPrice
+          oldPrice={product.oldPrice}
+          size="text2"
+          color="#c8c8c8"
+          marginBottom={10}
+          textAlign="right"
+          lineThrough={true}
+        />
+         <div className="addToCart__button">
           <img src={shopping_cart} alt="" className="addToCart__icon" />
           Buy
-        </div>
-        <div className="productNine__quickView__compare__block">
-            <button onClick={() => handleChangeProductPopup(true,product)} className="productNine__button__block"><img className="productNine__button__icon" src={quick_view} alt="" /><Heading7 text="Quick View"/></button>
-            <button onClick={() => handleChangeComparePopup(true)} className="productNine__button__block"><img className="productNine__button__icon" src={compare} alt="" /><Heading7 text="Compare"/></button>
         </div>
       </div>
     </div>
   );
 }
 
-export default ProductNine;
+export default ProductTen;

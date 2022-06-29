@@ -30,6 +30,13 @@ import Text5 from "../Font/Text5";
 import Heading3 from "../Font/Heading3";
 import { withTheme } from "styled-components";
 import LoginWrapper from "../Login/LoginWrapper";
+import CartPopup from "../Popup/CartPopup";
+import sony_logo from "./../../assets/Icon/sony_logo.svg";
+
+import product_02 from "./../../assets/Product/product_02.png";
+import product_03 from "./../../assets/Product/product_03.png";
+import product_04 from "./../../assets/Product/product_04.png";
+import product_05 from "./../../assets/Product/product_05.png";
 const categoryData = [
   {
     id: 1,
@@ -476,8 +483,511 @@ const categoryData = [
     ],
   },
 ];
-
-function Header({reloadingHandle,reloadHeader}) {
+const cartData = [
+  {
+    id: 1,
+    logo: sony_logo,
+    image: product_01,
+    productName:
+      "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+    categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+    rating: 4.6,
+    totalRatings: 6183,
+    price: 799,
+    oldPrice: 1050,
+    saving: 10,
+    monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+    returnPeriod: 15,
+    availableOffer: [
+      {
+        id: 1,
+        offerType: "",
+        offerText: "Save $50-$300 on a sound bar with TV",
+        termsAndConditions: "",
+      },
+      {
+        id: 2,
+        offerType: "Bank Offer",
+        offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+        termsAndConditions: "T&C",
+      },
+      {
+        id: 3,
+        offerType: "Credit Card Offer",
+        offerText: "5% Unlimited Cashback on Sony Credit Card",
+        termsAndConditions: "T&C",
+      },
+    ],
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+    delivery: {
+      deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+      pickupStore: [
+        {
+          id: 1,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 2,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 3,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+      ],
+    },
+    protection: [
+      {
+        id: 1,
+        protectionText: "2-Year Standard Geek Squad Protection",
+        price: 79,
+        month: 12,
+      },
+      {
+        id: 2,
+        protectionText: "1-Year Standard Geek Squad Protection",
+        price: 89,
+        month: 12,
+      },
+    ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
+      },
+    ],
+  },
+  {
+    id: 2,
+    logo: sony_logo,
+    image: product_02,
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+    rating: 4.0,
+    totalRatings: 2183,
+    price: 799,
+    oldPrice: 1050,
+    saving: 10,
+    monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+    returnPeriod: 15,
+    availableOffer: [
+      {
+        id: 1,
+        offerType: "",
+        offerText: "Save $50-$300 on a sound bar with TV",
+        termsAndConditions: "",
+      },
+      {
+        id: 2,
+        offerType: "Bank Offer",
+        offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+        termsAndConditions: "T&C",
+      },
+      {
+        id: 3,
+        offerType: "Credit Card Offer",
+        offerText: "5% Unlimited Cashback on Sony Credit Card",
+        termsAndConditions: "T&C",
+      },
+    ],
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+    delivery: {
+      deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+      pickupStore: [
+        {
+          id: 1,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 2,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 3,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+      ],
+    },
+    protection: [
+      {
+        id: 1,
+        protectionText: "2-Year Standard Geek Squad Protection",
+        price: 79,
+        month: 12,
+      },
+      {
+        id: 2,
+        protectionText: "1-Year Standard Geek Squad Protection",
+        price: 89,
+        month: 12,
+      },
+    ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
+      },
+    ],
+  },
+  {
+    id: 3,
+    logo: sony_logo,
+    image: product_03,
+    productName:
+      "SONY X85J Smart TV 50' 4K Ultra HD High Dynamic Range(Google TV)",
+    categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+    rating: 5.0,
+    totalRatings: 4183,
+    price: 799,
+    oldPrice: 1050,
+    saving: 10,
+    monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+    returnPeriod: 15,
+    availableOffer: [
+      {
+        id: 1,
+        offerType: "",
+        offerText: "Save $50-$300 on a sound bar with TV",
+        termsAndConditions: "",
+      },
+      {
+        id: 2,
+        offerType: "Bank Offer",
+        offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+        termsAndConditions: "T&C",
+      },
+      {
+        id: 3,
+        offerType: "Credit Card Offer",
+        offerText: "5% Unlimited Cashback on Sony Credit Card",
+        termsAndConditions: "T&C",
+      },
+    ],
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+    delivery: {
+      deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+      pickupStore: [
+        {
+          id: 1,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 2,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 3,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+      ],
+    },
+    protection: [
+      {
+        id: 1,
+        protectionText: "2-Year Standard Geek Squad Protection",
+        price: 79,
+        month: 12,
+      },
+      {
+        id: 2,
+        protectionText: "1-Year Standard Geek Squad Protection",
+        price: 89,
+        month: 12,
+      },
+    ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
+      },
+    ],
+  },
+  {
+    id: 4,
+    logo: sony_logo,
+    image: product_04,
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+    rating: 4.0,
+    totalRatings: 2183,
+    price: 649,
+    oldPrice: 1050,
+    saving: 10,
+    monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+    returnPeriod: 15,
+    availableOffer: [
+      {
+        id: 1,
+        offerType: "",
+        offerText: "Save $50-$300 on a sound bar with TV",
+        termsAndConditions: "",
+      },
+      {
+        id: 2,
+        offerType: "Bank Offer",
+        offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+        termsAndConditions: "T&C",
+      },
+      {
+        id: 3,
+        offerType: "Credit Card Offer",
+        offerText: "5% Unlimited Cashback on Sony Credit Card",
+        termsAndConditions: "T&C",
+      },
+    ],
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+    delivery: {
+      deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+      pickupStore: [
+        {
+          id: 1,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 2,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 3,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+      ],
+    },
+    protection: [
+      {
+        id: 1,
+        protectionText: "2-Year Standard Geek Squad Protection",
+        price: 79,
+        month: 12,
+      },
+      {
+        id: 2,
+        protectionText: "1-Year Standard Geek Squad Protection",
+        price: 89,
+        month: 12,
+      },
+    ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
+      },
+    ],
+  },
+  {
+    id: 5,
+    logo: sony_logo,
+    image: product_05,
+    productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+    categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+    rating: 4.0,
+    totalRatings: 6183,
+    price: 499,
+    oldPrice: 1050,
+    saving: 10,
+    monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+    returnPeriod: 15,
+    availableOffer: [
+      {
+        id: 1,
+        offerType: "",
+        offerText: "Save $50-$300 on a sound bar with TV",
+        termsAndConditions: "",
+      },
+      {
+        id: 2,
+        offerType: "Bank Offer",
+        offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+        termsAndConditions: "T&C",
+      },
+      {
+        id: 3,
+        offerType: "Credit Card Offer",
+        offerText: "5% Unlimited Cashback on Sony Credit Card",
+        termsAndConditions: "T&C",
+      },
+    ],
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+    delivery: {
+      deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+      pickupStore: [
+        {
+          id: 1,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 2,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+        {
+          id: 3,
+          pickupText:
+            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+        },
+      ],
+    },
+    protection: [
+      {
+        id: 1,
+        protectionText: "2-Year Standard Geek Squad Protection",
+        price: 79,
+        month: 12,
+      },
+      {
+        id: 2,
+        protectionText: "1-Year Standard Geek Squad Protection",
+        price: 89,
+        month: 12,
+      },
+    ],
+    productFeatures: [
+      {
+        id: 1,
+        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+      },
+      {
+        id: 1,
+        text: "Multi-position stand for versatile TV placement",
+      },
+      {
+        id: 1,
+        text: "HD Smart 2048 x 1366 Pixels",
+      },
+    ],
+  },
+];
+function Header({ reloadingHandle, reloadHeader }) {
   // language changing in project //
   const [lang, setLang] = useState("en");
   const languages = [
@@ -518,7 +1028,6 @@ function Header({reloadingHandle,reloadHeader}) {
     i18next.changeLanguage(lang.code);
   };
 
- 
   const [height, setHeight] = useState(0);
   const { pathname } = useLocation();
   const [loginPopup, setLoginPopup] = useState(false);
@@ -526,91 +1035,100 @@ function Header({reloadingHandle,reloadHeader}) {
   const [loginMode, setLoginMode] = useState("");
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
-  
-//   useEffect(() => {
-//     // debugger
-//     if(localStorage.getItem('loginWrapper') ){
+  const [cartPopup, setCartPopup] = useState(false);
+  const closeCartPopup = () => {
+    setCartPopup(false);
+  };
+  const handleChangeCartPopup = (value) => {
+    setCartPopup(value);
+    // setPopupProduct(product);
+  };
+  //   useEffect(() => {
+  //     // debugger
+  //     if(localStorage.getItem('loginWrapper') ){
 
-//       async function init() {
-//         const latestLoginWrapper = await localStorage.getItem('loginWrapper'); 
-//         const latestLoginPopup = await localStorage.getItem('loginPopup'); 
-//         console.log(JSON.parse(latestLoginWrapper));
-//         console.log(JSON.parse(latestLoginPopup));
-//         setLoginWrapper(JSON.parse(latestLoginWrapper));
-//         setLoginPopup(JSON.parse(latestLoginPopup));
-//       }
-//       init();
-//     }
-// }, [])
+  //       async function init() {
+  //         const latestLoginWrapper = await localStorage.getItem('loginWrapper');
+  //         const latestLoginPopup = await localStorage.getItem('loginPopup');
+  //         console.log(JSON.parse(latestLoginWrapper));
+  //         console.log(JSON.parse(latestLoginPopup));
+  //         setLoginWrapper(JSON.parse(latestLoginWrapper));
+  //         setLoginPopup(JSON.parse(latestLoginPopup));
+  //       }
+  //       init();
+  //     }
+  // }, [])
   useEffect(() => {
     // debugger
- 
 
-       function init() {
-        const latestLoginWrapper =  localStorage.getItem('loginWrapper'); 
-        const latestLoginPopup = localStorage.getItem('loginPopup'); 
-        console.log(JSON.parse(latestLoginWrapper));
-        console.log(JSON.parse(latestLoginPopup));
-        setLoginWrapper(JSON.parse(latestLoginWrapper));
-        setLoginPopup(JSON.parse(latestLoginPopup));
-      }
-      init();
-    
-}, [JSON.parse(localStorage.getItem('loginWrapper')),JSON.parse(localStorage.getItem('loginPopup')),JSON.parse(localStorage.getItem('loginMode')) ])
+    function init() {
+      const latestLoginWrapper = localStorage.getItem("loginWrapper");
+      const latestLoginPopup = localStorage.getItem("loginPopup");
+      console.log(JSON.parse(latestLoginWrapper));
+      console.log(JSON.parse(latestLoginPopup));
+      setLoginWrapper(JSON.parse(latestLoginWrapper));
+      setLoginPopup(JSON.parse(latestLoginPopup));
+    }
+    init();
+  }, [
+    JSON.parse(localStorage.getItem("loginWrapper")),
+    JSON.parse(localStorage.getItem("loginPopup")),
+    JSON.parse(localStorage.getItem("loginMode")),
+  ]);
 
-//   useEffect(() => {
-//     // debugger
-//     if(localStorage.getItem('loginWrapper') ){
+  //   useEffect(() => {
+  //     // debugger
+  //     if(localStorage.getItem('loginWrapper') ){
 
-//       async function init() {
-//         const latestLoginWrapper = await localStorage.getItem('loginWrapper'); 
-//         const latestLoginPopup = await localStorage.getItem('loginPopup'); 
-//         console.log(JSON.parse(latestLoginWrapper));
-//         console.log(JSON.parse(latestLoginPopup));
-//         setLoginWrapper(JSON.parse(latestLoginWrapper));
-//         setLoginPopup(JSON.parse(latestLoginPopup));
-//       }
-//       init();
-//     }
-// }, [reloadHeader])
+  //       async function init() {
+  //         const latestLoginWrapper = await localStorage.getItem('loginWrapper');
+  //         const latestLoginPopup = await localStorage.getItem('loginPopup');
+  //         console.log(JSON.parse(latestLoginWrapper));
+  //         console.log(JSON.parse(latestLoginPopup));
+  //         setLoginWrapper(JSON.parse(latestLoginWrapper));
+  //         setLoginPopup(JSON.parse(latestLoginPopup));
+  //       }
+  //       init();
+  //     }
+  // }, [reloadHeader])
   const openLoginPopup = () => {
-    setUserLoginPopup(!userLoginPopup)
-    setLoginPopup(userLoginPopup ? false : true)
-    localStorage.setItem("loginPopup", JSON.stringify(true))
+    setUserLoginPopup(!userLoginPopup);
+    setLoginPopup(userLoginPopup ? false : true);
+    localStorage.setItem("loginPopup", JSON.stringify(true));
     setCategoryPopup(false);
-    setLoginMode("")
+    setLoginMode("");
   };
   const openProductPopup = () => {
     setCategoryPopup(!categoryPopup);
     setLoginPopup(false);
   };
 
-  const openLoginWrapper = (mode)=>{
-    setLoginMode(mode)
-    setLoginWrapper(true)
-    setUserLoginPopup(false)
+  const openLoginWrapper = (mode) => {
+    setLoginMode(mode);
+    setLoginWrapper(true);
+    setUserLoginPopup(false);
     console.log(loginWrapper);
-    localStorage.setItem("loginMode", JSON.stringify(mode))
-    localStorage.setItem("loginWrapper", JSON.stringify(true))
-    localStorage.setItem("loginPopup", JSON.stringify(true))
-  }
-  const closeLoginPopup=()=>{
-    if(document.querySelector(".login__popup__container")){
+    localStorage.setItem("loginMode", JSON.stringify(mode));
+    localStorage.setItem("loginWrapper", JSON.stringify(true));
+    localStorage.setItem("loginPopup", JSON.stringify(true));
+  };
+  const closeLoginPopup = () => {
+    if (document.querySelector(".login__popup__container")) {
       // reloadingHeader()
-      const element = document.querySelector(".login__popup__container")
-      element.classList.remove("login__popup__container")
-      element.classList.add("login__popup__container__disable")
-        }
-    localStorage.setItem("loginMode", JSON.stringify("signin"))
-    localStorage.setItem("loginWrapper", JSON.stringify(false))
-    localStorage.setItem("loginPopup", JSON.stringify(false))
-    setLoginMode("")
-    setLoginPopup(false)
-    setLoginWrapper(false)
-  }
-  useEffect(()=>{
-setLoginMode(loginMode)
-  },[loginWrapper])
+      const element = document.querySelector(".login__popup__container");
+      element.classList.remove("login__popup__container");
+      element.classList.add("login__popup__container__disable");
+    }
+    localStorage.setItem("loginMode", JSON.stringify("signin"));
+    localStorage.setItem("loginWrapper", JSON.stringify(false));
+    localStorage.setItem("loginPopup", JSON.stringify(false));
+    setLoginMode("");
+    setLoginPopup(false);
+    setLoginWrapper(false);
+  };
+  useEffect(() => {
+    setLoginMode(loginMode);
+  }, [loginWrapper]);
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
     mainCategory: "Play Station",
@@ -832,36 +1350,58 @@ setLoginMode(loginMode)
                         })}
                       </div>
                     </div>
-                    <img
-                      src={location}
-                      alt=""
-                      className="location header__icon"
-                    />
-                    <img
-                      src={favourite}
-                      alt=""
-                      className="favourite header__icon"
-                    />
-                    <div className="header__user__block">
-                    <img
-                      src={user}
-                      alt=""
-                      className="user header__icon"
-                      onClick={() => openLoginPopup()}
-                      />
-                      <div className={userLoginPopup ?"signin__signup__popup" :"signin__signup__popup__disable"}>
-                        <button onClick={()=>openLoginWrapper("signin")} className="signin__button">SIGN IN</button>
-                        <button onClick={()=>openLoginWrapper("signup")} className="signup__button">SIGN UP</button>
-                      </div>
-                      </div>
-                    <div className="cart__icon__block">
+                    <Link to="/findstore">
                       <img
-                        src={shopping_cart}
+                        src={location}
                         alt=""
-                        className="shopping_cart header__icon"
+                        className="location header__icon"
                       />
-                      <p className="cart__item__count">{99}</p>
+                    </Link>
+                    <Link to="/user/wishlist">
+                      <img
+                        src={favourite}
+                        alt=""
+                        className="favourite header__icon"
+                      />
+                    </Link>
+                    <div className="header__user__block">
+                      <img
+                        src={user}
+                        alt=""
+                        className="user header__icon"
+                        onClick={() => openLoginPopup()}
+                      />
+                      <div
+                        className={
+                          userLoginPopup
+                            ? "signin__signup__popup"
+                            : "signin__signup__popup__disable"
+                        }
+                      >
+                        <button
+                          onClick={() => openLoginWrapper("signin")}
+                          className="signin__button"
+                        >
+                          SIGN IN
+                        </button>
+                        <button
+                          onClick={() => openLoginWrapper("signup")}
+                          className="signup__button"
+                        >
+                          SIGN UP
+                        </button>
+                      </div>
                     </div>
+                    
+                      <div onClick={()=>handleChangeCartPopup(true)} className="cart__icon__block">
+                        <img
+                          src={shopping_cart}
+                          alt=""
+                          className="shopping_cart header__icon"
+                        />
+                        <p className="cart__item__count">{99}</p>
+                      </div>
+                  
                   </div>
                 </div>
               </div>
@@ -1071,12 +1611,7 @@ setLoginMode(loginMode)
               <div className="subCategory__block">
                 {selectedCategory.category.map((subcat, subcatIndex) => {
                   return (
-                    <Link
-                      className="subcategory"
-                      to={`/${
-                        selectedCategory.mainCategory
-                      }/${subcat.replaceAll(" ", "")}`}
-                    >
+                    <Link className="subcategory" to="/products">
                       <p>{subcat}</p>
                     </Link>
                   );
@@ -1092,8 +1627,31 @@ setLoginMode(loginMode)
               : "container-fluid login__popup__container__disable"
           }
         >
-        {loginWrapper ? <LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>:<LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>}
+          {loginWrapper ? (
+            <LoginWrapper
+              loginMode={loginMode}
+              closeLoginPopup={closeLoginPopup}
+            />
+          ) : (
+            <LoginWrapper
+              loginMode={loginMode}
+              closeLoginPopup={closeLoginPopup}
+            />
+          )}
         </div>
+      </div>
+      <div
+        className={
+          cartPopup
+            ? "container-fluid cart__popup__container"
+            : "container-fluid cart__popup__container__disable"
+        }
+      >
+        <CartPopup
+          cartData={cartData}
+          closeCartPopup={closeCartPopup}
+          handleChangeCartPopup={handleChangeCartPopup}
+        />
       </div>
     </>
   );

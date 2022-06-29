@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import PLPFilter from "./PLPFilter";
-import "./../../SCSS/ProductListPage/_plpFilterProductBlock.scss";
-
-import list_grey from "./../../assets/Icon/list_grey.svg";
-import grid_grey from "./../../assets/Icon/grid_grey.svg";
-import list_orange from "./../../assets/Icon/list_orange.svg";
-import grid_orange from "./../../assets/Icon/grid_orange.svg";
-
+import React from "react";
+import "./../../SCSS/Popup/_cartPopup.scss";
+import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
+import success_orange from "./../../assets/Icon/success_orange.svg";
+import Heading3 from "../Font/Heading3";
+import Heading6 from "../Font/Heading6";
+import Price from "../Font/Price";
+import Text3 from "../Font/Text3";
+import CarouselTypeTwo from "../CarouselTypeTwo";
 import sony_logo from "./../../assets/Icon/sony_logo.svg";
 
 import product_01 from "./../../assets/Product/product_01.png";
@@ -14,27 +14,6 @@ import product_02 from "./../../assets/Product/product_02.png";
 import product_03 from "./../../assets/Product/product_03.png";
 import product_04 from "./../../assets/Product/product_04.png";
 import product_05 from "./../../assets/Product/product_05.png";
-import Heading3 from "../Font/Heading3";
-import Text3 from "../Font/Text3";
-import ProductNine from "../ProductType/ProductNine";
-import ProductTen from "../ProductType/ProductTen";
-import PLPProductPopup from "../Popup/PLPProductPopup";
-
-const dropdownOptions = [
-  {
-    label: "Popularity",
-    value: "popularity",
-  },
-  {
-    label: "Low to High",
-    value: "lowtohigh",
-  },
-  {
-    label: "High to Low",
-    value: "hightolow",
-  },
-];
-
 const peopleUltimatelyBoughtData = [
   {
     id: 1,
@@ -122,20 +101,6 @@ const peopleUltimatelyBoughtData = [
         month: 12,
       },
     ],
-    productFeatures: [
-      {
-        id: 1,
-        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-      },
-      {
-        id: 1,
-        text: "Multi-position stand for versatile TV placement",
-      },
-      {
-        id: 1,
-        text: "HD Smart 2048 x 1366 Pixels",
-      },
-    ],
   },
   {
     id: 2,
@@ -220,20 +185,6 @@ const peopleUltimatelyBoughtData = [
         protectionText: "1-Year Standard Geek Squad Protection",
         price: 89,
         month: 12,
-      },
-    ],
-    productFeatures: [
-      {
-        id: 1,
-        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-      },
-      {
-        id: 1,
-        text: "Multi-position stand for versatile TV placement",
-      },
-      {
-        id: 1,
-        text: "HD Smart 2048 x 1366 Pixels",
       },
     ],
   },
@@ -323,20 +274,6 @@ const peopleUltimatelyBoughtData = [
         month: 12,
       },
     ],
-    productFeatures: [
-      {
-        id: 1,
-        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-      },
-      {
-        id: 1,
-        text: "Multi-position stand for versatile TV placement",
-      },
-      {
-        id: 1,
-        text: "HD Smart 2048 x 1366 Pixels",
-      },
-    ],
   },
   {
     id: 4,
@@ -421,20 +358,6 @@ const peopleUltimatelyBoughtData = [
         protectionText: "1-Year Standard Geek Squad Protection",
         price: 89,
         month: 12,
-      },
-    ],
-    productFeatures: [
-      {
-        id: 1,
-        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-      },
-      {
-        id: 1,
-        text: "Multi-position stand for versatile TV placement",
-      },
-      {
-        id: 1,
-        text: "HD Smart 2048 x 1366 Pixels",
       },
     ],
   },
@@ -523,149 +446,65 @@ const peopleUltimatelyBoughtData = [
         month: 12,
       },
     ],
-    productFeatures: [
-      {
-        id: 1,
-        text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-      },
-      {
-        id: 1,
-        text: "Multi-position stand for versatile TV placement",
-      },
-      {
-        id: 1,
-        text: "HD Smart 2048 x 1366 Pixels",
-      },
-    ],
   },
 ];
-
-const PLPFilterProductBlock = ({
-  handleChangeProductPopup,
-  handleChangeComparePopup,
-}) => {
-  const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
-  const [productListView, setProductListView] = useState("grid");
-
-  useEffect(() => {
-    console.log(selectedOption);
-  }, [selectedOption]);
-
-  const onSelectSortby = (e) => {
-    console.log(e.target.value);
-    setSelectedOption(e.target.value);
-  };
-
-  const onClickGridList = (type) => {
-    if (type === "grid") {
-      setProductListView("grid");
-    }
-    if (type === "list") {
-      setProductListView("list");
-    }
-  };
-
+function CartPopup({ closeCartPopup, cartData }) {
   return (
-    <>
-      <div className="plp__filter__product__container">
-        <div className="plp__filter__product__title__block">
-          <Heading3 text="22 Products" />
-          <div className="plp__filter__product__sortby__grid__button">
-            <Text3 text="Sort By:" />
-            {/* <label className="label">Sort by: &nbsp;</label> */}
-
-            <select
-              onChange={(e) => onSelectSortby(e)}
-              className="plp__sortby__select__field"
-              // className="_customselect"
-            >
-              {dropdownOptions.map(({ label, value }) => (
-                <option
-                  className="plp__sortby__options"
-                  key={value + label}
-                  value={value}
-                >
-                  {label}
-                </option>
-              ))}
-            </select>
-
-            <div className="plp__grid__button">
-              <div
-                className={
-                  productListView === "grid"
-                    ? "plp__grid__button__active"
-                    : "plp__grid__button"
-                }
-                onClick={() => onClickGridList("grid")}
-              >
+    <div className="cart__popup__block">
+      <div className="cart__popup__header">
+        <Heading3 text="Preview" color="#000000" />
+        <img
+          onClick={() => closeCartPopup()}
+          src={cancel_grey}
+          alt="cancel"
+          className="cancel__button"
+        />
+      </div>
+      <div className="cart__popup__content">
+        {cartData.map((product, productIndex) => {
+          return (
+            <div className="row cart__popup__product__block">
+              <div className="col-4 cart__popup__product__image__block">
                 <img
-                  className="grid__icon"
-                  src={productListView === "grid" ? grid_orange : grid_grey}
+                  className="cart__popup__product__image"
+                  src={product.image}
                   alt=""
                 />
               </div>
-              <div
-                className={
-                  productListView === "list"
-                    ? "plp__list__button__active"
-                    : "plp__list__button"
-                }
-                onClick={() => onClickGridList("list")}
-              >
-                <img
-                  className="list__icon"
-                  src={productListView === "list" ? list_orange : list_grey}
-                  alt=""
+              <div className="col-8">
+                <Heading6
+                  text={product.productName}
+                  marginLeft={0}
+                  marginBottom={10}
                 />
+                <img src={success_orange} alt="" />{" "}
+                <Text3 text="Added to Cart" span={true} />
               </div>
             </div>
-          </div>
+          );
+        })}
+        <div className="cart__total__block">
+          <Heading6 text="Cart Total" />
+          <Price price={2999} size="heading7" />
         </div>
-        <div className="row plp__filter__product__block">
-          <div className="col-sm-3 plp__filter__block">
-            <PLPFilter />
-          </div>
-          <div className="col-sm-9 plp__product__block">
-            <div className="row plp__inner__product__block">
-              {productListView === "grid" ? (
-                <>
-                  {peopleUltimatelyBoughtData.map((product, productIndex) => {
-                    return (
-                      <div className="col-sm-4">
-                        <ProductNine
-                          product={product}
-                          handleChangeProductPopup={handleChangeProductPopup}
-                          handleChangeComparePopup={handleChangeComparePopup}
-                        />
-                      </div>
-                    );
-                  })}
-                  {/* <PLPProduct productsData={peopleUltimatelyBoughtData} /> */}
-                </>
-              ) : productListView === "list" ? (
-                <>
-                  {peopleUltimatelyBoughtData.map((product, productIndex) => {
-                    return (
-                      <div className="col-sm-12">
-                        <ProductTen
-                          product={product}
-                          handleChangeProductPopup={handleChangeProductPopup}
-                          handleChangeComparePopup={handleChangeComparePopup}
-                        />
-                      </div>
-                    );
-                  })}
-                </>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
+        <div className="cart__popup__button__block">
+          <button className="checkout__button">Checkout</button>
+          <button className="continue__shopping__button">
+            Continue Shopping
+          </button>
+        </div>
+        <div className="cart__popup__frequently__bought__togather">
+          <Heading3 text="Frequently Bought Together" />
+          <CarouselTypeTwo
+            productDetailPage={true}
+            carouselData={peopleUltimatelyBoughtData}
+            productType="productEleven"
+            containerClassName="cart__popup__frequentlyBoughtTogether__block"
+          />
         </div>
       </div>
-    </>
+    </div>
   );
-};
+}
 
-export default PLPFilterProductBlock;
+export default CartPopup;

@@ -5,7 +5,7 @@ import OtpModel from "./OtpModel";
 import SignUpModel from "./SignUpModel";
 
 function LoginWrapper({ loginMode, closeLoginPopup }) {
-  console.log(loginMode);
+  // console.log(loginMode);
   const [popupMode, setPopupMode] = useState(loginMode);
   useEffect(() => {
     function init() {

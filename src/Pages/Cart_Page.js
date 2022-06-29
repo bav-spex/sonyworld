@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./../SCSS/_cartPage.scss";
 import BreadCrumbs from "../Components/BreadCrumbs";
-
+import { Link } from "react-router-dom";
 import sony_logo from "./../assets/Icon/sony_logo.svg";
 import checkout_white_right_arrow from "./../assets/Icon/checkout_white_right_arrow.svg";
 
@@ -684,7 +684,7 @@ function Cart_Page() {
   };
   return (
     <>
-      <BreadCrumbs title="Shopping Cart"/>
+      <BreadCrumbs title="Shopping Cart" />
       <div className="container-fluid shopping__cart__page__container">
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">
@@ -699,7 +699,11 @@ function Cart_Page() {
               <hr className="sc__page__horizontal__line"></hr>
               <ShoppipngCartProduct product={product} />
               <div className="sc__newArrival__block">
-              <Heading2 text="People Who Bought Also Bought" marginLeft={40} marginBottom={0} />
+                <Heading2
+                  text="People Who Bought Also Bought"
+                  marginLeft={40}
+                  marginBottom={0}
+                />
                 <ProductContainer
                   productDetailPage={true}
                   // sectionTitle="People Who Bought Also Bought"
@@ -738,19 +742,26 @@ function Cart_Page() {
                   </div>
                 </div>
               </div>
-              <div className="col-6 sc__addToCart__button__block">
-                <div className="sc__addToCart__button">
-                  <span>Proceed to Checkout</span>
-                  <img
-                    src={checkout_white_right_arrow}
-                    alt=""
-                    className="sc__addToCart__icon"
-                  />
+              <Link className="checkout__button__link" to="/checkout">
+                <div className="col-6 sc__addToCart__button__block">
+                  <div className="sc__addToCart__button">
+                    <span>Proceed to Checkout</span>
+                    <img
+                      src={checkout_white_right_arrow}
+                      alt=""
+                      className="sc__addToCart__icon"
+                    />
+                  </div>
                 </div>
-              </div>
+              </Link>
+              <Link to="/">
               <button className="signup__button">CONTINUE SHOPPING</button>
+              </Link>
 
-              <Heading3 text="Recommendations for all products" marginBottom={20} />
+              <Heading3
+                text="Recommendations for all products"
+                marginBottom={20}
+              />
               <div className="main__recommand__product__block">
                 {peopleUltimatelyBoughtData.map((product, productIndex) => {
                   return <RecommandProducts product={product} />;

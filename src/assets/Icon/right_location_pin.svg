@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
+  <g id="right_location_pin" transform="translate(-435.5 -891)">
+    <path id="Ellipse_150" data-name="Ellipse 150" d="M21,0A21,21,0,1,1,0,21,21,21,0,0,1,21,0Z" transform="translate(435.5 891)" fill="#f2f2f2"/>
+    <path id="pin_1_" data-name="pin (1)" d="M26.7,6.1a6.1,6.1,0,1,0-6.508,6.081V23.593a.407.407,0,1,0,.814,0V12.183A6.1,6.1,0,0,0,26.7,6.1Zm-8.136,0a1.627,1.627,0,1,1,1.627-1.627A1.627,1.627,0,0,1,18.564,6.1Z" transform="translate(436 900)"/>
+  </g>
+</svg>
