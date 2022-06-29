@@ -1,5 +1,6 @@
 import React from "react";
 import "./../SCSS/_breadcrumbs.scss";
+import {Link} from "react-router-dom"
 import Home from "./../assets/breadcrumbs/home.svg";
 import LeftArrow from "./../assets/breadcrumbs/left-arrow.svg";
 import RightArrow from "./../assets/breadcrumbs/right-arrow.svg";
@@ -14,9 +15,11 @@ function BreadCrumbs(props) {
             <p className="back__text">Back</p>
           </div>
         </div>
+        <Link to="/">
         <div className="home__image">
           <img src={Home} alt="Home" className="home__icon" />
         </div>
+        </Link>
         {/* <div className="right__arrow">
           <img src={RightArrow} alt="Home" className="right__icon" />
         </div>

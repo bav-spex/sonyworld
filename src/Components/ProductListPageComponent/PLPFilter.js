@@ -173,8 +173,6 @@ const PLPFilter = (props) => {
     filterData && (
       <div className="main__filter__block">
         {filterData.map((filter, index) => {
-          console.log(index, "index");
-          console.log(filterData.length, "index");
 
           return (
             <div className="filter__block">

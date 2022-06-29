@@ -477,7 +477,7 @@ const categoryData = [
   },
 ];
 
-function Header({reloadingHandle,reloadHeader}) {
+function Header({ reloadingHandle, reloadHeader }) {
   // language changing in project //
   const [lang, setLang] = useState("en");
   const languages = [
@@ -518,7 +518,6 @@ function Header({reloadingHandle,reloadHeader}) {
     i18next.changeLanguage(lang.code);
   };
 
- 
   const [height, setHeight] = useState(0);
   const { pathname } = useLocation();
   const [loginPopup, setLoginPopup] = useState(false);
@@ -526,91 +525,93 @@ function Header({reloadingHandle,reloadHeader}) {
   const [loginMode, setLoginMode] = useState("");
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
-  
-//   useEffect(() => {
-//     // debugger
-//     if(localStorage.getItem('loginWrapper') ){
 
-//       async function init() {
-//         const latestLoginWrapper = await localStorage.getItem('loginWrapper'); 
-//         const latestLoginPopup = await localStorage.getItem('loginPopup'); 
-//         console.log(JSON.parse(latestLoginWrapper));
-//         console.log(JSON.parse(latestLoginPopup));
-//         setLoginWrapper(JSON.parse(latestLoginWrapper));
-//         setLoginPopup(JSON.parse(latestLoginPopup));
-//       }
-//       init();
-//     }
-// }, [])
+  //   useEffect(() => {
+  //     // debugger
+  //     if(localStorage.getItem('loginWrapper') ){
+
+  //       async function init() {
+  //         const latestLoginWrapper = await localStorage.getItem('loginWrapper');
+  //         const latestLoginPopup = await localStorage.getItem('loginPopup');
+  //         console.log(JSON.parse(latestLoginWrapper));
+  //         console.log(JSON.parse(latestLoginPopup));
+  //         setLoginWrapper(JSON.parse(latestLoginWrapper));
+  //         setLoginPopup(JSON.parse(latestLoginPopup));
+  //       }
+  //       init();
+  //     }
+  // }, [])
   useEffect(() => {
     // debugger
- 
 
-       function init() {
-        const latestLoginWrapper =  localStorage.getItem('loginWrapper'); 
-        const latestLoginPopup = localStorage.getItem('loginPopup'); 
-        console.log(JSON.parse(latestLoginWrapper));
-        console.log(JSON.parse(latestLoginPopup));
-        setLoginWrapper(JSON.parse(latestLoginWrapper));
-        setLoginPopup(JSON.parse(latestLoginPopup));
-      }
-      init();
-    
-}, [JSON.parse(localStorage.getItem('loginWrapper')),JSON.parse(localStorage.getItem('loginPopup')),JSON.parse(localStorage.getItem('loginMode')) ])
+    function init() {
+      const latestLoginWrapper = localStorage.getItem("loginWrapper");
+      const latestLoginPopup = localStorage.getItem("loginPopup");
+      console.log(JSON.parse(latestLoginWrapper));
+      console.log(JSON.parse(latestLoginPopup));
+      setLoginWrapper(JSON.parse(latestLoginWrapper));
+      setLoginPopup(JSON.parse(latestLoginPopup));
+    }
+    init();
+  }, [
+    JSON.parse(localStorage.getItem("loginWrapper")),
+    JSON.parse(localStorage.getItem("loginPopup")),
+    JSON.parse(localStorage.getItem("loginMode")),
+  ]);
 
-//   useEffect(() => {
-//     // debugger
-//     if(localStorage.getItem('loginWrapper') ){
+  //   useEffect(() => {
+  //     // debugger
+  //     if(localStorage.getItem('loginWrapper') ){
 
-//       async function init() {
-//         const latestLoginWrapper = await localStorage.getItem('loginWrapper'); 
-//         const latestLoginPopup = await localStorage.getItem('loginPopup'); 
-//         console.log(JSON.parse(latestLoginWrapper));
-//         console.log(JSON.parse(latestLoginPopup));
-//         setLoginWrapper(JSON.parse(latestLoginWrapper));
-//         setLoginPopup(JSON.parse(latestLoginPopup));
-//       }
-//       init();
-//     }
-// }, [reloadHeader])
+  //       async function init() {
+  //         const latestLoginWrapper = await localStorage.getItem('loginWrapper');
+  //         const latestLoginPopup = await localStorage.getItem('loginPopup');
+  //         console.log(JSON.parse(latestLoginWrapper));
+  //         console.log(JSON.parse(latestLoginPopup));
+  //         setLoginWrapper(JSON.parse(latestLoginWrapper));
+  //         setLoginPopup(JSON.parse(latestLoginPopup));
+  //       }
+  //       init();
+  //     }
+  // }, [reloadHeader])
   const openLoginPopup = () => {
-    setUserLoginPopup(!userLoginPopup)
-    setLoginPopup(userLoginPopup ? false : true)
-    localStorage.setItem("loginPopup", JSON.stringify(true))
+    setUserLoginPopup(!userLoginPopup);
+    setLoginPopup(userLoginPopup ? false : true);
+    localStorage.setItem("loginPopup", JSON.stringify(true));
     setCategoryPopup(false);
-    setLoginMode("")
+    setLoginMode("");
   };
   const openProductPopup = () => {
     setCategoryPopup(!categoryPopup);
     setLoginPopup(false);
   };
 
-  const openLoginWrapper = (mode)=>{
-    setLoginMode(mode)
-    setLoginWrapper(true)
-    setUserLoginPopup(false)
+  const openLoginWrapper = (mode) => {
+    setLoginMode(mode);
+    setLoginWrapper(true);
+    setUserLoginPopup(false);
     console.log(loginWrapper);
-    localStorage.setItem("loginMode", JSON.stringify(mode))
-    localStorage.setItem("loginWrapper", JSON.stringify(true))
-    localStorage.setItem("loginPopup", JSON.stringify(true))
-  }
-  const closeLoginPopup=()=>{
-    if(document.querySelector(".login__popup__container")){
+    localStorage.setItem("loginMode", JSON.stringify(mode));
+    localStorage.setItem("loginWrapper", JSON.stringify(true));
+    localStorage.setItem("loginPopup", JSON.stringify(true));
+  };
+  const closeLoginPopup = () => {
+    if (document.querySelector(".login__popup__container")) {
       // reloadingHeader()
-      const element = document.querySelector(".login__popup__container")
-      element.classList.remove("login__popup__container")
-      element.classList.add("login__popup__container__disable")
-        }
-    localStorage.setItem("loginMode", JSON.stringify("signin"))
-    localStorage.setItem("loginWrapper", JSON.stringify(false))
-    localStorage.setItem("loginPopup", JSON.stringify(false))
-    setLoginMode("")
-    setLoginPopup(false)
-    setLoginWrapper(false)
-  }
-  useEffect(()=>{
-setLoginMode(loginMode)
-  },[loginWrapper])
+      const element = document.querySelector(".login__popup__container");
+      element.classList.remove("login__popup__container");
+      element.classList.add("login__popup__container__disable");
+    }
+    localStorage.setItem("loginMode", JSON.stringify("signin"));
+    localStorage.setItem("loginWrapper", JSON.stringify(false));
+    localStorage.setItem("loginPopup", JSON.stringify(false));
+    setLoginMode("");
+    setLoginPopup(false);
+    setLoginWrapper(false);
+  };
+  useEffect(() => {
+    setLoginMode(loginMode);
+  }, [loginWrapper]);
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
     mainCategory: "Play Station",
@@ -832,36 +833,58 @@ setLoginMode(loginMode)
                         })}
                       </div>
                     </div>
-                    <img
-                      src={location}
-                      alt=""
-                      className="location header__icon"
-                    />
-                    <img
-                      src={favourite}
-                      alt=""
-                      className="favourite header__icon"
-                    />
-                    <div className="header__user__block">
-                    <img
-                      src={user}
-                      alt=""
-                      className="user header__icon"
-                      onClick={() => openLoginPopup()}
-                      />
-                      <div className={userLoginPopup ?"signin__signup__popup" :"signin__signup__popup__disable"}>
-                        <button onClick={()=>openLoginWrapper("signin")} className="signin__button">SIGN IN</button>
-                        <button onClick={()=>openLoginWrapper("signup")} className="signup__button">SIGN UP</button>
-                      </div>
-                      </div>
-                    <div className="cart__icon__block">
+                    <Link to="/findstore">
                       <img
-                        src={shopping_cart}
+                        src={location}
                         alt=""
-                        className="shopping_cart header__icon"
+                        className="location header__icon"
                       />
-                      <p className="cart__item__count">{99}</p>
+                    </Link>
+                    <Link to="/user/wishlist">
+                      <img
+                        src={favourite}
+                        alt=""
+                        className="favourite header__icon"
+                      />
+                    </Link>
+                    <div className="header__user__block">
+                      <img
+                        src={user}
+                        alt=""
+                        className="user header__icon"
+                        onClick={() => openLoginPopup()}
+                      />
+                      <div
+                        className={
+                          userLoginPopup
+                            ? "signin__signup__popup"
+                            : "signin__signup__popup__disable"
+                        }
+                      >
+                        <button
+                          onClick={() => openLoginWrapper("signin")}
+                          className="signin__button"
+                        >
+                          SIGN IN
+                        </button>
+                        <button
+                          onClick={() => openLoginWrapper("signup")}
+                          className="signup__button"
+                        >
+                          SIGN UP
+                        </button>
+                      </div>
                     </div>
+                    <Link to="/cart">
+                      <div className="cart__icon__block">
+                        <img
+                          src={shopping_cart}
+                          alt=""
+                          className="shopping_cart header__icon"
+                        />
+                        <p className="cart__item__count">{99}</p>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -1071,12 +1094,7 @@ setLoginMode(loginMode)
               <div className="subCategory__block">
                 {selectedCategory.category.map((subcat, subcatIndex) => {
                   return (
-                    <Link
-                      className="subcategory"
-                      to={`/${
-                        selectedCategory.mainCategory
-                      }/${subcat.replaceAll(" ", "")}`}
-                    >
+                    <Link className="subcategory" to="/products">
                       <p>{subcat}</p>
                     </Link>
                   );
@@ -1092,7 +1110,17 @@ setLoginMode(loginMode)
               : "container-fluid login__popup__container__disable"
           }
         >
-        {loginWrapper ? <LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>:<LoginWrapper loginMode={loginMode} closeLoginPopup={closeLoginPopup}/>}
+          {loginWrapper ? (
+            <LoginWrapper
+              loginMode={loginMode}
+              closeLoginPopup={closeLoginPopup}
+            />
+          ) : (
+            <LoginWrapper
+              loginMode={loginMode}
+              closeLoginPopup={closeLoginPopup}
+            />
+          )}
         </div>
       </div>
     </>

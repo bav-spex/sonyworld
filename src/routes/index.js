@@ -26,6 +26,7 @@ import Product_List_Page from "./../Pages/Product_List_Page";
 import My_Wishlists_Page from "../Pages/My_Wishlists_Page";
 import My_Profile_Page from "../Pages/My_Profile_Page";
 import Confirm_Order_Page from "../Pages/Confirm_Order_Page";
+import Sony_Store_Page from "../Pages/Sony_Store_Page";
 
 function AllRoutes({reloadingHandle,log}) {
   return (
@@ -38,7 +39,7 @@ function AllRoutes({reloadingHandle,log}) {
       <Route exact path="/support" element={<Support />}></Route>
       <Route exact path="/products/:id" element={<Product_Details_Page />}></Route>
       <Route exact path="/create_bundle" element={<Create_Bundle_Page />}></Route>
-      <Route exact path="/cart_page" element={<Cart_Page />}></Route>
+      <Route exact path="/cart" element={<Cart_Page />}></Route>
       <Route exact path="/checkout" element={<Checkout_Page reloadingHandle={reloadingHandle} />}></Route>
       <Route exact path="/dashboard" element={<Dashboard />}></Route>
       <Route exact path="/user/orders" element={<My_Orders />}></Route>
@@ -46,6 +47,8 @@ function AllRoutes({reloadingHandle,log}) {
       <Route exact path="/user/orders/1/confirm" element={<Confirm_Order_Page />}></Route>
       <Route exact path="/user/wishlist" element={<My_Wishlists_Page />}></Route>
       <Route exact path="/user/profile" element={<My_Profile_Page />}></Route>
+
+      <Route exact path="/findstore" element={<Sony_Store_Page />}></Route>
       {/* <Route exact path="/contact" element={<Contact />}></Route> */}
     </Routes>
   );

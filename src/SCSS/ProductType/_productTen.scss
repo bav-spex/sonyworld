@@ -1,45 +1,41 @@
 .productNine__block {
-  width: 100%;
-  background-color: #ffffff;
-  margin: 0px 0px 24px 0px;
-  border-radius: 0px 5px 5px;
-  .productNine__header {
-    display: flex;
-    justify-content: space-between;
-    .productNine__new__sticker__block {
-      width: 85px;
-      height: 30px;
-      background: #ff9b04;
+  .productTen__left__block {
+    padding: 0px;
+    .productTen__header {
       display: flex;
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-      border-bottom-right-radius: 15px;
-      .productNine__new__sticker__text {
-        margin: auto;
-        font-family: "arialbold";
-        font-size: 15px;
-        color: #ffffff;
+      justify-content: space-between;
+      .productTen__new__sticker__block {
+        width: 85px;
+        height: 30px;
+        background: #ff9b04;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        border-bottom-right-radius: 15px;
+        .productTen__new__sticker__text {
+          margin: auto;
+          font-family: "arialbold";
+          font-size: 15px;
+          color: #ffffff;
+        }
+      }
+      .quality__favourite__block {
+        display: flex;
+        align-items: center;
+        padding: 12px 12px 0px 0px;
+        .quality__icon {
+          width: 36px;
+          margin: 0px 10px 0px 0px;
+        }
+        .favourite__icon {
+          display: block;
+        }
+        .favourite__icon__disable {
+          display: none;
+        }
       }
     }
-    .quality__favourite__block {
-      display: flex;
-      align-items: center;
-      padding: 12px 12px 0px 0px;
-      .quality__icon {
-        width: 36px;
-        margin: 0px 10px 0px 0px;
-      }
-      .favourite__icon {
-        display: block;
-      }
-      .favourite__icon__disable {
-        display: none;
-      }
-    }
-  }
-  .productNine__content {
-    padding: 20px;
     .productNine__image__slider {
       .awssld__content {
         background-color: inherit;
@@ -70,7 +66,27 @@
       //   visibility: hidden;
       // }
     }
-     .size__button__block {
+    .productNine__quickView__compare__block{
+        margin: 10px 0px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0px 20px 0px;
+        .productNine__button__block{
+            border: none;
+            outline: none;
+            background: none;
+            display: flex;
+            align-items: center;
+            .productNine__button__icon{
+                margin: 0px 10px 0px 0px;
+            }
+        }
+    }
+  }
+  .productTen__middle__block {
+    padding: 20px 40px 20px 20px;
+    .size__button__block {
       padding: 20px 0px;
       display: flex;
       align-items: center;
@@ -115,35 +131,22 @@
         }
       }
     }
+  }
+  .productTen__right__block{
+    padding: 20px;
     .addToCart__button {
-      border-radius: 5px;
-      color: #ffffff;
-      font-size: 16px;
-      font-family: "arialbold";
-      letter-spacing: 0.85px;
-      padding: 16px 0px;
-      background-color: #dc3a1a;
-      text-align: center;
-      text-transform: uppercase;
-      .addToCart__icon {
-        margin: 0px 20px 0px 0px;
-      }
-    }
-    .productNine__quickView__compare__block{
-        margin: 10px 0px 0px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        .productNine__button__block{
-            border: none;
-            outline: none;
-            background: none;
-            display: flex;
-            align-items: center;
-            .productNine__button__icon{
-                margin: 0px 10px 0px;
-            }
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 16px;
+        font-family: "arialbold";
+        letter-spacing: 0.85px;
+        padding: 10px 0px;
+        background-color: #dc3a1a;
+        text-align: center;
+        text-transform: uppercase;
+        .addToCart__icon {
+          margin: 0px 20px 0px 0px;
         }
-    }
+      }
   }
 }
