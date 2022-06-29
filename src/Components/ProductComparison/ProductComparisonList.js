@@ -5,6 +5,10 @@ import ProductComparisonBlock from "./ProductComparisonBlock";
 // import list_grey from "./../../assets/Icon/list_grey.svg";
 
 import sony_logo from "./../../assets/Icon/sony_logo.svg";
+import shipped from "./../../assets/Icon/shipped.svg";
+import return_box from "./../../assets/Icon/return_box.svg";
+import payment_method from "./../../assets/Icon/payment_method.svg";
+import wrench from "./../../assets/Icon/wrench.svg";
 
 import product_01 from "./../../assets/Product/product_01.png";
 import product_02 from "./../../assets/Product/product_02.png";
@@ -724,6 +728,9 @@ const ProductComparisonList = (props) => {
       </div>
       <div className="product__comparison__block">
         <ProductComparisonBlock productsData={peopleUltimatelyBoughtData1} />
+      </div>
+      <div>
+        
       </div>
     </div>
   );
