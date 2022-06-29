@@ -61,6 +61,22 @@
     scroll-behavior: smooth;
     // transition: all 0.2s ease-in;
   }
+  .plp__youCanAlsoPurchase__block {
+    // position: relative;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    // transition: all 0.2s ease-in;
+  }
+  .cart__popup__frequentlyBoughtTogether__block {
+    // position: relative;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    // transition: all 0.2s ease-in;
+  }
 }
 @media screen and (max-width: 1702px) {
   .carouselTypeTwo__block {

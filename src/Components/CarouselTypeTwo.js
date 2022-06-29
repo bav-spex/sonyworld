@@ -1,5 +1,5 @@
 import React, { useState, useRef, Component, useEffect } from "react";
-import "./../SCSS/_carouselTypeTwo.scss";
+import "./../SCSS/ProductType/_productEleven.scss";
 import Carousel from "react-elastic-carousel";
 import black_left_arrow from "./../assets/Icon/black_left_arrow.svg";
 import black_right_arrow from "./../assets/Icon/black_right_arrow.svg";
@@ -7,6 +7,8 @@ import "./../SCSS/_carouselTypeTwo.scss";
 import ProductOne from "./ProductType/ProductOne";
 import ProductTwo from "./ProductType/ProductTwo";
 import ProductFive from "./ProductType/ProductFive";
+import ExpertProducts from "./ProductType/ExpertProducts";
+import ProductEleven from "./ProductType/ProductEleven";
 
 function CarouselTypeTwo({
   productDetailPage,
@@ -64,6 +66,12 @@ function CarouselTypeTwo({
             <div className={containerClassName}>
               {carouselData.map((product, productIndex) => {
                 return <ProductFive key={product.id} product={product} />;
+              })}
+            </div>
+          ) :productType === "productEleven" ? (
+            <div className={containerClassName}>
+              {carouselData.map((product, productIndex) => {
+                return <ProductEleven key={product.id} product={product} />;
               })}
             </div>
           ) : (

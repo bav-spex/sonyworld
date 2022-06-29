@@ -1,11 +1,18 @@
 .product__list__page__container {
-  background-color: #e6e6e6;
+  background-color: #ffffff;
   padding: 107px 12px 0px;
   height: auto;
   .product__list__page__block {
+    background-color: #ffffff;
     padding: 0px 0px;
     width: 1702px;
     margin: 0px auto;
+    .plp__newArrival__block {
+
+      width: 100%;
+      padding: 0px;
+      margin: 0px 0px 50px;
+    }
   }
 }
 .plp__product__popup__container__disable {

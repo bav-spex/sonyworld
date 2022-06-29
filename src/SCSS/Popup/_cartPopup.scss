@@ -1,0 +1,91 @@
+.cart__popup__block {
+  position: absolute;
+  right: 0px;
+  width: 500px;
+  top: 0px;
+  height: 100%;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  overflow-y: hidden;
+  padding: 0px 0px 400px;
+
+  .cart__popup__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 30px;
+    border-bottom: 1px solid #818181;
+    background-color: #ffffff;
+    .cancel__button{
+        cursor: pointer;
+    }
+  }
+  .cart__popup__content {
+    overflow-y: auto;
+    height: 96vh;
+    margin: 0px 0px 400px;
+    .cart__popup__product__block {
+      padding: 0px 20px;
+      display: flex;
+      align-items: flex-start;
+      margin: 20px 0px 0px;
+      .cart__popup__product__image__block {
+        // overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .cart__popup__product__image {
+          width: 80%;
+        }
+      }
+    }
+    .cart__total__block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 20px;
+    }
+    .cart__popup__button__block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0px 0px 20px;
+      padding: 0px 20px;
+      .checkout__button {
+        width: 48%;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 16px;
+        font-family: "arialbold";
+        letter-spacing: 0.85px;
+        padding: 18px 30px;
+        background-color: #dc3a1a;
+        text-align: center;
+        border: none;
+        text-transform: uppercase;
+      }
+      .continue__shopping__button {
+        width: 48%;
+        background: #ffffff 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000005;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        color: black;
+        outline: none;
+        font-size: 16px;
+        font-family: "arialbold";
+        padding: 16px 0px;
+      }
+    }
+    .cart__popup__frequently__bought__togather {
+      background-color: #f9f9f9;
+      padding: 20px 20px 100px;
+    }
+  }
+  .cart__popup__content::-webkit-scrollbar {
+    width: 0px !important;
+   
+    /* transform: translateY(100%); */
+  }
+  
+}

@@ -8,6 +8,9 @@
     display: flex;
     justify-content: flex-end;
     margin: 0px 0px 10px;
+    .cancel__button{
+      cursor: pointer;
+    }
   }
   .plpProduct__popup__left__block {
     padding: 0px 10px 0px 0px;
