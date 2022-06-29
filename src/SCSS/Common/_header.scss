@@ -378,6 +378,21 @@
     display: none;
   }
 }
+.cart__popup__container__disable {
+  display: none;
+}
+.cart__popup__container {
+  position: fixed;
+  top: 0px;
+  margin: 0px;
+  width: 100%;
+  z-index: 12;
+  height: 100vh;
+  overflow-y: hidden;
+  background-color: #02020250;
+  padding: 10px 0px;
+}
+
 @media screen and (max-width: 1702px) {
   // .header {
   //   width: 90% !important;

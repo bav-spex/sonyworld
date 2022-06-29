@@ -10,6 +10,9 @@
     justify-content: space-between;
     padding: 10px 20px;
     border-bottom: 1px solid #f1f1f1;
+    .cancel__button{
+      cursor: pointer;
+    }
   }
   .plp__compare__popup__content {
     padding: 20px;
@@ -27,6 +30,9 @@
         display: flex;
         justify-content: flex-end;
         margin: 0px 0px 10px;
+        .cancel__button{
+          cursor: pointer;
+        }
       }
       .compare__product__content {
         display: flex;

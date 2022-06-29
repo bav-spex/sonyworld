@@ -26,6 +26,13 @@ import product_04 from "./../assets/Product/product_04.png";
 import product_05 from "./../assets/Product/product_05.png";
 import PLPProductPopup from "../Components/Popup/PLPProductPopup";
 import PLPComparePopup from "../Components/Popup/PLPComparePopup";
+import CarouselTypeTwo from "../Components/CarouselTypeTwo";
+
+import newArrivals_01 from "./../assets/NewArrivals/newArrivals_01.png";
+import newArrivals_02 from "./../assets/NewArrivals/newArrivals_02.png";
+import newArrivals_03 from "./../assets/NewArrivals/newArrivals_03.png";
+import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
+import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 
 const categoryLists = [
   {
@@ -835,7 +842,100 @@ const compareData = [
     ],
   },
 ];
+const newArrivalData = [
+  {
+    id: 0,
+    baseImage: newArrivals_01,
+    name: "Camera",
+    rating: 4.5,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 1,
+    baseImage: newArrivals_02,
+    name: "Silver Porto Headset",
+    rating: 3,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 3,
+    baseImage: newArrivals_03,
+    name: "Car Audio Speaker KM100",
+    rating: 3.5,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 4,
+    baseImage: newArrivals_04,
+    name: "Sony Viao Laptop",
+    rating: 2.5,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 5,
+    baseImage: newArrivals_05,
+    name: "Network Camera",
+    rating: 5,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 6,
+    baseImage: newArrivals_01,
+    name: "Camera",
+    rating: 3.2,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 7,
+    baseImage: newArrivals_02,
+    name: "Silver Porto Headset",
+    rating: 4.8,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 8,
+    baseImage: newArrivals_03,
+    name: "Car Audio Speaker KM100",
+    rating: 2,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 9,
+    baseImage: newArrivals_04,
+    name: "Sony Viao Laptop",
+    rating: 1,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+  {
+    id: 10,
+    baseImage: newArrivals_05,
+    name: "Network Camera",
+    rating: 3,
+    totalRatings:2183,
+    oldPrice: 1999,
+    price: 1699,
+  },
+];
 const Product_List_Page = () => {
+  
   const [plpProductPopup, setPlpProductPopup] = useState(false);
   const [plpComparePopup, setPlpComparePopup] = useState(false);
   const [popupProduct, setPopupProduct] = useState({
@@ -954,6 +1054,7 @@ const Product_List_Page = () => {
     // setPopupProduct(product);
   };
   return (
+    
     <>
       <div className="container-fluid product__list__page__container">
         <div className="product__list__page__block">
@@ -964,26 +1065,16 @@ const Product_List_Page = () => {
             handleChangeComparePopup={handleChangeComparePopup}
           />
           <PLPBannerTwo bannerImage={bannerImg1} />
-          {/* <CarouselTypeTwo
-        productDetailPage={false} 
-        sectionTitle="People Who Bought Also Bought"
-        carouselData={bestSellersData}
-        productType="productOne"
-        containerClassName="carouselTypeTwo__inner__block"
-      /> */}
-          {/* <div className="plp__page__similar__product">
-        <PLPSimilarProduct
-          carouselData={bestSellersData}
-          containerClassName="productListingPage__similarproduct__block"
-        />
-      </div> */}
-          {/* <SimilarProducts
-        productDetailPage={false}
-        sectionTitle="Budget TVs"
-        carouselData={bestSellersData}
-        containerClassName="productListingPage__similarproduct__block"
-        productType="productSeven"
-      /> */}
+          <div className="plp__newArrival__block">
+              <CarouselTypeTwo
+                productDetailPage={true}
+                sectionTitle="You Can Also Purchase"
+                carouselData={newArrivalData}
+                productType="productOne"
+                containerClassName="plp__youCanAlsoPurchase__block"
+              />
+            </div>
+       
         </div>
       </div>
       <div
