@@ -1,15 +1,29 @@
 .product__comparison__list__container {
+  .product__comparison__list{
+    padding: 0 80px;
+    .product__card__top{
+      background: #F1F4F9;
+      
+    }
+  }
   .product__comparison__list__title__block {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f9f9f9;
-    padding: 20px 20px 20px 80px;
-    .product__comparison__list__remove__comparison{
+    background: #F2F2F2;
+    padding: 20px 80px 20px;
 
+    .product__comparison__list__remove__comparison {
+      background: #000;
+      border-radius: 4px ;
+      font-size: 24px;
+      line-height: 35px;
+      padding: 10px 15px;
+      letter-spacing: 0.05px;
+      color: #FFFFFF;
+      text-transform: capitalize;
     }
-    .product__comparison__block{
-        
-    }
+
+    
   }
 }

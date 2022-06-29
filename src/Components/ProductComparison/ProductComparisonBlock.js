@@ -8,6 +8,9 @@ import Text4 from "./../Font/Text4";
 import Price from "../Font/Price";
 import Heading6 from "../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
+import Heading5 from "../Font/Heading5";
+import Heading3 from "../Font/Heading3";
+import Heading7 from "../Font/Heading7";
 
 // productSpecification: [
 //   {
@@ -226,20 +229,49 @@ const ProductComparisonBlock = ({ productsData }) => {
           </div>
         );
       })}
-      {productsData.map((item) => {
+      <div className="col-sm-12">
+        <Heading3 text="All Specification"   marginBottom={20}/>
+        <div className="row">
+            <div className="col-sm-12">
+              <Heading5 text="Key Specs" />
+              <div className="row mt-2 mb-3">
+                <div className="col-sm-12">
+                  <Heading7 text="MODEL YEAR"  textTransform="uppercase"/>
+                  <div className="row ">
+                      <div className="col-sm-3">
+
+                      </div>
+                      <div className="col-sm-3">
+
+                      </div>
+                      <div className="col-sm-3">
+
+                      </div>
+                      <div className="col-sm-3">
+
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+           
+
+             
+      
+      {/* {productsData.map((item) => {
         return item.productSpecification.map((data, mainIndex) => {
           console.log(data.specs);
           return (
             <div className="row">
-              <div className="col-sm-3">
-                <div>{data.type}</div>
+              <div className="col-sm-4">
                 <div className="row">
                   {data.specs.map((spac, index) => (
                     <>
-                      <div className="col-sm-12">{spac.title}</div>
-                      <div className="row">
-                        <div className="col-sm-3">{spac.text}</div>
-                      </div>
+                      <div className="col-sm-12">{spac.title} {spac.text}</div>
+                    
                     </>
                   ))}
                 </div>
@@ -247,7 +279,7 @@ const ProductComparisonBlock = ({ productsData }) => {
             </div>
           );
         });
-      })}
+      })} */}
     </div>
   );
 };

@@ -19,6 +19,7 @@ import Heading2 from "../Font/Heading2";
 import Heading3 from "../Font/Heading3";
 import Text3 from "../Font/Text3";
 import ProductNine from "../ProductType/ProductNine";
+import "./../../SCSS/ProductComparison/_productComparisonList.scss";
 
 const peopleUltimatelyBoughtData1 = [
   {
@@ -720,13 +721,13 @@ const peopleUltimatelyBoughtData1 = [
 const ProductComparisonList = (props) => {
   return (
     <div className="product__comparison__list__container">
-      <div className="product__comparison__list__title__block">
+      <div className="product__comparison__list__title__block d-flex justify-content-lg-between py-5">
         <Heading3 text="Back to Page" />
         <div className="product__comparison__list__remove__comparison">
           Remove Comparison
         </div>
       </div>
-      <div className="product__comparison__block">
+      <div className="product__comparison__list bg-white py-3">
         <ProductComparisonBlock productsData={peopleUltimatelyBoughtData1} />
       </div>
       <div>
