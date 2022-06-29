@@ -12,8 +12,6 @@ import Heading5 from "../Font/Heading5";
 import Heading3 from "../Font/Heading3";
 import Heading7 from "../Font/Heading7";
 
-
-
 const ProductComparisonBlock = ({ productsData }) => {
   return (
     <>
@@ -131,28 +129,28 @@ const ProductComparisonBlock = ({ productsData }) => {
                 <div className="col-sm-12">
                   <Heading7 text="PRODUCT NAME" textTransform="uppercase" />
                   <div className="row ">
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
+                    <div className="col-sm-3">QLED 8K Smart Tizen TV</div>
+                    <div className="col-sm-3">QLED 8K Smart Tizen TV</div>
+                    <div className="col-sm-3">QLED 8K Smart Tizen TV</div>
+                    <div className="col-sm-3">QLED 8K Smart Tizen TV</div>
                   </div>
                 </div>
                 <div className="col-sm-12">
                   <Heading7 text="COLOR" textTransform="uppercase" />
                   <div className="row ">
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
+                    <div className="col-sm-3">Stainless steel</div>
+                    <div className="col-sm-3">Stainless steel</div>
+                    <div className="col-sm-3">Stainless steel</div>
+                    <div className="col-sm-3">Stainless steel</div>
                   </div>
                 </div>
                 <div className="col-sm-12">
                   <Heading7 text="COLOR CATEGORY" textTransform="uppercase" />
                   <div className="row ">
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
-                    <div className="col-sm-3">2022</div>
+                    <div className="col-sm-3">Silver</div>
+                    <div className="col-sm-3">Silver</div>
+                    <div className="col-sm-3">Silver</div>
+                    <div className="col-sm-3">Silver</div>
                   </div>
                 </div>
               </div>
@@ -193,9 +191,9 @@ const ProductComparisonBlock = ({ productsData }) => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-12 product__comparison__availability">
           <Heading3 text="Availability" marginBottom={20} />
-          <div className="row">
+          <div className="row product__comparison__availability__block">
             <div className="col-sm-3">
               <Heading7 text="DELIVERY IN 8 DAYS" textTransform="uppercase" />
               <div className="row ">
@@ -282,9 +280,9 @@ const ProductComparisonBlock = ({ productsData }) => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12">
+        <div className="col-sm-12 product__comparison__offer">
           <Heading3 text="SPECIAL OFFERS" marginBottom={20} />
-          <div className="row">
+          <div className="row product__comparison__offer__block">
             <div className="col-sm-3">
               <div className="row ">
                 <div className="col-sm-12">

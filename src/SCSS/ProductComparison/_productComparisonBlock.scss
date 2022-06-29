@@ -8,10 +8,10 @@
     // padding: 20px;
     .product__card__top {
       display: flex;
-      justify-content:end;
+      justify-content: end;
       .product__comparison__close__icon__block {
         display: flex;
-          justify-content: end;
+        justify-content: end;
         align-items: center;
         margin: 13px 13px 0px 0px;
         .product__comparison__close__icon {
@@ -20,12 +20,11 @@
       }
     }
     .product__card {
-   
       .product__comparison__header__block {
         padding: 14px;
         margin: 0px 0px 20px;
         width: 100%;
-        background: #F1F4F9;
+        background: #f1f4f9;
         .product__comparison__image__block {
           width: 272px;
           height: 252px;
@@ -113,5 +112,17 @@
         }
       }
     }
+  }
+}
+
+.product__comparison__availability {
+  .product__comparison__availability__block {
+    background: #f1f4f9;
+  }
+}
+
+.product__comparison__offer {
+  .product__comparison__offer__block {
+    background: #f1f4f9;
   }
 }
