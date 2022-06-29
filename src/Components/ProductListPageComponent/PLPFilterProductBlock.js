@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import ProductLists from "./ProductListPageProduct";
-import AllProductFilter from "./ProductListPageFilter";
+import PLPProduct from "./PLPProduct";
+import PLPFilter from "./PLPFilter";
+import "./../../SCSS/ProductListPage/_plpFilterProductBlock.scss";
 
-import Dropdown from "../DropDown";
-// import GridButton from "../../Components/Buttons/GridButton";
-// import ListButton from "../../Components/Buttons/ListButton";
-import ListIcon from "./../../assets/Icon/list_icon.svg";
-import GridIcon from "./../../assets/Icon/grid_icon.svg";
+import list_grey from "./../../assets/Icon/list_grey.svg";
+import grid_grey from "./../../assets/Icon/grid_grey.svg";
+import list_orange from "./../../assets/Icon/list_orange.svg";
+import grid_orange from "./../../assets/Icon/grid_orange.svg";
 
 import sony_logo from "./../../assets/Icon/sony_logo.svg";
 
@@ -15,6 +15,10 @@ import product_02 from "./../../assets/Product/product_02.png";
 import product_03 from "./../../assets/Product/product_03.png";
 import product_04 from "./../../assets/Product/product_04.png";
 import product_05 from "./../../assets/Product/product_05.png";
+import Heading2 from "../Font/Heading2";
+import Heading3 from "../Font/Heading3";
+import Text3 from "../Font/Text3";
+import ProductNine from "../ProductType/ProductNine";
 
 const dropdownOptions = [
   {
@@ -536,10 +540,9 @@ const peopleUltimatelyBoughtData = [
   },
 ];
 
-const Product_List_Page = (props) => {
-  const [singleGrid, setSingleGrid] = useState(false);
+const PLPFilterProductBlock = (props) => {
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
-  const [productView, setProductView] = useState("grid");
+  const [productListView, setProductListView] = useState("grid");
 
   useEffect(() => {
     console.log(selectedOption);
@@ -552,79 +555,93 @@ const Product_List_Page = (props) => {
 
   const onClickGridList = (type) => {
     if (type === "grid") {
-      setProductView("grid");
+      setProductListView("grid");
     }
     if (type === "list") {
-      setProductView("list");
+      setProductListView("list");
     }
   };
   return (
-    <div>
-      <div className="product__list__page">
-        <div className="product__header">
-          <div className="product__count">22 Products</div>
-          <div className="product__sortby__grid">
-            <div className="product__sortby">
-              <div className="sortby__block">
-                <p className="sortby__text">Sort By:</p>
-                {/* <label className="label">Sort by: &nbsp;</label> */}
-                <select
-                  onChange={(e) => onSelectSortby(e)}
-                  className="sortby__select"
-                  // className="_customselect"
-                >
-                  {dropdownOptions.map(({ label, value }) => (
-                    <option
-                      className="sortby__options"
-                      key={value + label}
-                      value={value}
-                    >
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="product__view">
-              <div
-                className="grid__block"
-                onClick={() => onClickGridList("grid")}
-              >
-                <img className="grid__view" src={GridIcon} alt="" />
-              </div>
-              <div
-                className="list__block"
-                onClick={() => onClickGridList("list")}
-              >
-                <img className="list__view" src={ListIcon} alt=""/>
+    <div className="plp__filter__product__container">
+      <div className="plp__filter__product__title__block">
+        <Heading3 text="22 Products" />
+        <div className="plp__filter__product__sortby__grid__button">
+          <Text3 text="Sort By:" />
+          {/* <label className="label">Sort by: &nbsp;</label> */}
 
-                {/* <ListButton isActive={false} /> */}
-              </div>
+          <select
+            onChange={(e) => onSelectSortby(e)}
+            className="plp__sortby__select__field"
+            // className="_customselect"
+          >
+            {dropdownOptions.map(({ label, value }) => (
+              <option
+                className="plp__sortby__options"
+                key={value + label}
+                value={value}
+              >
+                {label}
+              </option>
+            ))}
+          </select>
+
+          <div className="plp__grid__button">
+            <div
+              className={
+                productListView === "grid"
+                  ? "plp__grid__button__active"
+                  : "plp__grid__button"
+              }
+              onClick={() => onClickGridList("grid")}
+            >
+              <img
+                className="grid__icon"
+                src={productListView === "grid" ? grid_orange : grid_grey}
+                alt=""
+              />
+            </div>
+            <div
+              className={
+                productListView === "list"
+                  ? "plp__list__button__active"
+                  : "plp__list__button"
+              }
+              onClick={() => onClickGridList("list")}
+            >
+              <img
+                className="list__icon"
+                src={productListView === "list" ? list_orange : list_grey}
+                alt=""
+              />
             </div>
           </div>
         </div>
-        <div className="row product__filter__list">
-          <div className="col-sm-4 product__filter">
-            <AllProductFilter />
-          </div>
-          <div className="col-sm-8 product__list">
-            {singleGrid ? (
+      </div>
+      <div className="row plp__filter__product__block">
+        <div className="col-sm-3 plp__filter__block">
+          <PLPFilter />
+        </div>
+        <div className="col-sm-9 plp__product__block">
+          <div className="row plp__inner__product__block">
+            {productListView === "grid" ? (
+              <>
+                {peopleUltimatelyBoughtData.map((product, productIndex) => {
+                  return (
+                    <div className="col-sm-4">
+                      <ProductNine product={product} />
+                    </div>
+                  );
+                })}
+                {/* <PLPProduct productsData={peopleUltimatelyBoughtData} /> */}
+              </>
+            ) : productListView === "list" ? (
               <div className="row">
                 <div className="col-sm-12">test 2</div>
                 <div className="col-sm-12">test 3</div>
                 <div className="col-sm-12">test 4</div>
               </div>
             ) : (
-              <div className="row">
-                {/* <div className="col-sm-4">
-                  <ProductLists product={peopleUltimatelyBoughtData[0]}/>
-                </div> */}
-
-                <ProductLists products={peopleUltimatelyBoughtData} />
-
-                {/* <div className="col-sm-4">test 3</div>
-                <div className="col-sm-4">test 4</div> */}
-              </div>
+              ""
             )}
           </div>
         </div>
@@ -633,4 +650,4 @@ const Product_List_Page = (props) => {
   );
 };
 
-export default Product_List_Page;
+export default PLPFilterProductBlock;

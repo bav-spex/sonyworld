@@ -1,5 +1,5 @@
 import React from "react";
-import "./../../SCSS/ProductListPage/_productListBannerSectionTwo.scss";
+import "./../../SCSS/ProductListPage/_plpBannerSectionTwo.scss";
 
 const Product_Listing_Page_BannerTwo = (props) => {
   return (

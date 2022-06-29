@@ -1,6 +1,8 @@
 import React from "react";
 import star from "./../../assets/Icon/orange-review.svg";
-
+import "./../../SCSS/ProductListPage/_plpFilter.scss";
+import Heading6 from "./../../Components/Font/Heading6";
+import Text2 from "./../../Components/Font/Text2";
 const starArray = [1, 2, 3, 4, 5];
 
 const filterData = [
@@ -166,49 +168,44 @@ const filterData = [
   },
 ];
 
-const Product_List_Page_Filter = (props) => {
+const PLPFilter = (props) => {
   return (
     filterData && (
-      <div className="product__filter__container">
-        {filterData.map((item, index) => {
+      <div className="main__filter__block">
+        {filterData.map((filter, index) => {
           console.log(index, "index");
           console.log(filterData.length, "index");
 
           return (
-            <div>
-              <div className="filter__block">
-                <p className="product__filter__title">{item.filterTitle}</p>
-                {item.filterItems.map((data) => {
-                  return (
-                    <div
-                      className={`product__filter__section__block ${
-                        item.filterTitle === "Customer Review" ? "reviews" : ""
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        className="filter__checkbox"
-                        name={data.title}
-                        // onChange={handleChange}
-                      />
-                      {item.filterTitle === "Customer Review" ? (
-                        <div className="star__rating__block">
-                          {starArray.map((item) => (
-                            <img className="star__count" src={star} alt="" />
+            <div className="filter__block">
+              <Heading6 text={filter.filterTitle} marginBottom={10} />
+              {filter.filterItems.map((data) => {
+                return (
+                  <div
+                    className={`filter__checkbox__block ${
+                      filter.filterTitle === "Customer Review" ? "reviews" : ""
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      className="filter__checkbox"
+                      name={data.title}
+                      // onChange={handleChange}
+                    />
+                    {filter.filterTitle === "Customer Review" ? (
+                      <div className="star__rating__block">
+                        {starArray.map((item) => (
+                          <img className="star__count" src={star} alt="" />
                           ))}
                           <p className="star__rating">{`${data.starRating}.0`}</p>
-                        </div>
-                      ) : (
-                        // <p className="filter__title">{data.title}</p>
-                        <p className="filter__title">{data.title}</p>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-              {filterData.length - 1 !== index && (
-                <div className="filter__devider"></div>
-              )}
+                      </div>
+                    ) : (
+                      // <p className="filter__title">{data.title}</p>
+                      <Text2 text={data.title} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           );
         })}
@@ -217,4 +214,4 @@ const Product_List_Page_Filter = (props) => {
   );
 };
 
-export default Product_List_Page_Filter;
+export default PLPFilter;

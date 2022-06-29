@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
-
+import "./../../SCSS/ProductListPage/_plpProduct.scss";
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
 import productTwo_quality_icon from "./../../assets/Product/productTwo_quality_icon.png";
-import "./../../SCSS/ProductType/_productLists.scss";
+// import "./../../SCSS/ProductType/_productLists.scss";
 import Heading7 from "../Font/Heading7";
 import Text4 from "../Font/Text4";
 import OldPrice from "../Font/OldPrice";
@@ -14,7 +14,7 @@ import Price from "../Font/Price";
 import Heading6 from "../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 
-const Product_List_Page_Product = ({ productDetailPage, products }) => {
+const PLPProduct = ({ productsData }) => {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
@@ -31,7 +31,7 @@ const Product_List_Page_Product = ({ productDetailPage, products }) => {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
-  return products.map((product) => {
+  return productsData.map((product) => {
     return (
       <div key={product.id} className="col-sm-4 productList__main__container">
         <div key={product.id} className="productList__block">
@@ -151,4 +151,4 @@ const Product_List_Page_Product = ({ productDetailPage, products }) => {
   });
 };
 
-export default Product_List_Page_Product;
+export default PLPProduct;

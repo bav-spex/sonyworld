@@ -1,22 +1,21 @@
 import React from "react";
 
-import "./../SCSS/ProductListPage/_productListPage.scss";
-import "./../SCSS/ProductListPage/_productListBannerSection.scss";
-import "./../SCSS/ProductListPage/_productListCategorySection.scss";
-import "./../SCSS/ProductListPage/_productListFilter.scss";
+// import "./../SCSS/ProductListPage/_productListPageFilterProductBlock.scss";
+// import "./../SCSS/ProductListPage/_productListBannerSection.scss";
+// import "./../SCSS/ProductListPage/_productListCategorySection.scss";
+// import "./../SCSS/ProductListPage/_productListFilter.scss";
 
-import ProductListBannerSection from "../Components/ProductListPageComponent/ProductListBannerSection";
-import ProductListCategorySection from "../Components/ProductListPageComponent/ProductListCategorySection";
-import ProductListPageProduct from "../Components/ProductListPageComponent/ProductListPage";
-import ProductListingPageBannerTwo from "../Components/ProductListPageComponent/ProductListPageBannerTwo";
-import ProductListingPageSimilarProduct from "../Components/ProductListPageComponent/ProductListingPageSimilarProduct";
-import CarouselTypeTwo from "../Components/CarouselTypeTwo";
-
-import SimilarProducts from "../Components/SimilarProducts";
+import "./../SCSS/_productListPage.scss";
+import PLPBannerAndCategorySection from "../Components/ProductListPageComponent/PLPBannerAndCategorySection";
+import PLPFilterProductBlock from "../Components/ProductListPageComponent/PLPFilterProductBlock";
+import PLPBannerTwo from "../Components/ProductListPageComponent/PLPBannerTwo";
+import PLPSimilarProduct from "../Components/ProductListPageComponent/PLPSimilarProduct";
 
 import feature_product_04 from "./../assets/FeatureProduct/feature_product_04.png";
-import White_tv from "./../assets/Icon/white_tv.svg";
-import Accessories_white from "./../assets/Icon/accessories_white.svg";
+import white_tv from "./../assets/Icon/white_tv.svg";
+import red_tv from "./../assets/Icon/red_tv.svg";
+import white_accessories from "./../assets/Icon/white_accessories.svg";
+import red_accessories from "./../assets/Icon/red_accessories.svg";
 import bannerImg1 from "./../assets/Product/plp_banner_two.png";
 
 import sony_logo from "./../assets/Icon/sony_logo.svg";
@@ -29,32 +28,68 @@ import product_05 from "./../assets/Product/product_05.png";
 const categoryLists = [
   {
     title: "TELEVISION",
-    image: White_tv,
+    defaultIcon: white_tv,
+    selectedIcon:red_tv,
     bannerImage: feature_product_04,
   },
   {
     title: "OLED",
-    image: White_tv,
+    defaultIcon: white_tv,
+    selectedIcon:red_tv,
     bannerImage: product_01,
   },
   {
     title: "FULL ARRAY LED",
-    image: White_tv,
+    defaultIcon: white_tv,
+    selectedIcon:red_tv,
     bannerImage: feature_product_04,
   },
   {
     title: "ALL LEDS",
-    image: White_tv,
+    defaultIcon: white_tv,
+    selectedIcon:red_tv,
     bannerImage: product_04,
   },
   {
     title: "GOOGLE TV",
-    image: White_tv,
+    defaultIcon: white_tv,
+    selectedIcon:red_tv,
     bannerImage: product_05,
   },
   {
     title: "ACCESSORIES",
-    image: Accessories_white,
+    defaultIcon: white_accessories,
+    selectedIcon:red_accessories,
+    bannerImage: feature_product_04,
+  },
+  {
+    title: "ACCESSORIES1",
+    defaultIcon: white_accessories,
+    selectedIcon:red_accessories,
+    bannerImage: feature_product_04,
+  },
+  {
+    title: "ACCESSORIES2",
+    defaultIcon: white_accessories,
+    selectedIcon:red_accessories,
+    bannerImage: feature_product_04,
+  },
+  {
+    title: "ACCESSORIES3",
+    defaultIcon: white_accessories,
+    selectedIcon:red_accessories,
+    bannerImage: feature_product_04,
+  },
+  {
+    title: "ACCESSORIES4",
+    defaultIcon: white_accessories,
+    selectedIcon:red_accessories,
+    bannerImage: feature_product_04,
+  },
+  {
+    title: "ACCESSORIES5",
+    defaultIcon: white_accessories,
+    selectedIcon:red_accessories,
     bannerImage: feature_product_04,
   },
 ];
@@ -597,25 +632,32 @@ const bannerImageData = [
 
 const Product_List_Page = () => {
   return (
-    <div className="container-fluid allProducts">
-      <ProductListCategorySection categoryData={categoryLists} />
-      <ProductListPageProduct />
-      <ProductListingPageBannerTwo bannerImage={bannerImg1} />
-      {/* <CarouselTypeTwo
+    <div className="container-fluid product__list__page__container">
+      <div className="product__list__page__block">
+        <PLPBannerAndCategorySection categoryData={categoryLists} />
+        <PLPFilterProductBlock />
+        <PLPBannerTwo bannerImage={bannerImg1} />
+        {/* <CarouselTypeTwo
         productDetailPage={false} 
         sectionTitle="People Who Bought Also Bought"
         carouselData={bestSellersData}
         productType="productOne"
         containerClassName="carouselTypeTwo__inner__block"
       /> */}
-      {/* <ProductListingPageSimilarProduct carouselData={bestSellersData} containerClassName="productListingPage__similarproduct__block"/> */}
-      {/* <SimilarProducts
+        {/* <div className="plp__page__similar__product">
+        <PLPSimilarProduct
+          carouselData={bestSellersData}
+          containerClassName="productListingPage__similarproduct__block"
+        />
+      </div> */}
+        {/* <SimilarProducts
         productDetailPage={false}
         sectionTitle="Budget TVs"
         carouselData={bestSellersData}
         containerClassName="productListingPage__similarproduct__block"
         productType="productSeven"
       /> */}
+      </div>
     </div>
   );
 };

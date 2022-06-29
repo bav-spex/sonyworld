@@ -1,0 +1,32 @@
+.banner__section__one {
+  background: #f2f2f2;
+  height: 200px;
+  width: 100%;
+  margin: 0px auto;
+  .banner__section__one__title__block {
+    // background: #F2F2F2;
+    display: flex;
+    align-items: center;
+    .banner__section__one__title {
+      margin: 0px 0px 0px 50px;
+      font-family: "arialbold";
+      font-size: 48px;
+    }
+  }
+  .banner__section__one__image__block {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .banner__section__one__image {
+      // margin-top: 40px;
+      // width: 328px;
+      object-fit: contain;
+      height: 90%;
+    }
+  }
+}
+
+
+  
+

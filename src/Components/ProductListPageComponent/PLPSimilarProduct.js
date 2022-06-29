@@ -3,11 +3,11 @@ import React, { useState, useRef, Component, useEffect } from "react";
 import black_left_arrow from "./../../assets/Icon/black_left_arrow.svg";
 import black_right_arrow from "./../../assets/Icon/black_right_arrow.svg";
 import "./../../SCSS/_newArrival.scss";
-import "./../../SCSS/ProductListPage/_productListSimilarProduct.scss";
+import "./../../SCSS/ProductListPage/_plpSimilarProduct.scss";
 
-import OldPrice from "./../Font/OldPrice";
-import Price from "./../Font/Price";
-import Heading6 from "./../Font/Heading6";
+import OldPrice from "../Font/OldPrice";
+import Price from "../Font/Price";
+import Heading6 from "../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
 
