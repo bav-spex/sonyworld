@@ -27,4 +27,5 @@ function SearchProduct({product}) {
   )
 }
 
+
 export default SearchProduct
