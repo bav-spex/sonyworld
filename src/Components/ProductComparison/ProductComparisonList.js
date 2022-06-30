@@ -9,6 +9,8 @@ import return_box from "./../../assets/Icon/return_box.svg";
 import payment_method from "./../../assets/Icon/payment_method.svg";
 import wrench from "./../../assets/Icon/wrench.svg";
 
+import remove_comparison from "./../../assets/Icon/remove_comparison.svg";
+
 import sony_logo from "./../../assets/Icon/sony_logo.svg";
 
 import product_01 from "./../../assets/Product/product_01.png";
@@ -746,8 +748,11 @@ const ProductComparisonList = (props) => {
     <div className="product__comparison__list__container">
       <div className="product__comparison__list__title__block d-flex justify-content-lg-between py-5">
         <Heading3 text="Back to Page" />
-        <div className="product__comparison__list__remove__comparison">
-          Remove Comparison
+        <div className="remove__comparison__block">
+          <p className="remove__comparison">Remove Comparison</p>
+          <div className="remove__comparison__icon">
+            <img src={remove_comparison} alt="" />
+          </div>
         </div>
       </div>
       <div className="product__comparison__list bg-white py-3">

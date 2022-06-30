@@ -9,16 +9,18 @@
     align-items: center;
     margin: auto;
 
-    .product__highlight__image {
-      //   margin: 0px 0px;
-      background: #ffffff;
+    .product__highlight__image__block {
       width: 150px;
       height: 150px;
+      background: white;
       border-radius: 50%;
-      //   display: flex;
-      align-items: center;
-      text-align: center;
-      padding: 10px;
+      /* align-items: center; */
+      /* text-align: center; */
+      margin: auto;
+      .product__highlight__image {
+        width: 100px;
+        height: 150px;
+      }
     }
   }
 }

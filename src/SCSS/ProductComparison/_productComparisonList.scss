@@ -11,16 +11,27 @@
     align-items: center;
     background: #f2f2f2;
     padding: 20px 80px 20px;
-
-    .product__comparison__list__remove__comparison {
+    .remove__comparison__block {
+      display: flex;
       background: #000;
+      align-items: center;
+      text-align: center;
+      width: 311px;
+      min-height: 52px;
       border-radius: 4px;
-      font-size: 24px;
-      line-height: 35px;
-      padding: 10px 15px;
-      letter-spacing: 0.05px;
-      color: #ffffff;
-      text-transform: capitalize;
+      cursor: pointer;
+      .remove__comparison {
+        background: #000;
+        font-size: 24px;
+        line-height: 35px;
+        letter-spacing: 0.05px;
+        color: #ffffff;
+        text-transform: capitalize;
+        margin: 15px;
+      }
+      .remove__comparison__icon {
+        width: 14px;
+      }
     }
   }
 }

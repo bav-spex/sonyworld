@@ -8,7 +8,7 @@ const ProductHighlights = ({ ProductHighlightsData }) => {
       {ProductHighlightsData.map((ProductHighlightsData) => {
         return (
           <div className="product__highlight__block">
-            <div>
+            <div className="product__highlight__image__block">
               <img
                 className="product__highlight__image"
                 src={ProductHighlightsData.image}

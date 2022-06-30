@@ -107,6 +107,7 @@
         background-color: #dc3a1a;
         text-align: center;
         text-transform: uppercase;
+        cursor: pointer;
         .addToCart__icon {
           margin: 0px 20px 0px 0px;
         }
@@ -115,14 +116,107 @@
   }
 }
 
+.product__comparison__all__specification__block {
+  .specification__title__block {
+    .specification__category__block {
+      .specification__subcategory__block {
+        background: #f1f4f9;
+        text-align: center;
+        font-size: 16px;
+        font-family: "arialregular";
+        margin-bottom: 27px;
+        .specification__subcategory__title {
+          color: #101010;
+          font-size: 16px;
+          font-family: arial;
+          padding: 10px 0px;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
 .product__comparison__availability {
-  .product__comparison__availability__block {
-    background: #f1f4f9;
+  margin-bottom: 20px;
+  .product__comparison__availability__container {
+    .product__comparison__availability__block {
+      background: #f1f4f9;
+      padding: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      .product__comparison__availability__block__item {
+        display: flex;
+        align-items: flex-start;
+        margin: 16px 0px;
+        .item__image {
+          margin-right: 13px;
+        }
+        .item__text__block {
+          .item__text {
+            margin: 0px;
+            font-size: 16px;
+            font-family: "arialregular";
+            .item__strong__text {
+              font-size: 16px;
+              font-family: "arialbold";
+            }
+          }
+          .item__store__location__link {
+            color: #003cb4;
+          }
+        }
+      }
+    }
   }
 }
 
 .product__comparison__offer {
+  margin-bottom: 20px;
   .product__comparison__offer__block {
     background: #f1f4f9;
+    // padding: 10px;
+    .product__comparison__offer__item {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      .product__offer__block {
+        display: flex;
+        align-items: center;
+        margin: 16px 0px 16px 0px;
+
+        .product__offer__icon {
+          width: 32px;
+          margin: 0px 16px 0px 0px;
+        }
+        .product__offer__text__box {
+          display: flex;
+          align-items: center;
+          .product__offertype {
+            margin: 0px;
+            font-size: 14px;
+            font-family: "arialbold";
+            .product__offerText {
+              margin: 0px 10px 0px 0px;
+              font-size: 14px;
+              font-family: "arialregular";
+            }
+          }
+          .product__termsAndConditions__link {
+            margin: 0px;
+            font-size: 14px;
+            font-family: "arialbold";
+            text-decoration: none;
+            color: #003cb4;
+          }
+        }
+      }
+    }
+
+    .product__card__finance__offer {
+      margin-top: 29px;
+      .finance__offertext {
+        color: #003cb4;
+        margin: 0px;
+      }
+    }
   }
 }
