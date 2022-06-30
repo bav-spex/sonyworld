@@ -124,15 +124,7 @@ function Footer() {
                 })}
               </div>
             </div>
-            <div className="col-12 col-sm-4 col-md-3 sony__expert__block">
-              <button
-                type="button"
-                className="expert__button"
-                // onClick={handleSubmit}
-              >
-                <img src={live_chat_button} alt="" />
-              </button>
-            </div>
+           
           </div>
         </div>
       </div>

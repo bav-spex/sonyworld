@@ -1,5 +1,6 @@
 .product__details__page__container {
   padding: 0px 12px;
+  position: relative;
   .product__details__page__block {
     padding: 0px 0px;
     width: 1702px;
@@ -184,7 +185,7 @@
                   border-radius: 0px 4px 4px 0px;
                   color: #ffffff;
                   padding: 15px 30px;
-                  background-color: #DC3A1A;
+                  background-color: #dc3a1a;
                   width: fit-content;
                   outline: none;
                   border: none;
@@ -220,7 +221,7 @@
                 font-family: "arialbold";
                 letter-spacing: 0.85px;
                 padding: 18px 0px;
-                background-color: #DC3A1A;
+                background-color: #dc3a1a;
                 text-align: center;
                 text-transform: uppercase;
                 .pd__addToCart__icon {
@@ -283,7 +284,7 @@
                 font-family: "arialbold";
                 letter-spacing: 0.85px;
                 padding: 18px 10px;
-                background-color: #DC3A1A;
+                background-color: #dc3a1a;
                 text-align: center;
                 text-transform: uppercase;
                 margin: 0px 0px 20px;
@@ -305,6 +306,56 @@
         }
       }
     }
+    .product__details__right__block {
+      border-left: 1px solid #eeeeee;
+      padding: 0px 12px 0px 50px;
+      height: fit-content;
+      .pd__mb__block__title {
+        font-size: 24px;
+        font-family: "arialbold";
+        letter-spacing: 0.24px;
+        line-height: 24px;
+        margin: 0px 0px 20px;
+      }
+      .pd__mb__product__block {
+        padding: 30px 0px 30px;
+        border-bottom: 1px solid #eeeeee;
+        .pd__mb__product__image__block {
+          // height: 100%;
+          // width: 100%;
+          .pd__mb__product__image {
+            height: 50%;
+            width: 100%;
+            object-fit: contain;
+          }
+        }
+        .pd__mb__product__detail__block {
+          .pd__mb__product__oldPrice {
+            margin: 0px 10px 0px 10px;
+          }
+
+          .pd__compare__block {
+            display: flex;
+            align-items: center;
+            margin: 10px 0px 0px;
+            .pd__compare__input__check {
+              accent-color: #000000;
+              height: 20px;
+              width: 20px;
+              border-radius: 10px;
+              margin: 0px 16px 0px 0px;
+              border: 30px solid #303030;
+              text-transform: uppercase;
+            }
+            .pd__compare__text {
+              font-size: 16px;
+              font-family: "arialregular";
+              margin: 0px;
+            }
+          }
+        }
+      }
+    }
     .pd__newArrival__block {
       width: 100%;
       padding: 0px;
@@ -315,53 +366,102 @@
       margin: 0px 0px 50px;
     }
   }
-  .product__details__right__block {
-    border-left: 1px solid #eeeeee;
-    padding: 0px 12px 0px 50px;
-    height: fit-content;
-    .pd__mb__block__title {
-      font-size: 24px;
-      font-family: "arialbold";
-      letter-spacing: 0.24px;
-      line-height: 24px;
-      margin: 0px 0px 20px;
-    }
-    .pd__mb__product__block {
-      padding: 30px 0px 30px;
-      border-bottom: 1px solid #eeeeee;
-      .pd__mb__product__image__block {
-        // height: 100%;
-        // width: 100%;
-        .pd__mb__product__image {
-          height: 50%;
-          width: 100%;
-          object-fit: contain;
-        }
+}
+.pdp__sticky__add__to__cart__container {
+  position: fixed;
+  bottom: 0px;
+  height: 170px;
+  width: 100%;
+  background: #dcdcdc 0% 0% no-repeat padding-box;
+  border-top: 1px solid #787878;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 13;
+  .pdp__sticky__add__to__cart__block {
+    display: flex;
+    align-items: center;
+    .pdp__sticky__counter__block {
+      margin: 0px 20px;
+      height: 64px;
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #00000005;
+border: 1px solid #D1D1D1;
+width: 200px;
+      .counter__decrease__block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
       }
-      .pd__mb__product__detail__block {
-        .pd__mb__product__oldPrice {
-          margin: 0px 10px 0px 10px;
-        }
+      .counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #D1D1D1;
+        border-left: 1px solid #D1D1D1;
+        font-size: 20px;
+      }
+      .counter__increase__block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+    .buynow___button {
+      text-decoration: none;
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 16px;
+      font-family: "arialbold";
+      letter-spacing: 0.85px;
+      padding: 10px 60px;
+      background-color: #000000;
+      text-align: center;
+      text-transform: uppercase;
+      width: fit-content;
+      border: none;
+      margin: 0px 20px;
+      height: 64px;
+    }
+    .build__bundle___button {
+      text-decoration: none;
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 16px;
+      font-family: "arialbold";
+      letter-spacing: 0.85px;
+      padding: 10px 60px;
+      background-color: #808080;
+      text-align: center;
+      text-transform: uppercase;
+      width: fit-content;
+      border: none;
+      margin: 0px 20px;
+      height: 64px;
+    }
+    .addToCart__button {
+      text-decoration: none;
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 16px;
+      font-family: "arialbold";
+      letter-spacing: 0.85px;
+      padding: 10px 60px;
+      background-color: #dc3a1a;
+      text-align: center;
+      text-transform: uppercase;
+      display: flex;
+      width: fit-content;
+      border: none;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0px 20px;
+      height: 64px;
 
-        .pd__compare__block {
-          display: flex;
-          align-items: center;
-          margin: 10px 0px 0px;
-          .pd__compare__input__check {
-            accent-color: #000000;
-            height: 20px;
-            width: 20px;
-            border-radius: 10px;
-            margin: 0px 16px 0px 0px;
-            border: 30px solid #303030;
-            text-transform: uppercase;
-          }
-          .pd__compare__text {
-            font-size: 16px;
-            font-family: "arialregular";
-            margin: 0px;
-          }
-        }
+      .addToCart__icon {
+        margin: 0px 10px 0px 0px;
       }
     }
   }

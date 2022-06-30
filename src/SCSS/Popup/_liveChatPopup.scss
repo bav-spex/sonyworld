@@ -1,0 +1,35 @@
+.live__chat__popup__block {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  width: 320px;
+  position: absolute;
+  right: 20px;
+  bottom: 144px;
+  padding: 10px 20px 20px;
+  .inner__live__chat__popup__block {
+    .live__chat__popup__header{
+        display: flex;
+        justify-content: flex-end;
+        .cancel__button{
+            cursor: pointer;
+        }
+    }
+    .live__chat__option__block {
+        margin: 0px 0px 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      .live__chat__option__icon {
+        height: 40px;
+        padding: 0px;
+      }
+      .live__chat__option__text{
+        padding: 0px;
+        margin: 0px;
+        font-size: 16px;
+        color: #000000;
+      }
+    }
+  }
+}
