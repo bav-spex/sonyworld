@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
@@ -31,7 +33,9 @@ function ProductOne({ productDetailPage, product }) {
       }
     >
       <div className="productOne__image__block">
-        <img src={product.baseImage} alt="" className="productOne__image" />
+        <Link to="/products/1">
+          <img src={product.baseImage} alt="" className="productOne__image" />
+        </Link>
       </div>
       <div className="productOne__name__favourite">
         <Heading7 text={product.name} />

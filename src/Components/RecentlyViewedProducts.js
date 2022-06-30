@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./../SCSS/_recentlyViewedProducts.scss";
 import rv_product_01 from "./../assets/FeatureProduct/feature_product_01.png";
 import rv_product_02 from "./../assets/FeatureProduct/feature_product_02.png";
@@ -25,11 +26,13 @@ function RecentlyViewedProducts({ categoryData }) {
                   return (
                     <div key={catIndex} className="col-3 rv__product__block">
                       <div className="rv__product__image__block">
-                        <img
-                          src={cat.image}
-                          alt="category-image"
-                          className="rv__product__image"
-                        />
+                        <Link to="/products/1">
+                          <img
+                            src={cat.image}
+                            alt="category-image"
+                            className="rv__product__image"
+                          />
+                        </Link>
                       </div>
                       <Heading6 text={cat.name} textAlign="center"></Heading6>
                     </div>

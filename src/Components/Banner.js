@@ -5,7 +5,7 @@ import "./../SCSS/_banner.scss";
 import banner_02 from "./../assets/Banner/banner_01.jpg";
 import left_arrow from "./../assets/Icon/left_arrow.svg";
 import right_arrow from "./../assets/Icon/right_arrow.svg";
-
+import { Link } from "react-router-dom";
 const bannerDataJSON = [
   {
     id: 1,
@@ -29,7 +29,7 @@ const bannerDataJSON = [
   },
 ];
 
-function Banner({bannerData}) {
+function Banner({ bannerData }) {
   const [index, setIndex] = useState(0);
   const [banner, setBanner] = useState(bannerDataJSON);
 
@@ -91,7 +91,9 @@ function Banner({bannerData}) {
             }
             return (
               <div className={position} key={ban.id}>
-                <img className="banner__image" src={ban.image} alt="" />
+                <Link to="/products/1">
+                  <img className="banner__image" src={ban.image} alt="" />
+                </Link>
                 {/* <p className="banner__title">{ban.title}</p> */}
               </div>
             );

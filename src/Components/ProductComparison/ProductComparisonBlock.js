@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./../../SCSS/ProductComparison/_productComparisonBlock.scss";
 
@@ -20,6 +20,7 @@ import Heading7 from "../Font/Heading7";
 import pickup_store from "./../../assets/Icon/pickup_store.svg";
 
 const ProductComparisonBlock = ({ productsData }) => {
+  const history = useNavigate();
   return (
     <>
       <div className="row">
@@ -41,7 +42,10 @@ const ProductComparisonBlock = ({ productsData }) => {
                 </div>
                 <div className="product__card">
                   <div className="product__comparison__header__block">
-                    <div className="product__comparison__image__block">
+                    <div
+                      className="product__comparison__image__block"
+                      onClick={() => history("/products/1")}
+                    >
                       <img
                         src={product.image}
                         alt=""
@@ -324,7 +328,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -337,7 +341,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -350,7 +354,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     {/* <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link> */}
                   </div>
                 </div>
@@ -372,7 +376,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -385,7 +389,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -398,7 +402,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     {/* <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link> */}
                   </div>
                 </div>
@@ -420,7 +424,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -433,7 +437,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -446,7 +450,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     {/* <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link> */}
                   </div>
                 </div>
@@ -468,7 +472,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -481,7 +485,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link>
                   </div>
                 </div>
@@ -494,7 +498,7 @@ const ProductComparisonBlock = ({ productsData }) => {
                     </p>
                     {/* <Link
                       className="item__store__location__link"
-                      to="/store"
+                      to="/findstore"
                     >{`See all pickup locations >`}</Link> */}
                   </div>
                 </div>

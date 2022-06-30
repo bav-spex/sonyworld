@@ -677,7 +677,7 @@ function Search__Page() {
           </div>
         </div>
       </div>
-      {/* <div className="container-fluid search__page__content__container">
+      <div className="container-fluid search__page__content__container">
         <div className="search__page__content__block">
           <Heading2 text="2192" span={true} />
           <span className="result__text">Results</span>
@@ -729,7 +729,7 @@ function Search__Page() {
             />
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }

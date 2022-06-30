@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./../SCSS/_featureProducts.scss";
 
 import feature_product_01 from "./../assets/FeatureProduct/feature_product_01.png";
@@ -31,16 +32,14 @@ function FeatureProducts() {
               {/* <div></div> */}
 
               <div className="deal__of__day__container">
-                  <div className="rectangleLeft"></div>
-                  <div className="upper__rectangle__block">
-                    <div className="rectangle">
-                      <span>Deal of the day</span>{" "}
-                    </div>
-                  <div className="triangle-right"></div>
+                <div className="rectangleLeft"></div>
+                <div className="upper__rectangle__block">
+                  <div className="rectangle">
+                    <span>Deal of the day</span>{" "}
                   </div>
-               
+                  <div className="triangle-right"></div>
+                </div>
               </div>
-
               <div className="first__feature__category__image__block">
                 <img
                   src={feature_product_01}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Banner from "../Components/Banner";
 import "./../SCSS/_home.scss";
 
@@ -14196,7 +14197,7 @@ function Home(props) {
   const closeLiveChatPopup = () => {
     setLiveChatPopup(false);
   };
- 
+
   const contentData = JSON.parse(JSON.stringify(data)).content;
   const [bannerData, setBannerData] = useState(
     contentData.find((con) => {
@@ -14261,11 +14262,16 @@ function Home(props) {
         <div className="container-fluid adImage__container">
           <div className=" adImage">
             <div className="adImage__block">
-              <img src={banner_01} alt="" className="adImage__image" />
+              <Link to="/products">
+                <img src={banner_01} alt="" className="adImage__image" />
+              </Link>
             </div>
           </div>
         </div>
-        <div onClick={()=> setLiveChatPopup(true)} className=" sony__expert__block">
+        <div
+          onClick={() => setLiveChatPopup(true)}
+          className=" sony__expert__block"
+        >
           <button
             type="button"
             className="expert__button"

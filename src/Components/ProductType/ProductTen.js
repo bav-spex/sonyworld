@@ -68,7 +68,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
           </div>
         </div>
         <div className="productNine__image__slider">
-          <AwesomeSlider transitionDelay={0.2}>
+          <AwesomeSlider transitionDelay={0.2} infinite={true}>
             {[product_01, product_02, product_03, product_04].map(
               (images, index) => (
                 <div className="_product__container_image">

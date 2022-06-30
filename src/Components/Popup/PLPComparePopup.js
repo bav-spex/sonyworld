@@ -38,7 +38,7 @@ function PLPComparePopup({ closeComparePopup, compareData }) {
         })}
       </div>
       <div className="plp__compare__popup__button__block">
-        <Link to="/products"  onClick={() => closeComparePopup()}>
+        <Link to="/products/compare"  onClick={() => closeComparePopup()}>
           <button className="compare__button">
             <img
               // onClick={() => closeComparePopup()}
