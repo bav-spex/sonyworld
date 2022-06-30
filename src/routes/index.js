@@ -28,6 +28,7 @@ import My_Profile_Page from "../Pages/My_Profile_Page";
 import Product_Comparison from "../Pages/Product_Comparison";
 import Confirm_Order_Page from "../Pages/Confirm_Order_Page";
 import Sony_Store_Page from "../Pages/Sony_Store_Page";
+import Search__Page from "../Pages/Search__Page";
 
 function AllRoutes({reloadingHandle,log}) {
   return (
@@ -52,6 +53,7 @@ function AllRoutes({reloadingHandle,log}) {
       <Route exact path="/user/profile" element={<My_Profile_Page />}></Route>
 
       <Route exact path="/findstore" element={<Sony_Store_Page />}></Route>
+      <Route exact path="/search" element={<Search__Page />}></Route>
       {/* <Route exact path="/contact" element={<Contact />}></Route> */}
     </Routes>
   );

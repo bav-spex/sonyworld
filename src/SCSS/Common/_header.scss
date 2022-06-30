@@ -37,12 +37,13 @@
         }
         .search__box__block {
           padding: 0px;
+          position: relative;
           .search__box {
             padding: 0px 6px 0px 0px;
             background-color: white;
             height: 30px;
             width: 80%;
-            border-radius: 5px;
+            border-radius: 2px;
             display: flex;
             align-items: center;
             .search__input {
@@ -52,6 +53,47 @@
               outline: none;
               border: 0px;
               width: 96%;
+            }
+          }
+          .search__box__result__popup__disable {
+            position: absolute;
+            z-index: 14;
+            top: 30px;
+            background: #ffffff 0% 0% no-repeat padding-box;
+            margin: 0px;
+            padding: 20px;
+            border-radius: 2px;
+            display: none;
+            width: 1000px;
+          }
+          .search__box__result__popup {
+            position: absolute;
+            width: 1000px;
+            z-index: 14;
+            top: 30px;
+            background: #ffffff 0% 0% no-repeat padding-box;
+            margin: 0px;
+            padding: 20px;
+            border-radius: 2px;
+            display: flex;
+            align-items:flex-start ;
+            box-shadow: 0px 10px 10px #00000020;
+            .search__result__left__part {
+            }
+            .search__result__right__part {
+              .search__result__product__block {
+                margin: 10px;
+                .search__result__product__image__block {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  .search__result__product__image {
+                    width: 100%;
+                  }
+                }
+                .search__result__product__text {
+                }
+              }
             }
           }
         }
@@ -75,7 +117,7 @@
             }
             .header__user__block {
               position: relative;
-              .signin__signup__popup__disable{
+              .signin__signup__popup__disable {
                 display: none;
               }
               .signin__signup__popup {
@@ -112,7 +154,6 @@
                   padding: 16px 0px;
                 }
               }
-              
             }
             .main__language__selection {
               margin: 0px 5px 0px;

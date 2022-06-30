@@ -7,9 +7,10 @@
 //   }
 // }
 .homePage {
-  background-color: #E6E6E6 ;
+  background-color: #e6e6e6;
+  position: relative;
   .adImage__container {
-    background-color: #E6E6E6 ;
+    background-color: #e6e6e6;
     padding: 50px 12px;
     .adImage {
       width: 1702px;
@@ -31,6 +32,35 @@
       }
     }
   }
+  .sony__expert__block {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px;
+    z-index: 12;
+    .expert__button {
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0px;
+    }
+  }
+}
+.live__chat__popup__container__disable {
+  display: none;
+}
+.live__chat__popup__container {
+  position: fixed;
+  top: 0px;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  z-index: 11;
+  height: 100vh;
+  overflow-y: hidden;
+  background-color: #02020250;
 }
 @media screen and (max-width: 1702px) {
   .adImage {
