@@ -36,7 +36,6 @@ function AllRoutes({reloadingHandle,log}) {
       <Route exact path="/" element={<Home log="log" />}></Route>
       <Route exact path="/products" element={<Product_List_Page />} ></Route>
       <Route exact path="/products/compare" element={<Product_Comparison />} ></Route>
-
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
       <Route exact path="/category" element={<All_Category_Page />} ></Route>
       <Route exact path="/services" element={<Services />}></Route>

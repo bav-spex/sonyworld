@@ -1,31 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+// import { getIdentifier } from "./../services/homepage";
 import { Link } from "react-router-dom";
 import Banner from "../Components/Banner";
 import "./../SCSS/_home.scss";
 
-import newArrivals_01 from "./../assets/NewArrivals/newArrivals_01.png";
-import newArrivals_02 from "./../assets/NewArrivals/newArrivals_02.png";
-import newArrivals_03 from "./../assets/NewArrivals/newArrivals_03.png";
-import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
-import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
-
-import topTrending_01 from "./../assets/TopTrending/topTrending_01.png";
-import topTrending_02 from "./../assets/TopTrending/topTrending_02.png";
-import topTrending_03 from "./../assets/TopTrending/topTrending_03.png";
-import topTrending_04 from "./../assets/TopTrending/topTrending_04.png";
-import topTrending_05 from "./../assets/TopTrending/topTrending_05.png";
-
 import deals_01 from "./../assets/Deals/deals_01.png";
 import deals_02 from "./../assets/Deals/deals_02.png";
-
-import topRated_01 from "./../assets/TopRated/topRated_01.png";
-import topRated_02 from "./../assets/TopRated/topRated_02.png";
-import topRated_03 from "./../assets/TopRated/topRated_03.png";
-import topRated_04 from "./../assets/TopRated/topRated_04.png";
-import topRated_05 from "./../assets/TopRated/topRated_05.png";
-import topRated_06 from "./../assets/TopRated/topRated_06.png";
-import topRated_07 from "./../assets/TopRated/topRated_07.png";
-import topRated_08 from "./../assets/TopRated/topRated_08.png";
 
 import banner_01 from "./../assets/Banner/banner_01.png";
 
@@ -55,11 +35,6 @@ import ProductContainer from "../Components/ProductContainer";
 import DealsOfTheWeek from "../Components/DealsOfTheWeek";
 import TopRatedProducts from "../Components/TopRatedProducts";
 import FeatureProducts from "../Components/FeatureProducts";
-import ThreeProducts from "../Components/ThreeProducts";
-import Feeds from "../Components/Feeds";
-import OurBlogs from "../Components/OurBlogs";
-import VideoLogs from "../Components/VideoLogs";
-import Services from "../Components/Services";
 import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
@@ -14192,7 +14167,20 @@ const data = {
   created_at: "2022-06-16T16:17:35Z",
   updated_at: "2022-06-17T14:31:43Z",
 };
+
 function Home(props) {
+  const [homepageData, setHomepageData] = useState({});
+
+  useEffect(() => {
+    console.log("in main homepage");
+    // getHomepageData();
+  }, []);
+
+  // const getHomepageData = async () => {
+  //   console.log("in fun");
+  //   const homepageRes = await getIdentifier();
+  //   console.log(homepageRes, "homepageRes");
+  // };
   const [liveChatPopup, setLiveChatPopup] = useState(false);
   const closeLiveChatPopup = () => {
     setLiveChatPopup(false);
@@ -14218,18 +14206,6 @@ function Home(props) {
     contentData.find((con) => {
       return con.type === "slider" && con.title === "Top Rated Products";
     }).products
-  );
-  console.log(
-    contentData.filter((con) => {
-      return con.type === "slider";
-    })
-  );
-
-  console.log(contentData);
-  console.log(
-    contentData.find((con) => {
-      return con.type === "multiple_banner";
-    })
   );
 
   return (

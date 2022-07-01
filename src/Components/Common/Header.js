@@ -1561,17 +1561,17 @@ function Header({ reloadingHandle, reloadHeader }) {
   const [loginMode, setLoginMode] = useState("");
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
-  const [searchPopup,setSearchPopup]=useState(false)
-  const openSearchPopup = (e)=>{
-console.log(e.target.value);
-    setSearchPopup(true)
-    if(e.target.value === ""){
-      setSearchPopup(false)
+  const [searchPopup, setSearchPopup] = useState(false);
+  const openSearchPopup = (e) => {
+    console.log(e.target.value);
+    setSearchPopup(true);
+    if (e.target.value === "") {
+      setSearchPopup(false);
     }
-  }
-  const closeSearchPopup = ()=>{
-    setSearchPopup(false)
-  }
+  };
+  const closeSearchPopup = () => {
+    setSearchPopup(false);
+  };
   const [cartPopup, setCartPopup] = useState(false);
   const closeCartPopup = () => {
     setCartPopup(false);
@@ -1831,12 +1831,17 @@ console.log(e.target.value);
                     name="search"
                     className="search__input"
                     placeholder="Type Your Search..."
-              
-                    onChange={(e)=>openSearchPopup(e)}
+                    onChange={(e) => openSearchPopup(e)}
                   />
                   <img src={search} alt="" className="header__icon" />
                 </div>
-                <div className={searchPopup ?"row search__box__result__popup":"row search__box__result__popup__disable"}>
+                <div
+                  className={
+                    searchPopup
+                      ? "row search__box__result__popup"
+                      : "row search__box__result__popup__disable"
+                  }
+                >
                   <div className="col-5 search__result__left__part">
                     {searchData.searchResultTitle.map((title, titleIndex) => {
                       let firstWord = title.split(" ")[0].trim();
@@ -1845,7 +1850,7 @@ console.log(e.target.value);
                         .slice(2, title.length)
                         .join(" ")
                         .trim();
-                      console.log(firstWord, remainWord);
+
                       return (
                         <>
                           <p>
