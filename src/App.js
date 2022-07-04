@@ -28,7 +28,7 @@ function App() {
   const reloadingHandle = () => {
     setReloadHeader(!reloadHeader);
   };
-
+console.log( console.log(window));
   useEffect(() => {
     getInitialData();
   }, []);
