@@ -5,3 +5,7 @@ export const GET__CLIENT__APPLICATION__DATA = "GET__CLIENT__APPLICATION__DATA"//
 
 export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
+
+export const USERLOGGEDIN = "USERLOGGEDIN"
+export const GET_HANDSHAKE = "GET_HANDSHAKE"
+

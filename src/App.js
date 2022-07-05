@@ -7,17 +7,23 @@ import {
   useLocation,
 } from "react-router-dom";
 import "./App.css";
-
+import { connect,  useSelector, useDispatch  } from "react-redux";
+// import {} from 'react-redux'
 import { Helmet } from "react-helmet-async";
 import Header from "./Components/Common/Header";
 import AllRoutes from "./routes";
 import Footer from "./Components/Common/Footer";
 import NewsLetter from "./Components/Common/NewsLetter";
-import { getHandshake } from "./services/auth";
+// import { getHandshake } from "./services/auth";
+import { getHandshakeData } from "./redux/actions/authAction";
 import { getIdentifier } from "./services/homepage";
 
+function App(props) {
+  console.log(props, "props");
 
-function App() {
+  // const count = useSelector()
+  const dispatch = useDispatch()
+
   const location = useLocation();
   const history = useNavigate();
   localStorage.setItem("loginMode", JSON.stringify(""));
@@ -28,15 +34,12 @@ function App() {
   const reloadingHandle = () => {
     setReloadHeader(!reloadHeader);
   };
-console.log( console.log(window));
+  console.log(console.log(window));
   useEffect(() => {
-    getInitialData();
+    console.log("in use effect");
+    dispatch(getHandshakeData())
   }, []);
 
-  const getInitialData = async () => {
-    await getHandshake();
-    await getIdentifier()
-  };
 
   return (
     <>
@@ -58,4 +61,30 @@ console.log( console.log(window));
   );
 }
 
-export default App;
+export default App
+
+// //injecting redux data to props
+// const mapStateToProps = (state) => {
+//   console.log(state, "state");
+//   return {
+//     userLoggedIn: state?.userData?.userLoggedIn,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     // dispatching actions returned by action creators
+//     getHandshakeData: () => dispatch(getHandshakeData()),
+//     // decrement: () => dispatch(decrement()),
+//     // reset: () => dispatch(reset()),
+//   }
+// }
+
+// // const mapDispatchToProps = (dispatch) => {
+// //   console.log(dispatch, "map dispatch to props");
+// //   return {
+// //     getHandshakeData: () => dispatch(getHandshakeData()),
+// //   };
+// // };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
