@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import { getIdentifier } from "./../services/homepage";
+import { connect, useSelector, useDispatch } from "react-redux";
+
+import { getIdentifier } from "./../services/homepage";
 import { Link } from "react-router-dom";
 import Banner from "../Components/Banner";
 import "./../SCSS/_home.scss";
@@ -38,6 +40,7 @@ import FeatureProducts from "../Components/FeatureProducts";
 import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
+import authReducer from "../redux/reducers/authReducer";
 const categoryData = [
   {
     id: 1,
@@ -14170,17 +14173,23 @@ const data = {
 
 function Home(props) {
   const [homepageData, setHomepageData] = useState({});
-
+  console.log(props, "props in homepage");
+  // const dispatch = useDispatch()
   useEffect(() => {
     console.log("in main homepage");
-    // getHomepageData();
-  }, []);
+    if (props.token) {
+      debugger
+      getHomepageData();
+    }
+  }, [props.token]);
 
-  // const getHomepageData = async () => {
-  //   console.log("in fun");
-  //   const homepageRes = await getIdentifier();
-  //   console.log(homepageRes, "homepageRes");
-  // };
+  const getHomepageData = async () => {
+    // useSelector((state) => console.log(state, "state in use selectore"))
+
+    console.log("in fun");
+    const homepageRes = await getIdentifier();
+    console.log(homepageRes, "homepageRes");
+  };
   const [liveChatPopup, setLiveChatPopup] = useState(false);
   const closeLiveChatPopup = () => {
     setLiveChatPopup(false);
@@ -14229,6 +14238,7 @@ function Home(props) {
           containerClassName="top__trending__pc__block"
         />
         <DealsOfTheWeek dealsoftheweekData={dealsoftheweekData} />
+
         <ProductContainer
           sectionTitle="Top Rated Products"
           carouselData={topRatedData}
@@ -14270,4 +14280,14 @@ function Home(props) {
   );
 }
 
-export default Home;
+//injecting redux data to props
+const mapStateToProps = (state) => {
+  console.log(state.auth.userData, "state in home");
+  return {
+    token: state?.auth?.token,
+    userData: state?.auth?.userData,
+    userLoggedIn: state?.auth?.userData?.userLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps, {})(Home);
