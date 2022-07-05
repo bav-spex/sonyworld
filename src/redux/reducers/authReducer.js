@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const authReducer = (state = initialState, action) => {
-  console.log(action, "action in authReducer");
   switch (action.type) {
     case GET_HANDSHAKE:
       return {
