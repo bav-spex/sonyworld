@@ -14173,12 +14173,9 @@ const data = {
 
 function Home(props) {
   const [homepageData, setHomepageData] = useState({});
-  console.log(props, "props in homepage");
   // const dispatch = useDispatch()
   useEffect(() => {
-    console.log("in main homepage");
     if (props.token) {
-      debugger
       getHomepageData();
     }
   }, [props.token]);
@@ -14186,9 +14183,7 @@ function Home(props) {
   const getHomepageData = async () => {
     // useSelector((state) => console.log(state, "state in use selectore"))
 
-    console.log("in fun");
     const homepageRes = await getIdentifier();
-    console.log(homepageRes, "homepageRes");
   };
   const [liveChatPopup, setLiveChatPopup] = useState(false);
   const closeLiveChatPopup = () => {
@@ -14282,7 +14277,6 @@ function Home(props) {
 
 //injecting redux data to props
 const mapStateToProps = (state) => {
-  console.log(state.auth.userData, "state in home");
   return {
     token: state?.auth?.token,
     userData: state?.auth?.userData,
