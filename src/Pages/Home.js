@@ -14172,7 +14172,7 @@ function Home(props) {
   const [homepageData, setHomepageData] = useState({});
 
   useEffect(() => {
-    console.log("in main homepage");
+    // console.log("in main homepage");
     // getHomepageData();
   }, []);
 

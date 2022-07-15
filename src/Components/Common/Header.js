@@ -43,452 +43,452 @@ import Heading4 from "../Font/Heading4";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import Heading6 from "../Font/Heading6";
 import Heading7 from "../Font/Heading7";
-const categoryData = [
-  {
-    id: 1,
-    mainCategory: "Play Station",
-    category: [
-      "Gaming PlayStation 4K",
-      "Gaming PlayStation 8K",
-      "2021 PlayStation's",
-      "Smart 4K PlayStation",
-      "Smart 4K PlayStation",
-      "Smart 8K PlayStation",
-      "Smart OLED PlayStation",
-    ],
-    productList: [
-      {
-        id: 0,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 1,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 2,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 3,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 4,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 5,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 6,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 7,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-      {
-        id: 8,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
-        image: product_01,
-      },
-    ],
-    adBanner: [
-      {
-        id: 0,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 1,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 2,
-        image: NavbarAdBanner_01,
-      },
-    ],
-  },
-  {
-    id: 2,
-    mainCategory: "Television",
-    category: [
-      "Gaming TV 4K",
-      "Gaming TV 8K",
-      "2021 TV's",
-      "Smart 4K TV",
-      "Smart 4K TV",
-      "Smart 8K TV",
-      "Smart OLED TV",
-    ],
-    productList: [
-      {
-        id: 0,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 1,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 2,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 3,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 4,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 5,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 6,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 7,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-      {
-        id: 8,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
-        image: product_01,
-      },
-    ],
-    adBanner: [
-      {
-        id: 0,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 1,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 2,
-        image: NavbarAdBanner_01,
-      },
-    ],
-  },
-  {
-    id: 3,
-    mainCategory: "Home AV",
-    category: [
-      "Gaming Home AV 4K",
-      "Gaming Home AV 8K",
-      "2021 Home AV's",
-      "Smart 4K Home AV",
-      "Smart 4K Home AV",
-      "Smart 8K Home AV",
-      "Smart OLED Home AV",
-    ],
-    productList: [
-      {
-        id: 0,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 1,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 2,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 3,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 4,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 5,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 6,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 7,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-      {
-        id: 8,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
-        image: product_01,
-      },
-    ],
-    adBanner: [
-      {
-        id: 0,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 1,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 2,
-        image: NavbarAdBanner_01,
-      },
-    ],
-  },
-  {
-    id: 4,
-    mainCategory: "Audio",
-    category: [
-      "Gaming Audio 4K",
-      "Gaming Audio 8K",
-      "2021 Audio's",
-      "Smart 4K Audio",
-      "Smart 4K Audio",
-      "Smart 8K Audio",
-      "Smart OLED Audio",
-    ],
-    productList: [
-      {
-        id: 0,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 1,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 2,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 3,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 4,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 5,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 6,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 7,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 8,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-    ],
-    adBanner: [
-      {
-        id: 0,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 1,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 2,
-        image: NavbarAdBanner_01,
-      },
-    ],
-  },
-  {
-    id: 5,
-    mainCategory: "Home HV",
-    category: [
-      "Gaming Audio 4K",
-      "Gaming Audio 8K",
-      "2021 Audio's",
-      "Smart 4K Audio",
-      "Smart 4K Audio",
-      "Smart 8K Audio",
-      "Smart OLED Audio",
-    ],
-    productList: [
-      {
-        id: 0,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 1,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 2,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 3,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 4,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 5,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 6,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 7,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 8,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-    ],
-    adBanner: [
-      {
-        id: 0,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 1,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 2,
-        image: NavbarAdBanner_01,
-      },
-    ],
-  },
-  {
-    id: 6,
-    mainCategory: "Sounds",
-    category: [
-      "Gaming Audio 4K",
-      "Gaming Audio 8K",
-      "2021 Audio's",
-      "Smart 4K Audio",
-      "Smart 4K Audio",
-      "Smart 8K Audio",
-      "Smart OLED Audio",
-    ],
-    productList: [
-      {
-        id: 0,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 1,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 2,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 3,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 4,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 5,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 6,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 7,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-      {
-        id: 8,
-        title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
-        image: product_01,
-      },
-    ],
-    adBanner: [
-      {
-        id: 0,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 1,
-        image: NavbarAdBanner_01,
-      },
-      {
-        id: 2,
-        image: NavbarAdBanner_01,
-      },
-    ],
-  },
-];
+// const categoryData = [
+//   {
+//     id: 1,
+//     mainCategory: "Play Station",
+//     category: [
+//       "Gaming PlayStation 4K",
+//       "Gaming PlayStation 8K",
+//       "2021 PlayStation's",
+//       "Smart 4K PlayStation",
+//       "Smart 4K PlayStation",
+//       "Smart 8K PlayStation",
+//       "Smart OLED PlayStation",
+//     ],
+//     productList: [
+//       {
+//         id: 0,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 1,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 2,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 3,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 4,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 5,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 6,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 7,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//       {
+//         id: 8,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra PlayStation',
+//         image: product_01,
+//       },
+//     ],
+//     adBanner: [
+//       {
+//         id: 0,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 1,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 2,
+//         image: NavbarAdBanner_01,
+//       },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     mainCategory: "Television",
+//     category: [
+//       "Gaming TV 4K",
+//       "Gaming TV 8K",
+//       "2021 TV's",
+//       "Smart 4K TV",
+//       "Smart 4K TV",
+//       "Smart 8K TV",
+//       "Smart OLED TV",
+//     ],
+//     productList: [
+//       {
+//         id: 0,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 1,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 2,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 3,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 4,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 5,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 6,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 7,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//       {
+//         id: 8,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra TV',
+//         image: product_01,
+//       },
+//     ],
+//     adBanner: [
+//       {
+//         id: 0,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 1,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 2,
+//         image: NavbarAdBanner_01,
+//       },
+//     ],
+//   },
+//   {
+//     id: 3,
+//     mainCategory: "Home AV",
+//     category: [
+//       "Gaming Home AV 4K",
+//       "Gaming Home AV 8K",
+//       "2021 Home AV's",
+//       "Smart 4K Home AV",
+//       "Smart 4K Home AV",
+//       "Smart 8K Home AV",
+//       "Smart OLED Home AV",
+//     ],
+//     productList: [
+//       {
+//         id: 0,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 1,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 2,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 3,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 4,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 5,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 6,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 7,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//       {
+//         id: 8,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Home AV',
+//         image: product_01,
+//       },
+//     ],
+//     adBanner: [
+//       {
+//         id: 0,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 1,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 2,
+//         image: NavbarAdBanner_01,
+//       },
+//     ],
+//   },
+//   {
+//     id: 4,
+//     mainCategory: "Audio",
+//     category: [
+//       "Gaming Audio 4K",
+//       "Gaming Audio 8K",
+//       "2021 Audio's",
+//       "Smart 4K Audio",
+//       "Smart 4K Audio",
+//       "Smart 8K Audio",
+//       "Smart OLED Audio",
+//     ],
+//     productList: [
+//       {
+//         id: 0,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 1,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 2,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 3,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 4,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 5,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 6,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 7,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 8,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//     ],
+//     adBanner: [
+//       {
+//         id: 0,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 1,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 2,
+//         image: NavbarAdBanner_01,
+//       },
+//     ],
+//   },
+//   {
+//     id: 5,
+//     mainCategory: "Home HV",
+//     category: [
+//       "Gaming Audio 4K",
+//       "Gaming Audio 8K",
+//       "2021 Audio's",
+//       "Smart 4K Audio",
+//       "Smart 4K Audio",
+//       "Smart 8K Audio",
+//       "Smart OLED Audio",
+//     ],
+//     productList: [
+//       {
+//         id: 0,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 1,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 2,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 3,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 4,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 5,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 6,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 7,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 8,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//     ],
+//     adBanner: [
+//       {
+//         id: 0,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 1,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 2,
+//         image: NavbarAdBanner_01,
+//       },
+//     ],
+//   },
+//   {
+//     id: 6,
+//     mainCategory: "Sounds",
+//     category: [
+//       "Gaming Audio 4K",
+//       "Gaming Audio 8K",
+//       "2021 Audio's",
+//       "Smart 4K Audio",
+//       "Smart 4K Audio",
+//       "Smart 8K Audio",
+//       "Smart OLED Audio",
+//     ],
+//     productList: [
+//       {
+//         id: 0,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 1,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 2,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 3,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 4,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 5,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 6,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 7,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//       {
+//         id: 8,
+//         title: 'Sony KDDJKHKJFD 55" 4K Ultra Audio',
+//         image: product_01,
+//       },
+//     ],
+//     adBanner: [
+//       {
+//         id: 0,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 1,
+//         image: NavbarAdBanner_01,
+//       },
+//       {
+//         id: 2,
+//         image: NavbarAdBanner_01,
+//       },
+//     ],
+//   },
+// ];
 const cartData = [
   {
     id: 1,
@@ -1513,8 +1513,10 @@ const searchData = {
     },
   ],
 };
-function Header({ reloadingHandle, reloadHeader }) {
+function Header({ reloadingHandle, reloadHeader, categoryData }) {
   // language changing in project //
+  console.log(categoryData);
+  const [allCategoryData,setAllCategoryData] = useState(categoryData.children_data)
   const [lang, setLang] = useState("en");
   const languages = [
     {
@@ -1540,7 +1542,7 @@ function Header({ reloadingHandle, reloadHeader }) {
 
   // changing layout from right to left for arabic language"
   useEffect(() => {
-    console.log("Setting page stuff");
+    // console.log("Setting page stuff");
     document.body.dir = currentLanguage.dir || "ltr";
     document.title = t("app_title");
   }, [currentLanguage, t]);
@@ -1601,8 +1603,8 @@ function Header({ reloadingHandle, reloadHeader }) {
     function init() {
       const latestLoginWrapper = localStorage.getItem("loginWrapper");
       const latestLoginPopup = localStorage.getItem("loginPopup");
-      console.log(JSON.parse(latestLoginWrapper));
-      console.log(JSON.parse(latestLoginPopup));
+      // console.log(JSON.parse(latestLoginWrapper));
+      // console.log(JSON.parse(latestLoginPopup));
       setLoginWrapper(JSON.parse(latestLoginWrapper));
       setLoginPopup(JSON.parse(latestLoginPopup));
     }
@@ -1666,19 +1668,7 @@ function Header({ reloadingHandle, reloadHeader }) {
   useEffect(() => {
     setLoginMode(loginMode);
   }, [loginWrapper]);
-  const [selectedCategory, setSelectedCategory] = useState({
-    id: 1,
-    mainCategory: "Play Station",
-    category: [
-      "Gaming PlayStation 4K",
-      "Gaming PlayStation 8K",
-      "2021 PlayStation's",
-      "Smart 4K PlayStation",
-      "Smart 4K PlayStation",
-      "Smart 8K PlayStation",
-      "Smart OLED PlayStation",
-    ],
-  });
+  const [selectedCategory, setSelectedCategory] = useState(allCategoryData[0]);
 
   const [navIndex, setNavIndex] = useState("");
   const [menuIndex, setMenuIndex] = useState(0);
@@ -1852,12 +1842,10 @@ function Header({ reloadingHandle, reloadHeader }) {
                         .trim();
 
                       return (
-                        <>
-                          <p>
-                            <Text2 text={firstWord} span={true} />{" "}
-                            <Heading5 text={remainWord} span={true} />
-                          </p>
-                        </>
+                        <p key={titleIndex}>
+                          <Text2 text={firstWord} span={true} />{" "}
+                          <Heading5 text={remainWord} span={true} />
+                        </p>
                       );
                     })}
                   </div>
@@ -1865,7 +1853,10 @@ function Header({ reloadingHandle, reloadHeader }) {
                     {searchData.searchResultProduct.map(
                       (product, productIndex) => {
                         return (
-                          <div className="row search__result__product__block">
+                          <div
+                            key={product.id}
+                            className="row search__result__product__block"
+                          >
                             <div className="col-2 search__result__product__image__block">
                               <img
                                 className="search__result__product__image"
@@ -2168,42 +2159,42 @@ function Header({ reloadingHandle, reloadHeader }) {
             onMouseLeave={() => navbarTab__mouseTab(false, "")}
           >
             <div className="col-6 col-sm-6 col-md-3 category__popup__left__block">
-              {categoryData.map((catObj, catIndex) => {
+              {allCategoryData.map((catObj, catIndex) => {
                 return (
-                  <>
-                    <div
-                      key={catObj.id}
-                      onClick={() => setSelectedCategory(catObj)}
-                      className={
-                        selectedCategory.mainCategory === catObj.mainCategory
-                          ? "selected__mainCategory__block"
-                          : "mainCategory__block"
-                      }
-                    >
-                      <p className="mainCategory__left__block">
-                        {catObj.mainCategory}
-                      </p>
-                      <img
-                        src={popup_right_arrow}
-                        alt=""
-                        className="popup__right__arrow"
-                      />
-                    </div>
-                  </>
+                  <div
+                    key={catObj.id}
+                    onClick={() => setSelectedCategory(catObj)}
+                    className={
+                      selectedCategory.name === catObj.name
+                        ? "selected__mainCategory__block"
+                        : "mainCategory__block"
+                    }
+                  >
+                    <p className="mainCategory__left__block">{catObj.name}</p>
+                    <img
+                      src={popup_right_arrow}
+                      alt=""
+                      className="popup__right__arrow"
+                    />
+                  </div>
                 );
               })}
             </div>
             <div className="col-6 col-sm-6 col-md-9 category__popup__right__block">
               <div className="mainCategory__title__block">
                 <p className="mainCategory__right__block">
-                  {selectedCategory.mainCategory}
+                  {selectedCategory.name}
                 </p>
               </div>
               <div className="subCategory__block">
-                {selectedCategory.category.map((subcat, subcatIndex) => {
+                {selectedCategory.children_data.map((subcat, subcatIndex) => {
                   return (
-                    <Link className="subcategory" to="/products">
-                      <p>{subcat}</p>
+                    <Link
+                      key={subcatIndex}
+                      className="subcategory"
+                      to="/products"
+                    >
+                      <p>{subcat.name}</p>
                     </Link>
                   );
                 })}

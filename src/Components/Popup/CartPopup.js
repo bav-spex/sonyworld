@@ -463,7 +463,7 @@ function CartPopup({ closeCartPopup, cartData }) {
       <div className="cart__popup__content">
         {cartData.map((product, productIndex) => {
           return (
-            <div className="row cart__popup__product__block">
+            <div key={product.id} className="row cart__popup__product__block">
               <div className="col-4 cart__popup__product__image__block">
                 <img
                   className="cart__popup__product__image"

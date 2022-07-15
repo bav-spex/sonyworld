@@ -30,10 +30,10 @@ import Confirm_Order_Page from "../Pages/Confirm_Order_Page";
 import Sony_Store_Page from "../Pages/Sony_Store_Page";
 import Search__Page from "../Pages/Search__Page";
 
-function AllRoutes({reloadingHandle,log}) {
+function AllRoutes({categoryData,reloadingHandle}) {
   return (
     <Routes>
-      <Route exact path="/" element={<Home log="log" />}></Route>
+      <Route exact path="/" element={<Home log="log" categoryData={categoryData} />}></Route>
       <Route exact path="/products" element={<Product_List_Page />} ></Route>
       <Route exact path="/products/compare" element={<Product_Comparison />} ></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
