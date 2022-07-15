@@ -5,6 +5,7 @@ import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
 import navbar_white_down_arrow from "./../../assets/Icon/navbar_white_down_arrow.svg";
 import white_down_arrow from "./../../assets/Icon/white_down_arrow.svg";
 import popup_right_arrow from "./../../assets/Icon/popup_right_arrow.svg";
+import close_icon from "./../../assets/Icon/cancel_grey.svg";
 import "./../../SCSS/Common/_header.scss";
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
@@ -1792,7 +1793,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
     setNavIndex(navIndex);
     setMenuIndex(menuIndex);
   };
-
+ 
   return (
     <>
       <div className="container-fluid main__navbar__container">
@@ -2043,16 +2044,20 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
           }
         >
           <div className="mobile__navbar__link__block">
-            <Link className={mobileClassName.home} to="/">
-              Home
-            </Link>
-            <div
+            <div className="mobile_top_header">
+              <Link className="mobile_user_name" to="/">
+                John Doe
+              </Link>
+              <Link to="/" className="mobile_close_icon"><img src={close_icon} alt="close"/></Link>
+            </div>
+           
+            <Link to="/"
               onClick={() =>
                 mobileNavbarTab__mouseTab(!mobileShowPopup, "television", 2)
               }
               className={
                 navIndex === "television"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
+                   ? "active__mobile__navbar__link mobile__navbar__link"
                   : mobileClassName.television
               }
             >
@@ -2062,8 +2067,8 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                 alt=""
                 className="down__arrow__icon"
               />
-            </div>
-            <div
+            </Link>
+            <Link to="/"
               onClick={() =>
                 mobileNavbarTab__mouseTab(!mobileShowPopup, "playstation", 1)
               }
@@ -2079,7 +2084,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                 alt=""
                 className="down__arrow__icon"
               />
-            </div>
+            </Link>
             {navIndex === "playstation" &&
             menuIndex === 1 &&
             mobileShowPopup ? (
@@ -2093,7 +2098,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             ) : (
               ""
             )}
-            <div
+            <Link to="/"
               onClick={() =>
                 mobileNavbarTab__mouseTab(!mobileShowPopup, "homeAV", 3)
               }
@@ -2109,13 +2114,13 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                 alt=""
                 className="down__arrow__icon"
               />
-            </div>
+            </Link>
             {navIndex === "homeAV" && menuIndex === 3 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
             ) : (
               ""
             )}
-            <div
+            <Link to="/"
               onClick={() =>
                 mobileNavbarTab__mouseTab(!mobileShowPopup, "audio", 3)
               }
@@ -2131,18 +2136,31 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                 alt=""
                 className="down__arrow__icon"
               />
-            </div>
+            </Link>
             {navIndex === "audio" && menuIndex === 3 && mobileShowPopup ? (
               <MobilePopup menuIndex={menuIndex} />
             ) : (
               ""
             )}
-
-            <Link className={mobileClassName.services} to="/services">
+            <hr/>
+            <Link  className={mobileClassName.services} to="/services">
               Services
             </Link>
             <Link className={mobileClassName.support} to="/support">
               Support
+            </Link>
+            <Link  className={mobileClassName.services} to="/services">
+              Services
+            </Link>
+            <Link className={mobileClassName.support} to="/support">
+              Support
+            </Link>
+            <hr/>
+            <Link  className={mobileClassName.services} to="/services">
+              Services
+            </Link>
+            <Link className={mobileClassName.support} to="/support">
+              <strong>Log Out</strong>
             </Link>
           </div>
         </div>
