@@ -28,13 +28,24 @@
   // border-bottom: 1px solid red;
   background-color: blue;
 }
+@media screen and (max-width: 1702px) {
+  .home__page__category__inner__block {
+    width: 90% !important;
+  }
+}
 @media screen and (max-width: 1200px) {
   .category__image {
     height: 80px !important;
   }
-  
+  .checkout__right__block {
+    padding: 0px !important;
+    margin: 10px 0px;
+  }
 }
 @media screen and (max-width: 992px) {
+  .home__page__category__inner__block {
+    width: 100% !important;
+  }
   .home__page__category__inner__block{
     padding: 20px 0px 20px !important;
   }

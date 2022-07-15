@@ -49,3 +49,14 @@
   align-items: center;
   padding: 10px 0px;
 }
+
+@media screen and (max-width: 1702px) {
+  .product__list__page__block {
+    width: 90% !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .product__list__page__block {
+    width: 100% !important;
+  }
+}
