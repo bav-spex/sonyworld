@@ -1,10 +1,20 @@
 .product__comparison__page__container {
-    background-color: #e6e6e6;
-    padding: 107px 12px 0px;
-    .product__comparison__page__block{
-      padding: 0px 0px;
-      width: 1702px;
-      margin: 0px auto;
-    }
+  background-color: #e6e6e6;
+  padding: 107px 12px 0px;
+  .product__comparison__page__block {
+    padding: 0px 0px;
+    width: 1702px;
+    margin: 0px auto;
   }
-  
+}
+
+@media screen and (max-width: 1702px) {
+  .product__comparison__page__block {
+    width: 90% !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .product__comparison__page__block {
+    width: 100% !important;
+  }
+}
