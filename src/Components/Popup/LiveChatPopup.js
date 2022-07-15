@@ -43,7 +43,7 @@ function LiveChatPopup({closeLiveChatPopup}) {
         </div>
         {liveChatPopupData.map((option, optionIndex) => {
           return (
-            <div className="row live__chat__option__block">
+            <div key={option.id} className="row live__chat__option__block">
               <img className="col-3 live__chat__option__icon" src={option.icon} alt={option.title} />
               <p className="col-9 live__chat__option__text">{option.title}</p>
             </div>
