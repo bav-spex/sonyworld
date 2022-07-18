@@ -29,7 +29,7 @@ spec:
         app: '${DEPLOYMENT_NAME}'
     spec:
       containers:
-        - image: '$ECR_URL/sony-${DEPLOYMENT_NAME}:${BUILD_NUMBER}'
+        - image: '$ECR_URL/sony-${DEPLOY_ENV}-${DEPLOYMENT_NAME}:${BUILD_NUMBER}'
           imagePullPolicy: Always
           name: '${DEPLOYMENT_NAME}'
           env:
