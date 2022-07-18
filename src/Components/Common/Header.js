@@ -5,7 +5,8 @@ import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
 import navbar_white_down_arrow from "./../../assets/Icon/navbar_white_down_arrow.svg";
 import white_down_arrow from "./../../assets/Icon/white_down_arrow.svg";
 import popup_right_arrow from "./../../assets/Icon/popup_right_arrow.svg";
-import close_icon from "./../../assets/Icon/cancel_grey.svg";
+import close_icon from "./../../assets/Icon/cancel-white.png";
+import user_icon from "./../../assets/Icon/user.png";
 import "./../../SCSS/Common/_header.scss";
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
@@ -2046,7 +2047,10 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
           <div className="mobile__navbar__link__block">
             <div className="mobile_top_header">
               <Link className="mobile_user_name" to="/">
-                John Doe
+                <span>
+                  <img src={user_icon} alt="user"/>
+                </span>
+                <p className="d-inline-block mb-0"><strong>John Doe</strong></p>
               </Link>
               <Link to="/" className="mobile_close_icon"><img src={close_icon} alt="close"/></Link>
             </div>

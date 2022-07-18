@@ -303,6 +303,18 @@
       justify-content: space-between;
       align-items: center;
       padding-right: 10px;
+      .mobile_user_name span{
+        display: inline-block;
+        background: #fff;
+        height: 30px;
+        width: 30px;
+        padding: 5px;
+        border-radius: 100%;
+        line-height: 15px;
+        text-align: center;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
       .mobile_close_icon{
         padding: 0;
       }
@@ -322,17 +334,20 @@
         display: flex;
         justify-content: space-between;
         padding: 10px 20px;
+        align-items: center;
         &.active__mobile__navbar__link{
           background-color: #000000;
           color: #fff;
+          font-family: 'arialbold';
           .down__arrow__icon {
             // margin-left: 10px;
             filter: none;
-            transform: rotate(-90deg);
+            // transform: rotate(-90deg);
           }
         }
         .down__arrow__icon {
           // margin-left: 10px;
+          transform: rotate(-90deg);
           filter: invert(37%) sepia(0%) saturate(1815%) hue-rotate(171deg) brightness(97%) contrast(81%);
         }
       }
