@@ -88,32 +88,32 @@ spec:
   selector:
     app: '${DEPLOYMENT_NAME}'
   type: ClusterIP
----
-kind: Ingress
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: '${DEPLOYMENT_NAME}'
-  namespace: '${DEPLOYMENT_NAME}'
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
-    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
-    nginx.ingress.kubernetes.io/proxy-body-size: 50m
-spec:
-  rules:
-    - host: '${INGRESS_URL}'
-      http:
-        paths:
-        - backend:
-            service:
-              name: '${DEPLOYMENT_NAME}'
-              port:
-                number: 80
-          path: /
-          pathType: ImplementationSpecific
-  tls:
-    - hosts:
-        - '${INGRESS_URL}'
-      secretName: '${DEPLOYMENT_NAME}-tls'
+#---
+# kind: Ingress
+# apiVersion: networking.k8s.io/v1
+# metadata:
+#   name: '${DEPLOYMENT_NAME}'
+#   namespace: '${DEPLOYMENT_NAME}'
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+#     nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+#     nginx.ingress.kubernetes.io/proxy-body-size: 50m
+# spec:
+#   rules:
+#     - host: '${INGRESS_URL}'
+#       http:
+#         paths:
+#         - backend:
+#             service:
+#               name: '${DEPLOYMENT_NAME}'
+#               port:
+#                 number: 80
+#           path: /
+#           pathType: ImplementationSpecific
+#   tls:
+#     - hosts:
+#         - '${INGRESS_URL}'
+#       secretName: '${DEPLOYMENT_NAME}-tls'
 
 
