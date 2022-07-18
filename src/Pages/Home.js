@@ -14211,19 +14211,36 @@ function Home(props) {
   return (
     <>
       <div className="homePage">
+        <div className="d-block d-lg-none">
+          <HomePageCategoryBlock />
+        </div>
+
         <Banner bannerData={bannerData} />
-        <HomePageCategoryBlock />
+
+        <div className="d-none d-lg-block">
+          <HomePageCategoryBlock />
+        </div>
+        <div className="d-block d-lg-none">
+          <RecentlyViewedProducts
+            carouselData={newArrivalData}
+            categoryData={categoryData}
+          />
+        </div>
         <FeatureProducts />
-        <RecentlyViewedProducts
-          carouselData={newArrivalData}
-          categoryData={categoryData}
-        />
+        <div className="d-none d-lg-block">
+            <RecentlyViewedProducts
+              carouselData={newArrivalData}
+              categoryData={categoryData}
+            />
+        </div>
+       
         <ProductContainer
-          sectionTitle="New Arriaval"
+          sectionTitle="New Arrivals"
           carouselData={newArrivalData}
           containerClassName="new__arrival__pc__block"
         />
         <ProductContainer
+        className="vksmdk"
           sectionTitle="Top Trending"
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"

@@ -18,7 +18,8 @@ function FeatureProducts() {
   return (
     <div className="container-fluid feature__category__container">
       <div className=" feature__category__block">
-        <p className="section__title">Televisions</p>
+        <p className="section__title d-none d-lg-block">Televisions</p>
+        <p className="section__title d-block d-lg-none py-3">Deals of the day</p>
         <div className="row inner__feature__category__block">
           <div className="first__feature__category__block">
             {/* <div className="deal__of__the__day">
