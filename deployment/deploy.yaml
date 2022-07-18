@@ -90,7 +90,7 @@ spec:
   type: ClusterIP
 ---
 kind: Ingress
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 metadata:
   name: '${DEPLOYMENT_NAME}'
   namespace: '${DEPLOYMENT_NAME}'
