@@ -14,12 +14,13 @@
       object-position: 50% 50%;
     }
   }
-
   .productOne__name__favourite {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 0px 0px 0px;
+    p{
+    }
     .productOne__name {
       font-family: "arialbold";
       margin: 0px;
@@ -89,14 +90,23 @@
   .productOne__name__favourite {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 15px 0px 0px 0px;
+    p{
+      width: calc(100% - 0px);
+      vertical-align: top;
+      padding-right: 20px;
+      font-size: 14px !important;
+    }
     .productOne__name {
       font-family: "arialbold";
       margin: 0px;
     }
     .productOne__favourite__icon {
       display: block;
+      &.empty_icon{
+        opacity: 0.5;
+      }
     }
     .productOne__favourite__icon__disable {
       display: none;
