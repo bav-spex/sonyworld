@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import { getIdentifier } from "./../services/homepage";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Banner from "../Components/Banner";
 import "./../SCSS/_home.scss";
 
@@ -38,6 +40,7 @@ import FeatureProducts from "../Components/FeatureProducts";
 import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
+import { loadHomePageData } from "../redux/appAction";
 const categoryData = [
   {
     id: 1,
@@ -14168,30 +14171,49 @@ const data = {
   updated_at: "2022-06-17T14:31:43Z",
 };
 
-function Home(props) {
-  const [homepageData, setHomepageData] = useState({});
-
-  useEffect(() => {
-    // console.log("in main homepage");
-    // getHomepageData();
-  }, []);
-
-  // const getHomepageData = async () => {
-  //   console.log("in fun");
-  //   const homepageRes = await getIdentifier();
-  //   console.log(homepageRes, "homepageRes");
-  // };
+function Home({homepageData}) {
+  // const [homepageData, setHomepageData] = useState();
+  const [loading, setLoading] = useState(true);
   const [liveChatPopup, setLiveChatPopup] = useState(false);
+  const [bannerData, setBannerData] = useState();
+  const dispatch = useDispatch()
+  // useEffect(()=>{
+  //   dispatch(loadHomePageData())
+  //   //  const data = await getAllCategory().then((res) => res);
+  //   // setCategoryData(data);
+  // },[])
+  // const data = useSelector((state) => state.appData.homepageData);
+  // console.log(data);
+// useEffect(()=>{
+//   if(homePageData){
+
+//     setHomepageData(homePageData)
+//     setLoading(false)
+//   }
+// },[homePageData])
+  console.log(homepageData,"home");
+  useEffect(() => {
+    if ( homepageData) {
+      setBannerData(() => {
+        return (
+         
+          homepageData.content.find((data) => {
+            return (
+              data.type === "multiple_banner" &&
+              data.title === "Main Banner Sliders"
+            );
+          }).items
+        );
+      });
+    }
+  }, [homepageData]);
+  console.log(bannerData);
   const closeLiveChatPopup = () => {
     setLiveChatPopup(false);
   };
 
   const contentData = JSON.parse(JSON.stringify(data)).content;
-  const [bannerData, setBannerData] = useState(
-    contentData.find((con) => {
-      return con.type === "multiple_banner";
-    }).items
-  );
+ 
   const [newArrivalData, setNewArrivalData] = useState(
     contentData.find((con) => {
       return con.type === "slider" && con.title === "New Arrivals";
@@ -14207,7 +14229,9 @@ function Home(props) {
       return con.type === "slider" && con.title === "Top Rated Products";
     }).products
   );
-
+  // if (loading) {
+  //   return <h1>Home Loading...</h1>;
+  // }
   return (
     <>
       <div className="homePage">

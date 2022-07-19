@@ -11,7 +11,7 @@ export const getHandshake = async () => {
     //   store: "en",
     }
   );
-  console.log(res);
+  // console.log(res);
   if (res.data && res.data.token) {
     setHeader("x-access-token", res.data.token);
   }

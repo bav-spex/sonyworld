@@ -1515,8 +1515,8 @@ const searchData = {
 };
 function Header({ reloadingHandle, reloadHeader, categoryData }) {
   // language changing in project //
-  console.log(categoryData);
-  const [allCategoryData,setAllCategoryData] = useState(categoryData.children_data)
+  // console.log(categoryData);
+  // const [allCategoryData,setAllCategoryData] = useState(categoryData)
   const [lang, setLang] = useState("en");
   const languages = [
     {
@@ -1668,7 +1668,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
   useEffect(() => {
     setLoginMode(loginMode);
   }, [loginWrapper]);
-  const [selectedCategory, setSelectedCategory] = useState(allCategoryData[0]);
+  const [selectedCategory, setSelectedCategory] = useState(categoryData && categoryData?.children_data?.[0]);
 
   const [navIndex, setNavIndex] = useState("");
   const [menuIndex, setMenuIndex] = useState(0);
@@ -2159,7 +2159,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             onMouseLeave={() => navbarTab__mouseTab(false, "")}
           >
             <div className="col-6 col-sm-6 col-md-3 category__popup__left__block">
-              {allCategoryData.map((catObj, catIndex) => {
+              {categoryData?.children_data?.map((catObj, catIndex) => {
                 return (
                   <div
                     key={catObj.id}
@@ -2183,11 +2183,11 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             <div className="col-6 col-sm-6 col-md-9 category__popup__right__block">
               <div className="mainCategory__title__block">
                 <p className="mainCategory__right__block">
-                  {selectedCategory.name}
+                  {selectedCategory?.children_data[0]?.name}
                 </p>
               </div>
               <div className="subCategory__block">
-                {selectedCategory.children_data.map((subcat, subcatIndex) => {
+                {selectedCategory?.children_data?.map((subcat, subcatIndex) => {
                   return (
                     <Link
                       key={subcatIndex}

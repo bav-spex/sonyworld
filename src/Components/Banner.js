@@ -78,7 +78,7 @@ function Banner({ bannerData }) {
     <>
       <div className="container-fluid banner__container">
         <div className=" banner__block" id="banner__block">
-          {banner.map((ban, banIndex) => {
+          {bannerData?.map((ban, banIndex) => {
             let position = "banner nextBanner";
             if (banIndex === index) {
               position = "banner activeBanner";
@@ -90,12 +90,14 @@ function Banner({ bannerData }) {
               position = "banner prevBanner";
             }
             return (
-              <div className={position} key={ban.id}>
-                <Link to="/products/1">
-                  <img className="banner__image" src={ban.image} alt="" />
-                </Link>
-                {/* <p className="banner__title">{ban.title}</p> */}
-              </div>
+              <a key={banIndex} href={ban.deeplinkUrl}>
+                <div className={position} key={ban.id}>
+                  <Link to="/products/1">
+                    <img className="banner__image" src={ban.imageUrl} alt="" />
+                  </Link>
+                  {/* <p className="banner__title">{ban.title}</p> */}
+                </div>
+              </a>
             );
           })}
           <div className="banner__arrow__block">
@@ -110,6 +112,7 @@ function Banner({ bannerData }) {
 
         {/* <img className="banner__pin__block" src={white_banner_pin}/> */}
       </div>
+      <img className="banner__image" src="" alt="" />
     </>
   );
 }
