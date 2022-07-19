@@ -322,6 +322,18 @@
         color: #fff !important;
       }
     }
+    .mobile__navbar__link__nested__block__disable{
+      display: none;
+    }
+    .mobile__navbar__link__nested__block{
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .mobile__navbar__link__block__disable{
+
+      display: none;
+    }
     .mobile__navbar__link__block {
       display: flex;
       flex-direction: column;
