@@ -39,6 +39,8 @@ spec:
               value: '${GIT_COMMIT}'
             - name: BUILD_NUMBER
               value: '${BUILD_NUMBER}'
+            - name: REACT_APP_PROJECT_API_URL
+              value: '${REACT_APP_PROJECT_API_URL}'
           ports:
             - containerPort: 80
               protocol: TCP
