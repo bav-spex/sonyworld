@@ -42,7 +42,7 @@ import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
 import { loadHomePageData } from "../redux/appAction";
 
-
+import  MobileHomePage from './MobilePages/Mobile_Home_Page';
 
 function Home({ homepageData }) {
   // const [homepageData, setHomepageData] = useState();
@@ -148,7 +148,10 @@ function Home({ homepageData }) {
   }
   return (
     <>
-      <div className="homePage">
+      <div className="mobile_home_page d-block d-lg-none">
+          <MobileHomePage />
+      </div>
+      <div className="homePage d-none d-lg-block">
         <div className="d-block d-lg-none">
           <HomePageCategoryBlock />
         </div>
