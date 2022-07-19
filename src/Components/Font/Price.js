@@ -13,11 +13,11 @@ import Text3 from "./Text3";
 import Text4 from "./Text4";
 import Text5 from "./Text5";
 import Text6 from "./Text6";
-function Price({ preText, price,postText,marginLeft,marginBottom, size,span, textTransform,color,textAlign }) {
+function Price({ preText, price,currency,postText,marginLeft,marginBottom, size,span, textTransform,color,textAlign }) {
   const finalPrice =
     price.toString().length > 3
-      ? `${preText ? preText : ""} SAR${price.toString().slice(0, -3)},${price.toString().slice(-3)}.00${postText ? postText : ""}`
-      : `${preText ? preText : ""} SAR${price.toString().slice(-3)}.00${postText ? postText : ""}`;
+      ? `${preText ? preText : ""} ${currency}${price.toString().slice(0, -3)},${price.toString().slice(-3)}.00${postText ? postText : ""}`
+      : `${preText ? preText : ""} ${currency}${price.toString().slice(-3)}.00${postText ? postText : ""}`;
 
   return (
     <>

@@ -13,7 +13,7 @@ import banner_02 from "./../assets/Banner/image_02.jpg";
 import Heading6 from "./Font/Heading6";
 import CarouselTypeTwo from "./CarouselTypeTwo";
 
-function RecentlyViewedProducts({ categoryData }) {
+function RecentlyViewedProducts({ categoryData,recentlyViewedProductsData, recentlyViewedProductsBanner }) {
   return (
     <div className="container-fluid recentlyViewed__container">
       <div className="recentlyViewed__block">
@@ -22,19 +22,19 @@ function RecentlyViewedProducts({ categoryData }) {
           <div className="inner__rv__block">
             <div className="rv__left__block">
               <div className="row rv__desktop__screen">
-                {categoryData.map((cat, catIndex) => {
+                {recentlyViewedProductsData.slice(0,4).map((cat, catIndex) => {
                   return (
                     <div key={catIndex} className="col-3 rv__product__block">
                       <div className="rv__product__image__block">
                         <Link to="/products/1">
                           <img
-                            src={cat.image}
+                            src={cat.baseImage}
                             alt="category-image"
                             className="rv__product__image"
                           />
                         </Link>
                       </div>
-                      <Heading6 text={cat.name} textAlign="center"></Heading6>
+                      <Heading6 text={`${cat.name.slice(0,20)}...`} textAlign="center"></Heading6>
                     </div>
                   );
                 })}
@@ -46,6 +46,7 @@ function RecentlyViewedProducts({ categoryData }) {
                   productType="productone"
                 /> */}
                 <CarouselTypeTwo
+                recentlyViewedProductsData={recentlyViewedProductsData}
                   carouselData={categoryData}
                   productType="productFive"
                   containerClassName="rv__inner__mobile__screen"
@@ -54,7 +55,7 @@ function RecentlyViewedProducts({ categoryData }) {
             </div>
             <div className="rv__right__block">
               <img
-                src={banner_02}
+                src={recentlyViewedProductsBanner[0].imageUrl}
                 alt="shop now Image"
                 className="rv__right__part__bg__image"
               />

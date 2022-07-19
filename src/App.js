@@ -15,16 +15,21 @@ import AllRoutes from "./routes";
 import Footer from "./Components/Common/Footer";
 import NewsLetter from "./Components/Common/NewsLetter";
 import { getHandshake } from "./services/auth";
-import { getIdentifier, getAllCategory, apiHomePageData } from "./services/homepage";
+import {
+  getIdentifier,
+  getAllCategory,
+  apiHomePageData,
+} from "./services/homepage";
 import Heading1 from "./Components/Font/Heading1";
-import { loadHomePageData } from "./redux/appAction";
+import { loadAllCategoryData, loadHomePageData } from "./redux/appAction";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 function App({ stars }) {
   const location = useLocation();
   const history = useNavigate();
-  const dispatch = useDispatch()
+  const homeDispatch = useDispatch();
+  const categoryDispatch = useDispatch();
   localStorage.setItem("loginMode", JSON.stringify(""));
   localStorage.setItem("loginWrapper", JSON.stringify(false));
   localStorage.setItem("loginPopup", JSON.stringify(false));
@@ -43,26 +48,26 @@ function App({ stars }) {
   const getInitialData = async () => {
     await getHandshake();
   };
-  const getAppStarted =  async() => {
+  const getAppStarted = async () => {
     await getHandshake();
-    dispatch(loadHomePageData())
-    // console.log(data);
-    const data = await getAllCategory().then((res) => res);
-    setCategoryData(data);
+    await homeDispatch(loadHomePageData());
+    await categoryDispatch(loadAllCategoryData());
     setLoading(false);
   };
-   const data = useSelector((state) => state.appData.homepageData);
-   console.log(data);
-   useEffect(() => {
-    // debugger
-    console.log("bhavik");
-    if (Object.keys(data).length !== 0) {
+  const data = useSelector((state) => state.appData.homepageData);
+  const allCategoryData = useSelector((state) => state.appData.categoryData);
+  console.log(data);
+  console.log(allCategoryData);
+  useEffect(() => {
+    if (
+      Object.keys(data).length !== 0 &&
+      Object.keys(allCategoryData).length !== 0
+    ) {
       setHomepageData(data);
+      setCategoryData(allCategoryData);
       setLoading(false);
     }
-  }, [data]);
-  console.log(homepageData,"app");
-  // console.log(categoryData);
+  }, [data, allCategoryData]);
   if (loading) {
     return <h1>App Loading...</h1>;
   }
@@ -79,8 +84,8 @@ function App({ stars }) {
         />
       </div>
       <div className="main_wrapper">
-        <AllRoutes 
-        homepageData={homepageData}
+        <AllRoutes
+          homepageData={homepageData}
           categoryData={categoryData}
           reloadingHandle={reloadingHandle}
           reloadHeader={reloadHeader}

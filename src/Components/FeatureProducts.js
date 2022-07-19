@@ -14,7 +14,7 @@ import PriceBlock from "./MostSharedComponent/PriceBlock";
 import OldPrice from "./Font/OldPrice";
 import Price from "./Font/Price";
 
-function FeatureProducts() {
+function FeatureProducts({featureProductsData}) {
   return (
     <div className="container-fluid feature__category__container">
       <div className=" feature__category__block">
@@ -43,7 +43,7 @@ function FeatureProducts() {
               </div>
               <div className="first__feature__category__image__block">
                 <img
-                  src={feature_product_01}
+                  src={featureProductsData[0]?.baseImage}
                   alt=""
                   className="first__feature__category__image"
                 />
@@ -51,23 +51,25 @@ function FeatureProducts() {
               <div className="heading__inner__text">
                 <Heading7
                   marginBottom={10}
-                  text='Sony 55" Class XR55X90J Bravia XR Full Array LED 4K Ultra HD Smart Google TV with Dolby Vision HDR X90J S eries 2021 Model'
+                  text={featureProductsData[0]?.name}
                 />
                 <RatingBlock rating={4.5} totalRatings={2143} />
                 <OldPrice
-                  oldPrice={1999}
+                  oldPrice={featureProductsData[0]?.price_rounded + 200}
                   size="text3"
                   color="#c8c8c8"
                   marginBottom={10}
                   lineThrough={true}
                   span={true}
+                  currency={featureProductsData[0]?.currency}
                 />
                 <Price
-                  price={1699}
+                  price={featureProductsData[0]?.price_rounded}
                   marginLeft={5}
                   marginBottom={10}
                   size="heading6"
                   span={true}
+                  currency={featureProductsData[0]?.currency}
                 />
               </div>
             </div>
@@ -76,25 +78,26 @@ function FeatureProducts() {
             <div className="feature__category first__in__column">
               <div className="second__feature__category__image__block">
                 <img
-                  src={feature_product_02}
+                  src={featureProductsData[1]?.baseImage}
                   alt=""
                   className="second__feature__category__image"
                 />
               </div>
               <Heading7
                 marginBottom={10}
-                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+                text={featureProductsData[1]?.name}
               />
               <div className="featureProduct__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
-                oldPrice={1999}
+                 oldPrice={featureProductsData[1]?.price_rounded + 200}
                 size="text3"
                 color="#c8c8c8"
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
+                 currency={featureProductsData[1]?.currency}
               />
               <Price
                 price={1699}
@@ -102,30 +105,32 @@ function FeatureProducts() {
                 marginBottom={10}
                 size="heading6"
                 span={true}
+                 currency={featureProductsData[1]?.currency}
               />
             </div>
             <div className="feature__category">
               <div className="second__feature__category__image__block">
                 <img
-                  src={feature_product_03}
+                  src={featureProductsData[2]?.baseImage}
                   alt=""
                   className="second__feature__category__image"
                 />
               </div>
               <Heading7
                 marginBottom={10}
-                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+                text={featureProductsData[2]?.name}
               />
               <div className="featureProduct__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
-                oldPrice={1999}
+                oldPrice={featureProductsData[2]?.price_rounded + 200}
                 size="text3"
                 color="#c8c8c8"
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
+                 currency={featureProductsData[2]?.currency}
               />
               <Price
                 price={1699}
@@ -133,6 +138,7 @@ function FeatureProducts() {
                 marginBottom={10}
                 size="heading6"
                 span={true}
+                 currency={featureProductsData[2]?.currency}
               />
             </div>
           </div>
@@ -140,25 +146,26 @@ function FeatureProducts() {
             <div className="feature__category first__in__column">
               <div className="second__feature__category__image__block">
                 <img
-                  src={feature_product_04}
+                  src={featureProductsData[3]?.baseImage}
                   alt=""
                   className="second__feature__category__image"
                 />
               </div>
               <Heading7
                 marginBottom={10}
-                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+                text={featureProductsData[3]?.name}
               />
               <div className="featureProduct__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
-                oldPrice={1999}
+                oldPrice={featureProductsData[3]?.price_rounded + 200}
                 size="text3"
                 color="#c8c8c8"
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
+                 currency={featureProductsData[3]?.currency}
               />
               <Price
                 price={1699}
@@ -166,30 +173,32 @@ function FeatureProducts() {
                 marginBottom={10}
                 size="heading6"
                 span={true}
+                 currency={featureProductsData[3]?.currency}
               />
             </div>
             <div className="feature__category">
               <div className="second__feature__category__image__block">
                 <img
-                  src={feature_product_05}
+                  src={featureProductsData[4]?.baseImage}
                   alt=""
                   className="second__feature__category__image"
                 />
               </div>
               <Heading7
                 marginBottom={0}
-                text='Sony - 65" Class BRAVIA XR A80J Series OLED 4K UHD Smart Google TV'
+                text={featureProductsData[4]?.name}
               />
               <div className="featureProduct__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
-                oldPrice={1999}
+                oldPrice={featureProductsData[4]?.price_rounded + 200}
                 size="text3"
                 color="#c8c8c8"
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
+                 currency={featureProductsData[4]?.currency}
               />
               <Price
                 price={1699}
@@ -197,6 +206,7 @@ function FeatureProducts() {
                 marginBottom={10}
                 size="heading6"
                 span={true}
+                 currency={featureProductsData[4]?.currency}
               />
             </div>
           </div>

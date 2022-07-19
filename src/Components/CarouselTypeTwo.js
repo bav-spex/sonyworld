@@ -16,6 +16,7 @@ function CarouselTypeTwo({
   carouselData,
   containerClassName,
   productType,
+  recentlyViewedProductsData
 }) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
@@ -34,8 +35,8 @@ function CarouselTypeTwo({
   const rightSide = (e) => {
     setArrowState(!arrowState);
     setDisableLeftArrow(false);
+    console.log("right");
     e.preventDefault();
-
     document.querySelector(`.${containerClassName}`).scrollLeft =
       document.querySelector(`.${containerClassName}`).scrollLeft +
       document.querySelector(`.${containerClassName}`).clientWidth -
@@ -64,7 +65,7 @@ function CarouselTypeTwo({
             </div>
           ) : productType === "productFive" ? (
             <div className={containerClassName}>
-              {carouselData.map((product, productIndex) => {
+              {recentlyViewedProductsData.map((product, productIndex) => {
                 return <ProductFive key={product.id} product={product} />;
               })}
             </div>

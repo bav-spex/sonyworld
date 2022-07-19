@@ -2091,7 +2091,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
               />
             </Link>
             {navIndex === "television" && menuIndex === 1 && mobileShowPopup ? (
-              <MobilePopup menuIndex={menuIndex} />
+              <MobilePopup categoryData={categoryData} menuIndex={menuIndex} />
             ) : (
               ""
             )}

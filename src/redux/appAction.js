@@ -1,9 +1,13 @@
 import * as types from "./actionType";
 import axios from "axios";
-import { apiHomePageData } from "../services/homepage";
+import {  apiAllCategoryData, apiHomePageData } from "../services/homepage";
 
 const getHomePageData = (data) => ({
   type: types.GET__HOME__PAGE__DATA,
+  payload: data,
+});
+const getAllCategoryData = (data) => ({
+  type: types.GET__ALL__CATEGORY__DATA,
   payload: data,
 });
 
@@ -32,20 +36,20 @@ const headers = {
 
 export const loadHomePageData = () => {
    return async function  (dispatch) {
-    const data = await apiHomePageData();
-    console.log(data.data);
-    dispatch(getHomePageData(data.data));
-    dispatch(setLoading(false));
-    return data.data
+    const homepagedata = await apiHomePageData();
+    // console.log(homepagedata.data);
+    dispatch(getHomePageData(homepagedata.data));
+    
+    return homepagedata.data
   };
-  // return async function (dispatch) {
-  //   await axios.post(bannerAPI, {}, { headers }).then((res) => {
-  //     dispatch(getBannerData(res.data.data));
-  //   });
-  // await axios.post(productAPI, {}, { headers }).then((res) => {
-  //   dispatch(getProductData(res.data.data));
-  // });
-  // await axios.post(applicationAPI, {}, { headers }).then((res) => {
-  //   dispatch(getApplicationData(res.data.data));
-  // });
+  
+};
+export const loadAllCategoryData = () => {
+   return async function  (dispatch) {
+    const categorydata = await apiAllCategoryData();
+    // console.log(categorydata.data);
+    dispatch(getAllCategoryData(categorydata.data));
+    return categorydata.data
+  };
+  
 };
