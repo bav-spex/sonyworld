@@ -47,7 +47,7 @@ function ProductThree({ product }) {
         <ShippingBlock shipment={product.delivery}/>
       </div>
       <div className="col-12 col-sm-2 productThree__product__right__block">
-        <Price price={product.price} size="heading3" />
+        <Price price={product.price} size="heading3" currency={product?.currency} />
         <button className="productThree__addToPackage__button">
           Add To Package
         </button>

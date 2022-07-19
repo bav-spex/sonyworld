@@ -106,6 +106,7 @@ function ProductEight({ product }) {
           marginBottom={10}
           lineThrough={true}
           span={true}
+          currency={product?.currency}
         />
         <Price
           price={product.price}
@@ -113,6 +114,7 @@ function ProductEight({ product }) {
           marginBottom={10}
           size="heading4"
           span={true}
+          currency={product?.currency}
         />
       </div>
       

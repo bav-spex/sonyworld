@@ -21,13 +21,14 @@ function ExpertProducts({ product }) {
         <RatingBlock rating={product.rating} totalRatings={product.totalRatings} />
       </div>
 
-      <Price price={product.price} size="heading6" />
+      <Price currency={product?.currency} price={product.price} size="heading6" />
       <OldPrice
         oldPrice={product.oldPrice}
         size="text3"
         color="#808080"
         marginBottom={10}
         lineThrough={true}
+        currency={product?.currency}
       />
       <div className="exp__rd__select__block">
         <img

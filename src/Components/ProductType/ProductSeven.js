@@ -110,6 +110,7 @@ function ProductSeven({ productDetailPage, product }) {
           marginBottom={10}
           lineThrough={true}
           span={true}
+          currency={product?.currency}
         />
         <Price
           price={product.price}
@@ -117,6 +118,7 @@ function ProductSeven({ productDetailPage, product }) {
           marginBottom={10}
           size="heading6"
           span={true}
+          currency={product?.currency}
         />
       </div>
       <div className="addToCart__button">ADD TO CART</div>

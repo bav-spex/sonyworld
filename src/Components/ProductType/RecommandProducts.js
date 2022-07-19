@@ -24,7 +24,7 @@ function RecommandProducts({ product }) {
           emptyColor="#C8C8C8"
         />
         <Heading6 text="1 Offer From" span={true} />
-        <Price price={product.price} span={true} size="text3" color="#DC3A1A" />
+        <Price currency={product?.currency} price={product.price} span={true} size="text3" color="#DC3A1A" />
         <button className="see__all__buying__option__button">See all buying Options</button>
       </div>
     </div>
