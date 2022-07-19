@@ -72,12 +72,14 @@ function ProductOne({ productDetailPage, product }) {
           marginBottom={10}
           lineThrough={true}
           span={true}
+          currency={product?.currency}
         />
         <Price
           price={product.price_rounded ? product.price_rounded : 1699}
           marginLeft={5}
           size="heading6"
           span={true}
+          currency={product?.currency}
         />
       </div>
       {productDetailPage ? (
