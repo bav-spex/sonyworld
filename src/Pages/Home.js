@@ -149,31 +149,24 @@ function Home({ homepageData }) {
   return (
     <>
       <div className="mobile_home_page d-block d-lg-none">
-          <MobileHomePage />
+          <MobileHomePage homePageBottomSingleBanner={homePageBottomSingleBanner} dealsOfTheWeekData={dealsOfTheWeekData} topRatedData={topRatedData} topTrendingData={topTrendingData} bannerData={bannerData} featureProductsData={featureProductsData} recentlyViewedProductsData={recentlyViewedProductsData} recentlyViewedProductsBanner={recentlyViewedProductsBanner} newArrivalData={newArrivalData}/>
       </div>
       <div className="homePage d-none d-lg-block">
-        <div className="d-block d-lg-none">
-          <HomePageCategoryBlock />
-        </div>
+        
 
         <Banner bannerData={bannerData} />
 
         <div className="d-none d-lg-block">
           <HomePageCategoryBlock />
         </div>
-        <div className="d-block d-lg-none">
-          <RecentlyViewedProducts
-            recentlyViewedProductsData={recentlyViewedProductsData}
-            recentlyViewedProductsBanner={recentlyViewedProductsBanner}
-          />
-        </div>
+        
         <FeatureProducts featureProductsData={featureProductsData} />
-        <div className="d-none d-lg-block">
+     
           <RecentlyViewedProducts
             recentlyViewedProductsData={recentlyViewedProductsData}
             recentlyViewedProductsBanner={recentlyViewedProductsBanner}
           />
-        </div>
+       
 
         <ProductContainer
           sectionTitle="New Arrivals"

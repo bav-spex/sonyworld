@@ -14,7 +14,7 @@ import PriceBlock from "./MostSharedComponent/PriceBlock";
 import OldPrice from "./Font/OldPrice";
 import Price from "./Font/Price";
 
-function FeatureProducts({featureProductsData}) {
+function FeatureProducts({ featureProductsData }) {
   return (
     <div className="container-fluid feature__category__container">
       <div className=" feature__category__block">
@@ -91,13 +91,13 @@ function FeatureProducts({featureProductsData}) {
                 <RatingBlock rating={4.5} totalRatings={2143} />
               </div>
               <OldPrice
-                 oldPrice={featureProductsData[1]?.price_rounded + 200}
+                oldPrice={featureProductsData[1]?.price_rounded + 200}
                 size="text3"
                 color="#c8c8c8"
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
-                 currency={featureProductsData[1]?.currency}
+                currency={featureProductsData[1]?.currency}
               />
               <Price
                 price={1699}
@@ -105,7 +105,7 @@ function FeatureProducts({featureProductsData}) {
                 marginBottom={10}
                 size="heading6"
                 span={true}
-                 currency={featureProductsData[1]?.currency}
+                currency={featureProductsData[1]?.currency}
               />
             </div>
             <div className="feature__category">
@@ -130,7 +130,7 @@ function FeatureProducts({featureProductsData}) {
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
-                 currency={featureProductsData[2]?.currency}
+                currency={featureProductsData[2]?.currency}
               />
               <Price
                 price={1699}
@@ -138,7 +138,7 @@ function FeatureProducts({featureProductsData}) {
                 marginBottom={10}
                 size="heading6"
                 span={true}
-                 currency={featureProductsData[2]?.currency}
+                currency={featureProductsData[2]?.currency}
               />
             </div>
           </div>
@@ -165,7 +165,7 @@ function FeatureProducts({featureProductsData}) {
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
-                 currency={featureProductsData[3]?.currency}
+                currency={featureProductsData[3]?.currency}
               />
               <Price
                 price={1699}
@@ -173,7 +173,7 @@ function FeatureProducts({featureProductsData}) {
                 marginBottom={10}
                 size="heading6"
                 span={true}
-                 currency={featureProductsData[3]?.currency}
+                currency={featureProductsData[3]?.currency}
               />
             </div>
             <div className="feature__category">
@@ -198,7 +198,7 @@ function FeatureProducts({featureProductsData}) {
                 marginBottom={10}
                 lineThrough={true}
                 span={true}
-                 currency={featureProductsData[4]?.currency}
+                currency={featureProductsData[4]?.currency}
               />
               <Price
                 price={1699}
@@ -206,7 +206,7 @@ function FeatureProducts({featureProductsData}) {
                 marginBottom={10}
                 size="heading6"
                 span={true}
-                 currency={featureProductsData[4]?.currency}
+                currency={featureProductsData[4]?.currency}
               />
             </div>
           </div>
