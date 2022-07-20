@@ -5,3 +5,7 @@ export const GET__PRODUCT__DETAIL__DATA = "GET__PRODUCT__DETAIL__DATA"
 export const LOADING = "LOADING"
 export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
+
+export const USERLOGGEDIN = "USERLOGGEDIN"
+export const GET_HANDSHAKE = "GET_HANDSHAKE"
+

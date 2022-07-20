@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import { getIdentifier } from "./../services/homepage";
+import { connect, useSelector, useDispatch } from "react-redux";
+
+import { getIdentifier } from "./../services/homepage";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -225,4 +227,13 @@ function Home({ homepageData }) {
   );
 }
 
-export default Home;
+//injecting redux data to props
+const mapStateToProps = (state) => {
+  return {
+    token: state?.auth?.token,
+    userData: state?.auth?.userData,
+    userLoggedIn: state?.auth?.userData?.userLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps, {})(Home);
