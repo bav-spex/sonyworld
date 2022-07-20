@@ -3,6 +3,7 @@ import * as types from "./actionType";
 const initialState = {
   homepageData: {},
   categoryData: {},
+  productData: {},
   loading: true,
 };
 
@@ -17,6 +18,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         categoryData: action.payload,
+      };
+    case types.GET__PRODUCT__DETAIL__DATA:
+      return {
+        ...state,
+        productData: action.payload,
       };
     case types.LOADING:
       return {

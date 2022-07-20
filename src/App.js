@@ -15,11 +15,7 @@ import AllRoutes from "./routes";
 import Footer from "./Components/Common/Footer";
 import NewsLetter from "./Components/Common/NewsLetter";
 import { getHandshake } from "./services/auth";
-import {
-  getIdentifier,
-  getAllCategory,
-  apiHomePageData,
-} from "./services/homepage";
+
 import Heading1 from "./Components/Font/Heading1";
 import { loadAllCategoryData, loadHomePageData } from "./redux/appAction";
 import { useDispatch } from "react-redux";
@@ -56,8 +52,8 @@ function App({ stars }) {
   };
   const data = useSelector((state) => state.appData.homepageData);
   const allCategoryData = useSelector((state) => state.appData.categoryData);
-  console.log(data);
-  console.log(allCategoryData);
+  // console.log(data);
+  // console.log(allCategoryData);
   useEffect(() => {
     if (
       Object.keys(data).length !== 0 &&

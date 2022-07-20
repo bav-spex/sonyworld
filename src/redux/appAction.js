@@ -1,13 +1,19 @@
 import * as types from "./actionType";
 import axios from "axios";
-import {  apiAllCategoryData, apiHomePageData } from "../services/homepage";
+import {  getHomePageData } from "../services/homepage.service";
+import { getAllCategoryData } from "../services/category.service";
+import { getProductDetail } from "../services/pdp.service";
 
-const getHomePageData = (data) => ({
+const saveHomePageData = (data) => ({
   type: types.GET__HOME__PAGE__DATA,
   payload: data,
 });
-const getAllCategoryData = (data) => ({
+const saveAllCategoryData = (data) => ({
   type: types.GET__ALL__CATEGORY__DATA,
+  payload: data,
+});
+const saveProductDetailData = (data) => ({
+  type: types.GET__PRODUCT__DETAIL__DATA,
   payload: data,
 });
 
@@ -17,28 +23,12 @@ const setLoading = (data) => ({
 });
 
 
-// const getProductData = (list) => ({
-//   type: types.GET__CLIENT__PRODUCT__DATA,
-//   payload: list,
-// });
-// const getApplicationData = (list) => ({
-//   type: types.GET__CLIENT__APPLICATION__DATA,
-//   payload: list,
-// });
-
-let bannerAPI = `${process.env.REACT_APP_PROJECT_API_URL}/bannerList`;
-// let productAPI = `${process.env.REACT_APP_PROJECT_API_URL}/productList`;
-// let applicationAPI = `${process.env.REACT_APP_PROJECT_API_URL}/applicationList`;
-
-const headers = {
-  "api-key": "rblabels@123",
-};
 
 export const loadHomePageData = () => {
    return async function  (dispatch) {
-    const homepagedata = await apiHomePageData();
+    const homepagedata = await getHomePageData();
     // console.log(homepagedata.data);
-    dispatch(getHomePageData(homepagedata.data));
+    dispatch(saveHomePageData(homepagedata.data));
     
     return homepagedata.data
   };
@@ -46,10 +36,18 @@ export const loadHomePageData = () => {
 };
 export const loadAllCategoryData = () => {
    return async function  (dispatch) {
-    const categorydata = await apiAllCategoryData();
+    const categorydata = await getAllCategoryData();
     // console.log(categorydata.data);
-    dispatch(getAllCategoryData(categorydata.data));
+    dispatch(saveAllCategoryData(categorydata.data));
     return categorydata.data
   };
   
+};
+export const loadProductDetailData = (id) => {
+   return async function  (dispatch) {
+    const productData = await getProductDetail(id);
+    // console.log(productData);
+    dispatch(saveProductDetailData(productData));
+    return productData
+  };
 };
