@@ -174,7 +174,7 @@ function Home({ homepageData }) {
           containerClassName="new__arrival__pc__block"
         />
         <ProductContainer
-          className="vksmdk"
+          
           sectionTitle="Top Trending"
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"

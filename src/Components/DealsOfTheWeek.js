@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./../SCSS/_dealsOfTheWeek.scss";
 
 function DealsOfTheWeek({ dealsOfTheWeekData }) {
-  console.log(dealsOfTheWeekData);
   return (
     <div className="container-fluid dealsOfTheWeek__container">
       <div className="dealsOfTheWeek__block">

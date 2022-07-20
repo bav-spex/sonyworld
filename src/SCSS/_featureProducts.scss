@@ -15,7 +15,8 @@
       .first__feature__category__block {
         width: 50%;
         margin: 0px 0px 20px;
-
+        text-decoration: none;
+        color: #000000;
         .first__feature__category {
           background: #ffffff;
           height: 100%;
@@ -156,9 +157,9 @@
   .feature__category__block {
     width: 90% !important;
   }
-.first__feature__category__image__block{
-  height: 400px !important;
-}
+  .first__feature__category__image__block {
+    height: 400px !important;
+  }
   .first__feature__category__image {
     width: 100% !important;
   }
