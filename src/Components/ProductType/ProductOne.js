@@ -38,7 +38,8 @@ function ProductOne({ productDetailPage, product }) {
         </Link>
       </div>
       <div className="productOne__name__favourite">
-        <Heading7 text={product.name} />
+        <p className="productOne__name">{product.name}</p>
+        {/* <Heading7 text={product.name} /> */}
         <img
           onMouseEnter={() => setIsFavouriteHover(true)}
           onClick={handleFavourite}
