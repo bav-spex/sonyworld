@@ -38,7 +38,8 @@ function ProductOne({ productDetailPage, product }) {
         </Link>
       </div>
       <div className="productOne__name__favourite">
-        <Heading7 text={product.name} />
+        <p className="productOne__name">{product.name}</p>
+        {/* <Heading7 text={product.name} /> */}
         <img
           onMouseEnter={() => setIsFavouriteHover(true)}
           onClick={handleFavourite}
@@ -72,12 +73,14 @@ function ProductOne({ productDetailPage, product }) {
           marginBottom={10}
           lineThrough={true}
           span={true}
+          currency={product?.currency}
         />
         <Price
           price={product.price_rounded ? product.price_rounded : 1699}
           marginLeft={5}
           size="heading6"
           span={true}
+          currency={product?.currency}
         />
       </div>
       {productDetailPage ? (

@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "./../SCSS/_productDetailsPage.scss";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
@@ -65,92 +69,94 @@ import SuperCoin from "../Components/MostSharedComponent/SuperCoin";
 import PriceBlock from "../Components/MostSharedComponent/PriceBlock";
 import Heading1 from "../Components/Font/Heading1";
 import Heading6 from "../Components/Font/Heading6";
+import { getProductDetail } from "../services/pdp.service";
+import { loadProductDetailData } from "../redux/appAction";
 
-const product = {
-  id: 1,
-  logo: sony_logo,
-  name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
-  categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-  rating: 4.6,
-  totalRatings: 6183,
-  price: 799,
-  oldPrice: 1050,
-  saving: 10,
-  monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-  returnPeriod: 15,
-  availableOffer: [
-    {
-      id: 1,
-      offerType: "",
-      offerText: "Save $50-$300 on a sound bar with TV",
-      termsAndConditions: "",
-    },
-    {
-      id: 2,
-      offerType: "Bank Offer",
-      offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-      termsAndConditions: "T&C",
-    },
-    {
-      id: 3,
-      offerType: "Credit Card Offer",
-      offerText: "5% Unlimited Cashback on Sony Credit Card",
-      termsAndConditions: "T&C",
-    },
-  ],
-  warrantyText: "1 Year Warranty on Product",
-  size: [
-    {
-      id: 1,
-      cm: 139,
-      inch: 55,
-    },
-    {
-      id: 2,
-      cm: 164,
-      inch: 65,
-    },
-    {
-      id: 3,
-      cm: 195,
-      inch: 77,
-    },
-  ],
-  delivery: {
-    deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-    pickupStore: [
-      {
-        id: 1,
-        pickupText:
-          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-      },
-      {
-        id: 2,
-        pickupText:
-          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-      },
-      {
-        id: 3,
-        pickupText:
-          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-      },
-    ],
-  },
-  protection: [
-    {
-      id: 1,
-      protectionText: "2-Year Standard Geek Squad Protection",
-      price: 79,
-      month: 12,
-    },
-    {
-      id: 2,
-      protectionText: "1-Year Standard Geek Squad Protection",
-      price: 89,
-      month: 12,
-    },
-  ],
-};
+// const product = {
+//   id: 1,
+//   logo: sony_logo,
+//   name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+//   categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+//   rating: 4.6,
+//   totalRatings: 6183,
+//   price: 799,
+//   oldPrice: 1050,
+//   saving: 10,
+//   monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+//   returnPeriod: 15,
+//   availableOffer: [
+//     {
+//       id: 1,
+//       offerType: "",
+//       offerText: "Save $50-$300 on a sound bar with TV",
+//       termsAndConditions: "",
+//     },
+//     {
+//       id: 2,
+//       offerType: "Bank Offer",
+//       offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+//       termsAndConditions: "T&C",
+//     },
+//     {
+//       id: 3,
+//       offerType: "Credit Card Offer",
+//       offerText: "5% Unlimited Cashback on Sony Credit Card",
+//       termsAndConditions: "T&C",
+//     },
+//   ],
+//   warrantyText: "1 Year Warranty on Product",
+//   size: [
+//     {
+//       id: 1,
+//       cm: 139,
+//       inch: 55,
+//     },
+//     {
+//       id: 2,
+//       cm: 164,
+//       inch: 65,
+//     },
+//     {
+//       id: 3,
+//       cm: 195,
+//       inch: 77,
+//     },
+//   ],
+//   delivery: {
+//     deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+//     pickupStore: [
+//       {
+//         id: 1,
+//         pickupText:
+//           "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//       },
+//       {
+//         id: 2,
+//         pickupText:
+//           "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//       },
+//       {
+//         id: 3,
+//         pickupText:
+//           "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//       },
+//     ],
+//   },
+//   protection: [
+//     {
+//       id: 1,
+//       protectionText: "2-Year Standard Geek Squad Protection",
+//       price: 79,
+//       month: 12,
+//     },
+//     {
+//       id: 2,
+//       protectionText: "1-Year Standard Geek Squad Protection",
+//       price: 89,
+//       month: 12,
+//     },
+//   ],
+// };
 const peopleUltimatelyBoughtData = [
   {
     id: 1,
@@ -14501,6 +14507,103 @@ const data = {
 };
 function Product_Details_Page() {
   const contentData = JSON.parse(JSON.stringify(data)).content;
+  const [product, setProduct] = useState();
+  const [loading, setLoading] = useState(true);
+  const [productAvailableOffer, setProductAvailableOffer] = useState([
+    {
+      id: 1,
+      offerType: "",
+      offerText: "Save $50-$300 on a sound bar with TV",
+      termsAndConditions: "",
+    },
+    {
+      id: 2,
+      offerType: "Bank Offer",
+      offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+      termsAndConditions: "T&C",
+    },
+    {
+      id: 3,
+      offerType: "Credit Card Offer",
+      offerText: "5% Unlimited Cashback on Sony Credit Card",
+      termsAndConditions: "T&C",
+    },
+  ]);
+  const [productWarrentyBlock, setProductWarrentyBlock] = useState({
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+  });
+  const [productDelivery, setProductDelivery] = useState({
+    deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+    pickupStore: [
+      {
+        id: 1,
+        pickupText:
+          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+      },
+      {
+        id: 2,
+        pickupText:
+          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+      },
+      {
+        id: 3,
+        pickupText:
+          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+      },
+    ],
+  });
+  const [productProtection, setProtection] = useState([
+    {
+      id: 1,
+      protectionText: "2-Year Standard Geek Squad Protection",
+      price: 79,
+      month: 12,
+    },
+    {
+      id: 2,
+      protectionText: "1-Year Standard Geek Squad Protection",
+      price: 89,
+      month: 12,
+    },
+  ]);
+  // const dataLocation = useLocation()
+  // console.log(dataLocation);
+  // const dataNavigate = useNavigate()
+  // console.log(dataNavigate);
+  const { id } = useParams();
+  // console.log(id);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadProductDetailData(id));
+  }, []);
+  const productData = useSelector((state) => state.appData.productData);
+  // console.log(productData);
+  // console.log(Object.values(productData).length);
+  useEffect(() => {
+    if (Object.values(productData).length !== 0) {
+      setProduct(productData);
+      setLoading(false);
+      // console.log(product.reviewSummary.totals);
+    }
+  }, [productData]);
+  // console.log(product.reviewSummary.totals);
   const [newArrivalData, setNewArrivalData] = useState(
     contentData.find((con) => {
       return con.type === "slider" && con.title === "New Arrivals";
@@ -14513,8 +14616,8 @@ function Product_Details_Page() {
   const decreaseCount = () => {
     if (count === 0) {
       setCount(0);
-    }else{
-        setCount(count-1)
+    } else {
+      setCount(count - 1);
     }
   };
   const increaseCount = () => {
@@ -14534,7 +14637,9 @@ function Product_Details_Page() {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
-
+  if (loading) {
+    return <h1>Product Loading...</h1>;
+  }
   return (
     <>
       {/* <TopNavbar /> */}
@@ -14545,12 +14650,12 @@ function Product_Details_Page() {
             <div className="row products__details__inner__block">
               <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
                 <div className="product__carousel__block">
-                  <ProductCarousel />
+                  <ProductCarousel productImageData={product.media.image.screenshots} />
                 </div>
               </div>
               <div className="col-12 col-sm-12 col-md-6 product__details__block">
                 <img
-                  src={product.logo}
+                  src={sony_logo}
                   alt=""
                   className="pd__product__company__logo"
                 />
@@ -14585,15 +14690,19 @@ function Product_Details_Page() {
                   </button>
                 </div>
                 <Text3
-                  text={product.categoryTagline}
+                  // text={product.categoryTagline}
+                  text="Experience the brilliance of big-screen Sony 8K HDR"
                   color="#808080"
                   marginBottom={10}
                 />
                 {/* <Rating PriceBlock */}
                 <RatingBlock
                   size={22}
-                  rating={product.rating}
-                  totalRatings={product.totalRatings}
+                  rating={product.reviewSummary.avg}
+                  totalRatings={Object.values(
+                    product.reviewSummary.totals
+                  ).reduce((a, b) => a + b)}
+                  // totalRatings={0}
                   fillColor="#DC3A1A"
                   emptyColor="#C8C8C8"
                 />
@@ -14602,9 +14711,10 @@ function Product_Details_Page() {
 
                 {/* Price Block */}
                 <PriceBlock
-                  oldPrice={product.oldPrice}
-                  price={product.price}
-                  monthlySavingTagline={product.monthlySavingTagline}
+                  oldPrice={product.price_rounded + 200}
+                  price={product.price_rounded}
+                  currency={product.currency}
+                  monthlySavingTagline="get it for SAR 500 in 6 equal installments"
                 />
 
                 {/* Unlock MemberShip Block */}
@@ -14639,9 +14749,7 @@ function Product_Details_Page() {
                     />
                   </div>
                   <div className="pd__return__text__block">
-                    <Heading7
-                      text={`${product.returnPeriod}-Days Return Policy`}
-                    />
+                    <Heading7 text={`15-Days Return Policy`} />
                     <Text3
                       text="If received today, the last day to return this item would be Apr 15."
                       marginBottom={0}
@@ -14656,7 +14764,7 @@ function Product_Details_Page() {
 
                 {/* Available Offer */}
                 <AvailableOffers
-                  availableOffer={product.availableOffer}
+                  availableOffer={productAvailableOffer}
                   title="Available Offers"
                 />
 
@@ -14667,7 +14775,7 @@ function Product_Details_Page() {
                   <div className="row pd__warranty__block">
                     <p className="col-3 pd__warranty__title">Warranty :</p>
                     <p className="col-9 pd__warranty__text">
-                      {product.warrantyText}
+                      {productWarrentyBlock.warrantyText}
                     </p>
                   </div>
                   <div className="row pd__size__block">
@@ -14675,7 +14783,7 @@ function Product_Details_Page() {
                       Size :
                     </p>
                     <div className="col-9 col-sm-9 col-md-12 col-lg-9 pd__size__button__block">
-                      {product.size.map((size, sizeIndex) => {
+                      {productWarrentyBlock.size.map((size, sizeIndex) => {
                         return (
                           <button
                             key={size.id}
@@ -14722,7 +14830,7 @@ function Product_Details_Page() {
                     </div>
                   </div>
                   <Heading7
-                    text={product.delivery.deliveryText}
+                    text={productDelivery.deliveryText}
                     marginBottom={0}
                   />
                   <Text3
@@ -14731,7 +14839,7 @@ function Product_Details_Page() {
                     marginBottom={0}
                   />
                   <PickupStore
-                    delivery={product.delivery}
+                    delivery={productDelivery}
                     title="Pick Up From Store"
                   />
                 </div>
@@ -14742,9 +14850,11 @@ function Product_Details_Page() {
                 <Protecttion
                   title="Protect Your TV"
                   tagline="Most popular protection plan for your product"
-                  rating={product.rating}
-                  totalRatings={product.totalRatings}
-                  protection={product.protection}
+                  rating={product.reviewSummary.avg}
+                  totalRatings={Object.values(
+                    product.reviewSummary.totals
+                  ).reduce((a, b) => a + b)}
+                  protection={productProtection}
                 />
 
                 <hr className="pd__block__bottom__line" />
@@ -14776,7 +14886,7 @@ function Product_Details_Page() {
               <Heading1 text="Our experts Recommendation" />
               <div className="row exp__rd__main__block">
                 <div className="col-12 col-lg-12 col-xl-9 row exp__rd__left__block">
-                  {peopleUltimatelyBoughtData
+                  {product.relatedProducts[0].products
                     .slice(0, 4)
                     .map((product, productIndex) => {
                       return (
@@ -14797,7 +14907,7 @@ function Product_Details_Page() {
                         <Text3 text="Package Savings" marginBottom={0} />
                       </p>
                       <p className="package__saving__price">
-                        <Price price={99} size="heading5" />
+                        <Price currency={product.currency} price={99} size="heading5" />
                       </p>
                     </div>
                     <div className="exp__rd__package__total__block">
@@ -14807,7 +14917,7 @@ function Product_Details_Page() {
                       </p>
                       <p className="package__total__price">
                         {" "}
-                        <Price price={1999} size="heading5" />
+                        <Price currency={product.currency} price={1999} size="heading5" />
                       </p>
                     </div>
 
@@ -14834,8 +14944,8 @@ function Product_Details_Page() {
             <div className="pd__newArrival__block">
               <CarouselTypeTwo
                 productDetailPage={true}
-                sectionTitle="People Who Bought Also Bought"
-                carouselData={newArrivalData}
+                sectionTitle={product.relatedProducts[0].title}
+                carouselData={product.relatedProducts[0].products}
                 productType="productOne"
                 containerClassName="carouselTypeTwo__inner__block"
               />
@@ -14844,44 +14954,45 @@ function Product_Details_Page() {
               <SimilarProducts
                 productType="productTwo"
                 productDetailPage={true}
-                sectionTitle="Similar Products"
+                sectionTitle={product.relatedProducts[0].title}
                 containerClassName="pd__similar__products__block"
-                carouselData={peopleUltimatelyBoughtData}
+                carouselData={product.relatedProducts[0].products}
               />
             </div>
           </div>
           <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-3 product__details__right__block">
             <Heading3 price="People Ultimately Bought" />
             <p className="pd__mb__block__title">People Ultimately Bought</p>
-            {peopleUltimatelyBoughtData.map((product, productIndex) => {
+            {product.relatedProducts[0].products.map((product, productIndex) => {
               return (
                 <div key={product.id} className="row pd__mb__product__block">
                   <div className="col-4 pd__mb__product__image__block">
                     <img
-                      src={product.image}
+                      src={product.baseImage}
                       alt=""
                       className="pd__mb__product__image"
                     />
                   </div>
                   <div className="col-8 pd__mb__product__detail__block">
-                    <Heading7 text={product.productName} />
+                    <Heading7 text={product.name} />
                     <RatingBlock
                       size={15}
-                      rating={product.rating}
-                      totalRatings={product.totalRatings}
+                      rating={4.5}
+                      totalRatings={4199}
                       fillColor="#DC3A1A"
                       emptyColor="#C8C8C8"
                     />
-                    <Price price={product.price} size="heading6" span={true} />
+                    <Price price={product.price_rounded} currency={product?.currency} size="heading6" span={true} />
 
                     <OldPrice
-                      oldPrice={product.oldPrice}
+                      oldPrice={product.price_rounded + 200}
                       size="text3"
                       color="#808080"
                       marginLeft={5}
                       marginBottom={0}
                       lineThrough={true}
                       span={true}
+                      currency={product?.currency}
                     />
 
                     <div className="pd__compare__block">

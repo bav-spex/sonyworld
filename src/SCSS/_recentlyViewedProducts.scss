@@ -3,6 +3,7 @@
     width: 1702px;
     padding: 0px;
     margin: 0px auto;
+    margin-top: 60px;
     .section__title {
       font-family: "arialbold";
       font-size: 48px;
@@ -24,13 +25,17 @@
               flex-direction: column;
               align-items: center;
               .rv__product__image__block {
-                height: 140px;
-                // width: 100%;
+                height: 200px;
+                width: 100%;
                 margin: 0px 0px 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
                 .rv__product__image {
-                  // height: 100%;
+                  // height: auto;
                   width: 100%;
-                  object-fit: cover;
+                  // object-fit: cover;
                   //   margin: 0px 0px 10px 0px;
                 }
               }
@@ -71,10 +76,29 @@
   .rv__mobile__screen{
     display: block !important;
   }
+  .rv__left__block .arrow__block .left__arrow,.rv__left__block .arrow__block .right__arrow{
+    transform: translateX(0) !important;
+  }
 }
 @media screen and (max-width: 992px) {
   .recentlyViewed__block {
-    width: 100% !important;  }
+    width: 100% !important;  
+    margin-top: 0 !important;
+  }
+  .recentlyViewed__container{
+    background: #fff;
+  }
+  .section__title{
+    font-size: 24px !important;
+    padding: 10px 0;
+    margin: 0;
+  }
+  .rv__left__block{
+    padding: 0 10px !important;
+  }
+  .rv__right__block{
+    display: none;
+  }
 }
 @media screen and (max-width: 768px) {
   .inner__rv__block{

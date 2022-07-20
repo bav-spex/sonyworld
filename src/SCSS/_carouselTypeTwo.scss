@@ -1,12 +1,6 @@
 .carouselTypeTwo__container {
   margin: 30px 0px 0px;
   padding: 0px;
-  .carouselTypeTwo__block {
-    width: 100%;
-    padding: 0px;
-    position: relative;
-    margin: 0px auto;
-  }
   .section__title {
     font-family: "arialbold";
     font-size: 40px;
@@ -45,6 +39,12 @@
     scroll-behavior: smooth;
     // transition: all 0.2s ease-in;
   }
+  .carouselTypeTwo__block {
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    margin: 0px auto;
+  }
   .rv__inner__mobile__screen {
     // position: relative;
     display: flex;
@@ -53,6 +53,7 @@
     scroll-behavior: smooth;
     // transition: all 0.2s ease-in;
   }
+ 
   .top__trending__block {
     // position: relative;
     display: flex;
@@ -94,6 +95,10 @@
   }
 }
 @media screen and (max-width: 1200px) {
+  .carouselTypeTwo__block {
+    min-width: 100% !important;
+    margin: 0px auto;
+  }
   .arrow__block {
     width: 100% !important;
 

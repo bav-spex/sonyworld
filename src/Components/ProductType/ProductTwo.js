@@ -19,6 +19,26 @@ function ProductTwo({ productDetailPage, product }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
+  const [productWarrentyBlock, setProductWarrentyBlock] = useState({
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+  });
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
@@ -64,7 +84,7 @@ function ProductTwo({ productDetailPage, product }) {
           />
         </div>
         <div className="productTwo__image__block">
-          <img src={product.image} alt="" className="productTwo__image" />
+          <img src={product.baseImage} alt="" className="productTwo__image" />
         </div>
         <div className="productTwo__compare__block">
           <input
@@ -77,19 +97,19 @@ function ProductTwo({ productDetailPage, product }) {
         </div>
       </div>
       <p className="productTwo__name">
-        <Heading6 text={product.productName} marginBottom={10} />
+        <Heading6 text={product.name} marginBottom={10} />
       </p>
       <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
       <div className="rating__block">
         <RatingBlock
-          rating={product.rating}
-          totalRatings={product.totalRatings}
+          rating={4.5}
+          totalRatings={4124}
          
         />
       </div>
       <p className="productTwo__series">Model and Price</p>
       <div className="productTwo__size__button__block">
-        {product.size.map((size, sizeIndex) => {
+        {productWarrentyBlock.size.map((size, sizeIndex) => {
           return (
             <button
               key={size.id}
@@ -105,19 +125,21 @@ function ProductTwo({ productDetailPage, product }) {
       </div>
       <div className="prize__block">
         <OldPrice
-          oldPrice={product.oldPrice}
+           oldPrice={product.price_rounded + 200}
           size="text3"
           color="#c8c8c8"
           marginBottom={10}
           lineThrough={true}
           span={true}
+          currency={product?.currency}
         />
         <Price
-          price={product.price}
+         price={product.price_rounded}
           marginLeft={5}
           marginBottom={10}
           size="heading6"
           span={true}
+          currency={product?.currency}
         />
       </div>
       <div className="addToCart__button">

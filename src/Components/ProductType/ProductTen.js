@@ -131,6 +131,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
           marginLeft={5}
           textAlign="right"
           size="heading3"
+          currency={product?.currency}
         />
       <OldPrice
           oldPrice={product.oldPrice}
@@ -139,6 +140,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
           marginBottom={10}
           textAlign="right"
           lineThrough={true}
+          currency={product?.currency}
         />
          <div className="addToCart__button">
           <img src={shopping_cart} alt="" className="addToCart__icon" />

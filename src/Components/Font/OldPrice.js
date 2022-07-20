@@ -13,11 +13,11 @@ import Text4 from "./Text4"
 import Text5 from "./Text5"
 import Text6 from "./Text6"
 import "./../../SCSS/Font/_font.scss";
-function OldPrice({preText,postText, oldPrice, size ,color,marginLeft,marginBottom,lineThrough,span,textAlign,textTransform}) {
+function OldPrice({preText,postText, oldPrice,currency, size ,color,marginLeft,marginBottom,lineThrough,span,textAlign,textTransform}) {
   const finalPrice =
   oldPrice.toString().length > 3
-  ? `${preText ? preText : ""} SAR${oldPrice.toString().slice(0, -3)},${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`
-  : `${preText ? preText : ""} SAR${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`;
+  ? `${preText ? preText : ""} ${currency}${oldPrice.toString().slice(0, -3)},${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`
+  : `${preText ? preText : ""} ${currency}${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`;
 
   return (
     <>

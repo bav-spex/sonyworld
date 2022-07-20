@@ -5,11 +5,13 @@ body{
 }
 ::-webkit-scrollbar {
     width: 4px !important;
-   
+
     /* transform: translateY(100%); */
   }
   
-  
+  .main__navbar__container .navbar__row::-webkit-scrollbar {
+    height: 0;
+  }
   
   /* Track */
   ::-webkit-scrollbar-track {
@@ -44,4 +46,7 @@ body{
   }
   .main_wrapper{
     /* margin-top: 112px; */
+  }
+  img{
+    max-width: 100%;
   }

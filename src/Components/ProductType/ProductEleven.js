@@ -19,7 +19,7 @@ function ProductEleven({ product }) {
         <img src={product.image} alt="" className="productEleven__image" />
       </div>
 <Text4 text={product.categoryTagline} marginBottom10/>
-      <Price price={product.price} size="heading6" marginBottom={10} />
+      <Price currency={product?.currency} price={product.price} size="heading6" marginBottom={10} />
 
       <div className="productEleven__select__block">
         <img
