@@ -1847,7 +1847,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                       : "row search__box__result__popup__disable"
                   }
                 >
-                  <div className="col-5 search__result__left__part">
+                  <div className="col-xl-5 search__result__left__part">
                     {searchData.searchResultTitle.map((title, titleIndex) => {
                       let firstWord = title.split(" ")[0].trim();
                       let remainWord = title
@@ -1864,7 +1864,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                       );
                     })}
                   </div>
-                  <div className="col-7 search__result__right__part">
+                  <div className="col-xl-7 search__result__right__part">
                     {searchData.searchResultProduct.map(
                       (product, productIndex) => {
                         return (

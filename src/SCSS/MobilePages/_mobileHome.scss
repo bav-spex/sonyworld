@@ -1,13 +1,92 @@
-.mobile_home_cat_banner{
-    width: 100%;
-    max-height: 380px;
-    display: block;
-    img{
-        height: 100%;
+.mobile_home_television_cat {
+    .mobile_home_cat_banner {
         width: 100%;
+        max-height: 380px;
         display: block;
-        object-fit: cover;
-        object-position: top;
-        border-radius: 10px;
+
+        img {
+            height: 100%;
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 10px;
+        }
+
+    }
+
+    .feature__category__container {
+        background: transparent;
+
+        .feature__category {
+            box-shadow: 0px 3px 6px #0000000A;
+            border: 1px solid #D1D1D1;
+            border-radius: 5px;
+            position: relative;
+
+        }
+
+    }
+}
+
+.fav_icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    .productOne__favourite__icon {
+        display: block;
+    }
+
+    .productOne__favourite__icon__disable {
+        display: none;
+    }
+}
+.cart_end_icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.mobile_home_page{
+    .feature__category{
+        height: 100% !important;
+        
+    }
+    .top_rated_sec{
+        .feature__category__container{    
+            background: #E4FBEC;
+        }
+    }
+    .adImage__container{
+        padding: 0 !important;
+        img{
+            object-fit: cover;
+        }
+    }
+    .sale_sec{
+        .feature__category__container{    
+            background: #FFF4F2;
+        }
+    }   
+    .Feature_cat_sec{
+        
+    }
+    .mobile_Feature_cat_sec{
+        .section__title{
+            font-family: "arialbold";
+        }
+        .mobile_feature_cat_card {
+            box-shadow: 0px 3px 6px #0000000a;
+            border: 1px solid #D1D1D1;
+            border-radius: 5px;
+            padding: 20px 20px;
+        }
+    }
+}
+
+@media (max-width:767px){
+    .home__page__category__block{
+        // padding-top:170px;
     }
 }
