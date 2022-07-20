@@ -20,7 +20,6 @@ export const getHandshake = async () => {
   } catch (e) {
     console.log(e, "error in handshake");
   }
-  return res
 };
 
 export const refreshHandshake = async () => {

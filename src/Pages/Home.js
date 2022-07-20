@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 
-import { getIdentifier } from "./../services/homepage";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import Banner from "../Components/Banner";
 import "./../SCSS/_home.scss";
 
