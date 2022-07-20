@@ -45,3 +45,6 @@ body{
   .main_wrapper{
     /* margin-top: 112px; */
   }
+  img{
+    max-width: 100%;
+  }

@@ -1,0 +1,13 @@
+.mobile_home_cat_banner{
+    width: 100%;
+    max-height: 380px;
+    display: block;
+    img{
+        height: 100%;
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 10px;
+    }
+}

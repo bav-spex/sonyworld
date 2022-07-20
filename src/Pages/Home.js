@@ -42,7 +42,7 @@ import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
 import { loadHomePageData } from "../redux/appAction";
 
-
+import  MobileHomePage from './MobilePages/Mobile_Home_Page';
 
 function Home({ homepageData }) {
   // const [homepageData, setHomepageData] = useState();
@@ -148,29 +148,25 @@ function Home({ homepageData }) {
   }
   return (
     <>
-      <div className="homePage">
-        <div className="d-block d-lg-none">
-          <HomePageCategoryBlock />
-        </div>
+      <div className="mobile_home_page d-block d-lg-none">
+          <MobileHomePage homePageBottomSingleBanner={homePageBottomSingleBanner} dealsOfTheWeekData={dealsOfTheWeekData} topRatedData={topRatedData} topTrendingData={topTrendingData} bannerData={bannerData} featureProductsData={featureProductsData} recentlyViewedProductsData={recentlyViewedProductsData} recentlyViewedProductsBanner={recentlyViewedProductsBanner} newArrivalData={newArrivalData}/>
+      </div>
+      <div className="homePage d-none d-lg-block">
+        
 
         <Banner bannerData={bannerData} />
 
         <div className="d-none d-lg-block">
           <HomePageCategoryBlock />
         </div>
-        <div className="d-block d-lg-none">
-          <RecentlyViewedProducts
-            recentlyViewedProductsData={recentlyViewedProductsData}
-            recentlyViewedProductsBanner={recentlyViewedProductsBanner}
-          />
-        </div>
+        
         <FeatureProducts featureProductsData={featureProductsData} />
-        <div className="d-none d-lg-block">
+     
           <RecentlyViewedProducts
             recentlyViewedProductsData={recentlyViewedProductsData}
             recentlyViewedProductsBanner={recentlyViewedProductsBanner}
           />
-        </div>
+       
 
         <ProductContainer
           sectionTitle="New Arrivals"
