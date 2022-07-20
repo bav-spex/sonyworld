@@ -80,7 +80,7 @@ function FeatureProducts({ featureProductsData }) {
             
           </Link>
           <div className=" second__feature__category__block">
-            <div className="feature__category first__in__column">
+            <Link to={`products/${featureProductsData[1].sku}`} className="feature__category first__in__column">
               <div className="second__feature__category__image__block">
                 <img
                   src={featureProductsData[1]?.baseImage}
@@ -109,8 +109,8 @@ function FeatureProducts({ featureProductsData }) {
                 span={true}
                 currency={featureProductsData[1]?.currency}
               />
-            </div>
-            <div className="feature__category">
+            </Link>
+            <Link to={`products/${featureProductsData[2].sku}`} className="feature__category">
               <div className="second__feature__category__image__block">
                 <img
                   src={featureProductsData[2]?.baseImage}
@@ -139,10 +139,10 @@ function FeatureProducts({ featureProductsData }) {
                 span={true}
                 currency={featureProductsData[2]?.currency}
               />
-            </div>
+            </Link>
           </div>
           <div className=" second__feature__category__block">
-            <div className="feature__category first__in__column">
+            <Link to={`products/${featureProductsData[3].sku}`} className="feature__category first__in__column">
               <div className="second__feature__category__image__block">
                 <img
                   src={featureProductsData[3]?.baseImage}
@@ -171,8 +171,8 @@ function FeatureProducts({ featureProductsData }) {
                 span={true}
                 currency={featureProductsData[3]?.currency}
               />
-            </div>
-            <div className="feature__category">
+            </Link>
+            <Link to={`products/${featureProductsData[4].sku}`} className="feature__category">
               <div className="second__feature__category__image__block">
                 <img
                   src={featureProductsData[4]?.baseImage}
@@ -201,7 +201,7 @@ function FeatureProducts({ featureProductsData }) {
                 span={true}
                 currency={featureProductsData[4]?.currency}
               />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

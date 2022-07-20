@@ -52,9 +52,10 @@ const productDataJSON = [
     image: product_carousal_04,
   },
 ];
-function ProductCarousel() {
+function ProductCarousel({productImageData}) {
+  console.log(productImageData);
   const [index, setIndex] = useState(0);
-  const [carousel, setcarousel] = useState(productDataJSON);
+  const [carousel, setcarousel] = useState(productImageData);
 
   useEffect(() => {
     if (index > carousel.length - 1) {
@@ -97,11 +98,12 @@ function ProductCarousel() {
         </div>
         <div className="carousel__dots__block">
           {carousel.map((ban, banIndex) => {
+            console.log(parseInt(ban.position));
             return (
               <div
-                key={ban.id}
+                key={banIndex}
                 className={
-                  ban.id === index + 1
+                  parseInt(ban.position) === index + 1
                     ? "carousel__dot carousel__dotActive"
                     : "carousel__dot"
                 }
@@ -112,7 +114,7 @@ function ProductCarousel() {
                   alt=""
                   className="carousel__thumbnail__image"
                 />
-                <div className={ban.id === index + 1 ? "overlay  " : ""}></div>
+                <div className={banIndex === index  ? "overlay  " : ""}></div>
               </div>
             );
           })}
@@ -131,8 +133,11 @@ function ProductCarousel() {
             ) {
               position = "carousel prevCarousel";
             }
+            if(carousel.length === 1){
+              position = "carousel activeCarousel";
+            }
             return (
-              <div className={position} key={ban.id}>
+              <div className={position} key={parseInt(ban.position)}>
                 <img className="carousel__image" src={ban.image} alt="" />
               </div>
             );

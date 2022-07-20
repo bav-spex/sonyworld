@@ -14594,8 +14594,8 @@ function Product_Details_Page() {
     dispatch(loadProductDetailData(id));
   }, []);
   const productData = useSelector((state) => state.appData.productData);
-  console.log(productData);
-  console.log(Object.values(productData).length);
+  // console.log(productData);
+  // console.log(Object.values(productData).length);
   useEffect(() => {
     if (Object.values(productData).length !== 0) {
       setProduct(productData);
@@ -14650,7 +14650,7 @@ function Product_Details_Page() {
             <div className="row products__details__inner__block">
               <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
                 <div className="product__carousel__block">
-                  <ProductCarousel />
+                  <ProductCarousel productImageData={product.media.image.screenshots} />
                 </div>
               </div>
               <div className="col-12 col-sm-12 col-md-6 product__details__block">
@@ -14886,7 +14886,7 @@ function Product_Details_Page() {
               <Heading1 text="Our experts Recommendation" />
               <div className="row exp__rd__main__block">
                 <div className="col-12 col-lg-12 col-xl-9 row exp__rd__left__block">
-                  {peopleUltimatelyBoughtData
+                  {product.relatedProducts[0].products
                     .slice(0, 4)
                     .map((product, productIndex) => {
                       return (
@@ -14907,7 +14907,7 @@ function Product_Details_Page() {
                         <Text3 text="Package Savings" marginBottom={0} />
                       </p>
                       <p className="package__saving__price">
-                        <Price price={99} size="heading5" />
+                        <Price currency={product.currency} price={99} size="heading5" />
                       </p>
                     </div>
                     <div className="exp__rd__package__total__block">
@@ -14917,7 +14917,7 @@ function Product_Details_Page() {
                       </p>
                       <p className="package__total__price">
                         {" "}
-                        <Price price={1999} size="heading5" />
+                        <Price currency={product.currency} price={1999} size="heading5" />
                       </p>
                     </div>
 
@@ -14944,8 +14944,8 @@ function Product_Details_Page() {
             <div className="pd__newArrival__block">
               <CarouselTypeTwo
                 productDetailPage={true}
-                sectionTitle="People Who Bought Also Bought"
-                carouselData={newArrivalData}
+                sectionTitle={product.relatedProducts[0].title}
+                carouselData={product.relatedProducts[0].products}
                 productType="productOne"
                 containerClassName="carouselTypeTwo__inner__block"
               />
@@ -14954,44 +14954,45 @@ function Product_Details_Page() {
               <SimilarProducts
                 productType="productTwo"
                 productDetailPage={true}
-                sectionTitle="Similar Products"
+                sectionTitle={product.relatedProducts[0].title}
                 containerClassName="pd__similar__products__block"
-                carouselData={peopleUltimatelyBoughtData}
+                carouselData={product.relatedProducts[0].products}
               />
             </div>
           </div>
           <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-3 product__details__right__block">
             <Heading3 price="People Ultimately Bought" />
             <p className="pd__mb__block__title">People Ultimately Bought</p>
-            {peopleUltimatelyBoughtData.map((product, productIndex) => {
+            {product.relatedProducts[0].products.map((product, productIndex) => {
               return (
                 <div key={product.id} className="row pd__mb__product__block">
                   <div className="col-4 pd__mb__product__image__block">
                     <img
-                      src={product.image}
+                      src={product.baseImage}
                       alt=""
                       className="pd__mb__product__image"
                     />
                   </div>
                   <div className="col-8 pd__mb__product__detail__block">
-                    <Heading7 text={product.productName} />
+                    <Heading7 text={product.name} />
                     <RatingBlock
                       size={15}
-                      rating={product.rating}
-                      totalRatings={product.totalRatings}
+                      rating={4.5}
+                      totalRatings={4199}
                       fillColor="#DC3A1A"
                       emptyColor="#C8C8C8"
                     />
-                    <Price price={product.price} size="heading6" span={true} />
+                    <Price price={product.price_rounded} currency={product?.currency} size="heading6" span={true} />
 
                     <OldPrice
-                      oldPrice={product.oldPrice}
+                      oldPrice={product.price_rounded + 200}
                       size="text3"
                       color="#808080"
                       marginLeft={5}
                       marginBottom={0}
                       lineThrough={true}
                       span={true}
+                      currency={product?.currency}
                     />
 
                     <div className="pd__compare__block">
