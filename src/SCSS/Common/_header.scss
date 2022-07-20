@@ -68,6 +68,8 @@
             width: 1000px;
           }
           .search__box__result__popup {
+            max-height: 540px;
+    overflow-y: auto;
             position: absolute;
             width: 1000px;
             z-index: 14;
@@ -529,6 +531,9 @@ overflow-y: scroll;
   .search__box {
     width: 100% !important;
   }
+  .search__box__result__popup {
+    width: 600px !important;
+  }
 }
 @media screen and (max-width: 992px) {
   
@@ -653,9 +658,9 @@ overflow-y: scroll;
     width: 100% !important;
   }
 
-  .icon__block {
-    display: none !important;
-  }
+  // .icon__block {
+  //   display: none !important;
+  // }
   .productList__block {
     justify-content: space-between;
     padding: 0px 12px 0px 12px !important;

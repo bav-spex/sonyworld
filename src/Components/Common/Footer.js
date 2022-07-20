@@ -46,7 +46,7 @@ function Footer() {
               </div>
             </div>
             <div className="row col-12 col-sm-12 col-md-9 footer__navbar__row">
-              <div className="col-6 col-sm-6 col-md-3 footer__link__block">
+              <div className=" col-sm-6 col-md-3 footer__link__block">
                 <p className="footer__link__title">{t("footer.about")}</p>
                 <Link className="footer___link" to="/about">
                   {t("footer.about_us")}
@@ -64,7 +64,7 @@ function Footer() {
                   {t("footer.service_centers")}
                 </Link>
               </div>
-              <div className="col-6 col-sm-6 col-md-3 footer__link__block">
+              <div className="col-sm-6 col-md-3 footer__link__block">
                 <p className="footer__link__title">{t("footer.account_info")}</p>
                 <Link className="footer___link" to="/account">
                   {t("footer.my_account")}
@@ -82,7 +82,7 @@ function Footer() {
                   {t("footer.contact_us")}
                 </Link>
               </div>
-              <div className="col-6 col-sm-6 col-md-3 footer__link__block">
+              <div className=" col-sm-6 col-md-3 footer__link__block">
                 <p className="footer__link__title">{t("footer.quick_links")}</p>
                 <Link className="footer___link" to="/support">
                   {t("footer.support")}
@@ -97,7 +97,7 @@ function Footer() {
                   {t("footer.installment")}
                 </Link>
               </div>
-              <div className="col-6 col-sm-6 col-md-3 footer__link__block">
+              <div className=" col-sm-6 col-md-3 footer__link__block">
                 <p className="footer__email__title">{t("footer.email")}</p>
                 <a className="footer__email" href="mailto:hello@sony.com">
                   hello@sony.com
