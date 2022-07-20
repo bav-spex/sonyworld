@@ -1870,7 +1870,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                         return (
                           <div
                             key={product.id}
-                            className="row search__result__product__block"
+                            className="row search__result__product__block mb-1"
                           >
                             <div className="col-2 search__result__product__image__block">
                               <img
