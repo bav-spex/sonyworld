@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import "./../SCSS/_mobilePopup.scss"
+import React, { useState } from "react";
+import "./../SCSS/_mobilePopup.scss";
 import product_01 from "./../assets/Product/product_01.jpg";
 import NavbarAdBanner_01 from "./../assets/NavbarAdBanner/NavbarAdBanner_01.jpg";
 // const categoryData = [
@@ -300,73 +300,53 @@ import NavbarAdBanner_01 from "./../assets/NavbarAdBanner/NavbarAdBanner_01.jpg"
 //       ],
 //     },
 //   ];
-function MobilePopup({menuIndex, categoryData}) {
-    const [mobileShowPopup, setMobileShowPopup] = useState(true);
-  
+function MobilePopup({ menuIndex, currentCategoryData }) {
+  const [mobileShowPopup, setMobileShowPopup] = useState(true);
+  console.log(currentCategoryData);
   return (
-    <div className={
-        mobileShowPopup ? "mobile__product__popup__container" : "mobile__product__popup__container__disable"
-      }>
-        <div className="mobile__product__popup__block">
-        {categoryData?.children_data?.map((mainProduct, mainProductIndex) => {
-              return (
-                <div
-                  key={mainProduct.id}
-                  className={
-                    menuIndex === mainProduct.id
-                      ? "row mobile__inner__product__popup__block"
-                      : "row mobile__inner__product__popup__block__disable"
-                  }
-                >
-                  <div className="row col-12 mobile__category__block">
-                    {mainProduct.category.map((category, categoryIndex) => {
-                      return (
-                        <p className="col-12 col-sm-6 mobile__category__title" key={categoryIndex}>
-                          {category}
-                        </p>
-                      );
-                    })}
-                  </div>
-                  <div className="row col-12 mobile__productList__block">
-                    {mainProduct.productList.map((product, productIndex) => {
-                      return (
-                        <div key={product.id} className="col-6 col-sm-4 mobile__product__block">
-                          <img
-                            src={product_01}
-                            alt=""
-                            className="mobile__product__image"
-                          />
-                          {/* <img
-                              src={product.image}
-                              alt=""
-                              className="product__image"
-                            /> */}
-                          <p className="mobile__product__title">{product.title}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="row col-12 mobile__adsBanner__block">
-                    {mainProduct.adBanner.map((adBanner, adBannerIndex) => {
-                      return (
-                          <div className="col-12 col-sm-4 mobile__adBanner__images__block">
-
-                        <img
-                          key={adBanner.id}
-                          src={NavbarAdBanner_01}
-                          alt=""
-                          className="mobile__adBanner__image"
-                          />
-                          </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-        </div>
+    <>
+      <div className="row col-12 mobile__category__block">
+        {currentCategoryData?.children_data.map((subcategory, subcategoryIndex) => {
+          return (
+            <p
+              className="col-12 col-sm-6 mobile__category__title"
+              key={subcategory.id}
+            >
+              {subcategory.name}
+            </p>
+          );
+        })}
       </div>
-  )
+      {/* <div className="row col-12 mobile__productList__block">
+        {mainProduct?.productList?.map((product, productIndex) => {
+          return (
+            <div
+              key={product.id}
+              className="col-6 col-sm-4 mobile__product__block"
+            >
+              <img src={product_01} alt="" className="mobile__product__image" />
+              
+              <p className="mobile__product__title">{product.title}</p>
+            </div>
+          );
+        })}
+      </div> */}
+      {/* <div className="row col-12 mobile__adsBanner__block">
+        {mainProduct.adBanner.map((adBanner, adBannerIndex) => {
+          return (
+            <div className="col-12 col-sm-4 mobile__adBanner__images__block">
+              <img
+                key={adBanner.id}
+                src={NavbarAdBanner_01}
+                alt=""
+                className="mobile__adBanner__image"
+              />
+            </div>
+          );
+        })}
+      </div> */}
+    </>
+  );
 }
 
-export default MobilePopup
+export default MobilePopup;

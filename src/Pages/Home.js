@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import { getIdentifier } from "./../services/homepage";
+import { connect, useSelector, useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import Banner from "../Components/Banner";
 import "./../SCSS/_home.scss";
 
@@ -148,7 +147,7 @@ function Home({ homepageData }) {
   }
   return (
     <>
-      <div className="mobile_home_page d-block d-lg-none">
+      <div className="mobile__home__page d-block d-lg-none">
           <MobileHomePage homePageBottomSingleBanner={homePageBottomSingleBanner} dealsOfTheWeekData={dealsOfTheWeekData} topRatedData={topRatedData} topTrendingData={topTrendingData} bannerData={bannerData} featureProductsData={featureProductsData} recentlyViewedProductsData={recentlyViewedProductsData} recentlyViewedProductsBanner={recentlyViewedProductsBanner} newArrivalData={newArrivalData}/>
       </div>
       <div className="homePage d-none d-lg-block">
@@ -225,4 +224,13 @@ function Home({ homepageData }) {
   );
 }
 
-export default Home;
+//injecting redux data to props
+const mapStateToProps = (state) => {
+  return {
+    token: state?.auth?.token,
+    userData: state?.auth?.userData,
+    userLoggedIn: state?.auth?.userData?.userLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps, {})(Home);

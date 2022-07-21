@@ -1,0 +1,109 @@
+.mobile__home__category__banner__product__container {
+  padding: 0px;
+  .mobile__home__category__banner__product__block {
+    padding: 0px 12px;
+    width: 100%;
+    height: auto;
+    // display: block;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .mh__cbp__banner {
+      height: auto;
+      width: 100%;
+      // width: 100%;
+      // display: block;
+      // object-fit: cover;
+      // object-position: center center;
+      border-radius: 10px;
+    }
+  }
+  .mh__cbp__row {
+    margin: 0px;
+    .mh__cbp__product {
+      padding: 0px 12px 0px;
+      text-decoration: none;
+      color: #000000;
+      margin: 0px 0px 20px 0px;
+      .inner__mh__cbp__product {
+        padding:  10px 16px ;
+        position: relative;
+        background: #ffffff 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #0000000a;
+        border: 1px solid #d1d1d1;
+        border-radius: 5px;
+        .second__mh__cbp__product__image__block {
+          width: 100%;
+          margin: 20px auto 20px;
+          overflow: hidden;
+          height: 200px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .second__mh__cbp__product__image {
+            // height: 72px;
+            // margin: 0px auto;
+            height: auto;
+            width: 100%;
+            // object-fit: contain;
+          }
+        }
+        .fav_icon {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        
+          .productOne__favourite__icon {
+            display: block;
+          }
+        
+          .productOne__favourite__icon__disable {
+            display: none;
+          }
+        }
+        .cart__end__icon {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+        }
+        .md__product__rating__block {
+          margin: 0px 0px 20px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1702px) {
+  .mh__cbp__product {
+    padding: 15px 20px 15px !important;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .second__mh__cbp__product__image__block {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .second__md__product__block {
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .mh__cbp__product {
+    padding: 0px 12px !important;
+  }
+  .second__md__product__image {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+}
