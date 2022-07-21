@@ -45,7 +45,7 @@ function FeatureProducts({ featureProductsData }) {
               </div> */}
               {/* <div></div> */}
 
-              <div className="deal__of__day__container">
+              {/* <div className="deal__of__day__container">
                 <div className="rectangleLeft"></div>
                 <div className="upper__rectangle__block">
                   <div className="rectangle">
@@ -53,7 +53,7 @@ function FeatureProducts({ featureProductsData }) {
                   </div>
                   <div className="triangle-right"></div>
                 </div>
-              </div>
+              </div> */}
               <div className="first__feature__category__image__block">
                 <span className="fav_icon d-block d-lg-none">
                   <img
