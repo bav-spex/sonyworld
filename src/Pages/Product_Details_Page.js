@@ -14594,7 +14594,7 @@ function Product_Details_Page() {
     dispatch(loadProductDetailData(id));
   }, []);
   const productData = useSelector((state) => state.appData.productData);
-  // console.log(productData);
+  // console.log("before",productData);
   // console.log(Object.values(productData).length);
   useEffect(() => {
     if (Object.values(productData).length !== 0) {
@@ -14603,6 +14603,8 @@ function Product_Details_Page() {
       // console.log(product.reviewSummary.totals);
     }
   }, [productData]);
+  
+  // console.log("useEffect",productData);
   // console.log(product.reviewSummary.totals);
   const [newArrivalData, setNewArrivalData] = useState(
     contentData.find((con) => {

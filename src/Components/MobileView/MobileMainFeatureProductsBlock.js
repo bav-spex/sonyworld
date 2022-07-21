@@ -12,16 +12,15 @@ import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping-cart-red.svg";
 
-function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
+function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backgroundColor }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
 
-  console.log(featureProductsData[0]);
   return (
-    <div className="container-fluid mobile__dealsOfTheDay__container">
+    <div className="container-fluid mobile__dealsOfTheDay__container" style={{backgroundColor: `${backgroundColor}`}}>
       <div className=" mobile__dealsOfTheDay__block">
         <p className="section__title py-3">
          {sectionTitle}
