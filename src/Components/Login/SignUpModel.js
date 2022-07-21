@@ -33,6 +33,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
     confirmPassword: "",
     policyChecked: true,
   });
+
   const handleChange = (event) => {
     let value = event.target.value;
     let name = event.target.name;
@@ -51,17 +52,74 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
       }
       if (name === "confirmPassword") {
         if (data.password) {
-          if (data.confirmPassword !== data.password) {
-            getErr.push("confirmPassword");
+          if (value !== data.password) {
+            getErr.push("passwordNotMatched");
+          } else {
+            let tempErr = getErr.filter((val, i) => val !== 'passwordNotMatched');
+            getErr = tempErr
           }
         }
       }
+      if (name === "password") {
+        if (value !== data.confirmPassword) {
+          getErr.push("passwordNotMatched");
+        } else {
+          let tempErr = getErr.filter((val, i) => val !== 'passwordNotMatched');
+          getErr = tempErr
+        }
+      }
     } else {
+      if (name === "email") {
+        let tempErr = getErr.filter((val, i) => val !== 'email_invalid');
+        getErr = tempErr
+      }
+      if (name === "confirmPassword") {
+        let tempErr = getErr.filter((val, i) => val !== 'passwordNotMatched');
+        getErr = tempErr
+      }
       getErr.push(name);
     }
     setErrors(getErr);
     setData({ ...data, [name]: value });
   };
+
+  const validate = () => {
+    const errorsList = [];
+
+    let validateFeild = [
+      'firstName',
+      'lastName',
+      'email',
+      'mobileNumber',
+      'password',
+      'confirmPassword',
+    ];
+
+    validateFeild && validateFeild.map((val, i) => {
+      let keyVal = !data[val]
+      if (!data[val]) {
+        errorsList.push(val);
+      }
+      if (val === 'email') {
+        if (!keyVal) {
+          let emailStatus = emailValidator(data[val]);
+          if (emailStatus === 'error') {
+            errorsList.push('email_invalid');
+          }
+        }
+      }
+    })
+    return errorsList;
+  };
+
+  const onSignUp = () => {
+    let checkError = validate();
+    if (checkError.length === 0) {
+      // api fire
+    }
+    setErrors(checkError);
+  }
+
   const togglePassword = () => setIsPassword(!isPassword);
   const toggleConfirmPassword = () => setIsConfirmPassword(!isConfirmPassword);
   const [errors, setErrors] = useState([]);
@@ -91,7 +149,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("firstName") && <p className="invalid__message">invalid firstName</p>}
+          {errors.includes("firstName") && <p className="invalid__message">Please Enter First Name</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Last Name</p> */}
@@ -107,7 +165,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("lastName") && <p className="invalid__message">invalid lastName</p>}
+          {errors.includes("lastName") && <p className="invalid__message">Please Enter Last Name</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Email Address</p> */}
@@ -123,8 +181,8 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("email") && <p className="invalid__message">invalid email</p>}
-          {errors.includes("email_invalid") && <p className="invalid__message">invalid type email</p>}
+          {errors.includes("email") && <p className="invalid__message">Please Enter Email Address</p>}
+          {errors.includes("email_invalid") && <p className="invalid__message">Please Enter Valid Email Address</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Mobile Number</p> */}
@@ -140,7 +198,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("mobileNumber") && <p>mobile Number</p>}
+          {errors.includes("mobileNumber") && <p className="invalid__message">Please Enter Mobile Number</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Password</p> */}
@@ -163,7 +221,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               )}
             </a>
           </div>
-          {errors.includes("password") && <p className="invalid__message">invalid password</p>}
+          {errors.includes("password") && <p className="invalid__message">Please Enter Password</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Confirm Password</p> */}
@@ -186,7 +244,8 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               )}
             </a>
           </div>
-          {errors.includes("confirmPassword") && <p className="invalid__message">invalid confirmPassword</p>}
+          {errors.includes("confirmPassword") && <p className="invalid__message">Please Enter Confirm Password</p>}
+          {errors.includes("passwordNotMatched") && <p className="invalid__message">Password And Confirm Password Does Not Matched</p>}
         </div>
         <div className="main__policy__check__block">
           <div className="policy__check__block">
@@ -219,7 +278,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
           </p>
         </div>
 
-        <button className="signup__button">SIGN UP</button>
+        <button className="signup__button" onClick={() => onSignUp()}>SIGN UP</button>
         <div className="signup__or__block">
           <div className="signup__or__text__block">
             <p className="signup__or__text">OR</p>
