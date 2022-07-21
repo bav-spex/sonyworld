@@ -279,11 +279,11 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
         </div>
 
         <button className="signup__button" onClick={() => onSignUp()}>SIGN UP</button>
-        <div className="signup__or__block">
-          <div className="signup__or__text__block">
-            <p className="signup__or__text">OR</p>
+        <div className="or__block">
+          <div className="or__text__block">
+            <p className="or__text">OR</p>
           </div>
-          <div className="signup__mid__line"></div>
+          <div className="mid__line"></div>
         </div>
 
         <button className="google__signin__button">
