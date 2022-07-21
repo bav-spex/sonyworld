@@ -12,16 +12,15 @@ import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping-cart-red.svg";
 
-function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
+function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backgroundColor }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
 
-  console.log(featureProductsData[0]);
   return (
-    <div className="container-fluid mobile__dealsOfTheDay__container">
+    <div className="container-fluid mobile__dealsOfTheDay__container" style={{backgroundColor: `${backgroundColor}`}}>
       <div className=" mobile__dealsOfTheDay__block">
         <p className="section__title py-3">
          {sectionTitle}
@@ -29,7 +28,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
         <div className="row inner__mobile__dealsOfTheDay__block">
           <Link
             className="first__md__product__block"
-            to={`products/${featureProductsData[0].sku}`}
+            to={`products/${featureProductsData[0].sku.replace(/[/]/g, "%2F")}`}
           >
             {/* <div className="deal__of__the__day">
                 <p className="inner__text">DEALS OF THE DAY</p>
@@ -109,7 +108,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
           </Link>
           <div className=" second__md__product__block">
             <Link
-              to={`products/${featureProductsData[1].sku}`}
+              to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`}
               className="md__product"
             >
               <span className="fav_icon d-block d-lg-none">
@@ -171,7 +170,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
               </div>
             </Link>
             <Link
-              to={`products/${featureProductsData[2].sku}`}
+              to={`products/${featureProductsData[2].sku.replace(/[/]/g, "%2F")}`}
               className="md__product"
             >
               <span className="fav_icon d-block d-lg-none">
@@ -235,7 +234,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
           </div>
           <div className=" second__md__product__block">
             <Link
-              to={`products/${featureProductsData[3].sku}`}
+              to={`products/${featureProductsData[3].sku.replace(/[/]/g, "%2F")}`}
               className="md__product first__in__column"
             >
               <span className="fav_icon d-block d-lg-none">
@@ -297,7 +296,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
               </div>
             </Link>
             <Link
-              to={`products/${featureProductsData[4].sku}`}
+              to={`products/${featureProductsData[4].sku.replace(/[/]/g, "%2F")}`}
               className="md__product"
             >
               <span className="fav_icon d-block d-lg-none">

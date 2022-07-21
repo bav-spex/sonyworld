@@ -1,7 +1,13 @@
+.pd__productOne__block:hover{
+text-decoration: none;
+color: #000000;
+}
 .pd__productOne__block {
   width: 280px !important;
   margin: 0px 40px 0px 0px;
   background-color: #ffffff;
+  text-decoration: none;
+  color: #000000;
   cursor: pointer;
   .productOne__image__block {
     width: 280px;
@@ -24,6 +30,8 @@
       font-family: "arialbold";
       margin: 0px;
       height: 72px;
+      overflow: hidden;
+
     }
     .productOne__favourite__icon {
       display: block;
@@ -69,10 +77,15 @@
     }
   }
 }
+.productOne__block:hover{
+  color: #000000;
+}
 .productOne__block {
   width: 255px;
   margin: 0px 40px 0px 0px;
   background-color: #ffffff;
+  text-decoration: none;
+  color: #000000;
   cursor: pointer;
 
   .productOne__image__block {
@@ -101,6 +114,8 @@
     .productOne__name {
       font-family: "arialbold";
       margin: 0px;
+      height: 72px;
+      overflow: hidden;
     }
     .productOne__favourite__icon {
       display: block;

@@ -302,7 +302,7 @@ import NavbarAdBanner_01 from "./../assets/NavbarAdBanner/NavbarAdBanner_01.jpg"
 //   ];
 function MobilePopup({ menuIndex, currentCategoryData }) {
   const [mobileShowPopup, setMobileShowPopup] = useState(true);
-  console.log(currentCategoryData);
+  // console.log(currentCategoryData);
   return (
     <>
       <div className="row col-12 mobile__category__block">

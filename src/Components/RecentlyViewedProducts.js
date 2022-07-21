@@ -26,7 +26,7 @@ function RecentlyViewedProducts({ categoryData,recentlyViewedProductsData, recen
                   return (
                     <div key={catIndex} className="col-3 rv__product__block">
                       <div className="rv__product__image__block">
-                        <Link to="/products/1">
+                        <Link to={`products/${cat.sku.replace(/[/]/g, "%2F")}`}>
                           <img
                             src={cat.baseImage}
                             alt="category-image"
