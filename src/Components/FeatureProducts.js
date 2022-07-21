@@ -25,7 +25,6 @@ function FeatureProducts({ featureProductsData }) {
     setIsFavourite(!isFavourite);
   };
 
-  console.log(featureProductsData[0]);
   return (
     <div className="container-fluid feature__category__container d-none d-lg-block">
       <div className=" feature__category__block">

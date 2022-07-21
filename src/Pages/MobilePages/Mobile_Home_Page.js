@@ -62,14 +62,14 @@ function Mobile_Home_Page({
         />
 
         
-        <MobileMainFeatureProductsBlock sectionTitle="Deals of The Day" featureProductsData={featureProductsData} />
+        <MobileMainFeatureProductsBlock backgroundColor="#FFFBE4" sectionTitle="Deals of The Day" featureProductsData={featureProductsData} />
 
 
         <MobileHomeCategoryBannerProductsBlock featureProductsData={featureProductsData} />
              {/* category end           */}
 
 
-        <MobileMainFeatureProductsBlock sectionTitle="Top Rated Products" featureProductsData={featureProductsData} />
+        <MobileMainFeatureProductsBlock  backgroundColor="#E4FBEC" sectionTitle="Top Rated Products" featureProductsData={featureProductsData} />
         {/* top rated end */}
 
 
@@ -96,7 +96,7 @@ function Mobile_Home_Page({
         {/* category end           */}
 
 
-        <MobileMainFeatureProductsBlock sectionTitle="Sale Upto 35% Off" featureProductsData={featureProductsData} />
+        <MobileMainFeatureProductsBlock backgroundColor="#FFF4F2 " sectionTitle="Sale Upto 35% Off" featureProductsData={featureProductsData} />
         {/* top rated end */}
 
 
