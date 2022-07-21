@@ -147,7 +147,7 @@ function Home({ homepageData }) {
   }
   return (
     <>
-      <div className="mobile_home_page d-block d-lg-none">
+      <div className="mobile__home__page d-block d-lg-none">
           <MobileHomePage homePageBottomSingleBanner={homePageBottomSingleBanner} dealsOfTheWeekData={dealsOfTheWeekData} topRatedData={topRatedData} topTrendingData={topTrendingData} bannerData={bannerData} featureProductsData={featureProductsData} recentlyViewedProductsData={recentlyViewedProductsData} recentlyViewedProductsBanner={recentlyViewedProductsBanner} newArrivalData={newArrivalData}/>
       </div>
       <div className="homePage d-none d-lg-block">

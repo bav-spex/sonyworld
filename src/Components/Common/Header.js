@@ -1673,6 +1673,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
   const [selectedCategory, setSelectedCategory] = useState(
     categoryData && categoryData?.children_data?.[0]
   );
+  const [ mobileSelectedCategory,setMobileSelectedCategory]= useState()
 
   const [navIndex, setNavIndex] = useState("");
   const [menuIndex, setMenuIndex] = useState(0);
@@ -1798,7 +1799,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
     setNavIndex(navIndex);
     setMenuIndex(menuIndex);
   };
-  const mobileNavbarTab__mouseTab = (popupValue, navIndex, newMenuIndex) => {
+  const mobileNavbarTab__mouseTab = (popupValue, navIndex, newMenuIndex,currentCategory) => {
     if (menuIndex === newMenuIndex) {
       setMobileShowPopup(popupValue);
     } else if (menuIndex !== newMenuIndex) {
@@ -1806,6 +1807,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
     }
     setNavIndex(navIndex);
     setMenuIndex(newMenuIndex);
+    setMobileSelectedCategory(currentCategory)
   };
 
   return (
@@ -2057,7 +2059,13 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             mobileNavbar ? "mobile__navbar" : "mobile__navbar__disable"
           }
         >
-          <div  className={mobileShowPopup ? "mobile__navbar__link__block__disable": "mobile__navbar__link__block"}>
+          <div
+            className={
+              mobileShowPopup
+                ? "mobile__navbar__link__block__disable"
+                : "mobile__navbar__link__block"
+            }
+          >
             <div className="mobile_top_header">
               <Link className="mobile_user_name" to="/">
                 <span>
@@ -2067,187 +2075,95 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                   <strong>John Doe</strong>
                 </p>
               </Link>
-              <div className="mobile_close_icon" onClick={() => setMobileNavbar(!mobileNavbar)}>
+              <div
+                className="mobile_close_icon"
+                onClick={() => setMobileNavbar(!mobileNavbar)}
+              >
                 <img src={close_icon} alt="close" />
               </div>
             </div>
-
-            <Link
-              to="/"
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "television", 1)
-              }
-              className={
-                navIndex === "television"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.television
-              }
-            >
-              Televisions
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </Link>
-            {navIndex === "television" && menuIndex === 1 && mobileShowPopup ? (
-              <MobilePopup categoryData={categoryData} menuIndex={menuIndex} />
-            ) : (
-              ""
-            )}
-            <Link
-              to="/"
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "homeAV", 3)
-              }
-              className={
-                navIndex === "homeAV"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.homeAV
-              }
-            >
-              Home AV
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </Link>
-            {navIndex === "homeAV" && menuIndex === 3 && mobileShowPopup ? (
-              <MobilePopup menuIndex={menuIndex} />
-            ) : (
-              ""
-            )}
-            <Link
-              to="/"
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "playstation", 2)
-              }
-              className={
-                navIndex === "playstation"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.playstation
-              }
-            >
-              PlayStation
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </Link>
-            {navIndex === "playstation" &&
-            menuIndex === 2 &&
-            mobileShowPopup ? (
-              <MobilePopup menuIndex={menuIndex} />
-            ) : (
-              ""
-            )}
-
-            <Link
-              to="/"
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "laptops", 4)
-              }
-              className={
-                navIndex === "laptops"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.laptops
-              }
-            >
-              Laptops
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </Link>
-            {navIndex === "laptops" && menuIndex === 4 && mobileShowPopup ? (
-              <MobilePopup menuIndex={menuIndex} />
-            ) : (
-              ""
-            )}
-            <Link
-              to="/"
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "others", 5)
-              }
-              className={
-                navIndex === "others"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.others
-              }
-            >
-              Others
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </Link>
-            {navIndex === "others" && menuIndex === 5 && mobileShowPopup ? (
-              <MobilePopup menuIndex={menuIndex} />
-            ) : (
-              ""
-            )}
-            <Link
-              to="/"
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "services", 6)
-              }
-              className={
-                navIndex === "services"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.services
-              }
-            >
-              Services
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </Link>
-            {navIndex === "services" && menuIndex === 6 && mobileShowPopup ? (
-              <MobilePopup menuIndex={menuIndex} />
-            ) : (
-              ""
-            )}
-            <Link
-              to="/"
-              onClick={() =>
-                mobileNavbarTab__mouseTab(!mobileShowPopup, "allCategories", 6)
-              }
-              className={
-                navIndex === "allCategories"
-                  ? "active__mobile__navbar__link mobile__navbar__link"
-                  : mobileClassName.allCategories
-              }
-            >
-              All Categories
-              <img
-                src={navbar_white_down_arrow}
-                alt=""
-                className="down__arrow__icon"
-              />
-            </Link>
-            {navIndex === "allCategories" && menuIndex === 6 && mobileShowPopup ? (
-              <MobilePopup menuIndex={menuIndex} />
-            ) : (
-              ""
-            )}
+            {categoryData?.children_data?.map((catObj, catIndex) => {
+              console.log(catObj);
+              
+              return (
+                <>
+                  <Link
+                    to="/"
+                    onClick={() =>
+                      mobileNavbarTab__mouseTab(!mobileShowPopup,catObj.name, catObj.id,catObj)
+                    }
+                    className={
+                      navIndex === catObj.name
+                        ? "active__mobile__navbar__link mobile__navbar__link"
+                        : mobileClassName.television
+                    }
+                  >
+                    {catObj.name}
+                    <img
+                      src={navbar_white_down_arrow}
+                      alt=""
+                      className="down__arrow__icon"
+                    />
+                  </Link>
+                  {/* {mobileShowPopup && navIndex === catObj.name &&   menuIndex === catObj.id  ? (
+                    <MobilePopup
+                      categoryData={mobileSelectedCategory}
+                      menuIndex={menuIndex}
+                    />
+                  ) : (
+                    ""
+                  )} */}
+                </>
+              );
+            })}
+             <Link
+                    to="/"
+                    onClick={() =>
+                      mobileNavbarTab__mouseTab(!mobileShowPopup,"services", 7,{})
+                    }
+                    className={
+                      navIndex === "services"
+                        ? "active__mobile__navbar__link mobile__navbar__link"
+                        : mobileClassName.services
+                    }
+                  >
+                    Services
+                    <img
+                      src={navbar_white_down_arrow}
+                      alt=""
+                      className="down__arrow__icon"
+                    />
+                  </Link>
+             <Link
+                    to="/"
+                    onClick={() =>
+                      mobileNavbarTab__mouseTab(!mobileShowPopup,"allCategories", 7,{})
+                    }
+                    className={
+                      navIndex === "allCategories"
+                        ? "active__mobile__navbar__link mobile__navbar__link"
+                        : mobileClassName.allCategories
+                    }
+                  >
+                    All Categories
+                    <img
+                      src={navbar_white_down_arrow}
+                      alt=""
+                      className="down__arrow__icon"
+                    />
+                  </Link>
             <hr />
             <Link className="mobile__navbar__link" to="/top-deals">
-            {t("navbar.top_deals")}
+              {t("navbar.top_deals")}
             </Link>
             <Link className="mobile__navbar__link" to="/deals-of-the-day">
-            {t("navbar.delas_of_the_day")}
+              {t("navbar.delas_of_the_day")}
             </Link>
             <Link className="mobile__navbar__link" to="/digital-cards">
-            {t("navbar.digital_cards")}
+              {t("navbar.digital_cards")}
             </Link>
             <Link className="mobile__navbar__link" to="/top-sellers">
-            {t("navbar.top_sellers")}
+              {t("navbar.top_sellers")}
             </Link>
             <hr />
             <Link className="mobile__navbar__link" to="/support">
@@ -2264,7 +2180,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             </Link>
             <hr />
             <Link className="mobile__navbar__link" to="/support">
-             Find Stores
+              Find Stores
             </Link>
             <Link className="mobile__navbar__link" to="/services">
               About Us
@@ -2279,10 +2195,20 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
               <strong>Log Out</strong>
             </Link>
           </div>
-          <div className={mobileShowPopup ?"mobile__navbar__link__nested__block": "mobile__navbar__link__nested__block__disable"}>
-          <button onClick={()=>setMobileShowPopup(!mobileShowPopup)}>back</button>
-              <MobilePopup menuIndex={menuIndex} />
-            
+          <div
+            className={
+              mobileShowPopup
+                ? "mobile__navbar__link__nested__block"
+                : "mobile__navbar__link__nested__block__disable"
+            }
+          >
+            <button onClick={() => setMobileShowPopup(!mobileShowPopup)}>
+              back
+            </button>
+            <MobilePopup
+                      currentCategoryData={mobileSelectedCategory}
+                      menuIndex={menuIndex}
+                    />
           </div>
         </div>
 
@@ -2322,7 +2248,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             <div className="col-6 col-sm-6 col-md-9 category__popup__right__block">
               <div className="mainCategory__title__block">
                 <p className="mainCategory__right__block">
-                  {selectedCategory?.children_data[0]?.name}
+                  {selectedCategory?.display_name}
                 </p>
               </div>
               <div className="subCategory__block">
