@@ -1,20 +1,52 @@
+.exp__rd__left__block {
+  .col-6{
+    &:last-child{
+      .expert__rd__product__block {
+        &:after{
+          display: none;
+        }
+      }
+    }
+  }
+}
 .expert__rd__product__block {
   width: 80%;
   margin: 10px 0px 20px;
+  position: relative;
+  .main__rating__block{
+    flex-wrap: wrap;
+    .product__totalRating{
+      width: 100%;
+    }
+  }
+  &::after {
+    position: absolute;
+    content: "+";
+    right: -40px;
+    color: #000000;
+    font-size: 50px;
+    top: 30%;
+    transform: translateY(-50%);
+    font-family: "arialregular";
+  }
+
   .exp__product__image__block {
     width: 100%;
     height: 120px;
+
     .exp__product__image {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
   }
+
   .exp__rd__product__price {
     font-size: 18px;
     font-family: "arialbold";
     margin: 0px;
   }
+
   .exp__rd__product__oldPrice {
     font-size: 18ox;
     font-family: "arialregular";
@@ -22,22 +54,26 @@
     text-decoration: line-through;
     margin: 0px 0px 20px;
   }
+
   .exp__rd__rating__block {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
     padding: 20px 0px 0px;
-    .rating__block {
-    }
+
+    .rating__block {}
+
     .pd__product__rating__icon {
       margin: 6px 10px 0px;
     }
+
     .exp__rd__rating__text__block {
       display: flex;
       align-items: center;
       padding: 10px 0px;
       flex-wrap: wrap;
+
       .exp__rd__product__rating {
         margin: 0px 10px 0px 0px;
 
@@ -45,34 +81,44 @@
         color: #dc3a1a;
         font-family: "arialbold";
       }
+
       .exp__rd__product__totalRating {
         margin: 0px;
       }
     }
   }
+
   .exp__rd__select__block {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+
     .exp__rd__check__icon {
       display: block;
     }
+
     .exp__rd__check__icon__disable {
       display: none;
     }
   }
 }
+
 @media screen and (max-width: 1706px) {
   .expert__rd__product__block {
     width: 100% !important;
   }
+  .expert__rd__product__block::after{
+    right: -20px;
+  }
 }
+
 @media screen and (max-width: 1200px) {
   .expert__rd__product__block {
     width: 80% !important;
   }
 }
+
 @media screen and (max-width: 576px) {
   .expert__rd__product__block {
     width: 100% !important;

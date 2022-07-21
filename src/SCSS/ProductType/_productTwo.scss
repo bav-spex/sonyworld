@@ -11,8 +11,11 @@ width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 20px;
       .productTwo__quality__icon {
+        width: 50px;
       }
+      
       .productTwo__favourite__icon {
         display: block;
       }
@@ -59,7 +62,7 @@ width: 100%;
     font-family: "arialbold";
     font-size: 18px;
     margin: 10px 0px 10px 0px;
-    height: 82px;
+    height: 62px;
   }
   .productTwo__series {
     font-family: "arialregular";

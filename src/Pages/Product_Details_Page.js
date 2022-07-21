@@ -71,7 +71,7 @@ import Heading1 from "../Components/Font/Heading1";
 import Heading6 from "../Components/Font/Heading6";
 import { getProductDetail } from "../services/pdp.service";
 import { loadProductDetailData } from "../redux/appAction";
-
+import MobileProductDetailPage from "./MobilePages/Mobile_Product_Detail_Page";
 // const product = {
 //   id: 1,
 //   logo: sony_logo,
@@ -14645,13 +14645,20 @@ function Product_Details_Page() {
   return (
     <>
       {/* <TopNavbar /> */}
-      <div className="bg-white">
+      
 
-      <BreadCrumbs title="Z8H | Full Array LED | 8K | High Dynamic Range" />
+      <div className="bg-white">
+        <BreadCrumbs title="Z8H | Full Array LED | 8K | High Dynamic Range" />
       </div>
-      <div className="container-fluid product__details__page__container">
+      {/* mobile pdp page */}
+      <div className="mobile__product__detail__page d-block d-lg-none">
+        <MobileProductDetailPage product={product}/>
+      </div>
+     {/* mobile pdp page end */}
+
+      <div className="container-fluid product__details__page__container d-none d-lg-block">
         <div className="row product__details__page__block">
-          <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-9 row product__details__left__block">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-9 row product__details__left__block">
             <div className="row products__details__inner__block">
               <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
                 <div className="product__carousel__block">
@@ -14871,10 +14878,10 @@ function Product_Details_Page() {
 
                 {/* Button Block */}
                 <div className="row pd__bundle__cart__button__block pd__common__main__block">
-                  <div className="col-6 pd__bundle__button__block">
+                  <div className="col-xl-6 mb-1  pe-0 pe-xl-1 pd__bundle__button__block">
                     <div className="pd__bundle__button">Build A Bundle</div>
                   </div>
-                  <div className="col-6 pd__addToCart__button__block">
+                  <div className="col-xl-6 mb-1 ps-0 ps-xl-1 pd__addToCart__button__block">
                     <div className="pd__addToCart__button">
                       <img
                         src={shopping_cart}
@@ -14965,20 +14972,20 @@ function Product_Details_Page() {
               />
             </div>
           </div>
-          <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-3 product__details__right__block">
+          <div className="col-12 col-sm-12 col-md-12  col-lg-3 product__details__right__block">
             <Heading3 price="People Ultimately Bought" />
             <p className="pd__mb__block__title">People Ultimately Bought</p>
             {product.relatedProducts[0].products.map((product, productIndex) => {
               return (
                 <div key={product.id} className="row pd__mb__product__block">
-                  <div className="col-4 pd__mb__product__image__block">
+                  <div className="col-xxl-4 pd__mb__product__image__block">
                     <img
                       src={product.baseImage}
                       alt=""
                       className="pd__mb__product__image"
                     />
                   </div>
-                  <div className="col-8 pd__mb__product__detail__block">
+                  <div className="col-xxl-8 pd__mb__product__detail__block">
                     <Heading7 text={product.name} />
                     <RatingBlock
                       size={15}
