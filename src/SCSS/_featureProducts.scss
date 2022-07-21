@@ -88,7 +88,7 @@
             // margin: 20px auto 40px;
             background: #ffffff;
             margin-left: 0px;
-            height: 600px;
+            height:100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -159,9 +159,7 @@
   .feature__category__block {
     width: 90% !important;
   }
-  .first__feature__category__image__block {
-    height: 400px !important;
-  }
+ 
   .first__feature__category__image {
     width: 100% !important;
   }
@@ -184,6 +182,19 @@
 
   .first__feature__category__subtitle {
     margin: 0px 0px 0px 100px !important;
+  }
+  .first__feature__category__block{
+    width: 100% !important;
+  }
+  .second__feature__category__block{
+    width: 50% !important;
+  }
+  .feature__category__container .first__feature__category__image{
+    height: 100% !important;
+    // padding-top: 50px !important;
+  }
+  .feature__category__container .first__feature__category__image__block {
+    height: 600px !important;
   }
 }
 
