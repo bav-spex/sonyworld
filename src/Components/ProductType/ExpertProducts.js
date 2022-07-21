@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./../../SCSS/ProductType/_expertProducts.scss";
 import checked from "./../../assets/Icon/checked.svg";
 import empty_check from "./../../assets/Icon/empty_check.svg";
@@ -16,7 +18,7 @@ function ExpertProducts({ product }) {
   //   (a, b) => a + b
   // ));
   return (
-    <div key={product.id} className="expert__rd__product__block">
+    <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`} key={product.id} className="expert__rd__product__block">
       <div className="col-4 exp__product__image__block">
         <img src={product.baseImage} alt="" className="exp__product__image" />
       </div>
@@ -64,7 +66,7 @@ function ExpertProducts({ product }) {
           alt=""
         />
       </div>
-    </div>
+    </Link>
   );
 }
 

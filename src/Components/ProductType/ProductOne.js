@@ -25,17 +25,18 @@ function ProductOne({ productDetailPage, product }) {
   const handleRating = (score) => {
     setRating(score);
   };
+  // console.log(encodeURI(product.sku));
+  // console.log(product.sku.replace(/[/]/g, "%2F"));
   return (
-    <div
+    <Link
+      to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
       key={product.id}
       className={
         !productDetailPage ? "productOne__block" : "pd__productOne__block"
       }
     >
       <div className="productOne__image__block">
-        <Link to="/products/1">
-          <img src={product.baseImage} alt="" className="productOne__image" />
-        </Link>
+        <img src={product.baseImage} alt="" className="productOne__image" />
       </div>
       <div className="productOne__name__favourite">
         <p className="productOne__name">{product.name}</p>
@@ -91,7 +92,7 @@ function ProductOne({ productDetailPage, product }) {
       ) : (
         ""
       )}
-    </div>
+    </Link>
   );
 }
 

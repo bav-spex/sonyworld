@@ -317,9 +317,15 @@
         line-height: 24px;
         margin: 0px 0px 20px;
       }
+      .pd__mb__product__block:hover{
+        text-decoration: none;
+        color: #000000;
+      }
       .pd__mb__product__block {
         padding: 30px 0px 30px;
         border-bottom: 1px solid #eeeeee;
+        text-decoration: none;
+        color: #000000;
         .pd__mb__product__image__block {
           // height: 100%;
           // width: 100%;
