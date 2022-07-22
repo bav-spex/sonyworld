@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
@@ -53,9 +52,7 @@ function ProductTwo({ productDetailPage, product }) {
     setSizeButtonIndex(sizeIndex);
   };
   return (
-    <Link
-    to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
-    key={product.id} className="productTwo__block">
+    <div key={product.id} className="productTwo__block">
       <div className="productTwo__header__block">
         <div className="productTwo__quality__favourite__block">
           <img
@@ -153,7 +150,7 @@ function ProductTwo({ productDetailPage, product }) {
        />
        Add To Cart
      </div>
-    </Link>
+    </div>
   );
 }
 

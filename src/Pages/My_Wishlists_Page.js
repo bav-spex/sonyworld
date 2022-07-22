@@ -1,5 +1,4 @@
-import React, {useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import Heading3 from "../Components/Font/Heading3";
 import "./../SCSS/_myWishlistPage.scss";
@@ -13,7 +12,6 @@ import product_02 from "./../assets/Product/product_02.png";
 import product_03 from "./../assets/Product/product_03.png";
 import product_04 from "./../assets/Product/product_04.png";
 import product_05 from "./../assets/Product/product_05.png";
-import { loadWishlistData } from "../redux/appAction";
 const peopleUltimatelyBoughtData = [
   {
     id: 1,
@@ -449,39 +447,9 @@ const peopleUltimatelyBoughtData = [
   },
 ];
 function My_Wishlists_Page() {
- const [wishlistPageData,setWishlistPageData]=useState()
- const[loading,setLoading] = useState(true)
   const handleChange = (e) => {
     console.log(e.target.value);
   };
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadWishlistData());
-  }, []);
-
-  const wishlistData = useSelector((state) => state.appData.wishlistData);
-  console.log(wishlistData);
-  useEffect(()=>{
-    if(wishlistData){
-
-      setWishlistPageData(wishlistData)
-      setLoading(false)
-      window.scrollTo(0,0)
-    }
-  },[wishlistData])
-  if (loading) {
-    return (
-      <>
-      <h1>Wishlist Loading...</h1>
-      <h1>Wishlist Loading...</h1>
-      <h1>Wishlist Loading...</h1>
-      <h1>Wishlist Loading...</h1>
-      <h1>Wishlist Loading...</h1>
-      </>
-    )
-  }
   return (
     <>
       <BreadCrumbs title="My Account" subTitle="My Wishlists" />
@@ -505,13 +473,10 @@ function My_Wishlists_Page() {
             </div>
           </div>
           <div className="row wishlist__page__product__block">
-            {wishlistData.map((item, productIndex) => {
+            {peopleUltimatelyBoughtData.map((product, productIndex) => {
               return (
-                <div
-                  key={item.wishlist_item_id}
-                  className="col-6 col-md-4  col-xl-3 wishlist__product__block"
-                >
-                  <ProductEight item={item} />
+                <div className="col-6 col-md-4  col-xl-3 wishlist__product__block">
+                  <ProductEight product={product} />
                 </div>
               );
             })}

@@ -75,26 +75,26 @@
       font-family: "arialbold";
       padding: 16px 0px;
     }
-    .or__block {
+    .signup__or__block {
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 0px;
       margin: 20px 0px;
-      .mid__line {
+      .signup__mid__line {
         height: 1px;
         width: 100%;
         background-color: #dbdbdb;
         z-index: 0;
         transform: translateY(-20px);
       }
-      .or__text__block {
+      .signup__or__text__block {
         background-color: #f6f6f6;
         width: fit-content;
         padding: 10px;
         border-radius: 50%;
         z-index: 1;
-        .or__text {
+        .signup__or__text {
           font-size: 14px;
           font-family: "arialbold";
           margin: 0px;

@@ -33,7 +33,7 @@ function FeatureProducts({ featureProductsData }) {
           Deals of the day
         </p>
         <div className="row inner__feature__category__block">
-          <Link className="first__feature__category__block" to={`products/${featureProductsData[0].sku.replace(/[/]/g, "%2F")}`}>
+          <Link className="first__feature__category__block" to={`products/${featureProductsData[0].sku}`}>
 
             {/* <div className="deal__of__the__day">
                 <p className="inner__text">DEALS OF THE DAY</p>
@@ -114,7 +114,7 @@ function FeatureProducts({ featureProductsData }) {
           </Link>
           <div className=" second__feature__category__block">
 
-            <Link to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`} className="feature__category first__in__column">
+            <Link to={`products/${featureProductsData[1].sku}`} className="feature__category first__in__column">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -168,10 +168,10 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </Link>
-            <Link to={`products/${featureProductsData[2].sku.replace(/[/]/g, "%2F")}`} className="feature__category">
+            <Link to={`products/${featureProductsData[2].sku}`} className="feature__category">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -225,13 +225,13 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </Link>
           </div>
           <div className=" second__feature__category__block">
 
-            <Link to={`products/${featureProductsData[3].sku.replace(/[/]/g, "%2F")}`} className="feature__category first__in__column">
+            <Link to={`products/${featureProductsData[3].sku}`} className="feature__category first__in__column">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -285,10 +285,10 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </Link>
-            <Link to={`products/${featureProductsData[4].sku.replace(/[/]/g, "%2F")}`} className="feature__category">
+            <Link to={`products/${featureProductsData[4].sku}`} className="feature__category">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -343,7 +343,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </Link>
           </div>

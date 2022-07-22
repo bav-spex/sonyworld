@@ -309,7 +309,7 @@ function MobilePopup({ menuIndex, currentCategoryData }) {
         {currentCategoryData?.children_data.map((subcategory, subcategoryIndex) => {
           return (
             <p
-              className="col-12 col-sm-6 mobile__category__title"
+              className="col-12 mobile__category__title"
               key={subcategory.id}
             >
               {subcategory.name}

@@ -41,9 +41,9 @@ import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
 import { loadHomePageData } from "../redux/appAction";
 
-import MobileHomePage from "./MobilePages/Mobile_Home_Page";
+import  MobileHomePage from './MobilePages/Mobile_Home_Page';
 
-function Home({  }) {
+function Home({ homepageData }) {
   // const [homepageData, setHomepageData] = useState();
   const [loading, setLoading] = useState(true);
   const [liveChatPopup, setLiveChatPopup] = useState(false);
@@ -60,13 +60,13 @@ function Home({  }) {
   const [homePageBottomSingleBanner, setHomePageBottomSingleBanner] =
     useState();
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(loadHomePageData())
-    //  const data = await getAllCategory().then((res) => res);
-    // setCategoryData(data);
-  },[])
-  const {homepageData} = useSelector((state) => state.appData);
-  // console.log(homepageData);
+  // useEffect(()=>{
+  //   dispatch(loadHomePageData())
+  //   //  const data = await getAllCategory().then((res) => res);
+  //   // setCategoryData(data);
+  // },[])
+  // const data = useSelector((state) => state.appData.homepageData);
+  // console.log(data);
   // useEffect(()=>{
   //   if(homePageData){
 
@@ -75,7 +75,7 @@ function Home({  }) {
   //   }
   // },[homePageData])
   useEffect(() => {
-    if (Object.values(homepageData).length !== 0) {
+    if (homepageData) {
       setBannerData(() => {
         return homepageData.content.find((data) => {
           return (
@@ -134,7 +134,6 @@ function Home({  }) {
         }).items;
       });
       setLoading(false);
-      window.scrollTo(0,0)
     }
   }, [homepageData]);
   const closeLiveChatPopup = () => {
@@ -149,31 +148,24 @@ function Home({  }) {
   return (
     <>
       <div className="mobile__home__page d-block d-lg-none">
-        <MobileHomePage
-          homePageBottomSingleBanner={homePageBottomSingleBanner}
-          dealsOfTheWeekData={dealsOfTheWeekData}
-          topRatedData={topRatedData}
-          topTrendingData={topTrendingData}
-          bannerData={bannerData}
-          featureProductsData={featureProductsData}
-          recentlyViewedProductsData={recentlyViewedProductsData}
-          recentlyViewedProductsBanner={recentlyViewedProductsBanner}
-          newArrivalData={newArrivalData}
-        />
+          <MobileHomePage homePageBottomSingleBanner={homePageBottomSingleBanner} dealsOfTheWeekData={dealsOfTheWeekData} topRatedData={topRatedData} topTrendingData={topTrendingData} bannerData={bannerData} featureProductsData={featureProductsData} recentlyViewedProductsData={recentlyViewedProductsData} recentlyViewedProductsBanner={recentlyViewedProductsBanner} newArrivalData={newArrivalData}/>
       </div>
       <div className="homePage d-none d-lg-block">
+        
+
         <Banner bannerData={bannerData} />
 
         <div className="d-none d-lg-block">
           <HomePageCategoryBlock />
         </div>
-
+        
         <FeatureProducts featureProductsData={featureProductsData} />
-
-        <RecentlyViewedProducts
-          recentlyViewedProductsData={recentlyViewedProductsData}
-          recentlyViewedProductsBanner={recentlyViewedProductsBanner}
-        />
+     
+          <RecentlyViewedProducts
+            recentlyViewedProductsData={recentlyViewedProductsData}
+            recentlyViewedProductsBanner={recentlyViewedProductsBanner}
+          />
+       
 
         <ProductContainer
           sectionTitle="New Arrivals"
@@ -181,6 +173,7 @@ function Home({  }) {
           containerClassName="new__arrival__pc__block"
         />
         <ProductContainer
+          
           sectionTitle="Top Trending"
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"
