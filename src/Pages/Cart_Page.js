@@ -704,12 +704,12 @@ function Cart_Page() {
                   marginLeft={40}
                   marginBottom={0}
                 />
-                <ProductContainer
+                {/* <ProductContainer
                   productDetailPage={true}
                   // sectionTitle="People Who Bought Also Bought"
                   carouselData={newArrivalData}
                   containerClassName="people__also__bought__block"
-                />
+                /> */}
               </div>
             </div>
             {/* package Summary */}

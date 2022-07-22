@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
@@ -14,41 +14,11 @@ import Price from "./../Font/Price";
 import Heading6 from "./../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 
-function ProductEight({ item }) {
+function ProductEight({ product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
-  const [ loading,setLoading] = useState(true)
-  const [product,setProduct]=useState({})
-  const [productWarrentyBlock, setProductWarrentyBlock] = useState({
-    warrantyText: "1 Year Warranty on Product",
-    size: [
-      {
-        id: 1,
-        cm: 139,
-        inch: 55,
-      },
-      {
-        id: 2,
-        cm: 164,
-        inch: 65,
-      },
-      {
-        id: 3,
-        cm: 195,
-        inch: 77,
-      },
-    ],
-  });
-  useEffect(()=>{
-    if(item){
-      setProduct(item.product)
-      setLoading(false)
-    }
-  },[item])
-  console.log(item);
-  console.log(product);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
@@ -60,9 +30,7 @@ function ProductEight({ item }) {
   const sizeButtonClick = (sizeIndex, cm, inch) => {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
-  };if (loading) {
-    return <h1>wishlist product Loading...</h1>;
-  }
+  };
   return (
     <div key={product.id} className="productEight__block">
       <div className="productEight__header__block">
@@ -75,7 +43,7 @@ function ProductEight({ item }) {
           
         </div>
         <div className="productEight__image__block">
-          <img src={product.baseImage} alt="" className="productEight__image" />
+          <img src={product.image} alt="" className="productEight__image" />
         </div>
         <div className="productEight__quality__favourite__block">
          <div></div>
@@ -105,18 +73,18 @@ function ProductEight({ item }) {
        
       </div>
       <p className="productEight__name">
-      {product.name}
+        <Heading6 text={product.productName} marginBottom={10} />
       </p>
       <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
       <div className="rating__block">
         <RatingBlock
-          rating={6}
-          totalRatings={2222}
+          rating={product.rating}
+          totalRatings={product.totalRatings}
         />
       </div>
       <p className="productEight__series">Model and Price</p>
       <div className="productEight__size__button__block">
-        {productWarrentyBlock.size.map((size, sizeIndex) => {
+        {product.size.map((size, sizeIndex) => {
           return (
             <button
               key={size.id}
@@ -132,7 +100,7 @@ function ProductEight({ item }) {
       </div>
       <div className="prize__block">
         <OldPrice
-          oldPrice={product.price_rounded + 200}
+          oldPrice={product.oldPrice}
           size="text1"
           color="#c8c8c8"
           marginBottom={10}
@@ -141,7 +109,7 @@ function ProductEight({ item }) {
           currency={product?.currency}
         />
         <Price
-          price={product.price_rounded}
+          price={product.price}
           marginLeft={5}
           marginBottom={10}
           size="heading4"
