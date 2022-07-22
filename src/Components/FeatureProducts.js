@@ -168,7 +168,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
+                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
               </div>
             </Link>
             <Link to={`products/${featureProductsData[2].sku.replace(/[/]/g, "%2F")}`} className="feature__category">
@@ -225,7 +225,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
+                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
               </div>
             </Link>
           </div>
@@ -285,7 +285,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
+                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
               </div>
             </Link>
             <Link to={`products/${featureProductsData[4].sku.replace(/[/]/g, "%2F")}`} className="feature__category">
@@ -343,7 +343,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
+                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
               </div>
             </Link>
           </div>

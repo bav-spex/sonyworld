@@ -20,6 +20,7 @@ import Heading1 from "./Components/Font/Heading1";
 import { loadAllCategoryData, loadHomePageData } from "./redux/appAction";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { setHeader } from "./services/config";
 
 function App({ stars }) {
   const location = useLocation();
@@ -37,33 +38,44 @@ function App({ stars }) {
   const reloadingHandle = () => {
     setReloadHeader(!reloadHeader);
   };
+  const [token, setToken] = useState();
   useEffect(() => {
-    getAppStarted();
+    // debugger
+    const localStorageHandshakeToken = localStorage.getItem("handShakeToken");
+    // console.log(localStorageHandshakeToken);
+    if (localStorageHandshakeToken === null || undefined) {
+      getHandshake().then((res) => setToken(res.data.token));
+    } else {
+      setToken(localStorageHandshakeToken);
+    }
   }, []);
+  useEffect(() => {
+    if (token) {
+      setHeader("X-Access-Token", token);
+      localStorage.setItem("handShakeToken", token);
+      categoryDispatch(loadAllCategoryData());
+      
+    }
+    // console.log(token);
+  }, [token]);
 
-  const getInitialData = async () => {
-    await getHandshake();
-  };
-  const getAppStarted = async () => {
-    await getHandshake();
-    await homeDispatch(loadHomePageData());
-    await categoryDispatch(loadAllCategoryData());
-    setLoading(false);
-  };
-  const data = useSelector((state) => state.appData.homepageData);
+  const getInitialData = () => {};
+  // const getAppStarted = async () => {
+  //   await getHandshake();
+  //   await homeDispatch(loadHomePageData());
+  //   await categoryDispatch(loadAllCategoryData());
+  //   setLoading(false);
+  // };
+  // const data = useSelector((state) => state.appData.homepageData);
   const allCategoryData = useSelector((state) => state.appData.categoryData);
-  // console.log(data);
   // console.log(allCategoryData);
   useEffect(() => {
-    if (
-      Object.keys(data).length !== 0 &&
-      Object.keys(allCategoryData).length !== 0
-    ) {
-      setHomepageData(data);
+    if (Object.keys(allCategoryData).length !== 0) {
+      // setHomepageData(data);
       setCategoryData(allCategoryData);
       setLoading(false);
     }
-  }, [data, allCategoryData]);
+  }, [ allCategoryData]);
   if (loading) {
     return <h1>App Loading...</h1>;
   }

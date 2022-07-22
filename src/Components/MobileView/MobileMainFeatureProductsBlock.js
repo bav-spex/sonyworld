@@ -164,9 +164,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                <div className="d-inline-block">
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                </div>
               </div>
             </Link>
             <Link
@@ -226,9 +226,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                <div to="#" className="d-inline-block">
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                </div>
               </div>
             </Link>
           </div>
@@ -290,9 +290,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                <div to="#" className="d-inline-block">
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                </div>
               </div>
             </Link>
             <Link
@@ -352,9 +352,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                <div to="#" className="d-inline-block">
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                </div>
               </div>
             </Link>
           </div>

@@ -14603,8 +14603,8 @@ function Product_Details_Page() {
   useEffect(() => {
     if (Object.values(productData).length !== 0) {
       setProduct(productData);
-      window.scrollTo(0, 0);
       setLoading(false);
+      window.scrollTo(0, 0);
 
       // console.log(product.reviewSummary.totals);
     }

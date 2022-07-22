@@ -1519,6 +1519,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
   // language changing in project //
   // console.log(categoryData);
   // const [allCategoryData,setAllCategoryData] = useState(categoryData)
+  
   const [lang, setLang] = useState("en");
   const languages = [
     {
