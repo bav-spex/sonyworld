@@ -7,6 +7,7 @@ import right_location_pin from "./../assets/Icon/right_location_pin.svg";
 import "./../SCSS/_sonyStorePage.scss";
 import find_store_banner from "./../assets/SonyStore/find_store_banner.jpg";
 import map_image from "./../assets/SonyStore/map_image.jpg";
+import { loadLocationData } from "../redux/appAction";
 const locationData = [
   {
     id: 1,
@@ -40,6 +41,10 @@ function Sony_Store_Page() {
   const handleChange = (e) => {
     console.log(e);
   };
+
+  useEffect(() => {
+    loadLocationData();
+  }, []);
 
   return (
     <>
@@ -109,7 +114,7 @@ function Sony_Store_Page() {
               <div className="map__location__list__block">
                 {locationData.map((location, locationIndex) => {
                   return (
-                    <div className="location__block">
+                    <div className="location__block" key={location.id}>
                       <img src={left_location} alt="" />
                       <div className="location__info__block">
                         <div className="location__info__text">

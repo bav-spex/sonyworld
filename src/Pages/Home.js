@@ -40,8 +40,9 @@ import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
 import { loadHomePageData } from "../redux/appAction";
+import { loadLocationData } from "../redux/appAction";
 
-import  MobileHomePage from './MobilePages/Mobile_Home_Page';
+import MobileHomePage from "./MobilePages/Mobile_Home_Page";
 
 function Home({ homepageData }) {
   // const [homepageData, setHomepageData] = useState();
@@ -148,24 +149,31 @@ function Home({ homepageData }) {
   return (
     <>
       <div className="mobile__home__page d-block d-lg-none">
-          <MobileHomePage homePageBottomSingleBanner={homePageBottomSingleBanner} dealsOfTheWeekData={dealsOfTheWeekData} topRatedData={topRatedData} topTrendingData={topTrendingData} bannerData={bannerData} featureProductsData={featureProductsData} recentlyViewedProductsData={recentlyViewedProductsData} recentlyViewedProductsBanner={recentlyViewedProductsBanner} newArrivalData={newArrivalData}/>
+        <MobileHomePage
+          homePageBottomSingleBanner={homePageBottomSingleBanner}
+          dealsOfTheWeekData={dealsOfTheWeekData}
+          topRatedData={topRatedData}
+          topTrendingData={topTrendingData}
+          bannerData={bannerData}
+          featureProductsData={featureProductsData}
+          recentlyViewedProductsData={recentlyViewedProductsData}
+          recentlyViewedProductsBanner={recentlyViewedProductsBanner}
+          newArrivalData={newArrivalData}
+        />
       </div>
       <div className="homePage d-none d-lg-block">
-        
-
         <Banner bannerData={bannerData} />
 
         <div className="d-none d-lg-block">
           <HomePageCategoryBlock />
         </div>
-        
+
         <FeatureProducts featureProductsData={featureProductsData} />
-     
-          <RecentlyViewedProducts
-            recentlyViewedProductsData={recentlyViewedProductsData}
-            recentlyViewedProductsBanner={recentlyViewedProductsBanner}
-          />
-       
+
+        <RecentlyViewedProducts
+          recentlyViewedProductsData={recentlyViewedProductsData}
+          recentlyViewedProductsBanner={recentlyViewedProductsBanner}
+        />
 
         <ProductContainer
           sectionTitle="New Arrivals"
@@ -173,7 +181,6 @@ function Home({ homepageData }) {
           containerClassName="new__arrival__pc__block"
         />
         <ProductContainer
-          
           sectionTitle="Top Trending"
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"
