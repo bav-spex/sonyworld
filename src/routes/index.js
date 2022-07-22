@@ -5,7 +5,6 @@ import {
   Routes,
   useNavigate,
   useLocation,
-  
 } from "react-router-dom";
 import Home from "./../Pages/Home";
 import Play_Station_Page from "./../Pages/Play_Station_Page";
@@ -35,16 +34,13 @@ function AllRoutes({categoryData,reloadingHandle,homepageData}) {
   return (
     <Routes>
       <Route exact path="/" element={<Home homepageData={homepageData} log="log" categoryData={categoryData} />}></Route>
-      <Route exact path="/products_list" element={<Product_List_Page />} ></Route>
-      <Route exact path="/products_list/compare" element={<Product_Comparison />} ></Route>
+      <Route exact path="/products" element={<Product_List_Page />} ></Route>
+      <Route exact path="/products/compare" element={<Product_Comparison />} ></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
       <Route exact path="/category" element={<All_Category_Page />} ></Route>
       <Route exact path="/services" element={<Services />}></Route>
       <Route exact path="/support" element={<Support />}></Route>
-      <Route exact path="/products/:id" element={<Product_Details_Page />}>
-      
-            <Route path='/products/:id/:id' element={<Product_Details_Page />} />
-      </Route>
+      <Route exact path="/products/:id" element={<Product_Details_Page />}></Route>
       <Route exact path="/create_bundle" element={<Create_Bundle_Page />}></Route>
       <Route exact path="/cart" element={<Cart_Page />}></Route>
       <Route exact path="/checkout" element={<Checkout_Page reloadingHandle={reloadingHandle} />}></Route>

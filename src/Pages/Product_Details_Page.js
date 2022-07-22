@@ -71,7 +71,7 @@ import Heading1 from "../Components/Font/Heading1";
 import Heading6 from "../Components/Font/Heading6";
 import { getProductDetail } from "../services/pdp.service";
 import { loadProductDetailData } from "../redux/appAction";
-
+import MobileProductDetailPage from "./MobilePages/Mobile_Product_Detail_Page";
 // const product = {
 //   id: 1,
 //   logo: sony_logo,
@@ -14583,33 +14583,27 @@ function Product_Details_Page() {
       month: 12,
     },
   ]);
-  const { pathname } = useLocation();
-  console.log(pathname.split("/"));
-
+  // const dataLocation = useLocation()
+  // console.log(dataLocation);
   // const dataNavigate = useNavigate()
   // console.log(dataNavigate);
   const { id } = useParams();
   // console.log(id);
   const dispatch = useDispatch();
-
   useEffect(() => {
-    const pathnameArray = pathname.split("/");
-    // console.log(pathnameArray[pathnameArray.length-1]);
-    dispatch(loadProductDetailData(pathnameArray[pathnameArray.length - 1]));
-  }, [pathname]);
+    dispatch(loadProductDetailData(id));
+  }, []);
   const productData = useSelector((state) => state.appData.productData);
   // console.log("before",productData);
   // console.log(Object.values(productData).length);
   useEffect(() => {
     if (Object.values(productData).length !== 0) {
       setProduct(productData);
-      window.scrollTo(0, 0);
       setLoading(false);
-
       // console.log(product.reviewSummary.totals);
     }
   }, [productData]);
-
+  
   // console.log("useEffect",productData);
   // console.log(product.reviewSummary.totals);
   const [newArrivalData, setNewArrivalData] = useState(
@@ -14651,26 +14645,24 @@ function Product_Details_Page() {
   return (
     <>
       {/* <TopNavbar /> */}
-      <BreadCrumbs title="Z8H | Full Array LED | 8K | High Dynamic Range" />
-      <div className="container-fluid product__details__page__container">
+      
+
+      <div className="bg-white">
+        <BreadCrumbs title="Z8H | Full Array LED | 8K | High Dynamic Range" />
+      </div>
+      {/* mobile pdp page */}
+      <div className="mobile__product__detail__page d-block d-lg-none">
+        <MobileProductDetailPage product={product}/>
+      </div>
+     {/* mobile pdp page end */}
+
+      <div className="container-fluid product__details__page__container d-none d-lg-block">
         <div className="row product__details__page__block">
-          <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-9 row product__details__left__block">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-9 row product__details__left__block">
             <div className="row products__details__inner__block">
               <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
                 <div className="product__carousel__block">
-                  <ProductCarousel
-                    productImageData={
-                      product.media.image.screenshots !== []
-                        ? product.media.image.screenshots
-                        : product.media.image.plpPackshot !== {}
-                        ? [product.media.image.plpPackshot]
-                        : product.media.image.packshot !== {}
-                        ? [product.media.image.packshot]
-                        : product.media.image.featured !== {}
-                        ? [product.media.image.featured]
-                        : ""
-                    }
-                  />
+                  <ProductCarousel productImageData={product.media.image.screenshots} />
                 </div>
               </div>
               <div className="col-12 col-sm-12 col-md-6 product__details__block">
@@ -14745,11 +14737,10 @@ function Product_Details_Page() {
                     </div>
 
                     <p className="pd__unlock__membership__text">
-                      <Text4
-                        text="Unlock up to 24 months of Best Buy Protection with our
-                      Sony Membership"
-                        marginBottom={0}
-                      />
+                      
+                        Unlock up to 24 months of Best Buy Protection with our
+                      Sony Membership
+                      
                     </p>
                   </div>
                   <img
@@ -14886,10 +14877,10 @@ function Product_Details_Page() {
 
                 {/* Button Block */}
                 <div className="row pd__bundle__cart__button__block pd__common__main__block">
-                  <div className="col-6 pd__bundle__button__block">
+                  <div className="col-xl-6 mb-1  pe-0 pe-xl-1 pd__bundle__button__block">
                     <div className="pd__bundle__button">Build A Bundle</div>
                   </div>
-                  <div className="col-6 pd__addToCart__button__block">
+                  <div className="col-xl-6 mb-1 ps-0 ps-xl-1 pd__addToCart__button__block">
                     <div className="pd__addToCart__button">
                       <img
                         src={shopping_cart}
@@ -14927,11 +14918,7 @@ function Product_Details_Page() {
                         <Text3 text="Package Savings" marginBottom={0} />
                       </p>
                       <p className="package__saving__price">
-                        <Price
-                          currency={product.currency}
-                          price={99}
-                          size="heading5"
-                        />
+                        <Price currency={product.currency} price={99} size="heading5" />
                       </p>
                     </div>
                     <div className="exp__rd__package__total__block">
@@ -14941,11 +14928,7 @@ function Product_Details_Page() {
                       </p>
                       <p className="package__total__price">
                         {" "}
-                        <Price
-                          currency={product.currency}
-                          price={1999}
-                          size="heading5"
-                        />
+                        <Price currency={product.currency} price={1999} size="heading5" />
                       </p>
                     </div>
 
@@ -14988,65 +14971,54 @@ function Product_Details_Page() {
               />
             </div>
           </div>
-          <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-3 product__details__right__block">
+          <div className="col-12 col-sm-12 col-md-12  col-lg-3 product__details__right__block">
             <Heading3 price="People Ultimately Bought" />
             <p className="pd__mb__block__title">People Ultimately Bought</p>
-            {product.relatedProducts[0].products.map(
-              (product, productIndex) => {
-                return (
-                  <Link
-                    to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
-                    key={product.id}
-                    className="row pd__mb__product__block"
-                  >
-                    <div className="col-4 pd__mb__product__image__block">
-                      <img
-                        src={product.baseImage}
-                        alt=""
-                        className="pd__mb__product__image"
-                      />
-                    </div>
-                    <div className="col-8 pd__mb__product__detail__block">
-                      <Heading7 text={product.name} />
-                      <RatingBlock
-                        size={15}
-                        rating={4.5}
-                        totalRatings={4199}
-                        fillColor="#DC3A1A"
-                        emptyColor="#C8C8C8"
-                      />
-                      <Price
-                        price={product.price_rounded}
-                        currency={product?.currency}
-                        size="heading6"
-                        span={true}
-                      />
+            {product.relatedProducts[0].products.map((product, productIndex) => {
+              return (
+                <div key={product.id} className="row pd__mb__product__block">
+                  <div className="col-xxl-4 pd__mb__product__image__block">
+                    <img
+                      src={product.baseImage}
+                      alt=""
+                      className="pd__mb__product__image"
+                    />
+                  </div>
+                  <div className="col-xxl-8 pd__mb__product__detail__block">
+                    <Heading7 text={product.name} />
+                    <RatingBlock
+                      size={15}
+                      rating={4.5}
+                      totalRatings={4199}
+                      fillColor="#DC3A1A"
+                      emptyColor="#C8C8C8"
+                    />
+                    <Price price={product.price_rounded} currency={product?.currency} size="heading6" span={true} />
 
-                      <OldPrice
-                        oldPrice={product.price_rounded + 200}
-                        size="text3"
-                        color="#808080"
-                        marginLeft={5}
-                        marginBottom={0}
-                        lineThrough={true}
-                        span={true}
-                        currency={product?.currency}
-                      />
+                    <OldPrice
+                      oldPrice={product.price_rounded + 200}
+                      size="text3"
+                      color="#808080"
+                      marginLeft={5}
+                      marginBottom={0}
+                      lineThrough={true}
+                      span={true}
+                      currency={product?.currency}
+                    />
 
-                      <div className="pd__compare__block">
-                        <input
-                          type="checkbox"
-                          className="pd__compare__input__check"
-                          name="compare"
-                          // onChange={handleChange}
-                        />
-                        <p className="pd__compare__text">Compare</p>
-                      </div>
+                    <div className="pd__compare__block">
+                      <input
+                        type="checkbox"
+                        className="pd__compare__input__check"
+                        name="compare"
+                        // onChange={handleChange}
+                      />
+                      <p className="pd__compare__text">Compare</p>
                     </div>
-                  </Link>
-                );
-              }
-            )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -15067,11 +15039,7 @@ function Product_Details_Page() {
               <img src={plus} alt="plus" />
             </div>
           </div>
-          <Price
-            currency={product.currency}
-            price={product.price_rounded}
-            size="heading3"
-          />
+          <Price price={1699} size="heading3" />
           <button className="buynow___button">BUY NOW</button>
           <button className="build__bundle___button">BUILD BUNDLE</button>
           <button className="addToCart__button">

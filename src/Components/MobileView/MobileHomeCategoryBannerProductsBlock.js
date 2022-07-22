@@ -30,7 +30,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
       </div>
       <div className="row mh__cbp__row">
         <Link
-          to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`}
+          to={`products/${featureProductsData[1].sku}`}
           className="col-12 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
@@ -87,14 +87,12 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>
         <Link
-          to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`}
+          to={`products/${featureProductsData[1].sku}`}
           className="col-12 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
@@ -151,14 +149,12 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>
         <Link
-          to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`}
+          to={`products/${featureProductsData[1].sku}`}
           className="col-12 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
@@ -215,14 +211,12 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>
         <Link
-          to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`}
+          to={`products/${featureProductsData[1].sku}`}
           className="col-12 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
@@ -279,9 +273,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>

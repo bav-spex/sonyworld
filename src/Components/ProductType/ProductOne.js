@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { RatingStar } from "rating-star";
@@ -14,32 +14,68 @@ import Heading7 from "./../Font/Heading7";
 import Price from "./../Font/Price";
 import OldPrice from "./../Font/OldPrice";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
+import { addToWishlist, deleteFromWishlist } from "../../services/wishlist.services";
 
 function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
+  
+
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      // console.log(product.sku, "added");
+    } else {
+      setIsFavourite(true);
+      // console.log(product.sku, "remove");
+    }
   };
+  useEffect(() => {
+    const data = {
+      items: [product.sku],
+    };
+    if (isFavourite) {
+      addToWishlist(data);
+      console.log("added Successfully");
+    }
+    // else{
+    //   deleteFromWishlist(data);
+    //   console.log("deleted Successfully");
+    // }
+  },[isFavourite]);
+  // console.log(isFavourite);
   const handleRating = (score) => {
     setRating(score);
   };
+  // const removeFromWL=(sku)=>{
+  //   const data = {
+  //     items: [sku],
+  //   };
+  //   deleteFromWishlist(data)
+  // }
   // console.log(encodeURI(product.sku));
   // console.log(product.sku.replace(/[/]/g, "%2F"));
   return (
-    <Link
-      to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+    <div
       key={product.id}
       className={
         !productDetailPage ? "productOne__block" : "pd__productOne__block"
       }
     >
-      <div className="productOne__image__block">
-        <img src={product.baseImage} alt="" className="productOne__image" />
-      </div>
+      <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+        <div className="productOne__image__block">
+          <img src={product.baseImage} alt="" className="productOne__image" />
+        </div>
+      </Link>
       <div className="productOne__name__favourite">
-        <p className="productOne__name">{product.name}</p>
+        <Link
+          to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+          className="productOne__name"
+        >
+          {product.name}
+        </Link>
+
         {/* <Heading7 text={product.name} /> */}
         <img
           onMouseEnter={() => setIsFavouriteHover(true)}
@@ -84,6 +120,7 @@ function ProductOne({ productDetailPage, product }) {
           currency={product?.currency}
         />
       </div>
+      {/* <button onClick={()=>removeFromWL(product.sku)}>remove</button> */}
       {productDetailPage ? (
         <div className="addToCart__button">
           <img src={shopping_cart} alt="" className="addToCart__icon" />
@@ -92,7 +129,7 @@ function ProductOne({ productDetailPage, product }) {
       ) : (
         ""
       )}
-    </Link>
+    </div>
   );
 }
 

@@ -1066,13 +1066,13 @@ const Product_List_Page = () => {
           />
           <PLPBannerTwo bannerImage={bannerImg1} />
           <div className="plp__newArrival__block">
-              <CarouselTypeTwo
+              {/* <CarouselTypeTwo
                 productDetailPage={true}
                 sectionTitle="You Can Also Purchase"
                 carouselData={newArrivalData}
                 productType="productOne"
                 containerClassName="plp__youCanAlsoPurchase__block"
-              />
+              /> */}
             </div>
        
         </div>

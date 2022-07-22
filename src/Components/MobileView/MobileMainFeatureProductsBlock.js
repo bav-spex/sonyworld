@@ -28,7 +28,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
         <div className="row inner__mobile__dealsOfTheDay__block">
           <Link
             className="first__md__product__block"
-            to={`products/${featureProductsData[0].sku.replace(/[/]/g, "%2F")}`}
+            to={`products/${featureProductsData[0].sku}`}
           >
             {/* <div className="deal__of__the__day">
                 <p className="inner__text">DEALS OF THE DAY</p>
@@ -108,7 +108,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
           </Link>
           <div className=" second__md__product__block">
             <Link
-              to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`}
+              to={`products/${featureProductsData[1].sku}`}
               className="md__product"
             >
               <span className="fav_icon d-block d-lg-none">
@@ -164,13 +164,13 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
             <Link
-              to={`products/${featureProductsData[2].sku.replace(/[/]/g, "%2F")}`}
+              to={`products/${featureProductsData[2].sku}`}
               className="md__product"
             >
               <span className="fav_icon d-block d-lg-none">
@@ -226,15 +226,15 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
           </div>
           <div className=" second__md__product__block">
             <Link
-              to={`products/${featureProductsData[3].sku.replace(/[/]/g, "%2F")}`}
+              to={`products/${featureProductsData[3].sku}`}
               className="md__product first__in__column"
             >
               <span className="fav_icon d-block d-lg-none">
@@ -290,13 +290,13 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
             <Link
-              to={`products/${featureProductsData[4].sku.replace(/[/]/g, "%2F")}`}
+              to={`products/${featureProductsData[4].sku}`}
               className="md__product"
             >
               <span className="fav_icon d-block d-lg-none">
@@ -352,9 +352,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
           </div>

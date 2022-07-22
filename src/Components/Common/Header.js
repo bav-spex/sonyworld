@@ -17,6 +17,7 @@ import cookies from "js-cookie";
 import search from "./../../assets/Icon/search.svg";
 import white_search from "./../../assets/Icon/white_search.svg";
 import language from "./../../assets/Icon/language.svg";
+import backarrow from "./../../assets/Icon/backarrow-mb_black.svg";
 import customer_support from "./../../assets/Icon/customer_support.svg";
 import favourite from "./../../assets/Icon/favourite.svg";
 import location from "./../../assets/Icon/location.svg";
@@ -2208,8 +2209,8 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                 : "mobile__navbar__link__nested__block__disable"
             }
           >
-            <button onClick={() => setMobileShowPopup(!mobileShowPopup)}>
-              back
+            <button onClick={() => setMobileShowPopup(!mobileShowPopup)} className="back__mobile__icon">
+              <img src={backarrow}/>
             </button>
             <MobilePopup
               currentCategoryData={mobileSelectedCategory}
