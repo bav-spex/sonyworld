@@ -14583,26 +14583,34 @@ function Product_Details_Page() {
       month: 12,
     },
   ]);
-  // const dataLocation = useLocation()
-  // console.log(dataLocation);
+  const { pathname } = useLocation();
+  console.log(pathname.split("/"));
+
   // const dataNavigate = useNavigate()
   // console.log(dataNavigate);
   const { id } = useParams();
   // console.log(id);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(loadProductDetailData(id));
-  }, []);
+    const pathnameArray = pathname.split("/");
+    // console.log(pathnameArray[pathnameArray.length-1]);
+    dispatch(loadProductDetailData(pathnameArray[pathnameArray.length - 1]));
+  }, [pathname]);
   const productData = useSelector((state) => state.appData.productData);
-  // console.log(productData);
+  // console.log("before",productData);
   // console.log(Object.values(productData).length);
   useEffect(() => {
     if (Object.values(productData).length !== 0) {
       setProduct(productData);
       setLoading(false);
+      window.scrollTo(0, 0);
+
       // console.log(product.reviewSummary.totals);
     }
   }, [productData]);
+
+  // console.log("useEffect",productData);
   // console.log(product.reviewSummary.totals);
   const [newArrivalData, setNewArrivalData] = useState(
     contentData.find((con) => {
@@ -14650,7 +14658,19 @@ function Product_Details_Page() {
             <div className="row products__details__inner__block">
               <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
                 <div className="product__carousel__block">
-                  <ProductCarousel productImageData={product.media.image.screenshots} />
+                  <ProductCarousel
+                    productImageData={
+                      product.media.image.screenshots !== []
+                        ? product.media.image.screenshots
+                        : product.media.image.plpPackshot !== {}
+                        ? [product.media.image.plpPackshot]
+                        : product.media.image.packshot !== {}
+                        ? [product.media.image.packshot]
+                        : product.media.image.featured !== {}
+                        ? [product.media.image.featured]
+                        : ""
+                    }
+                  />
                 </div>
               </div>
               <div className="col-12 col-sm-12 col-md-6 product__details__block">
@@ -14907,7 +14927,11 @@ function Product_Details_Page() {
                         <Text3 text="Package Savings" marginBottom={0} />
                       </p>
                       <p className="package__saving__price">
-                        <Price currency={product.currency} price={99} size="heading5" />
+                        <Price
+                          currency={product.currency}
+                          price={99}
+                          size="heading5"
+                        />
                       </p>
                     </div>
                     <div className="exp__rd__package__total__block">
@@ -14917,7 +14941,11 @@ function Product_Details_Page() {
                       </p>
                       <p className="package__total__price">
                         {" "}
-                        <Price currency={product.currency} price={1999} size="heading5" />
+                        <Price
+                          currency={product.currency}
+                          price={1999}
+                          size="heading5"
+                        />
                       </p>
                     </div>
 
@@ -14963,51 +14991,62 @@ function Product_Details_Page() {
           <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-xxl-3 product__details__right__block">
             <Heading3 price="People Ultimately Bought" />
             <p className="pd__mb__block__title">People Ultimately Bought</p>
-            {product.relatedProducts[0].products.map((product, productIndex) => {
-              return (
-                <div key={product.id} className="row pd__mb__product__block">
-                  <div className="col-4 pd__mb__product__image__block">
-                    <img
-                      src={product.baseImage}
-                      alt=""
-                      className="pd__mb__product__image"
-                    />
-                  </div>
-                  <div className="col-8 pd__mb__product__detail__block">
-                    <Heading7 text={product.name} />
-                    <RatingBlock
-                      size={15}
-                      rating={4.5}
-                      totalRatings={4199}
-                      fillColor="#DC3A1A"
-                      emptyColor="#C8C8C8"
-                    />
-                    <Price price={product.price_rounded} currency={product?.currency} size="heading6" span={true} />
-
-                    <OldPrice
-                      oldPrice={product.price_rounded + 200}
-                      size="text3"
-                      color="#808080"
-                      marginLeft={5}
-                      marginBottom={0}
-                      lineThrough={true}
-                      span={true}
-                      currency={product?.currency}
-                    />
-
-                    <div className="pd__compare__block">
-                      <input
-                        type="checkbox"
-                        className="pd__compare__input__check"
-                        name="compare"
-                        // onChange={handleChange}
+            {product.relatedProducts[0].products.map(
+              (product, productIndex) => {
+                return (
+                  <Link
+                    to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+                    key={product.id}
+                    className="row pd__mb__product__block"
+                  >
+                    <div className="col-4 pd__mb__product__image__block">
+                      <img
+                        src={product.baseImage}
+                        alt=""
+                        className="pd__mb__product__image"
                       />
-                      <p className="pd__compare__text">Compare</p>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                    <div className="col-8 pd__mb__product__detail__block">
+                      <Heading7 text={product.name} />
+                      <RatingBlock
+                        size={15}
+                        rating={4.5}
+                        totalRatings={4199}
+                        fillColor="#DC3A1A"
+                        emptyColor="#C8C8C8"
+                      />
+                      <Price
+                        price={product.price_rounded}
+                        currency={product?.currency}
+                        size="heading6"
+                        span={true}
+                      />
+
+                      <OldPrice
+                        oldPrice={product.price_rounded + 200}
+                        size="text3"
+                        color="#808080"
+                        marginLeft={5}
+                        marginBottom={0}
+                        lineThrough={true}
+                        span={true}
+                        currency={product?.currency}
+                      />
+
+                      <div className="pd__compare__block">
+                        <input
+                          type="checkbox"
+                          className="pd__compare__input__check"
+                          name="compare"
+                          // onChange={handleChange}
+                        />
+                        <p className="pd__compare__text">Compare</p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              }
+            )}
           </div>
         </div>
       </div>
@@ -15028,7 +15067,11 @@ function Product_Details_Page() {
               <img src={plus} alt="plus" />
             </div>
           </div>
-          <Price price={1699} size="heading3" />
+          <Price
+            currency={product.currency}
+            price={product.price_rounded}
+            size="heading3"
+          />
           <button className="buynow___button">BUY NOW</button>
           <button className="build__bundle___button">BUILD BUNDLE</button>
           <button className="addToCart__button">
