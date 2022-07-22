@@ -39,7 +39,7 @@ function PLPProductPopup({ product, closeProductPopup }) {
           <AwesomeSlider transitionDelay={0.2}>
             {[product_01, product_02, product_03, product_04].map(
               (images, index) => (
-                <div className="_product__container_image">
+                <div key={index} className="_product__container_image">
                   <img src={images} alt={images + index} />
                 </div>
               )

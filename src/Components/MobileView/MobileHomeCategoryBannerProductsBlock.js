@@ -87,9 +87,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>
@@ -151,9 +149,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>
@@ -215,9 +211,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>
@@ -279,9 +273,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
               currency={featureProductsData[1]?.currency}
             />
             <div className="text-end cart_end_icon">
-              <Link to="#" className="d-inline-block">
-                <img src={shopping_cart} alt="cart" />
-              </Link>
+              <img src={shopping_cart} alt="cart" />
             </div>
           </div>
         </Link>

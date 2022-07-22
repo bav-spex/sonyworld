@@ -73,7 +73,7 @@ function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup
           <AwesomeSlider transitionDelay={0.2}>
             {[product_01, product_02, product_03, product_04].map(
               (images, index) => (
-                <div className="_product__container_image">
+                <div key={index} className="_product__container_image">
                   <img src={images} alt={images + index} />
                 </div>
               )
@@ -90,7 +90,7 @@ function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup
           marginBottom={10}
           lineThrough={true}
           span={true}
-          currency={product?.currency}
+          currency="SAR"
         />
         <Price
           price={product.price}
@@ -98,7 +98,7 @@ function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup
           marginBottom={10}
           size="heading4"
           span={true}
-          currency={product?.currency}
+          currency="SAR"
         />
 
         <RatingBlock
@@ -123,9 +123,9 @@ function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup
         <div className="productNine__feature__block">
           {product.productFeatures && (
             <>
-              {product.productFeatures.map((feature) => {
+              {product.productFeatures.map((feature,featureIndex) => {
                 return (
-                  <div className="feature__text__block">
+                  <div key={featureIndex} className="feature__text__block">
                     <div className="feature__bullet"></div>
                     <Text4 text={feature.text} />
                   </div>

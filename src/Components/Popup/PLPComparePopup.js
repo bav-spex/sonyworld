@@ -20,7 +20,7 @@ function PLPComparePopup({ closeComparePopup, compareData }) {
       <div className="plp__compare__popup__content">
         {compareData.map((product, productIndex) => {
           return (
-            <div className="compare__product__block">
+            <div key={productIndex} className="compare__product__block">
               <div className="compare__product__header">
                 <img
                   // onClick={() => closeComparePopup()}

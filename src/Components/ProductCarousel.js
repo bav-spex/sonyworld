@@ -53,7 +53,6 @@ const productDataJSON = [
   },
 ];
 function ProductCarousel({ productImageData }) {
-  console.log(productImageData);
   const [index, setIndex] = useState(0);
   const [carousel, setcarousel] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,7 +64,6 @@ function ProductCarousel({ productImageData }) {
       setcarousel(productImageData);
     }
   },[productImageData]);
-  console.log("carousel", carousel);
 
   useEffect(() => {
     if (index > carousel.length - 1) {

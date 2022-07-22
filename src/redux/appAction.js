@@ -3,19 +3,10 @@ import axios from "axios";
 import {  getHomePageData } from "../services/homepage.service";
 import { getAllCategoryData } from "../services/category.service";
 import { getProductDetail } from "../services/pdp.service";
+import { getWishlistData } from "../services/wishlist.services";
+import { getCitiesLocationData } from "../services/storeLocation.service";
 
-const saveHomePageData = (data) => ({
-  type: types.GET__HOME__PAGE__DATA,
-  payload: data,
-});
-const saveAllCategoryData = (data) => ({
-  type: types.GET__ALL__CATEGORY__DATA,
-  payload: data,
-});
-const saveProductDetailData = (data) => ({
-  type: types.GET__PRODUCT__DETAIL__DATA,
-  payload: data,
-});
+
 
 const setLoading = (data) => ({
   type: types.LOADING,
@@ -23,6 +14,17 @@ const setLoading = (data) => ({
 });
 
 
+// Loading Home Page Data //
+
+const saveHomePageData = (data) => ({
+  type: types.GET__HOME__PAGE__DATA,
+  payload: data,
+});
+
+const saveAllCategoryData = (data) => ({
+  type: types.GET__ALL__CATEGORY__DATA,
+  payload: data,
+});
 
 export const loadHomePageData = () => {
    return async function  (dispatch) {
@@ -41,13 +43,58 @@ export const loadAllCategoryData = () => {
     dispatch(saveAllCategoryData(categorydata.data));
     return categorydata.data
   };
-  
 };
+
+
+
+// Loading Product Details Page Data //
+
+const saveProductDetailData = (data) => ({
+  type: types.GET__PRODUCT__DETAIL__DATA,
+  payload: data,
+});
+
+
 export const loadProductDetailData = (id) => {
    return async function  (dispatch) {
     const productData = await getProductDetail(id);
     // console.log(productData);
     dispatch(saveProductDetailData(productData));
     return productData
+  };
+};
+
+
+// Loading Wishlist  Page Data //
+
+const saveWishlistData = (data) => ({
+  type: types.GET__WISHLIST__DATA,
+  payload: data,
+});
+
+
+
+export const loadWishlistData = () => {
+   return async function  (dispatch) {
+    const wishlistData = await getWishlistData();
+    dispatch(saveWishlistData(wishlistData.data));
+    return wishlistData.data
+  };
+};
+
+// Loading Store  Page Data //
+
+const saveCitiesLocationData = (data) => ({
+  type: types.GET__CITY__LOCATION__DATA,
+  payload: data,
+});
+
+
+
+export const loadCitiesLocationData = () => {
+   return async function  (dispatch) {
+    const cityLocationData = await getCitiesLocationData();
+    dispatch(saveCitiesLocationData(cityLocationData.data));
+    return cityLocationData.data
   };
 };
