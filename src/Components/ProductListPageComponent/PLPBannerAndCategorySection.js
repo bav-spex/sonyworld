@@ -24,9 +24,10 @@ const PLPCategorySection = (props) => {
       <div className="plp__main__category__section">
         <div className="plp__inner__category__section">
           <div className="plp__category__section">
-            {props.categoryData.map((cat) => {
+            {props.categoryData.map((cat,catIndex) => {
               return (
                 <div
+                key={catIndex}
                   className={
                     selectedCategory.title === cat.title
                       ? "selected__plp__category__block"

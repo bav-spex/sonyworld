@@ -175,11 +175,12 @@ const PLPFilter = (props) => {
         {filterData.map((filter, index) => {
 
           return (
-            <div className="filter__block">
+            <div key={index} className="filter__block">
               <Heading6 text={filter.filterTitle} marginBottom={10} />
-              {filter.filterItems.map((data) => {
+              {filter.filterItems.map((data,dataIndex) => {
                 return (
                   <div
+                  key={dataIndex}
                     className={`filter__checkbox__block ${
                       filter.filterTitle === "Customer Review" ? "reviews" : ""
                     }`}
@@ -192,8 +193,8 @@ const PLPFilter = (props) => {
                     />
                     {filter.filterTitle === "Customer Review" ? (
                       <div className="star__rating__block">
-                        {starArray.map((item) => (
-                          <img className="star__count" src={star} alt="" />
+                        {starArray.map((item,itemIndex) => (
+                          <img key={itemIndex} className="star__count" src={star} alt="" />
                           ))}
                           <p className="star__rating">{`${data.starRating}.0`}</p>
                       </div>

@@ -4,7 +4,7 @@ export const getWishlistData =  async() => {
   const wishlistData =  await axios.get(
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`
   );
-  console.log(wishlistData,"wishlistData in identifier")
+  // console.log(wishlistData,"wishlistData in identifier")
   return wishlistData;
 };
 
@@ -14,7 +14,7 @@ export const addToWishlist =  async(data) => {
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
     data
   );
-  console.log(wishlistData,"addToWishlist")
+  // console.log(wishlistData,"addToWishlist")
   return wishlistData;
 };
 
@@ -23,7 +23,7 @@ export const deleteFromWishlist =  async(data) => {
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
     data
   );
-  console.log(wishlistData,"addToWishlist")
+  // console.log(wishlistData,"addToWishlist")
   return wishlistData;
 };
 
