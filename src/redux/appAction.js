@@ -4,6 +4,7 @@ import {  getHomePageData } from "../services/homepage.service";
 import { getAllCategoryData } from "../services/category.service";
 import { getProductDetail } from "../services/pdp.service";
 import { getWishlistData } from "../services/wishlist.services";
+import { getCitiesLocationData } from "../services/storeLocation.service";
 
 
 
@@ -78,5 +79,22 @@ export const loadWishlistData = () => {
     const wishlistData = await getWishlistData();
     dispatch(saveWishlistData(wishlistData.data));
     return wishlistData.data
+  };
+};
+
+// Loading Store  Page Data //
+
+const saveCitiesLocationData = (data) => ({
+  type: types.GET__CITY__LOCATION__DATA,
+  payload: data,
+});
+
+
+
+export const loadCitiesLocationData = () => {
+   return async function  (dispatch) {
+    const cityLocationData = await getCitiesLocationData();
+    dispatch(saveCitiesLocationData(cityLocationData.data));
+    return cityLocationData.data
   };
 };
