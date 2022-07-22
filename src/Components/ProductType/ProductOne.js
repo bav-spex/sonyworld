@@ -25,10 +25,10 @@ function ProductOne({ productDetailPage, product }) {
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
-      console.log(product.sku, "added");
+      // console.log(product.sku, "added");
     } else {
       setIsFavourite(true);
-      console.log(product.sku, "remove");
+      // console.log(product.sku, "remove");
     }
   };
   useEffect(() => {
@@ -44,7 +44,7 @@ function ProductOne({ productDetailPage, product }) {
     //   console.log("deleted Successfully");
     // }
   },[isFavourite]);
-  console.log(isFavourite);
+  // console.log(isFavourite);
   const handleRating = (score) => {
     setRating(score);
   };

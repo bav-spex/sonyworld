@@ -14737,11 +14737,10 @@ function Product_Details_Page() {
                     </div>
 
                     <p className="pd__unlock__membership__text">
-                      <Text4
-                        text="Unlock up to 24 months of Best Buy Protection with our
-                      Sony Membership"
-                        marginBottom={0}
-                      />
+                      
+                        Unlock up to 24 months of Best Buy Protection with our
+                      Sony Membership
+                      
                     </p>
                   </div>
                   <img
