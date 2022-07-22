@@ -42,7 +42,7 @@ function Sony_Store_Page() {
   const [storeCitiesLocationData, setStoreCitiesLocationData] = useState();
   const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
   };
 
   const dispatch = useDispatch();
