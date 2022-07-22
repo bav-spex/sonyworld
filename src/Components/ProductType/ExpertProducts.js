@@ -18,10 +18,13 @@ function ExpertProducts({ product }) {
   //   (a, b) => a + b
   // ));
   return (
-    <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`} key={product.id} className="expert__rd__product__block">
+    <div  key={product.id} className="expert__rd__product__block">
+      <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+       
       <div className="col-4 exp__product__image__block">
         <img src={product.baseImage} alt="" className="exp__product__image" />
       </div>
+      </Link>
       <div className="exp__rd__rating__block">
         <RatingBlock
           rating={4.5}
@@ -66,7 +69,7 @@ function ExpertProducts({ product }) {
           alt=""
         />
       </div>
-    </Link>
+    </div>
   );
 }
 

@@ -53,9 +53,11 @@ function ProductTwo({ productDetailPage, product }) {
     setSizeButtonIndex(sizeIndex);
   };
   return (
-    <Link
-    to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
-    key={product.id} className="productTwo__block">
+    <div
+      to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+      key={product.id}
+      className="productTwo__block"
+    >
       <div className="productTwo__header__block">
         <div className="productTwo__quality__favourite__block">
           <img
@@ -86,9 +88,11 @@ function ProductTwo({ productDetailPage, product }) {
             alt=""
           />
         </div>
-        <div className="productTwo__image__block">
-          <img src={product.baseImage} alt="" className="productTwo__image" />
-        </div>
+        <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+          <div className="productTwo__image__block">
+            <img src={product.baseImage} alt="" className="productTwo__image" />
+          </div>
+        </Link>
         <div className="productTwo__compare__block">
           <input
             type="checkbox"
@@ -99,16 +103,15 @@ function ProductTwo({ productDetailPage, product }) {
           <p className="productTwo__compare__text">Select to Compare</p>
         </div>
       </div>
-      <p className="productTwo__name">
-        <Heading6 text={product.name} marginBottom={10} />
-      </p>
+      <Link
+        to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+        className="productTwo__name"
+      >
+        <p   className="productTwo__name">{product.name}</p>
+      </Link>
       <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
       <div className="rating__block">
-        <RatingBlock
-          rating={4.5}
-          totalRatings={4124}
-         
-        />
+        <RatingBlock rating={4.5} totalRatings={4124} />
       </div>
       <p className="productTwo__series">Model and Price</p>
       <div className="productTwo__size__button__block">
@@ -128,7 +131,7 @@ function ProductTwo({ productDetailPage, product }) {
       </div>
       <div className="prize__block">
         <OldPrice
-           oldPrice={product.price_rounded + 200}
+          oldPrice={product.price_rounded + 200}
           size="text3"
           color="#c8c8c8"
           marginBottom={10}
@@ -137,7 +140,7 @@ function ProductTwo({ productDetailPage, product }) {
           currency={product?.currency}
         />
         <Price
-         price={product.price_rounded}
+          price={product.price_rounded}
           marginLeft={5}
           marginBottom={10}
           size="heading6"
@@ -146,14 +149,10 @@ function ProductTwo({ productDetailPage, product }) {
         />
       </div>
       <div className="addToCart__button">
-       <img
-         src={shopping_cart}
-         alt=""
-         className="addToCart__icon"
-       />
-       Add To Cart
-     </div>
-    </Link>
+        <img src={shopping_cart} alt="" className="addToCart__icon" />
+        Add To Cart
+      </div>
+    </div>
   );
 }
 

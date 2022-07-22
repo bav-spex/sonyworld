@@ -33,8 +33,10 @@ function FeatureProducts({ featureProductsData }) {
           Deals of the day
         </p>
         <div className="row inner__feature__category__block">
-          <Link className="first__feature__category__block" to={`products/${featureProductsData[0].sku.replace(/[/]/g, "%2F")}`}>
-
+          <Link
+            className="first__feature__category__block"
+            to={`products/${featureProductsData[0].sku.replace(/[/]/g, "%2F")}`}
+          >
             {/* <div className="deal__of__the__day">
                 <p className="inner__text">DEALS OF THE DAY</p>
               </div> */}
@@ -90,7 +92,7 @@ function FeatureProducts({ featureProductsData }) {
                   marginBottom={10}
                   text={featureProductsData[0]?.name}
                 />
-                <RatingBlock rating={4.5} totalRatings={2143} />
+                <RatingBlock rating={6} totalRatings={2222} />
                 <OldPrice
                   oldPrice={featureProductsData[0]?.price_rounded + 200}
                   size="text3"
@@ -110,11 +112,9 @@ function FeatureProducts({ featureProductsData }) {
                 />
               </div>
             </div>
-
           </Link>
           <div className=" second__feature__category__block">
-
-            <Link to={`products/${featureProductsData[1].sku.replace(/[/]/g, "%2F")}`} className="feature__category first__in__column">
+            <div className="feature__category">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -139,16 +139,32 @@ function FeatureProducts({ featureProductsData }) {
                   alt=""
                 />
               </span>
-              <div className="second__feature__category__image__block">
-                <img
-                  src={featureProductsData[1]?.baseImage}
-                  alt=""
-                  className="second__feature__category__image"
-                />
-              </div>
-              <Heading7 marginBottom={10} text={featureProductsData[1]?.name} />
+              <Link
+                to={`/products/${featureProductsData[1].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+              >
+                <div className="second__feature__category__image__block">
+                  <img
+                    src={featureProductsData[1]?.baseImage}
+                    alt=""
+                    className="second__feature__category__image"
+                  />
+                </div>
+              </Link>
+              <Link
+                to={`/products/${featureProductsData[1].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+                className="featureProduct__name"
+              >
+                {featureProductsData[1]?.name}
+              </Link>
+              {/* <Heading7 marginBottom={0} text={featureProductsData[4]?.name} /> */}
               <div className="featureProduct__rating__block">
-                <RatingBlock rating={4.5} totalRatings={2143} />
+                <RatingBlock rating={6} totalRatings={2222} />
               </div>
               <OldPrice
                 oldPrice={featureProductsData[1]?.price_rounded + 200}
@@ -160,7 +176,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[1]?.currency}
               />
               <Price
-                price={1699}
+                price={featureProductsData[1]?.price_rounded }
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
@@ -168,10 +184,12 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <div to="#" className="d-inline-block">
+                  <img src={shopping_cart} alt="cart" />
+                </div>
               </div>
-            </Link>
-            <Link to={`products/${featureProductsData[2].sku.replace(/[/]/g, "%2F")}`} className="feature__category">
+            </div>
+            <div className="feature__category">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -196,16 +214,32 @@ function FeatureProducts({ featureProductsData }) {
                   alt=""
                 />
               </span>
-              <div className="second__feature__category__image__block">
-                <img
-                  src={featureProductsData[2]?.baseImage}
-                  alt=""
-                  className="second__feature__category__image"
-                />
-              </div>
-              <Heading7 marginBottom={10} text={featureProductsData[2]?.name} />
+              <Link
+                to={`/products/${featureProductsData[2].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+              >
+                <div className="second__feature__category__image__block">
+                  <img
+                    src={featureProductsData[2]?.baseImage}
+                    alt=""
+                    className="second__feature__category__image"
+                  />
+                </div>
+              </Link>
+              <Link
+                to={`/products/${featureProductsData[2].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+                className="featureProduct__name"
+              >
+                {featureProductsData[2]?.name}
+              </Link>
+              {/* <Heading7 marginBottom={0} text={featureProductsData[2]?.name} /> */}
               <div className="featureProduct__rating__block">
-                <RatingBlock rating={4.5} totalRatings={2143} />
+                <RatingBlock rating={6} totalRatings={2222} />
               </div>
               <OldPrice
                 oldPrice={featureProductsData[2]?.price_rounded + 200}
@@ -217,7 +251,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[2]?.currency}
               />
               <Price
-                price={1699}
+                price={featureProductsData[2]?.price_rounded }
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
@@ -225,13 +259,14 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <div to="#" className="d-inline-block">
+                  <img src={shopping_cart} alt="cart" />
+                </div>
               </div>
-            </Link>
+            </div>
           </div>
           <div className=" second__feature__category__block">
-
-            <Link to={`products/${featureProductsData[3].sku.replace(/[/]/g, "%2F")}`} className="feature__category first__in__column">
+            <div className="feature__category">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -256,16 +291,32 @@ function FeatureProducts({ featureProductsData }) {
                   alt=""
                 />
               </span>
-              <div className="second__feature__category__image__block">
-                <img
-                  src={featureProductsData[3]?.baseImage}
-                  alt=""
-                  className="second__feature__category__image"
-                />
-              </div>
-              <Heading7 marginBottom={10} text={featureProductsData[3]?.name} />
+              <Link
+                to={`/products/${featureProductsData[3].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+              >
+                <div className="second__feature__category__image__block">
+                  <img
+                    src={featureProductsData[3]?.baseImage}
+                    alt=""
+                    className="second__feature__category__image"
+                  />
+                </div>
+              </Link>
+              <Link
+                to={`/products/${featureProductsData[3].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+                className="featureProduct__name"
+              >
+                {featureProductsData[3]?.name}
+              </Link>
+              {/* <Heading7 marginBottom={0} text={featureProductsData[3]?.name} /> */}
               <div className="featureProduct__rating__block">
-                <RatingBlock rating={4.5} totalRatings={2143} />
+                <RatingBlock rating={6} totalRatings={2222} />
               </div>
               <OldPrice
                 oldPrice={featureProductsData[3]?.price_rounded + 200}
@@ -277,7 +328,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[3]?.currency}
               />
               <Price
-                price={1699}
+                price={featureProductsData[3]?.price_rounded }
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
@@ -285,10 +336,12 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <div to="#" className="d-inline-block">
+                  <img src={shopping_cart} alt="cart" />
+                </div>
               </div>
-            </Link>
-            <Link to={`products/${featureProductsData[4].sku.replace(/[/]/g, "%2F")}`} className="feature__category">
+            </div>
+            <div className="feature__category">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -313,17 +366,32 @@ function FeatureProducts({ featureProductsData }) {
                   alt=""
                 />
               </span>
-              <div className="second__feature__category__image__block">
-
-                <img
-                  src={featureProductsData[4]?.baseImage}
-                  alt=""
-                  className="second__feature__category__image"
-                />
-              </div>
-              <Heading7 marginBottom={0} text={featureProductsData[4]?.name} />
+              <Link
+                to={`/products/${featureProductsData[4].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+              >
+                <div className="second__feature__category__image__block">
+                  <img
+                    src={featureProductsData[4]?.baseImage}
+                    alt=""
+                    className="second__feature__category__image"
+                  />
+                </div>
+              </Link>
+              <Link
+                to={`/products/${featureProductsData[4].sku.replace(
+                  /[/]/g,
+                  "%2F"
+                )}`}
+                className="featureProduct__name"
+              >
+                {featureProductsData[4]?.name}
+              </Link>
+              {/* <Heading7 marginBottom={0} text={featureProductsData[4]?.name} /> */}
               <div className="featureProduct__rating__block">
-                <RatingBlock rating={4.5} totalRatings={2143} />
+                <RatingBlock rating={6} totalRatings={2222} />
               </div>
               <OldPrice
                 oldPrice={featureProductsData[4]?.price_rounded + 200}
@@ -335,7 +403,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[4]?.currency}
               />
               <Price
-                price={1699}
+                price={featureProductsData[3]?.price_rounded }
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
@@ -343,9 +411,11 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></div>
+                <div to="#" className="d-inline-block">
+                  <img src={shopping_cart} alt="cart" />
+                </div>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </div>
