@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Heading3 from "../Font/Heading3";
 import Heading6 from "../Font/Heading6";
@@ -16,7 +17,12 @@ import apple_white from "./../../assets/Icon/apple_white.svg";
 
 import "./../../SCSS/Login/_signupModel.scss";
 import Text3 from "../Font/Text3";
+import * as services from './../../services/services'
+
 function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
+
+  const dispatch = useDispatch();
+
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
   const [isCheckBox, setIsCheckBox] = useState(false);
   const handleFavourite = () => {
@@ -63,6 +69,8 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
       if (name === "password") {
         if (value !== data.confirmPassword) {
           getErr.push("passwordNotMatched");
+          let tempErr = getErr.filter((val, i) => val !== 'confirmPassword');
+          getErr = tempErr
         } else {
           let tempErr = getErr.filter((val, i) => val !== 'passwordNotMatched');
           getErr = tempErr
@@ -116,6 +124,18 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
     let checkError = validate();
     if (checkError.length === 0) {
       // api fire
+      let params = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone_number: data.mobileNumber,
+        password: data.password,
+        username: data.firstName + data.lastName,
+        profile_picture: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80',
+        dateOfBirth: '2022-01-01',
+        gender: 'm',
+      }
+      // dispatch(services.userSignUp(params))
     }
     setErrors(checkError);
   }

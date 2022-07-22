@@ -1,5 +1,8 @@
 import axios from "axios";
 import { setHeader } from "./config";
+import apiHelper from './../Components/helpers/utils/apiHelper'
+import * as actionType from './../redux/actionType';
+import { encryptHelper, decryptHelper } from "./../Components/helpers/utils/encryptDecryptHelper";
 
 export const getHandshake = async () => {
   try {
@@ -31,3 +34,30 @@ export const refreshHandshake = async () => {
     }
   );
 };
+
+// signup API
+export const userSignUp = (params) => {
+  return async dispatch => {
+    try {
+      let response = await apiHelper(`/V1/customer`, 'post', params, {});
+      let res = response.data;
+      if (res.status === true) {
+        dispatch(userSignUpSuccess(res));
+        // store data in local storage
+        let details = res.data
+        let encryptData = encryptHelper(JSON.stringify(details))
+        localStorage.setItem("userDetails", encryptData);
+      }
+    } catch (error) {
+      console.log("error ", error);
+    }
+  }
+};
+
+// auth reducer
+export const userSignUpSuccess = (data) => {
+  return {
+    type: actionType.AUTH_DETAILS,
+    payload: data
+  }
+}
