@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
@@ -14,6 +13,7 @@ import OldPrice from "./../Font/OldPrice";
 import Price from "./../Font/Price";
 import Heading6 from "./../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
+import { Link } from "react-router-dom";
 
 function ProductTwo({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);

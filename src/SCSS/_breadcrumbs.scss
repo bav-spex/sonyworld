@@ -51,6 +51,11 @@
     }
   }
 }
+.bg-white{
+  .breadcrumbs__container{
+    background: transparent;
+  }
+}
 @media screen and (max-width: 1702px) {
   .breadcrumbs__block {
     width: 90% !important;

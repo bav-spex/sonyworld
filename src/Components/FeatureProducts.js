@@ -184,9 +184,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block">
-                  <img src={shopping_cart} alt="cart" />
-                </div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </div>
             <div className="feature__category">
@@ -259,14 +257,13 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block">
-                  <img src={shopping_cart} alt="cart" />
-                </div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </div>
           </div>
           <div className=" second__feature__category__block">
-            <div className="feature__category">
+
+            <div to={`products/${featureProductsData[3].sku}`} className="feature__category first__in__column">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}

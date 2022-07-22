@@ -332,6 +332,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      padding: 20px;
     }
     .mobile__navbar__link__block__disable{
 
@@ -544,6 +545,15 @@ overflow-y: scroll;
   }
 }
 @media screen and (max-width: 992px) {
+  .back__mobile__icon{
+    background: transparent;
+    border: none;
+    display: inline;
+    width: 22px;
+    margin-bottom: 20px;
+    padding: 0;
+    margin-left: 0;
+  }
   .search__result__left__part p span{
     font-size: 18px !important;
   } 
