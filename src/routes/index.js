@@ -41,7 +41,7 @@ function AllRoutes({categoryData,reloadingHandle,homepageData}) {
       <Route exact path="/services" element={<Services />}></Route>
       <Route exact path="/support" element={<Support />}></Route>
       <Route exact path="/products/:id" element={<Product_Details_Page />}></Route>
-      <Route exact path="/create_bundle" element={<Create_Bundle_Page />}></Route>
+      {/* <Route exact path="/create_bundle" element={<Create_Bundle_Page />}></Route> */}
       <Route exact path="/cart" element={<Cart_Page />}></Route>
       <Route exact path="/checkout" element={<Checkout_Page reloadingHandle={reloadingHandle} />}></Route>
       <Route exact path="/dashboard" element={<Dashboard />}></Route>
