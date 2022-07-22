@@ -59,8 +59,7 @@ function App({ stars }) {
     // console.log(token);
   }, [token]);
 
-  const getInitialData = () => {};
-  // const getAppStarted = async () => {
+   // const getAppStarted = async () => {
   //   await getHandshake();
   //   await homeDispatch(loadHomePageData());
   //   await categoryDispatch(loadAllCategoryData());

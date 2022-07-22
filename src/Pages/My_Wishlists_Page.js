@@ -505,7 +505,7 @@ function My_Wishlists_Page() {
             </div>
           </div>
           <div className="row wishlist__page__product__block">
-            {wishlistData.map((item, productIndex) => {
+            {wishlistPageData.map((item, productIndex) => {
               return (
                 <div
                   key={item.wishlist_item_id}
