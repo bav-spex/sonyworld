@@ -8,11 +8,8 @@ import right_location_pin from "./../assets/Icon/right_location_pin.svg";
 import "./../SCSS/_sonyStorePage.scss";
 import find_store_banner from "./../assets/SonyStore/find_store_banner.jpg";
 import map_image from "./../assets/SonyStore/map_image.jpg";
-<<<<<<< HEAD
-import { loadLocationDetailData } from "../redux/appAction";
-=======
 import { loadCitiesLocationData } from "../redux/appAction";
->>>>>>> 1dae517c735daae5a9df1e234702050e8ba6b74f
+import { loadCountriesLocationData } from "../redux/appAction";
 const locationData = [
   {
     id: 1,
@@ -44,24 +41,22 @@ function Sony_Store_Page() {
   });
   const [latestStateList, setLatestStateList] = useState([]);
   const [storeCitiesLocationData, setStoreCitiesLocationData] = useState();
+  const [storeCountriesLocationData, setStoreCountriesLocationData] =
+    useState();
   const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
     console.log(e.target.value);
   };
 
-<<<<<<< HEAD
-  useEffect(() => {
-    loadLocationDetailData();
-  }, []);
-
-=======
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadCitiesLocationData());
   }, []);
 
-  const cityLocationData = useSelector((state) => state.appData.cityLocationData);
+  const cityLocationData = useSelector(
+    (state) => state.appData.cityLocationData
+  );
   console.log(cityLocationData);
   useEffect(() => {
     if (cityLocationData) {
@@ -70,6 +65,23 @@ function Sony_Store_Page() {
       window.scrollTo(0, 0);
     }
   }, [cityLocationData]);
+
+  useEffect(() => {
+    dispatch(loadCountriesLocationData());
+  }, []);
+
+  const countriesLocationData = useSelector(
+    (state) => state.appData.countriesLocationData
+  );
+  console.log(countriesLocationData);
+  useEffect(() => {
+    if (countriesLocationData) {
+      setStoreCountriesLocationData(countriesLocationData);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    }
+  }, [countriesLocationData]);
+
   if (loading) {
     return (
       <>
@@ -82,7 +94,6 @@ function Sony_Store_Page() {
     );
   }
 
->>>>>>> 1dae517c735daae5a9df1e234702050e8ba6b74f
   return (
     <>
       <BreadCrumbs title="Sony Authorized stores" />
