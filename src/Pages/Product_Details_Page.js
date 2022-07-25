@@ -14903,7 +14903,7 @@ function Product_Details_Page() {
                       return (
                         <div
                           key={product.id}
-                          className="col-6 col-sm-6 col-md-3"
+                          className="col-6 col-sm-6 col-xxl-3"
                         >
                           <ExpertProducts product={product} />
                         </div>
@@ -15022,7 +15022,7 @@ function Product_Details_Page() {
           </div>
         </div>
       </div>
-      <div className="pdp__sticky__add__to__cart__container">
+      <div className="pdp__sticky__add__to__cart__container d-lg-flex d-none">
         <div className="pdp__sticky__add__to__cart__block">
           <div className="row pdp__sticky__counter__block">
             <div

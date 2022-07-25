@@ -30,6 +30,8 @@ import codicon from './../../assets/MobilePages/MobilePdp/cash-on-delivery.svg';
 import rightaerow from './../../assets/Icon/right_Arrow_3_.svg';
 import Protecttion from "../../Components/MostSharedComponent/Protection";
 import BreadCrumbs from "../../Components/BreadCrumbs";
+import ExpertProducts from "../../Components/ProductType/ExpertProducts";
+import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
 
 function Mobile_Product_Detail_Page({ product }) {
     const [productProtection, setProtection] = useState([
@@ -276,7 +278,7 @@ function Mobile_Product_Detail_Page({ product }) {
                             Delivery Address
                         </p>
 
-                        <div className="col-sm-8">
+                        <div className="col-8">
                             <p className="col-12 mb__pd__size__title">
                                 John Doe
                             </p>
@@ -284,7 +286,7 @@ function Mobile_Product_Detail_Page({ product }) {
                                 21 West 52nd Street New York, New York, 10021 United States
                             </address>
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-4">
                             <button className="btn btn-outline-secondary shadow-none">CHANGE</button>
                         </div>
                     </div>
@@ -433,6 +435,162 @@ function Mobile_Product_Detail_Page({ product }) {
                 {/* mb Super Coin Block ends here*/}
                 <hr className="mb__block__bottom__line" />
 
+                {/* highlight section start*/}
+                <div className="container-fluid mb__highlight__sec">
+                    <div className="row">
+                        <div className="col-12">
+                            <p className="mb__pd__size__title mb-3">
+                                Highlights
+                            </p>
+                            <ul className="mb__highlight__list">
+                                <li>Netflix|Prime Video|Disney+Hotstar|Youtube</li>
+                                <li>Multi-position stand for versatile TV placement</li>
+                                <li>Netflix|Prime Video|Disney+Hotstar|Youtube</li>
+                                <li>Multi-position stand for versatile TV placement</li>
+                                <li>Netflix|Prime Video|Disney+Hotstar|Youtube</li>
+                                <li>Multi-position stand for versatile TV placement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {/* highlight section end*/}
+                <hr className="mb__block__bottom__line" />
+
+                {/* overview section start */}
+                <div className="accordion accordion-flush" id="mb__overview__accordian">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-4">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="flush-headingOne">
+                                        <button className="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            OverView
+                                        </button>
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div className="col-4">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="flush-headingTwo">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Specifications
+                                        </button>
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div className="col-4">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="flush-headingThree">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Reviews
+                                        </button>
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div className="col-12">
+                                <div id="flush-collapseOne" className="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#mb__overview__accordian">
+                                    <div className="accordion-body">
+                                        <Heading7 text="Description" />
+                                        <p>Improve your viewing experience with this 55-inch Samsung smart TV. The variety of applications offer easy access to content on popular streaming services, and the intuitive interface makes finding your favorite shows simple. Boasting native 4K resolution and advanced HDR technology, this Samsung smart TV enriches your movie nights with stunningly detailed visuals and lifelike colors.</p>
+                                        <Heading7 text="Features" />
+                                        <div><strong><Text4 text="Crystal Processor 4K" /></strong></div>
+                                        <p>The ultrafast processor transforms everything you watch into stunning 4K.</p>
+                                        <div><strong><Text4 text="Crystal display" /></strong></div>
+                                        <p>Experience crystal-clear colors that are fine-tuned to deliver a naturally crisp and vivid picture.</p>
+                                        <div><strong><Text4 text="Universal guide" /></strong></div>
+                                        <p>Powerful AI technology recommends streaming and live TV content all in one simple onscreen guide.</p>
+                                        <div><strong><Text4 text="Crystal Processor 4K" /></strong></div>
+                                        <p>The ultrafast processor transforms everything you watch into stunning 4K.</p>
+                                    </div>
+                                </div>
+                                <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#mb__overview__accordian">
+                                    <div className="accordion-body">
+                                        <Heading7 text="Specifications" /><br />
+                                        <Heading7 text="Key Specs" />
+                                        <div><strong><Text4 text="Model" /></strong></div>
+                                        <p>UN55TU7000FXZASKU</p>
+                                        <div><strong><Text4 text="SKU" /></strong></div>
+                                        <p>UN55TU7000FXZASKU</p>
+                                        <div><strong><Text4 text="Resolution" /></strong></div>
+                                        <p>4K (2160p)</p>
+                                    </div>
+                                </div>
+                                <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#mb__overview__accordian">
+                                    <div className="accordion-body">
+                                        <Heading7 text="Reviews" /><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* overview section end */}
+
+                <hr className="mb__block__bottom__line" />
+
+                {/* expert recmndation start */}
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12 mb__exp__rd__block">
+                            <Heading1 text="Our experts Recommendation" />
+                            <div className="row mb__exp__rd__main__block">
+                                <div className="col-12 col-lg-12 col-xl-9 row mb__exp__rd__left__block">
+                                    {product.relatedProducts[0].products
+                                        .slice(0, 4)
+                                        .map((product, productIndex) => {
+                                            return (
+                                                <div
+                                                    key={product.id}
+                                                    className="col-6 col-sm-6 col-xxl-3"
+                                                >
+                                                    <ExpertProducts product={product} />
+                                                </div>
+                                            );
+                                        })}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* expert recmndation end */}
+
+                <hr className="mb__block__bottom__line" />
+
+                <div className="mb__people__bought__sec mb-5 container-fluid">
+                    <CarouselTypeTwo
+                        productDetailPage={true}
+                        sectionTitle="People Who Bought Also Bought"
+                        carouselData={product.relatedProducts[0].products}
+                        productType="productOne"
+                        containerClassName="carouselTypeTwo__inner__block"
+                    />
+                </div>
+
+                <hr className="mb__block__bottom__line" />
+
+                {/* <div className="mb__people__bought__sec mb-5 container-fluid">
+                        <CarouselTypeTwo
+                        productDetailPage={true}
+                        sectionTitle="People Who Bought Also Bought"
+                        carouselData={product.relatedProducts[0].products}
+                        productType="productOne"
+                        containerClassName="carouselTypeTwo__inner__block"
+                    />          
+                </div> */}
+
+            </div>
+            <div className="mb__pdp__sticky__add__to__cart__container">
+                <div className="mb__pdp__sticky__add__to__cart__block">
+                    <button className="addToCart__button">
+                        <img src={shopping_cart} alt="" className="addToCart__icon" />
+                        Add To Cart
+                    </button>
+                    <button className="buynow___button">BUY NOW</button>
+                </div>
             </div>
         </>
     );
