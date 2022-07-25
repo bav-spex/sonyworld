@@ -36,6 +36,7 @@ export const loadHomePageData = () => {
   };
   
 };
+
 export const loadAllCategoryData = () => {
    return async function  (dispatch) {
     const categorydata = await getAllCategoryData();
