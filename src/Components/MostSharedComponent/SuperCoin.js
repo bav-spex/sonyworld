@@ -9,7 +9,7 @@ function SuperCoin() {
       <div className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-5 super__coin__image__block">
         <img src={super_coin_image} alt="" className="super__coin__image" />
       </div>
-      <div className="col-8 col-sm-6 col-md-8 col-lg-8 col-xl-7 super__coin__text__block">
+      <div className="col-8 col-sm-6 col-md-8 col-lg-8 col-xl-7 super__coin__text__block ps-2">
         <p className="super__coin__title">For every SAR200 Spent,</p>
         <p className="super__coin__title">
           you earn <img src={coin} alt="" className="coin" /> 2 SuperCoins

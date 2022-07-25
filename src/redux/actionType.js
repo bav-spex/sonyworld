@@ -15,3 +15,6 @@ export const LOGOUT = "LOGOUT"
 
 export const USERLOGGEDIN = "USERLOGGEDIN"
 export const GET_HANDSHAKE = "GET_HANDSHAKE"
+
+// registration or login
+export const AUTH_DETAILS = "AUTH_DETAILS"

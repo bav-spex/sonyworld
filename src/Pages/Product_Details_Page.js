@@ -14647,7 +14647,7 @@ function Product_Details_Page() {
       {/* <TopNavbar /> */}
       
 
-      <div className="bg-white">
+      <div className="bg-white d-none d-lg-block">
         <BreadCrumbs title="Z8H | Full Array LED | 8K | High Dynamic Range" />
       </div>
       {/* mobile pdp page */}
