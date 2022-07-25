@@ -34,11 +34,7 @@ function Protection({ title, tagline, rating, totalRatings, protection }) {
                   onChange={handleChange}
                 />
                 <p className="product__protection__text">
-                  <Text3
-                    text={protect.protectionText}
-                    color="#3b3b3b"
-                    marginBottom={0}
-                  />
+                  {protect.protectionText}
                 </p>
               </div>
               <div className="product__protection__price__block">

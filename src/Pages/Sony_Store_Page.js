@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import Heading6 from "./../Components/Font/Heading6";
 import Text3 from "./../Components/Font/Text3";
@@ -7,6 +8,7 @@ import right_location_pin from "./../assets/Icon/right_location_pin.svg";
 import "./../SCSS/_sonyStorePage.scss";
 import find_store_banner from "./../assets/SonyStore/find_store_banner.jpg";
 import map_image from "./../assets/SonyStore/map_image.jpg";
+import { loadCitiesLocationData } from "../redux/appAction";
 const locationData = [
   {
     id: 1,
@@ -37,9 +39,38 @@ function Sony_Store_Page() {
     area: "",
   });
   const [latestStateList, setLatestStateList] = useState([]);
+  const [storeCitiesLocationData, setStoreCitiesLocationData] = useState();
+  const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
-    console.log(e);
+    console.log(e.target.value);
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadCitiesLocationData());
+  }, []);
+
+  const cityLocationData = useSelector((state) => state.appData.cityLocationData);
+  console.log(cityLocationData);
+  useEffect(() => {
+    if (cityLocationData) {
+      setStoreCitiesLocationData(cityLocationData);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    }
+  }, [cityLocationData]);
+  if (loading) {
+    return (
+      <>
+        <h1>Store Loading...</h1>
+        <h1>Store Loading...</h1>
+        <h1>Store Loading...</h1>
+        <h1>Store Loading...</h1>
+        <h1>Store Loading...</h1>
+      </>
+    );
+  }
 
   return (
     <>

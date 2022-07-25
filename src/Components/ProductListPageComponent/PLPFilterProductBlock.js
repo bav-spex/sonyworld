@@ -632,7 +632,7 @@ const PLPFilterProductBlock = ({
                 <>
                   {peopleUltimatelyBoughtData.map((product, productIndex) => {
                     return (
-                      <div className="col-sm-4">
+                      <div key={productIndex} className="col-sm-4">
                         <ProductNine
                           product={product}
                           handleChangeProductPopup={handleChangeProductPopup}
@@ -647,7 +647,7 @@ const PLPFilterProductBlock = ({
                 <>
                   {peopleUltimatelyBoughtData.map((product, productIndex) => {
                     return (
-                      <div className="col-sm-12">
+                      <div key={productIndex} className="col-sm-12">
                         <ProductTen
                           product={product}
                           handleChangeProductPopup={handleChangeProductPopup}

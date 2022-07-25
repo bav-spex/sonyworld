@@ -52,10 +52,18 @@ const productDataJSON = [
     image: product_carousal_04,
   },
 ];
-function ProductCarousel({productImageData}) {
-  console.log(productImageData);
+function ProductCarousel({ productImageData }) {
   const [index, setIndex] = useState(0);
-  const [carousel, setcarousel] = useState(productImageData);
+  const [carousel, setcarousel] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // function refreshPage() {
+  //   window.location.reload();
+  // }
+  useEffect(() => {
+    if (productImageData) {
+      setcarousel(productImageData);
+    }
+  },[productImageData]);
 
   useEffect(() => {
     if (index > carousel.length - 1) {
@@ -98,10 +106,10 @@ function ProductCarousel({productImageData}) {
         </div>
         <div className="carousel__dots__block">
           {carousel.map((ban, banIndex) => {
-            console.log(parseInt(ban.position));
+            // console.log(parseInt(ban.position));
             return (
               <div
-                key={banIndex}
+                key={ban.image}
                 className={
                   parseInt(ban.position) === index + 1
                     ? "carousel__dot carousel__dotActive"
@@ -110,11 +118,12 @@ function ProductCarousel({productImageData}) {
                 onClick={() => setIndex(banIndex)}
               >
                 <img
+                  key={ban.image}
                   src={ban.image}
-                  alt=""
+                  alt={ban.image}
                   className="carousel__thumbnail__image"
                 />
-                <div className={banIndex === index  ? "overlay  " : ""}></div>
+                <div className={banIndex === index ? "overlay  " : ""}></div>
               </div>
             );
           })}
@@ -133,12 +142,17 @@ function ProductCarousel({productImageData}) {
             ) {
               position = "carousel prevCarousel";
             }
-            if(carousel.length === 1){
+            if (carousel.length === 1) {
               position = "carousel activeCarousel";
             }
             return (
-              <div className={position} key={parseInt(ban.position)}>
-                <img className="carousel__image" src={ban.image} alt="" />
+              <div className={position} key={`${ban.image} product carousel`}>
+                <img
+                  key={Date.now()}
+                  className="carousel__image"
+                  src={`${ban.image}?${Date.now}`}
+                  alt={`${ban.image} product carousel`}
+                />
               </div>
             );
           })}

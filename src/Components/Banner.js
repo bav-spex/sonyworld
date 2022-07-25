@@ -92,9 +92,9 @@ function Banner({ bannerData }) {
             return (
               <a key={banIndex} href={ban.deeplinkUrl}>
                 <div className={position} key={ban.id}>
-                  <Link to="/products/1">
+                
                     <img className="banner__image" src={ban.imageUrl} alt="" />
-                  </Link>
+                  
                   {/* <p className="banner__title">{ban.title}</p> */}
                 </div>
               </a>

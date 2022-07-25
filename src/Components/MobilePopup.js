@@ -302,14 +302,14 @@ import NavbarAdBanner_01 from "./../assets/NavbarAdBanner/NavbarAdBanner_01.jpg"
 //   ];
 function MobilePopup({ menuIndex, currentCategoryData }) {
   const [mobileShowPopup, setMobileShowPopup] = useState(true);
-  console.log(currentCategoryData);
+  // console.log(currentCategoryData);
   return (
     <>
       <div className="row col-12 mobile__category__block">
         {currentCategoryData?.children_data.map((subcategory, subcategoryIndex) => {
           return (
             <p
-              className="col-12 col-sm-6 mobile__category__title"
+              className="col-12 mobile__category__title"
               key={subcategory.id}
             >
               {subcategory.name}

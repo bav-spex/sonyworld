@@ -6,6 +6,7 @@ import black_down_arrow from "./../../assets/Icon/black_down_arrow.svg";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import Price from "../Font/Price";
 import OldPrice from "../Font/OldPrice";
+import { Link } from "react-router-dom";
 function ExpertProducts({ product }) {
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
   const [isCheckBox, setIsCheckBox] = useState(false);
@@ -16,10 +17,13 @@ function ExpertProducts({ product }) {
   //   (a, b) => a + b
   // ));
   return (
-    <div key={product.id} className="expert__rd__product__block">
+    <div  key={product.id} className="expert__rd__product__block">
+      <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+       
       <div className="col-4 exp__product__image__block">
         <img src={product.baseImage} alt="" className="exp__product__image" />
       </div>
+      </Link>
       <div className="exp__rd__rating__block">
         <RatingBlock
           rating={4.5}

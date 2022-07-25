@@ -12,16 +12,15 @@ import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping-cart-red.svg";
 
-function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
+function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backgroundColor }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
 
-  console.log(featureProductsData[0]);
   return (
-    <div className="container-fluid mobile__dealsOfTheDay__container">
+    <div className="container-fluid mobile__dealsOfTheDay__container" style={{backgroundColor: `${backgroundColor}`}}>
       <div className=" mobile__dealsOfTheDay__block">
         <p className="section__title py-3">
          {sectionTitle}
@@ -165,9 +164,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
             <Link
@@ -227,9 +226,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
           </div>
@@ -291,9 +290,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
             <Link
@@ -353,9 +352,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData }) {
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </Link>
           </div>
