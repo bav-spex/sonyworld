@@ -32,6 +32,7 @@ import Protecttion from "../../Components/MostSharedComponent/Protection";
 import BreadCrumbs from "../../Components/BreadCrumbs";
 import ExpertProducts from "../../Components/ProductType/ExpertProducts";
 import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
+import SimilarProducts from "../../Components/SimilarProducts";
 
 function Mobile_Product_Detail_Page({ product }) {
     const [productProtection, setProtection] = useState([
@@ -287,10 +288,106 @@ function Mobile_Product_Detail_Page({ product }) {
                             </address>
                         </div>
                         <div className="col-4">
-                            <button className="btn btn-outline-secondary shadow-none">CHANGE</button>
+                            <button className="btn btn-outline-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#changeAddressModal">CHANGE</button>
                         </div>
                     </div>
                 </div>
+                {/* =============================== */}
+
+                {/* change address popup start */}
+                {/* <!-- Modal --> */}
+                <div className="modal mb__bottom_popup" id="changeAddressModal" tabindex="-1" aria-labelledby="changeAddressModalLabel" aria-hidden="true">
+                    <div className="modal-dialog mb__dialog__end modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <Heading5 text="Select Delivery Address" />
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="custom__checkbox mb-3">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" checked />
+                                    <label for="exampleCheck1" className="custom__checkmark p-3">
+                                        <p className="p-1 d-inline-block mb__adress__tag">Default</p>
+                                        <Heading7 text="John Doe" />
+                                        <address className="mb-3 text-wrap">
+                                            21 West 52nd Street New York, New York, 10021 United States
+                                        </address>
+                                        <p>+1123456789</p>
+                                    </label>
+                                </div>
+                                <div className="custom__checkbox">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck2" />
+                                    <label for="exampleCheck2" className="custom__checkmark p-3">
+
+                                        <Heading7 text="John Doe" />
+                                        <address className="mb-3 text-wrap">
+                                            21 West 52nd Street New York, New York, 10021 United States
+                                        </address>
+                                        <p>+1123456789</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="modal-footer border-top-0">
+                                <button type="button" className="btn btn-border btn__border__black w-100 d-block mb-2" data-bs-target="#addAddressModal" data-bs-toggle="modal" data-bs-dismiss="modal">ADD NEW ADDRESS</button>
+                                <button type="button" className="btn__primary__orange btn btn-primary w-100 d-block mb-3">SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <!-- Modal end--> */}
+                {/* change address popup end */}
+
+                {/* add new address popup  start*/}
+                {/* <!-- Modal --> */}
+                <div className="modal mb__bottom_popup" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+                    <div className="modal-dialog mb__dialog__end modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <Heading5 text="Add New Delivery Address" />
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">                               
+                                <div className="mb-3">
+                                    <label for="Name" className="form-label"><strong>Name</strong></label>
+                                    <input type="text" className="form-control" id="Name" placeholder="John" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Mobile Number</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="+966 50 655 2835" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Address Line 1</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="21 West 52nd Street New York" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Address Line 2</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="21 West 52nd Street New York" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>City/Town</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="Hamilton" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>State</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="Newyork" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Landmark</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="Newyork" />
+                                </div>
+                            </div>
+                            <div className="modal-footer border-top-0 justify-content-center">
+                                <button type="button" className="btn__primary__orange btn btn-primary w-25">SAVE</button>
+                                <button type="button" className="btn btn-border btn__border__black  w-25">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <!-- Modal end--> */}
+                {/* add new address popup  end*/}
+                {/* =============================== */}
+
+
                 {/* Delivery Address ends here */}
                 <hr className="mb__block__bottom__line" />
 
@@ -572,15 +669,15 @@ function Mobile_Product_Detail_Page({ product }) {
 
                 <hr className="mb__block__bottom__line" />
 
-                {/* <div className="mb__people__bought__sec mb-5 container-fluid">
-                        <CarouselTypeTwo
+                <div className="mb__people__bought__sec mb-5 container-fluid">
+                    <SimilarProducts
+                        productType="productTwo"
                         productDetailPage={true}
-                        sectionTitle="People Who Bought Also Bought"
+                        sectionTitle={product.relatedProducts[0].title}
+                        containerClassName="pd__similar__products__block"
                         carouselData={product.relatedProducts[0].products}
-                        productType="productOne"
-                        containerClassName="carouselTypeTwo__inner__block"
-                    />          
-                </div> */}
+                    />
+                </div>
 
             </div>
             <div className="mb__pdp__sticky__add__to__cart__container">
