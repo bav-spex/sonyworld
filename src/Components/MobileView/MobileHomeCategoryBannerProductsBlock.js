@@ -31,7 +31,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
       <div className="row mh__cbp__row">
         <Link
           to={`products/${featureProductsData[1].sku}`}
-          className="col-12 col-sm-6 mh__cbp__product"
+          className="col-6 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
             <span className="fav_icon d-block d-lg-none">
@@ -93,7 +93,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
         </Link>
         <Link
           to={`products/${featureProductsData[1].sku}`}
-          className="col-12 col-sm-6 mh__cbp__product"
+          className="col-6 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
             <span className="fav_icon d-block d-lg-none">
@@ -155,7 +155,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
         </Link>
         <Link
           to={`products/${featureProductsData[1].sku}`}
-          className="col-12 col-sm-6 mh__cbp__product"
+          className="col-6 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
             <span className="fav_icon d-block d-lg-none">
@@ -217,7 +217,7 @@ function MobileHomeCategoryBannerProductsBlock({ featureProductsData }) {
         </Link>
         <Link
           to={`products/${featureProductsData[1].sku}`}
-          className="col-12 col-sm-6 mh__cbp__product"
+          className="col-6 col-sm-6 mh__cbp__product"
         >
           <div className="inner__mh__cbp__product">
             <span className="fav_icon d-block d-lg-none">

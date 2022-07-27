@@ -9,6 +9,7 @@ import "./../SCSS/_sonyStorePage.scss";
 import find_store_banner from "./../assets/SonyStore/find_store_banner.jpg";
 import map_image from "./../assets/SonyStore/map_image.jpg";
 import { loadCitiesLocationData } from "../redux/appAction";
+import { loadCountriesLocationData } from "../redux/appAction";
 const locationData = [
   {
     id: 1,
@@ -40,6 +41,8 @@ function Sony_Store_Page() {
   });
   const [latestStateList, setLatestStateList] = useState([]);
   const [storeCitiesLocationData, setStoreCitiesLocationData] = useState();
+  const [storeCountriesLocationData, setStoreCountriesLocationData] =
+    useState();
   const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -51,7 +54,9 @@ function Sony_Store_Page() {
     dispatch(loadCitiesLocationData());
   }, []);
 
-  const cityLocationData = useSelector((state) => state.appData.cityLocationData);
+  const cityLocationData = useSelector(
+    (state) => state.appData.cityLocationData
+  );
   console.log(cityLocationData);
   useEffect(() => {
     if (cityLocationData) {
@@ -60,6 +65,24 @@ function Sony_Store_Page() {
       window.scrollTo(0, 0);
     }
   }, [cityLocationData]);
+
+  useEffect(() => {
+    dispatch(loadCountriesLocationData());
+  }, []);
+
+  const countriesLocationData = useSelector(
+    (state) => state.appData.countriesLocationData
+  );
+  console.log(countriesLocationData);
+  useEffect(() => {
+    if (countriesLocationData) {
+      setStoreCountriesLocationData(countriesLocationData);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    }
+  }, [countriesLocationData]);
+  console.log(countriesLocationData);
+
   if (loading) {
     return (
       <>
@@ -140,7 +163,7 @@ function Sony_Store_Page() {
               <div className="map__location__list__block">
                 {locationData.map((location, locationIndex) => {
                   return (
-                    <div className="location__block">
+                    <div className="location__block" key={location.id}>
                       <img src={left_location} alt="" />
                       <div className="location__info__block">
                         <div className="location__info__text">

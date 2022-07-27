@@ -40,6 +40,7 @@ import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
 import { loadHomePageData } from "../redux/appAction";
+import { loadLocationData } from "../redux/appAction";
 
 import MobileHomePage from "./MobilePages/Mobile_Home_Page";
 
