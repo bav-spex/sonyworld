@@ -30,6 +30,9 @@ import codicon from './../../assets/MobilePages/MobilePdp/cash-on-delivery.svg';
 import rightaerow from './../../assets/Icon/right_Arrow_3_.svg';
 import Protecttion from "../../Components/MostSharedComponent/Protection";
 import BreadCrumbs from "../../Components/BreadCrumbs";
+import ExpertProducts from "../../Components/ProductType/ExpertProducts";
+import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
+import SimilarProducts from "../../Components/SimilarProducts";
 
 function Mobile_Product_Detail_Page({ product }) {
     const [productProtection, setProtection] = useState([
@@ -276,7 +279,7 @@ function Mobile_Product_Detail_Page({ product }) {
                             Delivery Address
                         </p>
 
-                        <div className="col-sm-8">
+                        <div className="col-8">
                             <p className="col-12 mb__pd__size__title">
                                 John Doe
                             </p>
@@ -284,11 +287,107 @@ function Mobile_Product_Detail_Page({ product }) {
                                 21 West 52nd Street New York, New York, 10021 United States
                             </address>
                         </div>
-                        <div className="col-sm-4">
-                            <button className="btn btn-outline-secondary shadow-none">CHANGE</button>
+                        <div className="col-4">
+                            <button className="btn btn-outline-secondary shadow-none" data-bs-toggle="modal" data-bs-target="#changeAddressModal">CHANGE</button>
                         </div>
                     </div>
                 </div>
+                {/* =============================== */}
+
+                {/* change address popup start */}
+                {/* <!-- Modal --> */}
+                <div className="modal mb__bottom_popup" id="changeAddressModal" tabindex="-1" aria-labelledby="changeAddressModalLabel" aria-hidden="true">
+                    <div className="modal-dialog mb__dialog__end modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <Heading5 text="Select Delivery Address" />
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="custom__checkbox mb-3">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" checked />
+                                    <label for="exampleCheck1" className="custom__checkmark p-3">
+                                        <p className="p-1 d-inline-block mb__adress__tag">Default</p>
+                                        <Heading7 text="John Doe" />
+                                        <address className="mb-3 text-wrap">
+                                            21 West 52nd Street New York, New York, 10021 United States
+                                        </address>
+                                        <p>+1123456789</p>
+                                    </label>
+                                </div>
+                                <div className="custom__checkbox">
+                                    <input type="checkbox" className="form-check-input" id="exampleCheck2" />
+                                    <label for="exampleCheck2" className="custom__checkmark p-3">
+
+                                        <Heading7 text="John Doe" />
+                                        <address className="mb-3 text-wrap">
+                                            21 West 52nd Street New York, New York, 10021 United States
+                                        </address>
+                                        <p>+1123456789</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="modal-footer border-top-0">
+                                <button type="button" className="btn btn-border btn__border__black w-100 d-block mb-2" data-bs-target="#addAddressModal" data-bs-toggle="modal" data-bs-dismiss="modal">ADD NEW ADDRESS</button>
+                                <button type="button" className="btn__primary__orange btn btn-primary w-100 d-block mb-3">SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <!-- Modal end--> */}
+                {/* change address popup end */}
+
+                {/* add new address popup  start*/}
+                {/* <!-- Modal --> */}
+                <div className="modal mb__bottom_popup" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+                    <div className="modal-dialog mb__dialog__end modal-dialog-scrollable">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <Heading5 text="Add New Delivery Address" />
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">                               
+                                <div className="mb-3">
+                                    <label for="Name" className="form-label"><strong>Name</strong></label>
+                                    <input type="text" className="form-control" id="Name" placeholder="John" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Mobile Number</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="+966 50 655 2835" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Address Line 1</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="21 West 52nd Street New York" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Address Line 2</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="21 West 52nd Street New York" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>City/Town</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="Hamilton" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>State</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="Newyork" />
+                                </div>
+                                <div className="mb-3">
+                                    <label for="Mobile" className="form-label"><strong>Landmark</strong></label>
+                                    <input type="text" className="form-control" id="Mobile" placeholder="Newyork" />
+                                </div>
+                            </div>
+                            <div className="modal-footer border-top-0 justify-content-center">
+                                <button type="button" className="btn__primary__orange btn btn-primary w-25">SAVE</button>
+                                <button type="button" className="btn btn-border btn__border__black  w-25">CANCEL</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <!-- Modal end--> */}
+                {/* add new address popup  end*/}
+                {/* =============================== */}
+
+
                 {/* Delivery Address ends here */}
                 <hr className="mb__block__bottom__line" />
 
@@ -433,6 +532,162 @@ function Mobile_Product_Detail_Page({ product }) {
                 {/* mb Super Coin Block ends here*/}
                 <hr className="mb__block__bottom__line" />
 
+                {/* highlight section start*/}
+                <div className="container-fluid mb__highlight__sec">
+                    <div className="row">
+                        <div className="col-12">
+                            <p className="mb__pd__size__title mb-3">
+                                Highlights
+                            </p>
+                            <ul className="mb__highlight__list">
+                                <li>Netflix|Prime Video|Disney+Hotstar|Youtube</li>
+                                <li>Multi-position stand for versatile TV placement</li>
+                                <li>Netflix|Prime Video|Disney+Hotstar|Youtube</li>
+                                <li>Multi-position stand for versatile TV placement</li>
+                                <li>Netflix|Prime Video|Disney+Hotstar|Youtube</li>
+                                <li>Multi-position stand for versatile TV placement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {/* highlight section end*/}
+                <hr className="mb__block__bottom__line" />
+
+                {/* overview section start */}
+                <div className="accordion accordion-flush" id="mb__overview__accordian">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-4">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="flush-headingOne">
+                                        <button className="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                            OverView
+                                        </button>
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div className="col-4">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="flush-headingTwo">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Specifications
+                                        </button>
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div className="col-4">
+                                <div className="accordion-item">
+                                    <h2 className="accordion-header" id="flush-headingThree">
+                                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Reviews
+                                        </button>
+                                    </h2>
+
+                                </div>
+                            </div>
+                            <div className="col-12">
+                                <div id="flush-collapseOne" className="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#mb__overview__accordian">
+                                    <div className="accordion-body">
+                                        <Heading7 text="Description" />
+                                        <p>Improve your viewing experience with this 55-inch Samsung smart TV. The variety of applications offer easy access to content on popular streaming services, and the intuitive interface makes finding your favorite shows simple. Boasting native 4K resolution and advanced HDR technology, this Samsung smart TV enriches your movie nights with stunningly detailed visuals and lifelike colors.</p>
+                                        <Heading7 text="Features" />
+                                        <div><strong><Text4 text="Crystal Processor 4K" /></strong></div>
+                                        <p>The ultrafast processor transforms everything you watch into stunning 4K.</p>
+                                        <div><strong><Text4 text="Crystal display" /></strong></div>
+                                        <p>Experience crystal-clear colors that are fine-tuned to deliver a naturally crisp and vivid picture.</p>
+                                        <div><strong><Text4 text="Universal guide" /></strong></div>
+                                        <p>Powerful AI technology recommends streaming and live TV content all in one simple onscreen guide.</p>
+                                        <div><strong><Text4 text="Crystal Processor 4K" /></strong></div>
+                                        <p>The ultrafast processor transforms everything you watch into stunning 4K.</p>
+                                    </div>
+                                </div>
+                                <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#mb__overview__accordian">
+                                    <div className="accordion-body">
+                                        <Heading7 text="Specifications" /><br />
+                                        <Heading7 text="Key Specs" />
+                                        <div><strong><Text4 text="Model" /></strong></div>
+                                        <p>UN55TU7000FXZASKU</p>
+                                        <div><strong><Text4 text="SKU" /></strong></div>
+                                        <p>UN55TU7000FXZASKU</p>
+                                        <div><strong><Text4 text="Resolution" /></strong></div>
+                                        <p>4K (2160p)</p>
+                                    </div>
+                                </div>
+                                <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#mb__overview__accordian">
+                                    <div className="accordion-body">
+                                        <Heading7 text="Reviews" /><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* overview section end */}
+
+                <hr className="mb__block__bottom__line" />
+
+                {/* expert recmndation start */}
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12 mb__exp__rd__block">
+                            <Heading1 text="Our experts Recommendation" />
+                            <div className="row mb__exp__rd__main__block">
+                                <div className="col-12 col-lg-12 col-xl-9 row mb__exp__rd__left__block">
+                                    {product.relatedProducts[0].products
+                                        .slice(0, 4)
+                                        .map((product, productIndex) => {
+                                            return (
+                                                <div
+                                                    key={product.id}
+                                                    className="col-6 col-sm-6 col-xxl-3"
+                                                >
+                                                    <ExpertProducts product={product} />
+                                                </div>
+                                            );
+                                        })}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* expert recmndation end */}
+
+                <hr className="mb__block__bottom__line" />
+
+                <div className="mb__people__bought__sec mb-5 container-fluid">
+                    <CarouselTypeTwo
+                        productDetailPage={true}
+                        sectionTitle="People Who Bought Also Bought"
+                        carouselData={product.relatedProducts[0].products}
+                        productType="productOne"
+                        containerClassName="carouselTypeTwo__inner__block"
+                    />
+                </div>
+
+                <hr className="mb__block__bottom__line" />
+
+                <div className="mb__people__bought__sec mb-5 container-fluid">
+                    <SimilarProducts
+                        productType="productTwo"
+                        productDetailPage={true}
+                        sectionTitle={product.relatedProducts[0].title}
+                        containerClassName="pd__similar__products__block"
+                        carouselData={product.relatedProducts[0].products}
+                    />
+                </div>
+
+            </div>
+            <div className="mb__pdp__sticky__add__to__cart__container">
+                <div className="mb__pdp__sticky__add__to__cart__block">
+                    <button className="addToCart__button">
+                        <img src={shopping_cart} alt="" className="addToCart__icon" />
+                        Add To Cart
+                    </button>
+                    <button className="buynow___button">BUY NOW</button>
+                </div>
             </div>
         </>
     );

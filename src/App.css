@@ -1,58 +1,105 @@
-body{
+body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
+
 ::-webkit-scrollbar {
-    width: 4px !important;
+  width: 4px !important;
 
-    /* transform: translateY(100%); */
-  }
-  
-  .main__navbar__container .navbar__row::-webkit-scrollbar {
-    height: 0;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-      /* box-shadow: inset 0 0 5px grey;
+  /* transform: translateY(100%); */
+}
+
+.main__navbar__container .navbar__row::-webkit-scrollbar {
+  height: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;
       border-radius: 10px; */
-      /* transform: translateY(100%); */
-    z-index: 10;
-    opacity: 0;
-    background: white;
-  }
-  ::-webkit-scrollbar-track:hover {
-    /* box-shadow: inset 0 0 5px grey;
-    border-radius: 10px; */
-    opacity: 1;
-    background: white;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-      opacity: 0;
-      background-color: #818181;
-    /* background: red; */
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #303030;
-  }
-  .main_header{
+  /* transform: translateY(100%); */
+  z-index: 10;
+  opacity: 0;
+  background: white;
+}
 
-  }
-  .main_wrapper{
-    /* margin-top: 112px; */
-  }
-  img{
-    max-width: 100%;
-  }
-  .text-orange{
-    color: #FF4F04;
-  }
-  .text-grey{
-    color: #808080;
-  }
+::-webkit-scrollbar-track:hover {
+  /* box-shadow: inset 0 0 5px grey;
+    border-radius: 10px; */
+  opacity: 1;
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  opacity: 0;
+  background-color: #818181;
+  /* background: red; */
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #303030;
+}
+
+.main_header {}
+
+.main_wrapper {
+  /* margin-top: 112px; */
+}
+
+img {
+  max-width: 100%;
+}
+
+.text-orange {
+  color: #FF4F04;
+}
+
+.text-grey {
+  color: #808080;
+}
+
+.btn__border__black {
+  border: 1px solid #000000;
+  background: transparent;
+  color: #000000;
+  font-size: 16px;
+  font-family: "arialbold";
+  padding: 20px 20px;
+  transition: all 0.3s;
+}
+
+.btn__primary__orange {
+  background: #DF4E32;
+  color: #fff;
+  font-size: 16px;
+  font-family: "arialbold";
+  padding: 20px 20px;
+  transition: all 0.3s;
+  border-color: #DF4E32;
+}
+
+.btn__primary__orange:hover, .btn__primary__orange:focus {
+  background: #fff;
+  color: #DF4E32;
+  border-color: #DF4E32;
+}
+.custom__checkbox{
+  position: relative;
+}
+.custom__checkbox .form-check-input{
+  opacity: 0;
+  display: none;
+}
+.custom__checkbox .form-check-input[type=checkbox]:checked + label{
+  border-color: #000000;
+}
+.custom__checkbox label.custom__checkmark{
+  width: 100%;
+  border: 2px solid #D1D1D1;
+  box-shadow: 0px 3px 6px #00000029;
+  padding-top: 60px !important;
+}

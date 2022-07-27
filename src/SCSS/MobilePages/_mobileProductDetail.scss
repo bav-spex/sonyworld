@@ -200,49 +200,243 @@
 
 // delvery sec start
 .mb__delivery__sec {
-	
-		.exp__rd__select__block {
-			width: 40px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			.exp__rd__check__icon{
-				display: block;
-			}
-			.exp__rd__check__icon__disable{
-				display: none;
-			}
+
+	.exp__rd__select__block {
+		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.exp__rd__check__icon {
+			display: block;
 		}
-		
-	
+
+		.exp__rd__check__icon__disable {
+			display: none;
+		}
+	}
+
+
 }
+
 // delvery sec end
 
-.mb__return_policy{
-	li{
+.mb__return_policy {
+	li {
 		position: relative;
 		padding-right: 30px;
 		width: 30%;
-		&::after{
+		height: 100%;
+
+		&::after {
 			width: 1px;
 			position: absolute;
-			right:0;
+			right: 0;
 			height: 90%;
 			background: #d1d1d1;
 			content: "";
-			top:50%;
+			top: 50%;
 			transform: translateY(-50%);
 		}
-		&:last-child{
-			&::after{
+
+		&:last-child {
+			&::after {
 				display: none;
 			}
 		}
 	}
 }
 
-.mb__supercoin__Sec{
-	.super__coin__text__block{
+// super coin section
+
+.mb__supercoin__Sec {
+	.super__coin__text__block {
 		padding-left: 30px !important;
 	}
+}
+
+// highlight sec start
+.mb__highlight__sec {
+	.mb__highlight__list {
+		list-style: none;
+
+		li {
+			position: relative;
+			font-size: 12px;
+			color: #2B2B2B;
+			margin-bottom: 12px;
+
+			&:before {
+				content: "\2022";
+				color: #C8C8C8;
+				font-weight: bold;
+				display: inline-block;
+				width: 1em;
+				margin-left: -1em;
+			}
+		}
+	}
+}
+
+// overview section start
+#mb__overview__accordian {
+	margin-top: -1rem;
+
+	.col-4 {
+		padding: 0;
+
+		&:nth-child(0) {
+			.accordion-button {
+				border-right: 0 !important;
+				border-left: 0 !important;
+			}
+		}
+
+		.accordion-item {
+			text-align: center;
+
+			// border-bottom: 1px solid #d4d4d4;
+			.accordion-button {
+				justify-content: center;
+				border: 1px solid #d4d4d4;
+				border-radius: 0;
+				border-top: 0;
+
+				&:focus,
+				&:not(.collapsed) {
+					box-shadow: none;
+					outline: none;
+					background: transparent;
+					background: #DF4E32;
+					color: #fff;
+				}
+
+				&:after {
+
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+.mb__exp__rd__main__block {
+	.col-6 {
+		&:last-child {
+			.expert__rd__product__block {
+				&::after {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+.mb__pdp__sticky__add__to__cart__container {
+	position: fixed;
+	bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	// display: flex;
+	right: 0;
+	z-index: 99;
+	width: 95%;
+
+	.mb__pdp__sticky__add__to__cart__block {
+		display: flex;
+		justify-content: center;
+	}
+
+	.buynow___button {
+		text-decoration: none;
+		border-radius: 0px 35px 35px 0px;
+		color: #ffffff;
+		font-size: 16px;
+		font-family: "arialbold";
+		letter-spacing: 0.85px;
+		padding: 10px 10px;
+		background-color: #000000;
+		text-align: center;
+		text-transform: uppercase;
+		border: none;
+		height: 64px;
+		background-color: #dc3a1a;
+		width: 45%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-width: 50%;
+	}
+
+	.addToCart__button {
+		text-decoration: none;
+		width: 50%;
+		color: #ffffff;
+		font-size: 16px;
+		font-family: "arialbold";
+		letter-spacing: 0.85px;
+		padding: 10px 10px;
+		border-radius: 35px 0 0 35px;
+		background-color: #000000;
+		text-align: center;
+		text-transform: uppercase;
+		display: flex;
+		border: none;
+		justify-content: center;
+		align-items: center;
+		height: 64px;
+
+		.addToCart__icon {
+			margin: 0px 10px 0px 0px;
+		}
+	}
+}
+
+@media(max-width:767px) {
+	.mb__pdp__size__sec .mb__pd__size__button__block button {
+		margin: 2px !important;
+	}
+
+	.mb__return_policy li {
+		width: 25%;
+		padding-right: 20px;
+	}
+
+	.mobile__product__detail__page .mb__pd__size__title {
+		font-size: 14px;
+	}
+
+	.expert__rd__product__block::after {
+		font-size: 40px;
+	}
+}
+
+
+// bottom modal popup ui start
+.mb__bottom_popup {
+	.mb__dialog__end {
+		display: flex;
+		margin-bottom: 0 !important;
+		align-items: flex-end;
+		min-height: calc(100% - 1.8rem);
+		max-width: 100%;
+		.modal-content{
+			border-radius: 0;
+			.modal-header{
+				border-bottom: 0;
+			}
+		}
+	}
+}
+
+// bottom modal popup ui end
+// address popup
+.mb__adress__tag {
+	border: 1px solid #EEEEEE;
+	border-radius: 3px;
+	background-color: #EEEEEE;
+	font-size: 14px;
+	text-transform: uppercase;
+	position: absolute;
+    top: 10px;
 }
