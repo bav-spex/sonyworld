@@ -81,6 +81,7 @@ function Sony_Store_Page() {
       window.scrollTo(0, 0);
     }
   }, [countriesLocationData]);
+  console.log(countriesLocationData);
 
   if (loading) {
     return (

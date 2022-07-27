@@ -39,15 +39,22 @@ function App({ stars }) {
     setReloadHeader(!reloadHeader);
   };
   const [token, setToken] = useState();
+  // useEffect(() => {
+  //   // debugger
+  //   const localStorageHandshakeToken = localStorage.getItem("handShakeToken");
+  //   console.log(localStorageHandshakeToken);
+  //   if (localStorageHandshakeToken === null || undefined) {
+  //     getHandshake().then((res) => setToken(res.data.token));
+  //   } else {
+  //     setToken(localStorageHandshakeToken);
+  //   }
+  // }, []);
   useEffect(() => {
     // debugger
-    const localStorageHandshakeToken = localStorage.getItem("handShakeToken");
-    // console.log(localStorageHandshakeToken);
-    if (localStorageHandshakeToken === null || undefined) {
+    
       getHandshake().then((res) => setToken(res.data.token));
-    } else {
-      setToken(localStorageHandshakeToken);
-    }
+  
+    
   }, []);
   useEffect(() => {
     if (token) {
@@ -56,7 +63,7 @@ function App({ stars }) {
       categoryDispatch(loadAllCategoryData());
       
     }
-    // console.log(token);
+    console.log(token);
   }, [token]);
 
    // const getAppStarted = async () => {
