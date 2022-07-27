@@ -21,6 +21,7 @@ import product_05 from "./../../assets/Product/product_05.jpg";
 import product_06 from "./../../assets/Product/product_06.jpg";
 import product_07 from "./../../assets/Product/product_07.jpg";
 import product_08 from "./../../assets/Product/product_08.jpg";
+
 function ProductNine({ product,handleChangeProductPopup,handleChangeComparePopup }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
