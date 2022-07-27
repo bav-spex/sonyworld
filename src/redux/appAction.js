@@ -6,6 +6,7 @@ import { getProductDetail } from "../services/pdp.service";
 import { getWishlistData } from "../services/wishlist.services";
 import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
+import { getStoresLocationData } from "../services/storeLocation.service";
 
 
 
@@ -117,5 +118,22 @@ export const loadCountriesLocationData = () => {
         const countriesLocationData = await getCountriesLocationData();
         dispatch(saveCountriesLocationData(countriesLocationData.data));
         return countriesLocationData.data
+    };
+};
+
+// Store //
+
+const saveStoresLocationData = (data) => ({
+    type: types.GET__STORES__LOCATION__DATA,
+    payload: data,
+});
+
+
+
+export const loadStoresLocationData = () => {
+    return async function(dispatch) {
+        const storesLocationData = await getStoresLocationData();
+        dispatch(saveStoresLocationData(storesLocationData.data));
+        return storesLocationData.data
     };
 };

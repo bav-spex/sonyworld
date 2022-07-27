@@ -7,6 +7,7 @@ const initialState = {
     wishlistData: [],
     cityLocationData: [],
     countriesLocationData: [],
+    storesLocationData: [],
     loading: true,
 };
 
@@ -41,6 +42,11 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 countriesLocationData: action.payload,
+            };
+        case types.GET__STORES__LOCATION__DATA:
+            return {
+                ...state,
+                storesLocationData: action.payload,
             };
         case types.LOADING:
             return {

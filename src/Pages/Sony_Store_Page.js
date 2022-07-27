@@ -10,6 +10,7 @@ import find_store_banner from "./../assets/SonyStore/find_store_banner.jpg";
 import map_image from "./../assets/SonyStore/map_image.jpg";
 import { loadCitiesLocationData } from "../redux/appAction";
 import { loadCountriesLocationData } from "../redux/appAction";
+import { loadStoresLocationData } from "../redux/appAction";
 const locationData = [
   {
     id: 1,
@@ -43,10 +44,14 @@ function Sony_Store_Page() {
   const [storeCitiesLocationData, setStoreCitiesLocationData] = useState();
   const [storeCountriesLocationData, setStoreCountriesLocationData] =
     useState();
+  const [storeStoresLocationData, setStoreStoresLocationData] = useState();
+
   const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
     console.log(e.target.value);
   };
+
+  // cities //
 
   const dispatch = useDispatch();
 
@@ -66,6 +71,8 @@ function Sony_Store_Page() {
     }
   }, [cityLocationData]);
 
+  // countries //
+
   useEffect(() => {
     dispatch(loadCountriesLocationData());
   }, []);
@@ -73,7 +80,7 @@ function Sony_Store_Page() {
   const countriesLocationData = useSelector(
     (state) => state.appData.countriesLocationData
   );
-  console.log(countriesLocationData);
+
   useEffect(() => {
     if (countriesLocationData) {
       setStoreCountriesLocationData(countriesLocationData);
@@ -82,6 +89,24 @@ function Sony_Store_Page() {
     }
   }, [countriesLocationData]);
   console.log(countriesLocationData);
+
+  // stores //
+
+  useEffect(() => {
+    dispatch(loadStoresLocationData());
+  }, []);
+
+  const storesLocationData = useSelector(
+    (state) => state.appData.storesLocationData
+  );
+  console.log("storeslocationdata", storesLocationData);
+  useEffect(() => {
+    if (storesLocationData) {
+      setStoreStoresLocationData(storesLocationData);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    }
+  }, [storesLocationData]);
 
   if (loading) {
     return (
@@ -120,8 +145,11 @@ function Sony_Store_Page() {
                 //   className={errors.includes("province") ? "is-invalid" : ""}
               >
                 <option value="">Select</option>
-                <option value="usa">USA</option>
-                <option value="saudi">Saudi</option>
+                {storeCountriesLocationData.map((countryget) => (
+                  <option key={countryget.id}>
+                    {countryget.full_name_locale}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="col-3 select__field__block">
@@ -136,8 +164,9 @@ function Sony_Store_Page() {
                 //   className={errors.includes("province") ? "is-invalid" : ""}
               >
                 <option value="">Select</option>
-                <option value="nyc">New York</option>
-                <option value="dubai">Dubai</option>
+                {storeCitiesLocationData.map((cityget) => (
+                  <option key={cityget.id}>{cityget.cityName}</option>
+                ))}
               </select>
             </div>
             <div className="col-3 select__field__block">
@@ -162,13 +191,28 @@ function Sony_Store_Page() {
             <div className="inner__sony__store__page__map__block">
               <div className="map__location__list__block">
                 {locationData.map((location, locationIndex) => {
+                  // return (
+                  //   <div className="location__block" key={location.id}>
+                  //     <img src={left_location} alt="" />
+                  //     <div className="location__info__block">
+                  //       <div className="location__info__text">
+                  //         <Heading6 text={location.shopname} color="#DC3A1A" />
+                  //         <Text3 text={location.address} />
+                  //       </div>
+                  //       <img src={right_location_pin} alt="" />
+                  //     </div>
+                  //   </div>
+                  // );
+                })}
+                {storeStoresLocationData.map((storesget) => {
                   return (
-                    <div className="location__block" key={location.id}>
+                    <div className="location__block" key={storesget.id}>
                       <img src={left_location} alt="" />
                       <div className="location__info__block">
                         <div className="location__info__text">
-                          <Heading6 text={location.shopname} color="#DC3A1A" />
-                          <Text3 text={location.address} />
+                          <Heading6 text={storesget.name} color="#DC3A1A" />
+                          <Text3 text={storesget.region} />
+                          <Text3 text={storesget.latitude} />
                         </div>
                         <img src={right_location_pin} alt="" />
                       </div>
