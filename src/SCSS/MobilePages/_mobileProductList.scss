@@ -4,6 +4,12 @@
 
 // filter section start
 .mb__filter__list {
+    .grid__button{
+display: none;
+    }
+    .mb__grid__active{
+display: block;
+    }
     .mb__grid__active,.mb__list__active{
         background: #DF4E32;
         color: #fff;
