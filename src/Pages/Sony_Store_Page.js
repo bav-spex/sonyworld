@@ -84,13 +84,13 @@ function Sony_Store_Page() {
 
   if (loading) {
     return (
-      <>
+      <div>
         <h1>Store Loading...</h1>
         <h1>Store Loading...</h1>
         <h1>Store Loading...</h1>
         <h1>Store Loading...</h1>
         <h1>Store Loading...</h1>
-      </>
+      </div>
     );
   }
 
