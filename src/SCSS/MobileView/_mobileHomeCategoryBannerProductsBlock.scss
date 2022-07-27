@@ -21,6 +21,7 @@
   }
   .mh__cbp__row {
     margin: 0px;
+    padding: 0px 12px;
     .mh__cbp__product {
       padding: 0px 12px 0px;
       text-decoration: none;
@@ -85,6 +86,7 @@
   .second__mh__cbp__product__image__block {
     width: 100% !important;
   }
+ 
 }
 
 @media screen and (max-width: 1200px) {
@@ -95,7 +97,8 @@
 
 @media screen and (max-width: 992px) {
   .mh__cbp__product {
-    padding: 0px 12px !important;
+    padding: 0px 3px  !important;
+    margin: 0px 0px 6px !important;
   }
   .second__md__product__image {
     width: 100% !important;
