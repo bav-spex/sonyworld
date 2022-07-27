@@ -1,0 +1,59 @@
+.mb__product__list__container {
+    padding-top: 150px !important;
+}
+
+// filter section start
+.mb__filter__list {
+    .mb__grid__active,.mb__list__active{
+        background: #DF4E32;
+        color: #fff;
+        img{
+            filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(199deg) brightness(103%) contrast(101%);
+        }
+    }
+    .col-4 {
+        padding: 0;
+    }
+
+    .dropdown {
+
+        border: 1px solid #d4d4d4;
+        border-bottom: 0;
+        button:focus{
+            box-shadow: none;
+        }
+    }
+
+    .dropdown-menu {
+        width: 100%;
+        border-radius: 0;
+        li{
+            input[type="checkbox"]{
+                width: 20px;
+                height: 20px;
+                accent-color: black;
+            }
+        }
+    }
+
+    .dropdown-toggle {
+        border-radius: 0;
+        &.show{
+            background: #DF4E32;
+            color: #fff;
+            &:after {
+                filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(199deg) brightness(103%) contrast(101%);
+            }
+        }
+        &:after {
+            background: url(./../../assets/Icon/down_arrow.svg);
+            border: none;
+            width: 13px;
+            height: 8px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+    }
+}

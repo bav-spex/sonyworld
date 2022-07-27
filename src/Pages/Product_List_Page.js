@@ -33,6 +33,7 @@ import newArrivals_02 from "./../assets/NewArrivals/newArrivals_02.png";
 import newArrivals_03 from "./../assets/NewArrivals/newArrivals_03.png";
 import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
 import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
+import MobileProductListPage from './MobilePages/Mobile_Product_List_Page';
 
 const categoryLists = [
   {
@@ -1056,7 +1057,10 @@ const Product_List_Page = () => {
   return (
     
     <>
-      <div className="container-fluid product__list__page__container">
+      <div className="container-fluid mb__product__list__container d-block d-lg-none pt-5">
+            <MobileProductListPage/>
+      </div>
+      <div className="container-fluid product__list__page__container d-none d-lg-block">
         <div className="product__list__page__block">
           <PLPBannerAndCategorySection categoryData={categoryLists} />
           <PLPFilterProductBlock

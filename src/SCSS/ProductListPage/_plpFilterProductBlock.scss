@@ -92,6 +92,9 @@
     .plp__product__block {
       background-color: #E6E6E6;
       padding: 24px;
+      .heading3{
+        word-break: break-all;
+      }
     }
   }
 }
