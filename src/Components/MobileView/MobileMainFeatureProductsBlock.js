@@ -12,7 +12,11 @@ import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping-cart-red.svg";
 
-function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backgroundColor }) {
+function MobileMainFeatureProductsBlock({
+  sectionTitle,
+  featureProductsData,
+  backgroundColor,
+}) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const handleFavourite = () => {
@@ -20,16 +24,14 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
   };
 
   return (
-    <div className="container-fluid mobile__dealsOfTheDay__container" style={{backgroundColor: `${backgroundColor}`}}>
+    <div
+      className="container-fluid mobile__dealsOfTheDay__container"
+      style={{ backgroundColor: `${backgroundColor}` }}
+    >
       <div className=" mobile__dealsOfTheDay__block">
-        <p className="section__title py-3">
-         {sectionTitle}
-        </p>
+        <p className="section__title py-3">{sectionTitle}</p>
         <div className="row inner__mobile__dealsOfTheDay__block">
-          <Link
-            className="first__md__product__block"
-            to={`products/${featureProductsData[0].sku}`}
-          >
+          <Link  to={`products/${featureProductsData[0].sku}`}  className="first__md__product__block">
             {/* <div className="deal__of__the__day">
                 <p className="inner__text">DEALS OF THE DAY</p>
               </div> */}
@@ -52,15 +54,18 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
               <div className="first__md__product__image__block">
                 <span className="fav_icon d-block d-lg-none">
                   <img
+
                     onMouseEnter={() => setIsFavouriteHover(true)}
                     onClick={handleFavourite}
                     onMouseLeave={() => setIsFavouriteHover(false)}
+                   
                     className={
                       !isFavourite
                         ? "productOne__favourite__icon"
                         : "productOne__favourite__icon__disable"
                     }
                     src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+                    Link
                     alt=""
                   />
                   <img
@@ -107,10 +112,7 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
             </div>
           </Link>
           <div className=" second__md__product__block">
-            <Link
-              to={`products/${featureProductsData[1].sku}`}
-              className="md__product"
-            >
+            <div className="md__product">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -135,13 +137,16 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                   alt=""
                 />
               </span>
-              <div className="second__md__product__image__block">
+              <Link
+                to={`products/${featureProductsData[1].sku}`}
+                className="second__md__product__image__block"
+              >
                 <img
                   src={featureProductsData[1]?.baseImage}
                   alt=""
                   className="second__md__product__image"
                 />
-              </div>
+              </Link>
               <Heading7 marginBottom={10} text={featureProductsData[1]?.name} />
               <div className="md__product__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
@@ -164,15 +169,10 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[1]?.currency}
               />
               <div className="text-end cart_end_icon">
-                
-                  <img src={shopping_cart} alt="cart" />
-                
+                <img src={shopping_cart} alt="cart" />
               </div>
-            </Link>
-            <Link
-              to={`products/${featureProductsData[2].sku}`}
-              className="md__product"
-            >
+            </div>
+            <div className="md__product">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -197,13 +197,16 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                   alt=""
                 />
               </span>
-              <div className="second__md__product__image__block">
+              <Link
+                to={`products/${featureProductsData[2].sku}`}
+                className="second__md__product__image__block"
+              >
                 <img
                   src={featureProductsData[2]?.baseImage}
                   alt=""
                   className="second__md__product__image"
                 />
-              </div>
+              </Link>
               <Heading7 marginBottom={10} text={featureProductsData[2]?.name} />
               <div className="md__product__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
@@ -226,17 +229,12 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[2]?.currency}
               />
               <div className="text-end cart_end_icon">
-                
-                  <img src={shopping_cart} alt="cart" />
-                
+                <img src={shopping_cart} alt="cart" />
               </div>
-            </Link>
+            </div>
           </div>
           <div className=" second__md__product__block">
-            <Link
-              to={`products/${featureProductsData[3].sku}`}
-              className="md__product first__in__column"
-            >
+            <div className="md__product">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -261,13 +259,16 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                   alt=""
                 />
               </span>
-              <div className="second__md__product__image__block">
+              <Link
+                to={`products/${featureProductsData[3].sku}`}
+                className="second__md__product__image__block"
+              >
                 <img
                   src={featureProductsData[3]?.baseImage}
                   alt=""
                   className="second__md__product__image"
                 />
-              </div>
+              </Link>
               <Heading7 marginBottom={10} text={featureProductsData[3]?.name} />
               <div className="md__product__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
@@ -290,15 +291,10 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                
-                  <img src={shopping_cart} alt="cart" />
-                
+                <img src={shopping_cart} alt="cart" />
               </div>
-            </Link>
-            <Link
-              to={`products/${featureProductsData[4].sku}`}
-              className="md__product"
-            >
+            </div>
+            <div className="md__product">
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -323,13 +319,16 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                   alt=""
                 />
               </span>
-              <div className="second__md__product__image__block">
+              <Link
+                to={`products/${featureProductsData[4].sku}`}
+                className="second__md__product__image__block"
+              >
                 <img
                   src={featureProductsData[4]?.baseImage}
                   alt=""
                   className="second__md__product__image"
                 />
-              </div>
+              </Link>
               <Heading7 marginBottom={0} text={featureProductsData[4]?.name} />
               <div className="md__product__rating__block">
                 <RatingBlock rating={4.5} totalRatings={2143} />
@@ -352,11 +351,9 @@ function MobileMainFeatureProductsBlock({sectionTitle, featureProductsData,backg
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                
-                  <img src={shopping_cart} alt="cart" />
-                
+                <img src={shopping_cart} alt="cart" />
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

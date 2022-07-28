@@ -190,20 +190,6 @@ function Sony_Store_Page() {
           <div className="sony__store__page__map__block">
             <div className="inner__sony__store__page__map__block">
               <div className="map__location__list__block">
-                {locationData.map((location, locationIndex) => {
-                  // return (
-                  //   <div className="location__block" key={location.id}>
-                  //     <img src={left_location} alt="" />
-                  //     <div className="location__info__block">
-                  //       <div className="location__info__text">
-                  //         <Heading6 text={location.shopname} color="#DC3A1A" />
-                  //         <Text3 text={location.address} />
-                  //       </div>
-                  //       <img src={right_location_pin} alt="" />
-                  //     </div>
-                  //   </div>
-                  // );
-                })}
                 {storeStoresLocationData.map((storesget) => {
                   return (
                     <div className="location__block" key={storesget.id}>

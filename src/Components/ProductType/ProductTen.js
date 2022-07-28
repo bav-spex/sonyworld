@@ -36,7 +36,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
   };
   return (
     <div key={product.id} className="row productNine__block">
-      <div className="col-4 productTen__left__block">
+      <div className="col-xxl-4 col-lg-6 productTen__left__block">
         <div className="productTen__header">
           <div className="productTen__new__sticker__block">
             <p className="productTen__new__sticker__text">New</p>
@@ -83,7 +83,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
             <button onClick={() => handleChangeComparePopup(true)} className="productNine__button__block"><img className="productNine__button__icon" src={compare} alt="" /><Heading7 text="Compare"/></button>
         </div>
       </div>
-      <div className="col-6 productTen__middle__block">
+      <div className="col-xxl-6 col-lg-6 productTen__middle__block">
         <Heading6 text={product.productName} marginBottom={10} />
 
        
@@ -125,7 +125,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
         <Heading7 text="Tomorrow," span={true} />
         <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
       </div>
-      <div className="col-2 productTen__right__block">
+      <div className="col-xxl-2 col-lg-12 productTen__right__block">
       <Price
           price={product.price}
           marginLeft={5}

@@ -1,294 +1,332 @@
 .mobile__dealsOfTheDay__container {
   background-color: #FFFBE4;
-    .mobile__dealsOfTheDay__block {
-      width: 1702px;
-      padding: 0px;
-      margin: 0px auto;
-  
-      .section__title {
-        font-family: "arialbold";
-        font-size: 48px;
-      }
-  
-      .inner__mobile__dealsOfTheDay__block {
-        display: flex;
-  
-        .first__md__product__block {
-          width: 50%;
-          margin: 0px 0px 20px;
-          text-decoration: none;
-          color: #000000;
-          .first__md__product {
-            background: #ffffff;
-            height: 100%;
-            border-radius: 15px;
-            padding: 0px 32px 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            .fav_icon {
-              position: absolute;
-              right: 10px;
-              top: 10px;
-            
-              .productOne__favourite__icon {
-                display: block;
-              }
-            
-              .productOne__favourite__icon__disable {
-                display: none;
-              }
-            }
-            .cart__end__icon {
-              position: absolute;
-              bottom: 10px;
-              right: 10px;
-            }
-            .deal__of__day__container {
-              position: absolute;
-              display: flex;
-              left: -30px;
-  
-              .rectangleLeft {
-                position: absolute;
-                top: 0px;
-                width: 31px;
-                height: 77px;
-                background-color: #cc8a15;
-                border-bottom-left-radius: 30px;
-                border-top-left-radius: 30px;
-              }
-  
-              .upper__rectangle__block {
-                position: absolute;
-                top: 0px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-  
-                .rectangle {
-                  top: 0px;
-                  width: 260px;
-                  height: 40px;
-                  background: transparent
-                    linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0%
-                    no-repeat padding-box;
-                  font-family: "arialbold";
-                  font-size: 25px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  border-top-left-radius: 15px;
-                  text-transform: uppercase;
-                }
-              }
-  
-              .triangle-right {
-                background: transparent
-                  linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0%
-                  no-repeat padding-box;
-                //   padding-box;
-                // width: 280px;
-                // height: 74px;
-                // position: relative;
-  
-                width: 0;
-                height: 0;
-                border-top: 20px solid transparent;
-                border-left: 15px solid #ffdb3b;
-                border-bottom: 20px solid transparent;
-              }
-            }
-  
-            .first__md__product__image__block {
-              width: 100%;
-              // margin: 20px auto 40px;
-              background: #ffffff;
-              margin-left: 0px;
-              height:100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-  
-              .first__md__product__image {
-                object-fit: cover;
-                height: 80%;
-                width: 100%;
-                margin: 0px auto;
-                // width: 100%;
-              }
-            }
-  
-            .heading__inner__text {
-              margin-left: 0px;
-              background: #ffffff;
-            }
-          }
-        }
-  
-        .second__md__product__block {
-          width: 25%;
+
+  .mobile__dealsOfTheDay__block {
+    width: 1702px;
+    padding: 0px;
+    margin: 0px auto;
+
+    .section__title {
+      font-family: "arialbold";
+      font-size: 48px;
+    }
+
+    .inner__mobile__dealsOfTheDay__block {
+      display: flex;
+
+      .first__md__product__block {
+        width: 50%;
+        margin: 0px 0px 20px;
+        text-decoration: none;
+        color: #000000;
+
+        .first__md__product {
+          background: #ffffff;
+          height: 100%;
+          border-radius: 15px;
+          padding: 0px 32px 32px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          margin: 0px 0px 20px;
-         
-        
-  
-          .md__product {
-            background-color: #ffffff;
-            padding: 20px 30px 40px;
-            height: 48.5%;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #000000;
-           position: relative;
-            .second__md__product__image__block {
-              width: 100%;
-              margin: 20px auto 20px;
-              overflow: hidden;
-              height: 200px;
+          position: relative;
+
+          .fav_icon {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+
+            .productOne__favourite__icon {
+              display: block;
+            }
+
+            .productOne__favourite__icon__disable {
+              display: none;
+            }
+          }
+
+          .cart__end__icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+          }
+
+          .deal__of__day__container {
+            position: absolute;
+            display: flex;
+            left: -30px;
+
+            .rectangleLeft {
+              position: absolute;
+              top: 0px;
+              width: 31px;
+              height: 77px;
+              background-color: #cc8a15;
+              border-bottom-left-radius: 30px;
+              border-top-left-radius: 30px;
+            }
+
+            .upper__rectangle__block {
+              position: absolute;
+              top: 0px;
               display: flex;
-              justify-content: center;
               align-items: center;
-  
-              .second__md__product__image {
-                // height: 72px;
-                // margin: 0px auto;
-                height: auto;
-                width: 100%;
-                // object-fit: contain;
+              justify-content: space-between;
+
+              .rectangle {
+                top: 0px;
+                width: 260px;
+                height: 40px;
+                background: transparent linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0% no-repeat padding-box;
+                font-family: "arialbold";
+                font-size: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-top-left-radius: 15px;
+                text-transform: uppercase;
               }
             }
-            .fav_icon {
-              position: absolute;
-              right: 10px;
-              top: 10px;
-            
-              .productOne__favourite__icon {
-                display: block;
-              }
-            
-              .productOne__favourite__icon__disable {
-                display: none;
-              }
+
+            .triangle-right {
+              background: transparent linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0% no-repeat padding-box;
+              //   padding-box;
+              // width: 280px;
+              // height: 74px;
+              // position: relative;
+
+              width: 0;
+              height: 0;
+              border-top: 20px solid transparent;
+              border-left: 15px solid #ffdb3b;
+              border-bottom: 20px solid transparent;
             }
-            .cart__end__icon {
-              position: absolute;
-              bottom: 10px;
-              right: 10px;
+          }
+
+          .first__md__product__image__block {
+            width: 100%;
+            // margin: 20px auto 40px;
+            background: #ffffff;
+            margin-left: 0px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .first__md__product__image {
+              object-fit: cover;
+              height: 80%;
+              width: 100%;
+              margin: 0px auto;
+              // width: 100%;
             }
-            .md__product__rating__block {
-              margin: 0px 0px 20px;
+          }
+
+          .heading__inner__text {
+            margin-left: 0px;
+            background: #ffffff;
+          }
+        }
+      }
+
+      .second__md__product__block {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // margin: 0px 0px 20px;
+
+
+
+        .md__product {
+          background-color: #ffffff;
+          padding: 20px 30px 40px;
+          height: 48.5%;
+          border-radius: 15px;
+          text-decoration: none;
+          color: #000000;
+          position: relative;
+          margin: 0px 0px 20px;
+
+          .second__md__product__image__block {
+            width: 100%;
+            margin: 20px auto 20px;
+            overflow: hidden;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .second__md__product__image {
+              // height: 72px;
+              // margin: 0px auto;
+              height: auto;
+              width: 100%;
+              // object-fit: contain;
             }
+          }
+
+          .fav_icon {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+
+            .productOne__favourite__icon {
+              display: block;
+            }
+
+            .productOne__favourite__icon__disable {
+              display: none;
+            }
+          }
+
+          .cart__end__icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+          }
+
+          .md__product__rating__block {
+            margin: 0px 0px 20px;
           }
         }
       }
     }
   }
-  
-  @media screen and (max-width: 1702px) {
-    .mobile__dealsOfTheDay__block {
-      width: 90% !important;
-    }
-   
-    .first__md__product__image {
-      width: 100% !important;
-    }
-  
-    .md__product {
-      padding: 15px 20px 15px !important;
-    }
+}
+
+@media screen and (max-width: 1702px) {
+  .mobile__dealsOfTheDay__block {
+    width: 90% !important;
   }
-  
-  @media screen and (max-width: 1400px) {
-    .second__md__product__image__block {
-      width: 100% !important;
-    }
+
+  .first__md__product__image {
+    width: 100% !important;
   }
-  
-  @media screen and (max-width: 1200px) {
-    .first__feature__category__title {
-      margin: 0px 0px 0px 100px !important;
-    }
-  
-    .first__feature__category__subtitle {
-      margin: 0px 0px 0px 100px !important;
-    }
-    .first__md__product__block{
-      width: 100% !important;
-    }
-    .second__md__product__block{
-      width: 50% !important;
-    }
-   
-    .first__md__product__image__block {
-      height: 600px !important;
-    }
+
+  .md__product {
+    padding: 15px 20px 15px !important;
   }
-  
-  @media screen and (max-width: 992px) {
-    .md__product {
-      padding: 20px 20px 30px !important;
-    }
-  
-    .mobile__dealsOfTheDay__block {
-      min-width: 100% !important;
-      margin: 0px auto;
-    }
-  
-    .feature__category__container {
-      background: #fffbe4;
-    }
-  
-    .second__md__product__image {
-      width: 100% !important;
-    }
-    .deal__of__day__container {
-      display: none !important;
-    }
+}
+
+@media screen and (max-width: 1400px) {
+  .second__md__product__image__block {
+    width: 100% !important;
   }
-  
-  @media screen and (max-width: 768px) {
-    .first__md__product__block {
-      width: 100% !important;
-    }
-  
-    .second__md__product__block {
-      width: 50% !important;
-    }
-  
-    .second__md__product__image {
-      width: 90% !important;
-    }
+}
+
+@media screen and (max-width: 1200px) {
+  .first__feature__category__title {
+    margin: 0px 0px 0px 100px !important;
   }
-  
-  @media screen and (max-width: 576px) {
-    .mobile__dealsOfTheDay__block {
-      width: 100% !important;
-      margin: 0px auto;
-  
-      .inner__mobile__dealsOfTheDay__block {
-        display: flex;
-        flex-direction: column;
-  
-        .first__md__product__block {
-          width: 100% !important;
+
+  .first__feature__category__subtitle {
+    margin: 0px 0px 0px 100px !important;
+  }
+
+  .first__md__product__block {
+    width: 100% !important;
+  }
+
+  .second__md__product__block {
+    width: 50% !important;
+  }
+
+  .first__md__product__image__block {
+    height: 600px !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .md__product {
+    padding: 20px 20px 30px !important;
+  }
+
+  .mobile__dealsOfTheDay__block {
+    min-width: 100% !important;
+    margin: 0px auto;
+  }
+
+  .feature__category__container {
+    background: #fffbe4;
+  }
+
+  .second__md__product__image {
+    width: 100% !important;
+  }
+
+  .deal__of__day__container {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .first__md__product__block {
+    width: 100% !important;
+  }
+
+  .second__md__product__block {
+    width: 50% !important;
+  }
+
+  .second__md__product__image {
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .mobile__dealsOfTheDay__block {
+    width: 100% !important;
+    margin: 0px auto;
+
+    .inner__mobile__dealsOfTheDay__block {
+      display: flex;
+      // flex-direction: column;
+
+      .first__md__product__block {
+        width: 100% !important;
+      }
+
+      .second__md__product__block:first-child {
+        padding-right: 5px;
+      }
+      .first__md__product__image__block {
+        height: 250px !important;
+        img{
+          height: 100% !important;
         }
-  
-        .second__md__product__block {
-          width: 100% !important;
+      }
+
+      .second__md__product__block {
+        .second__md__product__image__block{
+          height: 150px !important;
+        }
+        .md__product {
+          padding: 10px 10px 30px !important;
+        }
+
+        .heading6,
+        .text3 {
+          font-size: 14px;
+        }
+
+        // width: 100% !important;
+        .heading7 {
+          font-size: 14px;
+        }
+
+        .main__rating__block .product__totalRating {
+          font-size: 14px;
         }
       }
     }
-  
-    .first__in__column {
-      margin-bottom: 20px !important;
-    }
-  
-    .second__md__product__image {
-      width: 80% !important;
-    }
   }
-  
+
+  .first__in__column {
+    margin-bottom: 20px !important;
+  }
+
+  .second__md__product__image {
+    width: 80% !important;
+  }
+
+}
