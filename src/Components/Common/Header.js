@@ -1838,6 +1838,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                 <img src={navbar_logo} alt="logo" className="header__logo" />
               </Link>
               <div className="col-0  col-sm-0  col-lg-5 col-xl-7  search__box__block">
+                <form autoComplete="off">
                 <div className="search__box">
                   <input
                     type="text"
@@ -1845,9 +1846,12 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                     className="search__input"
                     placeholder="Type Your Search..."
                     onChange={(e) => openSearchPopup(e)}
+                    autoComplete="off"
                   />
                   <img src={search} alt="" className="header__icon" />
                 </div>
+                </form>
+               
                 <div
                   className={
                     searchPopup

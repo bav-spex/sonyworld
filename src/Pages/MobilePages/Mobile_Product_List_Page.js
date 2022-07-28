@@ -5,6 +5,7 @@ import gridunselect from "./../../assets/Icon/grid_unselected.svg";
 import listunselect from "./../../assets/Icon/grid_unselected.svg";
 import BreadCrumbs from "../../Components/BreadCrumbs";
 import MobileProductListGrid from './Mobile_Product_List_Grid';
+import MobileProductListListDetail from './Mobile_Product_List_ListDetail';
 import compareIcon from './../../assets/Icon/compare-white.svg';
 import filterIcon from './../../assets/Icon/filter-white.svg';
 import sortbyIcon from './../../assets/Icon/sortby-white.svg';
@@ -147,7 +148,7 @@ function Mobile_Product_List_Page({ product }) {
                                 ? " d-flex col-12"
                                 : " d-none"
                         }
-                        onClick={() => onClickGridList("list")}
+                       
                     >
 
                         <MobileProductListGrid />
@@ -158,10 +159,10 @@ function Mobile_Product_List_Page({ product }) {
                                 ? " d-flex col-12"
                                 : " d-none"
                         }
-                        onClick={() => onClickGridList("grid")}
+                        
                     >
 
-                        <strong>List View</strong>
+                        <MobileProductListListDetail/>
                     </div>
                 </div>
             </div>
