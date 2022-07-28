@@ -659,7 +659,8 @@ function Search__Page() {
                 className="search__input"
                 placeholder="Type Your Search..."
                 // value={search}
-                onChange={() => handleChange()}
+                onChange={() => handleChange()} 
+                autocomplete="false"
               />
               <img
                 onClick={() => clearSearchInput()}

@@ -1084,8 +1084,8 @@ const Product_List_Page = () => {
   };
   return (
     <>
-      <div className="container-fluid mb__product__list__container d-block d-lg-none pt-5">
-        <MobileProductListPage />
+      <div className="mb__product__list__container d-block d-lg-none pt-5">
+            <MobileProductListPage/>
       </div>
       <div className="container-fluid product__list__page__container d-none d-lg-block">
         <div className="product__list__page__block">
