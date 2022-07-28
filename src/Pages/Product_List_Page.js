@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // import "./../SCSS/ProductListPage/_productListPageFilterProductBlock.scss";
 // import "./../SCSS/ProductListPage/_productListBannerSection.scss";
 // import "./../SCSS/ProductListPage/_productListCategorySection.scss";
@@ -33,7 +33,9 @@ import newArrivals_02 from "./../assets/NewArrivals/newArrivals_02.png";
 import newArrivals_03 from "./../assets/NewArrivals/newArrivals_03.png";
 import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
 import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
-import MobileProductListPage from './MobilePages/Mobile_Product_List_Page';
+import MobileProductListPage from "./MobilePages/Mobile_Product_List_Page";
+import { useParams } from "react-router";
+import { loadCategoryFilterData } from "../redux/appAction";
 
 const categoryLists = [
   {
@@ -849,7 +851,7 @@ const newArrivalData = [
     baseImage: newArrivals_01,
     name: "Camera",
     rating: 4.5,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -858,7 +860,7 @@ const newArrivalData = [
     baseImage: newArrivals_02,
     name: "Silver Porto Headset",
     rating: 3,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -867,7 +869,7 @@ const newArrivalData = [
     baseImage: newArrivals_03,
     name: "Car Audio Speaker KM100",
     rating: 3.5,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -876,7 +878,7 @@ const newArrivalData = [
     baseImage: newArrivals_04,
     name: "Sony Viao Laptop",
     rating: 2.5,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -885,7 +887,7 @@ const newArrivalData = [
     baseImage: newArrivals_05,
     name: "Network Camera",
     rating: 5,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -894,7 +896,7 @@ const newArrivalData = [
     baseImage: newArrivals_01,
     name: "Camera",
     rating: 3.2,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -903,7 +905,7 @@ const newArrivalData = [
     baseImage: newArrivals_02,
     name: "Silver Porto Headset",
     rating: 4.8,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -912,7 +914,7 @@ const newArrivalData = [
     baseImage: newArrivals_03,
     name: "Car Audio Speaker KM100",
     rating: 2,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -921,7 +923,7 @@ const newArrivalData = [
     baseImage: newArrivals_04,
     name: "Sony Viao Laptop",
     rating: 1,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
@@ -930,13 +932,39 @@ const newArrivalData = [
     baseImage: newArrivals_05,
     name: "Network Camera",
     rating: 3,
-    totalRatings:2183,
+    totalRatings: 2183,
     oldPrice: 1999,
     price: 1699,
   },
 ];
 const Product_List_Page = () => {
-  
+  const { category } = useParams();
+  // console.log(category);
+  // console.log(category.split("-").slice(-1)[0]);
+  const [categoryId, setCategoryId] = useState(
+    category.split("-").slice(-1)[0]
+  );
+  const dispatch = useDispatch();
+  const [filterDetails, setFilterDetails] = useState({ "filterDetails": {} });
+  useEffect(() => {
+    const urlCategoryId = category.split("-").slice(-1)[0];
+    const categoryIdArray = []
+    categoryIdArray.push(urlCategoryId)
+    setFilterDetails({ "filterDetails": { "category": categoryIdArray } });
+  }, []);
+  useEffect(() => {
+    dispatch(loadCategoryFilterData(filterDetails));
+  }, [filterDetails]);
+
+  const filterData = useSelector((state) => state.appData.filterData);
+  console.log(filterData);
+  //for updating id from filter section
+  // useEffect(() => {
+  //   let categoryIdArray = []
+  //   const urlCategoryId = category.split("-").slice(-1)[0]
+  //   categoryIdArray.push(urlCategoryId)
+  //   dispatch(loadCategoryFilterData(category.split("-").slice(-1)[0]));
+  // }, []);
   const [plpProductPopup, setPlpProductPopup] = useState(false);
   const [plpComparePopup, setPlpComparePopup] = useState(false);
   const [popupProduct, setPopupProduct] = useState({
@@ -1055,30 +1083,27 @@ const Product_List_Page = () => {
     // setPopupProduct(product);
   };
   return (
-    
     <>
       <div className="container-fluid mb__product__list__container d-block d-lg-none pt-5">
-            <MobileProductListPage/>
+        <MobileProductListPage />
       </div>
       <div className="container-fluid product__list__page__container d-none d-lg-block">
         <div className="product__list__page__block">
           <PLPBannerAndCategorySection categoryData={categoryLists} />
           <PLPFilterProductBlock
-      
             handleChangeProductPopup={handleChangeProductPopup}
             handleChangeComparePopup={handleChangeComparePopup}
           />
           <PLPBannerTwo bannerImage={bannerImg1} />
           <div className="plp__newArrival__block">
-              {/* <CarouselTypeTwo
+            {/* <CarouselTypeTwo
                 productDetailPage={true}
                 sectionTitle="You Can Also Purchase"
                 carouselData={newArrivalData}
                 productType="productOne"
                 containerClassName="plp__youCanAlsoPurchase__block"
               /> */}
-            </div>
-       
+          </div>
         </div>
       </div>
       <div

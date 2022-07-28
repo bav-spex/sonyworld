@@ -7,6 +7,7 @@ const initialState = {
     wishlistData: [],
     cityLocationData: [],
     countriesLocationData: [],
+    filterData:{},
     loading: true,
 };
 
@@ -26,6 +27,11 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 productData: action.payload,
+            };
+        case types.GET__PRODUCT__FILTER__DATA:
+            return {
+                ...state,
+                filterData: action.payload,
             };
         case types.GET__WISHLIST__DATA:
             return {

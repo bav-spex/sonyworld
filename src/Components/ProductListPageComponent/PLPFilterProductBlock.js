@@ -548,7 +548,7 @@ const PLPFilterProductBlock = ({
   const [productListView, setProductListView] = useState("grid");
 
   useEffect(() => {
-    console.log(selectedOption);
+    // console.log(selectedOption);
   }, [selectedOption]);
 
   const onSelectSortby = (e) => {

@@ -34,7 +34,7 @@ function AllRoutes({categoryData,reloadingHandle,homepageData}) {
   return (
     <Routes>
       <Route exact path="/" element={<Home homepageData={homepageData} log="log" categoryData={categoryData} />}></Route>
-      <Route exact path="/products" element={<Product_List_Page />} ></Route>
+      <Route exact path="/:category" element={<Product_List_Page />} ></Route>
       <Route exact path="/products/compare" element={<Product_Comparison />} ></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
       <Route exact path="/category" element={<All_Category_Page />} ></Route>

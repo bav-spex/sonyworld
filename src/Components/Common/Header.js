@@ -2233,9 +2233,10 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             <div className="col-6 col-sm-6 col-md-3 category__popup__left__block">
               {categoryData?.children_data?.map((catObj, catIndex) => {
                 return (
-                  <div
+                  <Link 
+                  to={`${catObj.name.toLowerCase().trim().replace(/ /g,"-")}-c-${catObj.id}`}
                     key={catObj.id}
-                    onClick={() => setSelectedCategory(catObj)}
+                    onMouseOver={() => setSelectedCategory(catObj)}
                     className={
                       selectedCategory.name === catObj.name
                         ? "selected__mainCategory__block"
@@ -2248,7 +2249,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                       alt=""
                       className="popup__right__arrow"
                     />
-                  </div>
+                  </Link>
                 );
               })}
             </div>
@@ -2260,11 +2261,13 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
               </div>
               <div className="subCategory__block">
                 {selectedCategory?.children_data?.map((subcat, subcatIndex) => {
+                  // console.log(`${subcat.name.toLowerCase().trim().replace(/ /g,"-")}-c-${subcat.id}`);
+                  // console.log(.lowerCase().trim().replace(/ /g,"-")}-c-${subcat.id});
                   return (
                     <Link
                       key={subcatIndex}
                       className="subcategory"
-                      to="/products"
+                      to={`${subcat.name.toLowerCase().trim().replace(/ /g,"-")}-c-${subcat.id}`}
                     >
                       <p>{subcat.name}</p>
                     </Link>

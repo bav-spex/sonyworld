@@ -6,6 +6,7 @@ import { getProductDetail } from "../services/pdp.service";
 import { getWishlistData } from "../services/wishlist.services";
 import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
+import { getCategoryFilterData } from "../services/plp.service";
 
 
 
@@ -63,6 +64,24 @@ export const loadProductDetailData = (id) => {
         // console.log(productData);
         dispatch(saveProductDetailData(productData));
         return productData
+    };
+};
+
+
+// Loading Product Details Page Data //
+
+const saveCategoryFilterData = (data) => ({
+    type: types.GET__PRODUCT__FILTER__DATA,
+    payload: data,
+});
+
+
+export const loadCategoryFilterData = (filterDetails) => {
+    return async function(dispatch) {
+        const filterData = await getCategoryFilterData(filterDetails);
+        // console.log(productData);
+        dispatch(saveCategoryFilterData(filterData));
+        return filterData
     };
 };
 

@@ -409,8 +409,11 @@ overflow-y: scroll;
           align-items: center;
           justify-content: space-between;
           margin: 0px 0px 20px;
+          text-decoration: none;
+          color: #000000;
           cursor: pointer;
           .mainCategory__left__block {
+            text-decoration: none;
             margin: 0px;
             font-size: 20px;
             font-family: "arialbold";
@@ -424,8 +427,11 @@ overflow-y: scroll;
           align-items: center;
           justify-content: space-between;
           margin: 0px 0px 20px;
+          text-decoration: none;
+          
           cursor: pointer;
           .mainCategory__left__block {
+            text-decoration: none;
             color: #ff4f04;
             margin: 0px;
             font-size: 20px;

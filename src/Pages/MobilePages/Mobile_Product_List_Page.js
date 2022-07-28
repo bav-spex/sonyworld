@@ -15,7 +15,7 @@ function Mobile_Product_List_Page({ product }) {
       setProductListView("list");
     }
   };
-//   console.log();
+  //   console.log();
 
   return (
     <>
@@ -38,19 +38,19 @@ function Mobile_Product_List_Page({ product }) {
               >
                 <li className="mb-2">
                   <input type="checkbox" id="box-1" />
-                  <label className="ms-2" for="box-1">
+                  <label className="ms-2" htmlFor="box-1">
                     Upto 32"
                   </label>
                 </li>
                 <li className="mb-2">
                   <input type="checkbox" id="box-2" />
-                  <label className="ms-2" for="box-2">
+                  <label className="ms-2" htmlFor="box-2">
                     Upto 32"
                   </label>
                 </li>
                 <li className="mb-2">
                   <input type="checkbox" id="box-3" />
-                  <label className="ms-2" for="box-3">
+                  <label className="ms-2" htmlFor="box-3">
                     Upto 32"
                   </label>
                 </li>
@@ -76,19 +76,19 @@ function Mobile_Product_List_Page({ product }) {
               >
                 <li className="mb-2">
                   <input type="checkbox" id="box-4" />
-                  <label className="ms-2" for="box-4">
+                  <label className="ms-2" htmlFor="box-4">
                     Upto 32"
                   </label>
                 </li>
                 <li className="mb-2">
                   <input type="checkbox" id="box-5" />
-                  <label className="ms-2" for="box-5">
+                  <label className="ms-2" htmlFor="box-5">
                     Upto 32"
                   </label>
                 </li>
                 <li className="mb-2">
                   <input type="checkbox" id="box-6" />
-                  <label className="ms-2" for="box-6">
+                  <label className="ms-2" htmlFor="box-6">
                     Upto 32"
                   </label>
                 </li>
