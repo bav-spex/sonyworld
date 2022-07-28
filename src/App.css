@@ -93,11 +93,22 @@ img {
 .btn__primary__black:hover,.btn__primary__black:focus {
   box-shadow: none;
 }
-.btn__primary__orange:hover, .btn__primary__orange:focus {
+.btn__primary__orange:hover, .btn__primary__orange:focus, .btn__primary__orange:active:focus {
   background: #fff;
   color: #DF4E32;
   border-color: #DF4E32;
   box-shadow: none;
+}
+.btn__grey__solid{
+  width: 50%;
+    margin: 0 !important;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: "arialbold";
+    padding: 20px 20px;
+    background: #636363;
+    color: #fff;
 }
 .custom__checkbox{
   position: relative;
