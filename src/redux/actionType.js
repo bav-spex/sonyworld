@@ -20,3 +20,4 @@ export const GET_HANDSHAKE = "GET_HANDSHAKE"
 
 // registration or login
 export const AUTH_DETAILS = "AUTH_DETAILS"
+export const USER_SIGN_UP_ERROR = "USER_SIGN_UP_ERROR"
