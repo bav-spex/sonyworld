@@ -8,6 +8,10 @@ export {
 } from './customer/customer';
 
 export {
+    createCustomerAddress, // create customer address 
+} from './customerAddress/customerAddress';
+
+export {
     loaderStart, // start loader
     loaderEnd, // end loader
     notifySuccess, // success message

@@ -34,14 +34,14 @@ function Banner({ bannerData }) {
   const [banner, setBanner] = useState(bannerDataJSON);
 
   useEffect(() => {
-    // if (index > bannerData.length - 1) {
-    //   let newIndex = 0;
-    //   setIndex(newIndex);
-    // }
-    // if (index < 0) {
-    //   let newIndex = bannerData.length - 1;
-    //   setIndex(newIndex);
-    // }
+    if (index > bannerData.length - 1) {
+      let newIndex = 0;
+      setIndex(newIndex);
+    }
+    if (index < 0) {
+      let newIndex = bannerData.length - 1;
+      setIndex(newIndex);
+    }
   }, [index, bannerData]);
 
   //   useEffect(() => {

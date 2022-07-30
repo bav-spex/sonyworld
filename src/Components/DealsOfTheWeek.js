@@ -10,13 +10,13 @@ function DealsOfTheWeek({ dealsOfTheWeekData }) {
         <p className="section__title">Deals of the Week</p>
         <Link to="/products">
           <div className="row">
-            {/* {dealsOfTheWeekData.map((deals, dealsIndex) => {
+            {dealsOfTheWeekData.map((deals, dealsIndex) => {
               return (
                 <div key={dealsIndex} className="col-sm-12 col-md-6 deals__block">
                   <img className="deals__image" src={deals.imageUrl} alt="" />
                 </div>
               );
-            })} */}
+            })}
           </div>
         </Link>
       </div>

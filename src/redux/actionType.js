@@ -28,3 +28,6 @@ export const NOTIFY_CLEAR_MSG = "NOTIFY_CLEAR_MSG";
 // customer 
 export const CUSTOMER_DETAILS = "CUSTOMER_DETAILS"
 export const CUSTOMER_SIGN_UP_MSG = "CUSTOMER_SIGN_UP_MSG"
+
+// customer addresses
+export const CUSTOMER_ADDRESS_LIST = "CUSTOMER_ADDRESS_LIST"

@@ -77,14 +77,14 @@ function Home({  }) {
   // },[homePageData])
   useEffect(() => {
     if (Object.values(homepageData).length !== 0) {
-      // setBannerData(() => {
-      //   return homepageData.content.find((data) => {
-      //     return (
-      //       data.type === "multiple_banner" &&
-      //       data.title === "Main Banner Sliders"
-      //     );
-      //   }).items;
-      // });
+      setBannerData(() => {
+        return homepageData.content.find((data) => {
+          return (
+            data.type === "multiple_banner" &&
+            data.title === "Main Banner Sliders"
+          );
+        }).items;
+      });
       setFeatureProductsData(() => {
         return homepageData.content.find((data) => {
           return data.type === "slider" && data.title === "Televisions";
@@ -116,14 +116,14 @@ function Home({  }) {
           return data.type === "slider" && data.title === "Top Trending";
         }).products;
       });
-      // setDealsOfTheWeekData(() => {
-      //   return homepageData.content.find((data) => {
-      //     return (
-      //       data.type === "multiple_banner" &&
-      //       data.title === "Deals of the Week"
-      //     );
-      //   }).items;
-      // });
+      setDealsOfTheWeekData(() => {
+        return homepageData.content.find((data) => {
+          return (
+            data.type === "multiple_banner" &&
+            data.title === "Deals of the Week"
+          );
+        }).items;
+      });
       setTopRatedData(() => {
         return homepageData.content.find((data) => {
           return data.type === "slider" && data.title === "Top Rated Products";
