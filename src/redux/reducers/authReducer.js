@@ -3,9 +3,7 @@ import * as actionType from "./../actionType";
 const initialState = {
   userLoggedIn: false,
   userData: {},
-  token: "",
-  authDetails: '',
-  userSignUpError: ''
+  token: ""
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,10 +14,6 @@ const authReducer = (state = initialState, action) => {
         userData: action.payload.user,
         token: action.payload.token
       };
-    case actionType.AUTH_DETAILS:
-      return { ...state, authDetails: action.payload };
-    case actionType.USER_SIGN_UP_ERROR:
-      return { ...state, userSignUpError: action.payload };
     default:
       return state;
   }

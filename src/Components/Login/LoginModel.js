@@ -47,10 +47,11 @@ function LoginModel({ handleChangePopupMode, closeLoginPopup }) {
   const onSignIn = () => {
     if (errors.length === 0 && data.username !== "" && data.password !== "") {
       let params = {
-        username: 'sabadreshiya@sigmasolve.net',
-        password: 'Hard@2022!'
+        username: data.username,
+        password: data.password,
+        onboarding: false
       }
-      dispatch(services.userSignIn(params));
+      dispatch(services.customerSignIn(params));
     } else {
       setErrors(['username', 'password']);
     }

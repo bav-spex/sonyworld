@@ -34,7 +34,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
 
   const dispatch = useDispatch();
 
-  const { userSignUpError, authDetails } = useSelector((state) => state.authReducer);
+  const { customerSignUpMsg, customerDetails } = useSelector((state) => state.customerReducer);
 
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
   const [isCheckBox, setIsCheckBox] = useState(false);
@@ -235,7 +235,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
         password: data.password,
         username: data.username
       }
-      dispatch(services.userSignUp(params))
+      dispatch(services.customerSignUp(params))
     }
   }
 
@@ -255,7 +255,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
       </div>
       <div className="signupModel__content">
         <div className="main__form__field__block">
-          {userSignUpError && <p className="invalid__message">{userSignUpError}</p>}
+          {customerSignUpMsg && <p className="invalid__message">{customerSignUpMsg}</p>}
           {/* <p className="form__label">First Name</p> */}
           <Heading7 text="First Name" marginBottom={10} />
           <div className="field__block">

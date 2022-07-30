@@ -1,11 +1,16 @@
 export {
-    userSignUp, // user signup
-    userSignIn, // user sign in
-    getUserDetails
-} from './auth';
-
-export {
+    customerSignUp, // customer signup
+    customerSignIn, // customer sign in
+    getCustomerDetails, // customer details
     isEmailAvailable,  // is-email-available
     isUsernameAvailable,  // is-username-available
     checkPasswordStrength,  // check-password-strength
-} from './formValidation/formValidator';
+} from './customer/customer';
+
+export {
+    loaderStart, // start loader
+    loaderEnd, // end loader
+    notifySuccess, // success message
+    notifyError, // error message
+    notifyClear, // clear message
+} from './common/common';
