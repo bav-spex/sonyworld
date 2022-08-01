@@ -41,6 +41,14 @@
   }
   .productNine__content {
     padding: 20px;
+    .productNine__name{
+      font-family: "arialbold";
+      margin: 0px;
+      height: 72px;
+      overflow: hidden;
+      text-decoration: none;
+      color: #000000;  
+    }
     .productNine__image__slider {
       .awssld__content {
         background-color: inherit;

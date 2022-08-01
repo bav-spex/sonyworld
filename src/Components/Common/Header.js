@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import * as types from "./../../redux/actionType";
 import navbar_logo from "./../../assets/Logo/navbar_logo.svg";
 import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
 import navbar_white_down_arrow from "./../../assets/Icon/navbar_white_down_arrow.svg";
@@ -1521,7 +1522,7 @@ const searchData = {
   ],
 };
 function Header({ reloadingHandle, reloadHeader, categoryData }) {
-
+  const dispatch = useDispatch();
   const { customerDetails } = useSelector((state) => state.customerReducer);
 
   // language changing in project //
@@ -1823,10 +1824,19 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
     setMobileSelectedCategory(currentCategory);
   };
 
+  const changeSelectedCategory = (catObj) => {
+    setSelectedCategory(catObj);
+  };
+  const changeReducerSelectedCategory = (catObj) => {
+    dispatch({
+      type: types.SET__SELECTED__CATEGORY,
+      payload: catObj,
+    });
+  };
   const customerLogout = () => {
-    localStorage.setItem("custDetails", '');
-    console.log("customerLogout ",);
-  }
+    localStorage.setItem("custDetails", "");
+    console.log("customerLogout ");
+  };
 
   const openLogoutPopup = () => {
     setUserLoginPopup(!userLoginPopup);
@@ -1988,7 +1998,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                         className="favourite header__icon"
                       />
                     </Link>
-                    {customerDetails === "" ?
+                    {customerDetails === "" ? (
                       <div className="header__user__block">
                         <img
                           src={user}
@@ -2017,7 +2027,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                           </button>
                         </div>
                       </div>
-                      :
+                    ) : (
                       <>
                         <div className="header__user__block">
                           <img
@@ -2042,7 +2052,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                           </div>
                         </div>
                       </>
-                    }
+                    )}
 
                     <div
                       onClick={() => handleChangeCartPopup(true)}
@@ -2257,7 +2267,10 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                 : "mobile__navbar__link__nested__block__disable"
             }
           >
-            <button onClick={() => setMobileShowPopup(!mobileShowPopup)} className="back__mobile__icon">
+            <button
+              onClick={() => setMobileShowPopup(!mobileShowPopup)}
+              className="back__mobile__icon"
+            >
               <img src={backarrow} />
             </button>
             <MobilePopup
@@ -2282,9 +2295,13 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
               {categoryData?.children_data?.map((catObj, catIndex) => {
                 return (
                   <Link
-                    to={`${catObj.name.toLowerCase().trim().replace(/ /g, "-")}-c-${catObj.id}`}
+                    to={`${catObj.name
+                      .toLowerCase()
+                      .trim()
+                      .replace(/ /g, "-")}-c-${catObj.id}`}
                     key={catObj.id}
-                    onMouseOver={() => setSelectedCategory(catObj)}
+                    onMouseOver={() => changeSelectedCategory(catObj)}
+                    onClick={() => changeReducerSelectedCategory(catObj)}
                     className={
                       selectedCategory.name === catObj.name
                         ? "selected__mainCategory__block"
@@ -2315,7 +2332,13 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                     <Link
                       key={subcatIndex}
                       className="subcategory"
-                      to={`${subcat.name.toLowerCase().trim().replace(/ /g, "-")}-c-${subcat.id}`}
+                      to={`${subcat.name
+                        .toLowerCase()
+                        .trim()
+                        .replace(/ /g, "-")}-c-${subcat.id}`}
+                      onClick={() =>
+                        changeReducerSelectedCategory(selectedCategory)
+                      }
                     >
                       <p>{subcat.name}</p>
                     </Link>

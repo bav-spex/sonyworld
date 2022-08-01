@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 // import "./../SCSS/ProductListPage/_productListPageFilterProductBlock.scss";
 // import "./../SCSS/ProductListPage/_productListBannerSection.scss";
 // import "./../SCSS/ProductListPage/_productListCategorySection.scss";
@@ -36,6 +37,7 @@ import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import MobileProductListPage from "./MobilePages/Mobile_Product_List_Page";
 import { useParams } from "react-router";
 import { loadCategoryFilterData } from "../redux/appAction";
+import { getProductsOfCategory } from "../services/plp.service";
 
 const categoryLists = [
   {
@@ -939,25 +941,68 @@ const newArrivalData = [
 ];
 const Product_List_Page = () => {
   const { category } = useParams();
+  const [selectedCategoryId, setSelectedCategoryId] = useState();
+  const [filterAndProductsData, setfilterAndProductsData] = useState([]);
+  const [loading, setLoading] = useState(true);
   // console.log(category);
+  // console.log(category.split("-").slice(-3));
   // console.log(category.split("-").slice(-1)[0]);
-  const [categoryId, setCategoryId] = useState(
+  const [subCategoryId, setSubCategoryId] = useState(
     category.split("-").slice(-1)[0]
   );
   const dispatch = useDispatch();
-  const [filterDetails, setFilterDetails] = useState({ "filterDetails": {} });
-  useEffect(() => {
+  const navigate = useNavigate();
+  const [filterDetails, setFilterDetails] = useState({ filterDetails: {} });
+  useEffect(async () => {
     const urlCategoryId = category.split("-").slice(-1)[0];
-    const categoryIdArray = []
-    categoryIdArray.push(urlCategoryId)
-    setFilterDetails({ "filterDetails": { "category": categoryIdArray } });
+    setSelectedCategoryId(urlCategoryId);
+    const categoryIdArray = [];
+    categoryIdArray.push(urlCategoryId);
+    setFilterDetails({ filterDetails: { category: categoryIdArray } });
+    // const data = loadProductsOfCategoryData(category.split("-").slice(-3)[0]).then((res) => console.log(res));
+    // console.log(data);
+    const data = await getProductsOfCategory({
+      id: category.split("-").slice(-1)[0],
+      limit: "",
+      offset: "",
+      sortBy: "",
+    });
+    console.log(data);
+    if (data.data) {
+      setfilterAndProductsData(data.data);
+      setLoading(false);
+    }
   }, []);
   useEffect(() => {
     dispatch(loadCategoryFilterData(filterDetails));
   }, [filterDetails]);
 
+  const selectedCategory = useSelector(
+    (state) => state.appData.selectedCategory
+  );
+  // console.log(selectedCategory);
   const filterData = useSelector((state) => state.appData.filterData);
-  console.log(filterData);
+  // console.log(filterData);
+
+  const updateSelectedSubCategoryId = async (subCategory) => {
+    // console.log(subCategory);
+    setSelectedCategoryId(subCategory.id);
+
+    const data = await getProductsOfCategory({
+      id: subCategory.id,
+      limit: "",
+      offset: "",
+      sortBy: "",
+    });
+    setfilterAndProductsData(data.data);
+    navigate(
+      `/${subCategory.name.toLowerCase().trim().replace(/ /g, "-")}-c-${
+        subCategory.id
+      }`
+    );
+    // console.log(data);
+  };
+
   //for updating id from filter section
   // useEffect(() => {
   //   let categoryIdArray = []
@@ -967,6 +1012,7 @@ const Product_List_Page = () => {
   // }, []);
   const [plpProductPopup, setPlpProductPopup] = useState(false);
   const [plpComparePopup, setPlpComparePopup] = useState(false);
+  const [compareProductsData, setCompareProductData] = useState([]);
   const [popupProduct, setPopupProduct] = useState({
     id: 1,
     logo: sony_logo,
@@ -1078,19 +1124,47 @@ const Product_List_Page = () => {
   const closeComparePopup = () => {
     setPlpComparePopup(false);
   };
-  const handleChangeComparePopup = (value) => {
+  const handleChangeComparePopup = (value, product) => {
     setPlpComparePopup(value);
+    console.log(product);
+    const arrayOfProduct = [...compareProductsData, product];
+    if (compareProductsData.length < 4) {
+      var dataArr = arrayOfProduct.map((item) => {
+        return [JSON.stringify(item), item];
+      }); // creates array of array
+      var uniqueCompareProductData = new Map(dataArr); // create key value pair from array of array
+      setCompareProductData([...uniqueCompareProductData.values()]);
+    }
     // setPopupProduct(product);
+    console.log(compareProductsData);
   };
+
+  const removeProductFromCompareData = (id) => {
+    console.log(id);
+    // const newCompareData = compareProductsData.filter((id, index)=>{
+    //   console.log(product.id,id);
+    //   return id !== id
+    // })
+    // console.log("newCompareData",newCompareData);
+  };
+  if (loading) {
+    return <h1>Product Loading...</h1>;
+  }
   return (
     <>
       <div className="mb__product__list__container d-block d-lg-none pt-5">
-            <MobileProductListPage/>
+        <MobileProductListPage />
       </div>
       <div className="container-fluid product__list__page__container d-none d-lg-block">
         <div className="product__list__page__block">
-          <PLPBannerAndCategorySection categoryData={categoryLists} />
+          <PLPBannerAndCategorySection
+          selectedCategoryId={selectedCategoryId}
+            updateSelectedSubCategoryId={updateSelectedSubCategoryId}
+            selectedMainCategory={selectedCategory}
+            categoryData={categoryLists}
+          />
           <PLPFilterProductBlock
+            filterAndProductsData={filterAndProductsData}
             handleChangeProductPopup={handleChangeProductPopup}
             handleChangeComparePopup={handleChangeComparePopup}
           />
@@ -1116,7 +1190,6 @@ const Product_List_Page = () => {
         <PLPProductPopup
           product={popupProduct}
           closeProductPopup={closeProductPopup}
-          handleChangeProductPopup={handleChangeProductPopup}
         />
       </div>
       <div
@@ -1127,9 +1200,10 @@ const Product_List_Page = () => {
         }
       >
         <PLPComparePopup
-          compareData={compareData}
+          compareProductsData={compareProductsData}
           closeComparePopup={closeComparePopup}
           handleChangeComparePopup={handleChangeComparePopup}
+          removeProductFromCompareData={removeProductFromCompareData}
         />
       </div>
     </>

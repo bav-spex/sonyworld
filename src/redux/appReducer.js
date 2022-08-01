@@ -8,6 +8,7 @@ const initialState = {
     cityLocationData: [],
     countriesLocationData: [],
     filterData:{},
+    selectedCategory:{},
     loading: true,
 };
 
@@ -23,6 +24,11 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 categoryData: action.payload,
             };
+            case types.SET__SELECTED__CATEGORY:
+                return {
+                    ...state,
+                    selectedCategory: action.payload,
+                };
         case types.GET__PRODUCT__DETAIL__DATA:
             return {
                 ...state,
