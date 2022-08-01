@@ -32,6 +32,9 @@ import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
 import RecommandProducts from "../Components/ProductType/RecommandProducts";
 import Heading2 from "../Components/Font/Heading2";
+import MobileCartPage from "./MobilePages/Mobile_Cart_Page";
+
+
 const product = {
   id: 1,
   logo: sony_logo,
@@ -685,7 +688,10 @@ function Cart_Page() {
   return (
     <>
       <BreadCrumbs title="Shopping Cart" />
-      <div className="container-fluid shopping__cart__page__container">
+      <div className="d-block d-lg-none mb__cart__page">
+        <MobileCartPage/>
+      </div>
+      <div className="container-fluid shopping__cart__page__container  d-none d-lg-block">
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">
             {" "}

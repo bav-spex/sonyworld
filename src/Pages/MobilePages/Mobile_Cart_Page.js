@@ -33,6 +33,7 @@ import ShoppipngCartProduct from "../../Components/MostSharedComponent/Shoppipng
 import RecommandProducts from "../../Components/ProductType/RecommandProducts";
 import Heading2 from "../../Components/Font/Heading2";
 
+
 const product = {
   id: 1,
   logo: sony_logo,
@@ -687,6 +688,7 @@ function Mobile_Cart_Page() {
   return (
     <>
       <BreadCrumbs title="Shopping Cart" />
+      
       <div className="container-fluid shopping__cart__page__container">
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">
@@ -696,7 +698,7 @@ function Mobile_Cart_Page() {
           </p>
 
           <div className="row shopping__cart__page__inner__block">
-            <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
+            <div className="col-md-12  row shopping__cart__left__block">
               <ShoppipngCartProduct product={product} />
               <hr className="sc__page__horizontal__line"></hr>
               <ShoppipngCartProduct product={product} />
@@ -715,7 +717,7 @@ function Mobile_Cart_Page() {
               </div>
             </div>
             {/* package Summary */}
-            <div className="col-md-12 col-xl-3  shopping__cart__right__block">
+            <div className="col-md-12  shopping__cart__right__block">
               <div className="sc__package__summary__block">
                 <p className="sc__ps__title">
                   {" "}
