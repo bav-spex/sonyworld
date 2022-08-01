@@ -34,7 +34,7 @@ function Banner({ bannerData }) {
   const [banner, setBanner] = useState(bannerDataJSON);
 
   useEffect(() => {
-    if(bannerData !== undefined){
+    // if(bannerData !== undefined){
     if (index > bannerData.length - 1) {
       let newIndex = 0;
       setIndex(newIndex);
@@ -42,7 +42,7 @@ function Banner({ bannerData }) {
     if (index < 0) {
       let newIndex = bannerData.length - 1;
       setIndex(newIndex);
-    }}
+    }
   }, [index, bannerData]);
 
   //   useEffect(() => {
