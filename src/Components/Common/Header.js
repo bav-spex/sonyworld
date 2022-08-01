@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import navbar_logo from "./../../assets/Logo/navbar_logo.svg";
 import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
@@ -46,6 +47,9 @@ import Heading4 from "../Font/Heading4";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import Heading6 from "../Font/Heading6";
 import Heading7 from "../Font/Heading7";
+import NotifySnackbar from "./notifySnackbar";
+import { getCustomerLoginDetails } from "../helpers/utils/getCustomerLoginDetails";
+
 // const categoryData = [
 //   {
 //     id: 1,
@@ -1517,6 +1521,9 @@ const searchData = {
   ],
 };
 function Header({ reloadingHandle, reloadHeader, categoryData }) {
+
+  const { customerDetails } = useSelector((state) => state.customerReducer);
+
   // language changing in project //
   // console.log(categoryData);
   // const [allCategoryData,setAllCategoryData] = useState(categoryData)
@@ -1816,8 +1823,18 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
     setMobileSelectedCategory(currentCategory);
   };
 
+  const customerLogout = () => {
+    localStorage.setItem("custDetails", '');
+    console.log("customerLogout ",);
+  }
+
+  const openLogoutPopup = () => {
+    setUserLoginPopup(!userLoginPopup);
+  };
+
   return (
     <>
+      <NotifySnackbar />
       <div className="container-fluid main__navbar__container">
         <div
           className="header__container"
@@ -1839,19 +1856,19 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
               </Link>
               <div className="col-0  col-sm-0  col-lg-5 col-xl-7  search__box__block">
                 <form autoComplete="off">
-                <div className="search__box">
-                  <input
-                    type="text"
-                    name="search"
-                    className="search__input"
-                    placeholder="Type Your Search..."
-                    onChange={(e) => openSearchPopup(e)}
-                    autoComplete="off"
-                  />
-                  <img src={search} alt="" className="header__icon" />
-                </div>
+                  <div className="search__box">
+                    <input
+                      type="text"
+                      name="search"
+                      className="search__input"
+                      placeholder="Type Your Search..."
+                      onChange={(e) => openSearchPopup(e)}
+                      autoComplete="off"
+                    />
+                    <img src={search} alt="" className="header__icon" />
+                  </div>
                 </form>
-               
+
                 <div
                   className={
                     searchPopup
@@ -1971,34 +1988,61 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                         className="favourite header__icon"
                       />
                     </Link>
-                    <div className="header__user__block">
-                      <img
-                        src={user}
-                        alt=""
-                        className="user header__icon"
-                        onClick={() => openLoginPopup()}
-                      />
-                      <div
-                        className={
-                          userLoginPopup
-                            ? "signin__signup__popup"
-                            : "signin__signup__popup__disable"
-                        }
-                      >
-                        <button
-                          onClick={() => openLoginWrapper("signin")}
-                          className="signin__button"
+                    {customerDetails === "" ?
+                      <div className="header__user__block">
+                        <img
+                          src={user}
+                          alt=""
+                          className="user header__icon"
+                          onClick={() => openLoginPopup()}
+                        />
+                        <div
+                          className={
+                            userLoginPopup
+                              ? "signin__signup__popup"
+                              : "signin__signup__popup__disable"
+                          }
                         >
-                          SIGN IN
-                        </button>
-                        <button
-                          onClick={() => openLoginWrapper("signup")}
-                          className="signup__button"
-                        >
-                          SIGN UP
-                        </button>
+                          <button
+                            onClick={() => openLoginWrapper("signin")}
+                            className="signin__button"
+                          >
+                            SIGN IN
+                          </button>
+                          <button
+                            onClick={() => openLoginWrapper("signup")}
+                            className="signup__button"
+                          >
+                            SIGN UP
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                      :
+                      <>
+                        <div className="header__user__block">
+                          <img
+                            src={user}
+                            alt=""
+                            className="user header__icon"
+                            onClick={() => openLogoutPopup()}
+                          />
+                          <div
+                            className={
+                              userLoginPopup
+                                ? "signin__signup__popup"
+                                : "signin__signup__popup__disable"
+                            }
+                          >
+                            <button
+                              onClick={() => customerLogout("signin")}
+                              className="signin__button"
+                            >
+                              LOG OUT
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    }
 
                     <div
                       onClick={() => handleChangeCartPopup(true)}
@@ -2214,7 +2258,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             }
           >
             <button onClick={() => setMobileShowPopup(!mobileShowPopup)} className="back__mobile__icon">
-              <img src={backarrow}/>
+              <img src={backarrow} />
             </button>
             <MobilePopup
               currentCategoryData={mobileSelectedCategory}
@@ -2237,8 +2281,8 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
             <div className="col-6 col-sm-6 col-md-3 category__popup__left__block">
               {categoryData?.children_data?.map((catObj, catIndex) => {
                 return (
-                  <Link 
-                  to={`${catObj.name.toLowerCase().trim().replace(/ /g,"-")}-c-${catObj.id}`}
+                  <Link
+                    to={`${catObj.name.toLowerCase().trim().replace(/ /g, "-")}-c-${catObj.id}`}
                     key={catObj.id}
                     onMouseOver={() => setSelectedCategory(catObj)}
                     className={
@@ -2271,7 +2315,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                     <Link
                       key={subcatIndex}
                       className="subcategory"
-                      to={`${subcat.name.toLowerCase().trim().replace(/ /g,"-")}-c-${subcat.id}`}
+                      to={`${subcat.name.toLowerCase().trim().replace(/ /g, "-")}-c-${subcat.id}`}
                     >
                       <p>{subcat.name}</p>
                     </Link>

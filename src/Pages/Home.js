@@ -44,7 +44,7 @@ import { loadLocationData } from "../redux/appAction";
 
 import MobileHomePage from "./MobilePages/Mobile_Home_Page";
 
-function Home({  }) {
+function Home({}) {
   // const [homepageData, setHomepageData] = useState();
   const [loading, setLoading] = useState(true);
   const [liveChatPopup, setLiveChatPopup] = useState(false);
@@ -61,12 +61,12 @@ function Home({  }) {
   const [homePageBottomSingleBanner, setHomePageBottomSingleBanner] =
     useState();
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(loadHomePageData())
+  useEffect(() => {
+    dispatch(loadHomePageData());
     //  const data = await getAllCategory().then((res) => res);
     // setCategoryData(data);
-  },[])
-  const {homepageData} = useSelector((state) => state.appData);
+  }, []);
+  const { homepageData } = useSelector((state) => state.appData);
   // console.log(homepageData);
   // useEffect(()=>{
   //   if(homePageData){
@@ -78,12 +78,12 @@ function Home({  }) {
   useEffect(() => {
     if (Object.values(homepageData).length !== 0) {
       setBannerData(() => {
-        return homepageData.content.find((data) => {
-          return (
-            data.type === "multiple_banner" &&
-            data.title === "Main Banner Sliders"
-          );
-        }).items;
+        // return homepageData.content.find((data) => {
+        //   return (
+        //     data.type === "multiple_banner" &&
+        //     data.title === "Main Banner Sliders"
+        //   );
+        // }).items;
       });
       setFeatureProductsData(() => {
         return homepageData.content.find((data) => {
@@ -135,7 +135,7 @@ function Home({  }) {
         }).items;
       });
       setLoading(false);
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0);
     }
   }, [homepageData]);
   const closeLiveChatPopup = () => {

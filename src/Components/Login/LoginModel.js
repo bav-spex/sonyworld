@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import * as services from './../../services/services'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Heading3 from "../Font/Heading3";
 import Heading6 from "../Font/Heading6";
@@ -14,6 +16,9 @@ import apple_white from "./../../assets/Icon/apple_white.svg";
 import "./../../SCSS/Login/_loginModel.scss";
 import { emailValidator } from "../helpers/utils/validators";
 function LoginModel({ handleChangePopupMode, closeLoginPopup }) {
+
+  const dispatch = useDispatch();
+
   const [isPassword, setIsPassword] = useState(true);
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
   const [isCheckBox, setIsCheckBox] = useState(false);
@@ -26,56 +31,33 @@ function LoginModel({ handleChangePopupMode, closeLoginPopup }) {
     onboarding: "",
   });
   const [errors, setErrors] = useState([]);
+
   const handleChange = (event) => {
     let value = event.target.value;
     let name = event.target.name;
     let getErr = errors.filter((val, i) => val !== name);
-    if (value) {
-      if (name === "email") {
-        let emailStatus = emailValidator(value);
-        if (emailStatus === "error") {
-          getErr.push("email_invalid");
-          let tempErr = getErr.filter((val, i) => val !== "email");
-          getErr = tempErr;
-        } else {
-          let tempErr = getErr.filter((val, i) => val !== "email_invalid");
-          getErr = tempErr;
-        }
-      }
-      if (name === "confirmPassword") {
-        if (data.password) {
-          if (value !== data.password) {
-            getErr.push("passwordNotMatched");
-          } else {
-            let tempErr = getErr.filter(
-              (val, i) => val !== "passwordNotMatched"
-            );
-            getErr = tempErr;
-          }
-        }
-      }
-      if (name === "password") {
-        if (value !== data.confirmPassword) {
-          getErr.push("passwordNotMatched");
-        } else {
-          let tempErr = getErr.filter((val, i) => val !== "passwordNotMatched");
-          getErr = tempErr;
-        }
-      }
-    } else {
-      if (name === "email") {
-        let tempErr = getErr.filter((val, i) => val !== "email_invalid");
-        getErr = tempErr;
-      }
-      if (name === "confirmPassword") {
-        let tempErr = getErr.filter((val, i) => val !== "passwordNotMatched");
-        getErr = tempErr;
-      }
+    if (value === "") {
       getErr.push(name);
     }
     setErrors(getErr);
     setData({ ...data, [name]: value });
   };
+
+  // login user api
+  const onSignIn = () => {
+    if (errors.length === 0 && data.username !== "" && data.password !== "") {
+      let params = {
+        username: data.username,
+        password: data.password,
+        onboarding: false
+      }
+      dispatch(services.customerSignIn(params));
+    } else {
+      setErrors(['username', 'password']);
+    }
+  }
+
+
   const togglePassword = () => setIsPassword(!isPassword);
   return (
     <div className="loginModel__container">
@@ -98,16 +80,13 @@ function LoginModel({ handleChangePopupMode, closeLoginPopup }) {
               placeholder=""
               className="form__field"
               id="email"
-              name="email"
+              name="username"
               value={data.username}
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("email") && (
-            <p className="invalid__message">Please Enter Email Address</p>
-          )}
-          {errors.includes("email_invalid") && (
-            <p className="invalid__message">Please Enter Valid Email Address</p>
+          {errors.includes("username") && (
+            <p className="invalid__message">Please Enter Email Address / Mobile Number</p>
           )}
         </div>
         <div className="main__form__field__block">
@@ -165,7 +144,7 @@ function LoginModel({ handleChangePopupMode, closeLoginPopup }) {
             <p className="forgot__password__text">forgot password?</p>
           </div>
         </div>
-        <button className="signin__button">SIGN IN</button>
+        <button className="signin__button" onClick={() => onSignIn()}>SIGN IN</button>
         <div className="or__block">
           <div className="or__text__block">
             <p className="or__text">OR</p>

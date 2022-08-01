@@ -99,7 +99,6 @@ function Sony_Store_Page() {
   const storesLocationData = useSelector(
     (state) => state.appData.storesLocationData
   );
-  console.log("storeslocationdata", storesLocationData);
   useEffect(() => {
     if (storesLocationData) {
       setStoreStoresLocationData(storesLocationData);

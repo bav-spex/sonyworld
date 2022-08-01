@@ -19,9 +19,22 @@ import "./../../SCSS/Login/_signupModel.scss";
 import Text3 from "../Font/Text3";
 import * as services from './../../services/services'
 
+const T_REQ_FIRSTNAME = 'Firstname is missing';
+const T_REQ_LASTNAME = 'Lastname is missing';
+const T_REQ_EMAIL = 'Email is missing';
+const T_INVALID_EMAIL = 'Invalid email address (ex: example@gmail.com)';
+const T_REQ_PASSWORD = 'Password is missing';
+const T_REQ_CONFIRM_PASSWORD = 'Confirm Password is missing';
+const T_WEAK_PASSWORD = 'Password must contain 1 uppercase, 1 lowercase,1 number, and at least 8 characters. Do not add more than 5 consecutive characters (123456/qwerty)';
+const T_PASSWORD_NOT_MATCHED = 'Password not matched';
+const T_REQ_MOBILE_NUMBER = 'Mobile Number is missing';
+const T_REQ_USERNAME = 'Username is required';
+
 function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
 
   const dispatch = useDispatch();
+
+  const { customerSignUpMsg, customerDetails } = useSelector((state) => state.customerReducer);
 
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
   const [isCheckBox, setIsCheckBox] = useState(false);
@@ -30,102 +43,200 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
   };
   const [isPassword, setIsPassword] = useState(true);
   const [isConfirmPassword, setIsConfirmPassword] = useState(true);
+  const [updateErrMsg, setUpdateErrMsg] = useState(false);
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     mobileNumber: "",
+    username: "",
     password: "",
     confirmPassword: "",
     policyChecked: true,
   });
-  const handleChange = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-    let getErr = errors.filter((val, i) => val !== name);
-    if (value) {
-      if (name === "email") {
-        let emailStatus = emailValidator(value);
-        if (emailStatus === "error") {
-          getErr.push("email_invalid");
-          let tempErr = getErr.filter((val, i) => val !== "email");
-          getErr = tempErr;
+  const [errMsg, setErrMsg] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    mobileNumber: "",
+    password: "",
+    confirmPassword: "",
+    policyChecked: true,
+  });
+
+  useEffect(() => {
+    if (updateErrMsg === true) {
+      setErrMsg(errMsg);
+      setUpdateErrMsg(!updateErrMsg)
+    }
+  }, [updateErrMsg]);
+
+  const validateForm = async (event, name, value) => {
+
+    //A function to validate each input values
+    switch (name) {
+      case 'firstName':
+        if (value === "") {
+          setErrMsg({ ...errMsg, [name]: T_REQ_FIRSTNAME });
         } else {
-          let tempErr = getErr.filter((val, i) => val !== "email_invalid");
-          getErr = tempErr;
+          setErrMsg({ ...errMsg, [name]: '' });
         }
-      }
-      if (name === "confirmPassword") {
-        if (data.password) {
-          if (data.confirmPassword !== data.password) {
-            getErr.push("confirmPassword");
+        break;
+      case 'lastName':
+        if (value === "") {
+          setErrMsg({ ...errMsg, [name]: T_REQ_LASTNAME });
+        } else {
+          setErrMsg({ ...errMsg, [name]: '' });
+        }
+        break;
+      case 'email':
+        let emailStatus = emailValidator(value);
+        if (value === "") {
+          setErrMsg({ ...errMsg, [name]: T_REQ_EMAIL });
+        } else {
+          if (emailStatus === "error") {
+            setErrMsg({ ...errMsg, [name]: T_INVALID_EMAIL });
+          } else {
+            setErrMsg({ ...errMsg, [name]: '' });
           }
         }
-      }
-      if (name === "password") {
-        if (value !== data.confirmPassword) {
-          getErr.push("passwordNotMatched");
-          let tempErr = getErr.filter((val, i) => val !== 'confirmPassword');
-          getErr = tempErr
+        break;
+      case 'mobileNumber':
+        if (value === "") {
+          setErrMsg({ ...errMsg, [name]: T_REQ_MOBILE_NUMBER });
         } else {
-          let tempErr = getErr.filter((val, i) => val !== 'passwordNotMatched');
-          getErr = tempErr
+          setErrMsg({ ...errMsg, [name]: '' });
         }
-      }
-    } else {
-      getErr.push(name);
+        break;
+      case 'username':
+        if (value === "") {
+          setErrMsg({ ...errMsg, [name]: T_REQ_USERNAME });
+        } else {
+          let params = {
+            username: value
+          }
+          let usernameAvailable = await services.isUsernameAvailable(params);
+          if (usernameAvailable.success === true) {
+            setErrMsg({ ...errMsg, [name]: '' });
+          } else {
+            setErrMsg({ ...errMsg, [name]: usernameAvailable.message });
+          }
+        }
+        break;
+      case 'password':
+        if (value === "") {
+          setErrMsg({ ...errMsg, [name]: T_REQ_PASSWORD });
+        } else {
+          let params = {
+            password: value,
+            username: ''
+          }
+          let pwdStrength = await services.checkPasswordStrength(params);
+          if (pwdStrength.strength === 'fair') {
+            setErrMsg({ ...errMsg, [name]: '' });
+          } else {
+            setErrMsg({ ...errMsg, [name]: T_WEAK_PASSWORD });
+          }
+        }
+        break;
+      case 'confirmPassword':
+        if (value === "") {
+          setErrMsg({ ...errMsg, [name]: T_REQ_CONFIRM_PASSWORD });
+        } else {
+          if (value === data.password) {
+            setErrMsg({ ...errMsg, [name]: '' });
+          } else {
+            setErrMsg({ ...errMsg, [name]: T_PASSWORD_NOT_MATCHED });
+          }
+        }
+        break;
+      default:
+        break;
     }
-    setErrors(getErr);
+  }
+
+  const handleChange = async (event) => {
+    let value = event.target.value;
+    let name = event.target.name;
+    validateForm(event, name, value);
     setData({ ...data, [name]: value });
   };
 
-  const validate = () => {
-    const errorsList = [];
+  const allFeildValidate = () => {
 
     let validateFeild = [
-      'firstName',
-      'lastName',
-      'email',
-      'mobileNumber',
-      'password',
-      'confirmPassword',
+      {
+        keyName: "firstName",
+        defaultMsg: T_REQ_FIRSTNAME
+      },
+      {
+        keyName: "lastName",
+        defaultMsg: T_REQ_LASTNAME
+      },
+      {
+        keyName: "email",
+        defaultMsg: T_REQ_EMAIL
+      },
+      {
+        keyName: "username",
+        defaultMsg: T_REQ_USERNAME
+      },
+      {
+        keyName: "mobileNumber",
+        defaultMsg: T_REQ_USERNAME
+      },
+      {
+        keyName: "password",
+        defaultMsg: T_REQ_PASSWORD
+      },
+      {
+        keyName: "confirmPassword",
+        defaultMsg: T_REQ_CONFIRM_PASSWORD
+      }
     ];
 
+    let checkValueStatus = [];
+    let checkErrStatus = [];
+
+    let blankErrMsg = errMsg;
     validateFeild && validateFeild.map((val, i) => {
-      let keyVal = !data[val]
-      if (!data[val]) {
-        errorsList.push(val);
+      let keyVal = data[val.keyName];
+      let errVal = errMsg[val.keyName];
+      if (keyVal === "") {
+        blankErrMsg[val.keyName] = val.defaultMsg
       }
-      if (val === 'email') {
-        if (!keyVal) {
-          let emailStatus = emailValidator(data[val]);
-          if (emailStatus === 'error') {
-            errorsList.push('email_invalid');
-          }
-        }
+
+      if (keyVal !== "") {
+        checkValueStatus.push('suc')
+      }
+      if (errVal === "") {
+        checkErrStatus.push('err')
       }
     })
-    return errorsList;
+    setErrMsg(blankErrMsg);
+    let checkSignUpStatus = false;
+    if (checkValueStatus.length === checkErrStatus.length) {
+      checkSignUpStatus = true;
+    }
+    setUpdateErrMsg(true);
+
+    return checkSignUpStatus;
   };
 
   const onSignUp = () => {
-    let checkError = validate();
-    if (checkError.length === 0) {
-      // api fire
+    let checkSignUpStatus = allFeildValidate();
+    if (checkSignUpStatus === true) {
       let params = {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
         phone_number: data.mobileNumber,
         password: data.password,
-        username: data.firstName + data.lastName,
-        profile_picture: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80',
-        dateOfBirth: '2022-01-01',
-        gender: 'm',
+        username: data.username
       }
-      // dispatch(services.userSignUp(params))
+      dispatch(services.customerSignUp(params))
     }
-    setErrors(checkError);
   }
 
   const togglePassword = () => setIsPassword(!isPassword);
@@ -144,6 +255,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
       </div>
       <div className="signupModel__content">
         <div className="main__form__field__block">
+          {customerSignUpMsg && <p className="invalid__message">{customerSignUpMsg}</p>}
           {/* <p className="form__label">First Name</p> */}
           <Heading7 text="First Name" marginBottom={10} />
           <div className="field__block">
@@ -157,7 +269,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("firstName") && <p className="invalid__message">invalid firstName</p>}
+          {errMsg.firstName && <p className="invalid__message">{errMsg.firstName}</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Last Name</p> */}
@@ -173,7 +285,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("lastName") && <p className="invalid__message">invalid lastName</p>}
+          {errMsg.lastName && <p className="invalid__message">{errMsg.lastName}</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Email Address</p> */}
@@ -189,8 +301,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("email") && <p className="invalid__message">invalid email</p>}
-          {errors.includes("email_invalid") && <p className="invalid__message">invalid type email</p>}
+          {errMsg.email && <p className="invalid__message">{errMsg.email}</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Mobile Number</p> */}
@@ -206,7 +317,23 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          {errors.includes("mobileNumber") && <p>mobile Number</p>}
+          {errMsg.mobileNumber && <p className="invalid__message">{errMsg.mobileNumber}</p>}
+        </div>
+        <div className="main__form__field__block">
+          {/* <p className="form__label">Mobile Number</p> */}
+          <Heading7 text="Username" marginBottom={10} />
+          <div className="field__block">
+            <input
+              type="text"
+              placeholder=""
+              className="form__field"
+              id="username"
+              name="username"
+              value={data.username}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          {errMsg.username && <p className="invalid__message">{errMsg.username}</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Password</p> */}
@@ -229,7 +356,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               )}
             </a>
           </div>
-          {errors.includes("password") && <p className="invalid__message">invalid password</p>}
+          {errMsg.password && <p className="invalid__message">{errMsg.password}</p>}
         </div>
         <div className="main__form__field__block">
           {/* <p className="form__label">Confirm Password</p> */}
@@ -252,7 +379,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               )}
             </a>
           </div>
-          {errors.includes("confirmPassword") && <p className="invalid__message">invalid confirmPassword</p>}
+          {errMsg.confirmPassword && <p className="invalid__message">{errMsg.confirmPassword}</p>}
         </div>
         <div className="main__policy__check__block">
           <div className="policy__check__block">
@@ -285,7 +412,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
           </p>
         </div>
 
-        <button className="signup__button">SIGN UP</button>
+        <button className="signup__button" onClick={() => onSignUp()}>SIGN UP</button>
         <div className="signup__or__block">
           <div className="signup__or__text__block">
             <p className="signup__or__text">OR</p>
