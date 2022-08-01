@@ -38,24 +38,24 @@ import AddressPopup from "../Components/Popup/AddressPopup";
 import { loadCountriesLocationData } from "../redux/appAction";
 import { loadCitiesLocationData } from "../redux/appAction";
 
-const addressData = [
-  {
-    id: 0,
-    isDefault: true,
-    addressType: "Home",
-    userName: "John Doe",
-    adddress: "21 West 52nd Street New York, New York, 10021 United States",
-    contact: "+1123456789",
-  },
-  {
-    id: 1,
-    isDefault: false,
-    addressType: "Office",
-    userName: "Martin Smith",
-    adddress: "21 West 52nd Street New York, New York, 10021 United States",
-    contact: "+1123456789",
-  },
-];
+// const addressData = [
+//   {
+//     id: 0,
+//     isDefault: true,
+//     addressType: "Home",
+//     userName: "John Doe",
+//     adddress: "21 West 52nd Street New York, New York, 10021 United States",
+//     contact: "+1123456789",
+//   },
+//   {
+//     id: 1,
+//     isDefault: false,
+//     addressType: "Office",
+//     userName: "Martin Smith",
+//     adddress: "21 West 52nd Street New York, New York, 10021 United States",
+//     contact: "+1123456789",
+//   },
+// ];
 
 const product = {
   id: 1,
@@ -167,27 +167,50 @@ function Checkout_Page({ reloadingHeader }) {
 
   const dispatch = useDispatch();
 
-  const { customerAddressList } = useSelector(
+  const { customerDetails } = useSelector((state) => state.customerReducer);
+
+  const { customerAddressList, customerAddUpdateManage } = useSelector(
     (state) => state.customerAddressReducer
   );
 
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
-  const [addressDatass, setAddressDatass] = useState(false);
+  const [addressData, setAddressData] = useState(false);
+  const [editAddressData, setEditAddressData] = useState('');
+  const [addressPopupType, setAddressPopupType] = useState('add');
 
-  // useEffect(() => {
-  //   dispatch(services.getCustomerAddressList());
-  //   dispatch(loadCountriesLocationData());
-  //   dispatch(loadCitiesLocationData());
-  // }, []);
+
+  useEffect(() => {
+    dispatch(services.getCustomerAddressList());
+    dispatch(loadCountriesLocationData());
+    dispatch(loadCitiesLocationData());
+  }, []);
+
+  useEffect(() => {
+    if (customerAddressList) {
+      let updateAddressData = [];
+      customerAddressList && customerAddressList.map((val, i) => {
+        let addreDetails = {
+          id: val.id,
+          isDefault: val.primary,
+          userName: `${val.firstname} ${val.lastname}`,
+          adddress: `${val.street[0]} ${val.street[1]} ${val.city} ${val.postcode} ${val.country_id}`,
+          contact: val.telephone,
+          details: val,
+        }
+        updateAddressData.push(addreDetails);
+      })
+      setAddressData(updateAddressData)
+    }
+  }, [customerAddressList]);
 
   const handleSubmit = (code) => {
     console.log(code);
   };
   const selectAddress = (addIndex, addId, add) => {
     setSelectedAddressID(addIndex);
-    console.log(addId, add);
+    setEditAddressData(add);
   };
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -200,6 +223,18 @@ function Checkout_Page({ reloadingHeader }) {
     delivery: "inprogress",
     payment: "initial",
   });
+
+  useEffect(() => {
+    if (customerDetails === "") {
+      openLoginWrapperFromAnywhere();
+      setIconType({ ...iconType, signin: 'inprogress' })
+    } else {
+      dispatch(services.getCustomerAddressList());
+      setIconType({ ...iconType, signin: 'done' })
+    }
+  }, [customerDetails]);
+
+
   const [checkoutClassName, setCheckoutClassName] = useState("delivery");
   const handleChangeClassName = (className) => {
     setCheckoutClassName(className);
@@ -207,13 +242,17 @@ function Checkout_Page({ reloadingHeader }) {
   const openLoginWrapperFromAnywhere = () => {
     // console.log(document.querySelector(".login__popup__container__disable"));
     // reloadingHeader()
-    const element = document.querySelector(".login__popup__container__disable");
-    element.classList.remove("login__popup__container__disable");
-    element.classList.add("login__popup__container");
-    localStorage.setItem("loginWrapper", JSON.stringify(true));
-    localStorage.setItem("loginMode", JSON.stringify("signin"));
-    localStorage.setItem("loginPopup", JSON.stringify(true));
-    window.scrollTo(500, 0);
+
+    if (customerDetails === "") {
+      const element = document.querySelector(".login__popup__container__disable");
+      element.classList.remove("login__popup__container__disable");
+      element.classList.add("login__popup__container");
+      localStorage.setItem("loginWrapper", JSON.stringify(true));
+      localStorage.setItem("loginMode", JSON.stringify("signin"));
+      localStorage.setItem("loginPopup", JSON.stringify(true));
+      window.scrollTo(500, 0);
+    }
+
   };
   const closeLoginPopup = () => {
     if (document.querySelector(".address__popup__container")) {
@@ -224,6 +263,19 @@ function Checkout_Page({ reloadingHeader }) {
     }
     setAddressPopup(false)
   };
+
+  const openNewAddressPopup = (popupType) => {
+    setAddressPopup(true);
+    setAddressPopupType(popupType);
+  }
+
+  const deleteAddress = (deleteId) => {
+    let params = {
+      addressId: deleteId
+    }
+    dispatch(services.deleteCustomerAddress(params));
+  }
+
   return (
     <>
       <BreadCrumbs title="Checkout" />
@@ -348,140 +400,146 @@ function Checkout_Page({ reloadingHeader }) {
                       marginBottom={0}
                     />
                   </div>
-                  <div className="row address__select__block">
-                    {addressData.map((add, addIndex) => {
-                      return (
-                        <div
-                          key={add.id}
-                          className="col-12 col-sm-6 address__block"
-                        >
-                          <div
-                            className={
-                              selectedAddressId === addIndex
-                                ? "selected__address__inner__block"
-                                : "address__inner__block"
-                            }
-                            onClick={() => selectAddress(addIndex, add.id, add)}
-                          >
-                            {add.isDefault ? (
-                              <div className="address__tag">
-                                <Heading7 text="DEFAULT" span={true} />
-                              </div>
-                            ) : (
-                              <div className="white__address__tag">
-                                <Text5
-                                  text="NONE"
-                                  span={true}
-                                  color="#ffffff"
-                                />
-                              </div>
-                            )}
-                            <Heading7 text={add.userName} />
-                            <p className="full__address">
-                              <Text4 text={add.adddress} marginBottom={20} />
-                            </p>
-                            <Heading7
-                              text="Phone Number:"
-                              color="#808080"
-                              span={true}
-                            />{" "}
-                            <Text4
-                              text={add.contact}
-                              marginLeft={10}
-                              span={true}
-                            />
-                            <div className="address__button__block">
-                              <button className="delivery__button">
-                                DELIVER TO THIS ADDRESS
-                              </button>
-                              <div className="inner__address__button__block">
-                                <button
-                                  onClick={() => setAddressPopup(true)}
-                                  className="edit__button"
-                                >
-                                  EDIT
-                                </button>
-                                <button className="delete__button">
-                                  DELETE
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <hr className="checkout__page__horizontal__line"></hr>
-                <div className=" add__new__address__block">
-                  <button onClick={() => setAddressPopup(true)} className="location__button">
-                    <img
-                      src={black_location}
-                      alt=""
-                      className="location__icon"
-                    />
-                    <Heading5
-                      text="Add New Address"
-                      marginBottom={0}
-                      color="#000000"
-                    />
-                  </button>
-                </div>
-                <hr className="checkout__page__horizontal__line"></hr>
-
-                <div className="row delivery__selcetion__pickup__store">
-                  <div className="col-12 col-sm-12 col-md-7 delivery__preferences__block">
-                    <div className="delivery__preferences__title__block">
-                      <Heading6 text="Delivery Preferences" />
-                    </div>
-                    <div className="delivery__selection__block">
-                      {deliveryType.map((delivery, deliveryIndex) => {
+                  {customerDetails !== "" &&
+                    <div className="row address__select__block">
+                      {addressData && addressData.map((add, addIndex) => {
                         return (
                           <div
-                            key={delivery.id}
-                            className="delivery__selection"
+                            key={add.id}
+                            className="col-12 col-sm-6 address__block"
                           >
-                            <div className="delivery__selection__form__block">
-                              <input
-                                type="radio"
-                                className="delivery__input__check"
-                                name="deliveryType"
-                                value={delivery.type}
-                                onChange={handleChange}
-                              />
-                              <p className="delivery__selection__text">
-                                <Heading4 text={delivery.type} />
-                                <Text3
-                                  text={delivery.protectionText}
-                                  color="#3b3b3b"
-                                  marginBottom={0}
-                                />
-                              </p>
-                            </div>
-                            <div className="delivery__price__block">
-                              <p className="delivery__price">
-                                {delivery.price <= 0 ? (
-                                  <Heading4 text="FREE" color="#FF4F04" />
-                                ) : (
-                                  <Price
-                                    price={delivery.price}
-                                    size="heading6"
+                            <div
+                              className={
+                                selectedAddressId === addIndex
+                                  ? "selected__address__inner__block"
+                                  : "address__inner__block"
+                              }
+                              onClick={() => selectAddress(addIndex, add.id, add)}
+                            >
+                              {add.isDefault ? (
+                                <div className="address__tag">
+                                  <Heading7 text="DEFAULT" span={true} />
+                                </div>
+                              ) : (
+                                <div className="white__address__tag">
+                                  <Text5
+                                    text="NONE"
+                                    span={true}
+                                    color="#ffffff"
                                   />
-                                )}
+                                </div>
+                              )}
+                              <Heading7 text={add.userName} />
+                              <p className="full__address">
+                                <Text4 text={add.adddress} marginBottom={20} />
                               </p>
+                              <Heading7
+                                text="Phone Number:"
+                                color="#808080"
+                                span={true}
+                              />{" "}
+                              <Text4
+                                text={add.contact}
+                                marginLeft={10}
+                                span={true}
+                              />
+                              <div className="address__button__block">
+                                <button className="delivery__button">
+                                  DELIVER TO THIS ADDRESS
+                                </button>
+                                <div className="inner__address__button__block">
+                                  <button
+                                    onClick={() => openNewAddressPopup('update')}
+                                    className="edit__button"
+                                  >
+                                    EDIT
+                                  </button>
+                                  <button className="delete__button" onClick={() => deleteAddress(add.id)}>
+                                    DELETE
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         );
                       })}
                     </div>
-                  </div>
-                  <div className="col-12 col-sm-12 col-md-5  delivery__pickup__store">
-                    <PickupStore
-                      delivery={product.delivery}
-                      title="Pick Up From Store"
-                    />
-                  </div>
+                  }
                 </div>
+                {customerDetails !== "" &&
+                  <>
+                    <hr className="checkout__page__horizontal__line"></hr>
+                    <div className=" add__new__address__block">
+                      <button onClick={() => openNewAddressPopup('add')} className="location__button">
+                        <img
+                          src={black_location}
+                          alt=""
+                          className="location__icon"
+                        />
+                        <Heading5
+                          text="Add New Address"
+                          marginBottom={0}
+                          color="#000000"
+                        />
+                      </button>
+                    </div>
+                    <hr className="checkout__page__horizontal__line"></hr>
+
+                    <div className="row delivery__selcetion__pickup__store">
+                      <div className="col-12 col-sm-12 col-md-7 delivery__preferences__block">
+                        <div className="delivery__preferences__title__block">
+                          <Heading6 text="Delivery Preferences" />
+                        </div>
+                        <div className="delivery__selection__block">
+                          {deliveryType.map((delivery, deliveryIndex) => {
+                            return (
+                              <div
+                                key={delivery.id}
+                                className="delivery__selection"
+                              >
+                                <div className="delivery__selection__form__block">
+                                  <input
+                                    type="radio"
+                                    className="delivery__input__check"
+                                    name="deliveryType"
+                                    value={delivery.type}
+                                    onChange={handleChange}
+                                  />
+                                  <p className="delivery__selection__text">
+                                    <Heading4 text={delivery.type} />
+                                    <Text3
+                                      text={delivery.protectionText}
+                                      color="#3b3b3b"
+                                      marginBottom={0}
+                                    />
+                                  </p>
+                                </div>
+                                <div className="delivery__price__block">
+                                  <p className="delivery__price">
+                                    {delivery.price <= 0 ? (
+                                      <Heading4 text="FREE" color="#FF4F04" />
+                                    ) : (
+                                      <Price
+                                        price={delivery.price}
+                                        size="heading6"
+                                      />
+                                    )}
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-12 col-md-5  delivery__pickup__store">
+                        <PickupStore
+                          delivery={product.delivery}
+                          title="Pick Up From Store"
+                        />
+                      </div>
+                    </div>
+                  </>
+                }
               </div>
               <div
                 className={
@@ -557,7 +615,7 @@ function Checkout_Page({ reloadingHeader }) {
             : "container-fluid address__popup__container__disable"
         }
       >
-        <AddressPopup closeLoginPopup={closeLoginPopup} />
+        <AddressPopup closeLoginPopup={closeLoginPopup} editAddressData={editAddressData} popupType={addressPopupType} />
       </div>
     </>
   );

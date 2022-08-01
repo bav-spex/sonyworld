@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import navbar_logo from "./../../assets/Logo/navbar_logo.svg";
 import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
@@ -49,7 +49,8 @@ import Heading6 from "../Font/Heading6";
 import Heading7 from "../Font/Heading7";
 import NotifySnackbar from "./notifySnackbar";
 import { getCustomerLoginDetails } from "../helpers/utils/getCustomerLoginDetails";
-
+import { customerDetailsSuccess } from "../../services/customer/customer";
+import * as services from './../../services/services'
 // const categoryData = [
 //   {
 //     id: 1,
@@ -1524,6 +1525,8 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
 
   const { customerDetails } = useSelector((state) => state.customerReducer);
 
+  const dispatch = useDispatch();
+
   // language changing in project //
   // console.log(categoryData);
   // const [allCategoryData,setAllCategoryData] = useState(categoryData)
@@ -1824,8 +1827,12 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
   };
 
   const customerLogout = () => {
-    localStorage.setItem("custDetails", '');
-    console.log("customerLogout ",);
+    localStorage.removeItem("custDetails");
+    dispatch(customerDetailsSuccess(''));
+    let params = {
+      id: customerDetails.id
+    }
+    dispatch(services.customerLogout(params))
   }
 
   const openLogoutPopup = () => {
@@ -2033,6 +2040,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                                 : "signin__signup__popup__disable"
                             }
                           >
+                            {`${customerDetails.firstname !== null ? customerDetails.firstname : ""} ${customerDetails.lastname !== null ? customerDetails.lastname : ""}`}
                             <button
                               onClick={() => customerLogout("signin")}
                               className="signin__button"

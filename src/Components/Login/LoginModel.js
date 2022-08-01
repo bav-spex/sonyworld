@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as services from './../../services/services'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -15,9 +15,20 @@ import empty_check_orange from "./../../assets/Icon/empty_check_orange.svg";
 import apple_white from "./../../assets/Icon/apple_white.svg";
 import "./../../SCSS/Login/_loginModel.scss";
 import { emailValidator } from "../helpers/utils/validators";
+
 function LoginModel({ handleChangePopupMode, closeLoginPopup }) {
 
   const dispatch = useDispatch();
+
+  const { customerSignInMsg } = useSelector(
+    (state) => state.customerReducer
+  );
+
+  useEffect(() => {
+    if (customerSignInMsg === true) {
+      closeLoginPopup();
+    }
+  }, [customerSignInMsg]);
 
   const [isPassword, setIsPassword] = useState(true);
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
