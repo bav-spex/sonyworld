@@ -29,7 +29,7 @@ const PLPCategorySection = ({ categoryData, selectedMainCategory,updateSelectedS
   return (
     <>
       <PLPBannerSectionOne
-        bannerImage={selectedMainCategory?.bannerImage}
+        bannerImage={selectedMainCategory?.categoryaicon}
         title={selectedMainCategory?.name}
       />
       {selectedMainCategory?.children_data.length !== 0 ?(

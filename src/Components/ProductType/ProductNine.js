@@ -21,6 +21,7 @@ import product_05 from "./../../assets/Product/product_05.jpg";
 import product_06 from "./../../assets/Product/product_06.jpg";
 import product_07 from "./../../assets/Product/product_07.jpg";
 import product_08 from "./../../assets/Product/product_08.jpg";
+import { Link } from "react-router-dom";
 
 function ProductNine({
   product,
@@ -64,7 +65,7 @@ function ProductNine({
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
-
+ 
   return (
     <div key={product.id} className="productNine__block">
       <div className="productNine__header">
@@ -94,7 +95,10 @@ function ProductNine({
         </div> */}
       </div>
       <div className="productNine__content">
-        <div className="productNine__image__slider">
+        <Link
+          className="productNine__image__slider"
+          to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+        >
           <AwesomeSlider transitionDelay={0.2}>
             {product?.media?.image?.screenshots?.map((img, index) => (
               <div key={index} className="_product__container_image">
@@ -102,8 +106,11 @@ function ProductNine({
               </div>
             ))}
           </AwesomeSlider>
-        </div>
-        <p className="productNine__name">{product.name}</p>
+        </Link>
+        <Link className="productNine__name__link"
+          to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+        <p className="productNine__name">  {product.name}</p>
+        </Link>
         {/* <Heading6 text={product.name} marginBottom={10} /> */}
 
         <OldPrice
@@ -158,10 +165,10 @@ function ProductNine({
         <Heading7 text="Tomorrow," span={true} />
         <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
 
-        <div className="addToCart__button">
+        <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`} className="addToCart__button">
           <img src={shopping_cart} alt="" className="addToCart__icon" />
-          Buy
-        </div>
+          Buy Now
+        </Link>
         <div className="productNine__quickView__compare__block">
           <button
             onClick={() => handleChangeProductPopup(true, product)}
@@ -175,7 +182,7 @@ function ProductNine({
             <Heading7 text="Quick View" />
           </button>
           <button
-            onClick={() => handleChangeComparePopup(true,product)}
+            onClick={() => handleChangeComparePopup(true, product)}
             className="productNine__button__block"
           >
             <img className="productNine__button__icon" src={compare} alt="" />

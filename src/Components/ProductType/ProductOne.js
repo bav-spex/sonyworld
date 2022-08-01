@@ -54,8 +54,9 @@ function ProductOne({ productDetailPage, product }) {
   //   };
   //   deleteFromWishlist(data)
   // }
-  // console.log(encodeURI(product.sku));
+  // console.log(product.sku);
   // console.log(product.sku.replace(/[/]/g, "%2F"));
+  
   return (
     <div
       key={product.id}

@@ -14,6 +14,7 @@ import product_02 from "./../../assets/Product/product_02.png";
 import product_03 from "./../../assets/Product/product_03.png";
 import product_04 from "./../../assets/Product/product_04.png";
 import product_05 from "./../../assets/Product/product_05.png";
+import { Link } from "react-router-dom";
 const peopleUltimatelyBoughtData = [
   {
     id: 1,
@@ -488,10 +489,12 @@ function CartPopup({ closeCartPopup, cartData }) {
           <Price price={2999} size="heading7" />
         </div>
         <div className="cart__popup__button__block">
-          <button className="checkout__button">Checkout</button>
-          <button className="continue__shopping__button">
+          <Link className="checkout__button" to="/checkout" onClick={() => closeCartPopup()}>
+            Checkout
+          </Link>
+          <Link className="continue__shopping__button" to="/" onClick={() => closeCartPopup()}>
             Continue Shopping
-          </button>
+          </Link>
         </div>
         <div className="cart__popup__frequently__bought__togather">
           <Heading3 text="Frequently Bought Together" />

@@ -14588,10 +14588,10 @@ function Product_Details_Page() {
   // const dataNavigate = useNavigate()
   // console.log(dataNavigate);
   const { id } = useParams();
-  // console.log(id);
+  console.log(id);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadProductDetailData(id));
+    dispatch(loadProductDetailData(id.replace(/[/]/g, "%2F")));
   }, []);
   const productData = useSelector((state) => state.appData.productData);
   // console.log("before",productData);
