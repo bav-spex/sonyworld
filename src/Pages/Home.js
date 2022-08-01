@@ -39,12 +39,12 @@ import FeatureProducts from "../Components/FeatureProducts";
 import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
-import { loadHomePageData } from "../redux/appAction";
+import { loadHomePageData, loadCreateCart } from "../redux/appAction";
 import { loadLocationData } from "../redux/appAction";
 
 import MobileHomePage from "./MobilePages/Mobile_Home_Page";
 
-function Home({  }) {
+function Home({}) {
   // const [homepageData, setHomepageData] = useState();
   const [loading, setLoading] = useState(true);
   const [liveChatPopup, setLiveChatPopup] = useState(false);
@@ -61,12 +61,13 @@ function Home({  }) {
   const [homePageBottomSingleBanner, setHomePageBottomSingleBanner] =
     useState();
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(loadHomePageData())
+  useEffect(() => {
+    dispatch(loadHomePageData());
+    dispatch(loadCreateCart());
     //  const data = await getAllCategory().then((res) => res);
     // setCategoryData(data);
-  },[])
-  const {homepageData} = useSelector((state) => state.appData);
+  }, []);
+  const { homepageData } = useSelector((state) => state.appData);
   // console.log(homepageData);
   // useEffect(()=>{
   //   if(homePageData){
@@ -135,7 +136,7 @@ function Home({  }) {
         }).items;
       });
       setLoading(false);
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0);
     }
   }, [homepageData]);
   const closeLiveChatPopup = () => {
