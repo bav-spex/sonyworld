@@ -21,8 +21,22 @@ import { loadAllCategoryData, loadHomePageData } from "./redux/appAction";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setHeader } from "./services/config";
+import { customerDetailsSuccess } from "./services/customer/customer";
+import { getCustomerLoginDetails } from "./Components/helpers/utils/getCustomerLoginDetails";
 
 function App({ stars }) {
+  
+  const customerData = getCustomerLoginDetails();
+  const dispatch = useDispatch();
+
+  const { customerDetails } = useSelector((state) => state.customerReducer);
+
+  useEffect(() => {
+      if(customerData !== "" && customerDetails === ""){
+        dispatch(customerDetailsSuccess(customerData))
+      }
+  }, [customerData]);
+
   const location = useLocation();
   const history = useNavigate();
   const homeDispatch = useDispatch();
@@ -56,6 +70,7 @@ function App({ stars }) {
   
     
   }, []);
+
   useEffect(() => {
     if (token) {
       setHeader("X-Access-Token", token);

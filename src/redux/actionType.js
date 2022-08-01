@@ -18,5 +18,16 @@ export const LOGOUT = "LOGOUT"
 export const USERLOGGEDIN = "USERLOGGEDIN"
 export const GET_HANDSHAKE = "GET_HANDSHAKE"
 
-// registration or login
-export const AUTH_DETAILS = "AUTH_DETAILS"
+// common 
+export const LOADER_START = "LOADER_START";
+export const LOADER_END = "LOADER_END";
+export const NOTIFY_SUCCESS_MSG = "NOTIFY_SUCCESS_MSG";
+export const NOTIFY_ERROR_MSG = "NOTIFY_ERROR_MSG";
+export const NOTIFY_CLEAR_MSG = "NOTIFY_CLEAR_MSG";
+
+// customer 
+export const CUSTOMER_DETAILS = "CUSTOMER_DETAILS"
+export const CUSTOMER_SIGN_UP_MSG = "CUSTOMER_SIGN_UP_MSG"
+
+// customer addresses
+export const CUSTOMER_ADDRESS_LIST = "CUSTOMER_ADDRESS_LIST"
