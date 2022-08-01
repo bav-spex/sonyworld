@@ -34,12 +34,12 @@ function Banner({ bannerData }) {
   const [banner, setBanner] = useState(bannerDataJSON);
 
   useEffect(() => {
-    if (index > bannerData.length - 1) {
+    if (index > bannerData?.length - 1) {
       let newIndex = 0;
       setIndex(newIndex);
     }
     if (index < 0) {
-      let newIndex = bannerData.length - 1;
+      let newIndex = bannerData?.length - 1;
       setIndex(newIndex);
     }
   }, [index, bannerData]);
@@ -78,7 +78,7 @@ function Banner({ bannerData }) {
     <>
       <div className="container-fluid banner__container">
         <div className=" banner__block" id="banner__block">
-          {bannerData?.map((ban, banIndex) => {
+          {bannerData && bannerData?.map((ban, banIndex) => {
             let position = "banner nextBanner";
             if (banIndex === index) {
               position = "banner activeBanner";

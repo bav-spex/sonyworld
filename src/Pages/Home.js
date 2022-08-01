@@ -83,7 +83,7 @@ function Home({  }) {
             data.type === "multiple_banner" &&
             data.title === "Main Banner Sliders"
           );
-        }).items;
+        })?.items;
       });
       setFeatureProductsData(() => {
         return homepageData.content.find((data) => {
@@ -122,7 +122,7 @@ function Home({  }) {
             data.type === "multiple_banner" &&
             data.title === "Deals of the Week"
           );
-        }).items;
+        })?.items;
       });
       setTopRatedData(() => {
         return homepageData.content.find((data) => {
