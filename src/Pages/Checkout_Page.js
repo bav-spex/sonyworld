@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as services from './../services/services';
 import BreadCrumbs from "../Components/BreadCrumbs";
 import Heading4 from "../Components/Font/Heading4";
 import Heading3 from "../Components/Font/Heading3";
@@ -33,6 +35,9 @@ import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCar
 import Heading2 from "../Components/Font/Heading2";
 import ProductThree from "../Components/ProductType/ProductThree";
 import AddressPopup from "../Components/Popup/AddressPopup";
+import { loadCountriesLocationData } from "../redux/appAction";
+import { loadCitiesLocationData } from "../redux/appAction";
+
 const addressData = [
   {
     id: 0,
@@ -157,10 +162,25 @@ const deliveryType = [
     price: 15,
   },
 ];
+
 function Checkout_Page({ reloadingHeader }) {
+
+  const dispatch = useDispatch();
+
+  const { customerAddressList } = useSelector(
+    (state) => state.customerAddressReducer
+  );
+
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
+  const [addressDatass, setAddressDatass] = useState(false);
+
+  // useEffect(() => {
+  //   dispatch(services.getCustomerAddressList());
+  //   dispatch(loadCountriesLocationData());
+  //   dispatch(loadCitiesLocationData());
+  // }, []);
 
   const handleSubmit = (code) => {
     console.log(code);
@@ -221,8 +241,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                        ? signin_done
-                        : signin_initial
+                          ? signin_done
+                          : signin_initial
                     }
                     alt=""
                   />
@@ -233,8 +253,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -254,8 +274,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                        ? delivery_done
-                        : delivery_initial
+                          ? delivery_done
+                          : delivery_initial
                     }
                     alt=""
                   />
@@ -266,8 +286,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -287,8 +307,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                        ? payment_done
-                        : payment_initial
+                          ? payment_done
+                          : payment_initial
                     }
                     alt=""
                   />
@@ -299,8 +319,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -394,7 +414,7 @@ function Checkout_Page({ reloadingHeader }) {
                 </div>
                 <hr className="checkout__page__horizontal__line"></hr>
                 <div className=" add__new__address__block">
-                    <button onClick={() => setAddressPopup(true)} className="location__button">
+                  <button onClick={() => setAddressPopup(true)} className="location__button">
                     <img
                       src={black_location}
                       alt=""
@@ -405,7 +425,7 @@ function Checkout_Page({ reloadingHeader }) {
                       marginBottom={0}
                       color="#000000"
                     />
-                    </button>
+                  </button>
                 </div>
                 <hr className="checkout__page__horizontal__line"></hr>
 
@@ -537,7 +557,7 @@ function Checkout_Page({ reloadingHeader }) {
             : "container-fluid address__popup__container__disable"
         }
       >
-        <AddressPopup closeLoginPopup={closeLoginPopup}/>
+        <AddressPopup closeLoginPopup={closeLoginPopup} />
       </div>
     </>
   );

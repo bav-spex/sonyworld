@@ -8,44 +8,81 @@ import * as services from './../../services/services'
 import { useDispatch, useSelector } from 'react-redux';
 
 const T_REQ_NAME = 'Name is required';
+const T_REQ_FIRST_NAME = 'First Name is required';
+const T_REQ_LAST_NAME = 'Last Name is required';
+const T_REQ_COUNTRY = 'Country is required';
 const T_REQ_MOBILE_NUMBER = 'Mobile Number is required';
 const T_REQ_ADDRESS_LINE_1 = 'Address Line 1 is required';
 const T_REQ_ADDRESS_LINE_2 = 'Address Line 2 is required';
 const T_REQ_CITY_TOWN = 'City/Town is required';
 const T_REQ_STATE = 'State is required';
 const T_REQ_LANDMARK = 'Landmark is required';
+const T_REQ_POST_CODE = 'Post Code is required';
 
 function AddressPopup({ closeLoginPopup }) {
 
   const dispatch = useDispatch();
 
+  const countriesLocationData = useSelector(
+    (state) => state.appData.countriesLocationData
+  );
+  const cityLocationData = useSelector(
+    (state) => state.appData.cityLocationData
+  );
+
+  const [storeCitiesLocationData, setStoreCitiesLocationData] = useState([]);
+  const [storeCountriesLocationData, setStoreCountriesLocationData] = useState([]);
+
+  useEffect(() => {
+    if (countriesLocationData) {
+      setStoreCountriesLocationData(countriesLocationData);
+    }
+  }, [countriesLocationData]);
+
+  useEffect(() => {
+    if (cityLocationData) {
+      setStoreCitiesLocationData(cityLocationData);
+    }
+  }, [cityLocationData]);
+
   const [address, setAddress] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     mobileNumber: "",
     addressLine1: "",
     addressLine2: "",
     city: "",
     state: "",
-    landmark: "",
+    postCode: "",
+    // landmark: "",
   });
 
   const [errMsg, setErrMsg] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     mobileNumber: "",
     addressLine1: "",
     addressLine2: "",
     city: "",
     state: "",
-    landmark: "",
+    postCode: "",
+    // landmark: "",
   });
 
   const validateForm = (event, newErrObj, name, value) => {
 
     //A function to validate each input values
     switch (name) {
-      case 'name':
+      case 'firstName':
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: T_REQ_NAME }
+          newErrObj = { ...newErrObj, [name]: T_REQ_FIRST_NAME }
+        } else {
+          newErrObj = { ...newErrObj, [name]: '' }
+        }
+        break;
+      case 'lastName':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: T_REQ_LAST_NAME }
         } else {
           newErrObj = { ...newErrObj, [name]: '' }
         }
@@ -53,6 +90,13 @@ function AddressPopup({ closeLoginPopup }) {
       case 'mobileNumber':
         if (value === "") {
           newErrObj = { ...newErrObj, [name]: T_REQ_MOBILE_NUMBER }
+        } else {
+          newErrObj = { ...newErrObj, [name]: '' }
+        }
+        break;
+      case 'country':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: T_REQ_COUNTRY }
         } else {
           newErrObj = { ...newErrObj, [name]: '' }
         }
@@ -85,13 +129,20 @@ function AddressPopup({ closeLoginPopup }) {
           newErrObj = { ...newErrObj, [name]: '' }
         }
         break;
-      case 'landmark':
+      case 'postCode':
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: T_REQ_LANDMARK }
+          newErrObj = { ...newErrObj, [name]: T_REQ_POST_CODE }
         } else {
           newErrObj = { ...newErrObj, [name]: '' }
         }
         break;
+      // case 'landmark':
+      //   if (value === "") {
+      //     newErrObj = { ...newErrObj, [name]: T_REQ_LANDMARK }
+      //   } else {
+      //     newErrObj = { ...newErrObj, [name]: '' }
+      //   }
+      //   break;
       default:
         break;
     }
@@ -141,13 +192,14 @@ function AddressPopup({ closeLoginPopup }) {
   const handleSubmit = () => {
 
     let validateFeild = [
-      "name",
+      "firstName",
+      "lastName",
       "mobileNumber",
       "addressLine1",
       "addressLine2",
       "city",
       "state",
-      "landmark",
+      // "landmark",
     ];
 
     let formStatus = allFeildValidate(validateFeild, errMsg);
@@ -155,8 +207,8 @@ function AddressPopup({ closeLoginPopup }) {
 
     if (formStatus.checkSignUpStatus === true) {
       let params = {
-        firstName: address.name,
-        lastName: address.name,
+        firstName: address.firstName,
+        lastName: address.lastName,
         addressLine1: address.addressLine1,
         addressLine2: address.addressLine2,
         city: address.city,
@@ -189,20 +241,38 @@ function AddressPopup({ closeLoginPopup }) {
         <div className="row address__form__field__row">
           <div className="col-sm-12 col-md-6 main__form__field__block">
             {/* <p className="form__label">First Name</p> */}
-            <Heading7 text="Name" marginBottom={10} />
+            <Heading7 text="First Name" marginBottom={10} />
             <div className="field__block">
               <input
                 type="text"
                 placeholder=""
                 className="form__field"
                 id="name"
-                name="name"
-                value={address.name}
+                name="First Name"
+                value={address.firstName}
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            {errMsg.name && <p className="invalid__message">{errMsg.name}</p>}
+            {errMsg.firstName && <p className="invalid__message">{errMsg.firstName}</p>}
           </div>
+          <div className="col-sm-12 col-md-6 main__form__field__block">
+            {/* <p className="form__label">Mobile Number</p> */}
+            <Heading7 text="Last Name" marginBottom={10} />
+            <div className="field__block">
+              <input
+                type="text"
+                placeholder=""
+                className="form__field"
+                id="lastName"
+                name="lastName"
+                value={address.lastName}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            {errMsg.lastName && <p className="invalid__message">{errMsg.lastName}</p>}
+          </div>
+        </div>
+        <div className="row address__form__field__row">
           <div className="col-sm-12 col-md-6 main__form__field__block">
             {/* <p className="form__label">Mobile Number</p> */}
             <Heading7 text="Mobile Number" marginBottom={10} />
@@ -218,6 +288,22 @@ function AddressPopup({ closeLoginPopup }) {
               />
             </div>
             {errMsg.mobileNumber && <p className="invalid__message">{errMsg.mobileNumber}</p>}
+          </div>
+          <div className="col-sm-12 col-md-6 main__form__field__block">
+            {/* <p className="form__label">First Name</p> */}
+            <Heading7 text="Country" marginBottom={10} />
+            <select
+              // onChange={(e) => onSelectedChange(e)}
+              value={address.country}
+              className="_customselect"
+            >
+              {/* {dropdownOptions.map(({ label, value }) => (
+                  <option key={value + label} value={value}>
+                    {label}
+                  </option>
+                ))} */}
+            </select>
+            {errMsg.country && <p className="invalid__message">{errMsg.country}</p>}
           </div>
         </div>
         <div className="row address__form__field__row">
@@ -291,6 +377,23 @@ function AddressPopup({ closeLoginPopup }) {
         <div className="row address__form__field__row">
           <div className="col-sm-12 col-md-6 main__form__field__block">
             {/* <p className="form__label">First Name</p> */}
+            <Heading7 text="Post Code" marginBottom={10} />
+            <div className="field__block">
+              <input
+                type="text"
+                placeholder=""
+                className="form__field"
+                id="postCode"
+                name="postCode"
+                value={address.postCode}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            {errMsg.postCode && <p className="invalid__message">{errMsg.postCode}</p>}
+          </div>
+        </div>
+        {/* <div className="row address__form__field__row">
+          <div className="col-sm-12 col-md-6 main__form__field__block">
             <Heading7 text="Landmark" marginBottom={10} />
             <div className="field__block">
               <input
@@ -305,7 +408,7 @@ function AddressPopup({ closeLoginPopup }) {
             </div>
             {errMsg.landmark && <p className="invalid__message">{errMsg.landmark}</p>}
           </div>
-        </div>
+        </div> */}
         <div className="address__form__button__block">
           <button className="form__save__button" onClick={() => handleSubmit()}>
             SAVE

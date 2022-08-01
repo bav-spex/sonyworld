@@ -9,6 +9,7 @@ export {
 
 export {
     createCustomerAddress, // create customer address 
+    getCustomerAddressList, // get customer address 
 } from './customerAddress/customerAddress';
 
 export {
