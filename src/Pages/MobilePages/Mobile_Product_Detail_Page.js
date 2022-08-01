@@ -470,7 +470,7 @@ function Mobile_Product_Detail_Page({ product }) {
               <div className="modal-footer border-top-0 justify-content-center">
                 <button
                   type="button"
-                  className="btn__primary__orange btn btn-primary w-25"
+                  className="btn__primary__orange btn btn-primary w-25 "
                 >
                   SAVE
                 </button>

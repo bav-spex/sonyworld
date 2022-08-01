@@ -417,7 +417,7 @@ function Mobile_Product_List_Page({ product }) {
                             <button
                                 type="button"
                                 className="btn btn__grey__solid mb-2"
-                                data-bs-target="#addAddressModal"
+                                data-bs-target="#filterByModal"
                                 data-bs-toggle="modal"
                                 data-bs-dismiss="modal"
                             >
@@ -496,7 +496,7 @@ function Mobile_Product_List_Page({ product }) {
                             <button
                                 type="button"
                                 className="btn btn__grey__solid mb-2"
-                                data-bs-target="#addAddressModal"
+                                data-bs-target="#SortByModal"
                                 data-bs-toggle="modal"
                                 data-bs-dismiss="modal"
                             >

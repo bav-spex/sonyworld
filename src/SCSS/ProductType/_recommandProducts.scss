@@ -29,3 +29,14 @@
     }
   }
 }
+
+@media(max-width:1199px){
+  .main__recommand__product__block .recommand__product__block .recommand__product__detail__block .see__all__buying__option__button{
+    margin-left: 10px;
+  }
+}
+@media(max-width:991px){
+  .main__recommand__product__block .recommand__product__block .recommand__product__detail__block .see__all__buying__option__button{
+    margin-left: 0px;
+  }
+}
