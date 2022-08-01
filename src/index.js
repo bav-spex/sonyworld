@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { createBrowserHistory } from "history";
 import { HelmetProvider } from "react-helmet-async";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const history = createBrowserHistory();
 

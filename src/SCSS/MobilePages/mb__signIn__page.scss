@@ -1,0 +1,115 @@
+.mb__signIn__page {
+    padding-top: 150px;
+    background: #F1F1F1;
+
+    .mb__sign__content {
+        box-shadow: 0px 3px 6px #0000000A;
+        border: 1px solid #F1F1F1;
+        background: #fff;
+       
+        .signin__button__icon {
+            width: 50px;
+            padding: 13px;
+            height: 50px;
+        }
+
+        button.getOtp__button {
+            background: #ffffff 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+            border: 2px solid #000000;
+            border-radius: 5px;
+            color: black;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+            font-family: "arialbold";
+            padding: 16px 0px;
+            margin: 0px 0px 10px;
+        }
+
+        .google__signin__button {
+            background: #ff3d2b 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+            border-radius: 5px;
+            color: white;
+            outline: none;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            font-family: "arialregular";
+            padding: 16px 20px;
+            margin: 0px 0px 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .facebook__signin__button {
+            background: #2c5a98 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+            border-radius: 5px;
+            color: white;
+            outline: none;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            font-family: "arialregular";
+            padding: 16px 20px;
+            margin: 0px 0px 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .apple__signin__button {
+            background: #101010 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+            border-radius: 5px;
+            color: white;
+            outline: none;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            font-family: "arialregular";
+            padding: 16px 20px;
+            margin: 0px 0px 10px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .loginModel__footer {
+        padding: 10px 0px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .footer__text {
+            font-size: 18px;
+            font-family: "arialbold";
+            margin: 0px;
+        }
+
+        .footer__link__text {
+            color: #ff4f04;
+            font-size: 18px;
+            font-family: "arialbold";
+            margin: 0px 0px 0px 5px;
+        }
+    }
+
+}
+@media(max-width:576px){
+    .mb__signIn__page .mb__sign__content .google__signin__button{
+        font-size: 14px;
+    }
+    .mb__signIn__page .mb__sign__content  button{
+        padding: 10px 10px !important;
+    }
+    .mb__signIn__page .mb__sign__content .signin__button__icon {
+        width: 40px;
+        padding: 10px;
+        height: 40px;
+    }
+    .mb__signIn__page .loginModel__footer .footer__text,.mb__signIn__page .loginModel__footer .footer__link__text{
+        font-size: 14px !important;
+    }
+}
