@@ -148,3 +148,9 @@
         }
     }
 }
+
+@media(max-width:576px){
+    .mb__product__list__bottom__filter ul li button{
+        height: 45px;
+    }
+}

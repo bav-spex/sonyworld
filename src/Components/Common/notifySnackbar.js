@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as services from "./../../services/services";
-import { ToastContainer, Toast } from 'react-bootstrap';
+// import { ToastContainer, Toast } from 'react-bootstrap';
 
 function NotifySnackbar(props) {
 
@@ -39,7 +39,7 @@ function NotifySnackbar(props) {
 
     return (
         <>
-            {notifyMsg && notifyData.message !== "" &&
+            {/* {notifyMsg && notifyData.message !== "" &&
                 <div
                     aria-live="polite"
                     aria-atomic="true"
@@ -56,7 +56,7 @@ function NotifySnackbar(props) {
                         </Toast>
                     </ToastContainer>
                 </div>
-            }
+            } */}
         </>
     );
 }

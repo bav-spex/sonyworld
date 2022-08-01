@@ -476,7 +476,7 @@ function Mobile_Product_Detail_Page({ product }) {
                 </button>
                 <button
                   type="button"
-                  className="btn btn-border btn__border__black  w-25"
+                  className="btn btn-border btn__border__black  w-25" data-bs-toggle="modal" data-bs-dismiss="modal"
                 >
                   CANCEL
                 </button>

@@ -1,38 +1,37 @@
 import React, { useState } from "react";
-import "./../SCSS/_cartPage.scss";
-import BreadCrumbs from "../Components/BreadCrumbs";
+// import "./../SCSS/_cartPage.scss";
+import BreadCrumbs from "../../Components/BreadCrumbs";
 import { Link } from "react-router-dom";
-import sony_logo from "./../assets/Icon/sony_logo.svg";
-import checkout_white_right_arrow from "./../assets/Icon/checkout_white_right_arrow.svg";
+import sony_logo from "./../../assets/Icon/sony_logo.svg";
+import checkout_white_right_arrow from "./../../assets/Icon/checkout_white_right_arrow.svg";
 
-import Heading3 from "../Components/Font/Heading3";
-import Text3 from "../Components/Font/Text3";
-import Protection from "../Components/MostSharedComponent/Protection";
-import Price from "../Components/Font/Price";
-import Heading6 from "../Components/Font/Heading6";
-import Text1 from "../Components/Font/Text1";
-import Heading7 from "../Components/Font/Heading7";
-import SmallWarrantyBlock from "../Components/MostSharedComponent/SmallWarrantyBlock";
-import ProtectionPlan from "../Components/MostSharedComponent/ProtectionPlan";
-import Heading5 from "../Components/Font/Heading5";
-import AvailableOffers from "../Components/MostSharedComponent/AvailableOffers";
-import ProductContainer from "../Components/ProductContainer";
+import Heading3 from "../../Components/Font/Heading3";
+import Text3 from "../../Components/Font/Text3";
+import Protection from "../../Components/MostSharedComponent/Protection";
+import Price from "../../Components/Font/Price";
+import Heading6 from "../../Components/Font/Heading6";
+import Text1 from "../../Components/Font/Text1";
+import Heading7 from "../../Components/Font/Heading7";
+import SmallWarrantyBlock from "../../Components/MostSharedComponent/SmallWarrantyBlock";
+import ProtectionPlan from "../../Components/MostSharedComponent/ProtectionPlan";
+import Heading5 from "../../Components/Font/Heading5";
+import AvailableOffers from "../../Components/MostSharedComponent/AvailableOffers";
+import ProductContainer from "../../Components/ProductContainer";
 
-import product_01 from "./../assets/Product/product_01.png";
-import product_02 from "./../assets/Product/product_02.png";
-import product_03 from "./../assets/Product/product_03.png";
-import product_04 from "./../assets/Product/product_04.png";
-import product_05 from "./../assets/Product/product_05.png";
+import product_01 from "./../../assets/Product/product_01.png";
+import product_02 from "./../../assets/Product/product_02.png";
+import product_03 from "./../../assets/Product/product_03.png";
+import product_04 from "./../../assets/Product/product_04.png";
+import product_05 from "./../../assets/Product/product_05.png";
 
-import newArrivals_01 from "./../assets/NewArrivals/newArrivals_01.png";
-import newArrivals_02 from "./../assets/NewArrivals/newArrivals_02.png";
-import newArrivals_03 from "./../assets/NewArrivals/newArrivals_03.png";
-import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
-import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
-import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
-import RecommandProducts from "../Components/ProductType/RecommandProducts";
-import Heading2 from "../Components/Font/Heading2";
-import MobileCartPage from "./MobilePages/Mobile_Cart_Page";
+import newArrivals_01 from "./../../assets/NewArrivals/newArrivals_01.png";
+import newArrivals_02 from "./../../assets/NewArrivals/newArrivals_02.png";
+import newArrivals_03 from "./../../assets/NewArrivals/newArrivals_03.png";
+import newArrivals_04 from "./../../assets/NewArrivals/newArrivals_04.png";
+import newArrivals_05 from "./../../assets/NewArrivals/newArrivals_05.png";
+import ShoppipngCartProduct from "../../Components/MostSharedComponent/ShoppipngCartProduct";
+import RecommandProducts from "../../Components/ProductType/RecommandProducts";
+import Heading2 from "../../Components/Font/Heading2";
 
 
 const product = {
@@ -653,7 +652,8 @@ const peopleUltimatelyBoughtData = [
     ],
   },
 ];
-function Cart_Page() {
+function Mobile_Cart_Page() {
+
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
   const [arrowState, setArrowState] = useState(true);
@@ -688,10 +688,8 @@ function Cart_Page() {
   return (
     <>
       <BreadCrumbs title="Shopping Cart" />
-      <div className="d-block d-lg-none mb__cart__page">
-        <MobileCartPage/>
-      </div>
-      <div className="container-fluid shopping__cart__page__container  d-none d-lg-block">
+      
+      <div className="container-fluid shopping__cart__page__container">
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">
             {" "}
@@ -700,7 +698,7 @@ function Cart_Page() {
           </p>
 
           <div className="row shopping__cart__page__inner__block">
-            <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
+            <div className="col-md-12  row shopping__cart__left__block">
               <ShoppipngCartProduct product={product} />
               <hr className="sc__page__horizontal__line"></hr>
               <ShoppipngCartProduct product={product} />
@@ -719,7 +717,7 @@ function Cart_Page() {
               </div>
             </div>
             {/* package Summary */}
-            <div className="col-md-12 col-xl-3  shopping__cart__right__block">
+            <div className="col-md-12  shopping__cart__right__block">
               <div className="sc__package__summary__block">
                 <p className="sc__ps__title">
                   {" "}
@@ -783,4 +781,4 @@ function Cart_Page() {
   );
 }
 
-export default Cart_Page;
+export default Mobile_Cart_Page;
