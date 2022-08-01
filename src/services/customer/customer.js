@@ -1,5 +1,6 @@
 import apiHelper from '../../Components/helpers/utils/apiHelper'
 import * as actionType from '../../redux/actionType';
+import { setHeader } from '../config';
 import { encryptHelper, decryptHelper } from "./../../Components/helpers/utils/encryptDecryptHelper";
 import * as services from './../services';
 
@@ -78,9 +79,13 @@ export const customerSignIn = (params) => {
   return async dispatch => {
     try {
       let response = await apiHelper(`/V1/customer/login`, 'post', params, {});
-      let details = response.data;
+ console.log("response ", response);
+      let details = response.data.user.data;
+//  console.log("details ", response.user.refreshToken);
       let encryptData = encryptHelper(JSON.stringify(details))
       localStorage.setItem("custDetails", encryptData);
+      // localStorage.setItem("handShakeToken", response.data.user.refreshToken);
+      // setHeader('X-Access-Token',response.data.user.refreshToken)
     } catch (error) {
       let notifyMsg = { message: error.response.data.message }
       // dispatch(customerSignUpMsg(error.response.data.message));
