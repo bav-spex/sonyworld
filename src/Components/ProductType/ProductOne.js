@@ -14,14 +14,19 @@ import Heading7 from "./../Font/Heading7";
 import Price from "./../Font/Price";
 import OldPrice from "./../Font/OldPrice";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
-import { addToWishlist, deleteFromWishlist } from "../../services/wishlist.services";
+import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
 
 function ProductOne({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
   
+  useEffect(async()=>{
 
+    const isFavouriteData = await checkForWishlist(product.sku.replace(/[/]/g, "%2F"));
+    console.log(isFavouriteData);
+    setIsFavourite(isFavouriteData)
+  },[])
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
@@ -39,21 +44,21 @@ function ProductOne({ productDetailPage, product }) {
       addToWishlist(data);
       console.log("added Successfully");
     }
-    // else{
-    //   deleteFromWishlist(data);
-    //   console.log("deleted Successfully");
-    // }
+    else{
+      removeFromWL(product.sku.replace(/[/]/g, "%2F"))
+      console.log("deleted Successfully");
+    }
   },[isFavourite]);
   // console.log(isFavourite);
   const handleRating = (score) => {
     setRating(score);
   };
-  // const removeFromWL=(sku)=>{
-  //   const data = {
-  //     items: [sku],
-  //   };
-  //   deleteFromWishlist(data)
-  // }
+  const removeFromWL=(sku)=>{
+    const data = {
+      items: [sku],
+    };
+    deleteFromWishlist(data)
+  }
   // console.log(product.sku);
   // console.log(product.sku.replace(/[/]/g, "%2F"));
   

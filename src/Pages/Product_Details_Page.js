@@ -70,8 +70,10 @@ import PriceBlock from "../Components/MostSharedComponent/PriceBlock";
 import Heading1 from "../Components/Font/Heading1";
 import Heading6 from "../Components/Font/Heading6";
 import { getProductDetail } from "../services/pdp.service";
+import { addToCart } from "../services/cart.service";
 import { loadProductDetailData } from "../redux/appAction";
 import MobileProductDetailPage from "./MobilePages/Mobile_Product_Detail_Page";
+
 // const product = {
 //   id: 1,
 //   logo: sony_logo,
@@ -14507,7 +14509,7 @@ const data = {
 };
 function Product_Details_Page() {
   const contentData = JSON.parse(JSON.stringify(data)).content;
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [productAvailableOffer, setProductAvailableOffer] = useState([
     {
@@ -14603,7 +14605,7 @@ function Product_Details_Page() {
       // console.log(product.reviewSummary.totals);
     }
   }, [productData]);
-  
+
   // console.log("useEffect",productData);
   // console.log(product.reviewSummary.totals);
   const [newArrivalData, setNewArrivalData] = useState(
@@ -14614,7 +14616,8 @@ function Product_Details_Page() {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [pincode, setPincode] = useState("");
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+
   const decreaseCount = () => {
     if (count === 0) {
       setCount(0);
@@ -14639,22 +14642,44 @@ function Product_Details_Page() {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
+
+  const AddProductToCart = () => {
+    console.log(product, "product in product details >>>");
+
+    if (count > 0) {
+      const data = {
+        items: [
+          {
+            sku: product.sku,
+            qty: count,
+          },
+        ],
+      };
+
+      addToCart(data)
+        .then((res) => {
+          console.log(res, "res>>>");
+        })
+        .catch((err) => {
+          console.log(err.response.data.message, "error >>>>");
+        });
+    }
+  };
   if (loading) {
     return <h1>Product Loading...</h1>;
   }
   return (
     <>
       {/* <TopNavbar /> */}
-      
 
       <div className="bg-white d-none d-lg-block">
         <BreadCrumbs title="Z8H | Full Array LED | 8K | High Dynamic Range" />
       </div>
       {/* mobile pdp page */}
       <div className="mobile__product__detail__page d-block d-lg-none">
-        <MobileProductDetailPage product={product}/>
+        <MobileProductDetailPage product={product} />
       </div>
-     {/* mobile pdp page end */}
+      {/* mobile pdp page end */}
 
       <div className="container-fluid product__details__page__container d-none d-lg-block">
         <div className="row product__details__page__block">
@@ -14662,7 +14687,9 @@ function Product_Details_Page() {
             <div className="row products__details__inner__block">
               <div className="col-12 col-sm-12 col-md-6 product__carousel__main__block">
                 <div className="product__carousel__block">
-                  <ProductCarousel productImageData={product.media.image.screenshots} />
+                  <ProductCarousel
+                    productImageData={product.media.image.screenshots}
+                  />
                 </div>
               </div>
               <div className="col-12 col-sm-12 col-md-6 product__details__block">
@@ -14718,7 +14745,21 @@ function Product_Details_Page() {
                   fillColor="#DC3A1A"
                   emptyColor="#C8C8C8"
                 />
-
+                {/* <div className="row pdp__sticky__counter__block">
+                  <div
+                    onClick={() => decreaseCount()}
+                    className="col-4 counter__decrease__block"
+                  >
+                    <img src={minus} alt="minus" />
+                  </div>
+                  <div className="col-4 counter">{count}</div>
+                  <div
+                    onClick={() => increaseCount()}
+                    className="col-4 counter__increase__block"
+                  >
+                    <img src={plus} alt="plus" />
+                  </div>
+                </div> */}
                 <hr className="pd__block__bottom__line" />
 
                 {/* Price Block */}
@@ -14737,10 +14778,8 @@ function Product_Details_Page() {
                     </div>
 
                     <p className="pd__unlock__membership__text">
-                      
-                        Unlock up to 24 months of Best Buy Protection with our
+                      Unlock up to 24 months of Best Buy Protection with our
                       Sony Membership
-                      
                     </p>
                   </div>
                   <img
@@ -14881,7 +14920,10 @@ function Product_Details_Page() {
                     <div className="pd__bundle__button">Build A Bundle</div>
                   </div>
                   <div className="col-xl-6 mb-1 ps-0 ps-xl-1 pd__addToCart__button__block">
-                    <div className="pd__addToCart__button">
+                    <div
+                      className="pd__addToCart__button"
+                      onClick={() => AddProductToCart()}
+                    >
                       <img
                         src={shopping_cart}
                         alt=""
@@ -14918,7 +14960,11 @@ function Product_Details_Page() {
                         <Text3 text="Package Savings" marginBottom={0} />
                       </p>
                       <p className="package__saving__price">
-                        <Price currency={product.currency} price={99} size="heading5" />
+                        <Price
+                          currency={product.currency}
+                          price={99}
+                          size="heading5"
+                        />
                       </p>
                     </div>
                     <div className="exp__rd__package__total__block">
@@ -14928,7 +14974,11 @@ function Product_Details_Page() {
                       </p>
                       <p className="package__total__price">
                         {" "}
-                        <Price currency={product.currency} price={1999} size="heading5" />
+                        <Price
+                          currency={product.currency}
+                          price={1999}
+                          size="heading5"
+                        />
                       </p>
                     </div>
 
@@ -14974,51 +15024,58 @@ function Product_Details_Page() {
           <div className="col-12 col-sm-12 col-md-12  col-lg-3 product__details__right__block">
             <Heading3 price="People Ultimately Bought" />
             <p className="pd__mb__block__title">People Ultimately Bought</p>
-            {product.relatedProducts[0].products.map((product, productIndex) => {
-              return (
-                <div key={product.id} className="row pd__mb__product__block">
-                  <div className="col-xxl-4 pd__mb__product__image__block">
-                    <img
-                      src={product.baseImage}
-                      alt=""
-                      className="pd__mb__product__image"
-                    />
-                  </div>
-                  <div className="col-xxl-8 pd__mb__product__detail__block">
-                    <Heading7 text={product.name} />
-                    <RatingBlock
-                      size={15}
-                      rating={4.5}
-                      totalRatings={4199}
-                      fillColor="#DC3A1A"
-                      emptyColor="#C8C8C8"
-                    />
-                    <Price price={product.price_rounded} currency={product?.currency} size="heading6" span={true} />
-
-                    <OldPrice
-                      oldPrice={product.price_rounded + 200}
-                      size="text3"
-                      color="#808080"
-                      marginLeft={5}
-                      marginBottom={0}
-                      lineThrough={true}
-                      span={true}
-                      currency={product?.currency}
-                    />
-
-                    <div className="pd__compare__block">
-                      <input
-                        type="checkbox"
-                        className="pd__compare__input__check"
-                        name="compare"
-                        // onChange={handleChange}
+            {product.relatedProducts[0].products.map(
+              (product, productIndex) => {
+                return (
+                  <div key={product.id} className="row pd__mb__product__block">
+                    <div className="col-xxl-4 pd__mb__product__image__block">
+                      <img
+                        src={product.baseImage}
+                        alt=""
+                        className="pd__mb__product__image"
                       />
-                      <p className="pd__compare__text">Compare</p>
+                    </div>
+                    <div className="col-xxl-8 pd__mb__product__detail__block">
+                      <Heading7 text={product.name} />
+                      <RatingBlock
+                        size={15}
+                        rating={4.5}
+                        totalRatings={4199}
+                        fillColor="#DC3A1A"
+                        emptyColor="#C8C8C8"
+                      />
+                      <Price
+                        price={product.price_rounded}
+                        currency={product?.currency}
+                        size="heading6"
+                        span={true}
+                      />
+
+                      <OldPrice
+                        oldPrice={product.price_rounded + 200}
+                        size="text3"
+                        color="#808080"
+                        marginLeft={5}
+                        marginBottom={0}
+                        lineThrough={true}
+                        span={true}
+                        currency={product?.currency}
+                      />
+
+                      <div className="pd__compare__block">
+                        <input
+                          type="checkbox"
+                          className="pd__compare__input__check"
+                          name="compare"
+                          // onChange={handleChange}
+                        />
+                        <p className="pd__compare__text">Compare</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </div>
         </div>
       </div>
@@ -15039,10 +15096,19 @@ function Product_Details_Page() {
               <img src={plus} alt="plus" />
             </div>
           </div>
-          <Price price={1699} size="heading3" />
-          <button className="buynow___button">BUY NOW</button>
+          <Price
+            currency={product?.currency}
+            price={product?.price_rounded * count}
+            size="heading3"
+          />
+          <Link to={`/checkout`} className="buynow___button">
+            Buy Now
+          </Link>
           <button className="build__bundle___button">BUILD BUNDLE</button>
-          <button className="addToCart__button">
+          <button
+            className="addToCart__button"
+            onClick={() => AddProductToCart()}
+          >
             <img src={shopping_cart} alt="" className="addToCart__icon" />
             Add To Cart
           </button>

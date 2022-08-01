@@ -37,6 +37,7 @@ import ProductThree from "../Components/ProductType/ProductThree";
 import AddressPopup from "../Components/Popup/AddressPopup";
 import { loadCountriesLocationData } from "../redux/appAction";
 import { loadCitiesLocationData } from "../redux/appAction";
+import { getAvailablePaymentMethods } from "../services/cart.service";
 
 const addressData = [
   {
@@ -176,11 +177,12 @@ function Checkout_Page({ reloadingHeader }) {
   const [addressPopup, setAddressPopup] = useState(false);
   const [addressDatass, setAddressDatass] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(services.getCustomerAddressList());
-  //   dispatch(loadCountriesLocationData());
-  //   dispatch(loadCitiesLocationData());
-  // }, []);
+  useEffect(() => {
+    getAvailablePaymentMethods()
+    // dispatch(services.getCustomerAddressList());
+    // dispatch(loadCountriesLocationData());
+    // dispatch(loadCitiesLocationData());
+  }, []);
 
   const handleSubmit = (code) => {
     console.log(code);

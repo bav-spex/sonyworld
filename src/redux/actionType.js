@@ -11,7 +11,6 @@ export const GET__WISHLIST__DATA = "GET__WISHLIST__DATA"
 export const GET__CITY__LOCATION__DATA = "GET__CITY__LOCATION__DATA"
 export const GET__COUNTRIES__LOCATION__DATA = "GET__COUNTRIES__LOCATION__DATA"
 
-
 export const LOADING = "LOADING"
 export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
@@ -32,3 +31,7 @@ export const CUSTOMER_SIGN_UP_MSG = "CUSTOMER_SIGN_UP_MSG"
 
 // customer addresses
 export const CUSTOMER_ADDRESS_LIST = "CUSTOMER_ADDRESS_LIST"
+
+// cart 
+export const GET__CART__QUOTE__ID = "GET__CART__QUOTE__ID"
+export const GET__CART__DATA = "GET__CART__DATA"

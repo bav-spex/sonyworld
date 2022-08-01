@@ -10,8 +10,8 @@ import red_accessories from "./../../assets/Icon/red_accessories.svg";
 const PLPCategorySection = ({ categoryData, selectedMainCategory,updateSelectedSubCategoryId,selectedCategoryId }) => {
   const [selectedSubCategory, setSelectedSubCategory] = useState({});
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(selectedCategoryId);
-  // console.log(selectedMainCategory);
-  // console.log(selectedSubCategory);
+  console.log(selectedMainCategory);
+  console.log(selectedSubCategory);
   useEffect(() => {
     if (selectedMainCategory) {
       setSelectedSubCategory(selectedMainCategory.children_data[0]);
@@ -30,7 +30,7 @@ const PLPCategorySection = ({ categoryData, selectedMainCategory,updateSelectedS
     <>
       <PLPBannerSectionOne
         bannerImage={selectedMainCategory?.categoryaicon}
-        title={selectedMainCategory?.name}
+        title={selectedMainCategory.name}
       />
       {selectedMainCategory?.children_data.length !== 0 ?(
 

@@ -1158,7 +1158,7 @@ const Product_List_Page = () => {
       <div className="container-fluid product__list__page__container d-none d-lg-block">
         <div className="product__list__page__block">
           <PLPBannerAndCategorySection
-          selectedCategoryId={selectedCategoryId}
+           selectedCategoryId={selectedCategoryId}
             updateSelectedSubCategoryId={updateSelectedSubCategoryId}
             selectedMainCategory={selectedCategory}
             categoryData={categoryLists}

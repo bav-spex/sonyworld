@@ -7,6 +7,7 @@ import { getWishlistData } from "../services/wishlist.services";
 import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getCategoryFilterData } from "../services/plp.service";
+import { createCartDetails, getCartData } from "../services/cart.service";
 
 const setLoading = (data) => ({
   type: types.LOADING,
@@ -125,5 +126,30 @@ export const loadCountriesLocationData = () => {
     const countriesLocationData = await getCountriesLocationData();
     dispatch(saveCountriesLocationData(countriesLocationData.data));
     return countriesLocationData.data;
+  };
+};
+
+const saveCartQuoteId = (data) => ({
+  type: types.GET__CART__QUOTE__ID,
+  payload: data,
+});
+
+export const loadCreateCart = () => {
+  return async function (dispatch) {
+    const createCartData = await createCartDetails();
+    dispatch(saveCartQuoteId(createCartData.quoteId));
+  };
+};
+
+const saveCartData = (data) => ({
+  type: types.GET__CART__DATA,
+  payload: data,
+});
+
+export const loadCartData = () => {
+  return async function (dispatch) {
+    const cartData = await getCartData();
+    dispatch(saveCartData(cartData.data));
+    return cartData.data;
   };
 };
