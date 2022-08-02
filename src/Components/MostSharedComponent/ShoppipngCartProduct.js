@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Heading3 from "../Font/Heading4";
 import Heading5 from "../Font/Heading5";
 import Heading7 from "../Font/Heading7";
@@ -7,11 +7,33 @@ import Text3 from "../Font/Text3";
 import AvailableOffers from "./AvailableOffers";
 import ProtectionPlan from "./ProtectionPlan";
 import SmallWarrantyBlock from "./SmallWarrantyBlock";
-
+import plus from "./../../assets/Icon/plus.svg";
+import minus from "./../../assets/Icon/minus.svg";
 import product_01 from "./../../assets/Product/product_01.png";
 import "./../../SCSS/MostSharedComponents/_shoppingCartProduct.scss"
+
+import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
+import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
+import delete_icon from './../../assets/Icon/delete.svg';
+
 function ShoppipngCartProduct({ product }) {
-    const [couponCode, setCouponCode] = useState("");
+  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [count, setCount] = useState(0);
+  const decreaseCount = () => {
+    if (count === 0) {
+      setCount(0);
+    } else {
+      setCount(count - 1);
+    }
+  };
+  const increaseCount = () => {
+    setCount(count + 1);
+  };
+  const handleFavourite = () => {
+    setIsFavourite(!isFavourite);
+  };
   const handleSubmit = (code) => {
     console.log(code);
   };
@@ -77,8 +99,62 @@ function ShoppipngCartProduct({ product }) {
             </div>
           </div>
           <AvailableOffers availableOffer={product.availableOffer} />
+
         </div>
         <hr className="sc__page__horizontal__line"></hr>
+        <div className="sc__counter__block d-flex mt-3 mb-3  align-items-center">
+         
+            <div className="row sc__counter__box">
+              <div
+                onClick={() => decreaseCount()}
+                className="col-4 counter__decrease__block"
+              >
+                <img src={minus} alt="minus" />
+              </div>
+              <div className="col-4 counter">{count}</div>
+              <div
+                onClick={() => increaseCount()}
+                className="col-4 counter__increase__block"
+              >
+                <img src={plus} alt="plus" />
+              </div>
+            </div>
+        
+          {/* counter end  */}
+          <div className="sc__fav__sec me-3 pt-1">
+            <button className="common__favourite__button">
+              <img
+                onMouseEnter={() => setIsFavouriteHover(true)}
+                onClick={handleFavourite}
+                onMouseLeave={() => setIsFavouriteHover(false)}
+                className={
+                  !isFavourite
+                    ? "pd__favourite__icon"
+                    : "pd__favourite__icon__disable"
+                }
+                src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+                alt=""
+              />
+              <img
+                onClick={handleFavourite}
+                className={
+                  isFavourite
+                    ? "pd__favourite__icon"
+                    : "pd__favourite__icon__disable"
+                }
+                src={fulfill_favourite}
+                alt=""
+              />
+            </button>
+
+          </div>
+          <div>
+            <a href="#">
+              <img src={delete_icon} alt="delete" />
+            </a>
+          </div>
+        </div>
+
       </div>
       <div className="col-12 col-sm-3 sc__product__right__block">
         <Price price={product.price} size="heading3" />

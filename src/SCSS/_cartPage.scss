@@ -1,6 +1,9 @@
 .shopping__cart__page__container {
   padding: 0px 12px;
-  background-color: #f5f5f5;
+  background-color: #fff;
+  .breadcrumbs__container{
+    background: #fff;
+  }
   .shopping__cart__page__block {
     padding: 10px 0px;
     width: 1702px;
@@ -15,6 +18,7 @@
     }
     .shopping__cart__page__inner__block {
       padding: 0px 12px;
+      align-items: flex-start;
       .shopping__cart__left__block {
         padding: 0px;
         margin: 0px 0px 50px 0px;

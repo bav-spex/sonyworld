@@ -66,4 +66,10 @@
   .breadcrumbs__block {
     width: 100% !important;
   }
+  .breadcrumbs__container .breadcrumbs__block .back__button__block{
+    display: none;
+  }
+  .breadcrumbs__container .breadcrumbs__block .home__image{
+    margin-left: 0;
+  }
 }

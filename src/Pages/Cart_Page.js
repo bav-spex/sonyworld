@@ -709,11 +709,11 @@ function Cart_Page() {
   };
   return (
     <>
-      <BreadCrumbs title="Shopping Cart" />
       <div className="d-block d-lg-none mb__cart__page">
         <MobileCartPage />
       </div>
       <div className="container-fluid shopping__cart__page__container  d-none d-lg-block">
+      <BreadCrumbs title="Shopping Cart" />
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">
             {" "}

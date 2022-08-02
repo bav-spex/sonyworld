@@ -32,7 +32,7 @@ import newArrivals_05 from "./../../assets/NewArrivals/newArrivals_05.png";
 import ShoppipngCartProduct from "../../Components/MostSharedComponent/ShoppipngCartProduct";
 import RecommandProducts from "../../Components/ProductType/RecommandProducts";
 import Heading2 from "../../Components/Font/Heading2";
-
+import './../../SCSS/MobilePages/_mobileCartPage.scss';
 
 const product = {
   id: 1,
@@ -688,7 +688,7 @@ function Mobile_Cart_Page() {
   return (
     <>
       <BreadCrumbs title="Shopping Cart" />
-      
+
       <div className="container-fluid shopping__cart__page__container">
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">
@@ -700,6 +700,10 @@ function Mobile_Cart_Page() {
           <div className="row shopping__cart__page__inner__block">
             <div className="col-md-12  row shopping__cart__left__block">
               <ShoppipngCartProduct product={product} />
+
+
+
+
               <hr className="sc__page__horizontal__line"></hr>
               <ShoppipngCartProduct product={product} />
               <div className="sc__newArrival__block">
@@ -716,12 +720,22 @@ function Mobile_Cart_Page() {
                 /> */}
               </div>
             </div>
+            
+              <div className="main__recommand__product__block">
+              <Heading3
+                text="Recommendations for all products"
+                marginBottom={20}
+              />
+                {peopleUltimatelyBoughtData.map((product, productIndex) => {
+                  return <RecommandProducts product={product} />;
+                })}
+              </div>
             {/* package Summary */}
             <div className="col-md-12  shopping__cart__right__block">
               <div className="sc__package__summary__block">
                 <p className="sc__ps__title">
                   {" "}
-                  <Heading3 text="Order Summary" />
+                  <Heading3 text="Package Summary" />
                 </p>
                 <div className="sc__ps__detail__block">
                   <div className="sc__ps__detail__inner__block">
@@ -746,31 +760,16 @@ function Mobile_Cart_Page() {
                   </div>
                 </div>
               </div>
-              <Link className="checkout__button__link" to="/checkout">
-                <div className="col-6 sc__addToCart__button__block">
-                  <div className="sc__addToCart__button">
-                    <span>Proceed to Checkout</span>
-                    <img
-                      src={checkout_white_right_arrow}
-                      alt=""
-                      className="sc__addToCart__icon"
-                    />
-                  </div>
+              <div className="mb__sc__fixed__btn d-flex justify-content-between">
+                <div>
+                  <Price price={3275} size="heading5" />
+                  <Text3 text="(4 Items)" color="#fff" />
                 </div>
-              </Link>
-              <Link to="/">
-              <button className="signup__button">CONTINUE SHOPPING</button>
-              </Link>
-
-              <Heading3
-                text="Recommendations for all products"
-                marginBottom={20}
-              />
-              <div className="main__recommand__product__block">
-                {peopleUltimatelyBoughtData.map((product, productIndex) => {
-                  return <RecommandProducts product={product} />;
-                })}
+                <div>
+                  <button className="btn btn__primary__white">Continue</button>
+                </div>
               </div>
+              
             </div>
           </div>
         </div>
