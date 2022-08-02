@@ -78,13 +78,16 @@ function Home({}) {
   // },[homePageData])
   useEffect(() => {
     if (Object.values(homepageData).length !== 0) {
+      // setBannerData(() => {
+      //   return homepageData.content.find((data) => {
+      //     return (
+      //       data.type === "multiple_banner" &&
+      //       data.title === "Main Banner Sliders"
+      //     );
+      //   })?.items;
+      // });
       setBannerData(() => {
-        return homepageData.content.find((data) => {
-          return (
-            data.type === "multiple_banner" &&
-            data.title === "Main Banner Sliders"
-          );
-        })?.items;
+        return homepageData.content[0].items;
       });
       setFeatureProductsData(() => {
         return homepageData.content.find((data) => {
@@ -117,13 +120,16 @@ function Home({}) {
           return data.type === "slider" && data.title === "Top Trending";
         }).products;
       });
+      // setDealsOfTheWeekData(() => {
+      //   return homepageData.content.find((data) => {
+      //     return (
+      //       data.type === "multiple_banner" &&
+      //       data.title === "Deals of the Week"
+      //     );
+      //   })?.items;
+      // });
       setDealsOfTheWeekData(() => {
-        return homepageData.content.find((data) => {
-          return (
-            data.type === "multiple_banner" &&
-            data.title === "Deals of the Week"
-          );
-        })?.items;
+        return homepageData.content[1].items;
       });
       setTopRatedData(() => {
         return homepageData.content.find((data) => {
@@ -187,7 +193,7 @@ function Home({}) {
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"
         />
-        {/* <DealsOfTheWeek dealsOfTheWeekData={dealsOfTheWeekData} /> */}
+        <DealsOfTheWeek dealsOfTheWeekData={dealsOfTheWeekData} />
         <ProductContainer
           sectionTitle="Top Rated Products"
           carouselData={topRatedData}

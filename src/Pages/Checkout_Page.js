@@ -40,7 +40,8 @@ import { loadCitiesLocationData } from "../redux/appAction";
 import {
   getAvailablePaymentMethods,
   getCartData,
-  getEstimateShippingMethods
+  getEstimateShippingMethods,
+  getPayfortInformation
 } from "../services/cart.service";
 import { Link } from "react-router-dom";
 
@@ -173,7 +174,7 @@ function Checkout_Page({ reloadingHeader }) {
   const dispatch = useDispatch();
 
   const { customerDetails } = useSelector((state) => state.customerReducer);
-
+// console.log(customerDetails);
   const { customerAddressList, customerAddUpdateManage } = useSelector(
     (state) => state.customerAddressReducer
   );
@@ -190,12 +191,17 @@ function Checkout_Page({ reloadingHeader }) {
   const [cartTotalData, setCartTotalData] = useState();
   const [shippingMethods, setShippingMethods] = useState();
   const [deliveryType, setDeliveryType] = useState([]);
-
+  const [paymentMethodForPayfort,setPaymentMethodForPayfort] =useState({
+    method: "",
+    email: "",
+    referer_url: ""
+  })
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
     if (data) {
       setPaymentMethods(data.paymentMethods);
       setUserPaymentMethod(data.paymentMethods[0].code);
+      setPaymentMethodForPayfort({method: data.paymentMethods[0].code,email:customerDetails.email, referer_url: "https://alpha-api.mestores.com"})
     }
     const cartData = await getCartData();
     if (data) {
@@ -209,6 +215,7 @@ function Checkout_Page({ reloadingHeader }) {
   // Delivery Preferences
   useEffect(async () => {
     const data = await getEstimateShippingMethods();
+    // console.log(data);
     if (data) {
       let shippingMethods = data['shipping-methods']
       const propertyNames = Object.keys(shippingMethods);
@@ -261,10 +268,7 @@ function Checkout_Page({ reloadingHeader }) {
     setSelectedAddressID(addIndex);
     setEditAddressData(add);
   };
-  const handleChange = (e) => {
-    // console.log(e.target.value);
-    setUserPaymentMethod(e.target.value);
-  };
+
   const remove = (id) => {
     // console.log(id);
   };
@@ -287,6 +291,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [checkoutClassName, setCheckoutClassName] = useState("delivery");
   const handleChangeClassName = (className) => {
     setCheckoutClassName(className);
+    // setIconType({ ...iconType, payment: "inprogress" });
   };
   const continueFromDelivery = (newIconType, className) => {
     setIconType(newIconType);
@@ -330,6 +335,19 @@ function Checkout_Page({ reloadingHeader }) {
     dispatch(services.deleteCustomerAddress(params));
   };
 
+
+const handleChange = (e) => {
+  // console.log(e.target.value);
+  setUserPaymentMethod(e.target.value);
+  setPaymentMethodForPayfort({method:e.target.value,email:customerDetails.email,referer_url: "https://alpha-api.mestores.com"})
+  console.log(paymentMethodForPayfort);
+};
+const makePayment =async()=>{
+  const newPaymentMethodForPayfort = {paymentMethod:paymentMethodForPayfort}
+  console.log(newPaymentMethodForPayfort);
+  const data = await getPayfortInformation(newPaymentMethodForPayfort)
+  console.log(data);
+}
   return (
     <>
       <BreadCrumbs title="Checkout" />
@@ -675,8 +693,8 @@ function Checkout_Page({ reloadingHeader }) {
                     })}
                   <div className="continue__button__block">
                     <div></div>
-                    <Link className="continue___button__link" to="/user/orders/1/confirm">
-                      <button className="continue___button">Continue</button>
+                    <Link className="continue___button__link" to="/checkout">
+                      <button onClick={()=>makePayment()} className="continue___button">Continue</button>
                     </Link>
                   </div>
                 </div>

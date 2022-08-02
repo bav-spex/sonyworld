@@ -43,6 +43,15 @@ export const getEstimateShippingMethods = async () => {
   const estimateShippingMethods = await axios.get(
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/estimate-shipping-methods`
   );
-  console.log(estimateShippingMethods,"estimateShippingMethods")
+  // console.log(estimateShippingMethods,"estimateShippingMethods")
   return estimateShippingMethods.data;
+};
+
+export const getPayfortInformation = async (data) => {
+  // console.log("Payment method Data >>>>>>")
+  const payfortInformationData = await axios.post(
+    `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/get-payfort-information`,data
+  );
+  console.log(payfortInformationData,"payfortInformationData")
+  return payfortInformationData.data;
 };
