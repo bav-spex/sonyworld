@@ -177,3 +177,7 @@ img {
 .common__favourite__button .pd__favourite__icon__disable{
   display: none;
 }
+
+.toast {
+  background-color: #27743e !important;
+}

@@ -57,6 +57,15 @@ function NotifySnackbar(props) {
                     </ToastContainer>
                 </div>
             } */}
+
+            <div className="toast align-items-center text-white bg-primary position-fixed top-0 end-0" style={{ zIndex: 11 }} role="alert" aria-live="assertive" aria-atomic="true">
+                <div className="d-flex">
+                    <div className="toast-body">
+                        Hello, world! This is a toast message.
+                    </div>
+                    <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
         </>
     );
 }
