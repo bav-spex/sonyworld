@@ -73,6 +73,7 @@ import { getProductDetail } from "../services/pdp.service";
 import { addToCart } from "../services/cart.service";
 import { loadProductDetailData } from "../redux/appAction";
 import MobileProductDetailPage from "./MobilePages/Mobile_Product_Detail_Page";
+import { addToWishlist, deleteFromWishlist } from "../services/wishlist.services";
 
 // const product = {
 //   id: 1,
@@ -14629,8 +14630,35 @@ function Product_Details_Page() {
     setCount(count + 1);
   };
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      // console.log(product.sku, "added");
+    } else {
+      setIsFavourite(true);
+      // console.log(product.sku, "remove");
+    }
   };
+  useEffect(() => {
+    const data = {
+      items: [product.sku],
+    };
+    if (isFavourite) {
+      addToWishlist(data);
+      // console.log("added Successfully");
+    }
+    // else{
+    //   removeFromWL(product.sku.replace(/[/]/g, "%2F"))
+    //   // console.log("deleted Successfully");
+    // }
+  },[isFavourite]);
+  // console.log(isFavourite);
+  
+  const removeFromWL=(sku)=>{
+    const data = {
+      items: [sku],
+    };
+    deleteFromWishlist(data)
+  }
   const handleChange = (e) => {
     setPincode(e.target.value);
   };

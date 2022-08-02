@@ -14,6 +14,7 @@ import categoryImg from "./../../assets/MobilePages/MobileHome/categoryhome.png"
 import HOMEcategoryImg from "./../../assets/MobilePages/MobileHome/homecategory.png";
 import feature_product_03 from "./../../assets/FeatureProduct/feature_product_03.png";
 import feature_product_04 from "./../../assets/FeatureProduct/feature_product_04.png";
+import banner_01 from "./../../assets/Banner/banner_01.png";
 import banner2 from "./../../assets/Banner/banner_01.png";
 import Heading7 from "./../../Components/Font/Heading7";
 import Heading5 from "./../../Components/Font/Heading5";
@@ -78,7 +79,7 @@ function Mobile_Home_Page({
             <Link to="/products">
               <div className="adImage__block">
                 <img
-                  src={homePageBottomSingleBanner[0].imageUrl}
+                  src={banner_01}
                   alt=""
                   width="100%"
                   height="100%"

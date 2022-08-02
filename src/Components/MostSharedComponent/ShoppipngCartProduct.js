@@ -21,6 +21,40 @@ function ShoppipngCartProduct({ product }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [count, setCount] = useState(0);
+  const [availableOffer, setAvailableOffer] = useState([
+    {
+      id: 1,
+      offerType: "",
+      offerText: "Save $50-$300 on a sound bar with TV",
+      termsAndConditions: "",
+    },
+    {
+      id: 2,
+      offerType: "Bank Offer",
+      offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+      termsAndConditions: "T&C",
+    },
+    {
+      id: 3,
+      offerType: "Credit Card Offer",
+      offerText: "5% Unlimited Cashback on Sony Credit Card",
+      termsAndConditions: "T&C",
+    },
+  ]);
+  const [protection,setProtection] = useState( [
+    {
+      id: 1,
+      protectionText: "2-Year Standard Geek Squad Protection",
+      price: 79,
+      month: 12,
+    },
+    {
+      id: 2,
+      protectionText: "1-Year Standard Geek Squad Protection",
+      price: 89,
+      month: 12,
+    },
+  ])
   const decreaseCount = () => {
     if (count === 0) {
       setCount(0);
@@ -71,7 +105,7 @@ function ShoppipngCartProduct({ product }) {
         <SmallWarrantyBlock warranty={2} />
         <ProtectionPlan
           title="Protection Plan"
-          protection={product.protection}
+          protection={protection}
           remove={remove}
         />
         <hr className="sc__page__horizontal__line"></hr>
@@ -98,7 +132,7 @@ function ShoppipngCartProduct({ product }) {
               </button>
             </div>
           </div>
-          <AvailableOffers availableOffer={product.availableOffer} />
+          <AvailableOffers availableOffer={availableOffer} />
 
         </div>
         <hr className="sc__page__horizontal__line"></hr>

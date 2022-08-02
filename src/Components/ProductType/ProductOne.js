@@ -24,7 +24,7 @@ function ProductOne({ productDetailPage, product }) {
   useEffect(async()=>{
 
     const isFavouriteData = await checkForWishlist(product.sku.replace(/[/]/g, "%2F"));
-    console.log(isFavouriteData);
+    // console.log(isFavouriteData);
     setIsFavourite(isFavouriteData)
   },[])
   const handleFavourite = () => {
