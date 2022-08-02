@@ -567,7 +567,7 @@ function Checkout_Page({ reloadingHeader }) {
                       </div>
                       <div className="continue__button__block">
                         <div></div>
-                        <button className="buynow___button">Continue</button>
+                        <button  className="buynow___button">Continue</button>
                       </div>
                     </div>
                   </>
@@ -623,6 +623,10 @@ function Checkout_Page({ reloadingHeader }) {
                         </div>
                       );
                     })}
+                      <div className="continue__button__block">
+                        <div></div>
+                        <button  className="buynow___button">Continue</button>
+                      </div>
                 </div>
               </div>
               {/* <div className="order__summary__block">
