@@ -103,7 +103,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
       let cityList = [];
       cityLocationData && cityLocationData.map((val, i) => {
         let cityData = {
-          id: val.id,
+          value: val.id,
           label: val.cityName
         }
         cityList.push(cityData);

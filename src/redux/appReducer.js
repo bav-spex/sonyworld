@@ -13,6 +13,7 @@ const initialState = {
   loading: true,
   cartQuoteId: "",
   cartData: [],
+  deliveryShippingInfo: '',
 };
 
 const appReducer = (state = initialState, action) => {
@@ -76,6 +77,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    case types.UPDATE_CUSTOMER_SHIPPING_INFO:
+      return {
+        ...state,
+        deliveryShippingInfo: action.payload,
       };
     default:
       return state;

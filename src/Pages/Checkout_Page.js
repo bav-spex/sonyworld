@@ -40,10 +40,16 @@ import { loadCitiesLocationData } from "../redux/appAction";
 import {
   getAvailablePaymentMethods,
   getCartData,
-  getEstimateShippingMethods
+  getEstimateShippingMethods,
+  updateShippingInformation
 } from "../services/cart.service";
 import { Link } from "react-router-dom";
+import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 
+const errMsgStyle = {
+  color: 'red',
+  margin: '5px 0px 0px'
+}
 // const addressData = [
 //   {
 //     id: 0,
@@ -178,6 +184,10 @@ function Checkout_Page({ reloadingHeader }) {
     (state) => state.customerAddressReducer
   );
 
+  const deliveryShippingInfo = useSelector(
+    (state) => state.appData.deliveryShippingInfo
+  );
+
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
@@ -190,6 +200,19 @@ function Checkout_Page({ reloadingHeader }) {
   const [cartTotalData, setCartTotalData] = useState();
   const [shippingMethods, setShippingMethods] = useState();
   const [deliveryType, setDeliveryType] = useState([]);
+  const [deliveryPreferencesType, setDeliveryPreferencesType] = useState('');
+
+  const [errMsg, setErrMsg] = useState({
+    deliveryAddressList: "",
+    deliveryPreferencesType: "",
+  });
+
+  useEffect(() => {
+    if (deliveryShippingInfo !== "") {
+      setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
+      setCheckoutClassName('payment');
+    }
+  }, [deliveryShippingInfo]);
 
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
@@ -220,7 +243,9 @@ function Checkout_Page({ reloadingHeader }) {
           protectionText: "",
           price: shippingMethods[val].shipping_cost,
         }
-        deliveryData.push(deliveryInfo);
+        if (shippingMethods[val].is_available === true) {
+          deliveryData.push(deliveryInfo);
+        }
       })
       setDeliveryType(deliveryData);
     }
@@ -249,6 +274,9 @@ function Checkout_Page({ reloadingHeader }) {
             details: val,
           };
           updateAddressData.push(addreDetails);
+          if (val.primary === true) {
+            setSelectedAddressID(i)
+          }
         });
       setAddressData(updateAddressData);
     }
@@ -262,9 +290,13 @@ function Checkout_Page({ reloadingHeader }) {
     setEditAddressData(add);
   };
   const handleChange = (e) => {
-    // console.log(e.target.value);
+    // console.log("e.target.value ", e.target.value);
     setUserPaymentMethod(e.target.value);
   };
+  const handleChangeDeliveryPref = (e) => {
+    setDeliveryPreferencesType(e.target.value);
+  };
+
   const remove = (id) => {
     // console.log(id);
   };
@@ -288,10 +320,50 @@ function Checkout_Page({ reloadingHeader }) {
   const handleChangeClassName = (className) => {
     setCheckoutClassName(className);
   };
+  
   const continueFromDelivery = (newIconType, className) => {
-    setIconType(newIconType);
-    setCheckoutClassName(className);
+
+    let newErrObj = {
+      deliveryPreferencesType: "",
+      deliveryAddressList: ""
+    }
+
+    if (deliveryPreferencesType !== "") {
+      newErrObj = { ...newErrObj, deliveryPreferencesType: "" }
+    } else {
+      newErrObj = { ...newErrObj, deliveryPreferencesType: "Please Select Delivery Preference" }
+    }
+    if (selectedAddressId !== "") {
+      newErrObj = { ...newErrObj, deliveryAddressList: "" }
+    } else {
+      newErrObj = { ...newErrObj, deliveryAddressList: "Please Select Delivery Address" }
+    }
+    setErrMsg(newErrObj);
+
+    let customerLoginDetails = getCustomerLoginDetails();
+    if (deliveryPreferencesType !== "" && selectedAddressId !== "" && customerLoginDetails.email !== "") {
+      let getDeliveryInfo = addressData?.[selectedAddressId]
+      let params = {
+        useAsBilling: true,
+        firstName: getDeliveryInfo.details.firstname,
+        lastName: getDeliveryInfo.details.lastname,
+        email: customerLoginDetails.email,
+        telephone: getDeliveryInfo.details.telephone,
+        city: getDeliveryInfo.details.city,
+        postCode: getDeliveryInfo.details.postcode,
+        countryId: getDeliveryInfo.details.country_id,
+        street: `${getDeliveryInfo.details.street[0]} ${getDeliveryInfo.details.street[1]}`,
+        shippingCarrierCode: deliveryPreferencesType,
+        // pickup_store: '',
+        // region_id: "0"
+      }
+      dispatch(updateShippingInformation(params));
+    }
+
+    // setIconType(newIconType);
+    // setCheckoutClassName(className);
   };
+
   const openLoginWrapperFromAnywhere = () => {
     // console.log(document.querySelector(".login__popup__container__disable"));
     // reloadingHeader()
@@ -528,6 +600,7 @@ function Checkout_Page({ reloadingHeader }) {
                             </div>
                           );
                         })}
+                      {errMsg.deliveryAddressList && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryAddressList}</p>}
                     </div>
                   )}
                 </div>
@@ -570,8 +643,9 @@ function Checkout_Page({ reloadingHeader }) {
                                     type="radio"
                                     className="delivery__input__check"
                                     name="deliveryType"
-                                    value={delivery.type}
-                                    onChange={handleChange}
+                                    value={delivery.id}
+                                    onChange={(e) => handleChangeDeliveryPref(e)}
+                                  // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                   />
                                   <p className="delivery__selection__text">
                                     <Heading4 text={delivery.type} />
@@ -597,6 +671,7 @@ function Checkout_Page({ reloadingHeader }) {
                               </div>
                             );
                           })}
+                          {errMsg.deliveryPreferencesType && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryPreferencesType}</p>}
                         </div>
                       </div>
                       <div className="col-12 col-sm-12 col-md-5  delivery__pickup__store">
@@ -610,8 +685,8 @@ function Checkout_Page({ reloadingHeader }) {
                         <button
                           onClick={() =>
                             continueFromDelivery(
-                              { ...iconType, delivery: "done",payment:"inprogress" },
-                              "payment"
+                              // { ...iconType, delivery: "done", payment: "inprogress" },
+                              // "payment"
                             )
                           }
                           className="continue___button"
