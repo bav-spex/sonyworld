@@ -40,6 +40,7 @@ import { loadCitiesLocationData } from "../redux/appAction";
 import {
   getAvailablePaymentMethods,
   getCartData,
+  getEstimateShippingMethods
 } from "../services/cart.service";
 import { Link } from "react-router-dom";
 
@@ -147,26 +148,26 @@ const product = {
     },
   ],
 };
-const deliveryType = [
-  {
-    id: 1,
-    type: "Standard",
-    protectionText: "delivery by Mon, Apr 4",
-    price: 0,
-  },
-  {
-    id: 2,
-    type: "Express",
-    protectionText: "Same Day Delivery",
-    price: 10,
-  },
-  {
-    id: 3,
-    type: "Lightening",
-    protectionText: "Shipping",
-    price: 15,
-  },
-];
+// const deliveryType = [
+//   {
+//     id: 1,
+//     type: "Standard",
+//     protectionText: "delivery by Mon, Apr 4",
+//     price: 0,
+//   },
+//   {
+//     id: 2,
+//     type: "Express",
+//     protectionText: "Same Day Delivery",
+//     price: 10,
+//   },
+//   {
+//     id: 3,
+//     type: "Lightening",
+//     protectionText: "Shipping",
+//     price: 15,
+//   },
+// ];
 
 function Checkout_Page({ reloadingHeader }) {
   const dispatch = useDispatch();
@@ -187,6 +188,9 @@ function Checkout_Page({ reloadingHeader }) {
   const [userPaymentMethod, setUserPaymentMethod] = useState();
   const [cartDetail, setCartDetail] = useState();
   const [cartTotalData, setCartTotalData] = useState();
+  const [shippingMethods, setShippingMethods] = useState();
+  const [deliveryType, setDeliveryType] = useState([]);
+
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
     if (data) {
@@ -201,6 +205,27 @@ function Checkout_Page({ reloadingHeader }) {
     // dispatch(loadCountriesLocationData());
     // dispatch(loadCitiesLocationData());
   }, []);
+
+  // Delivery Preferences
+  useEffect(async () => {
+    const data = await getEstimateShippingMethods();
+    if (data) {
+      let shippingMethods = data['shipping-methods']
+      const propertyNames = Object.keys(shippingMethods);
+      let deliveryData = [];
+      propertyNames && propertyNames.map((val, i) => {
+        let deliveryInfo = {
+          id: shippingMethods[val].shipping_method_code,
+          type: shippingMethods[val].title,
+          protectionText: "",
+          price: shippingMethods[val].shipping_cost,
+        }
+        deliveryData.push(deliveryInfo);
+      })
+      setDeliveryType(deliveryData);
+    }
+  }, []);
+
   // console.log("cartTotalData", cartTotalData);
   useEffect(() => {
     // getAvailablePaymentMethods();
@@ -322,8 +347,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                        ? signin_done
-                        : signin_initial
+                          ? signin_done
+                          : signin_initial
                     }
                     alt=""
                   />
@@ -334,8 +359,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -355,8 +380,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                        ? delivery_done
-                        : delivery_initial
+                          ? delivery_done
+                          : delivery_initial
                     }
                     alt=""
                   />
@@ -367,8 +392,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -388,8 +413,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                        ? payment_done
-                        : payment_initial
+                          ? payment_done
+                          : payment_initial
                     }
                     alt=""
                   />
@@ -400,8 +425,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -534,7 +559,7 @@ function Checkout_Page({ reloadingHeader }) {
                           <Heading6 text="Delivery Preferences" />
                         </div>
                         <div className="delivery__selection__block">
-                          {deliveryType.map((delivery, deliveryIndex) => {
+                          {deliveryType && deliveryType.map((delivery, deliveryIndex) => {
                             return (
                               <div
                                 key={delivery.id}
