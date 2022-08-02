@@ -39,7 +39,7 @@ import FeatureProducts from "../Components/FeatureProducts";
 import HomePageCategoryBlock from "../Components/HomePageCategoryBlock";
 import RecentlyViewedProducts from "../Components/RecentlyViewedProducts";
 import LiveChatPopup from "../Components/Popup/LiveChatPopup";
-import { loadHomePageData } from "../redux/appAction";
+import { loadHomePageData, loadCreateCart } from "../redux/appAction";
 import { loadLocationData } from "../redux/appAction";
 
 import MobileHomePage from "./MobilePages/Mobile_Home_Page";
@@ -63,6 +63,7 @@ function Home({}) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadHomePageData());
+    dispatch(loadCreateCart());
     //  const data = await getAllCategory().then((res) => res);
     // setCategoryData(data);
   }, []);
@@ -78,12 +79,12 @@ function Home({}) {
   useEffect(() => {
     if (Object.values(homepageData).length !== 0) {
       setBannerData(() => {
-        // return homepageData.content.find((data) => {
-        //   return (
-        //     data.type === "multiple_banner" &&
-        //     data.title === "Main Banner Sliders"
-        //   );
-        // }).items;
+        return homepageData.content.find((data) => {
+          return (
+            data.type === "multiple_banner" &&
+            data.title === "Main Banner Sliders"
+          );
+        })?.items;
       });
       setFeatureProductsData(() => {
         return homepageData.content.find((data) => {
@@ -122,7 +123,7 @@ function Home({}) {
             data.type === "multiple_banner" &&
             data.title === "Deals of the Week"
           );
-        }).items;
+        })?.items;
       });
       setTopRatedData(() => {
         return homepageData.content.find((data) => {
@@ -186,7 +187,7 @@ function Home({}) {
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"
         />
-        <DealsOfTheWeek dealsOfTheWeekData={dealsOfTheWeekData} />
+        {/* <DealsOfTheWeek dealsOfTheWeekData={dealsOfTheWeekData} /> */}
         <ProductContainer
           sectionTitle="Top Rated Products"
           carouselData={topRatedData}

@@ -541,15 +541,15 @@ const peopleUltimatelyBoughtData = [
 ];
 
 const PLPFilterProductBlock = ({
+  filterAndProductsData,
   handleChangeProductPopup,
   handleChangeComparePopup,
+  
 }) => {
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   const [productListView, setProductListView] = useState("grid");
+  // console.log(filterAndProductsData.items);
 
-  useEffect(() => {
-    // console.log(selectedOption);
-  }, [selectedOption]);
 
   const onSelectSortby = (e) => {
     console.log(e.target.value);
@@ -569,7 +569,7 @@ const PLPFilterProductBlock = ({
     <>
       <div className="plp__filter__product__container">
         <div className="plp__filter__product__title__block">
-          <Heading3 text="22 Products" />
+          <Heading3 text={`${filterAndProductsData?.total_count} Products`} />
           <div className="plp__filter__product__sortby__grid__button">
             <Text3 text="Sort By:" />
             {/* <label className="label">Sort by: &nbsp;</label> */}
@@ -630,9 +630,12 @@ const PLPFilterProductBlock = ({
             <div className="row plp__inner__product__block">
               {productListView === "grid" ? (
                 <>
-                  {peopleUltimatelyBoughtData.map((product, productIndex) => {
+                  {filterAndProductsData.items.length !== 0 ? filterAndProductsData?.items.map((product, productIndex) => {
                     return (
-                      <div key={productIndex} className="col-xxl-4 col-lg-6 mb-3">
+                      <div
+                        key={productIndex}
+                        className="col-xxl-4 col-lg-6 mb-3"
+                      >
                         <ProductNine
                           product={product}
                           handleChangeProductPopup={handleChangeProductPopup}
@@ -640,7 +643,13 @@ const PLPFilterProductBlock = ({
                         />
                       </div>
                     );
-                  })}
+                  }): 
+                  <div>
+                   <h1>
+                     No Products Available
+                     </h1>
+                  </div>
+                  }
                   {/* <PLPProduct productsData={peopleUltimatelyBoughtData} /> */}
                 </>
               ) : productListView === "list" ? (

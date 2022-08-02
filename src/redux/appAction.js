@@ -8,14 +8,12 @@ import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getStoresLocationData } from "../services/storeLocation.service";
 import { getCategoryFilterData } from "../services/plp.service";
-
-
+import { createCartDetails, getCartData } from "../services/cart.service";
 
 const setLoading = (data) => ({
     type: types.LOADING,
     payload: data,
 });
-
 
 // Loading Home Page Data //
 
@@ -35,9 +33,8 @@ export const loadHomePageData = () => {
         // console.log(homepagedata.data);
         dispatch(saveHomePageData(homepagedata.data));
 
-        return homepagedata.data
+        return homepagedata.data;
     };
-
 };
 
 export const loadAllCategoryData = () => {
@@ -45,11 +42,14 @@ export const loadAllCategoryData = () => {
         const categorydata = await getAllCategoryData();
         // console.log(categorydata.data);
         dispatch(saveAllCategoryData(categorydata.data));
-        return categorydata.data
+        dispatch({
+            type: types.SET__SELECTED__CATEGORY,
+            payload: categorydata.data.children_data[0],
+        });
+
+        return categorydata.data;
     };
 };
-
-
 
 // Loading Product Details Page Data //
 
@@ -58,16 +58,14 @@ const saveProductDetailData = (data) => ({
     payload: data,
 });
 
-
 export const loadProductDetailData = (id) => {
     return async function(dispatch) {
         const productData = await getProductDetail(id);
         // console.log(productData);
         dispatch(saveProductDetailData(productData));
-        return productData
+        return productData;
     };
 };
-
 
 // Loading Product Details Page Data //
 
@@ -76,16 +74,14 @@ const saveCategoryFilterData = (data) => ({
     payload: data,
 });
 
-
 export const loadCategoryFilterData = (filterDetails) => {
     return async function(dispatch) {
         const filterData = await getCategoryFilterData(filterDetails);
         // console.log(productData);
         dispatch(saveCategoryFilterData(filterData));
-        return filterData
+        return filterData;
     };
 };
-
 
 // Loading Wishlist  Page Data //
 
@@ -94,13 +90,11 @@ const saveWishlistData = (data) => ({
     payload: data,
 });
 
-
-
 export const loadWishlistData = () => {
     return async function(dispatch) {
         const wishlistData = await getWishlistData();
         dispatch(saveWishlistData(wishlistData.data));
-        return wishlistData.data
+        return wishlistData.data;
     };
 };
 
@@ -113,13 +107,11 @@ const saveCitiesLocationData = (data) => ({
     payload: data,
 });
 
-
-
 export const loadCitiesLocationData = () => {
     return async function(dispatch) {
         const cityLocationData = await getCitiesLocationData();
         dispatch(saveCitiesLocationData(cityLocationData.data));
-        return cityLocationData.data
+        return cityLocationData.data;
     };
 };
 
@@ -129,8 +121,6 @@ const saveCountriesLocationData = (data) => ({
     type: types.GET__COUNTRIES__LOCATION__DATA,
     payload: data,
 });
-
-
 
 export const loadCountriesLocationData = () => {
     return async function(dispatch) {
@@ -154,5 +144,30 @@ export const loadStoresLocationData = () => {
         const storesLocationData = await getStoresLocationData();
         dispatch(saveStoresLocationData(storesLocationData.data));
         return storesLocationData.data
+    };
+};
+
+const saveCartQuoteId = (data) => ({
+    type: types.GET__CART__QUOTE__ID,
+    payload: data,
+});
+
+export const loadCreateCart = () => {
+    return async function(dispatch) {
+        const createCartData = await createCartDetails();
+        dispatch(saveCartQuoteId(createCartData.quoteId));
+    };
+};
+
+const saveCartData = (data) => ({
+    type: types.GET__CART__DATA,
+    payload: data,
+});
+
+export const loadCartData = () => {
+    return async function(dispatch) {
+        const cartData = await getCartData();
+        dispatch(saveCartData(cartData.data));
+        return cartData.data;
     };
 };

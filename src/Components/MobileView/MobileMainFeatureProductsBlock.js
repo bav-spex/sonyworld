@@ -31,7 +31,7 @@ function MobileMainFeatureProductsBlock({
       <div className=" mobile__dealsOfTheDay__block">
         <p className="section__title py-3">{sectionTitle}</p>
         <div className="row inner__mobile__dealsOfTheDay__block">
-          <Link  to={`products/${featureProductsData[0].sku}`}  className="first__md__product__block">
+          <div  to={`products/${featureProductsData[0].sku}`}  className="first__md__product__block">
             {/* <div className="deal__of__the__day">
                 <p className="inner__text">DEALS OF THE DAY</p>
               </div> */}
@@ -53,8 +53,8 @@ function MobileMainFeatureProductsBlock({
               </div>
               <div className="first__md__product__image__block">
                 <span className="fav_icon d-block d-lg-none">
-                  <img
-
+                  
+                  <img 
                     onMouseEnter={() => setIsFavouriteHover(true)}
                     onClick={handleFavourite}
                     onMouseLeave={() => setIsFavouriteHover(false)}
@@ -79,11 +79,13 @@ function MobileMainFeatureProductsBlock({
                     alt=""
                   />
                 </span>
+                <Link  to={`products/${featureProductsData[0].sku}`} > 
                 <img
                   src={featureProductsData[0]?.baseImage}
                   alt=""
                   className="first__md__product__image"
                 />
+                  </Link>
               </div>
               <div className="heading__inner__text">
                 <Heading7
@@ -110,7 +112,7 @@ function MobileMainFeatureProductsBlock({
                 />
               </div>
             </div>
-          </Link>
+          </div>
           <div className=" second__md__product__block">
             <div className="md__product">
               <span className="fav_icon d-block d-lg-none">

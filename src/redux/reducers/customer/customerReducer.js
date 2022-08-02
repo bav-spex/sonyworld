@@ -2,7 +2,9 @@ import * as actionType from "./../../actionType";
 
 const initialState = {
   customerDetails: '',
-  customerSignUpMsg: ''
+  customerSignUpMsg: '',
+  customerLogout: '',
+  customerSignInMsg: false
 };
 
 const customerReducer = (state = initialState, action) => {
@@ -11,6 +13,10 @@ const customerReducer = (state = initialState, action) => {
       return { ...state, customerDetails: action.payload };
     case actionType.CUSTOMER_SIGN_UP_MSG:
       return { ...state, customerSignUpMsg: action.payload };
+    case actionType.CUSTOMER_LOG_OUT:
+      return { ...state, customerLogout: action.payload };
+    case actionType.CUSTOMER_SIGN_IN_MSG:
+      return { ...state, customerSignInMsg: action.payload };
     default:
       return state;
   }

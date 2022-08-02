@@ -63,6 +63,7 @@
         text-align: center;
         border: none;
         text-transform: uppercase;
+        text-decoration: none;
       }
       .continue__shopping__button {
         width: 48%;
@@ -75,6 +76,11 @@
         font-size: 16px;
         font-family: "arialbold";
         padding: 16px 0px;
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
     .cart__popup__frequently__bought__togather {

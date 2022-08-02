@@ -18,7 +18,7 @@ import product_02 from "./../../assets/Product/product_02.jpg";
 import product_03 from "./../../assets/Product/product_03.jpg";
 import product_04 from "./../../assets/Product/product_04.jpg";
 import sony_logo from "./../../assets/Icon/sony_logo.svg";
-import './../../SCSS/MobilePages/_mobileProductGridSec.scss';
+import './../../SCSS/MobilePages/Mobile_Product_List_ListDetail.scss';
 
 const product = {
     id: 1,
@@ -142,395 +142,390 @@ function Mobile_Product_List_ListDetail() {
 
     return (
         <>
-            <div className="row">
-                <div className="col-6 mb-4">
-                    <div key={product.id} className="mb__product__list__block">
-                        <div className="productNine__header mb__product__header">
-                            <div className="productNine__new__sticker__block">
-                                <p className="productNine__new__sticker__text">New</p>
-                            </div>
-                            <div className="quality__favourite__block">
-
-                                <img
-                                    onMouseEnter={() => setIsFavouriteHover(true)}
-                                    onClick={handleFavourite}
-                                    onMouseLeave={() => setIsFavouriteHover(false)}
-                                    className={
-                                        !isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={isFavouriteHover ? fulfill_favourite : empty_favourite}
-                                    alt=""
-                                />
-                                <img
-                                    onClick={handleFavourite}
-                                    className={
-                                        isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={fulfill_favourite}
-                                    alt=""
-                                />
-                            </div>
+            <div className="row mb__product__list__detail__block">
+                <div className="col-4 productTen__left__block">
+                    <div className="productTen__header">
+                        <div className="productTen__new__sticker__block">
+                            <p className="productTen__new__sticker__text">New</p>
                         </div>
-                        <div className="productNine__content">
-                            <img src={productTwo_quality_icon} alt="" className="quality__icon" />
-                            <div className="productNine__image__slider">
-                                <AwesomeSlider transitionDelay={0.2}>
-                                    {[product_01, product_02, product_03, product_04].map(
-                                        (images, index) => (
-                                            <div key={index} className="_product__container_image">
-
-                                                <img src={images} alt={images + index} />
-                                            </div>
-                                        )
-                                    )}
-                                </AwesomeSlider>
-                            </div>
-
-                            <Heading6 text={product.productName} marginBottom={10} marginTop={10} />
-
-                            <OldPrice
-                                oldPrice={product.oldPrice}
-                                size="text4"
-                                color="#c8c8c8"
-                                marginBottom={10}
-                                lineThrough={true}
-                                span={true}
-                                currency="SAR"
+                        <div className="mt-2">
+                            <img
+                                src={productTwo_quality_icon}
+                                alt=""
+                                className="quality__icon"
                             />
-                            <Price
-                                price={product.price}
-                                marginLeft={5}
-                                marginBottom={10}
-                                size="heading6"
-                                span={true}
-                                currency="SAR"
-                            />
-
-                            <RatingBlock
-                                rating={product.rating}
-                                totalRatings={product.totalRatings}
-                            />
-
-                            <div className="productNine__feature__block">
-                                {product.productFeatures && (
-                                    <>
-                                        {product.productFeatures.map((feature, featureIndex) => {
-                                            return (
-                                                <div key={featureIndex} className="feature__text__block">
-                                                    <div className="feature__bullet"></div>
-                                                    <Text4 text={feature.text} />
-                                                </div>
-                                            );
-                                        })}
-                                    </>
-                                )}
-                            </div>
-                            <div className="mb__delivery__text">
-                                <Text4 text="Free delivery by" span={true} />
-                                <Heading7 text="Tomorrow," span={true} />
-                                <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
-                            </div>
-
-
-
-                            <div className="addToCart__button">
-                                <img src={shopping_cart} alt="" className="addToCart__icon" />
-                                {/* Buy */}
-                            </div>
-
                         </div>
                     </div>
+                    <div className="productNine__image__slider ps-3">
+                        <AwesomeSlider transitionDelay={0.2} infinite={true}>
+                            {[product_01, product_02, product_03, product_04].map(
+                                (images, index) => (
+                                    <div key={index} className="_product__container_image">
+                                        <img src={images} alt={images + index} />
+                                    </div>
+                                )
+                            )}
+                        </AwesomeSlider>
+                    </div>
+
                 </div>
-                <div className="col-6 mb-4">
-                    <div key={product.id} className="mb__product__grid__block">
-                        <div className="productNine__header mb__product__header">
-                            <div className="productNine__new__sticker__block new__sticker__block__green">
-                                <p className="productNine__new__sticker__text">bestseller</p>
-                            </div>
-                            <div className="quality__favourite__block">
+                <div className="col-8 productTen__middle__block">
+                    <div className="quality__favourite__block">
 
-                                <img
-                                    onMouseEnter={() => setIsFavouriteHover(true)}
-                                    onClick={handleFavourite}
-                                    onMouseLeave={() => setIsFavouriteHover(false)}
-                                    className={
-                                        !isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={isFavouriteHover ? fulfill_favourite : empty_favourite}
-                                    alt=""
-                                />
-                                <img
-                                    onClick={handleFavourite}
-                                    className={
-                                        isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={fulfill_favourite}
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div className="productNine__content">
-                            <img src={productTwo_quality_icon} alt="" className="quality__icon" />
-                            <div className="productNine__image__slider">
-                                <AwesomeSlider transitionDelay={0.2}>
-                                    {[product_01, product_02, product_03, product_04].map(
-                                        (images, index) => (
-                                            <div key={index} className="_product__container_image">
+                        <img
+                            onMouseEnter={() => setIsFavouriteHover(true)}
+                            onClick={handleFavourite}
+                            onMouseLeave={() => setIsFavouriteHover(false)}
+                            className={
+                                !isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+                            alt=""
+                        />
+                        <img
+                            onClick={handleFavourite}
+                            className={
+                                isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={fulfill_favourite}
+                            alt=""
+                        />
+                    </div>
+                    <Heading6 text={product.productName} marginBottom={10} />
+                    <OldPrice
+                        oldPrice={product.oldPrice}
+                        size="text4"
+                        color="#c8c8c8"
 
-                                                <img src={images} alt={images + index} />
-                                            </div>
-                                        )
-                                    )}
-                                </AwesomeSlider>
-                            </div>
+                        lineThrough={true}
+                        currency={product?.currency}
+                    />
 
-                            <Heading6 text={product.productName} marginBottom={10} marginTop={10} />
+                    <Price
+                        price={product.price}
+                        marginBottom={10}
+                        size="heading6"
+                        currency={product?.currency}
+                    />
 
-                            <OldPrice
-                                oldPrice={product.oldPrice}
-                                size="text4"
-                                color="#c8c8c8"
-                                marginBottom={10}
-                                lineThrough={true}
-                                span={true}
-                                currency="SAR"
-                            />
-                            <Price
-                                price={product.price}
-                                marginLeft={5}
-                                marginBottom={10}
-                                size="heading6"
-                                span={true}
-                                currency="SAR"
-                            />
+                    <RatingBlock
+                        rating={product.rating}
+                        totalRatings={product.totalRatings}
+                    />
 
-                            <RatingBlock
-                                rating={product.rating}
-                                totalRatings={product.totalRatings}
-                            />
-
-                            <div className="productNine__feature__block">
-                                {product.productFeatures && (
-                                    <>
-                                        {product.productFeatures.map((feature, featureIndex) => {
-                                            return (
-                                                <div key={featureIndex} className="feature__text__block">
-                                                    <div className="feature__bullet"></div>
-                                                    <Text4 text={feature.text} />
-                                                </div>
-                                            );
-                                        })}
-                                    </>
-                                )}
-                            </div>
-                            <div className="mb__delivery__text">
-                                <Text4 text="Free delivery by" span={true} />
-                                <Heading7 text="Tomorrow," span={true} />
-                                <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
-                            </div>
-
-
-                            <div className="addToCart__button">
-                                <img src={shopping_cart} alt="" className="addToCart__icon" />
-                                {/* Buy */}
-                            </div>
-                          
-                        </div>
+                    <div className="productNine__feature__block">
+                        {product.productFeatures && (
+                            <>
+                                {product.productFeatures.map((feature,index) => {
+                                    return (
+                                        <div key={index} className="feature__text__block">
+                                            <div className="feature__bullet"></div>
+                                            <Text4 text={feature.text} />
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        )}
+                    </div>
+                    <div className="mb__delivery__text">
+                        <Text4 text="Free delivery by" span={true} />
+                        <Heading7 text="Tomorrow," span={true} />
+                        <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
+                    </div>
+                    <div className="addToCart__button text-end">
+                        <img src={shopping_cart} alt="" className="addToCart__icon" />
+                        {/* Buy */}
                     </div>
                 </div>
-                <div className="col-6 mb-4">
-                    <div key={product.id} className="mb__product__grid__block">
-                        <div className="productNine__header mb__product__header">
-                            <div className="productNine__new__sticker__block">
-                                <p className="productNine__new__sticker__text">New</p>
-                            </div>
-                            <div className="quality__favourite__block">
-
-                                <img
-                                    onMouseEnter={() => setIsFavouriteHover(true)}
-                                    onClick={handleFavourite}
-                                    onMouseLeave={() => setIsFavouriteHover(false)}
-                                    className={
-                                        !isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={isFavouriteHover ? fulfill_favourite : empty_favourite}
-                                    alt=""
-                                />
-                                <img
-                                    onClick={handleFavourite}
-                                    className={
-                                        isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={fulfill_favourite}
-                                    alt=""
-                                />
-                            </div>
+            </div>
+            <div className="row mb__product__list__detail__block">
+                <div className="col-4 productTen__left__block">
+                    <div className="productTen__header">
+                        <div className="productTen__new__sticker__block new__sticker__block__green">
+                            <p className="productTen__new__sticker__text">bestseller</p>
                         </div>
-                        <div className="productNine__content">
-                            <img src={productTwo_quality_icon} alt="" className="quality__icon" />
-                            <div className="productNine__image__slider">
-                                <AwesomeSlider transitionDelay={0.2}>
-                                    {[product_01, product_02, product_03, product_04].map(
-                                        (images, index) => (
-                                            <div key={index} className="_product__container_image">
-
-                                                <img src={images} alt={images + index} />
-                                            </div>
-                                        )
-                                    )}
-                                </AwesomeSlider>
-                            </div>
-
-                            <Heading6 text={product.productName} marginBottom={10} marginTop={10} />
-
-                            <OldPrice
-                                oldPrice={product.oldPrice}
-                                size="text4"
-                                color="#c8c8c8"
-                                marginBottom={10}
-                                lineThrough={true}
-                                span={true}
-                                currency="SAR"
+                        <div className="mt-2">
+                            <img
+                                src={productTwo_quality_icon}
+                                alt=""
+                                className="quality__icon"
                             />
-                            <Price
-                                price={product.price}
-                                marginLeft={5}
-                                marginBottom={10}
-                                size="heading6"
-                                span={true}
-                                currency="SAR"
-                            />
-
-                            <RatingBlock
-                                rating={product.rating}
-                                totalRatings={product.totalRatings}
-                            />
-
-                            <div className="productNine__feature__block">
-                                {product.productFeatures && (
-                                    <>
-                                        {product.productFeatures.map((feature, featureIndex) => {
-                                            return (
-                                                <div key={featureIndex} className="feature__text__block">
-                                                    <div className="feature__bullet"></div>
-                                                    <Text4 text={feature.text} />
-                                                </div>
-                                            );
-                                        })}
-                                    </>
-                                )}
-                            </div>
-                            <div className="mb__delivery__text">
-                                <Text4 text="Free delivery by" span={true} />
-                                <Heading7 text="Tomorrow," span={true} />
-                                <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
-                            </div>
-
-
-
-                            <div className="addToCart__button">
-                                <img src={shopping_cart} alt="" className="addToCart__icon" />
-                                {/* Buy */}
-                            </div>
-
                         </div>
                     </div>
+                    <div className="productNine__image__slider ps-3">
+                        <AwesomeSlider transitionDelay={0.2} infinite={true}>
+                            {[product_01, product_02, product_03, product_04].map(
+                                (images, index) => (
+                                    <div key={index} className="_product__container_image">
+                                        <img src={images} alt={images + index} />
+                                    </div>
+                                )
+                            )}
+                        </AwesomeSlider>
+                    </div>
+
                 </div>
-                <div className="col-6 mb-4">
-                    <div key={product.id} className="mb__product__grid__block">
-                        <div className="productNine__header mb__product__header">
-                            <div className="productNine__new__sticker__block new__sticker__block__green">
-                                <p className="productNine__new__sticker__text">bestseller</p>
-                            </div>
-                            <div className="quality__favourite__block">
+                <div className="col-8 productTen__middle__block">
+                    <div className="quality__favourite__block">
 
-                                <img
-                                    onMouseEnter={() => setIsFavouriteHover(true)}
-                                    onClick={handleFavourite}
-                                    onMouseLeave={() => setIsFavouriteHover(false)}
-                                    className={
-                                        !isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={isFavouriteHover ? fulfill_favourite : empty_favourite}
-                                    alt=""
-                                />
-                                <img
-                                    onClick={handleFavourite}
-                                    className={
-                                        isFavourite ? "favourite__icon" : "favourite__icon__disable"
-                                    }
-                                    src={fulfill_favourite}
-                                    alt=""
-                                />
-                            </div>
+                        <img
+                            onMouseEnter={() => setIsFavouriteHover(true)}
+                            onClick={handleFavourite}
+                            onMouseLeave={() => setIsFavouriteHover(false)}
+                            className={
+                                !isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+                            alt=""
+                        />
+                        <img
+                            onClick={handleFavourite}
+                            className={
+                                isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={fulfill_favourite}
+                            alt=""
+                        />
+                    </div>
+                    <Heading6 text={product.productName} marginBottom={10} />
+                    <OldPrice
+                        oldPrice={product.oldPrice}
+                        size="text4"
+                        color="#c8c8c8"
+
+                        lineThrough={true}
+                        currency={product?.currency}
+                    />
+
+                    <Price
+                        price={product.price}
+                        marginBottom={10}
+                        size="heading6"
+                        currency={product?.currency}
+                    />
+
+                    <RatingBlock
+                        rating={product.rating}
+                        totalRatings={product.totalRatings}
+                    />
+
+                    <div className="productNine__feature__block">
+                        {product.productFeatures && (
+                            <>
+                                {product.productFeatures.map((feature,index) => {
+                                    return (
+                                        <div key={index} className="feature__text__block">
+                                            <div className="feature__bullet"></div>
+                                            <Text4 text={feature.text} />
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        )}
+                    </div>
+                    <div className="mb__delivery__text">
+                        <Text4 text="Free delivery by" span={true} />
+                        <Heading7 text="Tomorrow," span={true} />
+                        <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
+                    </div>
+                    <div className="addToCart__button text-end">
+                        <img src={shopping_cart} alt="" className="addToCart__icon" />
+                        {/* Buy */}
+                    </div>
+                </div>
+            </div>
+            <div className="row mb__product__list__detail__block">
+                <div className="col-4 productTen__left__block">
+                    <div className="productTen__header">
+                        <div className="productTen__new__sticker__block">
+                            <p className="productTen__new__sticker__text">New</p>
                         </div>
-                        <div className="productNine__content">
-                            <img src={productTwo_quality_icon} alt="" className="quality__icon" />
-                            <div className="productNine__image__slider">
-                                <AwesomeSlider transitionDelay={0.2}>
-                                    {[product_01, product_02, product_03, product_04].map(
-                                        (images, index) => (
-                                            <div key={index} className="_product__container_image">
-
-                                                <img src={images} alt={images + index} />
-                                            </div>
-                                        )
-                                    )}
-                                </AwesomeSlider>
-                            </div>
-
-                            <Heading6 text={product.productName} marginBottom={10} marginTop={10} />
-
-                            <OldPrice
-                                oldPrice={product.oldPrice}
-                                size="text4"
-                                color="#c8c8c8"
-                                marginBottom={10}
-                                lineThrough={true}
-                                span={true}
-                                currency="SAR"
+                        <div className="mt-2">
+                            <img
+                                src={productTwo_quality_icon}
+                                alt=""
+                                className="quality__icon"
                             />
-                            <Price
-                                price={product.price}
-                                marginLeft={5}
-                                marginBottom={10}
-                                size="heading6"
-                                span={true}
-                                currency="SAR"
-                            />
-
-                            <RatingBlock
-                                rating={product.rating}
-                                totalRatings={product.totalRatings}
-                            />
-
-                            <div className="productNine__feature__block">
-                                {product.productFeatures && (
-                                    <>
-                                        {product.productFeatures.map((feature, featureIndex) => {
-                                            return (
-                                                <div key={featureIndex} className="feature__text__block">
-                                                    <div className="feature__bullet"></div>
-                                                    <Text4 text={feature.text} />
-                                                </div>
-                                            );
-                                        })}
-                                    </>
-                                )}
-                            </div>
-                            <div className="mb__delivery__text">
-                                <Text4 text="Free delivery by" span={true} />
-                                <Heading7 text="Tomorrow," span={true} />
-                                <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
-                            </div>
-
-
-                            <div className="addToCart__button">
-                                <img src={shopping_cart} alt="" className="addToCart__icon" />
-                                {/* Buy */}
-                            </div>
-                          
                         </div>
+                    </div>
+                    <div className="productNine__image__slider ps-3">
+                        <AwesomeSlider transitionDelay={0.2} infinite={true}>
+                            {[product_01, product_02, product_03, product_04].map(
+                                (images, index) => (
+                                    <div key={index} className="_product__container_image">
+                                        <img src={images} alt={images + index} />
+                                    </div>
+                                )
+                            )}
+                        </AwesomeSlider>
+                    </div>
+
+                </div>
+                <div className="col-8 productTen__middle__block">
+                    <div className="quality__favourite__block">
+
+                        <img
+                            onMouseEnter={() => setIsFavouriteHover(true)}
+                            onClick={handleFavourite}
+                            onMouseLeave={() => setIsFavouriteHover(false)}
+                            className={
+                                !isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+                            alt=""
+                        />
+                        <img
+                            onClick={handleFavourite}
+                            className={
+                                isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={fulfill_favourite}
+                            alt=""
+                        />
+                    </div>
+                    <Heading6 text={product.productName} marginBottom={10} />
+                    <OldPrice
+                        oldPrice={product.oldPrice}
+                        size="text4"
+                        color="#c8c8c8"
+
+                        lineThrough={true}
+                        currency={product?.currency}
+                    />
+
+                    <Price
+                        price={product.price}
+                        marginBottom={10}
+                        size="heading6"
+                        currency={product?.currency}
+                    />
+
+                    <RatingBlock
+                        rating={product.rating}
+                        totalRatings={product.totalRatings}
+                    />
+
+                    <div className="productNine__feature__block">
+                        {product.productFeatures && (
+                            <>
+                                {product.productFeatures.map((feature,index) => {
+                                    return (
+                                        <div key={index} className="feature__text__block">
+                                            <div className="feature__bullet"></div>
+                                            <Text4 text={feature.text} />
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        )}
+                    </div>
+                    <div className="mb__delivery__text">
+                        <Text4 text="Free delivery by" span={true} />
+                        <Heading7 text="Tomorrow," span={true} />
+                        <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
+                    </div>
+                    <div className="addToCart__button text-end">
+                        <img src={shopping_cart} alt="" className="addToCart__icon" />
+                        {/* Buy */}
+                    </div>
+                </div>
+            </div>
+            <div className="row mb__product__list__detail__block">
+                <div className="col-4 productTen__left__block">
+                    <div className="productTen__header">
+                        <div className="productTen__new__sticker__block new__sticker__block__green">
+                            <p className="productTen__new__sticker__text">bestseller</p>
+                        </div>
+                        <div className="mt-2">
+                            <img
+                                src={productTwo_quality_icon}
+                                alt=""
+                                className="quality__icon"
+                            />
+                        </div>
+                    </div>
+                    <div className="productNine__image__slider ps-3">
+                        <AwesomeSlider transitionDelay={0.2} infinite={true}>
+                            {[product_01, product_02, product_03, product_04].map(
+                                (images, index) => (
+                                    <div key={index} className="_product__container_image">
+                                        <img src={images} alt={images + index} />
+                                    </div>
+                                )
+                            )}
+                        </AwesomeSlider>
+                    </div>
+
+                </div>
+                <div className="col-8 productTen__middle__block">
+                    <div className="quality__favourite__block">
+
+                        <img
+                            onMouseEnter={() => setIsFavouriteHover(true)}
+                            onClick={handleFavourite}
+                            onMouseLeave={() => setIsFavouriteHover(false)}
+                            className={
+                                !isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+                            alt=""
+                        />
+                        <img
+                            onClick={handleFavourite}
+                            className={
+                                isFavourite ? "favourite__icon" : "favourite__icon__disable"
+                            }
+                            src={fulfill_favourite}
+                            alt=""
+                        />
+                    </div>
+                    <Heading6 text={product.productName} marginBottom={10} />
+                    <OldPrice
+                        oldPrice={product.oldPrice}
+                        size="text4"
+                        color="#c8c8c8"
+
+                        lineThrough={true}
+                        currency={product?.currency}
+                    />
+
+                    <Price
+                        price={product.price}
+                        marginBottom={10}
+                        size="heading6"
+                        currency={product?.currency}
+                    />
+
+                    <RatingBlock
+                        rating={product.rating}
+                        totalRatings={product.totalRatings}
+                    />
+
+                    <div className="productNine__feature__block">
+                        {product.productFeatures && (
+                            <>
+                                {product.productFeatures.map((feature,index) => {
+                                    return (
+                                        <div key={index} className="feature__text__block">
+                                            <div className="feature__bullet"></div>
+                                            <Text4 text={feature.text} />
+                                        </div>
+                                    );
+                                })}
+                            </>
+                        )}
+                    </div>
+                    <div className="mb__delivery__text">
+
+                        <Text4 text="Free delivery by" span={true} />
+                        <Heading7 text="Tomorrow," span={true} />
+                        <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
+
+                    </div>
+
+                    <div className="addToCart__button text-end">
+                        <img src={shopping_cart} alt="" className="addToCart__icon" />
+                        {/* Buy */}
                     </div>
                 </div>
             </div>

@@ -2,34 +2,49 @@ import React, { useState, useEffect } from "react";
 import Text1 from "../Font/Text1";
 import "./../../SCSS/ProductListPage/_plpBannerAndCategorySection.scss";
 import PLPBannerSectionOne from "./PLPBannerSectionOne";
-const PLPCategorySection = (props) => {
-  const [selectedCategory, setSelectedCategory] = useState(
-    props.categoryData[0]
-  );
 
+import white_tv from "./../../assets/Icon/white_tv.svg";
+import red_tv from "./../../assets/Icon/red_tv.svg";
+import white_accessories from "./../../assets/Icon/white_accessories.svg";
+import red_accessories from "./../../assets/Icon/red_accessories.svg";
+const PLPCategorySection = ({ categoryData, selectedMainCategory,updateSelectedSubCategoryId,selectedCategoryId }) => {
+  const [selectedSubCategory, setSelectedSubCategory] = useState({});
+  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(selectedCategoryId);
+  console.log(selectedMainCategory);
+  console.log(selectedSubCategory);
   useEffect(() => {
-    // setSelectedCategory(props.categoryData[0]);
-  }, [props.categoryData]);
+    if (selectedMainCategory) {
+      setSelectedSubCategory(selectedMainCategory.children_data[0]);
+    }
+  }, []);
 
   const onSelectCategory = (item) => {
-    setSelectedCategory(item);
+    // console.log(item);
+    updateSelectedSubCategoryId(item)
+    setSelectedSubCategory(item);
+    setSelectedSubCategoryId(item.id)
+    
   };
 
   return (
     <>
       <PLPBannerSectionOne
-        bannerImage={selectedCategory.bannerImage}
-        title={selectedCategory.title}
+        bannerImage={selectedMainCategory?.categoryaicon}
+        title={selectedMainCategory.name}
       />
+      {selectedMainCategory?.children_data.length !== 0 ?(
+
+      
       <div className="plp__main__category__section">
         <div className="plp__inner__category__section">
           <div className="plp__category__section">
-            {props.categoryData.map((cat,catIndex) => {
+            {selectedMainCategory?.children_data.map((cat, catIndex) => {
+             
               return (
                 <div
-                key={catIndex}
+                  key={cat.id}
                   className={
-                    selectedCategory.title === cat.title
+                    selectedSubCategoryId == cat.id
                       ? "selected__plp__category__block"
                       : "plp__category__block"
                   }
@@ -38,16 +53,16 @@ const PLPCategorySection = (props) => {
                   <img
                     className="plp__category__image"
                     src={
-                      selectedCategory.title === cat.title
-                        ? cat.selectedIcon
-                        : cat.defaultIcon
+                      selectedSubCategoryId == cat.id
+                        ? red_tv
+                        : white_tv
                     }
-                    alt={cat.title}
+                    alt={cat.name}
                   />
                   <Text1
-                    text={cat.title}
+                    text={cat.name}
                     color={
-                      selectedCategory.title === cat.title
+                      selectedSubCategoryId == cat.id
                         ? "#DC3A1A"
                         : "#ffffff"
                     }
@@ -56,13 +71,13 @@ const PLPCategorySection = (props) => {
 
                 // <div
                 //   className={`category__section__block ${
-                //     selectedCategory.title === item.title ? "active__category" : ""
+                //     selectedSubCategory.title === item.title ? "active__category" : ""
                 //   }`}
                 //   onClick={() => onSelectCategory(item)}
                 // >
                 //   <div
                 //     className={`category__section__image__block ${
-                //       selectedCategory.title === item.title ? "active__image" : ""
+                //       selectedSubCategory.title === item.title ? "active__image" : ""
                 //     }`}
                 //   >
                 //     <img
@@ -80,6 +95,7 @@ const PLPCategorySection = (props) => {
           </div>
         </div>
       </div>
+      ):""}
     </>
   );
 };

@@ -14,9 +14,30 @@ import OldPrice from "../Font/OldPrice";
 import Price from "../Font/Price";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 function PLPProductPopup({ product, closeProductPopup }) {
+  // console.log(product);
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
+  const [productWarrentyBlock, setProductWarrentyBlock] = useState({
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+  });
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
@@ -36,19 +57,17 @@ function PLPProductPopup({ product, closeProductPopup }) {
       </div>
       <div className="col-4 plpProduct__popup__left__block">
         <div className="productNine__image__slider">
-          <AwesomeSlider transitionDelay={0.2}>
-            {[product_01, product_02, product_03, product_04].map(
-              (images, index) => (
-                <div key={index} className="_product__container_image">
-                  <img src={images} alt={images + index} />
-                </div>
-              )
-            )}
+        <AwesomeSlider transitionDelay={0.2}>
+            {product?.media?.image?.screenshots?.map((img, index) => (
+              <div key={index} className="_product__container_image">
+                <img src={img.image} alt={img.image + index} />
+              </div>
+            ))}
           </AwesomeSlider>
         </div>
       </div>
       <div className="col-8 plpProduct__popup__right__block">
-        <Heading6 text={product.productName} marginBottom={10} />
+        <Heading6 text={product.name} marginBottom={10} />
         <div className="pd__category__favourite__button__block">
           <button className="pd__category__button">ALL TV's</button>
           <button className="pd__favourite__button">
@@ -77,27 +96,29 @@ function PLPProductPopup({ product, closeProductPopup }) {
           </button>
         </div>
         <OldPrice
-          oldPrice={product.oldPrice}
+          oldPrice={1111}
           size="text2"
           color="#c8c8c8"
           marginBottom={10}
           lineThrough={true}
           span={true}
+          currency="SAR"
         />
         <Price
-          price={product.price}
+          price={1111}
           marginLeft={5}
           marginBottom={10}
           size="heading4"
           span={true}
+          currency="SAR"
         />
 
         <RatingBlock
-          rating={product.rating}
-          totalRatings={product.totalRatings}
+          rating={6}
+          totalRatings={2222}
         />
         <div className="size__button__block">
-          {product.size.map((size, sizeIndex) => {
+          {productWarrentyBlock.size.map((size, sizeIndex) => {
             return (
               <button
                 key={size.id}

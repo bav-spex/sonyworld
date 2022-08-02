@@ -25,16 +25,16 @@ import { customerDetailsSuccess } from "./services/customer/customer";
 import { getCustomerLoginDetails } from "./Components/helpers/utils/getCustomerLoginDetails";
 
 function App({ stars }) {
-  
+
   const customerData = getCustomerLoginDetails();
   const dispatch = useDispatch();
 
   const { customerDetails } = useSelector((state) => state.customerReducer);
 
   useEffect(() => {
-      if(customerData !== "" && customerDetails === ""){
-        dispatch(customerDetailsSuccess(customerData))
-      }
+    if (customerData !== "" && customerDetails === "") {
+      dispatch(customerDetailsSuccess(customerData))
+    }
   }, [customerData]);
 
   const location = useLocation();
@@ -53,35 +53,32 @@ function App({ stars }) {
     setReloadHeader(!reloadHeader);
   };
   const [token, setToken] = useState();
-  // useEffect(() => {
-  //   // debugger
-  //   const localStorageHandshakeToken = localStorage.getItem("handShakeToken");
-  //   console.log(localStorageHandshakeToken);
-  //   if (localStorageHandshakeToken === null || undefined) {
-  //     getHandshake().then((res) => setToken(res.data.token));
-  //   } else {
-  //     setToken(localStorageHandshakeToken);
-  //   }
-  // }, []);
   useEffect(() => {
     // debugger
-    
+    const localStorageHandshakeToken = localStorage.getItem("handShakeToken");
+    if (localStorageHandshakeToken === null || undefined) {
       getHandshake().then((res) => setToken(res.data.token));
-  
-    
+    } else {
+      setToken(localStorageHandshakeToken);
+    }
   }, []);
+  // useEffect(() => {
+  //   // debugger
+
+  //     getHandshake().then((res) => setToken(res.data.token));
+
+
+  // }, []);
 
   useEffect(() => {
     if (token) {
       setHeader("X-Access-Token", token);
       localStorage.setItem("handShakeToken", token);
       categoryDispatch(loadAllCategoryData());
-      
     }
-    console.log(token);
   }, [token]);
 
-   // const getAppStarted = async () => {
+  // const getAppStarted = async () => {
   //   await getHandshake();
   //   await homeDispatch(loadHomePageData());
   //   await categoryDispatch(loadAllCategoryData());
@@ -96,7 +93,7 @@ function App({ stars }) {
       setCategoryData(allCategoryData);
       setLoading(false);
     }
-  }, [ allCategoryData]);
+  }, [allCategoryData]);
   if (loading) {
     return <h1>App Loading...</h1>;
   }
