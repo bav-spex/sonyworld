@@ -1,4 +1,7 @@
 import axios from "axios";
+import * as services from "./services";
+import * as actionType from "./../redux/actionType";
+import apiHelper from "../Components/helpers/utils/apiHelper";
 
 export const createCartDetails = async () => {
   let responseData = {};
@@ -55,3 +58,26 @@ export const getPayfortInformation = async (data) => {
   console.log(payfortInformationData,"payfortInformationData")
   return payfortInformationData.data;
 };
+
+
+// update shipping information API
+export const updateShippingInformation = (params) => {
+  return async dispatch => {
+    try {
+      let response = await apiHelper(`/V1/cart/shipping-information`, 'put', params, {});
+      if (response.data !== "") {
+        dispatch(updateShippingInformationSuccess(response.data));
+      }
+    } catch (error) {
+      console.log("error ", error);
+    }
+  }
+};
+
+// update shipping information reducer
+export const updateShippingInformationSuccess = (data) => {
+  return {
+    type: actionType.UPDATE_CUSTOMER_SHIPPING_INFO,
+    payload: data
+  }
+}
