@@ -755,7 +755,7 @@ function Cart_Page() {
                 </div>
               </Link>
               <Link to="/">
-              <button className="signup__button">CONTINUE SHOPPING</button>
+                <button className="signup__button">CONTINUE SHOPPING</button>
               </Link>
 
               <Heading3
