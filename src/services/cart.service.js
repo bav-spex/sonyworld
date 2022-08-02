@@ -37,3 +37,12 @@ export const getAvailablePaymentMethods = async () => {
   // console.log(paymentMethodData,"paymentMethodData")
   return paymentMethodData.data;
 };
+
+export const getEstimateShippingMethods = async () => {
+  // console.log("Payment method Data >>>>>>")
+  const estimateShippingMethods = await axios.get(
+    `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/estimate-shipping-methods`
+  );
+  console.log(estimateShippingMethods,"estimateShippingMethods")
+  return estimateShippingMethods.data;
+};
