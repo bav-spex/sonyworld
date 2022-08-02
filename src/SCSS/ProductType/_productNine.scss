@@ -41,6 +41,17 @@
   }
   .productNine__content {
     padding: 20px;
+    .productNine__name__link{
+      text-decoration: none;
+      color: #000000;  
+margin: 0px;
+      .productNine__name{
+        font-family: "arialbold";
+        margin: 0px 0px;
+        height: 72px;
+        overflow: hidden;
+      }
+    }
     .productNine__image__slider {
       .awssld__content {
         background-color: inherit;
@@ -126,6 +137,11 @@
       background-color: #dc3a1a;
       text-align: center;
       text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      display:flex;
+      align-items: center;
+      justify-content: center;
       .addToCart__icon {
         margin: 0px 20px 0px 0px;
       }

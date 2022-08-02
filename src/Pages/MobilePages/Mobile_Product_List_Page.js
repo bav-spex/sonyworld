@@ -50,19 +50,19 @@ function Mobile_Product_List_Page({ product }) {
                             >
                                 <li className="mb-2">
                                     <input type="checkbox" id="box-1" />
-                                    <label className="ms-2" for="box-1">
+                                    <label className="ms-2" htmlFor="box-1">
                                         Upto 32"
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="box-2" />
-                                    <label className="ms-2" for="box-2">
+                                    <label className="ms-2" htmlFor="box-2">
                                         Upto 32"
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="box-3" />
-                                    <label className="ms-2" for="box-3">
+                                    <label className="ms-2" htmlFor="box-3">
                                         Upto 32"
                                     </label>
                                 </li>
@@ -88,19 +88,19 @@ function Mobile_Product_List_Page({ product }) {
                             >
                                 <li className="mb-2">
                                     <input type="checkbox" id="box-4" />
-                                    <label className="ms-2" for="box-4">
+                                    <label className="ms-2" htmlFor="box-4">
                                         Upto 32"
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="box-5" />
-                                    <label className="ms-2" for="box-5">
+                                    <label className="ms-2" htmlFor="box-5">
                                         Upto 32"
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="box-6" />
-                                    <label className="ms-2" for="box-6">
+                                    <label className="ms-2" htmlFor="box-6">
                                         Upto 32"
                                     </label>
                                 </li>
@@ -200,7 +200,7 @@ function Mobile_Product_List_Page({ product }) {
             <div
                 className="modal mb__bottom_popup mb__filter__related__popup"
                 id="filterByModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="filterByModalLabel"
                 aria-hidden="true"
             >
@@ -220,31 +220,31 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="plh" />
-                                    <label className="ms-2" for="plh">
+                                    <label className="ms-2" htmlFor="plh">
                                         Price -- Low to High
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="n" />
-                                    <label className="ms-2" for="n">
+                                    <label className="ms-2" htmlFor="n">
                                         Newest First
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="c" />
-                                    <label className="ms-2" for="c">
+                                    <label className="ms-2" htmlFor="c">
                                         Price -- High to Low
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="e" />
-                                    <label className="ms-2" for="e">
+                                    <label className="ms-2" htmlFor="e">
                                         Popularity
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="a" />
-                                    <label className="ms-2" for="a">
+                                    <label className="ms-2" htmlFor="a">
                                         Via Customer Reviews
                                     </label>
                                 </li>
@@ -254,13 +254,13 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="Today" />
-                                    <label className="ms-2" for="Today">
+                                    <label className="ms-2" htmlFor="Today">
                                         Today's Deal
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="Offers" />
-                                    <label className="ms-2" for="Offers">
+                                    <label className="ms-2" htmlFor="Offers">
                                         Via Offers
                                     </label>
                                 </li>
@@ -270,13 +270,13 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="Tomorrow" />
-                                    <label className="ms-2" for="Tomorrow">
+                                    <label className="ms-2" htmlFor="Tomorrow">
                                         Get It by Tomorrow
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="Days" />
-                                    <label className="ms-2" for="Days">
+                                    <label className="ms-2" htmlFor="Days">
                                         Get It in 2 Days
                                     </label>
                                 </li>
@@ -286,7 +286,7 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="mb__start__rating__block d-flex">
                                 <li>
                                     <input type="checkbox" id="rate1" />
-                                    <label className="ms-2" for="rate1">
+                                    <label className="ms-2" htmlFor="rate1">
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
@@ -297,7 +297,7 @@ function Mobile_Product_List_Page({ product }) {
                                 </li>
                                 <li>
                                     <input type="checkbox" id="rate1" />
-                                    <label className="ms-2" for="rate1">
+                                    <label className="ms-2" htmlFor="rate1">
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
@@ -308,7 +308,7 @@ function Mobile_Product_List_Page({ product }) {
                                 </li>
                                 <li>
                                     <input type="checkbox" id="rate1" />
-                                    <label className="ms-2" for="rate1">
+                                    <label className="ms-2" htmlFor="rate1">
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
@@ -319,7 +319,7 @@ function Mobile_Product_List_Page({ product }) {
                                 </li>
                                 <li>
                                     <input type="checkbox" id="rate1" />
-                                    <label className="ms-2" for="rate1">
+                                    <label className="ms-2" htmlFor="rate1">
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
                                         <img src={star} alt="rating" />
@@ -335,13 +335,13 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="SAR1" />
-                                    <label className="ms-2" for="SAR1">
+                                    <label className="ms-2" htmlFor="SAR1">
                                         SAR1,000 - SAR2,000
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="Under" />
-                                    <label className="ms-2" for="Under">
+                                    <label className="ms-2" htmlFor="Under">
                                         Under SAR1,000
                                     </label>
                                 </li>
@@ -351,25 +351,25 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="black" />
-                                    <label className="ms-2" for="black">
+                                    <label className="ms-2" htmlFor="black">
                                         black
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="red" />
-                                    <label className="ms-2" for="red">
+                                    <label className="ms-2" htmlFor="red">
                                         red
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="blue" />
-                                    <label className="ms-2" for="blue">
+                                    <label className="ms-2" htmlFor="blue">
                                         blue
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="pink" />
-                                    <label className="ms-2" for="pink">
+                                    <label className="ms-2" htmlFor="pink">
                                         pink
                                     </label>
                                 </li>
@@ -379,13 +379,13 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="Ambient" />
-                                    <label className="ms-2" for="Ambient">
+                                    <label className="ms-2" htmlFor="Ambient">
                                     Ambient Mode
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="Quantum" />
-                                    <label className="ms-2" for="Quantum">
+                                    <label className="ms-2" htmlFor="Quantum">
                                     Quantum Technology
                                     </label>
                                 </li>
@@ -395,19 +395,19 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="2022" />
-                                    <label className="ms-2" for="2022">
+                                    <label className="ms-2" htmlFor="2022">
                                     2022
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="2021" />
-                                    <label className="ms-2" for="2021">
+                                    <label className="ms-2" htmlFor="2021">
                                     2021 
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="2022" />
-                                    <label className="ms-2" for="2022">
+                                    <label className="ms-2" htmlFor="2022">
                                     2022 
                                     </label>
                                 </li>
@@ -440,7 +440,7 @@ function Mobile_Product_List_Page({ product }) {
              <div
                 className="modal mb__bottom_popup mb__filter__related__popup"
                 id="SortByModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="SortByModalModalLabel"
                 aria-hidden="true"
             >
@@ -459,31 +459,31 @@ function Mobile_Product_List_Page({ product }) {
                             <ul className="d-flex list-unstyled">
                                 <li className="mb-2">
                                     <input type="checkbox" id="plh" />
-                                    <label className="ms-2" for="plh">
+                                    <label className="ms-2" htmlFor="plh">
                                         Price -- Low to High
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="n" />
-                                    <label className="ms-2" for="n">
+                                    <label className="ms-2" htmlFor="n">
                                         Newest First
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="c" />
-                                    <label className="ms-2" for="c">
+                                    <label className="ms-2" htmlFor="c">
                                         Price -- High to Low
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="e" />
-                                    <label className="ms-2" for="e">
+                                    <label className="ms-2" htmlFor="e">
                                         Popularity
                                     </label>
                                 </li>
                                 <li className="mb-2">
                                     <input type="checkbox" id="a" />
-                                    <label className="ms-2" for="a">
+                                    <label className="ms-2" htmlFor="a">
                                         Via Customer Reviews
                                     </label>
                                 </li>

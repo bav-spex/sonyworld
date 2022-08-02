@@ -1,5 +1,6 @@
 import apiHelper from '../../Components/helpers/utils/apiHelper'
 import * as actionType from '../../redux/actionType';
+import { setHeader } from '../config';
 import { encryptHelper, decryptHelper } from "./../../Components/helpers/utils/encryptDecryptHelper";
 import * as services from './../services';
 
@@ -78,17 +79,30 @@ export const customerSignIn = (params) => {
   return async dispatch => {
     try {
       let response = await apiHelper(`/V1/customer/login`, 'post', params, {});
-      let details = response.data;
+      let details = response.data.user.data;
       let encryptData = encryptHelper(JSON.stringify(details))
       localStorage.setItem("custDetails", encryptData);
+      let notifyMsg = { message: 'Login successfully' }
+      // localStorage.setItem("handShakeToken", response.data.user.refreshToken);
+      // setHeader('X-Access-Token',response.data.user.refreshToken)
+      dispatch(services.notifySuccess(notifyMsg));
+      dispatch(customerSignInSuccess(true));
     } catch (error) {
       let notifyMsg = { message: error.response.data.message }
-      // dispatch(customerSignUpMsg(error.response.data.message));
+      // dispatch(customerSignInSuccess(error.response.data.message));
       dispatch(services.notifyError(notifyMsg));
       console.log("error ", error);
     }
   }
 };
+
+// auth reducer
+export const customerSignInSuccess = (data) => {
+  return {
+    type: actionType.CUSTOMER_SIGN_IN_MSG,
+    payload: data
+  }
+}
 
 // check-password-strength - Get customer details.
 export const getCustomerDetails = async (params) => {
@@ -104,6 +118,37 @@ export const getCustomerDetails = async (params) => {
 
 // auth reducer
 export const customerDetailsSuccess = (data) => {
+  return {
+    type: actionType.CUSTOMER_DETAILS,
+    payload: data
+  }
+}
+
+
+// signin API
+export const customerLogout = (params) => {
+  return async dispatch => {
+    try {
+      let response = await apiHelper(`/V1/customer/logout`, 'post', params, {});
+      if (response.data === "") {
+        let notifyMsg = { message: 'Logout successfully' }
+        dispatch(services.notifySuccess(notifyMsg));
+        dispatch(customerSignInSuccess(''));
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      // let notifyMsg = { message: error.response.data.message }
+      // // dispatch(customerSignInSuccess(error.response.data.message));
+      // dispatch(services.notifyError(notifyMsg));
+      // console.log("error ", error);
+    }
+  }
+};
+
+// auth reducer
+export const customerLogoutSuccess = (data) => {
   return {
     type: actionType.CUSTOMER_DETAILS,
     payload: data

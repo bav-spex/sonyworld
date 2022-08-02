@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./../SCSS/_cartPage.scss";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import { Link } from "react-router-dom";
@@ -18,6 +20,8 @@ import Heading5 from "../Components/Font/Heading5";
 import AvailableOffers from "../Components/MostSharedComponent/AvailableOffers";
 import ProductContainer from "../Components/ProductContainer";
 
+import { loadCartData } from "../redux/appAction";
+
 import product_01 from "./../assets/Product/product_01.png";
 import product_02 from "./../assets/Product/product_02.png";
 import product_03 from "./../assets/Product/product_03.png";
@@ -33,7 +37,6 @@ import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCar
 import RecommandProducts from "../Components/ProductType/RecommandProducts";
 import Heading2 from "../Components/Font/Heading2";
 import MobileCartPage from "./MobilePages/Mobile_Cart_Page";
-
 
 const product = {
   id: 1,
@@ -653,17 +656,36 @@ const peopleUltimatelyBoughtData = [
     ],
   },
 ];
+
 function Cart_Page() {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
   const [arrowState, setArrowState] = useState(true);
   const [selectCategoryIndex, setSelectCategoryIndex] = useState(0);
-
+  // const [cartData, setCartData] = useState();
   const productCategorySelect = (categoryIndex, category) => {
     console.log(categoryIndex, category);
     setSelectCategoryIndex(categoryIndex);
   };
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("cart API Calling >>>")
+    dispatch(loadCartData());
+  }, []);
+
+  const cartData = useSelector((state) => state.appData.cartData);
+
+  useEffect(() => {
+    if (Object.values(cartData).length !== 0) {
+      // setProduct(productData);
+      // setLoading(false);
+      // console.log(product.reviewSummary.totals);
+    }
+  }, [cartData]);
+
+  console.log(cartData, "Cart data >>>>>");
   const leftSide = (e) => {
     setArrowState(!arrowState);
     setDisableRightArrow(false);
@@ -688,7 +710,7 @@ function Cart_Page() {
   return (
     <>
       <div className="d-block d-lg-none mb__cart__page">
-        <MobileCartPage/>
+        <MobileCartPage />
       </div>
       <div className="container-fluid shopping__cart__page__container  d-none d-lg-block">
       <BreadCrumbs title="Shopping Cart" />
@@ -761,7 +783,7 @@ function Cart_Page() {
                 </div>
               </Link>
               <Link to="/">
-              <button className="signup__button">CONTINUE SHOPPING</button>
+                <button className="signup__button">CONTINUE SHOPPING</button>
               </Link>
 
               <Heading3

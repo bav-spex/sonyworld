@@ -5,11 +5,13 @@ import compare_white from "./../../assets/Icon/compare_white.svg";
 import Heading3 from "../Font/Heading3";
 import Heading7 from "../Font/Heading7";
 import { Link } from "react-router-dom";
-function PLPComparePopup({ closeComparePopup, compareData }) {
+function PLPComparePopup({ closeComparePopup, compareProductsData,removeProductFromCompareData}) {
+  // console.log(compareProductsData);
+  
   return (
     <div className="plp__compare__popup__block">
       <div className="plp__compare__popup__header">
-        <Heading3 text="Compare Products (2/3)" color="#000000" />
+        <Heading3 text={`Compare Products (${compareProductsData.length}/3)`} color="#000000" />
         <img
           onClick={() => closeComparePopup()}
           src={cancel_grey}
@@ -18,20 +20,20 @@ function PLPComparePopup({ closeComparePopup, compareData }) {
         />
       </div>
       <div className="plp__compare__popup__content">
-        {compareData.map((product, productIndex) => {
+        {compareProductsData?.map((product, productIndex) => {
           return (
             <div key={productIndex} className="compare__product__block">
               <div className="compare__product__header">
                 <img
-                  // onClick={() => closeComparePopup()}
+                  onClick={() => removeProductFromCompareData(product.id)}
                   src={cancel_grey}
                   alt="cancel"
                   className="cancel__button"
                 />
               </div>
               <div className="compare__product__content">
-                <img src={product.image} alt="" />
-                <Heading7 text={product.productName} marginLeft={20} />
+                <img src={product?.media?.image?.featured?.image ? product?.media?.image?.featured?.image : product.image } alt="" />
+                <Heading7 text={product.name} marginLeft={20} />
               </div>
             </div>
           );
