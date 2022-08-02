@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./../../SCSS/ProductType/_productNine.scss";
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
@@ -22,6 +22,7 @@ import product_06 from "./../../assets/Product/product_06.jpg";
 import product_07 from "./../../assets/Product/product_07.jpg";
 import product_08 from "./../../assets/Product/product_08.jpg";
 import { Link } from "react-router-dom";
+import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
 
 function ProductNine({
   product,
@@ -53,9 +54,39 @@ function ProductNine({
       },
     ],
   });
+  useEffect(async()=>{
+    const isFavouriteData = await checkForWishlist(product?.sku?.replace(/[/]/g, "%2F"));
+    console.log(isFavouriteData);
+    setIsFavourite(isFavouriteData)
+  },[])
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      // console.log(product.sku, "added");
+    } else {
+      setIsFavourite(true);
+      // console.log(product.sku, "remove");
+    }
   };
+  useEffect(() => {
+    const data = {
+      items: [product?.sku],
+    };
+    if (isFavourite) {
+      addToWishlist(data);
+      // console.log("added Successfully");
+    }
+    else{
+      removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
+      // console.log("deleted Successfully");
+    }
+  },[isFavourite]);
+  const removeFromWL=(sku)=>{
+    const data = {
+      items: [sku],
+    };
+   deleteFromWishlist(data)
+  }
 
   const handleRating = (score) => {
     setRating(score);
@@ -72,27 +103,28 @@ function ProductNine({
         <div className="productNine__new__sticker__block">
           <p className="productNine__new__sticker__text">New</p>
         </div>
-        {/* <div className="quality__favourite__block">
-          <img src={productTwo_quality_icon} alt="" className="quality__icon" />
-          <img
-            onMouseEnter={() => setIsFavouriteHover(true)}
-            onClick={handleFavourite}
-            onMouseLeave={() => setIsFavouriteHover(false)}
-            className={
-              !isFavourite ? "favourite__icon" : "favourite__icon__disable"
-            }
-            src={isFavouriteHover ? fulfill_favourite : empty_favourite}
-            alt=""
-          />
-          <img
-            onClick={handleFavourite}
-            className={
-              isFavourite ? "favourite__icon" : "favourite__icon__disable"
-            }
-            src={fulfill_favourite}
-            alt=""
-          />
-        </div> */}
+        <img
+          onMouseEnter={() => setIsFavouriteHover(true)}
+          onClick={handleFavourite}
+          onMouseLeave={() => setIsFavouriteHover(false)}
+          className={
+            !isFavourite
+              ? "productOne__favourite__icon"
+              : "productOne__favourite__icon__disable"
+          }
+          src={isFavouriteHover ? fulfill_favourite : empty_favourite}
+          alt=""
+        />
+        <img
+          onClick={handleFavourite}
+          className={
+            isFavourite
+              ? "productOne__favourite__icon"
+              : "productOne__favourite__icon__disable"
+          }
+          src={fulfill_favourite}
+          alt=""
+        />
       </div>
       <div className="productNine__content">
         <div

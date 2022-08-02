@@ -20,11 +20,11 @@ export const addToCart = async (data) => {
 };
 
 export const getCartData = async () => {
-  console.log("cart data >>>>>>")
+  // console.log("cart data >>>>>>")
   const cartData = await axios.get(
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart`
   );
-  console.log(cartData,"cartData")
+  // console.log(cartData,"cartData")
   return cartData;
 };
 
@@ -34,6 +34,6 @@ export const getAvailablePaymentMethods = async () => {
   const paymentMethodData = await axios.get(
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/available-payment-methods`
   );
-  console.log(paymentMethodData,"paymentMethodData")
+  // console.log(paymentMethodData,"paymentMethodData")
   return paymentMethodData.data;
 };

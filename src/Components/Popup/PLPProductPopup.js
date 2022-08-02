@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./../../SCSS/Popup/_plpProductPopup.scss";
 import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
@@ -13,6 +13,7 @@ import Heading6 from "../Font/Heading6";
 import OldPrice from "../Font/OldPrice";
 import Price from "../Font/Price";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
+import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
 function PLPProductPopup({ product, closeProductPopup }) {
   // console.log(product);
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
@@ -38,11 +39,41 @@ function PLPProductPopup({ product, closeProductPopup }) {
       },
     ],
   });
+  useEffect(async()=>{
+    const isFavouriteData = await checkForWishlist(product?.sku?.replace(/[/]/g, "%2F"));
+    console.log(isFavouriteData);
+    setIsFavourite(isFavouriteData)
+  },[])
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      // console.log(product.sku, "added");
+    } else {
+      setIsFavourite(true);
+      // console.log(product.sku, "remove");
+    }
   };
+  useEffect(() => {
+    const data = {
+      items: [product?.sku],
+    };
+    if (isFavourite) {
+      addToWishlist(data);
+      // console.log("added Successfully");
+    }
+    else{
+      removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
+      // console.log("deleted Successfully");
+    }
+  },[isFavourite]);
+  const removeFromWL=(sku)=>{
+    const data = {
+      items: [sku],
+    };
+   deleteFromWishlist(data)
+  }
   const sizeButtonClick = (sizeIndex, cm, inch) => {
-    console.log(sizeIndex, cm, inch);
+    // console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
   return (

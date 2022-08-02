@@ -13,14 +13,15 @@ import OldPrice from "./../Font/OldPrice";
 import Price from "./../Font/Price";
 import Heading6 from "./../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
+import { Link } from "react-router-dom";
 
 function ProductEight({ item }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(true);
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
-  const [ loading,setLoading] = useState(true)
-  const [product,setProduct]=useState({})
+  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState({});
   const [productWarrentyBlock, setProductWarrentyBlock] = useState({
     warrantyText: "1 Year Warranty on Product",
     size: [
@@ -41,12 +42,12 @@ function ProductEight({ item }) {
       },
     ],
   });
-  useEffect(()=>{
-    if(item){
-      setProduct(item.product)
-      setLoading(false)
+  useEffect(() => {
+    if (item) {
+      setProduct(item.product);
+      setLoading(false);
     }
-  },[item])
+  }, [item]);
   // console.log(item);
   // console.log(product);
   const handleFavourite = () => {
@@ -60,7 +61,8 @@ function ProductEight({ item }) {
   const sizeButtonClick = (sizeIndex, cm, inch) => {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
-  };if (loading) {
+  };
+  if (loading) {
     return <h1>wishlist product Loading...</h1>;
   }
   return (
@@ -72,13 +74,18 @@ function ProductEight({ item }) {
             alt=""
             className="productEight__quality__icon"
           />
-          
         </div>
-        <div className="productEight__image__block">
-          <img src={product.baseImage} alt="" className="productEight__image" />
-        </div>
+        <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+          <div className="productEight__image__block">
+            <img
+              src={product.baseImage}
+              alt=""
+              className="productEight__image"
+            />
+          </div>
+        </Link>
         <div className="productEight__quality__favourite__block">
-         <div></div>
+          <div></div>
           <img
             onMouseEnter={() => setIsFavouriteHover(true)}
             onClick={handleFavourite}
@@ -102,17 +109,16 @@ function ProductEight({ item }) {
             alt=""
           />
         </div>
-       
       </div>
-      <p className="productEight__name">
-      {product.name}
-      </p>
+      <Link
+          to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+          className="productEight__name__link"
+        >
+         <p className="productEight__name"> {product.name}</p>
+        </Link>
       <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
       <div className="rating__block">
-        <RatingBlock
-          rating={6}
-          totalRatings={2222}
-        />
+        <RatingBlock rating={6} totalRatings={2222} />
       </div>
       <p className="productEight__series">Model and Price</p>
       <div className="productEight__size__button__block">
@@ -149,7 +155,6 @@ function ProductEight({ item }) {
           currency={product?.currency}
         />
       </div>
-      
     </div>
   );
 }

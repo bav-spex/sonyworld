@@ -7,6 +7,18 @@
   .productNine__header {
     display: flex;
     justify-content: space-between;
+    padding: 0px 20px 0px 0px;
+    .productOne__favourite__icon {
+      display: block;
+      margin: 10px 0px 0px;
+      cursor: pointer;
+      &.empty_icon{
+        opacity: 0.5;
+      }
+    }
+    .productOne__favourite__icon__disable {
+      display: none;
+    }
     .productNine__new__sticker__block {
       width: 85px;
       height: 30px;

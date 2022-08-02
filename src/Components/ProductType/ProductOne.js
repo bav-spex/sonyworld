@@ -42,11 +42,11 @@ function ProductOne({ productDetailPage, product }) {
     };
     if (isFavourite) {
       addToWishlist(data);
-      console.log("added Successfully");
+      // console.log("added Successfully");
     }
     else{
       removeFromWL(product.sku.replace(/[/]/g, "%2F"))
-      console.log("deleted Successfully");
+      // console.log("deleted Successfully");
     }
   },[isFavourite]);
   // console.log(isFavourite);

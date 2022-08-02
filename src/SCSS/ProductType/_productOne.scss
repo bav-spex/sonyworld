@@ -115,6 +115,7 @@
     }
     .productOne__favourite__icon {
       display: block;
+      cursor: pointer;
       &.empty_icon{
         opacity: 0.5;
       }

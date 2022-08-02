@@ -971,6 +971,7 @@ const Product_List_Page = () => {
     if (data.data) {
       setfilterAndProductsData(data.data);
       setLoading(false);
+      window.scrollTo(0, 0);
     }
   }, []);
   useEffect(() => {

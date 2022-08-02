@@ -37,7 +37,10 @@ import ProductThree from "../Components/ProductType/ProductThree";
 import AddressPopup from "../Components/Popup/AddressPopup";
 import { loadCountriesLocationData } from "../redux/appAction";
 import { loadCitiesLocationData } from "../redux/appAction";
-import { getAvailablePaymentMethods } from "../services/cart.service";
+import {
+  getAvailablePaymentMethods,
+  getCartData,
+} from "../services/cart.service";
 
 // const addressData = [
 //   {
@@ -181,22 +184,30 @@ function Checkout_Page({ reloadingHeader }) {
   const [addressPopupType, setAddressPopupType] = useState("add");
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [userPaymentMethod, setUserPaymentMethod] = useState();
+  const [cartDetail, setCartDetail] = useState();
+  const [cartTotalData, setCartTotalData] = useState();
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
     if (data) {
       setPaymentMethods(data.paymentMethods);
       setUserPaymentMethod(data.paymentMethods[0].code);
     }
+    const cartData = await getCartData();
+    if (data) {
+      setCartTotalData(cartData.data.totals_data);
+    }
     // dispatch(services.getCustomerAddressList());
     // dispatch(loadCountriesLocationData());
     // dispatch(loadCitiesLocationData());
   }, []);
-  console.log("paymentMethods", paymentMethods);
+  // console.log("cartTotalData", cartTotalData);
   useEffect(() => {
     // getAvailablePaymentMethods();
     dispatch(services.getCustomerAddressList());
     dispatch(loadCountriesLocationData());
     dispatch(loadCitiesLocationData());
+    window.scrollTo(0, 0);
+
   }, []);
 
   useEffect(() => {
@@ -219,18 +230,18 @@ function Checkout_Page({ reloadingHeader }) {
   }, [customerAddressList]);
 
   const handleSubmit = (code) => {
-    console.log(code);
+    // console.log(code);
   };
   const selectAddress = (addIndex, addId, add) => {
     setSelectedAddressID(addIndex);
     setEditAddressData(add);
   };
   const handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUserPaymentMethod(e.target.value);
   };
   const remove = (id) => {
-    console.log(id);
+    // console.log(id);
   };
   const [iconType, setIconType] = useState({
     signin: "done",
@@ -567,7 +578,7 @@ function Checkout_Page({ reloadingHeader }) {
                       </div>
                       <div className="continue__button__block">
                         <div></div>
-                        <button  className="buynow___button">Continue</button>
+                        <button className="buynow___button">Continue</button>
                       </div>
                     </div>
                   </>
@@ -611,11 +622,11 @@ function Checkout_Page({ reloadingHeader }) {
                           </div>
                           {userPaymentMethod === payment.code ? (
                             <div className="payment__detail__form__block">
-                              {userPaymentMethod === "payfort_fort_cc"?(
-                                <div className="payment__card__block">
-
-                                </div>
-                              ):""}
+                              {userPaymentMethod === "payfort_fort_cc" ? (
+                                <div className="payment__card__block"></div>
+                              ) : (
+                                ""
+                              )}
                             </div>
                           ) : (
                             ""
@@ -623,10 +634,10 @@ function Checkout_Page({ reloadingHeader }) {
                         </div>
                       );
                     })}
-                      <div className="continue__button__block">
-                        <div></div>
-                        <button  className="buynow___button">Continue</button>
-                      </div>
+                  <div className="continue__button__block">
+                    <div></div>
+                    <button className="buynow___button">Continue</button>
+                  </div>
                 </div>
               </div>
               {/* <div className="order__summary__block">
@@ -660,26 +671,28 @@ function Checkout_Page({ reloadingHeader }) {
                   <Heading3 text="Price Details" />
                 </p>
                 <div className="checkout__os__detail__block">
-                  <div className="checkout__os__detail__inner__block">
+                  {/* <div className="checkout__os__detail__inner__block">
                     <Text3 text="Shipping" color="#000000" />
                     <Price price={20} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__inner__block">
-                    <Text3 text="Sub Total" color="#000000" />
-                    <Price price={195} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__inner__block">
-                    <Text3 text="Discount" color="#000000" />
-                    <Price price={30} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__inner__block">
-                    <Text3 text="Tax" color="#000000" />
-                    <Price price={10} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__total__order__block">
-                    <Heading6 text="Order Total" color="#000000" />
-                    <Price price={3275} size="heading7" />
-                  </div>
+                  </div> */}
+                  {cartTotalData?.total_segments
+                    .slice(1, 5)
+                    .map((segment, segmentIndex) => {
+                      return (
+                        <div className="checkout__os__detail__inner__block">
+                          {segment.code === "grand_total" ? (
+                            <Heading6 text={segment.title} color="#000000" />
+                          ) : (
+                            <Text3 text={segment.title} color="#000000" />
+                          )}
+                          <Price
+                            price={segment.value}
+                            size="heading7"
+                            currency={cartTotalData.base_currency_code}
+                          />
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
               <SuperCoin />

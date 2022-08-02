@@ -57,11 +57,12 @@
       padding: 16px;
       margin: 0px auto;
       display: flex;
-      align-items: center;
+      align-items:  flex-start;
       flex-wrap: wrap;
       justify-content: flex-start;
       .wishlist__product__block{
         margin: 0px 0px 20px;
+        height: 100%;
       }
     }
   }
