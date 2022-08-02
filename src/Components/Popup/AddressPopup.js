@@ -342,13 +342,20 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
   const handleCancel = () => {
     console.log(address);
   }
+
+  const handleClosePopup = () => {
+    closeLoginPopup();
+    resetFormValue();
+    resetFormErr();
+  }
+
   const [errors, setErrors] = useState([]);
   return (
     <div className="address__popup__block">
       <div className="address__title__block">
         <Heading3 text={popupType === 'add' ? "Add New Address" : "Update Address"} color="#000000" />
         <img
-          onClick={() => closeLoginPopup()}
+          onClick={() => handleClosePopup()}
           src={cancel_grey}
           alt="cancel"
           className="cancel__button"
@@ -550,7 +557,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
           <button className="form__save__button" onClick={() => handleSubmit()}>
             SAVE
           </button>
-          <button className="form__cancel__button" onClick={closeLoginPopup}>
+          <button className="form__cancel__button" onClick={handleClosePopup}>
             CANCEL
           </button>
         </div>
