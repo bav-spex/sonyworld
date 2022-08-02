@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import * as services from './../../services/services'
+import * as services from '../../services/services'
 import { useDispatch, useSelector } from 'react-redux';
-import Heading3 from "./../../Components/Font/Heading3";
-import Heading6 from "./../../Components/Font/Heading6";
-import Heading7 from "./../../Components/Font/Heading7";
+import Heading3 from "../../Components/Font/Heading3";
+import Heading6 from "../../Components/Font/Heading6";
+import Heading7 from "../../Components/Font/Heading7";
 import './../../SCSS/MobilePages/_mb__signIn__page.scss';
 import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
 import google_white from "./../../assets/Icon/google_white.svg";
@@ -15,7 +15,8 @@ import empty_check_orange from "./../../assets/Icon/empty_check_orange.svg";
 import apple_white from "./../../assets/Icon/apple_white.svg";
 import { Link } from "react-router-dom";
 
-function Mobile_Sign_In({ }) {
+
+function Mobile_Sign_Up({ }) {
     const dispatch = useDispatch();
 
     const { customerSignInMsg } = useSelector(
@@ -72,31 +73,70 @@ function Mobile_Sign_In({ }) {
                         <div className="col-sm-11">
                             <div className="mb__sign__content my-3 my-sm-5 ">
                                 <div className="px-3 px-sm-4 pt-4">
-                                    <Heading3 text="Sign In to Sony" color="#000000" />
+                                    <Heading3 text="Sign Up to Sony" color="#000000" />
                                 </div>
                                 <hr />
                                 <div className="px-3 px-sm-4">
-                                    <div className="main__form__field__block">
-                                        {/* <p className="form__label">Email Address</p> */}
-                                        <Heading7 text="Email Address / Mobile Number" marginBottom={10} />
-                                        <div className="field__block">
-                                            <input
-                                                type="text"
-                                                placeholder=""
-                                                className="form__field form-control"
-                                                id="email"
-                                                name="username"
-                                                value={data.username}
-                                                onChange={(e) => handleChange(e)}
-                                            />
-                                        </div>
-                                        {errors.includes("username") && (
-                                            <p className="invalid__message text-danger">Please Enter Email Address / Mobile Number</p>
-                                        )}
+                                    <div className="field__block mb-3">
+                                        <Heading7 text="First Name" marginBottom={10} />
+                                        <input
+                                            type="text"
+                                            placeholder=""
+                                            className="form__field form-control"
+                                        />
                                     </div>
-                                    <div className="main__form__field__block mt-3 pwd-field">
+                                    <div className="field__block mb-3">
+                                        <Heading7 text="Last Name" marginBottom={10} />
+                                        <input
+                                            type="text"
+                                            placeholder=""
+                                            className="form__field form-control"
+                                        />
+                                    </div>
+                                    <div className="field__block mb-3">
+                                        <Heading7 text="Email Address" marginBottom={10} />
+                                        <input
+                                            type="email"
+                                            placeholder=""
+                                            className="form__field form-control"
+                                        />
+                                    </div>
+                                    <div className="field__block mb-3">
+                                        <Heading7 text="Mobile Number" marginBottom={10} />
+                                        <input
+                                            type="text"
+                                            placeholder=""
+                                            className="form__field form-control"
+                                        />
+                                    </div>
+                                    <div className="main__form__field__block  pwd-field mb-3">
                                         {/* <p className="form__label">Password</p> */}
                                         <Heading7 text="Password" marginBottom={10} />
+                                        <div className="field__block">
+                                            <input
+                                                type={isPassword ? "password" : "text"}
+                                                placeholder=""
+                                                className="form__field form-control"
+                                                id="password"
+                                                name="password"
+                                                value={data.password}
+                                                onChange={(e) => handleChange(e)}
+                                            />
+                                            <a onClick={() => togglePassword()} className="pwd-show">
+                                                {isPassword ? (
+                                                    <img src={see_password} alt="" />
+                                                ) : (
+                                                    <img src={hide_password} alt="" />
+                                                )}
+                                            </a>
+                                        </div>
+                                        {errors.includes("password") && (
+                                            <p className="invalid__message text-danger">Please Enter Password</p>
+                                        )}
+                                    </div>
+                                    <div className="main__form__field__block  pwd-field">
+                                        {/* <p className="form__label">Password</p> */}
+                                        <Heading7 text="Confirm Password" marginBottom={10} />
                                         <div className="field__block">
                                             <input
                                                 type={isPassword ? "password" : "text"}
@@ -143,12 +183,10 @@ function Mobile_Sign_In({ }) {
                                                     alt=""
                                                 />
                                             </div>
-                                            <p>Remember me</p>
+                                            <p>I agree to our <a href="#">Terms and Conditions</a> & <a href="#">Privacy Policy</a></p>
                                         </div>
                                     </div>
-                                    <div className="forgot__password__block">
-                                        <p className="forgot__password__text">forgot password?</p>
-                                    </div>
+                                  
                                 </div>
                                 <div className="px-3 px-sm-4">
 
@@ -161,14 +199,8 @@ function Mobile_Sign_In({ }) {
                                     </div>
                                     <div className="mid__line"></div>
                                 </div>
-                                <div className="form px-3 px-sm-4 mt-5">
-                                    <button
-
-                                        className="getOtp__button"
-                                    >
-                                        Get an OTP on your Phone
-                                    </button>
-
+                                <div className="form px-3 px-sm-4 mt-2">
+  
                                     <button className="google__signin__button">
                                         <img
                                             src={google_white}
@@ -195,12 +227,12 @@ function Mobile_Sign_In({ }) {
                                     </button>
                                     <div className="loginModel__footer">
                                         <p className="footer__text mb-3">
-                                            New User to Sony?{" "}
+                                           Already have an account?{" "}
                                             <span
 
                                                 className="footer__link__text "
                                             >
-                                                Create an Account
+                                                Sign In
                                             </span>
                                         </p>
                                     </div>
@@ -215,4 +247,4 @@ function Mobile_Sign_In({ }) {
         </>
     );
 }
-export default Mobile_Sign_In;
+export default Mobile_Sign_Up;
