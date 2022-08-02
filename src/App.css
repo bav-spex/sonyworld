@@ -178,6 +178,9 @@ img {
   display: none;
 }
 
-.toast {
+.toast .bg-success{
   background-color: #27743e !important;
+}
+.toast .bg-danger{
+  background-color: #d32f2f !important;
 }

@@ -46,6 +46,7 @@ import {
 } from "../services/cart.service";
 import { Link } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
+import valid from "card-validator";
 
 const errMsgStyle = {
   color: 'red',
@@ -180,7 +181,7 @@ function Checkout_Page({ reloadingHeader }) {
   const dispatch = useDispatch();
 
   const { customerDetails } = useSelector((state) => state.customerReducer);
-// console.log(customerDetails);
+  // console.log(customerDetails);
   const { customerAddressList, customerAddUpdateManage } = useSelector(
     (state) => state.customerAddressReducer
   );
@@ -201,7 +202,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [cartTotalData, setCartTotalData] = useState();
   const [shippingMethods, setShippingMethods] = useState();
   const [deliveryType, setDeliveryType] = useState([]);
-  const [paymentMethodForPayfort,setPaymentMethodForPayfort] =useState({
+  const [paymentMethodForPayfort, setPaymentMethodForPayfort] = useState({
     method: "",
     email: "",
     referer_url: ""
@@ -211,6 +212,22 @@ function Checkout_Page({ reloadingHeader }) {
   const [errMsg, setErrMsg] = useState({
     deliveryAddressList: "",
     deliveryPreferencesType: "",
+  });
+
+  const [card, setCard] = useState({
+    cardNumber: "",
+    cardHolder: "",
+    month: "",
+    year: "",
+    cvv: ""
+  })
+
+  const [cardErrMsg, setCardErrMsg] = useState({
+    cardNumber: "",
+    cardHolder: "",
+    month: "",
+    year: "",
+    cvv: ""
   });
 
   useEffect(() => {
@@ -225,7 +242,7 @@ function Checkout_Page({ reloadingHeader }) {
     if (data) {
       setPaymentMethods(data.paymentMethods);
       setUserPaymentMethod(data.paymentMethods[0].code);
-      setPaymentMethodForPayfort({method: data.paymentMethods[0].code,email:customerDetails.email, referer_url: "https://alpha-api.mestores.com"})
+      setPaymentMethodForPayfort({ method: data.paymentMethods[0].code, email: customerDetails.email, referer_url: "https://alpha-api.mestores.com" })
     }
     const cartData = await getCartData();
     if (data) {
@@ -329,7 +346,7 @@ function Checkout_Page({ reloadingHeader }) {
     setCheckoutClassName(className);
     // setIconType({ ...iconType, payment: "inprogress" });
   };
-  
+
   const continueFromDelivery = (newIconType, className) => {
 
     let newErrObj = {
@@ -399,9 +416,13 @@ function Checkout_Page({ reloadingHeader }) {
     setAddressPopup(false);
   };
 
-  const openNewAddressPopup = (popupType) => {
+  const openNewAddressPopup = (popupType, addIndex, addId, add) => {
     setAddressPopup(true);
     setAddressPopupType(popupType);
+    if (popupType === 'update') {
+      setSelectedAddressID(addIndex);
+      setEditAddressData(add);
+    }
   };
 
   const deleteAddress = (deleteId) => {
@@ -412,18 +433,147 @@ function Checkout_Page({ reloadingHeader }) {
   };
 
 
-const handleChangePaymentMethod = (e) => {
-  // console.log(e.target.value);
-  setUserPaymentMethod(e.target.value);
-  setPaymentMethodForPayfort({method:e.target.value,email:customerDetails.email,referer_url: "https://alpha-api.mestores.com"})
-  console.log(paymentMethodForPayfort);
-};
-const makePayment =async()=>{
-  const newPaymentMethodForPayfort = {paymentMethod:paymentMethodForPayfort}
-  console.log(newPaymentMethodForPayfort);
-  const data = await getPayfortInformation(newPaymentMethodForPayfort)
-  console.log(data);
-}
+  const handleChangePaymentMethod = (e) => {
+    // console.log(e.target.value);
+    setUserPaymentMethod(e.target.value);
+    setPaymentMethodForPayfort({ method: e.target.value, email: customerDetails.email, referer_url: "https://alpha-api.mestores.com" })
+    console.log(paymentMethodForPayfort);
+  };
+  const makePayment = async () => {
+
+    let validateFeild = [
+      "cardNumber",
+      "cardHolder",
+      "month",
+      "year",
+      "cvv",
+    ];
+
+    let formStatus = allFeildValidate(validateFeild, cardErrMsg);
+    setCardErrMsg(formStatus.allErrMsg);
+
+    if (formStatus.checkCardStatus === true) {
+
+      const newPaymentMethodForPayfort = { paymentMethod: paymentMethodForPayfort }
+      console.log(newPaymentMethodForPayfort);
+      const data = await getPayfortInformation(newPaymentMethodForPayfort)
+      console.log(data);
+
+    }
+
+  }
+
+
+  const validateForm = (event, newErrObj, name, value) => {
+
+    //A function to validate each input values
+    switch (name) {
+      case 'cardNumber':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Card Number is missing' }
+        } else {
+          let numberValidation = valid.number(value);
+          if (numberValidation.isPotentiallyValid === true && numberValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'cardHolder':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Card Holder is missing' }
+        } else {
+          let holderValidation = valid.cardholderName(value);
+          if (holderValidation.isPotentiallyValid === true && holderValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'month':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Month is missing' }
+        } else {
+          let monthValidation = valid.expirationMonth(value);
+          if (monthValidation.isPotentiallyValid === true && monthValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'year':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Year is missing' }
+        } else {
+          let yearValidation = valid.expirationYear(value);
+          if (yearValidation.isPotentiallyValid === true && yearValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'cvv':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'CVV is missing' }
+        } else {
+          let cvvValidation = valid.cvv(value);
+          if (cvvValidation.isPotentiallyValid === true && cvvValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      default:
+        break;
+    }
+    return newErrObj;
+  }
+
+  const handleChangeCard = async (event) => {
+    let value = event.target.value;
+    let name = event.target.name;
+    let manageErrMsg = validateForm(event, cardErrMsg, name, value);
+    setCardErrMsg(manageErrMsg);
+    setCard({ ...card, [name]: value });
+  };
+
+  const allFeildValidate = (validateFeild, allErrMsg) => {
+
+    let checkValueStatus = [];
+    let checkErrStatus = [];
+
+    validateFeild && validateFeild.map((val, i) => {
+      let keyVal = card[val];
+      let errVal = cardErrMsg[val];
+
+      allErrMsg = validateForm('', allErrMsg, val, keyVal);
+      if (keyVal !== "") {
+        checkValueStatus.push('suc')
+      }
+      if (errVal === "") {
+        checkErrStatus.push('err')
+      }
+
+    })
+
+    let checkCardStatus = false;
+    if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
+      checkCardStatus = true;
+    }
+
+    let returnData = {
+      allErrMsg: allErrMsg,
+      checkCardStatus: checkCardStatus
+    }
+
+    return returnData;
+  };
+
   return (
     <>
       <BreadCrumbs title="Checkout" />
@@ -604,7 +754,7 @@ const makePayment =async()=>{
                                   <div className="inner__address__button__block">
                                     <button
                                       onClick={() =>
-                                        openNewAddressPopup("update")
+                                        openNewAddressPopup("update", addIndex, add.id, add)
                                       }
                                       className="edit__button"
                                     >
@@ -759,7 +909,96 @@ const makePayment =async()=>{
                           {userPaymentMethod === payment.code ? (
                             <div className="payment__detail__form__block">
                               {userPaymentMethod === "payfort_fort_cc" ? (
-                                <div className="payment__card__block"></div>
+                                <div className="address__content__block">
+                                  <div className="payment__card__block">
+                                    <div className="row address__form__field__row">
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">First Name</p> */}
+                                        <Heading7 text="Credit Card Number" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="xxxx-xxxx-xxxx-xxxx"
+                                            className="form__field"
+                                            id="name"
+                                            name="cardNumber"
+                                            value={card.cardNumber}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.cardNumber && <p className="invalid__message">{cardErrMsg.cardNumber}</p>}
+                                      </div>
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">Mobile Number</p> */}
+                                        <Heading7 text="Credit Holder Name" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="Credit Holder Name"
+                                            className="form__field"
+                                            id="cardHolder"
+                                            name="cardHolder"
+                                            value={card.cardHolder}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.cardHolder && <p className="invalid__message">{cardErrMsg.cardHolder}</p>}
+                                      </div>
+                                    </div>
+                                    <div className="row address__form__field__row">
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">First Name</p> */}
+                                        <Heading7 text="Month" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="MM"
+                                            className="form__field"
+                                            id="month"
+                                            name="month"
+                                            value={card.month}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.month && <p className="invalid__message">{cardErrMsg.month}</p>}
+                                      </div>
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">Mobile Number</p> */}
+                                        <Heading7 text="Year" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="YYYY"
+                                            className="form__field"
+                                            id="year"
+                                            name="year"
+                                            value={card.year}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.year && <p className="invalid__message">{cardErrMsg.year}</p>}
+                                      </div>
+                                    </div>
+                                    <div className="row address__form__field__row">
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">First Name</p> */}
+                                        <Heading7 text="CVV" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="CVV"
+                                            className="form__field"
+                                            id="cvv"
+                                            name="cvv"
+                                            value={card.cvv}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.cvv && <p className="invalid__message">{cardErrMsg.cvv}</p>}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               ) : (
                                 ""
                               )}
@@ -773,7 +1012,7 @@ const makePayment =async()=>{
                   <div className="continue__button__block">
                     <div></div>
                     <Link className="continue___button__link" to="/checkout">
-                      <button onClick={()=>makePayment()} className="continue___button">Continue</button>
+                      <button onClick={() => makePayment()} className="continue___button">Continue</button>
                     </Link>
                   </div>
                 </div>
@@ -824,7 +1063,7 @@ const makePayment =async()=>{
                             <Text3 text={segment.title} color="#000000" />
                           )}
                           <Price
-                            price={segment.value}
+                            price={segment.value === null ? 0 : segment.value}
                             size="heading7"
                             currency={cartTotalData.base_currency_code}
                           />
@@ -845,11 +1084,13 @@ const makePayment =async()=>{
             : "container-fluid address__popup__container__disable"
         }
       >
-        <AddressPopup
-          closeLoginPopup={closeLoginPopup}
-          editAddressData={editAddressData}
-          popupType={addressPopupType}
-        />
+        {addressPopup === true &&
+          <AddressPopup
+            closeLoginPopup={closeLoginPopup}
+            editAddressData={editAddressData}
+            popupType={addressPopupType}
+          />
+        }
       </div>
     </>
   );
