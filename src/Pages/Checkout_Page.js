@@ -42,15 +42,15 @@ import {
   getCartData,
   getEstimateShippingMethods,
   getPayfortInformation,
-  updateShippingInformation
+  updateShippingInformation,
 } from "../services/cart.service";
 import { Link } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 
 const errMsgStyle = {
-  color: 'red',
-  margin: '5px 0px 0px'
-}
+  color: "red",
+  margin: "5px 0px 0px",
+};
 // const addressData = [
 //   {
 //     id: 0,
@@ -180,7 +180,7 @@ function Checkout_Page({ reloadingHeader }) {
   const dispatch = useDispatch();
 
   const { customerDetails } = useSelector((state) => state.customerReducer);
-// console.log(customerDetails);
+  // console.log(customerDetails);
   const { customerAddressList, customerAddUpdateManage } = useSelector(
     (state) => state.customerAddressReducer
   );
@@ -188,7 +188,12 @@ function Checkout_Page({ reloadingHeader }) {
   const deliveryShippingInfo = useSelector(
     (state) => state.appData.deliveryShippingInfo
   );
-
+  console.log("deliveryShippingInfo ", deliveryShippingInfo);
+  useEffect(() => {
+    if (deliveryShippingInfo !== "") {
+      setPaymentMethods(deliveryShippingInfo.payment_methods);
+    }
+  }, [deliveryShippingInfo]);
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
@@ -201,12 +206,12 @@ function Checkout_Page({ reloadingHeader }) {
   const [cartTotalData, setCartTotalData] = useState();
   const [shippingMethods, setShippingMethods] = useState();
   const [deliveryType, setDeliveryType] = useState([]);
-  const [paymentMethodForPayfort,setPaymentMethodForPayfort] =useState({
+  const [paymentMethodForPayfort, setPaymentMethodForPayfort] = useState({
     method: "",
     email: "",
-    referer_url: ""
-  })
-  const [deliveryPreferencesType, setDeliveryPreferencesType] = useState('');
+    referer_url: "",
+  });
+  const [deliveryPreferencesType, setDeliveryPreferencesType] = useState("");
 
   const [errMsg, setErrMsg] = useState({
     deliveryAddressList: "",
@@ -216,7 +221,7 @@ function Checkout_Page({ reloadingHeader }) {
   useEffect(() => {
     if (deliveryShippingInfo !== "") {
       setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
-      setCheckoutClassName('payment');
+      setCheckoutClassName("payment");
     }
   }, [deliveryShippingInfo]);
 
@@ -225,7 +230,11 @@ function Checkout_Page({ reloadingHeader }) {
     if (data) {
       setPaymentMethods(data.paymentMethods);
       setUserPaymentMethod(data.paymentMethods[0].code);
-      setPaymentMethodForPayfort({method: data.paymentMethods[0].code,email:customerDetails.email, referer_url: "https://alpha-api.mestores.com"})
+      setPaymentMethodForPayfort({
+        method: data.paymentMethods[0].code,
+        email: customerDetails.email,
+        referer_url: "https://alpha-api.mestores.com",
+      });
     }
     const cartData = await getCartData();
     if (data) {
@@ -241,20 +250,21 @@ function Checkout_Page({ reloadingHeader }) {
     const data = await getEstimateShippingMethods();
     // console.log(data);
     if (data) {
-      let shippingMethods = data['shipping-methods']
+      let shippingMethods = data["shipping-methods"];
       const propertyNames = Object.keys(shippingMethods);
       let deliveryData = [];
-      propertyNames && propertyNames.map((val, i) => {
-        let deliveryInfo = {
-          id: shippingMethods[val].shipping_method_code,
-          type: shippingMethods[val].title,
-          protectionText: "",
-          price: shippingMethods[val].shipping_cost,
-        }
-        if (shippingMethods[val].is_available === true) {
-          deliveryData.push(deliveryInfo);
-        }
-      })
+      propertyNames &&
+        propertyNames.map((val, i) => {
+          let deliveryInfo = {
+            id: shippingMethods[val].shipping_method_code,
+            type: shippingMethods[val].title,
+            protectionText: "",
+            price: shippingMethods[val].shipping_cost,
+          };
+          if (shippingMethods[val].is_available === true) {
+            deliveryData.push(deliveryInfo);
+          }
+        });
       setDeliveryType(deliveryData);
     }
   }, []);
@@ -283,7 +293,7 @@ function Checkout_Page({ reloadingHeader }) {
           };
           updateAddressData.push(addreDetails);
           if (val.primary === true) {
-            setSelectedAddressID(i)
+            setSelectedAddressID(i);
           }
         });
       setAddressData(updateAddressData);
@@ -329,29 +339,38 @@ function Checkout_Page({ reloadingHeader }) {
     setCheckoutClassName(className);
     // setIconType({ ...iconType, payment: "inprogress" });
   };
-  
-  const continueFromDelivery = (newIconType, className) => {
 
+  const continueFromDelivery = (newIconType, className) => {
     let newErrObj = {
       deliveryPreferencesType: "",
-      deliveryAddressList: ""
-    }
+      deliveryAddressList: "",
+    };
 
     if (deliveryPreferencesType !== "") {
-      newErrObj = { ...newErrObj, deliveryPreferencesType: "" }
+      newErrObj = { ...newErrObj, deliveryPreferencesType: "" };
     } else {
-      newErrObj = { ...newErrObj, deliveryPreferencesType: "Please Select Delivery Preference" }
+      newErrObj = {
+        ...newErrObj,
+        deliveryPreferencesType: "Please Select Delivery Preference",
+      };
     }
     if (selectedAddressId !== "") {
-      newErrObj = { ...newErrObj, deliveryAddressList: "" }
+      newErrObj = { ...newErrObj, deliveryAddressList: "" };
     } else {
-      newErrObj = { ...newErrObj, deliveryAddressList: "Please Select Delivery Address" }
+      newErrObj = {
+        ...newErrObj,
+        deliveryAddressList: "Please Select Delivery Address",
+      };
     }
     setErrMsg(newErrObj);
 
     let customerLoginDetails = getCustomerLoginDetails();
-    if (deliveryPreferencesType !== "" && selectedAddressId !== "" && customerLoginDetails.email !== "") {
-      let getDeliveryInfo = addressData?.[selectedAddressId]
+    if (
+      deliveryPreferencesType !== "" &&
+      selectedAddressId !== "" &&
+      customerLoginDetails.email !== ""
+    ) {
+      let getDeliveryInfo = addressData?.[selectedAddressId];
       let params = {
         useAsBilling: true,
         firstName: getDeliveryInfo.details.firstname,
@@ -365,7 +384,7 @@ function Checkout_Page({ reloadingHeader }) {
         shippingCarrierCode: deliveryPreferencesType,
         // pickup_store: '',
         // region_id: "0"
-      }
+      };
       dispatch(updateShippingInformation(params));
     }
 
@@ -411,19 +430,24 @@ function Checkout_Page({ reloadingHeader }) {
     dispatch(services.deleteCustomerAddress(params));
   };
 
-
-const handleChangePaymentMethod = (e) => {
-  // console.log(e.target.value);
-  setUserPaymentMethod(e.target.value);
-  setPaymentMethodForPayfort({method:e.target.value,email:customerDetails.email,referer_url: "https://alpha-api.mestores.com"})
-  console.log(paymentMethodForPayfort);
-};
-const makePayment =async()=>{
-  const newPaymentMethodForPayfort = {paymentMethod:paymentMethodForPayfort}
-  console.log(newPaymentMethodForPayfort);
-  const data = await getPayfortInformation(newPaymentMethodForPayfort)
-  console.log(data);
-}
+  const handleChangePaymentMethod = (e) => {
+    // console.log(e.target.value);
+    setUserPaymentMethod(e.target.value);
+    setPaymentMethodForPayfort({
+      method: e.target.value,
+      email: customerDetails.email,
+      referer_url: "https://alpha-api.mestores.com",
+    });
+    console.log(paymentMethodForPayfort);
+  };
+  const makePayment = async () => {
+    const newPaymentMethodForPayfort = {
+      paymentMethod: paymentMethodForPayfort,
+    };
+    console.log(newPaymentMethodForPayfort);
+    const data = await getPayfortInformation(newPaymentMethodForPayfort);
+    console.log(data);
+  };
   return (
     <>
       <BreadCrumbs title="Checkout" />
@@ -441,8 +465,8 @@ const makePayment =async()=>{
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                          ? signin_done
-                          : signin_initial
+                        ? signin_done
+                        : signin_initial
                     }
                     alt=""
                   />
@@ -453,8 +477,8 @@ const makePayment =async()=>{
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -474,8 +498,8 @@ const makePayment =async()=>{
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                          ? delivery_done
-                          : delivery_initial
+                        ? delivery_done
+                        : delivery_initial
                     }
                     alt=""
                   />
@@ -486,8 +510,8 @@ const makePayment =async()=>{
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -507,8 +531,8 @@ const makePayment =async()=>{
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                          ? payment_done
-                          : payment_initial
+                        ? payment_done
+                        : payment_initial
                     }
                     alt=""
                   />
@@ -519,8 +543,8 @@ const makePayment =async()=>{
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -622,7 +646,11 @@ const makePayment =async()=>{
                             </div>
                           );
                         })}
-                      {errMsg.deliveryAddressList && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryAddressList}</p>}
+                      {errMsg.deliveryAddressList && (
+                        <p className="invalid__message" style={errMsgStyle}>
+                          {errMsg.deliveryAddressList}
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -654,46 +682,54 @@ const makePayment =async()=>{
                           <Heading6 text="Delivery Preferences" />
                         </div>
                         <div className="delivery__selection__block">
-                          {deliveryType && deliveryType.map((delivery, deliveryIndex) => {
-                            return (
-                              <div
-                                key={delivery.id}
-                                className="delivery__selection"
-                              >
-                                <div className="delivery__selection__form__block">
-                                  <input
-                                    type="radio"
-                                    className="delivery__input__check"
-                                    name="deliveryType"
-                                    value={delivery.id}
-                                    onChange={(e) => handleChangeDeliveryPref(e)}
-                                  // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
-                                  />
-                                  <p className="delivery__selection__text">
-                                    <Heading4 text={delivery.type} />
-                                    <Text3
-                                      text={delivery.protectionText}
-                                      color="#3b3b3b"
-                                      marginBottom={0}
+                          {deliveryType &&
+                            deliveryType.map((delivery, deliveryIndex) => {
+                              return (
+                                <div
+                                  key={delivery.id}
+                                  className="delivery__selection"
+                                >
+                                  <div className="delivery__selection__form__block">
+                                    <input
+                                      type="radio"
+                                      className="delivery__input__check"
+                                      name="deliveryType"
+                                      value={delivery.id}
+                                      onChange={(e) =>
+                                        handleChangeDeliveryPref(e)
+                                      }
+                                      // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                     />
-                                  </p>
-                                </div>
-                                <div className="delivery__price__block">
-                                  <p className="delivery__price">
-                                    {delivery.price <= 0 ? (
-                                      <Heading4 text="FREE" color="#FF4F04" />
-                                    ) : (
-                                      <Price
-                                        price={delivery.price}
-                                        size="heading6"
+                                    <p className="delivery__selection__text">
+                                      <Heading4 text={delivery.type} />
+                                      <Text3
+                                        text={delivery.protectionText}
+                                        color="#3b3b3b"
+                                        marginBottom={0}
                                       />
-                                    )}
-                                  </p>
+                                    </p>
+                                  </div>
+                                  <div className="delivery__price__block">
+                                    <p className="delivery__price">
+                                      {delivery.price <= 0 ? (
+                                        <Heading4 text="FREE" color="#FF4F04" />
+                                      ) : (
+                                        <Price
+                                          price={delivery.price}
+                                          size="heading6"
+                                          currency="SAR"
+                                        />
+                                      )}
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            );
-                          })}
-                          {errMsg.deliveryPreferencesType && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryPreferencesType}</p>}
+                              );
+                            })}
+                          {errMsg.deliveryPreferencesType && (
+                            <p className="invalid__message" style={errMsgStyle}>
+                              {errMsg.deliveryPreferencesType}
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="col-12 col-sm-12 col-md-5  delivery__pickup__store">
@@ -706,10 +742,9 @@ const makePayment =async()=>{
                         <div></div>
                         <button
                           onClick={() =>
-                            continueFromDelivery(
-                              // { ...iconType, delivery: "done", payment: "inprogress" },
-                              // "payment"
-                            )
+                            continueFromDelivery()
+                            // { ...iconType, delivery: "done", payment: "inprogress" },
+                            // "payment"
                           }
                           className="continue___button"
                         >
@@ -773,7 +808,12 @@ const makePayment =async()=>{
                   <div className="continue__button__block">
                     <div></div>
                     <Link className="continue___button__link" to="/checkout">
-                      <button onClick={()=>makePayment()} className="continue___button">Continue</button>
+                      <button
+                        onClick={() => makePayment()}
+                        className="continue___button"
+                      >
+                        Continue
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -824,7 +864,7 @@ const makePayment =async()=>{
                             <Text3 text={segment.title} color="#000000" />
                           )}
                           <Price
-                            price={segment.value}
+                            price={segment.value === null ? 0 : segment.value}
                             size="heading7"
                             currency={cartTotalData.base_currency_code}
                           />

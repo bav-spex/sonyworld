@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./../../SCSS/ProductType/_productTen.scss";
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
@@ -17,14 +17,70 @@ import product_01 from "./../../assets/Product/product_01.jpg";
 import product_02 from "./../../assets/Product/product_02.jpg";
 import product_03 from "./../../assets/Product/product_03.jpg";
 import product_04 from "./../../assets/Product/product_04.jpg";
-function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup }) {
+import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
+function ProductTen({
+  product,
+  handleChangeProductPopup,
+  handleChangeComparePopup,
+}) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
+  const [productWarrentyBlock, setProductWarrentyBlock] = useState({
+    warrantyText: "1 Year Warranty on Product",
+    size: [
+      {
+        id: 1,
+        cm: 139,
+        inch: 55,
+      },
+      {
+        id: 2,
+        cm: 164,
+        inch: 65,
+      },
+      {
+        id: 3,
+        cm: 195,
+        inch: 77,
+      },
+    ],
+  });
+  useEffect(async()=>{
+    const isFavouriteData = await checkForWishlist(product?.sku?.replace(/[/]/g, "%2F"));
+    // console.log(isFavouriteData);
+    setIsFavourite(isFavouriteData)
+  },[])
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      // console.log(product.sku, "added");
+    } else {
+      setIsFavourite(true);
+      // console.log(product.sku, "remove");
+    }
   };
+  useEffect(() => {
+    const data = {
+      items: [product?.sku],
+    };
+    if (isFavourite) {
+      addToWishlist(data);
+      // console.log("added Successfully");
+    }
+    else{
+      // removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
+      // console.log("deleted Successfully");
+    }
+  },[isFavourite]);
+  const removeFromWL=(sku)=>{
+    const data = {
+      items: [sku],
+    };
+   deleteFromWishlist(data)
+  }
+
 
   const handleRating = (score) => {
     setRating(score);
@@ -35,7 +91,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
     setSizeButtonIndex(sizeIndex);
   };
   return (
-    <div key={product.id} className="row productNine__block">
+    <div key={product.id} className="row productTen__block">
       <div className="col-xxl-4 col-lg-6 productTen__left__block">
         <div className="productTen__header">
           <div className="productTen__new__sticker__block">
@@ -68,32 +124,44 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
           </div>
         </div>
         <div className="productNine__image__slider">
-          <AwesomeSlider transitionDelay={0.2} infinite={true}>
-            {[product_01, product_02, product_03, product_04].map(
-              (images, index) => (
-                <div className="_product__container_image">
-                  <img src={images} alt={images + index} />
-                </div>
-              )
-            )}
+        <AwesomeSlider transitionDelay={0.2} mobileTouch={true} infinite={true}>
+            {product?.media?.image?.screenshots?.map((img, index) => (
+              <div key={index} className="_product__container_image">
+                <img src={img.image} alt={img.image + index} />
+              </div>
+            ))}
           </AwesomeSlider>
         </div>
         <div className="productNine__quickView__compare__block">
-            <button onClick={() => handleChangeProductPopup(true,product)} className="productNine__button__block"><img className="productNine__button__icon" src={quick_view} alt="" /><Heading7 text="Quick View"/></button>
-            <button onClick={() => handleChangeComparePopup(true)} className="productNine__button__block"><img className="productNine__button__icon" src={compare} alt="" /><Heading7 text="Compare"/></button>
+          <button
+            onClick={() => handleChangeProductPopup(true, product)}
+            className="productNine__button__block"
+          >
+            <img
+              className="productNine__button__icon"
+              src={quick_view}
+              alt=""
+            />
+            <Heading7 text="Quick View" />
+          </button>
+          <button
+            onClick={() => handleChangeComparePopup(true)}
+            className="productNine__button__block"
+          >
+            <img className="productNine__button__icon" src={compare} alt="" />
+            <Heading7 text="Compare" />
+          </button>
         </div>
       </div>
       <div className="col-xxl-6 col-lg-6 productTen__middle__block">
-        <Heading6 text={product.productName} marginBottom={10} />
-
-       
+        <Heading6 text={product.name} marginBottom={10} />
 
         <RatingBlock
-          rating={product.rating}
-          totalRatings={product.totalRatings}
+          rating={6}
+          totalRatings={2222}
         />
         <div className="size__button__block">
-          {product.size.map((size, sizeIndex) => {
+          {productWarrentyBlock.size.map((size, sizeIndex) => {
             return (
               <button
                 key={size.id}
@@ -107,7 +175,7 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
             );
           })}
         </div>
-        <div className="productNine__feature__block">
+        {/* <div className="productNine__feature__block">
           {product.productFeatures && (
             <>
               {product.productFeatures.map((feature) => {
@@ -120,29 +188,31 @@ function ProductTen({ product,handleChangeProductPopup,handleChangeComparePopup 
               })}
             </>
           )}
-        </div>
+        </div> */}
         <Text4 text="Free delivery by" span={true} />
         <Heading7 text="Tomorrow," span={true} />
         <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
       </div>
       <div className="col-xxl-2 col-lg-12 productTen__right__block">
-      <Price
-          price={product.price}
-          marginLeft={5}
-          textAlign="right"
-          size="heading3"
-          currency={product?.currency}
-        />
+        
       <OldPrice
-          oldPrice={product.oldPrice}
+          oldPrice={product?.price_rounded}
           size="text2"
           color="#c8c8c8"
           marginBottom={10}
-          textAlign="right"
           lineThrough={true}
-          currency={product?.currency}
+          span={true}
+          currency="SAR"
         />
-         <div className="addToCart__button">
+        <Price
+          price={product?.price_rounded}
+          marginLeft={5}
+          marginBottom={10}
+          size="heading4"
+          span={true}
+          currency="SAR"
+        />
+        <div className="addToCart__button">
           <img src={shopping_cart} alt="" className="addToCart__icon" />
           Buy
         </div>

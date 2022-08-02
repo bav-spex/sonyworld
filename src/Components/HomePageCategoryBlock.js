@@ -27,7 +27,7 @@ function HomePageCategoryBlock() {
       payload: catObj,
     });
   };
-  console.log(categoryData);
+  // console.log(categoryData);
   return (
     <div className="home__page__category__block">
       <div className="row home__page__category__inner__block">

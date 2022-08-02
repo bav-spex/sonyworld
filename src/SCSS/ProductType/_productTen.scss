@@ -1,4 +1,7 @@
-.productNine__block {
+.productTen__block {
+
+  background-color: #ffffff;
+ 
   .productTen__left__block {
     padding: 0px;
     .productTen__header {
@@ -37,6 +40,11 @@
       }
     }
     .productNine__image__slider {
+      width: 70%;
+      margin: auto;
+      ._product__container_image{
+        // width: 70%;
+      }
       .awssld__content {
         background-color: inherit;
       }
