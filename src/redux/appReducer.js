@@ -7,6 +7,7 @@ const initialState = {
   wishlistData: [],
   cityLocationData: [],
   countriesLocationData: [],
+  storesLocationData: [],
   filterData: {},
   selectedCategory: {},
   loading: true,
@@ -55,6 +56,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         countriesLocationData: action.payload,
+      };
+    case types.GET__STORES__LOCATION__DATA:
+      return {
+        ...state,
+        storesLocationData: action.payload,
       };
     case types.GET__CART__QUOTE__ID:
       return {

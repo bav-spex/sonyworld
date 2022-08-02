@@ -63,7 +63,7 @@ function ProductCarousel({ productImageData }) {
     if (productImageData) {
       setcarousel(productImageData);
     }
-  },[productImageData]);
+  }, [productImageData]);
 
   useEffect(() => {
     if (index > carousel.length - 1) {
