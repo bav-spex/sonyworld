@@ -12,7 +12,8 @@ function NotifySnackbar(props) {
     const [notifyData, setNotifyData] = useState({
         open: "",
         message: "",
-        messageType: ""
+        messageType: "",
+        btnType: ""
     });
 
     useEffect(() => {
@@ -20,7 +21,8 @@ function NotifySnackbar(props) {
             let messageType = notifyMsg && notifyMsg.status === true ? 'success' : 'error';
             let isOpen = notifyMsg && notifyMsg.message ? true : false
             let message = notifyMsg && notifyMsg.message;
-            setNotifyData({ ...notifyData, open: isOpen, messageType: messageType, message: message });
+            let btnClass = notifyMsg && notifyMsg.status === true ? 'toast align-items-center text-white bg-success position-fixed top-0 end-0' : 'toast align-items-center text-white bg-danger position-fixed top-0 end-0';
+            setNotifyData({ ...notifyData, open: isOpen, messageType: messageType, message: message, btnType: btnClass });
             setTimeout(() => {
                 let notifyMsg = { message: '' }
                 dispatch(services.notifyClear(notifyMsg))
@@ -58,14 +60,25 @@ function NotifySnackbar(props) {
                 </div>
             } */}
 
-            <div className="toast align-items-center text-white bg-primary position-fixed top-0 end-0" style={{ zIndex: 11 }} role="alert" aria-live="assertive" aria-atomic="true">
-                <div className="d-flex">
-                    <div className="toast-body">
-                        Hello, world! This is a toast message.
+            {notifyMsg && notifyData.message !== "" &&
+                <div className={notifyData.btnType} style={{ zIndex: 11, display: 'block' }} role="alert" aria-live="assertive" aria-atomic="true">
+                    <div className="d-flex">
+                        <div className="toast-body">
+                            {notifyData.message}
+                        </div>
+                        <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-            </div>
+            }
+
+            {/* // <div className="toast align-items-center text-white bg-primary position-fixed top-0 end-0" style={{ zIndex: 11 }} role="alert" aria-live="assertive" aria-atomic="true">
+            //     <div className="d-flex">
+            //         <div className="toast-body">
+            //             Hello, world! This is a toast message.
+            //         </div>
+            //         <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            //     </div>
+            // </div> */}
         </>
     );
 }
