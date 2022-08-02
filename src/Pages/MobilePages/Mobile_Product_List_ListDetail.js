@@ -142,7 +142,7 @@ function Mobile_Product_List_ListDetail() {
 
     return (
         <>
-            <div key={product.id} className="row mb__product__list__detail__block">
+            <div className="row mb__product__list__detail__block">
                 <div className="col-4 productTen__left__block">
                     <div className="productTen__header">
                         <div className="productTen__new__sticker__block">
@@ -160,7 +160,7 @@ function Mobile_Product_List_ListDetail() {
                         <AwesomeSlider transitionDelay={0.2} infinite={true}>
                             {[product_01, product_02, product_03, product_04].map(
                                 (images, index) => (
-                                    <div className="_product__container_image">
+                                    <div key={index} className="_product__container_image">
                                         <img src={images} alt={images + index} />
                                     </div>
                                 )
@@ -216,9 +216,9 @@ function Mobile_Product_List_ListDetail() {
                     <div className="productNine__feature__block">
                         {product.productFeatures && (
                             <>
-                                {product.productFeatures.map((feature) => {
+                                {product.productFeatures.map((feature,index) => {
                                     return (
-                                        <div className="feature__text__block">
+                                        <div key={index} className="feature__text__block">
                                             <div className="feature__bullet"></div>
                                             <Text4 text={feature.text} />
                                         </div>
@@ -238,7 +238,7 @@ function Mobile_Product_List_ListDetail() {
                     </div>
                 </div>
             </div>
-            <div key={product.id} className="row mb__product__list__detail__block">
+            <div className="row mb__product__list__detail__block">
                 <div className="col-4 productTen__left__block">
                     <div className="productTen__header">
                         <div className="productTen__new__sticker__block new__sticker__block__green">
@@ -256,7 +256,7 @@ function Mobile_Product_List_ListDetail() {
                         <AwesomeSlider transitionDelay={0.2} infinite={true}>
                             {[product_01, product_02, product_03, product_04].map(
                                 (images, index) => (
-                                    <div className="_product__container_image">
+                                    <div key={index} className="_product__container_image">
                                         <img src={images} alt={images + index} />
                                     </div>
                                 )
@@ -312,9 +312,9 @@ function Mobile_Product_List_ListDetail() {
                     <div className="productNine__feature__block">
                         {product.productFeatures && (
                             <>
-                                {product.productFeatures.map((feature) => {
+                                {product.productFeatures.map((feature,index) => {
                                     return (
-                                        <div className="feature__text__block">
+                                        <div key={index} className="feature__text__block">
                                             <div className="feature__bullet"></div>
                                             <Text4 text={feature.text} />
                                         </div>
@@ -334,7 +334,7 @@ function Mobile_Product_List_ListDetail() {
                     </div>
                 </div>
             </div>
-            <div key={product.id} className="row mb__product__list__detail__block">
+            <div className="row mb__product__list__detail__block">
                 <div className="col-4 productTen__left__block">
                     <div className="productTen__header">
                         <div className="productTen__new__sticker__block">
@@ -352,7 +352,7 @@ function Mobile_Product_List_ListDetail() {
                         <AwesomeSlider transitionDelay={0.2} infinite={true}>
                             {[product_01, product_02, product_03, product_04].map(
                                 (images, index) => (
-                                    <div className="_product__container_image">
+                                    <div key={index} className="_product__container_image">
                                         <img src={images} alt={images + index} />
                                     </div>
                                 )
@@ -408,9 +408,9 @@ function Mobile_Product_List_ListDetail() {
                     <div className="productNine__feature__block">
                         {product.productFeatures && (
                             <>
-                                {product.productFeatures.map((feature) => {
+                                {product.productFeatures.map((feature,index) => {
                                     return (
-                                        <div className="feature__text__block">
+                                        <div key={index} className="feature__text__block">
                                             <div className="feature__bullet"></div>
                                             <Text4 text={feature.text} />
                                         </div>
@@ -430,7 +430,7 @@ function Mobile_Product_List_ListDetail() {
                     </div>
                 </div>
             </div>
-            <div key={product.id} className="row mb__product__list__detail__block">
+            <div className="row mb__product__list__detail__block">
                 <div className="col-4 productTen__left__block">
                     <div className="productTen__header">
                         <div className="productTen__new__sticker__block new__sticker__block__green">
@@ -448,7 +448,7 @@ function Mobile_Product_List_ListDetail() {
                         <AwesomeSlider transitionDelay={0.2} infinite={true}>
                             {[product_01, product_02, product_03, product_04].map(
                                 (images, index) => (
-                                    <div className="_product__container_image">
+                                    <div key={index} className="_product__container_image">
                                         <img src={images} alt={images + index} />
                                     </div>
                                 )
@@ -504,9 +504,9 @@ function Mobile_Product_List_ListDetail() {
                     <div className="productNine__feature__block">
                         {product.productFeatures && (
                             <>
-                                {product.productFeatures.map((feature) => {
+                                {product.productFeatures.map((feature,index) => {
                                     return (
-                                        <div className="feature__text__block">
+                                        <div key={index} className="feature__text__block">
                                             <div className="feature__bullet"></div>
                                             <Text4 text={feature.text} />
                                         </div>

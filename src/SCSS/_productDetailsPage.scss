@@ -224,6 +224,7 @@
                 background-color: #dc3a1a;
                 text-align: center;
                 text-transform: uppercase;
+                cursor: pointer;
                 .pd__addToCart__icon {
                   margin: 0px 20px 0px 0px;
                 }
@@ -291,6 +292,7 @@
                 text-align: center;
                 text-transform: uppercase;
                 margin: 0px 0px 20px;
+                cursor: pointer;
                 .exp__rd__addToCart__icon {
                   margin: 0px 20px 0px 0px;
                 }
@@ -427,6 +429,10 @@ width: 200px;
       border: none;
       margin: 0px 20px;
       height: 64px;
+      cursor:pointer;
+      display:flex;
+      justify-content: center;
+      align-items: center;
     }
     .build__bundle___button {
       text-decoration: none;
@@ -462,7 +468,7 @@ width: 200px;
       align-items: center;
       margin: 0px 20px;
       height: 64px;
-
+      cursor: pointer;
       .addToCart__icon {
         margin: 0px 10px 0px 0px;
       }

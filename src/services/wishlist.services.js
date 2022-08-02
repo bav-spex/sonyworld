@@ -19,19 +19,19 @@ export const addToWishlist = async(data) => {
 };
 
 export const deleteFromWishlist = async(data) => {
+    console.log(data);
     const wishlistData = await axios.delete(
         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
         data
     );
-    // console.log(wishlistData,"addToWishlist")
+    console.log(wishlistData,"addToWishlist")
     return wishlistData;
 };
 
-// export const deleteFromWishlist = async(data) => {
-//     const wishlistData = await axios.delete(
-//         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
-//         data
-//     );
-//     console.log(wishlistData, "addToWishlist")
-//     return wishlistData;
-// };
+export const checkForWishlist = async(sku) => {
+    const wishlistData = await axios.get(
+        `${process.env.REACT_APP_PROJECT_API_URL}/V1/product/${sku}/in-wishlist`
+    );
+    console.log(wishlistData, "addToWishlist")
+    return wishlistData.data.isInWishlist;
+};
