@@ -30,10 +30,10 @@ export const getCartData = async () => {
 
 
 export const getAvailablePaymentMethods = async () => {
-  console.log("Payment method Data >>>>>>")
+  // console.log("Payment method Data >>>>>>")
   const paymentMethodData = await axios.get(
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/available-payment-methods`
   );
-  console.log(paymentMethodData,"cartData")
-  return paymentMethodData;
+  console.log(paymentMethodData,"paymentMethodData")
+  return paymentMethodData.data;
 };

@@ -95,18 +95,18 @@ function ProductNine({
         </div> */}
       </div>
       <div className="productNine__content">
-        <Link
+        <div
           className="productNine__image__slider"
-          to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+          // to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
         >
-          <AwesomeSlider transitionDelay={0.2}>
+          <AwesomeSlider transitionDelay={0.2} mobileTouch={true} infinite={true}>
             {product?.media?.image?.screenshots?.map((img, index) => (
               <div key={index} className="_product__container_image">
                 <img src={img.image} alt={img.image + index} />
               </div>
             ))}
           </AwesomeSlider>
-        </Link>
+        </div>
         <Link className="productNine__name__link"
           to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
         <p className="productNine__name">  {product.name}</p>

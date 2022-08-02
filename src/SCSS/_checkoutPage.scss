@@ -283,6 +283,31 @@
             }
             .delivery__pickup__store {
             }
+            .continue__button__block{
+              display :flex ;
+              align-items: center;
+              justify-content: space-between;
+              .buynow___button {
+                text-decoration: none;
+                border-radius: 5px;
+                color: #ffffff;
+                font-size: 16px;
+                font-family: "arialbold";
+                letter-spacing: 0.85px;
+                padding: 10px 60px;
+                background-color: #dc3a1a;
+                text-align: center;
+                text-transform: uppercase;
+                width: fit-content;
+                border: none;
+                margin: 0px;
+                height: 64px;
+                cursor:pointer;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
           }
           .checkout__page__horizontal__line {
             border-bottom: 1px solid #acacac;
@@ -295,7 +320,48 @@
         .user__payment__block {
           background-color: #ffffff;
           box-shadow: 0px 3px 6px #0000000a;
-          margin: 20px 0px;
+          margin: 0px 0px;
+          padding: 0px 20px 20px;
+          .payment__block {
+            padding: 16px 0px;
+            .payment__title__block {
+              display: flex;
+              align-items: center;
+              padding: 0px 16px;
+              margin: 0px 0px 20px;
+            }
+            .payment__form__main__block {
+              margin: 0px 0px 10px;
+              .payment__form__block {
+                display: flex;
+                align-items: center;
+                padding: 20px;
+                background: #f2f2f2 0% 0% no-repeat padding-box;
+                border-radius: 5px;
+                .payment__input__check {
+                  accent-color: #ff4f04;
+                  height: 30px;
+                  width: 30px;
+                  border-radius: 10px;
+                  margin: 0px 16px 0px 0px;
+                  border: 30px solid #303030;
+                  text-transform: uppercase;
+                }
+                .payment__selection__text {
+                  margin: 0px;
+                }
+              }
+              .payment__detail__form__block{
+                padding: 20px;
+                background: #ffffff 0% 0% no-repeat padding-box;
+                border: 1px solid #eeeeee;
+                border-radius: 5px;
+                .payment__card__block{
+                  display: flex;
+                }
+              }
+            }
+          }
         }
         .order__summary__block {
           background-color: #ffffff;

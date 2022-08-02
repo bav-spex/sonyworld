@@ -5,11 +5,14 @@ export {
     isEmailAvailable,  // is-email-available
     isUsernameAvailable,  // is-username-available
     checkPasswordStrength,  // check-password-strength
+    customerLogout,  // logout
 } from './customer/customer';
 
 export {
     createCustomerAddress, // create customer address 
     getCustomerAddressList, // get customer address 
+    updateCustomerAddress, // update customer address
+    deleteCustomerAddress, // delete customer address
 } from './customerAddress/customerAddress';
 
 export {
