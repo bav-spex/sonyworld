@@ -662,6 +662,9 @@ function Cart_Page() {
   const [disableRightArrow, setDisableRightArrow] = useState(false);
   const [arrowState, setArrowState] = useState(true);
   const [selectCategoryIndex, setSelectCategoryIndex] = useState(0);
+  const [cartProductData, setCartProductData] = useState();
+    const [loading, setLoading] = useState(true);
+    const [cartTotalData, setCartTotalData] = useState();
   // const [cartData, setCartData] = useState();
   const productCategorySelect = (categoryIndex, category) => {
     console.log(categoryIndex, category);
@@ -671,16 +674,18 @@ function Cart_Page() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("cart API Calling >>>")
+    console.log("cart API Calling >>>");
     dispatch(loadCartData());
   }, []);
 
   const cartData = useSelector((state) => state.appData.cartData);
-
+  // console.log(cartData);
   useEffect(() => {
     if (Object.values(cartData).length !== 0) {
-      // setProduct(productData);
-      // setLoading(false);
+      setCartProductData(cartData);
+      console.log(cartData.totals_data);
+      setCartTotalData(cartData.totals_data);
+      setLoading(false);
       // console.log(product.reviewSummary.totals);
     }
   }, [cartData]);
@@ -707,13 +712,16 @@ function Cart_Page() {
       document.querySelector(".sc__page__button__block").clientWidth -
       800;
   };
+  if (loading) {
+    return <h1>Product Loading...</h1>;
+  }
   return (
     <>
       <div className="d-block d-lg-none mb__cart__page">
         <MobileCartPage />
       </div>
       <div className="container-fluid shopping__cart__page__container  d-none d-lg-block">
-      <BreadCrumbs title="Shopping Cart" />
+        <BreadCrumbs title="Shopping Cart" />
         <div className="shopping__cart__page__block">
           <p className="sc__page__title">
             {" "}
@@ -723,9 +731,14 @@ function Cart_Page() {
 
           <div className="row shopping__cart__page__inner__block">
             <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
-              <ShoppipngCartProduct product={product} />
-              <hr className="sc__page__horizontal__line"></hr>
-              <ShoppipngCartProduct product={product} />
+              {cartData && cartData.items.map((product,productIndex)=>{
+                return(
+
+                  <ShoppipngCartProduct key={product.item} product={product} />
+                )
+              })}
+              {/* <hr className="sc__page__horizontal__line"></hr>
+              <ShoppipngCartProduct product={product} /> */}
               <div className="sc__newArrival__block">
                 <Heading2
                   text="People Who Bought Also Bought"
@@ -747,27 +760,28 @@ function Cart_Page() {
                   {" "}
                   <Heading3 text="Order Summary" />
                 </p>
+               
                 <div className="sc__ps__detail__block">
-                  <div className="sc__ps__detail__inner__block">
-                    <Text3 text="Shipping" color="#727272" />
-                    <Price price={20} size="heading7" />
-                  </div>
-                  <div className="sc__ps__detail__inner__block">
-                    <Text3 text="Sub Total" color="#727272" />
-                    <Price price={195} size="heading7" />
-                  </div>
-                  <div className="sc__ps__detail__inner__block">
-                    <Text3 text="Discount" color="#727272" />
-                    <Price price={30} size="heading7" />
-                  </div>
-                  <div className="sc__ps__detail__inner__block">
-                    <Text3 text="Tax" color="#727272" />
-                    <Price price={10} size="heading7" />
-                  </div>
-                  <div className="sc__ps__detail__total__order__block">
-                    <Heading6 text="Order Total" color="#000000" />
-                    <Price price={3275} size="heading5" />
-                  </div>
+                {cartTotalData?.total_segments
+                    .slice(1, cartTotalData?.total_segments.length+1)
+                    .map((segment, segmentIndex) => {
+                      console.log(segment);
+                      return (
+                        <div className="sc__ps__detail__inner__block">
+                          {segment.code === "grand_total" ? (
+                            <Heading6 text={segment.title} color="#000000" />
+                          ) : (
+                            <Text3 text={segment.title} color="#000000" />
+                          )}
+                          <Price
+                            price={segment.value}
+                            size="heading7"
+                            currency={cartTotalData.base_currency_code}
+                          />
+                        </div>
+                      );
+                    })}
+                 
                 </div>
               </div>
               <Link className="checkout__button__link" to="/checkout">

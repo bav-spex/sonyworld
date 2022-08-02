@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import Heading2 from "../Components/Font/Heading2";
 import Heading4 from "../Components/Font/Heading4";
@@ -8,6 +9,9 @@ import Text3 from "../Components/Font/Text3";
 import success_check from "./../assets/Icon/success_check.svg";
 import "./../SCSS/_confirmOrderPage.scss";
 function Confirm_Order_Page() {
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  })
   return (
     <>
       <BreadCrumbs title="My Order" />
@@ -57,9 +61,9 @@ function Confirm_Order_Page() {
                 textAlign="center"
               />
             </p>
-            <button className="continue__shopping__button">
-              CONTINUE SHOPPING
-            </button>
+            <Link className="continue__shopping__button" to="/">
+            Continue Shopping
+          </Link>
           </div>
         </div>
       </div>

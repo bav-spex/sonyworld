@@ -104,7 +104,7 @@ function Home({}) {
             data.type === "single_banner" &&
             data.title === "Recently Viewed Products Single Banner"
           );
-        }).items;
+        })?.items;
       });
 
       setNewArrivalData(() => {
@@ -133,7 +133,7 @@ function Home({}) {
       setHomePageBottomSingleBanner(() => {
         return homepageData.content.find((data) => {
           return data.type === "single_banner" && data.title === "";
-        }).items;
+        })?.items;
       });
       setLoading(false);
       window.scrollTo(0, 0);
@@ -152,7 +152,7 @@ function Home({}) {
     <>
       <div className="mobile__home__page d-block d-lg-none">
         <MobileHomePage
-          homePageBottomSingleBanner={homePageBottomSingleBanner}
+          // homePageBottomSingleBanner={homePageBottomSingleBanner}
           dealsOfTheWeekData={dealsOfTheWeekData}
           topRatedData={topRatedData}
           topTrendingData={topTrendingData}
@@ -199,7 +199,7 @@ function Home({}) {
             <Link to="/products">
               <div className="adImage__block">
                 <img
-                  src={homePageBottomSingleBanner[0].imageUrl}
+                  src={banner_01}
                   alt=""
                   className="adImage__image"
                 />

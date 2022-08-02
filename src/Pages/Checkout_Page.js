@@ -41,6 +41,7 @@ import {
   getAvailablePaymentMethods,
   getCartData,
 } from "../services/cart.service";
+import { Link } from "react-router-dom";
 
 // const addressData = [
 //   {
@@ -207,7 +208,6 @@ function Checkout_Page({ reloadingHeader }) {
     dispatch(loadCountriesLocationData());
     dispatch(loadCitiesLocationData());
     window.scrollTo(0, 0);
-
   }, []);
 
   useEffect(() => {
@@ -261,6 +261,10 @@ function Checkout_Page({ reloadingHeader }) {
 
   const [checkoutClassName, setCheckoutClassName] = useState("delivery");
   const handleChangeClassName = (className) => {
+    setCheckoutClassName(className);
+  };
+  const continueFromDelivery = (newIconType, className) => {
+    setIconType(newIconType);
     setCheckoutClassName(className);
   };
   const openLoginWrapperFromAnywhere = () => {
@@ -578,7 +582,17 @@ function Checkout_Page({ reloadingHeader }) {
                       </div>
                       <div className="continue__button__block">
                         <div></div>
-                        <button className="buynow___button">Continue</button>
+                        <button
+                          onClick={() =>
+                            continueFromDelivery(
+                              { ...iconType, delivery: "done",payment:"inprogress" },
+                              "payment"
+                            )
+                          }
+                          className="continue___button"
+                        >
+                          Continue
+                        </button>
                       </div>
                     </div>
                   </>
@@ -636,7 +650,9 @@ function Checkout_Page({ reloadingHeader }) {
                     })}
                   <div className="continue__button__block">
                     <div></div>
-                    <button className="buynow___button">Continue</button>
+                    <Link className="continue___button__link" to="/user/orders/1/confirm">
+                      <button className="continue___button">Continue</button>
+                    </Link>
                   </div>
                 </div>
               </div>

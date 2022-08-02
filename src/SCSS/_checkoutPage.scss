@@ -287,7 +287,7 @@
               display :flex ;
               align-items: center;
               justify-content: space-between;
-              .buynow___button {
+              .continue___button {
                 text-decoration: none;
                 border-radius: 5px;
                 color: #ffffff;
@@ -366,25 +366,27 @@
             display :flex ;
             align-items: center;
             justify-content: space-between;
-            .buynow___button {
+            .continue___button__link {
               text-decoration: none;
-              border-radius: 5px;
-              color: #ffffff;
-              font-size: 16px;
-              font-family: "arialbold";
-              letter-spacing: 0.85px;
-              padding: 10px 60px;
-              background-color: #dc3a1a;
-              text-align: center;
-              text-transform: uppercase;
-              width: fit-content;
-              border: none;
-              margin: 0px;
-              height: 64px;
-              cursor:pointer;
-              display:flex;
-              justify-content: center;
-              align-items: center;
+              .continue___button {
+                border-radius: 5px;
+                color: #ffffff;
+                font-size: 16px;
+                font-family: "arialbold";
+                letter-spacing: 0.85px;
+                padding: 10px 60px;
+                background-color: #dc3a1a;
+                text-align: center;
+                text-transform: uppercase;
+                width: fit-content;
+                border: none;
+                margin: 0px;
+                height: 64px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
             }
           }
         }
