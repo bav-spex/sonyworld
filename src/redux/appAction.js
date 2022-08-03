@@ -167,6 +167,8 @@ const saveCartData = (data) => ({
 export const loadCartData = () => {
     return async function(dispatch) {
         const cartData = await getCartData();
+ console.log("cartData ", cartData);
+        
         dispatch(saveCartData(cartData.data));
         return cartData.data;
     };

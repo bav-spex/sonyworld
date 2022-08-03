@@ -40,8 +40,18 @@ import { loadCitiesLocationData } from "../redux/appAction";
 import {
   getAvailablePaymentMethods,
   getCartData,
+  getEstimateShippingMethods,
+  getPayfortInformation,
+  updateShippingInformation
 } from "../services/cart.service";
+import { Link } from "react-router-dom";
+import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
+import valid from "card-validator";
 
+const errMsgStyle = {
+  color: 'red',
+  margin: '5px 0px 0px'
+}
 // const addressData = [
 //   {
 //     id: 0,
@@ -146,36 +156,41 @@ const product = {
     },
   ],
 };
-const deliveryType = [
-  {
-    id: 1,
-    type: "Standard",
-    protectionText: "delivery by Mon, Apr 4",
-    price: 0,
-  },
-  {
-    id: 2,
-    type: "Express",
-    protectionText: "Same Day Delivery",
-    price: 10,
-  },
-  {
-    id: 3,
-    type: "Lightening",
-    protectionText: "Shipping",
-    price: 15,
-  },
-];
+// const deliveryType = [
+//   {
+//     id: 1,
+//     type: "Standard",
+//     protectionText: "delivery by Mon, Apr 4",
+//     price: 0,
+//   },
+//   {
+//     id: 2,
+//     type: "Express",
+//     protectionText: "Same Day Delivery",
+//     price: 10,
+//   },
+//   {
+//     id: 3,
+//     type: "Lightening",
+//     protectionText: "Shipping",
+//     price: 15,
+//   },
+// ];
 
 function Checkout_Page({ reloadingHeader }) {
   const dispatch = useDispatch();
 
   const { customerDetails } = useSelector((state) => state.customerReducer);
-
+  // console.log(customerDetails);
   const { customerAddressList, customerAddUpdateManage } = useSelector(
     (state) => state.customerAddressReducer
   );
 
+  const deliveryShippingInfo = useSelector(
+    (state) => state.appData.deliveryShippingInfo
+  );
+  console.log("deliveryShippingInfo ", deliveryShippingInfo);
+  
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
@@ -186,11 +201,62 @@ function Checkout_Page({ reloadingHeader }) {
   const [userPaymentMethod, setUserPaymentMethod] = useState();
   const [cartDetail, setCartDetail] = useState();
   const [cartTotalData, setCartTotalData] = useState();
+  const [shippingMethods, setShippingMethods] = useState();
+  const [deliveryType, setDeliveryType] = useState([]);
+  const [paymentMethodForPayfort, setPaymentMethodForPayfort] = useState({
+    method: "",
+    email: "",
+    referer_url: ""
+  })
+  const [deliveryPreferencesType, setDeliveryPreferencesType] = useState('');
+
+  const [errMsg, setErrMsg] = useState({
+    deliveryAddressList: "",
+    deliveryPreferencesType: "",
+  });
+  // useEffect(() => {
+  //   if (deliveryShippingInfo !== "") {
+     
+  //   }
+  // }, [deliveryShippingInfo]);
+  
+     
+
+  const [card, setCard] = useState({
+    cardNumber: "",
+    cardHolder: "",
+    month: "",
+    year: "",
+    cvv: ""
+  })
+
+  const [cardErrMsg, setCardErrMsg] = useState({
+    cardNumber: "",
+    cardHolder: "",
+    month: "",
+    year: "",
+    cvv: ""
+  });
+
+  useEffect(() => {
+    if (deliveryShippingInfo !== "") {
+      setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
+      setCheckoutClassName('payment');
+      setPaymentMethods(deliveryShippingInfo.payment_methods);
+      setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
+    }
+  }, [deliveryShippingInfo]);
+console.log("paymentMethods",paymentMethods);
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
     if (data) {
-      setPaymentMethods(data.paymentMethods);
-      setUserPaymentMethod(data.paymentMethods[0].code);
+      // setPaymentMethods(data.paymentMethods);
+      // setUserPaymentMethod(data.paymentMethods[0].code);
+      setPaymentMethodForPayfort({
+        method: "",
+        email: customerDetails.email,
+        referer_url: "https://alpha-api.mestores.com",
+      });
     }
     const cartData = await getCartData();
     if (data) {
@@ -200,6 +266,30 @@ function Checkout_Page({ reloadingHeader }) {
     // dispatch(loadCountriesLocationData());
     // dispatch(loadCitiesLocationData());
   }, []);
+
+  // Delivery Preferences
+  useEffect(async () => {
+    const data = await getEstimateShippingMethods();
+    // console.log(data);
+    if (data) {
+      let shippingMethods = data['shipping-methods']
+      const propertyNames = Object.keys(shippingMethods);
+      let deliveryData = [];
+      propertyNames && propertyNames.map((val, i) => {
+        let deliveryInfo = {
+          id: shippingMethods[val].shipping_method_code,
+          type: shippingMethods[val].title,
+          protectionText: "",
+          price: shippingMethods[val].shipping_cost,
+        }
+        if (shippingMethods[val].is_available === true) {
+          deliveryData.push(deliveryInfo);
+        }
+      })
+      setDeliveryType(deliveryData);
+    }
+  }, []);
+
   // console.log("cartTotalData", cartTotalData);
   useEffect(() => {
     // getAvailablePaymentMethods();
@@ -207,7 +297,6 @@ function Checkout_Page({ reloadingHeader }) {
     dispatch(loadCountriesLocationData());
     dispatch(loadCitiesLocationData());
     window.scrollTo(0, 0);
-
   }, []);
 
   useEffect(() => {
@@ -224,6 +313,9 @@ function Checkout_Page({ reloadingHeader }) {
             details: val,
           };
           updateAddressData.push(addreDetails);
+          if (val.primary === true) {
+            setSelectedAddressID(i)
+          }
         });
       setAddressData(updateAddressData);
     }
@@ -237,9 +329,13 @@ function Checkout_Page({ reloadingHeader }) {
     setEditAddressData(add);
   };
   const handleChange = (e) => {
-    // console.log(e.target.value);
+    // console.log("e.target.value ", e.target.value);
     setUserPaymentMethod(e.target.value);
   };
+  const handleChangeDeliveryPref = (e) => {
+    setDeliveryPreferencesType(e.target.value);
+  };
+
   const remove = (id) => {
     // console.log(id);
   };
@@ -261,8 +357,61 @@ function Checkout_Page({ reloadingHeader }) {
 
   const [checkoutClassName, setCheckoutClassName] = useState("delivery");
   const handleChangeClassName = (className) => {
-    setCheckoutClassName(className);
+    if(className === "payment" && deliveryShippingInfo !== ""){
+      setCheckoutClassName(className);
+    }
+    else if(deliveryShippingInfo === ""){
+      dispatch(services.notifyError({message:"please add proucts in cart, Empty cart is not can proceed further"}))
+    }else{
+      dispatch(services.notifyError({message:"select shipping information"}))
+
+    }
+    // setIconType({ ...iconType, payment: "inprogress" });
   };
+
+  const continueFromDelivery = (newIconType, className) => {
+
+    let newErrObj = {
+      deliveryPreferencesType: "",
+      deliveryAddressList: ""
+    }
+
+    if (deliveryPreferencesType !== "") {
+      newErrObj = { ...newErrObj, deliveryPreferencesType: "" }
+    } else {
+      newErrObj = { ...newErrObj, deliveryPreferencesType: "Please Select Delivery Preference" }
+    }
+    if (selectedAddressId !== "") {
+      newErrObj = { ...newErrObj, deliveryAddressList: "" }
+    } else {
+      newErrObj = { ...newErrObj, deliveryAddressList: "Please Select Delivery Address" }
+    }
+    setErrMsg(newErrObj);
+
+    let customerLoginDetails = getCustomerLoginDetails();
+    if (deliveryPreferencesType !== "" && selectedAddressId !== "" && customerLoginDetails.email !== "") {
+      let getDeliveryInfo = addressData?.[selectedAddressId]
+      let params = {
+        useAsBilling: true,
+        firstName: getDeliveryInfo.details.firstname,
+        lastName: getDeliveryInfo.details.lastname,
+        email: customerLoginDetails.email,
+        telephone: getDeliveryInfo.details.telephone,
+        city: getDeliveryInfo.details.city,
+        postCode: getDeliveryInfo.details.postcode,
+        countryId: getDeliveryInfo.details.country_id,
+        street: `${getDeliveryInfo.details.street[0]} ${getDeliveryInfo.details.street[1]}`,
+        shippingCarrierCode: deliveryPreferencesType,
+        // pickup_store: '',
+        // region_id: "0"
+      }
+      dispatch(updateShippingInformation(params));
+    }
+
+    // setIconType(newIconType);
+    // setCheckoutClassName(className);
+  };
+
   const openLoginWrapperFromAnywhere = () => {
     // console.log(document.querySelector(".login__popup__container__disable"));
     // reloadingHeader()
@@ -289,9 +438,13 @@ function Checkout_Page({ reloadingHeader }) {
     setAddressPopup(false);
   };
 
-  const openNewAddressPopup = (popupType) => {
+  const openNewAddressPopup = (popupType, addIndex, addId, add) => {
     setAddressPopup(true);
     setAddressPopupType(popupType);
+    if (popupType === 'update') {
+      setSelectedAddressID(addIndex);
+      setEditAddressData(add);
+    }
   };
 
   const deleteAddress = (deleteId) => {
@@ -299,6 +452,152 @@ function Checkout_Page({ reloadingHeader }) {
       addressId: deleteId,
     };
     dispatch(services.deleteCustomerAddress(params));
+  };
+
+
+  const handleChangePaymentMethod = (e) => {
+    console.log(e.target.value);
+    setUserPaymentMethod(e.target.value);
+    setPaymentMethodForPayfort({
+      method: e.target.value,
+      email: customerDetails.email,
+      referer_url: "https://alpha-api.mestores.com",
+    });
+  };
+  console.log(paymentMethodForPayfort);
+  const makePayment = async () => {
+
+    let validateFeild = [
+      "cardNumber",
+      "cardHolder",
+      "month",
+      "year",
+      "cvv",
+    ];
+
+    let formStatus = allFeildValidate(validateFeild, cardErrMsg);
+    setCardErrMsg(formStatus.allErrMsg);
+
+    if (formStatus.checkCardStatus === true) {
+
+      const newPaymentMethodForPayfort = { paymentMethod: paymentMethodForPayfort }
+      console.log(newPaymentMethodForPayfort);
+      const data = await getPayfortInformation(newPaymentMethodForPayfort)
+      console.log(data);
+
+    }
+
+  }
+
+
+  const validateForm = (event, newErrObj, name, value) => {
+
+    //A function to validate each input values
+    switch (name) {
+      case 'cardNumber':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Card Number is missing' }
+        } else {
+          let numberValidation = valid.number(value);
+          if (numberValidation.isPotentiallyValid === true && numberValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'cardHolder':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Card Holder is missing' }
+        } else {
+          let holderValidation = valid.cardholderName(value);
+          if (holderValidation.isPotentiallyValid === true && holderValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'month':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Month is missing' }
+        } else {
+          let monthValidation = valid.expirationMonth(value);
+          if (monthValidation.isPotentiallyValid === true && monthValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'year':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'Year is missing' }
+        } else {
+          let yearValidation = valid.expirationYear(value);
+          if (yearValidation.isPotentiallyValid === true && yearValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      case 'cvv':
+        if (value === "") {
+          newErrObj = { ...newErrObj, [name]: 'CVV is missing' }
+        } else {
+          let cvvValidation = valid.cvv(value);
+          if (cvvValidation.isPotentiallyValid === true && cvvValidation.isValid === true) {
+            newErrObj = { ...newErrObj, [name]: '' }
+          } else {
+            newErrObj = { ...newErrObj, [name]: 'invalid' }
+          }
+        }
+        break;
+      default:
+        break;
+    }
+    return newErrObj;
+  }
+
+  const handleChangeCard = async (event) => {
+    let value = event.target.value;
+    let name = event.target.name;
+    let manageErrMsg = validateForm(event, cardErrMsg, name, value);
+    setCardErrMsg(manageErrMsg);
+    setCard({ ...card, [name]: value });
+  };
+
+  const allFeildValidate = (validateFeild, allErrMsg) => {
+
+    let checkValueStatus = [];
+    let checkErrStatus = [];
+
+    validateFeild && validateFeild.map((val, i) => {
+      let keyVal = card[val];
+      let errVal = cardErrMsg[val];
+
+      allErrMsg = validateForm('', allErrMsg, val, keyVal);
+      if (keyVal !== "") {
+        checkValueStatus.push('suc')
+      }
+      if (errVal === "") {
+        checkErrStatus.push('err')
+      }
+
+    })
+
+    let checkCardStatus = false;
+    if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
+      checkCardStatus = true;
+    }
+
+    let returnData = {
+      allErrMsg: allErrMsg,
+      checkCardStatus: checkCardStatus
+    }
+
+    return returnData;
   };
 
   return (
@@ -318,8 +617,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                        ? signin_done
-                        : signin_initial
+                          ? signin_done
+                          : signin_initial
                     }
                     alt=""
                   />
@@ -330,8 +629,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -351,8 +650,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                        ? delivery_done
-                        : delivery_initial
+                          ? delivery_done
+                          : delivery_initial
                     }
                     alt=""
                   />
@@ -363,8 +662,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -384,8 +683,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                        ? payment_done
-                        : payment_initial
+                          ? payment_done
+                          : payment_initial
                     }
                     alt=""
                   />
@@ -396,8 +695,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -481,7 +780,7 @@ function Checkout_Page({ reloadingHeader }) {
                                   <div className="inner__address__button__block">
                                     <button
                                       onClick={() =>
-                                        openNewAddressPopup("update")
+                                        openNewAddressPopup("update", addIndex, add.id, add)
                                       }
                                       className="edit__button"
                                     >
@@ -499,6 +798,7 @@ function Checkout_Page({ reloadingHeader }) {
                             </div>
                           );
                         })}
+                      {errMsg.deliveryAddressList && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryAddressList}</p>}
                     </div>
                   )}
                 </div>
@@ -530,7 +830,7 @@ function Checkout_Page({ reloadingHeader }) {
                           <Heading6 text="Delivery Preferences" />
                         </div>
                         <div className="delivery__selection__block">
-                          {deliveryType.map((delivery, deliveryIndex) => {
+                          {deliveryType && deliveryType.map((delivery, deliveryIndex) => {
                             return (
                               <div
                                 key={delivery.id}
@@ -541,8 +841,9 @@ function Checkout_Page({ reloadingHeader }) {
                                     type="radio"
                                     className="delivery__input__check"
                                     name="deliveryType"
-                                    value={delivery.type}
-                                    onChange={handleChange}
+                                    value={delivery.id}
+                                    onChange={(e) => handleChangeDeliveryPref(e)}
+                                  // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                   />
                                   <p className="delivery__selection__text">
                                     <Heading4 text={delivery.type} />
@@ -568,6 +869,7 @@ function Checkout_Page({ reloadingHeader }) {
                               </div>
                             );
                           })}
+                          {errMsg.deliveryPreferencesType && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryPreferencesType}</p>}
                         </div>
                       </div>
                       <div className="col-12 col-sm-12 col-md-5  delivery__pickup__store">
@@ -578,7 +880,17 @@ function Checkout_Page({ reloadingHeader }) {
                       </div>
                       <div className="continue__button__block">
                         <div></div>
-                        <button className="buynow___button">Continue</button>
+                        <button
+                          onClick={() =>
+                            continueFromDelivery(
+                              // { ...iconType, delivery: "done", payment: "inprogress" },
+                              // "payment"
+                            )
+                          }
+                          className="continue___button"
+                        >
+                          Continue
+                        </button>
                       </div>
                     </div>
                   </>
@@ -614,16 +926,105 @@ function Checkout_Page({ reloadingHeader }) {
                               className="payment__input__check"
                               name="paymentType"
                               value={payment.code}
-                              onChange={handleChange}
+                              onChange={handleChangePaymentMethod}
                             />
                             <p className="payment__selection__text">
-                              <Heading4 text={payment.english_name} />
+                              <Heading4 text={payment.title} />
                             </p>
                           </div>
                           {userPaymentMethod === payment.code ? (
                             <div className="payment__detail__form__block">
                               {userPaymentMethod === "payfort_fort_cc" ? (
-                                <div className="payment__card__block"></div>
+                                <div className="address__content__block">
+                                  <div className="payment__card__block">
+                                    <div className="row address__form__field__row">
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">First Name</p> */}
+                                        <Heading7 text="Credit Card Number" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="xxxx-xxxx-xxxx-xxxx"
+                                            className="form__field"
+                                            id="name"
+                                            name="cardNumber"
+                                            value={card.cardNumber}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.cardNumber && <p className="invalid__message">{cardErrMsg.cardNumber}</p>}
+                                      </div>
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">Mobile Number</p> */}
+                                        <Heading7 text="Credit Holder Name" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="Credit Holder Name"
+                                            className="form__field"
+                                            id="cardHolder"
+                                            name="cardHolder"
+                                            value={card.cardHolder}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.cardHolder && <p className="invalid__message">{cardErrMsg.cardHolder}</p>}
+                                      </div>
+                                    </div>
+                                    <div className="row address__form__field__row">
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">First Name</p> */}
+                                        <Heading7 text="Month" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="MM"
+                                            className="form__field"
+                                            id="month"
+                                            name="month"
+                                            value={card.month}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.month && <p className="invalid__message">{cardErrMsg.month}</p>}
+                                      </div>
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">Mobile Number</p> */}
+                                        <Heading7 text="Year" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="YYYY"
+                                            className="form__field"
+                                            id="year"
+                                            name="year"
+                                            value={card.year}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.year && <p className="invalid__message">{cardErrMsg.year}</p>}
+                                      </div>
+                                    </div>
+                                    <div className="row address__form__field__row">
+                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                        {/* <p className="form__label">First Name</p> */}
+                                        <Heading7 text="CVV" marginBottom={10} />
+                                        <div className="field__block">
+                                          <input
+                                            type="text"
+                                            placeholder="CVV"
+                                            className="form__field"
+                                            id="cvv"
+                                            name="cvv"
+                                            value={card.cvv}
+                                            onChange={(e) => handleChangeCard(e)}
+                                          />
+                                        </div>
+                                        {cardErrMsg.cvv && <p className="invalid__message">{cardErrMsg.cvv}</p>}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               ) : (
                                 ""
                               )}
@@ -636,7 +1037,9 @@ function Checkout_Page({ reloadingHeader }) {
                     })}
                   <div className="continue__button__block">
                     <div></div>
-                    <button className="buynow___button">Continue</button>
+                    <Link className="continue___button__link" to="/checkout">
+                      <button onClick={() => makePayment()} className="continue___button">Continue</button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -686,7 +1089,7 @@ function Checkout_Page({ reloadingHeader }) {
                             <Text3 text={segment.title} color="#000000" />
                           )}
                           <Price
-                            price={segment.value}
+                            price={segment.value === null ? 0 : segment.value}
                             size="heading7"
                             currency={cartTotalData.base_currency_code}
                           />
@@ -707,11 +1110,13 @@ function Checkout_Page({ reloadingHeader }) {
             : "container-fluid address__popup__container__disable"
         }
       >
-        <AddressPopup
-          closeLoginPopup={closeLoginPopup}
-          editAddressData={editAddressData}
-          popupType={addressPopupType}
-        />
+        {addressPopup === true &&
+          <AddressPopup
+            closeLoginPopup={closeLoginPopup}
+            editAddressData={editAddressData}
+            popupType={addressPopupType}
+          />
+        }
       </div>
     </>
   );

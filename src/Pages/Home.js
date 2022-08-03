@@ -78,13 +78,16 @@ function Home({}) {
   // },[homePageData])
   useEffect(() => {
     if (Object.values(homepageData).length !== 0) {
+      // setBannerData(() => {
+      //   return homepageData.content.find((data) => {
+      //     return (
+      //       data.type === "multiple_banner" &&
+      //       data.title === "Main Banner Sliders"
+      //     );
+      //   })?.items;
+      // });
       setBannerData(() => {
-        return homepageData.content.find((data) => {
-          return (
-            data.type === "multiple_banner" &&
-            data.title === "Main Banner Sliders"
-          );
-        })?.items;
+        return homepageData.content[0].items;
       });
       setFeatureProductsData(() => {
         return homepageData.content.find((data) => {
@@ -104,7 +107,7 @@ function Home({}) {
             data.type === "single_banner" &&
             data.title === "Recently Viewed Products Single Banner"
           );
-        }).items;
+        })?.items;
       });
 
       setNewArrivalData(() => {
@@ -117,13 +120,16 @@ function Home({}) {
           return data.type === "slider" && data.title === "Top Trending";
         }).products;
       });
+      // setDealsOfTheWeekData(() => {
+      //   return homepageData.content.find((data) => {
+      //     return (
+      //       data.type === "multiple_banner" &&
+      //       data.title === "Deals of the Week"
+      //     );
+      //   })?.items;
+      // });
       setDealsOfTheWeekData(() => {
-        return homepageData.content.find((data) => {
-          return (
-            data.type === "multiple_banner" &&
-            data.title === "Deals of the Week"
-          );
-        })?.items;
+        return homepageData.content[1].items;
       });
       setTopRatedData(() => {
         return homepageData.content.find((data) => {
@@ -133,7 +139,7 @@ function Home({}) {
       setHomePageBottomSingleBanner(() => {
         return homepageData.content.find((data) => {
           return data.type === "single_banner" && data.title === "";
-        }).items;
+        })?.items;
       });
       setLoading(false);
       window.scrollTo(0, 0);
@@ -152,7 +158,7 @@ function Home({}) {
     <>
       <div className="mobile__home__page d-block d-lg-none">
         <MobileHomePage
-          homePageBottomSingleBanner={homePageBottomSingleBanner}
+          // homePageBottomSingleBanner={homePageBottomSingleBanner}
           dealsOfTheWeekData={dealsOfTheWeekData}
           topRatedData={topRatedData}
           topTrendingData={topTrendingData}
@@ -187,7 +193,7 @@ function Home({}) {
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"
         />
-        {/* <DealsOfTheWeek dealsOfTheWeekData={dealsOfTheWeekData} /> */}
+        <DealsOfTheWeek dealsOfTheWeekData={dealsOfTheWeekData} />
         <ProductContainer
           sectionTitle="Top Rated Products"
           carouselData={topRatedData}
@@ -199,7 +205,7 @@ function Home({}) {
             <Link to="/products">
               <div className="adImage__block">
                 <img
-                  src={homePageBottomSingleBanner[0].imageUrl}
+                  src={banner_01}
                   alt=""
                   className="adImage__image"
                 />

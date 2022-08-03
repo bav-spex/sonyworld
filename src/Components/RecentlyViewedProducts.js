@@ -55,7 +55,7 @@ function RecentlyViewedProducts({ categoryData,recentlyViewedProductsData, recen
             </div>
             <div className="rv__right__block">
               <img
-                src={recentlyViewedProductsBanner[0].imageUrl}
+                src={banner_02}
                 alt="shop now Image"
                 className="rv__right__part__bg__image"
               />

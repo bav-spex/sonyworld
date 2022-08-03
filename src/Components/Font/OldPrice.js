@@ -16,8 +16,8 @@ import "./../../SCSS/Font/_font.scss";
 function OldPrice({preText,postText, oldPrice,currency, size ,color,marginLeft,marginBottom,lineThrough,span,textAlign,textTransform}) {
   const finalPrice =
   oldPrice.toString().length > 3
-  ? `${preText ? preText : ""} ${currency}${oldPrice.toString().slice(0, -3)},${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`
-  : `${preText ? preText : ""} ${currency}${oldPrice.toString().slice(-3)}.00${postText ? postText : ""}`;
+  ? `${preText ? preText : ""} ${currency}${oldPrice.toString().slice(0, -3)}${oldPrice.toString().slice(-3)}${postText ? postText : ""}`
+  : `${preText ? preText : ""} ${currency}${oldPrice.toString().slice(-3)}${postText ? postText : ""}`;
 
   return (
     <>
