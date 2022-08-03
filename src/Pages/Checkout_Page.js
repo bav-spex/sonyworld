@@ -35,23 +35,23 @@ import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCar
 import Heading2 from "../Components/Font/Heading2";
 import ProductThree from "../Components/ProductType/ProductThree";
 import AddressPopup from "../Components/Popup/AddressPopup";
-import { loadCountriesLocationData } from "../redux/appAction";
+import { loadCountriesLocationData, loadPayfortInformation } from "../redux/appAction";
 import { loadCitiesLocationData } from "../redux/appAction";
 import {
   getAvailablePaymentMethods,
   getCartData,
   getEstimateShippingMethods,
   getPayfortInformation,
-  updateShippingInformation
+  updateShippingInformation,
 } from "../services/cart.service";
 import { Link } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 import valid from "card-validator";
 
 const errMsgStyle = {
-  color: 'red',
-  margin: '5px 0px 0px'
-}
+  color: "red",
+  margin: "5px 0px 0px",
+};
 // const addressData = [
 //   {
 //     id: 0,
@@ -189,8 +189,8 @@ function Checkout_Page({ reloadingHeader }) {
   const deliveryShippingInfo = useSelector(
     (state) => state.appData.deliveryShippingInfo
   );
-  console.log("deliveryShippingInfo ", deliveryShippingInfo);
-  
+  // console.log("deliveryShippingInfo ", deliveryShippingInfo);
+
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
@@ -206,9 +206,9 @@ function Checkout_Page({ reloadingHeader }) {
   const [paymentMethodForPayfort, setPaymentMethodForPayfort] = useState({
     method: "",
     email: "",
-    referer_url: ""
-  })
-  const [deliveryPreferencesType, setDeliveryPreferencesType] = useState('');
+    referer_url: "",
+  });
+  const [deliveryPreferencesType, setDeliveryPreferencesType] = useState("");
 
   const [errMsg, setErrMsg] = useState({
     deliveryAddressList: "",
@@ -216,37 +216,35 @@ function Checkout_Page({ reloadingHeader }) {
   });
   // useEffect(() => {
   //   if (deliveryShippingInfo !== "") {
-     
+
   //   }
   // }, [deliveryShippingInfo]);
-  
-     
 
   const [card, setCard] = useState({
     cardNumber: "",
     cardHolder: "",
     month: "",
     year: "",
-    cvv: ""
-  })
+    cvv: "",
+  });
 
   const [cardErrMsg, setCardErrMsg] = useState({
     cardNumber: "",
     cardHolder: "",
     month: "",
     year: "",
-    cvv: ""
+    cvv: "",
   });
 
   useEffect(() => {
     if (deliveryShippingInfo !== "") {
       setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
-      setCheckoutClassName('payment');
+      setCheckoutClassName("payment");
       setPaymentMethods(deliveryShippingInfo.payment_methods);
       setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
     }
   }, [deliveryShippingInfo]);
-console.log("paymentMethods",paymentMethods);
+  // console.log("paymentMethods", paymentMethods);
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
     if (data) {
@@ -272,20 +270,21 @@ console.log("paymentMethods",paymentMethods);
     const data = await getEstimateShippingMethods();
     // console.log(data);
     if (data) {
-      let shippingMethods = data['shipping-methods']
+      let shippingMethods = data["shipping-methods"];
       const propertyNames = Object.keys(shippingMethods);
       let deliveryData = [];
-      propertyNames && propertyNames.map((val, i) => {
-        let deliveryInfo = {
-          id: shippingMethods[val].shipping_method_code,
-          type: shippingMethods[val].title,
-          protectionText: "",
-          price: shippingMethods[val].shipping_cost,
-        }
-        if (shippingMethods[val].is_available === true) {
-          deliveryData.push(deliveryInfo);
-        }
-      })
+      propertyNames &&
+        propertyNames.map((val, i) => {
+          let deliveryInfo = {
+            id: shippingMethods[val].shipping_method_code,
+            type: shippingMethods[val].title,
+            protectionText: "",
+            price: shippingMethods[val].shipping_cost,
+          };
+          if (shippingMethods[val].is_available === true) {
+            deliveryData.push(deliveryInfo);
+          }
+        });
       setDeliveryType(deliveryData);
     }
   }, []);
@@ -314,7 +313,7 @@ console.log("paymentMethods",paymentMethods);
           };
           updateAddressData.push(addreDetails);
           if (val.primary === true) {
-            setSelectedAddressID(i)
+            setSelectedAddressID(i);
           }
         });
       setAddressData(updateAddressData);
@@ -357,40 +356,54 @@ console.log("paymentMethods",paymentMethods);
 
   const [checkoutClassName, setCheckoutClassName] = useState("delivery");
   const handleChangeClassName = (className) => {
-    if(className === "payment" && deliveryShippingInfo !== ""){
+    if (className === "payment" && deliveryShippingInfo !== "") {
       setCheckoutClassName(className);
-    }
-    else if(deliveryShippingInfo === ""){
-      dispatch(services.notifyError({message:"please add proucts in cart, Empty cart is not can proceed further"}))
-    }else{
-      dispatch(services.notifyError({message:"select shipping information"}))
-
+    } else if (deliveryShippingInfo === "") {
+      dispatch(
+        services.notifyError({
+          message:
+            "please add proucts in cart, Empty cart is not can proceed further",
+        })
+      );
+    } else {
+      dispatch(
+        services.notifyError({ message: "select shipping information" })
+      );
     }
     // setIconType({ ...iconType, payment: "inprogress" });
   };
 
   const continueFromDelivery = (newIconType, className) => {
-
     let newErrObj = {
       deliveryPreferencesType: "",
-      deliveryAddressList: ""
-    }
+      deliveryAddressList: "",
+    };
 
     if (deliveryPreferencesType !== "") {
-      newErrObj = { ...newErrObj, deliveryPreferencesType: "" }
+      newErrObj = { ...newErrObj, deliveryPreferencesType: "" };
     } else {
-      newErrObj = { ...newErrObj, deliveryPreferencesType: "Please Select Delivery Preference" }
+      newErrObj = {
+        ...newErrObj,
+        deliveryPreferencesType: "Please Select Delivery Preference",
+      };
     }
     if (selectedAddressId !== "") {
-      newErrObj = { ...newErrObj, deliveryAddressList: "" }
+      newErrObj = { ...newErrObj, deliveryAddressList: "" };
     } else {
-      newErrObj = { ...newErrObj, deliveryAddressList: "Please Select Delivery Address" }
+      newErrObj = {
+        ...newErrObj,
+        deliveryAddressList: "Please Select Delivery Address",
+      };
     }
     setErrMsg(newErrObj);
 
     let customerLoginDetails = getCustomerLoginDetails();
-    if (deliveryPreferencesType !== "" && selectedAddressId !== "" && customerLoginDetails.email !== "") {
-      let getDeliveryInfo = addressData?.[selectedAddressId]
+    if (
+      deliveryPreferencesType !== "" &&
+      selectedAddressId !== "" &&
+      customerLoginDetails.email !== ""
+    ) {
+      let getDeliveryInfo = addressData?.[selectedAddressId];
       let params = {
         useAsBilling: true,
         firstName: getDeliveryInfo.details.firstname,
@@ -404,7 +417,7 @@ console.log("paymentMethods",paymentMethods);
         shippingCarrierCode: deliveryPreferencesType,
         // pickup_store: '',
         // region_id: "0"
-      }
+      };
       dispatch(updateShippingInformation(params));
     }
 
@@ -441,7 +454,7 @@ console.log("paymentMethods",paymentMethods);
   const openNewAddressPopup = (popupType, addIndex, addId, add) => {
     setAddressPopup(true);
     setAddressPopupType(popupType);
-    if (popupType === 'update') {
+    if (popupType === "update") {
       setSelectedAddressID(addIndex);
       setEditAddressData(add);
     }
@@ -454,7 +467,6 @@ console.log("paymentMethods",paymentMethods);
     dispatch(services.deleteCustomerAddress(params));
   };
 
-
   const handleChangePaymentMethod = (e) => {
     console.log(e.target.value);
     setUserPaymentMethod(e.target.value);
@@ -464,93 +476,102 @@ console.log("paymentMethods",paymentMethods);
       referer_url: "https://alpha-api.mestores.com",
     });
   };
-  console.log(paymentMethodForPayfort);
+  // console.log(paymentMethodForPayfort);
   const makePayment = async () => {
-
-    let validateFeild = [
-      "cardNumber",
-      "cardHolder",
-      "month",
-      "year",
-      "cvv",
-    ];
+    let validateFeild = ["cardNumber", "cardHolder", "month", "year", "cvv"];
 
     let formStatus = allFeildValidate(validateFeild, cardErrMsg);
     setCardErrMsg(formStatus.allErrMsg);
-
-    if (formStatus.checkCardStatus === true) {
-
-      const newPaymentMethodForPayfort = { paymentMethod: paymentMethodForPayfort }
+    if (paymentMethodForPayfort.includes("payfort_fort_cc")) {
+      const newPaymentMethodForPayfort = {
+        paymentMethod: paymentMethodForPayfort,
+      };
       console.log(newPaymentMethodForPayfort);
-      const data = await getPayfortInformation(newPaymentMethodForPayfort)
-      console.log(data);
-
+      dispatch(loadPayfortInformation(newPaymentMethodForPayfort))
+    } else if (formStatus.checkCardStatus === true) {
+      const newPaymentMethodForPayfort = {
+        paymentMethod: paymentMethodForPayfort,
+      };
+      console.log(newPaymentMethodForPayfort);
+     dispatch(loadPayfortInformation(newPaymentMethodForPayfort))
     }
-
-  }
-
+  };
 
   const validateForm = (event, newErrObj, name, value) => {
-
     //A function to validate each input values
     switch (name) {
-      case 'cardNumber':
+      case "cardNumber":
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Card Number is missing' }
+          newErrObj = { ...newErrObj, [name]: "Card Number is missing" };
         } else {
           let numberValidation = valid.number(value);
-          if (numberValidation.isPotentiallyValid === true && numberValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
+          if (
+            numberValidation.isPotentiallyValid === true &&
+            numberValidation.isValid === true
+          ) {
+            newErrObj = { ...newErrObj, [name]: "" };
           } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
+            newErrObj = { ...newErrObj, [name]: "invalid" };
           }
         }
         break;
-      case 'cardHolder':
+      case "cardHolder":
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Card Holder is missing' }
+          newErrObj = { ...newErrObj, [name]: "Card Holder is missing" };
         } else {
           let holderValidation = valid.cardholderName(value);
-          if (holderValidation.isPotentiallyValid === true && holderValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
+          if (
+            holderValidation.isPotentiallyValid === true &&
+            holderValidation.isValid === true
+          ) {
+            newErrObj = { ...newErrObj, [name]: "" };
           } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
+            newErrObj = { ...newErrObj, [name]: "invalid" };
           }
         }
         break;
-      case 'month':
+      case "month":
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Month is missing' }
+          newErrObj = { ...newErrObj, [name]: "Month is missing" };
         } else {
           let monthValidation = valid.expirationMonth(value);
-          if (monthValidation.isPotentiallyValid === true && monthValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
+          if (
+            monthValidation.isPotentiallyValid === true &&
+            monthValidation.isValid === true
+          ) {
+            newErrObj = { ...newErrObj, [name]: "" };
           } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
+            newErrObj = { ...newErrObj, [name]: "invalid" };
           }
         }
         break;
-      case 'year':
+      case "year":
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Year is missing' }
+          newErrObj = { ...newErrObj, [name]: "Year is missing" };
         } else {
           let yearValidation = valid.expirationYear(value);
-          if (yearValidation.isPotentiallyValid === true && yearValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
+          if (
+            yearValidation.isPotentiallyValid === true &&
+            yearValidation.isValid === true
+          ) {
+            newErrObj = { ...newErrObj, [name]: "" };
           } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
+            newErrObj = { ...newErrObj, [name]: "invalid" };
           }
         }
         break;
-      case 'cvv':
+      case "cvv":
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'CVV is missing' }
+          newErrObj = { ...newErrObj, [name]: "CVV is missing" };
         } else {
           let cvvValidation = valid.cvv(value);
-          if (cvvValidation.isPotentiallyValid === true && cvvValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
+          if (
+            cvvValidation.isPotentiallyValid === true &&
+            cvvValidation.isValid === true
+          ) {
+            newErrObj = { ...newErrObj, [name]: "" };
           } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
+            newErrObj = { ...newErrObj, [name]: "invalid" };
           }
         }
         break;
@@ -558,7 +579,7 @@ console.log("paymentMethods",paymentMethods);
         break;
     }
     return newErrObj;
-  }
+  };
 
   const handleChangeCard = async (event) => {
     let value = event.target.value;
@@ -569,33 +590,35 @@ console.log("paymentMethods",paymentMethods);
   };
 
   const allFeildValidate = (validateFeild, allErrMsg) => {
-
     let checkValueStatus = [];
     let checkErrStatus = [];
 
-    validateFeild && validateFeild.map((val, i) => {
-      let keyVal = card[val];
-      let errVal = cardErrMsg[val];
+    validateFeild &&
+      validateFeild.map((val, i) => {
+        let keyVal = card[val];
+        let errVal = cardErrMsg[val];
 
-      allErrMsg = validateForm('', allErrMsg, val, keyVal);
-      if (keyVal !== "") {
-        checkValueStatus.push('suc')
-      }
-      if (errVal === "") {
-        checkErrStatus.push('err')
-      }
-
-    })
+        allErrMsg = validateForm("", allErrMsg, val, keyVal);
+        if (keyVal !== "") {
+          checkValueStatus.push("suc");
+        }
+        if (errVal === "") {
+          checkErrStatus.push("err");
+        }
+      });
 
     let checkCardStatus = false;
-    if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
+    if (
+      checkValueStatus.length === validateFeild.length &&
+      checkErrStatus.length === validateFeild.length
+    ) {
       checkCardStatus = true;
     }
 
     let returnData = {
       allErrMsg: allErrMsg,
-      checkCardStatus: checkCardStatus
-    }
+      checkCardStatus: checkCardStatus,
+    };
 
     return returnData;
   };
@@ -617,8 +640,8 @@ console.log("paymentMethods",paymentMethods);
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                          ? signin_done
-                          : signin_initial
+                        ? signin_done
+                        : signin_initial
                     }
                     alt=""
                   />
@@ -629,8 +652,8 @@ console.log("paymentMethods",paymentMethods);
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -650,8 +673,8 @@ console.log("paymentMethods",paymentMethods);
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                          ? delivery_done
-                          : delivery_initial
+                        ? delivery_done
+                        : delivery_initial
                     }
                     alt=""
                   />
@@ -662,8 +685,8 @@ console.log("paymentMethods",paymentMethods);
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -683,8 +706,8 @@ console.log("paymentMethods",paymentMethods);
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                          ? payment_done
-                          : payment_initial
+                        ? payment_done
+                        : payment_initial
                     }
                     alt=""
                   />
@@ -695,8 +718,8 @@ console.log("paymentMethods",paymentMethods);
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -780,7 +803,12 @@ console.log("paymentMethods",paymentMethods);
                                   <div className="inner__address__button__block">
                                     <button
                                       onClick={() =>
-                                        openNewAddressPopup("update", addIndex, add.id, add)
+                                        openNewAddressPopup(
+                                          "update",
+                                          addIndex,
+                                          add.id,
+                                          add
+                                        )
                                       }
                                       className="edit__button"
                                     >
@@ -798,7 +826,11 @@ console.log("paymentMethods",paymentMethods);
                             </div>
                           );
                         })}
-                      {errMsg.deliveryAddressList && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryAddressList}</p>}
+                      {errMsg.deliveryAddressList && (
+                        <p className="invalid__message" style={errMsgStyle}>
+                          {errMsg.deliveryAddressList}
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -830,46 +862,53 @@ console.log("paymentMethods",paymentMethods);
                           <Heading6 text="Delivery Preferences" />
                         </div>
                         <div className="delivery__selection__block">
-                          {deliveryType && deliveryType.map((delivery, deliveryIndex) => {
-                            return (
-                              <div
-                                key={delivery.id}
-                                className="delivery__selection"
-                              >
-                                <div className="delivery__selection__form__block">
-                                  <input
-                                    type="radio"
-                                    className="delivery__input__check"
-                                    name="deliveryType"
-                                    value={delivery.id}
-                                    onChange={(e) => handleChangeDeliveryPref(e)}
-                                  // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
-                                  />
-                                  <p className="delivery__selection__text">
-                                    <Heading4 text={delivery.type} />
-                                    <Text3
-                                      text={delivery.protectionText}
-                                      color="#3b3b3b"
-                                      marginBottom={0}
+                          {deliveryType &&
+                            deliveryType.map((delivery, deliveryIndex) => {
+                              return (
+                                <div
+                                  key={delivery.id}
+                                  className="delivery__selection"
+                                >
+                                  <div className="delivery__selection__form__block">
+                                    <input
+                                      type="radio"
+                                      className="delivery__input__check"
+                                      name="deliveryType"
+                                      value={delivery.id}
+                                      onChange={(e) =>
+                                        handleChangeDeliveryPref(e)
+                                      }
+                                      // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                     />
-                                  </p>
-                                </div>
-                                <div className="delivery__price__block">
-                                  <p className="delivery__price">
-                                    {delivery.price <= 0 ? (
-                                      <Heading4 text="FREE" color="#FF4F04" />
-                                    ) : (
-                                      <Price
-                                        price={delivery.price}
-                                        size="heading6"
+                                    <p className="delivery__selection__text">
+                                      <Heading4 text={delivery.type} />
+                                      <Text3
+                                        text={delivery.protectionText}
+                                        color="#3b3b3b"
+                                        marginBottom={0}
                                       />
-                                    )}
-                                  </p>
+                                    </p>
+                                  </div>
+                                  <div className="delivery__price__block">
+                                    <p className="delivery__price">
+                                      {delivery.price <= 0 ? (
+                                        <Heading4 text="FREE" color="#FF4F04" />
+                                      ) : (
+                                        <Price
+                                          price={delivery.price}
+                                          size="heading6"
+                                        />
+                                      )}
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            );
-                          })}
-                          {errMsg.deliveryPreferencesType && <p className="invalid__message" style={errMsgStyle}>{errMsg.deliveryPreferencesType}</p>}
+                              );
+                            })}
+                          {errMsg.deliveryPreferencesType && (
+                            <p className="invalid__message" style={errMsgStyle}>
+                              {errMsg.deliveryPreferencesType}
+                            </p>
+                          )}
                         </div>
                       </div>
                       <div className="col-12 col-sm-12 col-md-5  delivery__pickup__store">
@@ -881,11 +920,10 @@ console.log("paymentMethods",paymentMethods);
                       <div className="continue__button__block">
                         <div></div>
                         <button
-                          onClick={() =>
-                            continueFromDelivery(
-                              // { ...iconType, delivery: "done", payment: "inprogress" },
-                              // "payment"
-                            )
+                          onClick={
+                            () => continueFromDelivery()
+                            // { ...iconType, delivery: "done", payment: "inprogress" },
+                            // "payment"
                           }
                           className="continue___button"
                         >
@@ -940,7 +978,10 @@ console.log("paymentMethods",paymentMethods);
                                     <div className="row address__form__field__row">
                                       <div className="col-sm-12 col-md-6 main__form__field__block">
                                         {/* <p className="form__label">First Name</p> */}
-                                        <Heading7 text="Credit Card Number" marginBottom={10} />
+                                        <Heading7
+                                          text="Credit Card Number"
+                                          marginBottom={10}
+                                        />
                                         <div className="field__block">
                                           <input
                                             type="text"
@@ -949,14 +990,23 @@ console.log("paymentMethods",paymentMethods);
                                             id="name"
                                             name="cardNumber"
                                             value={card.cardNumber}
-                                            onChange={(e) => handleChangeCard(e)}
+                                            onChange={(e) =>
+                                              handleChangeCard(e)
+                                            }
                                           />
                                         </div>
-                                        {cardErrMsg.cardNumber && <p className="invalid__message">{cardErrMsg.cardNumber}</p>}
+                                        {cardErrMsg.cardNumber && (
+                                          <p className="invalid__message">
+                                            {cardErrMsg.cardNumber}
+                                          </p>
+                                        )}
                                       </div>
                                       <div className="col-sm-12 col-md-6 main__form__field__block">
                                         {/* <p className="form__label">Mobile Number</p> */}
-                                        <Heading7 text="Credit Holder Name" marginBottom={10} />
+                                        <Heading7
+                                          text="Credit Holder Name"
+                                          marginBottom={10}
+                                        />
                                         <div className="field__block">
                                           <input
                                             type="text"
@@ -965,16 +1015,25 @@ console.log("paymentMethods",paymentMethods);
                                             id="cardHolder"
                                             name="cardHolder"
                                             value={card.cardHolder}
-                                            onChange={(e) => handleChangeCard(e)}
+                                            onChange={(e) =>
+                                              handleChangeCard(e)
+                                            }
                                           />
                                         </div>
-                                        {cardErrMsg.cardHolder && <p className="invalid__message">{cardErrMsg.cardHolder}</p>}
+                                        {cardErrMsg.cardHolder && (
+                                          <p className="invalid__message">
+                                            {cardErrMsg.cardHolder}
+                                          </p>
+                                        )}
                                       </div>
                                     </div>
                                     <div className="row address__form__field__row">
                                       <div className="col-sm-12 col-md-6 main__form__field__block">
                                         {/* <p className="form__label">First Name</p> */}
-                                        <Heading7 text="Month" marginBottom={10} />
+                                        <Heading7
+                                          text="Month"
+                                          marginBottom={10}
+                                        />
                                         <div className="field__block">
                                           <input
                                             type="text"
@@ -983,14 +1042,23 @@ console.log("paymentMethods",paymentMethods);
                                             id="month"
                                             name="month"
                                             value={card.month}
-                                            onChange={(e) => handleChangeCard(e)}
+                                            onChange={(e) =>
+                                              handleChangeCard(e)
+                                            }
                                           />
                                         </div>
-                                        {cardErrMsg.month && <p className="invalid__message">{cardErrMsg.month}</p>}
+                                        {cardErrMsg.month && (
+                                          <p className="invalid__message">
+                                            {cardErrMsg.month}
+                                          </p>
+                                        )}
                                       </div>
                                       <div className="col-sm-12 col-md-6 main__form__field__block">
                                         {/* <p className="form__label">Mobile Number</p> */}
-                                        <Heading7 text="Year" marginBottom={10} />
+                                        <Heading7
+                                          text="Year"
+                                          marginBottom={10}
+                                        />
                                         <div className="field__block">
                                           <input
                                             type="text"
@@ -999,16 +1067,25 @@ console.log("paymentMethods",paymentMethods);
                                             id="year"
                                             name="year"
                                             value={card.year}
-                                            onChange={(e) => handleChangeCard(e)}
+                                            onChange={(e) =>
+                                              handleChangeCard(e)
+                                            }
                                           />
                                         </div>
-                                        {cardErrMsg.year && <p className="invalid__message">{cardErrMsg.year}</p>}
+                                        {cardErrMsg.year && (
+                                          <p className="invalid__message">
+                                            {cardErrMsg.year}
+                                          </p>
+                                        )}
                                       </div>
                                     </div>
                                     <div className="row address__form__field__row">
                                       <div className="col-sm-12 col-md-6 main__form__field__block">
                                         {/* <p className="form__label">First Name</p> */}
-                                        <Heading7 text="CVV" marginBottom={10} />
+                                        <Heading7
+                                          text="CVV"
+                                          marginBottom={10}
+                                        />
                                         <div className="field__block">
                                           <input
                                             type="text"
@@ -1017,10 +1094,16 @@ console.log("paymentMethods",paymentMethods);
                                             id="cvv"
                                             name="cvv"
                                             value={card.cvv}
-                                            onChange={(e) => handleChangeCard(e)}
+                                            onChange={(e) =>
+                                              handleChangeCard(e)
+                                            }
                                           />
                                         </div>
-                                        {cardErrMsg.cvv && <p className="invalid__message">{cardErrMsg.cvv}</p>}
+                                        {cardErrMsg.cvv && (
+                                          <p className="invalid__message">
+                                            {cardErrMsg.cvv}
+                                          </p>
+                                        )}
                                       </div>
                                     </div>
                                   </div>
@@ -1038,7 +1121,12 @@ console.log("paymentMethods",paymentMethods);
                   <div className="continue__button__block">
                     <div></div>
                     <Link className="continue___button__link" to="/checkout">
-                      <button onClick={() => makePayment()} className="continue___button">Continue</button>
+                      <button
+                        onClick={() => makePayment()}
+                        className="continue___button"
+                      >
+                        Continue
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -1110,13 +1198,13 @@ console.log("paymentMethods",paymentMethods);
             : "container-fluid address__popup__container__disable"
         }
       >
-        {addressPopup === true &&
+        {addressPopup === true && (
           <AddressPopup
             closeLoginPopup={closeLoginPopup}
             editAddressData={editAddressData}
             popupType={addressPopupType}
           />
-        }
+        )}
       </div>
     </>
   );

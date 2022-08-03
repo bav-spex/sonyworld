@@ -56,7 +56,7 @@ export const getPayfortInformation = async (data) => {
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/get-payfort-information`, data
   );
   console.log(payfortInformationData, "payfortInformationData")
-  return payfortInformationData.data;
+  return payfortInformationData;
 };
 
 

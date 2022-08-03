@@ -8,6 +8,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { Rating } from "react-simple-star-rating";
+import * as services from './../services/services'
 
 import BreadCrumbs from "../Components/BreadCrumbs";
 import CarouselTypeTwo from "../Components/CarouselTypeTwo";
@@ -14693,6 +14694,7 @@ function Product_Details_Page() {
         })
         .catch((err) => {
           console.log(err.response.data.message, "error >>>>");
+          dispatch(services.notifyError({message:err.response.data.message}))
         });
       dispatch(loadCartData());
     }
@@ -15032,8 +15034,8 @@ function Product_Details_Page() {
                 </div>
               </div>
             </div>
-            <Accordian data={productOverviewData} isDescription={true} />
-            <Accordian data={productSpecificationData} isDescription={false} />
+            {/* <Accordian data={productOverviewData} isDescription={true} /> */}
+            {/* <Accordian data={productSpecificationData} isDescription={false} /> */}
             <div className="pd__newArrival__block">
               <CarouselTypeTwo
                 productDetailPage={true}

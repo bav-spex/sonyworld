@@ -101,6 +101,13 @@ const product = {
   totalAmount: 1699,
 };
 function Order_Details() {
+  // const { id } = useParams();
+  // console.log(id);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   // dispatch(loadProductDetailData(id.replace(/[/]/g, "%2F")));
+  // }, []);
+  // const orderIdData = useSelector(state=>state.appData.orderIdData)
   return (
     <>
       <BreadCrumbs />
