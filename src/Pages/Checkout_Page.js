@@ -427,7 +427,7 @@ function Checkout_Page({ reloadingHeader }) {
 
     // setIconType(newIconType);
     // setCheckoutClassName(className);
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   };
 
   const openLoginWrapperFromAnywhere = () => {
@@ -483,7 +483,6 @@ function Checkout_Page({ reloadingHeader }) {
     });
   };
   // console.log(paymentMethodForPayfort);
-  
 
   const validateForm = (event, newErrObj, name, value) => {
     //A function to validate each input values
@@ -610,43 +609,87 @@ function Checkout_Page({ reloadingHeader }) {
 
     return returnData;
   };
-
+  const [sendPayfortInformation, setSendPayfortInformation] = useState({
+    card_number: "",
+    card_holder_name: "",
+    card_security_code: "",
+    expiry_date: "",
+    merchant_identifier: "",
+    access_code: "",
+    merchant_reference: "",
+    language: "en",
+    service_command: "",
+    return_url: "http://localhost:3000/user/order/",
+    signature: "",
+  });
   const makePayment = async () => {
-    console.log("card====>",card);
+    console.log("card====>", card);
     let validateFeild = ["cardNumber", "cardHolder", "month", "year", "cvv"];
 
-    // let formStatus = allFeildValidate(validateFeild, cardErrMsg);
-    // setCardErrMsg(formStatus.allErrMsg);
-    // if (paymentMethodForPayfort === "payfort_fort_cc") {
-    //   if (formStatus.checkCardStatus === true) {
-    //     const newPaymentMethodForPayfort = {
-    //       paymentMethod: paymentMethodForPayfort,
-    //     };
-    //     console.log(newPaymentMethodForPayfort);
-    //     const data = dispatch(
-    //       loadPayfortInformation(newPaymentMethodForPayfort)
-    //     ).then((res) => {
-    //       console.log("payfort Information",res.data);
-    //       console.log("Entity",res?.data?.entity_id);
-    //       setCheckoutClassName("delivery")
-    //       navigate.push(`/user/orders/${res.data.entity_id}`)
-    //     });
-    //   }
-    // } else {
-    //   const newPaymentMethodForPayfort = {
-    //     paymentMethod: paymentMethodForPayfort,
-    //   };
-    //   console.log(newPaymentMethodForPayfort);
-    //   const data = dispatch(
-    //     loadPayfortInformation(newPaymentMethodForPayfort)
-    //   ).then((res) => {
-    //     console.log("payfort Information", res.data);
-    //     console.log("Entity",res?.data?.entity_id);
-    //     setCheckoutClassName("delivery")
-    //     navigate.push(`/user/orders/${res.data.entity_id}`)
-    //   });
+    let formStatus = allFeildValidate(validateFeild, cardErrMsg);
+    setCardErrMsg(formStatus.allErrMsg);
+    if (paymentMethodForPayfort === "payfort_fort_cc") {
+      if (formStatus.checkCardStatus === true) {
+        const newPaymentMethodForPayfort = {
+          paymentMethod: paymentMethodForPayfort,
+        };
+        console.log(newPaymentMethodForPayfort);
+        const data = dispatch(
+          loadPayfortInformation(newPaymentMethodForPayfort)
+        ).then((res) => {
+          console.log("payfort Information", res.data);
+          console.log("Entity", res?.data?.entity_id);
+          
+        let newSendPayfortInformation = {
+          card_number: card.cardNumber,
+          card_holder_name: card.cardHolder,
+          card_security_code: card.cvv,
+          expiry_date: `${card.expiry_date}${card.year}`,
+          merchant_identifier: res.data.params.merchant_identifier,
+          access_code: res.data.params.access_code,
+          merchant_reference: res.data.params.merchant_reference,
+          language: "en",
+          service_command: res.data.params.service_command,
+          return_url: "http://localhost:3000",
+          signature: res.data.params.signature,
+        };
+        console.log("newSendPayfortInformation ", newSendPayfortInformation);
+        sendPayfortInformation(newSendPayfortInformation);
+          setCheckoutClassName("delivery");
+          navigate.push(`/user/orders/${res.data.entity_id}`);
+        });
+      }
+    } else {
+      const newPaymentMethodForPayfort = {
+        paymentMethod: paymentMethodForPayfort,
+      };
+      console.log(newPaymentMethodForPayfort);
+      const data = dispatch(
+        loadPayfortInformation(newPaymentMethodForPayfort)
+      ).then((res) => {
+        console.log("payfort Information", res.data);
+        console.log("Entity", res?.data?.entity_id);
 
-    // }
+        let newSendPayfortInformation = {
+          card_number: card.cardNumber,
+          card_holder_name: card.cardHolder,
+          card_security_code: card.cvv,
+          expiry_date: `${card.expiry_date}${card.year}`,
+          merchant_identifier: res.data.params.merchant_identifier,
+          access_code: res.data.params.access_code,
+          merchant_reference: res.data.params.merchant_reference,
+          language: "en",
+          service_command: res.data.params.service_command,
+          return_url: "http://localhost:3000",
+          signature: res.data.params.signature,
+        };
+        console.log("newSendPayfortInformation ", newSendPayfortInformation);
+        // sendPayfortInformation(newSendPayfortInformation);
+        setCheckoutClassName("delivery");
+
+        navigate.push(`/user/orders/${res.data.entity_id}`);
+      });
+    }
 
     //  history.push("/user/order")
   };
@@ -654,7 +697,7 @@ function Checkout_Page({ reloadingHeader }) {
     <>
       <BreadCrumbs title="Checkout" />
       <div className="d-block d-lg-none">
-          <Mobile_Checkout_Page/>
+        <Mobile_Checkout_Page />
       </div>
       <div className="container-fluid checkout__page__container d-lg-block d-none">
         <div className="checkout__page__block">
@@ -1200,7 +1243,10 @@ function Checkout_Page({ reloadingHeader }) {
                     .slice(1, 5)
                     .map((segment, segmentIndex) => {
                       return (
-                        <div key={segment.code} className="checkout__os__detail__inner__block">
+                        <div
+                          key={segment.code}
+                          className="checkout__os__detail__inner__block"
+                        >
                           {segment.code === "grand_total" ? (
                             <Heading6 text={segment.title} color="#000000" />
                           ) : (
