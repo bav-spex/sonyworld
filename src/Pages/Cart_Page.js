@@ -706,7 +706,11 @@ function Cart_Page() {
           <p className="sc__page__title">
             {" "}
             <Heading3 text="Shopping Cart" span={true} />{" "}
-            <Text1 text="(2 Items)" color="#FF4F04" span={true} />
+            <Text1
+              text={`${cartProductData && cartProductData.length} Items`}
+              color="#FF4F04"
+              span={true}
+            />
           </p>
 
           <div className="row shopping__cart__page__inner__block">

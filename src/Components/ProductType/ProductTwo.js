@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
+import { useDispatch } from "react-redux";
 
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
@@ -14,6 +15,9 @@ import Price from "./../Font/Price";
 import Heading6 from "./../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import { Link } from "react-router-dom";
+import { addToCart } from "./../../services/cart.service";
+import { loadCartData } from "./../../redux/appAction";
+import * as services from "./../../services/services";
 
 function ProductTwo({ productDetailPage, product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
@@ -40,6 +44,8 @@ function ProductTwo({ productDetailPage, product }) {
       },
     ],
   });
+  const dispatch = useDispatch();
+
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
   };
@@ -52,6 +58,30 @@ function ProductTwo({ productDetailPage, product }) {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
+
+  const AddProductToCart = () => {
+    console.log(product, "product in product details >>>");
+
+    const data = {
+      items: [
+        {
+          sku: product.sku,
+          qty: 1,
+        },
+      ],
+    };
+
+    addToCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+    dispatch(loadCartData());
+  };
+
   return (
     <div
       to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
@@ -107,7 +137,7 @@ function ProductTwo({ productDetailPage, product }) {
         to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
         className="productTwo__name"
       >
-        <p   className="productTwo__name">{product.name}</p>
+        <p className="productTwo__name">{product.name}</p>
       </Link>
       <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
       <div className="rating__block">
@@ -148,7 +178,7 @@ function ProductTwo({ productDetailPage, product }) {
           currency={product?.currency}
         />
       </div>
-      <div className="addToCart__button">
+      <div className="addToCart__button" onClick={() => AddProductToCart()}>
         <img src={shopping_cart} alt="" className="addToCart__icon" />
         Add To Cart
       </div>

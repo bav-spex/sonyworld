@@ -1,5 +1,10 @@
 import React, { useState,useEffect } from "react";
 import "./../../SCSS/Popup/_plpProductPopup.scss";
+import { useDispatch } from "react-redux";
+
+import { addToCart } from "./../../services/cart.service";
+import { loadCartData } from "./../../redux/appAction";
+import * as services from "./../../services/services";
 import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
@@ -66,6 +71,32 @@ function PLPProductPopup({ product, closeProductPopup }) {
       // console.log("deleted Successfully");
     }
   },[isFavourite]);
+
+  const dispatch = useDispatch();
+
+  const AddProductToCart = (sku) => {
+    console.log(sku, "product in product details >>>");
+
+    const data = {
+      items: [
+        {
+          sku: sku,
+          qty: 1,
+        },
+      ],
+    };
+
+    addToCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+    dispatch(loadCartData());
+  };
+
   const removeFromWL=(sku)=>{
     const data = {
       items: [sku],
@@ -163,7 +194,7 @@ function PLPProductPopup({ product, closeProductPopup }) {
             );
           })}
         </div>
-        <div className="addToCart__button">
+        <div className="addToCart__button" onClick={() => AddProductToCart(product.sku)}>
           <img src={shopping_cart} alt="" className="addToCart__icon" />
           Add To Cart
         </div>
