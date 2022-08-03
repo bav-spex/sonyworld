@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./../SCSS/_featureProducts.scss";
+import { useDispatch } from "react-redux";
+
+import { addToCart } from "./../services/cart.service";
+import { loadCartData } from "./../redux/appAction";
+import * as services from "./../services/services";
 
 import feature_product_01 from "./../assets/FeatureProduct/feature_product_01.png";
 import feature_product_02 from "./../assets/FeatureProduct/feature_product_02.png";
@@ -23,6 +28,30 @@ function FeatureProducts({ featureProductsData }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
+  };
+  const dispatch = useDispatch();
+
+  const AddProductToCart = (sku) => {
+    console.log(sku, "product in product details >>>");
+
+    const data = {
+      items: [
+        {
+          sku: sku,
+          qty: 1,
+        },
+      ],
+    };
+
+    addToCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+    dispatch(loadCartData());
   };
 
   return (
@@ -176,15 +205,20 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[1]?.currency}
               />
               <Price
-                price={featureProductsData[1]?.price_rounded }
+                price={featureProductsData[1]?.price_rounded}
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
                 span={true}
                 currency={featureProductsData[1]?.currency}
               />
-              <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
+              <div
+                className="text-end cart_end_icon"
+                onClick={() => AddProductToCart(featureProductsData[1].sku)}
+              >
+                <Link to="#" className="d-inline-block">
+                  <img src={shopping_cart} alt="cart" />
+                </Link>
               </div>
             </div>
             <div className="feature__category">
@@ -249,21 +283,28 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[2]?.currency}
               />
               <Price
-                price={featureProductsData[2]?.price_rounded }
+                price={featureProductsData[2]?.price_rounded}
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
                 span={true}
                 currency={featureProductsData[2]?.currency}
               />
-              <div className="text-end cart_end_icon">
-                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
+              <div className="text-end cart_end_icon"
+                onClick={() => AddProductToCart(featureProductsData[2].sku)}
+              
+              >
+                <Link to="#" className="d-inline-block">
+                  <img src={shopping_cart} alt="cart" />
+                </Link>
               </div>
             </div>
           </div>
           <div className=" second__feature__category__block">
-
-            <div to={`products/${featureProductsData[3].sku}`} className="feature__category first__in__column">
+            <div
+              to={`products/${featureProductsData[3].sku}`}
+              className="feature__category first__in__column"
+            >
               <span className="fav_icon d-block d-lg-none">
                 <img
                   onMouseEnter={() => setIsFavouriteHover(true)}
@@ -325,14 +366,17 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[3]?.currency}
               />
               <Price
-                price={featureProductsData[3]?.price_rounded }
+                price={featureProductsData[3]?.price_rounded}
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
                 span={true}
                 currency={featureProductsData[3]?.currency}
               />
-              <div className="text-end cart_end_icon">
+              <div className="text-end cart_end_icon"
+                onClick={() => AddProductToCart(featureProductsData[3].sku)}
+              
+              >
                 <div to="#" className="d-inline-block">
                   <img src={shopping_cart} alt="cart" />
                 </div>
@@ -400,14 +444,17 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[4]?.currency}
               />
               <Price
-                price={featureProductsData[3]?.price_rounded }
+                price={featureProductsData[3]?.price_rounded}
                 marginLeft={5}
                 marginBottom={10}
                 size="heading6"
                 span={true}
                 currency={featureProductsData[4]?.currency}
               />
-              <div className="text-end cart_end_icon">
+              <div className="text-end cart_end_icon"
+                onClick={() => AddProductToCart(featureProductsData[4].sku)}
+              
+              >
                 <div to="#" className="d-inline-block">
                   <img src={shopping_cart} alt="cart" />
                 </div>
