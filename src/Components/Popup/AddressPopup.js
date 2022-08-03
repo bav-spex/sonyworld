@@ -6,6 +6,7 @@ import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
 import "./../../SCSS/Popup/_addressPopup.scss";
 import * as services from './../../services/services'
 import { useDispatch, useSelector } from 'react-redux';
+import { updateCustomerAddressSuccess } from "../../services/customerAddress/customerAddress";
 
 const T_REQ_NAME = 'Name is required';
 const T_REQ_FIRST_NAME = 'First Name is required';
@@ -80,6 +81,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
         resetFormValue();
         resetFormErr();
         closeLoginPopup();
+        dispatch(updateCustomerAddressSuccess(''))
       }
     }
   }, [customerAddUpdateManage]);

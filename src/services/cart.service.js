@@ -53,9 +53,9 @@ export const getEstimateShippingMethods = async () => {
 export const getPayfortInformation = async (data) => {
   // console.log("Payment method Data >>>>>>")
   const payfortInformationData = await axios.post(
-    `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/get-payfort-information`,data
+    `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/get-payfort-information`, data
   );
-  console.log(payfortInformationData,"payfortInformationData")
+  console.log(payfortInformationData, "payfortInformationData")
   return payfortInformationData.data;
 };
 
@@ -69,7 +69,17 @@ export const updateShippingInformation = (params) => {
         dispatch(updateShippingInformationSuccess(response.data));
       }
     } catch (error) {
-      console.log("error ", error);
+      let message = ""
+      if (error.response.status === 400) {
+        message = error.response.data.message
+      }
+      if (error.response.status === 422) {
+        message = error.response.data.details.errors
+      }
+      if (message !== "") {
+        let msg = { message: message }
+        dispatch(services.notifyError(msg))
+      }
     }
   }
 };
