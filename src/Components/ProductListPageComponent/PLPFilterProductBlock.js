@@ -654,7 +654,7 @@ const PLPFilterProductBlock = ({
                 </>
               ) : productListView === "list" ? (
                 <>
-                  {peopleUltimatelyBoughtData.map((product, productIndex) => {
+                  {filterAndProductsData.items.length !== 0 ? filterAndProductsData?.items.map((product, productIndex) => {
                     return (
                       <div key={productIndex} className="col-sm-12 mb-3">
                         <ProductTen
@@ -664,7 +664,12 @@ const PLPFilterProductBlock = ({
                         />
                       </div>
                     );
-                  })}
+                  }):
+                  <div>
+                   <h1>
+                     No Products Available
+                     </h1>
+                  </div>}
                 </>
               ) : (
                 ""
