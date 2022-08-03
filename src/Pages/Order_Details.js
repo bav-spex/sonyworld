@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import * as services from "./../services/services";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import Heading3 from "../Components/Font/Heading4";
 import Heading6 from "../Components/Font/Heading6";
@@ -11,6 +13,10 @@ import card_05 from "./../assets/Footer/card_05.png";
 import product_01 from "./../assets/Product/product_01.png";
 import "./../SCSS/_orderDetails.scss";
 import Heading5 from "../Components/Font/Heading5";
+import {
+  useParams
+} from "react-router-dom";
+import moment from "moment";
 const product = {
   id: 1,
   logo: sony_logo,
@@ -100,7 +106,29 @@ const product = {
   orderId: "408-2450567-3112347",
   totalAmount: 1699,
 };
-function Order_Details() {
+function Order_Details(props) {
+
+  const { order_id } = useParams();
+
+  const dispatch = useDispatch();
+
+  const { customerOrderDetails } = useSelector((state) => state.customerOrdersReducer);
+
+  const [orderDetails, setOrderDetails] = useState('');
+
+  useEffect(() => {
+    let params = {
+      id: order_id
+    }
+    dispatch(services.getCustomerOrderDetails(params))
+  }, [order_id]);
+
+  useEffect(() => {
+    if (customerOrderDetails) {
+      setOrderDetails(customerOrderDetails);
+    }
+  }, [customerOrderDetails]);
+
   return (
     <>
       <BreadCrumbs />
