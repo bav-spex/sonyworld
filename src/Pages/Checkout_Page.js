@@ -35,7 +35,10 @@ import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCar
 import Heading2 from "../Components/Font/Heading2";
 import ProductThree from "../Components/ProductType/ProductThree";
 import AddressPopup from "../Components/Popup/AddressPopup";
-import { loadCountriesLocationData, loadPayfortInformation } from "../redux/appAction";
+import {
+  loadCountriesLocationData,
+  loadPayfortInformation,
+} from "../redux/appAction";
 import { loadCitiesLocationData } from "../redux/appAction";
 import {
   getAvailablePaymentMethods,
@@ -482,19 +485,27 @@ function Checkout_Page({ reloadingHeader }) {
 
     let formStatus = allFeildValidate(validateFeild, cardErrMsg);
     setCardErrMsg(formStatus.allErrMsg);
-    if (paymentMethodForPayfort.includes("payfort_fort_cc")) {
+    if (paymentMethodForPayfort === "payfort_fort_cc") {
+      if (formStatus.checkCardStatus === true) {
+        const newPaymentMethodForPayfort = {
+          paymentMethod: paymentMethodForPayfort,
+        };
+        console.log(newPaymentMethodForPayfort);
+        const data = dispatch(
+          loadPayfortInformation(newPaymentMethodForPayfort)
+        );
+        console.log(data);
+      }
+    } else {
       const newPaymentMethodForPayfort = {
         paymentMethod: paymentMethodForPayfort,
       };
       console.log(newPaymentMethodForPayfort);
-      dispatch(loadPayfortInformation(newPaymentMethodForPayfort))
-    } else if (formStatus.checkCardStatus === true) {
-      const newPaymentMethodForPayfort = {
-        paymentMethod: paymentMethodForPayfort,
-      };
-      console.log(newPaymentMethodForPayfort);
-     dispatch(loadPayfortInformation(newPaymentMethodForPayfort))
+      const data = dispatch(loadPayfortInformation(newPaymentMethodForPayfort));
+      console.log(data.then(res=>console.log(res)));
     }
+
+    //  history.push("/user/order")
   };
 
   const validateForm = (event, newErrObj, name, value) => {

@@ -9,6 +9,7 @@ import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getStoresLocationData } from "../services/storeLocation.service";
 import { getCategoryFilterData } from "../services/plp.service";
 import { createCartDetails, getCartData, getPayfortInformation } from "../services/cart.service";
+import { getOrderDetails } from "../services/order.service";
 
 const setLoading = (data) => ({
   type: types.LOADING,
@@ -165,7 +166,7 @@ const saveCartData = (data) => ({
 export const loadCartData = () => {
   return async function (dispatch) {
     const cartData = await getCartData();
-    console.log("cartData ", cartData);
+    // console.log("cartData ", cartData);
 
     dispatch(saveCartData(cartData.data));
     return cartData.data;
@@ -184,6 +185,22 @@ export const loadPayfortInformation = (data) => {
     if (payfortInformationData.success) {
       dispatch(savePayfortInformationData(payfortInformationData));
     }
-    // return cartData.data;
+    return payfortInformationData;
   };
 };
+
+//  load Order ID Detaild Data
+const saveOrderDetailsData = (data) => ({
+    type: types.GET__ORDER__DETAIL__DATA,
+    payload: data,
+  });
+  
+  export const loadOrderDetailsData = (id) => {
+    return async function (dispatch) {
+      const orderDetailsData = await getOrderDetails(id);
+      // console.log(productData);
+      dispatch(saveOrderDetailsData(orderDetailsData));
+      return orderDetailsData;
+    };
+  };
+  

@@ -14,6 +14,7 @@ const initialState = {
   cartQuoteId: "",
   cartData: [],
   payfortInformationData:{},
+  orderDetailsData:{},
   deliveryShippingInfo: '',
 };
 
@@ -48,6 +49,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         payfortInformationData: action.payload,
+      };
+    case types.GET__ORDER__DETAIL__DATA:
+      return {
+        ...state,
+        orderDetailsData: action.payload,
       };
     case types.GET__WISHLIST__DATA:
       return {

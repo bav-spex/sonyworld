@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Heading3 from "../Font/Heading4";
 import Heading5 from "../Font/Heading5";
 import Heading7 from "../Font/Heading7";
@@ -10,13 +11,17 @@ import SmallWarrantyBlock from "./SmallWarrantyBlock";
 import plus from "./../../assets/Icon/plus.svg";
 import minus from "./../../assets/Icon/minus.svg";
 import product_01 from "./../../assets/Product/product_01.png";
-import "./../../SCSS/MostSharedComponents/_shoppingCartProduct.scss"
+import "./../../SCSS/MostSharedComponents/_shoppingCartProduct.scss";
 
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
-import delete_icon from './../../assets/Icon/delete.svg';
+import delete_icon from "./../../assets/Icon/delete.svg";
 
+import { loadCartData } from "../../redux/appAction";
+import { deleteFromCart } from "../../services/cart.service";
 function ShoppipngCartProduct({ product }) {
+  const dispatch = useDispatch();
+  // console.log(product.product.media.image.featured.image);
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [couponCode, setCouponCode] = useState("");
@@ -41,7 +46,7 @@ function ShoppipngCartProduct({ product }) {
       termsAndConditions: "T&C",
     },
   ]);
-  const [protection,setProtection] = useState( [
+  const [protection, setProtection] = useState([
     {
       id: 1,
       protectionText: "2-Year Standard Geek Squad Protection",
@@ -54,7 +59,7 @@ function ShoppipngCartProduct({ product }) {
       price: 89,
       month: 12,
     },
-  ])
+  ]);
   const decreaseCount = () => {
     if (count === 0) {
       setCount(0);
@@ -77,11 +82,33 @@ function ShoppipngCartProduct({ product }) {
   const remove = (id) => {
     console.log(id);
   };
+  const deleteProductFromCart = (id) => {
+    console.log("id ", id);
+
+    const data = {
+      items: [id],
+    };
+    console.log("data ", data);
+
+    deleteFromCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        // dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+    // dispatch(loadCartData());
+  };
   return (
     <div className="row sc__product__block">
       <div className="col-12 col-sm-2 sc__product__left__block">
         <div className="sc__product__image__block">
-          <img src={product_01} alt="" className="sc__product__image" />
+          <img
+            src={product && product?.product?.baseImage}
+            alt=""
+            className="sc__product__image"
+          />
         </div>
       </div>
       <div className="col-12 col-sm-7 sc__product__middle__block">
@@ -133,27 +160,25 @@ function ShoppipngCartProduct({ product }) {
             </div>
           </div>
           <AvailableOffers availableOffer={availableOffer} />
-
         </div>
         <hr className="sc__page__horizontal__line"></hr>
         <div className="sc__counter__block d-flex mt-3 mb-3  align-items-center">
-         
-            <div className="row sc__counter__box">
-              <div
-                onClick={() => decreaseCount()}
-                className="col-4 counter__decrease__block"
-              >
-                <img src={minus} alt="minus" />
-              </div>
-              <div className="col-4 counter">{count}</div>
-              <div
-                onClick={() => increaseCount()}
-                className="col-4 counter__increase__block"
-              >
-                <img src={plus} alt="plus" />
-              </div>
+          <div className="row sc__counter__box">
+            <div
+              onClick={() => decreaseCount()}
+              className="col-4 counter__decrease__block"
+            >
+              <img src={minus} alt="minus" />
             </div>
-        
+            <div className="col-4 counter">{count}</div>
+            <div
+              onClick={() => increaseCount()}
+              className="col-4 counter__increase__block"
+            >
+              <img src={plus} alt="plus" />
+            </div>
+          </div>
+
           {/* counter end  */}
           <div className="sc__fav__sec me-3 pt-1">
             <button className="common__favourite__button">
@@ -180,18 +205,17 @@ function ShoppipngCartProduct({ product }) {
                 alt=""
               />
             </button>
-
           </div>
-          <div>
-            <a href="#">
-              <img src={delete_icon} alt="delete" />
-            </a>
+          <div
+            className="delete__icon__button__block"
+            onClick={() => deleteProductFromCart(product.product.id)}
+          >
+            <img src={delete_icon} alt="delete" />
           </div>
         </div>
-
       </div>
       <div className="col-12 col-sm-3 sc__product__right__block">
-        <Price price={product.price} size="heading3" />
+        <Price price={product.price} size="heading3" currency="SAR" />
         <Text3 text="You Save - SAR4.50 (9%)" color="#07A41B" />
       </div>
     </div>

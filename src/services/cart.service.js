@@ -21,6 +21,15 @@ export const addToCart = async (data) => {
   // console.log(wishlistData,"addToWishlist")
   return productData;
 };
+export const deleteFromCart = async (data) => {
+  console.log(data);
+  const deleteFromCartData = await axios.delete(
+    `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/items`,
+    data
+  );
+  console.log(deleteFromCartData,"deleteFromCartData")
+  return deleteFromCartData;
+};
 
 export const getCartData = async () => {
   // console.log("cart data >>>>>>")

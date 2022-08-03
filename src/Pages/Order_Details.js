@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import Heading3 from "../Components/Font/Heading4";
 import Heading6 from "../Components/Font/Heading6";
@@ -11,6 +11,9 @@ import card_05 from "./../assets/Footer/card_05.png";
 import product_01 from "./../assets/Product/product_01.png";
 import "./../SCSS/_orderDetails.scss";
 import Heading5 from "../Components/Font/Heading5";
+import { useParams } from "react-router";
+import { useDispatch,useSelector } from "react-redux";
+import { loadOrderDetailsData } from "../redux/appAction";
 const product = {
   id: 1,
   logo: sony_logo,
@@ -101,13 +104,15 @@ const product = {
   totalAmount: 1699,
 };
 function Order_Details() {
-  // const { id } = useParams();
-  // console.log(id);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   // dispatch(loadProductDetailData(id.replace(/[/]/g, "%2F")));
-  // }, []);
-  // const orderIdData = useSelector(state=>state.appData.orderIdData)
+  const { id } = useParams();
+  console.log(id);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadOrderDetailsData(id));
+  }, []);
+  const [orderDetail,setOrderDetail] = useState()
+  const orderDetailsData = useSelector(state=>state.appData.orderDetailsData)
+ console.log("orderDetailsData ", orderDetailsData);
   return (
     <>
       <BreadCrumbs />

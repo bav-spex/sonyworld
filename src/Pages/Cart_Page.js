@@ -683,14 +683,14 @@ function Cart_Page() {
   useEffect(() => {
     if (Object.values(cartData).length !== 0) {
       setCartProductData(cartData);
-      console.log(cartData.totals_data);
+      // console.log(cartData.totals_data);
       setCartTotalData(cartData.totals_data);
       setLoading(false);
       // console.log(product.reviewSummary.totals);
     }
   }, [cartData]);
 
-  console.log(cartData, "Cart data >>>>>");
+  // console.log(cartData, "Cart data >>>>>");
 
   if (loading) {
     return <h1>Product Loading...</h1>;
@@ -748,7 +748,7 @@ function Cart_Page() {
                   {cartTotalData?.total_segments
                     .slice(1, cartTotalData?.total_segments.length + 1)
                     .map((segment, segmentIndex) => {
-                      console.log(segment);
+                      // console.log(segment);
                       return (
                         <div className="sc__ps__detail__inner__block">
                           {segment.code === "grand_total" ? (
