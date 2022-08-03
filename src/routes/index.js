@@ -30,6 +30,8 @@ import Confirm_Order_Page from "../Pages/Confirm_Order_Page";
 import Sony_Store_Page from "../Pages/Sony_Store_Page";
 import Search__Page from "../Pages/Search__Page";
 import Mobile_Sign_In from "../Pages/MobilePages/Mobile_Sign_In";
+import Mobile_Sign_Up from "../Pages/MobilePages/Mobile_Sign_Up";
+import Mobile_Otp_Page from "../Pages/MobilePages/Mobile_Otp_Page";
 
 function AllRoutes({categoryData,reloadingHandle,homepageData}) {
   return (
@@ -56,6 +58,8 @@ function AllRoutes({categoryData,reloadingHandle,homepageData}) {
       <Route exact path="/search" element={<Search__Page />}></Route>
       {/* <Route exact path="/contact" element={<Contact />}></Route> */}
       <Route exact path="/mobile-signin" element={<Mobile_Sign_In />}></Route>
+      <Route exact path="/mobile-signup" element={<Mobile_Sign_Up/>}></Route>
+      <Route exact path="/mobile-otp-page" element={<Mobile_Otp_Page/>}></Route>
     </Routes>
   );
 }
