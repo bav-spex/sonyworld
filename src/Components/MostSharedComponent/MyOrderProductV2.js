@@ -42,15 +42,15 @@ function MyOrderProduct(props) {
               <ul className="align-align-items-lg-start list-unstyled order__detail__list d-flex">
                 <li>
                   <Heading7 text="ORDER #:" color="#727272" span={true} />
-                  <Text3 text={"408-2450567-3112347"} span={true} />
+                  <Text3 text={product.orderId} span={true} />
                 </li>
                 <li>
                   <Heading7 text="Order Placed:" color="#727272" span={true} />
-                  <Text3 text={"28/8/2020"} span={true} />
+                  <Text3 text={product.orderPlaced} span={true} />
                 </li>
                 <li>
                   <Heading7 text="TOTAL AMOUNT:" color="#727272" span={true} />
-                  <Price price={"1699"} currency={"SAR"} span={true} size="text3" />
+                  <Price price={product.totalAmount} currency={product.currency} span={true} size="text3" />
                 </li>
               </ul>
 
@@ -68,7 +68,32 @@ function MyOrderProduct(props) {
         </div>
         <div className="col-12">
           <div className="row px-4">
-            <div className="col-12 mb-3 pb-3 border-bottom">
+            {product.items && product.items.map((val, i) => {
+              return (
+                <>
+                  <div className="col-12 mb-3 pb-3 border-bottom">
+                    <div className="row">
+                      <div className="col-12 col-sm-2 mo__product__left__block">
+                        <div className="mo__product__image__block">
+                          <img src={val.product.baseImage} alt="" className="mo__product__image" />
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-10 mo__product__middle__block">
+                        <Heading3 text={val.name} marginBottom={10} />
+                        <ul className="align-align-items-lg-start list-unstyled order__detail__list d-flex">
+                          <li>
+                            <Heading7 text="SKU :" color="#727272" span={true} />
+                            <Text3 text={val.product.sku} span={true} />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )
+            })}
+
+            {/* <div className="col-12 mb-3 pb-3">
               <div className="row">
                 <div className="col-12 col-sm-2 mo__product__left__block">
                   <div className="mo__product__image__block">
@@ -87,27 +112,7 @@ function MyOrderProduct(props) {
                 </div>
 
               </div>
-            </div>
-            <div className="col-12 mb-3 pb-3">
-              <div className="row">
-                <div className="col-12 col-sm-2 mo__product__left__block">
-                  <div className="mo__product__image__block">
-                    <img src={product_01} alt="" className="mo__product__image" />
-                  </div>
-                </div>
-                <div className="col-12 col-sm-10 mo__product__middle__block">
-                  <Heading3 text={"Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)"} marginBottom={10} />
-                  <ul className="align-align-items-lg-start list-unstyled order__detail__list d-flex">
-                    <li>
-                      <Heading7 text="SKU :" color="#727272" span={true} />
-                      <Text3 text={"KD-85Z8H IN5"} span={true} />
-                    </li>
-                  </ul>
-
-                </div>
-
-              </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

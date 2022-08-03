@@ -224,10 +224,28 @@ function My_Orders() {
             <MyOrderProduct product={product} />
             <MyOrderProduct product={product} /> */}
 
+            {orderList.items && orderList.items.map((val, i) => {
+              let orderDetails = {
+                orderId: val.increment_id,
+                totalAmount: val.grand_total,
+                orderPlaced: moment(val.created_at).format('DD MMMM YYYY'),
+                currency: val.order_currency_code,
+                items: val.items,
+                allDetails: val
+              }
+              console.log("orderDetails ", orderDetails);
+
+              return (
+                <>
+                  <MyOrderProductV2 product={orderDetails} />
+                </>
+              )
+            })}
+
+            {/* <MyOrderProductV2 />
             <MyOrderProductV2 />
             <MyOrderProductV2 />
-            <MyOrderProductV2 />
-            <MyOrderProductV2 />
+            <MyOrderProductV2 /> */}
           </div>
         </div>
       </div>
