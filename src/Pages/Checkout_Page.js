@@ -50,6 +50,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 import valid from "card-validator";
+import Mobile_Checkout_Page from "./MobilePages/Mobile_Checkout_page";
 
 const errMsgStyle = {
   color: "red",
@@ -611,47 +612,51 @@ function Checkout_Page({ reloadingHeader }) {
   };
 
   const makePayment = async () => {
+    console.log("card====>",card);
     let validateFeild = ["cardNumber", "cardHolder", "month", "year", "cvv"];
 
-    let formStatus = allFeildValidate(validateFeild, cardErrMsg);
-    setCardErrMsg(formStatus.allErrMsg);
-    if (paymentMethodForPayfort === "payfort_fort_cc") {
-      if (formStatus.checkCardStatus === true) {
-        const newPaymentMethodForPayfort = {
-          paymentMethod: paymentMethodForPayfort,
-        };
-        console.log(newPaymentMethodForPayfort);
-        const data = dispatch(
-          loadPayfortInformation(newPaymentMethodForPayfort)
-        ).then((res) => {
-          console.log("payfort Information",res.data);
-          console.log("Entity",res?.data?.entity_id);
-          setCheckoutClassName("delivery")
-          navigate.push(`/user/orders/${res.data.entity_id}`)
-        });
-      }
-    } else {
-      const newPaymentMethodForPayfort = {
-        paymentMethod: paymentMethodForPayfort,
-      };
-      console.log(newPaymentMethodForPayfort);
-      const data = dispatch(
-        loadPayfortInformation(newPaymentMethodForPayfort)
-      ).then((res) => {
-        console.log("payfort Information", res.data);
-        console.log("Entity",res?.data?.entity_id);
-        setCheckoutClassName("delivery")
-        navigate.push(`/user/orders/${res.data.entity_id}`)
-      });
+    // let formStatus = allFeildValidate(validateFeild, cardErrMsg);
+    // setCardErrMsg(formStatus.allErrMsg);
+    // if (paymentMethodForPayfort === "payfort_fort_cc") {
+    //   if (formStatus.checkCardStatus === true) {
+    //     const newPaymentMethodForPayfort = {
+    //       paymentMethod: paymentMethodForPayfort,
+    //     };
+    //     console.log(newPaymentMethodForPayfort);
+    //     const data = dispatch(
+    //       loadPayfortInformation(newPaymentMethodForPayfort)
+    //     ).then((res) => {
+    //       console.log("payfort Information",res.data);
+    //       console.log("Entity",res?.data?.entity_id);
+    //       setCheckoutClassName("delivery")
+    //       navigate.push(`/user/orders/${res.data.entity_id}`)
+    //     });
+    //   }
+    // } else {
+    //   const newPaymentMethodForPayfort = {
+    //     paymentMethod: paymentMethodForPayfort,
+    //   };
+    //   console.log(newPaymentMethodForPayfort);
+    //   const data = dispatch(
+    //     loadPayfortInformation(newPaymentMethodForPayfort)
+    //   ).then((res) => {
+    //     console.log("payfort Information", res.data);
+    //     console.log("Entity",res?.data?.entity_id);
+    //     setCheckoutClassName("delivery")
+    //     navigate.push(`/user/orders/${res.data.entity_id}`)
+    //   });
 
-    }
+    // }
 
     //  history.push("/user/order")
   };
   return (
     <>
       <BreadCrumbs title="Checkout" />
-      <div className="container-fluid checkout__page__container">
+      <div className="d-block d-lg-none">
+          <Mobile_Checkout_Page/>
+      </div>
+      <div className="container-fluid checkout__page__container d-lg-block d-none">
         <div className="checkout__page__block">
           <div className="row checkout__page__inner__block">
             <div className="col-md-12 col-xl-9  checkout__left__block">
@@ -861,7 +866,7 @@ function Checkout_Page({ reloadingHeader }) {
                 </div>
                 {customerDetails !== "" && (
                   <>
-                    <hr className="checkout__page__horizontal__line"></hr>
+                    {/* <hr className="checkout__page__horizontal__line"></hr> */}
                     <div className=" add__new__address__block">
                       <button
                         onClick={() => openNewAddressPopup("add")}
@@ -1087,7 +1092,7 @@ function Checkout_Page({ reloadingHeader }) {
                                         <div className="field__block">
                                           <input
                                             type="text"
-                                            placeholder="YYYY"
+                                            placeholder="YY"
                                             className="form__field"
                                             id="year"
                                             name="year"

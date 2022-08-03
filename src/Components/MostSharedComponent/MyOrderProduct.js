@@ -12,8 +12,11 @@ import rating_star from "./../../assets/Icon/rating_star.svg";
 import product_01 from "./../../assets/Product/product_01.png";
 import "./../../SCSS/MostSharedComponents/_myOrderProduct.scss";
 import Protection from "./Protection";
-import { Link } from "react-router-dom";
-function MyOrderProduct({ product }) {
+import { Link, useNavigate } from "react-router-dom";
+
+function MyOrderProduct(props) {
+  const { product } = props;
+  const navigate = useNavigate();
   const [couponCode, setCouponCode] = useState("");
 
   const handleSubmit = (code) => {
@@ -25,11 +28,16 @@ function MyOrderProduct({ product }) {
   const remove = (id) => {
     console.log(id);
   };
+
+  const redirectOrderDetailPage = (orderId) => {
+    navigate(`/user/orders/${orderId}`);
+  }
+
   return (
     <div className="row mo__product__block">
       <div className="col-12 col-sm-2 mo__product__left__block">
         <div className="mo__product__image__block">
-          <img src={product_01} alt="" className="mo__product__image" />
+          <img src={product.logo} alt="" className="mo__product__image" />
         </div>
       </div>
       <div className="col-12 col-sm-7 mo__product__middle__block">
@@ -59,7 +67,7 @@ function MyOrderProduct({ product }) {
             <Heading7 text="TOTAL AMOUNT:" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Price price={product.totalAmount} span={true} size="heading6" />
+            <Price price={product.totalAmount} currency={product.currency} span={true} size="heading6" />
           </div>
         </div>
 
@@ -72,7 +80,7 @@ function MyOrderProduct({ product }) {
         />
       </div>
       <div className="col-12 col-sm-3 mo__product__right__block">
-        <button className="mo__order__detail__button">ORDER DETAIL</button>
+        <button onClick={() => redirectOrderDetailPage(product.orderId)} className="mo__order__detail__button">ORDER DETAIL</button>
         <div>
           <img src={rating_star} alt="" />
           <Link className="write_Review__link" to="#">

@@ -30,6 +30,8 @@ import Confirm_Order_Page from "../Pages/Confirm_Order_Page";
 import Sony_Store_Page from "../Pages/Sony_Store_Page";
 import Search__Page from "../Pages/Search__Page";
 import Mobile_Sign_In from "../Pages/MobilePages/Mobile_Sign_In";
+import Mobile_Sign_Up from "../Pages/MobilePages/Mobile_Sign_Up";
+import Mobile_Otp_Page from "../Pages/MobilePages/Mobile_Otp_Page";
 
 function AllRoutes({categoryData,reloadingHandle,homepageData,handleChangeCartPopup}) {
   return (
@@ -47,7 +49,7 @@ function AllRoutes({categoryData,reloadingHandle,homepageData,handleChangeCartPo
       <Route exact path="/checkout" element={<Checkout_Page reloadingHandle={reloadingHandle} />}></Route>
       <Route exact path="/dashboard" element={<Dashboard />}></Route>
       <Route exact path="/user/orders" element={<My_Orders />}></Route>
-      <Route exact path="/user/orders/:id" element={<Order_Details />}></Route>
+      <Route exact path="/user/orders/:order_id" element={<Order_Details />}></Route>
       <Route exact path="/user/orders/1/confirm" element={<Confirm_Order_Page />}></Route>
       <Route exact path="/user/wishlist" element={<My_Wishlists_Page />}></Route>
       <Route exact path="/user/profile" element={<My_Profile_Page />}></Route>
@@ -56,6 +58,8 @@ function AllRoutes({categoryData,reloadingHandle,homepageData,handleChangeCartPo
       <Route exact path="/search" element={<Search__Page />}></Route>
       {/* <Route exact path="/contact" element={<Contact />}></Route> */}
       <Route exact path="/mobile-signin" element={<Mobile_Sign_In />}></Route>
+      <Route exact path="/mobile-signup" element={<Mobile_Sign_Up/>}></Route>
+      <Route exact path="/mobile-otp-page" element={<Mobile_Otp_Page/>}></Route>
     </Routes>
   );
 }

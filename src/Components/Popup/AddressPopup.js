@@ -496,7 +496,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
             >
               <option key='no' value=''>Select City/Town</option>
               {storeCitiesLocationData && storeCitiesLocationData.map(({ label, value }) => (
-                <option key={value} value={value}>
+                <option key={value} value={label}>
                   {label}
                 </option>
               ))}

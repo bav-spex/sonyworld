@@ -22,3 +22,8 @@ export {
     notifyError, // error message
     notifyClear, // clear message
 } from './common/common';
+
+export {
+    getCustomerOrdersList, // get_api_V1_customer_orders
+    getCustomerOrderDetails
+} from './customerOrders/customerOrders';
