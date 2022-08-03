@@ -15,7 +15,7 @@ import Protection from "./Protection";
 import { Link, useNavigate } from "react-router-dom";
 
 function MyOrderProduct(props) {
-  const { product } = props;
+  const { product, pageType } = props;
   const navigate = useNavigate();
   const [couponCode, setCouponCode] = useState("");
 
@@ -55,15 +55,17 @@ function MyOrderProduct(props) {
               </ul>
 
             </div>
-            <div className="col-lg-4 mo__product__right__block">
-              <button onClick={() => redirectOrderDetailPage('1')} className="mo__order__detail__button">ORDER DETAIL</button>
-              <div>
-                <img src={rating_star} alt="" />
-                <Link className="write_Review__link" to="#">
-                  Write review of this product
-                </Link>
+            {pageType === "order-list" &&
+              <div className="col-lg-4 mo__product__right__block">
+                <button onClick={() => redirectOrderDetailPage(product.orderId)} className="mo__order__detail__button">ORDER DETAIL</button>
+                <div>
+                  <img src={rating_star} alt="" />
+                  <Link className="write_Review__link" to="#">
+                    Write review of this product
+                  </Link>
+                </div>
               </div>
-            </div>
+            }
           </div>
         </div>
         <div className="col-12">

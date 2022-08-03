@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import * as services from "./../services/services";
+import * as services from "../services/services";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import Heading3 from "../Components/Font/Heading4";
 import Heading6 from "../Components/Font/Heading6";
@@ -17,6 +17,8 @@ import {
   useParams
 } from "react-router-dom";
 import moment from "moment";
+import MyOrderProductV2 from "../Components/MostSharedComponent/MyOrderProductV2";
+
 const product = {
   id: 1,
   logo: sony_logo,
@@ -125,17 +127,36 @@ function Order_Details(props) {
 
   useEffect(() => {
     if (customerOrderDetails) {
-      setOrderDetails(customerOrderDetails);
+      let orderInfo = {
+        orderId: customerOrderDetails.entity_id,
+        totalAmount: customerOrderDetails.grand_total,
+        orderPlaced: moment(customerOrderDetails.created_at).format('DD MMMM YYYY'),
+        currency: customerOrderDetails.order_currency_code,
+        items: customerOrderDetails.items,
+        allDetails: customerOrderDetails,
+        shippingAddressFLName: `${customerOrderDetails.billing_address.firstname} ${customerOrderDetails.billing_address.lastname}`,
+        shippingAddress: `${customerOrderDetails.billing_address.street[0]} ${customerOrderDetails.billing_address.city} ${customerOrderDetails.billing_address.postcode} ${customerOrderDetails.billing_address.country_id}`,
+        phoneNumber: `${customerOrderDetails.billing_address.telephone}`,
+        cardMethod: `${customerOrderDetails.payment.additional_information.message}`,
+        shippingAmount: `${customerOrderDetails.shipping_amount}`,
+        shippingSubTotal: `${customerOrderDetails.subtotal}`,
+        discountAmount: `${customerOrderDetails.discount_amount}`,
+        taxAmount: `${customerOrderDetails.tax_amount}`,
+        orderTotal: `${customerOrderDetails.grand_total}`
+      }
+      setOrderDetails(orderInfo);
     }
   }, [customerOrderDetails]);
 
   return (
     <>
       <BreadCrumbs />
-      <div className="container-fluid orderDetails__container">
-        <div className="orderDetails__block">
-          <div className="orderDetails__inner__block">
-            <div className="row od__product__block">
+      {orderDetails !== "" &&
+        <div className="container-fluid orderDetails__container">
+          <div className="orderDetails__block">
+            <div className="orderDetails__inner__block">
+              <MyOrderProductV2 product={orderDetails} pageType="order-details"/>
+              {/* <div className="row od__product__block">
               <div className="col-12 col-sm-2 od__product__left__block">
                 <div className="od__product__image__block">
                   <img src={product_01} alt="" className="od__product__image" />
@@ -203,90 +224,91 @@ function Order_Details(props) {
                   </button>
                 </div>
               </div>
-            </div>
-            <hr className="od__page__horizontal__line"></hr>
-            <div className="row od__shippingAddress__payment__orderSummary___block">
-              <div className="col-12 col-sm-12 col-md-4 od__shippingAddress__block">
-                <Heading6 text="SHIPPING ADDRESS" marginBottom={20} />
-                <Heading7 text="John Doe" marginBottom={5} />
-                <p className="full__address">
-                  <Text4
-                    text="21 West 52nd Street New York, New York, 10021 United States"
-                    marginBottom={20}
-                  />
-                </p>
-                <Heading7 text="Phone Number:" color="#808080" span={true} />{" "}
-                <Text4 text="+966 50 655 2835" marginLeft={10} span={true} />
-              </div>
-              <div className="col-12 col-sm-12 col-md-4 od__payment__block">
-                <Heading6 text="PAYMENT METHOD" marginBottom={20} />
-                <img src={card_05} alt="credit card" className="od__card" />
-                <Text4 color="#808080" text="**** **** **** 1234" />
-              </div>
-              <div className="col-12 col-sm-12 col-md-4 od__orderSummary__block">
-                <Heading6 text="ORDER SUMMARY" marginBottom={20} />
-                <div className="checkout__os__detail__block">
-                  <div className="checkout__os__detail__inner__block">
-                    <Text3 text="Shipping" color="#000000" />
-                    <Price price={20} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__inner__block">
-                    <Text3 text="Sub Total" color="#000000" />
-                    <Price price={195} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__inner__block">
-                    <Text3 text="Discount" color="#000000" />
-                    <Price price={30} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__inner__block">
-                    <Text3 text="Tax" color="#000000" />
-                    <Price price={10} size="heading7" />
-                  </div>
-                  <div className="checkout__os__detail__total__order__block">
-                    <Heading5 text="Order Total" color="#000000" />
-                    <Price price={3275} size="heading5" />
+            </div> */}
+              <hr className="od__page__horizontal__line"></hr>
+              <div className="row od__shippingAddress__payment__orderSummary___block">
+                <div className="col-12 col-sm-12 col-md-4 od__shippingAddress__block">
+                  <Heading6 text="SHIPPING ADDRESS" marginBottom={20} />
+                  <Heading7 text={orderDetails.shippingAddressFLName} marginBottom={5} />
+                  <p className="full__address">
+                    <Text4
+                      text={orderDetails.shippingAddress}
+                      marginBottom={20}
+                    />
+                  </p>
+                  <Heading7 text="Phone Number:" color="#808080" span={true} />{" "}
+                  <Text4 text={orderDetails.phoneNumber} marginLeft={10} span={true} />
+                </div>
+                <div className="col-12 col-sm-12 col-md-4 od__payment__block">
+                  <Heading6 text="PAYMENT METHOD" marginBottom={20} />
+                  {/* <img src={card_05} alt="credit card" className="od__card" /> */}
+                  <Text4 color="#808080" text={orderDetails.cardMethod} />
+                </div>
+                <div className="col-12 col-sm-12 col-md-4 od__orderSummary__block">
+                  <Heading6 text="ORDER SUMMARY" marginBottom={20} />
+                  <div className="checkout__os__detail__block">
+                    <div className="checkout__os__detail__inner__block">
+                      <Text3 text="Shipping" color="#000000" />
+                      <Price price={orderDetails.shippingAmount} currency={orderDetails.currency} size="heading7" />
+                    </div>
+                    <div className="checkout__os__detail__inner__block">
+                      <Text3 text="Sub Total" color="#000000" />
+                      <Price price={orderDetails.shippingSubTotal} currency={orderDetails.currency} size="heading7" />
+                    </div>
+                    <div className="checkout__os__detail__inner__block">
+                      <Text3 text="Discount" color="#000000" />
+                      <Price price={orderDetails.discountAmount} currency={orderDetails.currency} size="heading7" />
+                    </div>
+                    <div className="checkout__os__detail__inner__block">
+                      <Text3 text="Tax" color="#000000" />
+                      <Price price={orderDetails.taxAmount} currency={orderDetails.currency} size="heading7" />
+                    </div>
+                    <div className="checkout__os__detail__total__order__block">
+                      <Heading5 text="Order Total" color="#000000" />
+                      <Price price={orderDetails.orderTotal} currency={orderDetails.currency} size="heading5" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr className="od__page__horizontal__line"></hr>
-            <div className="od__order__track__map__block">
-              <div className="od__order__track__title__block">
-                <div className="od__order__track__title__text">
-                  <Heading7
-                    text="Your item has bee on the way Expected Arriving Date is"
-                    textAlign="center"
-                    span={true}
-                    color="#ffffff"
-                  />
-                  <Heading3
-                    text="Sunday, 19th March"
-                    textAlign="center"
-                    span={true}
-                    color="#ffffff"
-                    marginLeft={10}
-                  />
-                </div>
-                <div className="od__order__track__title__text">
-                  <Heading7
-                    text="Your Delivery Person Name is Shadab Khan & Contact Details is"
-                    textAlign="center"
-                    span={true}
-                    color="#ffffff"
-                  />
-                  <Heading3
-                    text="+966 50 655 2835"
-                    textAlign="center"
-                    span={true}
-                    color="#ffffff"
-                    marginLeft={10}
-                  />
+              <hr className="od__page__horizontal__line"></hr>
+              <div className="od__order__track__map__block">
+                <div className="od__order__track__title__block">
+                  <div className="od__order__track__title__text">
+                    <Heading7
+                      text="Your item has bee on the way Expected Arriving Date is"
+                      textAlign="center"
+                      span={true}
+                      color="#ffffff"
+                    />
+                    <Heading3
+                      text="Sunday, 19th March"
+                      textAlign="center"
+                      span={true}
+                      color="#ffffff"
+                      marginLeft={10}
+                    />
+                  </div>
+                  <div className="od__order__track__title__text">
+                    <Heading7
+                      text="Your Delivery Person Name is Shadab Khan & Contact Details is"
+                      textAlign="center"
+                      span={true}
+                      color="#ffffff"
+                    />
+                    <Heading3
+                      text="+966 50 655 2835"
+                      textAlign="center"
+                      span={true}
+                      color="#ffffff"
+                      marginLeft={10}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      }
       {/* <NewsLetter /> */}
       {/* <Footer /> */}
     </>

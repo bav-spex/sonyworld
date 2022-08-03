@@ -203,42 +203,21 @@ function My_Orders() {
               </div>
             </div>
 
-            {/* {orderList.items && orderList.items.map((val, i) => {
-              product.logo = val.items[0].product.baseImage;
-              product.name = val.items[0].product.name;
-              product.sku = val.items[0].product.sku;
-              product.orderId = val.increment_id;
-              product.orderPlaced = moment(val.items[0].created_at).format('DD MMMM YYYY');
-              product.totalAmount = val.grand_total;
-              product.currency = val.order_currency_code;
-              console.log("product.orderId  ", product.orderId);
-
-              return (
-                <>
-                  <MyOrderProduct product={product} />
-                </>
-              )
-            })} */}
-
             {/* <MyOrderProduct product={product} />
             <MyOrderProduct product={product} />
             <MyOrderProduct product={product} /> */}
 
             {orderList.items && orderList.items.map((val, i) => {
               let orderDetails = {
-                orderId: val.increment_id,
+                orderId: val.entity_id,
                 totalAmount: val.grand_total,
                 orderPlaced: moment(val.created_at).format('DD MMMM YYYY'),
                 currency: val.order_currency_code,
                 items: val.items,
                 allDetails: val
               }
-              console.log("orderDetails ", orderDetails);
-
               return (
-                <>
-                  <MyOrderProductV2 product={orderDetails} />
-                </>
+                <MyOrderProductV2 product={orderDetails} pageType="order-list" />
               )
             })}
 
