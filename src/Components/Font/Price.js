@@ -16,8 +16,8 @@ import Text6 from "./Text6";
 function Price({ preText, price,currency,postText,marginLeft,marginBottom, size,span, textTransform,color,textAlign }) {
   const finalPrice =
     price.toString().length > 3
-      ? `${preText ? preText : ""} ${currency}${price.toString().slice(0, -3)},${price.toString().slice(-3)}.00${postText ? postText : ""}`
-      : `${preText ? preText : ""} ${currency}${price.toString().slice(-3)}.00${postText ? postText : ""}`;
+      ? `${preText ? preText : ""} ${currency}${price.toString().slice(0, -3)}${price.toString().slice(-3)}${postText ? postText : ""}`
+      : `${preText ? preText : ""} ${currency}${price.toString().slice(-3)}${postText ? postText : ""}`;
 
   return (
     <>

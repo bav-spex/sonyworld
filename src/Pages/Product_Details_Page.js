@@ -71,9 +71,12 @@ import Heading1 from "../Components/Font/Heading1";
 import Heading6 from "../Components/Font/Heading6";
 import { getProductDetail } from "../services/pdp.service";
 import { addToCart } from "../services/cart.service";
-import { loadProductDetailData } from "../redux/appAction";
+import { loadCartData, loadProductDetailData } from "../redux/appAction";
 import MobileProductDetailPage from "./MobilePages/Mobile_Product_Detail_Page";
-import { addToWishlist, deleteFromWishlist } from "../services/wishlist.services";
+import {
+  addToWishlist,
+  deleteFromWishlist,
+} from "../services/wishlist.services";
 
 // const product = {
 //   id: 1,
@@ -14650,15 +14653,15 @@ function Product_Details_Page() {
     //   removeFromWL(product.sku.replace(/[/]/g, "%2F"))
     //   // console.log("deleted Successfully");
     // }
-  },[isFavourite]);
+  }, [isFavourite]);
   // console.log(isFavourite);
-  
-  const removeFromWL=(sku)=>{
+
+  const removeFromWL = (sku) => {
     const data = {
       items: [sku],
     };
-    deleteFromWishlist(data)
-  }
+    deleteFromWishlist(data);
+  };
   const handleChange = (e) => {
     setPincode(e.target.value);
   };
@@ -14691,6 +14694,7 @@ function Product_Details_Page() {
         .catch((err) => {
           console.log(err.response.data.message, "error >>>>");
         });
+      dispatch(loadCartData());
     }
   };
   if (loading) {

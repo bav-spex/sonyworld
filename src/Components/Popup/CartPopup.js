@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./../../SCSS/Popup/_cartPopup.scss";
 import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
 import success_orange from "./../../assets/Icon/success_orange.svg";
@@ -15,6 +16,7 @@ import product_03 from "./../../assets/Product/product_03.png";
 import product_04 from "./../../assets/Product/product_04.png";
 import product_05 from "./../../assets/Product/product_05.png";
 import { Link } from "react-router-dom";
+import { loadCartData } from "../../redux/appAction";
 const peopleUltimatelyBoughtData = [
   {
     id: 1,
@@ -449,7 +451,31 @@ const peopleUltimatelyBoughtData = [
     ],
   },
 ];
-function CartPopup({ closeCartPopup, cartData }) {
+function CartPopup({ closeCartPopup }) {
+  const [loading, setLoading] = useState(false);
+  const [cartProductData, setCartProductData] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+
+    dispatch(loadCartData());
+  },[])
+  const cartData = useSelector((state) => state.appData.cartData);
+  // console.log(cartData);
+  useEffect(() => {
+    if (Object.values(cartData).length !== 0) {
+      setCartProductData(cartData.items);
+      setCartTotal(cartData.totals_data.grand_total)
+      // setCartTotalData(cartData.totals_data);
+      // setLoading(false);
+      // console.log(product.reviewSummary.totals);
+    }
+  }, [cartData]);
+  // console.log("cartProductData",cartProductData);
+  // console.log("grand total ",cartTotal);
+  // if (loading) {
+  //   return <h1>Product Loading...</h1>;
+  // }
   return (
     <div className="cart__popup__block">
       <div className="cart__popup__header">
@@ -462,19 +488,20 @@ function CartPopup({ closeCartPopup, cartData }) {
         />
       </div>
       <div className="cart__popup__content">
-        {cartData.map((product, productIndex) => {
+        {cartProductData.length !== 0 && cartProductData?.map((product, productIndex) => {
+          // console.log(product.product?.media?.image?.featured);
           return (
             <div key={product.id} className="row cart__popup__product__block">
               <div className="col-4 cart__popup__product__image__block">
                 <img
                   className="cart__popup__product__image"
-                  src={product.image}
+                  src={product.product?.media?.image?.featured?.image}
                   alt=""
                 />
               </div>
               <div className="col-8">
                 <Heading6
-                  text={product.productName}
+                  text={product.name}
                   marginLeft={0}
                   marginBottom={10}
                 />
@@ -486,7 +513,7 @@ function CartPopup({ closeCartPopup, cartData }) {
         })}
         <div className="cart__total__block">
           <Heading6 text="Cart Total" />
-          <Price price={2999} size="heading7" />
+          <Price price={cartTotal && cartTotal} size="heading7" currency="SAR" />
         </div>
         <div className="cart__popup__button__block">
           <Link className="checkout__button" to="/checkout" onClick={() => closeCartPopup()}>

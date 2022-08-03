@@ -189,11 +189,7 @@ function Checkout_Page({ reloadingHeader }) {
     (state) => state.appData.deliveryShippingInfo
   );
   console.log("deliveryShippingInfo ", deliveryShippingInfo);
-  useEffect(() => {
-    if (deliveryShippingInfo !== "") {
-      setPaymentMethods(deliveryShippingInfo.payment_methods);
-    }
-  }, [deliveryShippingInfo]);
+  
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
@@ -217,21 +213,27 @@ function Checkout_Page({ reloadingHeader }) {
     deliveryAddressList: "",
     deliveryPreferencesType: "",
   });
-
+  // useEffect(() => {
+  //   if (deliveryShippingInfo !== "") {
+     
+  //   }
+  // }, [deliveryShippingInfo]);
   useEffect(() => {
     if (deliveryShippingInfo !== "") {
       setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
       setCheckoutClassName("payment");
+      setPaymentMethods(deliveryShippingInfo.payment_methods);
+      setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
     }
   }, [deliveryShippingInfo]);
-
+console.log("paymentMethods",paymentMethods);
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
     if (data) {
-      setPaymentMethods(data.paymentMethods);
-      setUserPaymentMethod(data.paymentMethods[0].code);
+      // setPaymentMethods(data.paymentMethods);
+      // setUserPaymentMethod(data.paymentMethods[0].code);
       setPaymentMethodForPayfort({
-        method: data.paymentMethods[0].code,
+        method: "",
         email: customerDetails.email,
         referer_url: "https://alpha-api.mestores.com",
       });
@@ -431,15 +433,15 @@ function Checkout_Page({ reloadingHeader }) {
   };
 
   const handleChangePaymentMethod = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     setUserPaymentMethod(e.target.value);
     setPaymentMethodForPayfort({
       method: e.target.value,
       email: customerDetails.email,
       referer_url: "https://alpha-api.mestores.com",
     });
-    console.log(paymentMethodForPayfort);
   };
+  console.log(paymentMethodForPayfort);
   const makePayment = async () => {
     const newPaymentMethodForPayfort = {
       paymentMethod: paymentMethodForPayfort,
@@ -788,7 +790,7 @@ function Checkout_Page({ reloadingHeader }) {
                               onChange={handleChangePaymentMethod}
                             />
                             <p className="payment__selection__text">
-                              <Heading4 text={payment.english_name} />
+                              <Heading4 text={payment.title} />
                             </p>
                           </div>
                           {userPaymentMethod === payment.code ? (

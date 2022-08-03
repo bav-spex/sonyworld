@@ -663,13 +663,13 @@ function Cart_Page() {
   const [arrowState, setArrowState] = useState(true);
   const [selectCategoryIndex, setSelectCategoryIndex] = useState(0);
   const [cartProductData, setCartProductData] = useState();
-    const [loading, setLoading] = useState(true);
-    const [cartTotalData, setCartTotalData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [cartTotalData, setCartTotalData] = useState();
   // const [cartData, setCartData] = useState();
-  const productCategorySelect = (categoryIndex, category) => {
-    console.log(categoryIndex, category);
-    setSelectCategoryIndex(categoryIndex);
-  };
+  // const productCategorySelect = (categoryIndex, category) => {
+  //   console.log(categoryIndex, category);
+  //   setSelectCategoryIndex(categoryIndex);
+  // };
 
   const dispatch = useDispatch();
 
@@ -691,27 +691,7 @@ function Cart_Page() {
   }, [cartData]);
 
   console.log(cartData, "Cart data >>>>>");
-  const leftSide = (e) => {
-    setArrowState(!arrowState);
-    setDisableRightArrow(false);
-    e.preventDefault();
-    document.querySelector(".sc__page__button__block").scrollLeft =
-      document.querySelector(".sc__page__button__block").scrollLeft -
-      document.querySelector(".sc__page__button__block").clientWidth -
-      800;
-    let scroll = document.querySelector(".sc__page__button__block").scrollLeft;
-  };
-  const rightSide = (e) => {
-    console.log("hello");
-    setArrowState(!arrowState);
-    setDisableLeftArrow(false);
-    e.preventDefault();
 
-    document.querySelector(".sc__page__button__block").scrollLeft =
-      document.querySelector(".sc__page__button__block").scrollLeft +
-      document.querySelector(".sc__page__button__block").clientWidth -
-      800;
-  };
   if (loading) {
     return <h1>Product Loading...</h1>;
   }
@@ -731,12 +711,15 @@ function Cart_Page() {
 
           <div className="row shopping__cart__page__inner__block">
             <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
-              {cartData && cartData.items.map((product,productIndex)=>{
-                return(
-
-                  <ShoppipngCartProduct key={product.item} product={product} />
-                )
-              })}
+              {cartProductData &&
+                cartProductData.items.map((product, productIndex) => {
+                  return (
+                    <ShoppipngCartProduct
+                      key={product.item}
+                      product={product}
+                    />
+                  );
+                })}
               {/* <hr className="sc__page__horizontal__line"></hr>
               <ShoppipngCartProduct product={product} /> */}
               <div className="sc__newArrival__block">
@@ -760,10 +743,10 @@ function Cart_Page() {
                   {" "}
                   <Heading3 text="Order Summary" />
                 </p>
-               
+
                 <div className="sc__ps__detail__block">
-                {cartTotalData?.total_segments
-                    .slice(1, cartTotalData?.total_segments.length+1)
+                  {cartTotalData?.total_segments
+                    .slice(1, cartTotalData?.total_segments.length + 1)
                     .map((segment, segmentIndex) => {
                       console.log(segment);
                       return (
@@ -781,7 +764,6 @@ function Cart_Page() {
                         </div>
                       );
                     })}
-                 
                 </div>
               </div>
               <Link className="checkout__button__link" to="/checkout">
