@@ -47,6 +47,7 @@ import {
 import { Link } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 import valid from "card-validator";
+import Mobile_Checkout_Page from "./MobilePages/Mobile_Checkout_page";
 
 const errMsgStyle = {
   color: 'red',
@@ -603,7 +604,10 @@ console.log("paymentMethods",paymentMethods);
   return (
     <>
       <BreadCrumbs title="Checkout" />
-      <div className="container-fluid checkout__page__container">
+      <div className="d-block d-lg-none">
+          <Mobile_Checkout_Page/>
+      </div>
+      <div className="container-fluid checkout__page__container d-lg-block d-none">
         <div className="checkout__page__block">
           <div className="row checkout__page__inner__block">
             <div className="col-md-12 col-xl-9  checkout__left__block">
@@ -804,7 +808,7 @@ console.log("paymentMethods",paymentMethods);
                 </div>
                 {customerDetails !== "" && (
                   <>
-                    <hr className="checkout__page__horizontal__line"></hr>
+                    {/* <hr className="checkout__page__horizontal__line"></hr> */}
                     <div className=" add__new__address__block">
                       <button
                         onClick={() => openNewAddressPopup("add")}

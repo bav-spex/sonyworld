@@ -1,6 +1,12 @@
 .checkout__page__container {
   padding: 0px 12px;
   background-color: #f5f5f5;
+  .super__coin__block .super__coin__text__block .super__coin__title{
+    font-size: 14px;
+  }
+  .super__coin__block .super__coin__text__block .super__coin__condition{
+    font-size: 12px;
+  }
   .checkout__page__block {
     padding: 20px 0px;
     width: 1702px;
@@ -13,7 +19,9 @@
       .checkout__left__block {
         padding: 0px;
         margin: 0px 0px 50px 0px;
-
+        @media(max-width:1100px){
+          margin: 0px 0px 0px 0px;
+        }
         .checkout__login__main__block {
           width: 100%;
           display: flex;
@@ -80,6 +88,7 @@
             .address__select__block {
               padding: 0px 0px;
               margin: 20px 0px;
+              border-bottom: 0;
               .address__block {
                 padding: 0px 16px;
                 .selected__address__inner__block {
@@ -424,7 +433,9 @@
               align-items: center;
               border-bottom: 1px solid rgb(224, 224, 224);
               padding: 20px 0px;
-
+              &:last-child{
+                border-bottom: 0;
+              }
               .checkout__os__detail__title {
                 margin: 0px;
                 font-size: 16px;

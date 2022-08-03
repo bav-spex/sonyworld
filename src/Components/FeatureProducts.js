@@ -333,9 +333,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[3]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block">
-                  <img src={shopping_cart} alt="cart" />
-                </div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </div>
             <div className="feature__category">
@@ -408,9 +406,7 @@ function FeatureProducts({ featureProductsData }) {
                 currency={featureProductsData[4]?.currency}
               />
               <div className="text-end cart_end_icon">
-                <div to="#" className="d-inline-block">
-                  <img src={shopping_cart} alt="cart" />
-                </div>
+                <Link to="#" className="d-inline-block"><img src={shopping_cart} alt="cart" /></Link>
               </div>
             </div>
           </div>
