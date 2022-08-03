@@ -37,23 +37,23 @@ function MyOrderProduct(props) {
     <div className="row mo__product__block">
       <div className="col-12 col-sm-2 mo__product__left__block">
         <div className="mo__product__image__block">
-          <img src={product.logo} alt="" className="mo__product__image" />
+          <img src={product_01} alt="" className="mo__product__image" />
         </div>
       </div>
       <div className="col-12 col-sm-7 mo__product__middle__block">
-        <Heading3 text={product.name} marginBottom={10} />
+        <Heading3 text={"Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)"} marginBottom={10} />
         <div className="row mo__order__details__row">
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="SKU" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Text3 text={product.sku} span={true} />
+            <Text3 text={"KD-85Z8H IN5"} span={true} />
           </div>
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="ORDER PLACED:" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Text3 text={product.orderPlaced} span={true} />
+            <Text3 text={"19 March 2022"} span={true} />
           </div>
         </div>
         <div className="row mo__order__details__row">
@@ -61,26 +61,18 @@ function MyOrderProduct(props) {
             <Heading7 text="ORDER #:" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Text3 text={product.orderId} span={true} />
+            <Text3 text={"408-2450567-3112347"} span={true} />
           </div>
           <div className="col-4 col-sm-4 col-md-2">
             <Heading7 text="TOTAL AMOUNT:" color="#727272" span={true} />
           </div>
           <div className="col-8 col-sm-8 col-md-4">
-            <Price price={product.totalAmount} currency={product.currency} span={true} size="heading6" />
+            <Price price={"1699"} currency={"SAR"} span={true} size="heading6" />
           </div>
         </div>
-
-        <Protection
-          title="Protection Plan"
-          tagline="Most popular protection plan for your product"
-          rating={product.rating}
-          totalRatings={product.totalRatings}
-          protection={product.protection}
-        />
       </div>
       <div className="col-12 col-sm-3 mo__product__right__block">
-        <button onClick={() => redirectOrderDetailPage(product.orderId)} className="mo__order__detail__button">ORDER DETAIL</button>
+        <button onClick={() => redirectOrderDetailPage('1')} className="mo__order__detail__button">ORDER DETAIL</button>
         <div>
           <img src={rating_star} alt="" />
           <Link className="write_Review__link" to="#">

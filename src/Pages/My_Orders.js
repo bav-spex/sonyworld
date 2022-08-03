@@ -1,13 +1,18 @@
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import * as services from "./../services/services";
 import ShoppipngCartProduct from "../Components/MostSharedComponent/ShoppipngCartProduct";
 import "./../SCSS/_myOrders.scss";
 import sony_logo from "./../assets/Icon/sony_logo.svg";
 import search from "./../assets/Icon/search.svg";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import MyOrderProduct from "../Components/MostSharedComponent/MyOrderProduct";
+import MyOrderProductV2 from "../Components/MostSharedComponent/MyOrderProductV2";
 import Heading3 from "../Components/Font/Heading4";
 import Heading7 from "../Components/Font/Heading7";
 import Text3 from "../Components/Font/Text3";
+import moment from "moment";
+
 const product = {
   id: 1,
   logo: sony_logo,
@@ -84,27 +89,47 @@ const product = {
       protectionText: "2-Year Standard Geek Squad Protection",
       price: 79,
       month: 12,
+      currency: 'SAR'
     },
     {
       id: 2,
       protectionText: "1-Year Standard Geek Squad Protection",
       price: 89,
       month: 12,
+      currency: 'SAR'
     },
   ],
   sku: "KD-85Z8H IN5",
   orderPlaced: "19 March 2022",
   orderId: "408-2450567-3112347",
   totalAmount: 1699,
+  currency: 'SAR',
 };
 const orderCategory = [
- "Recent Orders",
- "Past Orders",
- "Cancelled Orders",
- "Buy Again"
+  "Recent Orders",
+  "Past Orders",
+  "Cancelled Orders",
+  "Buy Again"
 
 ]
 function My_Orders() {
+
+  const dispatch = useDispatch();
+
+  const { customerOrderList, customerOrderDetails } = useSelector((state) => state.customerOrdersReducer);
+
+  const [orderList, setOrderList] = useState('');
+
+  useEffect(() => {
+    dispatch(services.getCustomerOrdersList())
+  }, []);
+
+  useEffect(() => {
+    if (customerOrderList) {
+      setOrderList(customerOrderList);
+    }
+  }, [customerOrderList]);
+
   const [selectCategoryIndex, setSelectCategoryIndex] = useState(0);
   const orderCategorySelect = (categoryIndex, category) => {
     console.log(categoryIndex, category);
@@ -115,7 +140,7 @@ function My_Orders() {
   };
   return (
     <>
-      <BreadCrumbs title="My Orders"/>
+      <BreadCrumbs title="My Orders" />
       <div className="container-fluid myOrders__container">
         <div className="myOrders__block">
           <div className=" myOrders__inner__block">
@@ -154,33 +179,55 @@ function My_Orders() {
             <hr className="mo__page__horizontal__line"></hr>
 
             <div className="mo__page__category__button__block">
-                <div className="mo__page__button__main__block">
-                  <div className="mo__page__button__block">
-                    {orderCategory.map((category, categoryIndex) => {
-                      return (
-                        <button
-                          key={categoryIndex}
-                          onClick={() =>
-                            orderCategorySelect(categoryIndex, category)
-                          }
-                          className={
-                            selectCategoryIndex === categoryIndex
-                              ? "mo__page__button__active"
-                              : "mo__page__button"
-                          }
-                        >
-                          {category}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  
+              <div className="mo__page__button__main__block">
+                <div className="mo__page__button__block">
+                  {orderCategory.map((category, categoryIndex) => {
+                    return (
+                      <button
+                        key={categoryIndex}
+                        onClick={() =>
+                          orderCategorySelect(categoryIndex, category)
+                        }
+                        className={
+                          selectCategoryIndex === categoryIndex
+                            ? "mo__page__button__active"
+                            : "mo__page__button"
+                        }
+                      >
+                        {category}
+                      </button>
+                    );
+                  })}
                 </div>
-              </div>
 
+              </div>
+            </div>
+
+            {/* {orderList.items && orderList.items.map((val, i) => {
+              product.logo = val.items[0].product.baseImage;
+              product.name = val.items[0].product.name;
+              product.sku = val.items[0].product.sku;
+              product.orderId = val.increment_id;
+              product.orderPlaced = moment(val.items[0].created_at).format('DD MMMM YYYY');
+              product.totalAmount = val.grand_total;
+              product.currency = val.order_currency_code;
+              console.log("product.orderId  ", product.orderId);
+
+              return (
+                <>
+                  <MyOrderProduct product={product} />
+                </>
+              )
+            })} */}
+
+            {/* <MyOrderProduct product={product} />
             <MyOrderProduct product={product} />
-            <MyOrderProduct product={product} />
-            <MyOrderProduct product={product} />
+            <MyOrderProduct product={product} /> */}
+
+            <MyOrderProductV2 />
+            <MyOrderProductV2 />
+            <MyOrderProductV2 />
+            <MyOrderProductV2 />
           </div>
         </div>
       </div>
