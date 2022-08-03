@@ -19,7 +19,7 @@ import OldPrice from "../Font/OldPrice";
 import Price from "../Font/Price";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
-function PLPProductPopup({ product, closeProductPopup }) {
+function PLPProductPopup({ product, closeProductPopup,handleChangeCartPopup }) {
   // console.log(product);
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
@@ -67,7 +67,7 @@ function PLPProductPopup({ product, closeProductPopup }) {
       // console.log("added Successfully");
     }
     else{
-      // removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
+      removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
       // console.log("deleted Successfully");
     }
   },[isFavourite]);
@@ -89,12 +89,13 @@ function PLPProductPopup({ product, closeProductPopup }) {
     addToCart(data)
       .then((res) => {
         console.log(res, "res>>>");
+        dispatch(loadCartData());
+        handleChangeCartPopup(true)
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
         dispatch(services.notifyError({ message: err.response.data.message }));
       });
-    dispatch(loadCartData());
   };
 
   const removeFromWL=(sku)=>{

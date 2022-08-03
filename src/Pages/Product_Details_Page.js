@@ -14512,7 +14512,7 @@ const data = {
   created_at: "2022-06-16T16:17:35Z",
   updated_at: "2022-06-17T14:31:43Z",
 };
-function Product_Details_Page() {
+function Product_Details_Page({handleChangeCartPopup}) {
   const contentData = JSON.parse(JSON.stringify(data)).content;
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
@@ -14650,10 +14650,10 @@ function Product_Details_Page() {
       addToWishlist(data);
       // console.log("added Successfully");
     }
-    // else{
-    //   removeFromWL(product.sku.replace(/[/]/g, "%2F"))
+    else{
+      removeFromWL(product.sku.replace(/[/]/g, "%2F"))
     //   // console.log("deleted Successfully");
-    // }
+    }
   }, [isFavourite]);
   // console.log(isFavourite);
 
@@ -14675,29 +14675,28 @@ function Product_Details_Page() {
     setSizeButtonIndex(sizeIndex);
   };
 
-  const AddProductToCart = () => {
-    console.log(product, "product in product details >>>");
+  const AddProductToCart = (sku) => {
+    console.log(sku, "product in product details >>>");
 
-    if (count > 0) {
-      const data = {
-        items: [
-          {
-            sku: product.sku,
-            qty: count,
-          },
-        ],
-      };
+    const data = {
+      items: [
+        {
+          sku: sku,
+          qty: 1,
+        },
+      ],
+    };
 
-      addToCart(data)
-        .then((res) => {
-          console.log(res, "res>>>");
-        })
-        .catch((err) => {
-          console.log(err.response.data.message, "error >>>>");
-          dispatch(services.notifyError({message:err.response.data.message}))
-        });
-      dispatch(loadCartData());
-    }
+    addToCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+        dispatch(loadCartData());
+        handleChangeCartPopup(true)
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        dispatch(services.notifyError({ message: err.response.data.message }));
+      });
   };
   if (loading) {
     return <h1>Product Loading...</h1>;
@@ -14956,7 +14955,7 @@ function Product_Details_Page() {
                   <div className="col-xl-6 mb-1 ps-0 ps-xl-1 pd__addToCart__button__block">
                     <div
                       className="pd__addToCart__button"
-                      onClick={() => AddProductToCart()}
+                      onClick={() => AddProductToCart(product.sku)}
                     >
                       <img
                         src={shopping_cart}
@@ -15038,6 +15037,7 @@ function Product_Details_Page() {
             {/* <Accordian data={productSpecificationData} isDescription={false} /> */}
             <div className="pd__newArrival__block">
               <CarouselTypeTwo
+              handleChangeCartPopup={handleChangeCartPopup}
                 productDetailPage={true}
                 sectionTitle={product.relatedProducts[0].title}
                 carouselData={product.relatedProducts[0].products}
@@ -15047,6 +15047,7 @@ function Product_Details_Page() {
             </div>
             <div className="pd__similarProducts__block">
               <SimilarProducts
+              handleChangeCartPopup={handleChangeCartPopup}
                 productType="productTwo"
                 productDetailPage={true}
                 sectionTitle={product.relatedProducts[0].title}
@@ -15141,7 +15142,7 @@ function Product_Details_Page() {
           <button className="build__bundle___button">BUILD BUNDLE</button>
           <button
             className="addToCart__button"
-            onClick={() => AddProductToCart()}
+            onClick={() => AddProductToCart(product.sku)}
           >
             <img src={shopping_cart} alt="" className="addToCart__icon" />
             Add To Cart

@@ -31,6 +31,7 @@ function ProtectionPlan({ title, protection,remove }) {
                 marginLeft={10}
                 marginBottom={0}
                 span={true}
+                currency={"SAR"}
               />
             </div>
             <div onClick={()=>remove(protect.id)} className="col-2 remove__plan">

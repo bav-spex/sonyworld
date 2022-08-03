@@ -31,17 +31,17 @@ import Sony_Store_Page from "../Pages/Sony_Store_Page";
 import Search__Page from "../Pages/Search__Page";
 import Mobile_Sign_In from "../Pages/MobilePages/Mobile_Sign_In";
 
-function AllRoutes({categoryData,reloadingHandle,homepageData}) {
+function AllRoutes({categoryData,reloadingHandle,homepageData,handleChangeCartPopup}) {
   return (
     <Routes>
-      <Route exact path="/" element={<Home homepageData={homepageData} log="log" categoryData={categoryData} />}></Route>
-      <Route exact path="/:category" element={<Product_List_Page />} ></Route>
-      <Route exact path="/products/compare" element={<Product_Comparison />} ></Route>
+      <Route exact path="/" element={<Home homepageData={homepageData}  handleChangeCartPopup={handleChangeCartPopup}  log="log" categoryData={categoryData} />}></Route>
+      <Route exact path="/:category" element={<Product_List_Page handleChangeCartPopup={handleChangeCartPopup} />} ></Route>
+      <Route exact path="/products/compare" element={<Product_Comparison handleChangeCartPopup={handleChangeCartPopup} />} ></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
       <Route exact path="/category" element={<All_Category_Page />} ></Route>
       <Route exact path="/services" element={<Services />}></Route>
       <Route exact path="/support" element={<Support />}></Route>
-      <Route exact path="/products/:id" element={<Product_Details_Page />}></Route>
+      <Route exact path="/products/:id" element={<Product_Details_Page handleChangeCartPopup={handleChangeCartPopup}/>}></Route>
       <Route exact path="/create_bundle" element={<Create_Bundle_Page />}></Route>
       <Route exact path="/cart" element={<Cart_Page />}></Route>
       <Route exact path="/checkout" element={<Checkout_Page reloadingHandle={reloadingHandle} />}></Route>

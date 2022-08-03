@@ -82,23 +82,24 @@ function ShoppipngCartProduct({ product }) {
   const remove = (id) => {
     console.log(id);
   };
-  const deleteProductFromCart = (id) => {
+  const deleteProductFromCart = async(id) => {
     console.log("id ", id);
 
     const data = {
+      // items: [id],
       items: [id],
     };
     console.log("data ", data);
 
-    deleteFromCart(data)
+   await deleteFromCart(data)
       .then((res) => {
         console.log(res, "res>>>");
+        dispatch(loadCartData());
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
         // dispatch(services.notifyError({ message: err.response.data.message }));
       });
-    // dispatch(loadCartData());
   };
   return (
     <div className="row sc__product__block">
@@ -208,7 +209,7 @@ function ShoppipngCartProduct({ product }) {
           </div>
           <div
             className="delete__icon__button__block"
-            onClick={() => deleteProductFromCart(product.product.id)}
+            onClick={() => deleteProductFromCart(product.item_id)}
           >
             <img src={delete_icon} alt="delete" />
           </div>

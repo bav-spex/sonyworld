@@ -47,7 +47,7 @@ import {
   getPayfortInformation,
   updateShippingInformation,
 } from "../services/cart.service";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 import valid from "card-validator";
 
@@ -182,7 +182,7 @@ const product = {
 
 function Checkout_Page({ reloadingHeader }) {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const { customerDetails } = useSelector((state) => state.customerReducer);
   // console.log(customerDetails);
   const { customerAddressList, customerAddUpdateManage } = useSelector(
@@ -426,6 +426,7 @@ function Checkout_Page({ reloadingHeader }) {
 
     // setIconType(newIconType);
     // setCheckoutClassName(className);
+    window.scrollTo(0,0)
   };
 
   const openLoginWrapperFromAnywhere = () => {
@@ -441,6 +442,7 @@ function Checkout_Page({ reloadingHeader }) {
       localStorage.setItem("loginWrapper", JSON.stringify(true));
       localStorage.setItem("loginMode", JSON.stringify("signin"));
       localStorage.setItem("loginPopup", JSON.stringify(true));
+
       window.scrollTo(500, 0);
     }
   };
@@ -480,33 +482,7 @@ function Checkout_Page({ reloadingHeader }) {
     });
   };
   // console.log(paymentMethodForPayfort);
-  const makePayment = async () => {
-    let validateFeild = ["cardNumber", "cardHolder", "month", "year", "cvv"];
-
-    let formStatus = allFeildValidate(validateFeild, cardErrMsg);
-    setCardErrMsg(formStatus.allErrMsg);
-    if (paymentMethodForPayfort === "payfort_fort_cc") {
-      if (formStatus.checkCardStatus === true) {
-        const newPaymentMethodForPayfort = {
-          paymentMethod: paymentMethodForPayfort,
-        };
-        console.log(newPaymentMethodForPayfort);
-        const data = dispatch(
-          loadPayfortInformation(newPaymentMethodForPayfort)
-        );
-        console.log(data);
-      }
-    } else {
-      const newPaymentMethodForPayfort = {
-        paymentMethod: paymentMethodForPayfort,
-      };
-      console.log(newPaymentMethodForPayfort);
-      const data = dispatch(loadPayfortInformation(newPaymentMethodForPayfort));
-      console.log(data.then(res=>console.log(res)));
-    }
-
-    //  history.push("/user/order")
-  };
+  
 
   const validateForm = (event, newErrObj, name, value) => {
     //A function to validate each input values
@@ -634,6 +610,44 @@ function Checkout_Page({ reloadingHeader }) {
     return returnData;
   };
 
+  const makePayment = async () => {
+    let validateFeild = ["cardNumber", "cardHolder", "month", "year", "cvv"];
+
+    let formStatus = allFeildValidate(validateFeild, cardErrMsg);
+    setCardErrMsg(formStatus.allErrMsg);
+    if (paymentMethodForPayfort === "payfort_fort_cc") {
+      if (formStatus.checkCardStatus === true) {
+        const newPaymentMethodForPayfort = {
+          paymentMethod: paymentMethodForPayfort,
+        };
+        console.log(newPaymentMethodForPayfort);
+        const data = dispatch(
+          loadPayfortInformation(newPaymentMethodForPayfort)
+        ).then((res) => {
+          console.log("payfort Information",res.data);
+          console.log("Entity",res?.data?.entity_id);
+          setCheckoutClassName("delivery")
+          navigate.push(`/user/orders/${res.data.entity_id}`)
+        });
+      }
+    } else {
+      const newPaymentMethodForPayfort = {
+        paymentMethod: paymentMethodForPayfort,
+      };
+      console.log(newPaymentMethodForPayfort);
+      const data = dispatch(
+        loadPayfortInformation(newPaymentMethodForPayfort)
+      ).then((res) => {
+        console.log("payfort Information", res.data);
+        console.log("Entity",res?.data?.entity_id);
+        setCheckoutClassName("delivery")
+        navigate.push(`/user/orders/${res.data.entity_id}`)
+      });
+
+    }
+
+    //  history.push("/user/order")
+  };
   return (
     <>
       <BreadCrumbs title="Checkout" />
@@ -1181,7 +1195,7 @@ function Checkout_Page({ reloadingHeader }) {
                     .slice(1, 5)
                     .map((segment, segmentIndex) => {
                       return (
-                        <div className="checkout__os__detail__inner__block">
+                        <div key={segment.code} className="checkout__os__detail__inner__block">
                           {segment.code === "grand_total" ? (
                             <Heading6 text={segment.title} color="#000000" />
                           ) : (

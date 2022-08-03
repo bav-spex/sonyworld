@@ -23,6 +23,7 @@ import { useSelector } from "react-redux";
 import { setHeader } from "./services/config";
 import { customerDetailsSuccess } from "./services/customer/customer";
 import { getCustomerLoginDetails } from "./Components/helpers/utils/getCustomerLoginDetails";
+import CartPopup from "./Components/Popup/CartPopup";
 
 function App({ stars }) {
 
@@ -94,6 +95,14 @@ function App({ stars }) {
       setLoading(false);
     }
   }, [allCategoryData]);
+  const [cartPopup, setCartPopup] = useState(false);
+  const closeCartPopup = () => {
+    setCartPopup(false);
+  };
+  const handleChangeCartPopup = (value) => {
+    setCartPopup(value);
+    // setPopupProduct(product);
+  };
   if (loading) {
     return <h1>App Loading...</h1>;
   }
@@ -104,6 +113,7 @@ function App({ stars }) {
       </Helmet>
       <div className="main_header">
         <Header
+        handleChangeCartPopup={handleChangeCartPopup}
           reloadingHandle={reloadingHandle}
           categoryData={categoryData}
           reloadHeader={reloadHeader}
@@ -111,6 +121,7 @@ function App({ stars }) {
       </div>
       <div className="main_wrapper">
         <AllRoutes
+        handleChangeCartPopup={handleChangeCartPopup}
           homepageData={homepageData}
           categoryData={categoryData}
           reloadingHandle={reloadingHandle}
@@ -120,6 +131,19 @@ function App({ stars }) {
       <NewsLetter />
 
       <Footer />
+      <div
+        className={
+          cartPopup
+            ? "container-fluid cart__popup__container"
+            : "container-fluid cart__popup__container__disable"
+        }
+      >
+        <CartPopup
+          // cartData={cartData}
+          closeCartPopup={closeCartPopup}
+          handleChangeCartPopup={handleChangeCartPopup}
+        />
+      </div>
     </>
   );
 }

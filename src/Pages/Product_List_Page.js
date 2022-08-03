@@ -939,7 +939,7 @@ const newArrivalData = [
     price: 1699,
   },
 ];
-const Product_List_Page = () => {
+const Product_List_Page = ({handleChangeCartPopup}) => {
   const { category } = useParams();
   const [selectedCategoryId, setSelectedCategoryId] = useState();
   const [filterAndProductsData, setfilterAndProductsData] = useState([]);
@@ -1189,6 +1189,7 @@ const Product_List_Page = () => {
         }
       >
         <PLPProductPopup
+        handleChangeCartPopup={handleChangeCartPopup}
           product={popupProduct}
           closeProductPopup={closeProductPopup}
         />

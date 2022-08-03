@@ -12,6 +12,7 @@ function SimilarProducts({
   carouselData,
   productType,
   containerClassName,
+  handleChangeCartPopup
 }) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
@@ -65,6 +66,7 @@ function SimilarProducts({
               {carouselData.map((product, productIndex) => {
                 return (
                   <ProductTwo
+                  handleChangeCartPopup={handleChangeCartPopup}
                     productDetailPage={productDetailPage}
                     key={product.id}
                     product={product}
@@ -77,6 +79,7 @@ function SimilarProducts({
               {carouselData.map((product, productIndex) => {
                 return (
                   <ProductSeven
+                  handleChangeCartPopup={handleChangeCartPopup}
                     productDetailPage={productDetailPage}
                     key={product.id}
                     product={product}

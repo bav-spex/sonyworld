@@ -23,7 +23,7 @@ import empty_favourite from "./../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../assets/Icon/shopping-cart-red.svg";
 
-function FeatureProducts({ featureProductsData }) {
+function FeatureProducts({ featureProductsData,handleChangeCartPopup }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const handleFavourite = () => {
@@ -46,12 +46,13 @@ function FeatureProducts({ featureProductsData }) {
     addToCart(data)
       .then((res) => {
         console.log(res, "res>>>");
+        dispatch(loadCartData());
+        handleChangeCartPopup(true)
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
         dispatch(services.notifyError({ message: err.response.data.message }));
       });
-    dispatch(loadCartData());
   };
 
   return (
@@ -216,9 +217,9 @@ function FeatureProducts({ featureProductsData }) {
                 className="text-end cart_end_icon"
                 onClick={() => AddProductToCart(featureProductsData[1].sku)}
               >
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+                
               </div>
             </div>
             <div className="feature__category">
@@ -294,9 +295,9 @@ function FeatureProducts({ featureProductsData }) {
                 onClick={() => AddProductToCart(featureProductsData[2].sku)}
               
               >
-                <Link to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </Link>
+              
               </div>
             </div>
           </div>
@@ -377,9 +378,9 @@ function FeatureProducts({ featureProductsData }) {
                 onClick={() => AddProductToCart(featureProductsData[3].sku)}
               
               >
-                <div to="#" className="d-inline-block">
+               
                   <img src={shopping_cart} alt="cart" />
-                </div>
+                
               </div>
             </div>
             <div className="feature__category">
@@ -455,9 +456,9 @@ function FeatureProducts({ featureProductsData }) {
                 onClick={() => AddProductToCart(featureProductsData[4].sku)}
               
               >
-                <div to="#" className="d-inline-block">
+                
                   <img src={shopping_cart} alt="cart" />
-                </div>
+               
               </div>
             </div>
           </div>

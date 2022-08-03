@@ -44,7 +44,7 @@ import { loadLocationData } from "../redux/appAction";
 
 import MobileHomePage from "./MobilePages/Mobile_Home_Page";
 
-function Home({}) {
+function Home({handleChangeCartPopup}) {
   // const [homepageData, setHomepageData] = useState();
   const [loading, setLoading] = useState(true);
   const [liveChatPopup, setLiveChatPopup] = useState(false);
@@ -176,7 +176,7 @@ function Home({}) {
           <HomePageCategoryBlock />
         </div>
 
-        <FeatureProducts featureProductsData={featureProductsData} />
+        <FeatureProducts featureProductsData={featureProductsData} handleChangeCartPopup={handleChangeCartPopup}/>
 
         <RecentlyViewedProducts
           recentlyViewedProductsData={recentlyViewedProductsData}

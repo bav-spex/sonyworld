@@ -665,6 +665,7 @@ function Cart_Page() {
   const [cartProductData, setCartProductData] = useState();
   const [loading, setLoading] = useState(true);
   const [cartTotalData, setCartTotalData] = useState();
+  const [cartItem, setCartItem] = useState(0);
   // const [cartData, setCartData] = useState();
   // const productCategorySelect = (categoryIndex, category) => {
   //   console.log(categoryIndex, category);
@@ -685,12 +686,13 @@ function Cart_Page() {
       setCartProductData(cartData);
       // console.log(cartData.totals_data);
       setCartTotalData(cartData.totals_data);
+      setCartItem(cartData.items && cartData.items.length)
       setLoading(false);
       // console.log(product.reviewSummary.totals);
     }
   }, [cartData]);
-
-  // console.log(cartData, "Cart data >>>>>");
+console.log(cartItem);
+  console.log(cartData, "Cart data >>>>>");
 
   if (loading) {
     return <h1>Product Loading...</h1>;
@@ -707,7 +709,7 @@ function Cart_Page() {
             {" "}
             <Heading3 text="Shopping Cart" span={true} />{" "}
             <Text1
-              text={`${cartProductData && cartProductData.length} Items`}
+              text={`(${cartItem && cartItem} Items)`}
               color="#FF4F04"
               span={true}
             />
@@ -717,9 +719,10 @@ function Cart_Page() {
             <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
               {cartProductData &&
                 cartProductData.items.map((product, productIndex) => {
+                  console.log("cartproduct",product);
                   return (
                     <ShoppipngCartProduct
-                      key={product.item}
+                      key={product.item_id}
                       product={product}
                     />
                   );
@@ -761,7 +764,7 @@ function Cart_Page() {
                             <Text3 text={segment.title} color="#000000" />
                           )}
                           <Price
-                            price={segment.value}
+                            price={segment.value ===null ? 0:segment.value}
                             size="heading7"
                             currency={cartTotalData.base_currency_code}
                           />

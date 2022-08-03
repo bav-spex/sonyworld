@@ -19,7 +19,7 @@ import { addToCart } from "./../../services/cart.service";
 import { loadCartData } from "./../../redux/appAction";
 import * as services from "./../../services/services";
 
-function ProductTwo({ productDetailPage, product }) {
+function ProductTwo({ productDetailPage, product,handleChangeCartPopup }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
@@ -59,13 +59,13 @@ function ProductTwo({ productDetailPage, product }) {
     setSizeButtonIndex(sizeIndex);
   };
 
-  const AddProductToCart = () => {
-    console.log(product, "product in product details >>>");
+  const AddProductToCart = (sku) => {
+    console.log(sku, "product in product details >>>");
 
     const data = {
       items: [
         {
-          sku: product.sku,
+          sku: sku,
           qty: 1,
         },
       ],
@@ -74,14 +74,14 @@ function ProductTwo({ productDetailPage, product }) {
     addToCart(data)
       .then((res) => {
         console.log(res, "res>>>");
+        dispatch(loadCartData());
+        handleChangeCartPopup(true)
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
         dispatch(services.notifyError({ message: err.response.data.message }));
       });
-    dispatch(loadCartData());
   };
-
   return (
     <div
       to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}

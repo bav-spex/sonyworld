@@ -44,10 +44,10 @@ function ProductOne({ productDetailPage, product }) {
       addToWishlist(data);
       // console.log("added Successfully");
     }
-    // else{
-    //   removeFromWL(product.sku.replace(/[/]/g, "%2F"))
-    //   // console.log("deleted Successfully");
-    // }
+    else{
+      removeFromWL(product.sku.replace(/[/]/g, "%2F"))
+      // console.log("deleted Successfully");
+    }
   },[isFavourite]);
   // console.log(isFavourite);
   const handleRating = (score) => {

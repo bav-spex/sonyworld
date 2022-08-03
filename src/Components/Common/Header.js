@@ -1522,7 +1522,7 @@ const searchData = {
     },
   ],
 };
-function Header({ reloadingHandle, reloadHeader, categoryData }) {
+function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPopup }) {
  
   const { customerDetails } = useSelector((state) => state.customerReducer);
 
@@ -1588,14 +1588,14 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
   const closeSearchPopup = () => {
     setSearchPopup(false);
   };
-  const [cartPopup, setCartPopup] = useState(false);
-  const closeCartPopup = () => {
-    setCartPopup(false);
-  };
-  const handleChangeCartPopup = (value) => {
-    setCartPopup(value);
-    // setPopupProduct(product);
-  };
+  // const [cartPopup, setCartPopup] = useState(false);
+  // const closeCartPopup = () => {
+  //   setCartPopup(false);
+  // };
+  // const handleChangeCartPopup = (value) => {
+  //   setCartPopup(value);
+  //   // setPopupProduct(product);
+  // };
   //   useEffect(() => {
   //     // debugger
   //     if(localStorage.getItem('loginWrapper') ){
@@ -2062,8 +2062,8 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                       </>
                     )}
 
-                    <div
-                      onClick={() => handleChangeCartPopup(true)}
+                    <Link to="/cart"
+                      // onClick={() => handleChangeCartPopup(true)}
                       className="cart__icon__block"
                     >
                       <img
@@ -2072,7 +2072,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
                         className="shopping_cart header__icon"
                       />
                       <p className="cart__item__count">{99}</p>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -2376,19 +2376,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData }) {
           )}
         </div>
       </div>
-      <div
-        className={
-          cartPopup
-            ? "container-fluid cart__popup__container"
-            : "container-fluid cart__popup__container__disable"
-        }
-      >
-        <CartPopup
-          cartData={cartData}
-          closeCartPopup={closeCartPopup}
-          handleChangeCartPopup={handleChangeCartPopup}
-        />
-      </div>
+      
     </>
   );
 }

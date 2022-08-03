@@ -16,7 +16,8 @@ function CarouselTypeTwo({
   carouselData,
   containerClassName,
   productType,
-  recentlyViewedProductsData
+  recentlyViewedProductsData,
+  handleChangeCartPopup
 }) {
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
@@ -60,19 +61,19 @@ function CarouselTypeTwo({
           {productType === "productOne" ? (
             <div className={containerClassName}>
               {carouselData.map((product, productIndex) => {
-                return <ProductOne key={product.id} product={product} productDetailPage={productDetailPage}/>;
+                return <ProductOne handleChangeCartPopup={handleChangeCartPopup} key={product.id} product={product} productDetailPage={productDetailPage}/>;
               })}
             </div>
           ) : productType === "productFive" ? (
             <div className={containerClassName}>
               {recentlyViewedProductsData.map((product, productIndex) => {
-                return <ProductFive key={product.id} product={product} />;
+                return <ProductFive handleChangeCartPopup={handleChangeCartPopup} key={product.id} product={product} />;
               })}
             </div>
           ) :productType === "productEleven" ? (
             <div className={containerClassName}>
               {carouselData.map((product, productIndex) => {
-                return <ProductEleven key={product.id} product={product} />;
+                return <ProductEleven handleChangeCartPopup={handleChangeCartPopup} key={product.id} product={product} />;
               })}
             </div>
           ) : (

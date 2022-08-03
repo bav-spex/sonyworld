@@ -22,7 +22,7 @@ export const deleteFromWishlist = async(data) => {
     console.log(data);
     const wishlistData = await axios.delete(
         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
-        data
+        {data:data}
     );
     console.log(wishlistData,"addToWishlist")
     return wishlistData;

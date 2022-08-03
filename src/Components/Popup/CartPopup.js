@@ -491,7 +491,7 @@ function CartPopup({ closeCartPopup }) {
         {cartProductData.length !== 0 && cartProductData?.map((product, productIndex) => {
           // console.log(product.product?.media?.image?.featured);
           return (
-            <div key={product.id} className="row cart__popup__product__block">
+            <div key={product.item_id} className="row cart__popup__product__block">
               <div className="col-4 cart__popup__product__image__block">
                 <img
                   className="cart__popup__product__image"
