@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as types from "./../../redux/actionType";
 import navbar_logo from "./../../assets/Logo/navbar_logo.svg";
 import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
@@ -53,6 +53,7 @@ import { getCustomerLoginDetails } from "../helpers/utils/getCustomerLoginDetail
 import { customerDetailsSuccess } from "../../services/customer/customer";
 import * as services from './../../services/services';
 import { customerSignInSuccess, customerSignUpMsgSuccess } from "../../services/customer/customer";
+
 // const categoryData = [
 //   {
 //     id: 1,
@@ -1523,11 +1524,31 @@ const searchData = {
     },
   ],
 };
+
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
 function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartPopup, cartIconTotal }) {
 
   const { customerSignUpMsg, customerSignInMsg, customerDetails } = useSelector((state) => state.customerReducer);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // language changing in project //
   // console.log(categoryData);
@@ -1594,6 +1615,14 @@ function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartP
   const [userLoginPopup, setUserLoginPopup] = useState(false);
   const [searchPopup, setSearchPopup] = useState(false);
   // const [searchData,setSearchData] = useState()
+
+  // mobile-mode then close signin/signup close
+  useEffect(() => {
+    if (windowDimensions.width < 992) {
+      closeLoginPopup()
+    }
+  }, [windowDimensions]);
+
   const openSearchPopup = (e) => {
     console.log(e.target.value);
     setSearchPopup(true);
@@ -1662,10 +1691,12 @@ function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartP
   // }, [reloadHeader])
   const openLoginPopup = () => {
     setUserLoginPopup(!userLoginPopup);
-    setLoginPopup(userLoginPopup ? false : true);
-    localStorage.setItem("loginPopup", JSON.stringify(true));
-    setCategoryPopup(false);
-    setLoginMode("");
+    if (windowDimensions.width > 992) {
+      setLoginPopup(userLoginPopup ? false : true);
+      localStorage.setItem("loginPopup", JSON.stringify(true));
+      setCategoryPopup(false);
+      setLoginMode("");
+    }
   };
   const openProductPopup = () => {
     setCategoryPopup(!categoryPopup);
@@ -1673,13 +1704,23 @@ function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartP
   };
 
   const openLoginWrapper = (mode) => {
-    setLoginMode(mode);
-    setLoginWrapper(true);
-    setUserLoginPopup(false);
-    console.log(loginWrapper);
-    localStorage.setItem("loginMode", JSON.stringify(mode));
-    localStorage.setItem("loginWrapper", JSON.stringify(true));
-    localStorage.setItem("loginPopup", JSON.stringify(true));
+    if (windowDimensions.width > 992) {
+      // desktop
+      setLoginMode(mode);
+      setLoginWrapper(true);
+      setUserLoginPopup(false);
+      localStorage.setItem("loginMode", JSON.stringify(mode));
+      localStorage.setItem("loginWrapper", JSON.stringify(true));
+      localStorage.setItem("loginPopup", JSON.stringify(true));
+    } else {
+      //mobile
+      if (mode === "signup") {
+        navigate('/mobile-signup');
+      } else if (mode === "signin") {
+        navigate('/mobile-signin');
+      }
+    }
+
   };
   const closeLoginPopup = () => {
     if (document.querySelector(".login__popup__container")) {

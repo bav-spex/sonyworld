@@ -121,7 +121,13 @@ function My_Orders() {
   const [orderList, setOrderList] = useState('');
 
   useEffect(() => {
-    dispatch(services.getCustomerOrdersList())
+    let params = {
+      // limit: 10,
+      // offset: 1,
+      sort: 'created_at',
+      order: 'DESC'
+    }
+    dispatch(services.getCustomerOrdersList(params))
   }, []);
 
   useEffect(() => {
