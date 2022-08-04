@@ -28,7 +28,7 @@ function ShoppipngCartProduct({ product }) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [count, setCount] = useState(product.qty);
-  const [plusMinusClickOn,setPlusMinusClickOn] = useState(true)
+  const [plusMinusClickOn, setPlusMinusClickOn] = useState(true);
   const [availableOffer, setAvailableOffer] = useState([
     {
       id: 1,
@@ -67,20 +67,50 @@ function ShoppipngCartProduct({ product }) {
     if (count === 0) {
       setCount(0);
     } else {
-      deleteProductFromCart(product.item_id)
+      // deleteProductFromCart(product.item_id)
       setCount(count - 1);
-      setPlusMinusClickOn(false)
-      AddProductToCart(sku,count-1)
+      // setPlusMinusClickOn(false)
+      // AddProductToCart(sku,count-1)
+      AddAfterDeleteFunction(sku, count - 1, product.item_id);
     }
   };
   const increaseCount = (sku) => {
-    deleteProductFromCart(product.item_id)
-    setPlusMinusClickOn(false)
+    // deleteProductFromCart(product.item_id)
+    // setPlusMinusClickOn(false)
     setCount(count + 1);
-    AddProductToCart(sku,count+1)
+    // AddProductToCart(sku,count+1)
+    AddAfterDeleteFunction(sku, count + 1, product.item_id);
   };
 
-  const AddProductToCart = (sku, count,id) => {
+  const AddAfterDeleteFunction = (sku, count, id) => {
+    const addData = {
+      items: [
+        {
+          sku: sku,
+          qty: count,
+        },
+      ],
+    };
+    const deleteData = {
+      // items: [id],
+      items: [id],
+    };
+    deleteFromCart(deleteData)
+      .then((res) => {
+        console.log(res, "res>>>");
+        addToCart(addData).then((res)=>{
+          console.log(res);
+          dispatch(loadCartData());
+        })
+        // dispatch(loadCartData());
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        // dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+  };
+
+  const AddProductToCart = (sku, count, id) => {
     const data = {
       items: [
         {
@@ -92,8 +122,8 @@ function ShoppipngCartProduct({ product }) {
     addToCart(data)
       .then((res) => {
         setCount(res.data.filter((pro) => pro.sku === product.sku)[0].qty);
-        dispatch(loadCartData());
-        setPlusMinusClickOn(true)
+        // dispatch(loadCartData());
+        setPlusMinusClickOn(true);
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
@@ -112,7 +142,7 @@ function ShoppipngCartProduct({ product }) {
   const remove = (id) => {
     console.log(id);
   };
-  const deleteProductFromCart = async (id) => {
+  const deleteProductFromCart = (id) => {
     console.log("id ", id);
 
     const data = {
@@ -121,18 +151,17 @@ function ShoppipngCartProduct({ product }) {
     };
     console.log("data ", data);
 
-    await deleteFromCart(data)
+    deleteFromCart(data)
       .then((res) => {
         console.log(res, "res>>>");
         dispatch(loadCartData());
-        
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
         // dispatch(services.notifyError({ message: err.response.data.message }));
       });
   };
-  
+
   return (
     <div className="row sc__product__block">
       <div className="col-12 col-sm-2 sc__product__left__block">

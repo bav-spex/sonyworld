@@ -82,10 +82,17 @@
             align-items:flex-start ;
             box-shadow: 0px 10px 10px #00000020;
             .search__result__left__part {
+              .search__Result__title__link{
+                text-decoration: none;
+                color: #000000;
+                cursor: pointer;
+              }
             }
             .search__result__right__part {
               .search__result__product__block {
                 margin: 10px;
+                text-decoration: none;
+                color: #000000;
                 .search__result__product__image__block {
                   display: flex;
                   align-items: center;

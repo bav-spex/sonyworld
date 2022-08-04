@@ -7,7 +7,7 @@ import { getWishlistData } from "../services/wishlist.services";
 import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getStoresLocationData } from "../services/storeLocation.service";
-import { getCategoryFilterData } from "../services/plp.service";
+import { getApplyFilterData, getCategoryFilterData } from "../services/plp.service";
 import { createCartDetails, getCartData, getPayfortInformation } from "../services/cart.service";
 import { getOrderDetails } from "../services/order.service";
 
@@ -80,6 +80,22 @@ export const loadCategoryFilterData = (filterDetails) => {
     const filterData = await getCategoryFilterData(filterDetails);
     // console.log(productData);
     dispatch(saveCategoryFilterData(filterData));
+    return filterData;
+  };
+};
+
+// Loading Product Details Page Data //
+
+const saveApplyFilterData = (data) => ({
+  type: types.GET__APPLY__FILTER__DATA,
+  payload: data,
+});
+
+export const loadApplyFilterData = (filterDetails) => {
+  return async function (dispatch) {
+    const filterData = await getApplyFilterData(filterDetails);
+    // console.log(productData);
+    dispatch(saveApplyFilterData(filterData));
     return filterData;
   };
 };

@@ -18,17 +18,18 @@ export const addToCart = async (data) => {
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart`,
     data
   );
+  
   // console.log(wishlistData,"addToWishlist")
   return productData;
 };
 
 
-export const deleteFromCart = async (data) => {
+export const deleteFromCart =  (data) => {
   console.log(data);
 
 //   let response = await apiHelper(`/V1/cart/items`, 'delete', data, {});
 //  console.log("response ", response);
-  const deleteFromCartData = await axios.delete(
+  const deleteFromCartData =  axios.delete(
     `${process.env.REACT_APP_PROJECT_API_URL}/V1/cart/items`,
     {data:data}
 

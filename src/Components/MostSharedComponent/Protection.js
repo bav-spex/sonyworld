@@ -39,7 +39,7 @@ function Protection({ title, tagline, rating, totalRatings, protection }) {
               </div>
               <div className="product__protection__price__block">
                 <p className="product__protection__price">
-                  <Price price={protect.price} size="heading6" />
+                  <Price price={protect.price} size="heading6" currency={"SAR"} />
                 </p>
                 <p className="product__protection__monthly__price">
                   <OldPrice

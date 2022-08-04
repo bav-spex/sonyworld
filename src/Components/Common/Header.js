@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as types from "./../../redux/actionType";
 import navbar_logo from "./../../assets/Logo/navbar_logo.svg";
@@ -51,7 +51,11 @@ import Heading7 from "../Font/Heading7";
 import NotifySnackbar from "./notifySnackbar";
 import { getCustomerLoginDetails } from "../helpers/utils/getCustomerLoginDetails";
 import { customerDetailsSuccess } from "../../services/customer/customer";
-import * as services from './../../services/services'
+import * as services from "./../../services/services";
+import {
+  loadApplyFilterData,
+  loadCategoryFilterData,
+} from "../../redux/appAction";
 // const categoryData = [
 //   {
 //     id: 1,
@@ -1002,528 +1006,533 @@ const cartData = [
     ],
   },
 ];
-const searchData = {
-  searchResultTitle: [
-    "television 24 tv inches",
-    "television stands for 55 inch tv ",
-    "television stands for 70 inch ",
-    "television with roku",
-    "television in 80cm (32') t4410",
-    "smart hd tv",
-    "television in gaming tv 4k",
-    "television in 2022",
-    "television in smart OLED ",
-    "television in 8k smart ",
-    "television in blue ray big screen",
-    " television in black",
-  ],
-  searchResultProduct: [
-    {
-      id: 1,
-      logo: sony_logo,
-      image: product_01,
-      productName:
-        "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
-      categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-      rating: 4.6,
-      totalRatings: 6183,
-      price: 799,
-      oldPrice: 1050,
-      saving: 10,
-      monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-      returnPeriod: 15,
-      availableOffer: [
-        {
-          id: 1,
-          offerType: "",
-          offerText: "Save $50-$300 on a sound bar with TV",
-          termsAndConditions: "",
-        },
-        {
-          id: 2,
-          offerType: "Bank Offer",
-          offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-          termsAndConditions: "T&C",
-        },
-        {
-          id: 3,
-          offerType: "Credit Card Offer",
-          offerText: "5% Unlimited Cashback on Sony Credit Card",
-          termsAndConditions: "T&C",
-        },
-      ],
-      warrantyText: "1 Year Warranty on Product",
-      size: [
-        {
-          id: 1,
-          cm: 139,
-          inch: 55,
-        },
-        {
-          id: 2,
-          cm: 164,
-          inch: 65,
-        },
-        {
-          id: 3,
-          cm: 195,
-          inch: 77,
-        },
-      ],
-      delivery: {
-        deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-        pickupStore: [
-          {
-            id: 1,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 2,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 3,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-        ],
-      },
-      protection: [
-        {
-          id: 1,
-          protectionText: "2-Year Standard Geek Squad Protection",
-          price: 79,
-          month: 12,
-        },
-        {
-          id: 2,
-          protectionText: "1-Year Standard Geek Squad Protection",
-          price: 89,
-          month: 12,
-        },
-      ],
-      productFeatures: [
-        {
-          id: 1,
-          text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-        },
-        {
-          id: 1,
-          text: "Multi-position stand for versatile TV placement",
-        },
-        {
-          id: 1,
-          text: "HD Smart 2048 x 1366 Pixels",
-        },
-      ],
-    },
-    {
-      id: 2,
-      logo: sony_logo,
-      image: product_02,
-      productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
-      categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-      rating: 4.0,
-      totalRatings: 2183,
-      price: 799,
-      oldPrice: 1050,
-      saving: 10,
-      monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-      returnPeriod: 15,
-      availableOffer: [
-        {
-          id: 1,
-          offerType: "",
-          offerText: "Save $50-$300 on a sound bar with TV",
-          termsAndConditions: "",
-        },
-        {
-          id: 2,
-          offerType: "Bank Offer",
-          offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-          termsAndConditions: "T&C",
-        },
-        {
-          id: 3,
-          offerType: "Credit Card Offer",
-          offerText: "5% Unlimited Cashback on Sony Credit Card",
-          termsAndConditions: "T&C",
-        },
-      ],
-      warrantyText: "1 Year Warranty on Product",
-      size: [
-        {
-          id: 1,
-          cm: 139,
-          inch: 55,
-        },
-        {
-          id: 2,
-          cm: 164,
-          inch: 65,
-        },
-        {
-          id: 3,
-          cm: 195,
-          inch: 77,
-        },
-      ],
-      delivery: {
-        deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-        pickupStore: [
-          {
-            id: 1,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 2,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 3,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-        ],
-      },
-      protection: [
-        {
-          id: 1,
-          protectionText: "2-Year Standard Geek Squad Protection",
-          price: 79,
-          month: 12,
-        },
-        {
-          id: 2,
-          protectionText: "1-Year Standard Geek Squad Protection",
-          price: 89,
-          month: 12,
-        },
-      ],
-      productFeatures: [
-        {
-          id: 1,
-          text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-        },
-        {
-          id: 1,
-          text: "Multi-position stand for versatile TV placement",
-        },
-        {
-          id: 1,
-          text: "HD Smart 2048 x 1366 Pixels",
-        },
-      ],
-    },
-    {
-      id: 3,
-      logo: sony_logo,
-      image: product_03,
-      productName:
-        "SONY X85J Smart TV 50' 4K Ultra HD High Dynamic Range(Google TV)",
-      categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-      rating: 5.0,
-      totalRatings: 4183,
-      price: 799,
-      oldPrice: 1050,
-      saving: 10,
-      monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-      returnPeriod: 15,
-      availableOffer: [
-        {
-          id: 1,
-          offerType: "",
-          offerText: "Save $50-$300 on a sound bar with TV",
-          termsAndConditions: "",
-        },
-        {
-          id: 2,
-          offerType: "Bank Offer",
-          offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-          termsAndConditions: "T&C",
-        },
-        {
-          id: 3,
-          offerType: "Credit Card Offer",
-          offerText: "5% Unlimited Cashback on Sony Credit Card",
-          termsAndConditions: "T&C",
-        },
-      ],
-      warrantyText: "1 Year Warranty on Product",
-      size: [
-        {
-          id: 1,
-          cm: 139,
-          inch: 55,
-        },
-        {
-          id: 2,
-          cm: 164,
-          inch: 65,
-        },
-        {
-          id: 3,
-          cm: 195,
-          inch: 77,
-        },
-      ],
-      delivery: {
-        deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-        pickupStore: [
-          {
-            id: 1,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 2,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 3,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-        ],
-      },
-      protection: [
-        {
-          id: 1,
-          protectionText: "2-Year Standard Geek Squad Protection",
-          price: 79,
-          month: 12,
-        },
-        {
-          id: 2,
-          protectionText: "1-Year Standard Geek Squad Protection",
-          price: 89,
-          month: 12,
-        },
-      ],
-      productFeatures: [
-        {
-          id: 1,
-          text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-        },
-        {
-          id: 1,
-          text: "Multi-position stand for versatile TV placement",
-        },
-        {
-          id: 1,
-          text: "HD Smart 2048 x 1366 Pixels",
-        },
-      ],
-    },
-    {
-      id: 4,
-      logo: sony_logo,
-      image: product_04,
-      productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
-      categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-      rating: 4.0,
-      totalRatings: 2183,
-      price: 649,
-      oldPrice: 1050,
-      saving: 10,
-      monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-      returnPeriod: 15,
-      availableOffer: [
-        {
-          id: 1,
-          offerType: "",
-          offerText: "Save $50-$300 on a sound bar with TV",
-          termsAndConditions: "",
-        },
-        {
-          id: 2,
-          offerType: "Bank Offer",
-          offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-          termsAndConditions: "T&C",
-        },
-        {
-          id: 3,
-          offerType: "Credit Card Offer",
-          offerText: "5% Unlimited Cashback on Sony Credit Card",
-          termsAndConditions: "T&C",
-        },
-      ],
-      warrantyText: "1 Year Warranty on Product",
-      size: [
-        {
-          id: 1,
-          cm: 139,
-          inch: 55,
-        },
-        {
-          id: 2,
-          cm: 164,
-          inch: 65,
-        },
-        {
-          id: 3,
-          cm: 195,
-          inch: 77,
-        },
-      ],
-      delivery: {
-        deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-        pickupStore: [
-          {
-            id: 1,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 2,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 3,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-        ],
-      },
-      protection: [
-        {
-          id: 1,
-          protectionText: "2-Year Standard Geek Squad Protection",
-          price: 79,
-          month: 12,
-        },
-        {
-          id: 2,
-          protectionText: "1-Year Standard Geek Squad Protection",
-          price: 89,
-          month: 12,
-        },
-      ],
-      productFeatures: [
-        {
-          id: 1,
-          text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-        },
-        {
-          id: 1,
-          text: "Multi-position stand for versatile TV placement",
-        },
-        {
-          id: 1,
-          text: "HD Smart 2048 x 1366 Pixels",
-        },
-      ],
-    },
-    {
-      id: 5,
-      logo: sony_logo,
-      image: product_05,
-      productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
-      categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-      rating: 4.0,
-      totalRatings: 6183,
-      price: 499,
-      oldPrice: 1050,
-      saving: 10,
-      monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-      returnPeriod: 15,
-      availableOffer: [
-        {
-          id: 1,
-          offerType: "",
-          offerText: "Save $50-$300 on a sound bar with TV",
-          termsAndConditions: "",
-        },
-        {
-          id: 2,
-          offerType: "Bank Offer",
-          offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-          termsAndConditions: "T&C",
-        },
-        {
-          id: 3,
-          offerType: "Credit Card Offer",
-          offerText: "5% Unlimited Cashback on Sony Credit Card",
-          termsAndConditions: "T&C",
-        },
-      ],
-      warrantyText: "1 Year Warranty on Product",
-      size: [
-        {
-          id: 1,
-          cm: 139,
-          inch: 55,
-        },
-        {
-          id: 2,
-          cm: 164,
-          inch: 65,
-        },
-        {
-          id: 3,
-          cm: 195,
-          inch: 77,
-        },
-      ],
-      delivery: {
-        deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-        pickupStore: [
-          {
-            id: 1,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 2,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-          {
-            id: 3,
-            pickupText:
-              "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-          },
-        ],
-      },
-      protection: [
-        {
-          id: 1,
-          protectionText: "2-Year Standard Geek Squad Protection",
-          price: 79,
-          month: 12,
-        },
-        {
-          id: 2,
-          protectionText: "1-Year Standard Geek Squad Protection",
-          price: 89,
-          month: 12,
-        },
-      ],
-      productFeatures: [
-        {
-          id: 1,
-          text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
-        },
-        {
-          id: 1,
-          text: "Multi-position stand for versatile TV placement",
-        },
-        {
-          id: 1,
-          text: "HD Smart 2048 x 1366 Pixels",
-        },
-      ],
-    },
-  ],
-};
-function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPopup,cartIconTotal }) {
- 
+// const searchData = {
+//   searchResultTitle: [
+//     "television 24 tv inches",
+//     "television stands for 55 inch tv ",
+//     "television stands for 70 inch ",
+//     "television with roku",
+//     "television in 80cm (32') t4410",
+//     "smart hd tv",
+//     "television in gaming tv 4k",
+//     "television in 2022",
+//     "television in smart OLED ",
+//     "television in 8k smart ",
+//     "television in blue ray big screen",
+//     " television in black",
+//   ],
+//   searchResultProduct: [
+//     {
+//       id: 1,
+//       logo: sony_logo,
+//       image: product_01,
+//       productName:
+//         "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+//       categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+//       rating: 4.6,
+//       totalRatings: 6183,
+//       price: 799,
+//       oldPrice: 1050,
+//       saving: 10,
+//       monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+//       returnPeriod: 15,
+//       availableOffer: [
+//         {
+//           id: 1,
+//           offerType: "",
+//           offerText: "Save $50-$300 on a sound bar with TV",
+//           termsAndConditions: "",
+//         },
+//         {
+//           id: 2,
+//           offerType: "Bank Offer",
+//           offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//         {
+//           id: 3,
+//           offerType: "Credit Card Offer",
+//           offerText: "5% Unlimited Cashback on Sony Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//       ],
+//       warrantyText: "1 Year Warranty on Product",
+//       size: [
+//         {
+//           id: 1,
+//           cm: 139,
+//           inch: 55,
+//         },
+//         {
+//           id: 2,
+//           cm: 164,
+//           inch: 65,
+//         },
+//         {
+//           id: 3,
+//           cm: 195,
+//           inch: 77,
+//         },
+//       ],
+//       delivery: {
+//         deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+//         pickupStore: [
+//           {
+//             id: 1,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 2,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 3,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//         ],
+//       },
+//       protection: [
+//         {
+//           id: 1,
+//           protectionText: "2-Year Standard Geek Squad Protection",
+//           price: 79,
+//           month: 12,
+//         },
+//         {
+//           id: 2,
+//           protectionText: "1-Year Standard Geek Squad Protection",
+//           price: 89,
+//           month: 12,
+//         },
+//       ],
+//       productFeatures: [
+//         {
+//           id: 1,
+//           text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+//         },
+//         {
+//           id: 1,
+//           text: "Multi-position stand for versatile TV placement",
+//         },
+//         {
+//           id: 1,
+//           text: "HD Smart 2048 x 1366 Pixels",
+//         },
+//       ],
+//     },
+//     {
+//       id: 2,
+//       logo: sony_logo,
+//       image: product_02,
+//       productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+//       categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+//       rating: 4.0,
+//       totalRatings: 2183,
+//       price: 799,
+//       oldPrice: 1050,
+//       saving: 10,
+//       monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+//       returnPeriod: 15,
+//       availableOffer: [
+//         {
+//           id: 1,
+//           offerType: "",
+//           offerText: "Save $50-$300 on a sound bar with TV",
+//           termsAndConditions: "",
+//         },
+//         {
+//           id: 2,
+//           offerType: "Bank Offer",
+//           offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//         {
+//           id: 3,
+//           offerType: "Credit Card Offer",
+//           offerText: "5% Unlimited Cashback on Sony Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//       ],
+//       warrantyText: "1 Year Warranty on Product",
+//       size: [
+//         {
+//           id: 1,
+//           cm: 139,
+//           inch: 55,
+//         },
+//         {
+//           id: 2,
+//           cm: 164,
+//           inch: 65,
+//         },
+//         {
+//           id: 3,
+//           cm: 195,
+//           inch: 77,
+//         },
+//       ],
+//       delivery: {
+//         deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+//         pickupStore: [
+//           {
+//             id: 1,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 2,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 3,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//         ],
+//       },
+//       protection: [
+//         {
+//           id: 1,
+//           protectionText: "2-Year Standard Geek Squad Protection",
+//           price: 79,
+//           month: 12,
+//         },
+//         {
+//           id: 2,
+//           protectionText: "1-Year Standard Geek Squad Protection",
+//           price: 89,
+//           month: 12,
+//         },
+//       ],
+//       productFeatures: [
+//         {
+//           id: 1,
+//           text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+//         },
+//         {
+//           id: 1,
+//           text: "Multi-position stand for versatile TV placement",
+//         },
+//         {
+//           id: 1,
+//           text: "HD Smart 2048 x 1366 Pixels",
+//         },
+//       ],
+//     },
+//     {
+//       id: 3,
+//       logo: sony_logo,
+//       image: product_03,
+//       productName:
+//         "SONY X85J Smart TV 50' 4K Ultra HD High Dynamic Range(Google TV)",
+//       categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+//       rating: 5.0,
+//       totalRatings: 4183,
+//       price: 799,
+//       oldPrice: 1050,
+//       saving: 10,
+//       monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+//       returnPeriod: 15,
+//       availableOffer: [
+//         {
+//           id: 1,
+//           offerType: "",
+//           offerText: "Save $50-$300 on a sound bar with TV",
+//           termsAndConditions: "",
+//         },
+//         {
+//           id: 2,
+//           offerType: "Bank Offer",
+//           offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//         {
+//           id: 3,
+//           offerType: "Credit Card Offer",
+//           offerText: "5% Unlimited Cashback on Sony Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//       ],
+//       warrantyText: "1 Year Warranty on Product",
+//       size: [
+//         {
+//           id: 1,
+//           cm: 139,
+//           inch: 55,
+//         },
+//         {
+//           id: 2,
+//           cm: 164,
+//           inch: 65,
+//         },
+//         {
+//           id: 3,
+//           cm: 195,
+//           inch: 77,
+//         },
+//       ],
+//       delivery: {
+//         deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+//         pickupStore: [
+//           {
+//             id: 1,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 2,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 3,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//         ],
+//       },
+//       protection: [
+//         {
+//           id: 1,
+//           protectionText: "2-Year Standard Geek Squad Protection",
+//           price: 79,
+//           month: 12,
+//         },
+//         {
+//           id: 2,
+//           protectionText: "1-Year Standard Geek Squad Protection",
+//           price: 89,
+//           month: 12,
+//         },
+//       ],
+//       productFeatures: [
+//         {
+//           id: 1,
+//           text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+//         },
+//         {
+//           id: 1,
+//           text: "Multi-position stand for versatile TV placement",
+//         },
+//         {
+//           id: 1,
+//           text: "HD Smart 2048 x 1366 Pixels",
+//         },
+//       ],
+//     },
+//     {
+//       id: 4,
+//       logo: sony_logo,
+//       image: product_04,
+//       productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+//       categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+//       rating: 4.0,
+//       totalRatings: 2183,
+//       price: 649,
+//       oldPrice: 1050,
+//       saving: 10,
+//       monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+//       returnPeriod: 15,
+//       availableOffer: [
+//         {
+//           id: 1,
+//           offerType: "",
+//           offerText: "Save $50-$300 on a sound bar with TV",
+//           termsAndConditions: "",
+//         },
+//         {
+//           id: 2,
+//           offerType: "Bank Offer",
+//           offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//         {
+//           id: 3,
+//           offerType: "Credit Card Offer",
+//           offerText: "5% Unlimited Cashback on Sony Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//       ],
+//       warrantyText: "1 Year Warranty on Product",
+//       size: [
+//         {
+//           id: 1,
+//           cm: 139,
+//           inch: 55,
+//         },
+//         {
+//           id: 2,
+//           cm: 164,
+//           inch: 65,
+//         },
+//         {
+//           id: 3,
+//           cm: 195,
+//           inch: 77,
+//         },
+//       ],
+//       delivery: {
+//         deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+//         pickupStore: [
+//           {
+//             id: 1,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 2,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 3,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//         ],
+//       },
+//       protection: [
+//         {
+//           id: 1,
+//           protectionText: "2-Year Standard Geek Squad Protection",
+//           price: 79,
+//           month: 12,
+//         },
+//         {
+//           id: 2,
+//           protectionText: "1-Year Standard Geek Squad Protection",
+//           price: 89,
+//           month: 12,
+//         },
+//       ],
+//       productFeatures: [
+//         {
+//           id: 1,
+//           text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+//         },
+//         {
+//           id: 1,
+//           text: "Multi-position stand for versatile TV placement",
+//         },
+//         {
+//           id: 1,
+//           text: "HD Smart 2048 x 1366 Pixels",
+//         },
+//       ],
+//     },
+//     {
+//       id: 5,
+//       logo: sony_logo,
+//       image: product_05,
+//       productName: 'Sony KD55X80JS 55" 4K Ultra HD DLED Android TV',
+//       categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+//       rating: 4.0,
+//       totalRatings: 6183,
+//       price: 499,
+//       oldPrice: 1050,
+//       saving: 10,
+//       monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+//       returnPeriod: 15,
+//       availableOffer: [
+//         {
+//           id: 1,
+//           offerType: "",
+//           offerText: "Save $50-$300 on a sound bar with TV",
+//           termsAndConditions: "",
+//         },
+//         {
+//           id: 2,
+//           offerType: "Bank Offer",
+//           offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//         {
+//           id: 3,
+//           offerType: "Credit Card Offer",
+//           offerText: "5% Unlimited Cashback on Sony Credit Card",
+//           termsAndConditions: "T&C",
+//         },
+//       ],
+//       warrantyText: "1 Year Warranty on Product",
+//       size: [
+//         {
+//           id: 1,
+//           cm: 139,
+//           inch: 55,
+//         },
+//         {
+//           id: 2,
+//           cm: 164,
+//           inch: 65,
+//         },
+//         {
+//           id: 3,
+//           cm: 195,
+//           inch: 77,
+//         },
+//       ],
+//       delivery: {
+//         deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+//         pickupStore: [
+//           {
+//             id: 1,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 2,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//           {
+//             id: 3,
+//             pickupText:
+//               "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//           },
+//         ],
+//       },
+//       protection: [
+//         {
+//           id: 1,
+//           protectionText: "2-Year Standard Geek Squad Protection",
+//           price: 79,
+//           month: 12,
+//         },
+//         {
+//           id: 2,
+//           protectionText: "1-Year Standard Geek Squad Protection",
+//           price: 89,
+//           month: 12,
+//         },
+//       ],
+//       productFeatures: [
+//         {
+//           id: 1,
+//           text: "Netflix|Prime Video|Disney+Hotstar|Youtube",
+//         },
+//         {
+//           id: 1,
+//           text: "Multi-position stand for versatile TV placement",
+//         },
+//         {
+//           id: 1,
+//           text: "HD Smart 2048 x 1366 Pixels",
+//         },
+//       ],
+//     },
+//   ],
+// };
+function Header({
+  reloadingHandle,
+  reloadHeader,
+  categoryData,
+  handleChangeCartPopup,
+  cartIconTotal,
+}) {
   const { customerDetails } = useSelector((state) => state.customerReducer);
 
   const dispatch = useDispatch();
@@ -1578,14 +1587,27 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
   const [searchPopup, setSearchPopup] = useState(false);
-  // const [searchData,setSearchData] = useState()
+  const [filterDetails, setFilterDetails] = useState({ filterDetails: {} });
+  const [searchProductData, setSearchProductData] = useState();
   const openSearchPopup = (e) => {
     console.log(e.target.value);
+    setFilterDetails({ filterDetails: { keyword: e.target.value } });
     setSearchPopup(true);
+
     if (e.target.value === "") {
       setSearchPopup(false);
     }
   };
+  useEffect(() => {
+    dispatch(loadApplyFilterData(filterDetails));
+  }, [filterDetails]);
+  const applyFilterData = useSelector((state) => state.appData.filterData);
+  console.log(applyFilterData);
+  useEffect(() => {
+    if (applyFilterData) {
+      setSearchProductData(applyFilterData.items);
+    }
+  }, [applyFilterData]);
   const closeSearchPopup = () => {
     setSearchPopup(false);
   };
@@ -1839,12 +1861,12 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
   };
   const customerLogout = () => {
     localStorage.removeItem("custDetails");
-    dispatch(customerDetailsSuccess(''));
+    dispatch(customerDetailsSuccess(""));
     let params = {
-      id: customerDetails.id
-    }
-    dispatch(services.customerLogout(params))
-  }
+      id: customerDetails.id,
+    };
+    dispatch(services.customerLogout(params));
+  };
 
   const openLogoutPopup = () => {
     setUserLoginPopup(!userLoginPopup);
@@ -1893,50 +1915,54 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
                       ? "row search__box__result__popup"
                       : "row search__box__result__popup__disable"
                   }
+                  onMouseLeave={()=>setSearchPopup}
                 >
                   <div className="col-xl-5 search__result__left__part">
-                    {searchData.searchResultTitle.map((title, titleIndex) => {
-                      let firstWord = title.split(" ")[0].trim();
-                      let remainWord = title
+                    {searchProductData && searchProductData.map((product, productIndex) => {
+                      // let firstWord = product.name.split(" ")[0].trim();
+                      let remainWord = product.name
                         .split(" ")
-                        .slice(2, title.length)
+                        .slice(2, product.name.length)
                         .join(" ")
                         .trim();
-
+                      // console.log("firstWord",firstWord,"emainWord", remainWord);
                       return (
-                        <p key={titleIndex}>
-                          <Text2 text={firstWord} span={true} />{" "}
-                          <Heading5 text={remainWord} span={true} />
+                        <Link className="search__Result__title__link" to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+                        <p key={productIndex}>
+                          {/* <Text2 text={product.name} span={true} />{" "} */}
+                          <Heading5 text={product.name} span={true} />
                         </p>
+                        </Link>
                       );
                     })}
                   </div>
                   <div className="col-xl-7 search__result__right__part">
-                    {searchData.searchResultProduct.map(
-                      (product, productIndex) => {
+                    {searchProductData &&
+                      searchProductData.map((product, productIndex) => {
                         return (
-                          <div
+                          <Link
+                          
                             key={product.id}
                             className="row search__result__product__block mb-1"
+                            to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
                           >
                             <div className="col-2 search__result__product__image__block">
                               <img
                                 className="search__result__product__image"
-                                src={product.image}
-                                alt={product.productName}
+                                src={product.baseImage}
+                                alt={product.name}
                               />
                             </div>
                             <div className="col-10 search__result__product__text">
-                              <Heading7 text={product.productName} />
+                              <Heading7 text={product.name} />
                               <RatingBlock
-                                rating={product.rating}
-                                totalRatings={product.totalRatings}
+                                rating={6}
+                                totalRatings={2222}
                               />
                             </div>
-                          </div>
+                          </Link>
                         );
-                      }
-                    )}
+                      })}
                   </div>
                 </div>
               </div>
@@ -2051,7 +2077,15 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
                                 : "signin__signup__popup__disable"
                             }
                           >
-                            {`${customerDetails.firstname !== null ? customerDetails.firstname : ""} ${customerDetails.lastname !== null ? customerDetails.lastname : ""}`}
+                            {`${
+                              customerDetails.firstname !== null
+                                ? customerDetails.firstname
+                                : ""
+                            } ${
+                              customerDetails.lastname !== null
+                                ? customerDetails.lastname
+                                : ""
+                            }`}
                             <button
                               onClick={() => customerLogout("signin")}
                               className="signin__button"
@@ -2063,7 +2097,8 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
                       </>
                     )}
 
-                    <Link to="/cart"
+                    <Link
+                      to="/cart"
                       // onClick={() => handleChangeCartPopup(true)}
                       className="cart__icon__block"
                     >
@@ -2377,7 +2412,6 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
           )}
         </div>
       </div>
-      
     </>
   );
 }
