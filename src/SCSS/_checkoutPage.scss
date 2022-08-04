@@ -1,10 +1,10 @@
 .checkout__page__container {
   padding: 0px 12px;
   background-color: #f5f5f5;
-  .super__coin__block .super__coin__text__block .super__coin__title{
+  .super__coin__block .super__coin__text__block .super__coin__title {
     font-size: 14px;
   }
-  .super__coin__block .super__coin__text__block .super__coin__condition{
+  .super__coin__block .super__coin__text__block .super__coin__condition {
     font-size: 12px;
   }
   .checkout__page__block {
@@ -19,7 +19,7 @@
       .checkout__left__block {
         padding: 0px;
         margin: 0px 0px 50px 0px;
-        @media(max-width:1100px){
+        @media (max-width: 1100px) {
           margin: 0px 0px 0px 0px;
         }
         .checkout__login__main__block {
@@ -292,8 +292,8 @@
             }
             .delivery__pickup__store {
             }
-            .continue__button__block{
-              display :flex ;
+            .continue__button__block {
+              display: flex;
               align-items: center;
               justify-content: space-between;
               .continue___button {
@@ -311,8 +311,8 @@
                 border: none;
                 margin: 0px;
                 height: 64px;
-                cursor:pointer;
-                display:flex;
+                cursor: pointer;
+                display: flex;
                 justify-content: center;
                 align-items: center;
               }
@@ -360,19 +360,48 @@
                   margin: 0px;
                 }
               }
-              .payment__detail__form__block{
+              .payment__detail__form__block {
                 padding: 20px;
                 background: #ffffff 0% 0% no-repeat padding-box;
                 border: 1px solid #eeeeee;
                 border-radius: 5px;
-                .payment__card__block{
-                  display: flex;
+                .address__content__block {
+                  .payment__card__block {
+                    display: flex;
+                    width: 100%;
+                    justify-content: flex-start;
+                    flex-direction: column;
+                    .payment__form__field__row {
+                      width: 100%;
+                      margin: 10px;
+                      .month__year__form__field__block{
+                        // width:100%
+                        margin: 0px 12px 0px -12px;
+                      }
+                      .main__form__field__block {
+                        .field__block {
+                          width: 100%;
+                          .form__field {
+                            width: 80%;
+                            padding: 10px;
+                            background: #ffffff 0% 0% no-repeat padding-box;
+                            border: 1px solid #c8c8c8;
+                            border-radius: 4px;
+                          }
+                        }
+                        .invalid__message{
+                          color: red;
+                          margin: 5px 0px 0px;
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
           }
-          .continue__button__block{
-            display :flex ;
+          .continue__button__block {
+            display: flex;
             align-items: center;
             justify-content: space-between;
             .continue___button__link {
@@ -433,7 +462,7 @@
               align-items: center;
               border-bottom: 1px solid rgb(224, 224, 224);
               padding: 20px 0px;
-              &:last-child{
+              &:last-child {
                 border-bottom: 0;
               }
               .checkout__os__detail__title {

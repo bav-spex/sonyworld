@@ -71,7 +71,7 @@ import PriceBlock from "../Components/MostSharedComponent/PriceBlock";
 import Heading1 from "../Components/Font/Heading1";
 import Heading6 from "../Components/Font/Heading6";
 import { getProductDetail } from "../services/pdp.service";
-import { addToCart } from "../services/cart.service";
+import { addToCart, deleteFromCart } from "../services/cart.service";
 import { loadCartData, loadProductDetailData } from "../redux/appAction";
 import MobileProductDetailPage from "./MobilePages/Mobile_Product_Detail_Page";
 import {
@@ -14623,16 +14623,73 @@ function Product_Details_Page({handleChangeCartPopup}) {
   const [pincode, setPincode] = useState("");
   const [count, setCount] = useState(1);
 
-  const decreaseCount = () => {
+  const deleteProductFromCart = async (id) => {
+    console.log("id ", id);
+
+    const data = {
+      // items: [id],
+      items: [id],
+    };
+    console.log("data ", data);
+
+    await deleteFromCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+        dispatch(loadCartData());
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        // dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+  };
+  const decreaseCount = (sku) => {
     if (count === 0) {
       setCount(0);
     } else {
+      // deleteProductFromCart(product.id)
       setCount(count - 1);
+      // AddProductToCart(sku,count-1)
     }
   };
-  const increaseCount = () => {
+  const increaseCount = (sku) => {
+    // deleteProductFromCart(product.id)
     setCount(count + 1);
+    // AddProductToCart(sku,count+1)
   };
+    
+  const AddProductToCart = (sku,id) => {
+    // deleteProductFromCart(id)
+    const data = {
+      items: [
+        {
+          sku: sku,
+          qty: count,
+        },
+      ],
+    };
+    addToCart(data)
+      .then((res) => {
+        setCount(res.data.filter((pro) => pro.sku === product.sku)[0].qty);
+        dispatch(loadCartData());
+        handleChangeCartPopup(true)
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+  };
+  const handleChange = (e) => {
+    setPincode(e.target.value);
+  };
+  const handleSubmit = () => {
+    console.log(pincode);
+  };
+  const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
+  const sizeButtonClick = (sizeIndex, cm, inch) => {
+    console.log(sizeIndex, cm, inch);
+    setSizeButtonIndex(sizeIndex);
+  };
+
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
@@ -14651,7 +14708,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
       // console.log("added Successfully");
     }
     else{
-      removeFromWL(product.sku.replace(/[/]/g, "%2F"))
+      removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
     //   // console.log("deleted Successfully");
     }
   }, [isFavourite]);
@@ -14662,41 +14719,6 @@ function Product_Details_Page({handleChangeCartPopup}) {
       items: [sku],
     };
     deleteFromWishlist(data);
-  };
-  const handleChange = (e) => {
-    setPincode(e.target.value);
-  };
-  const handleSubmit = () => {
-    console.log(pincode);
-  };
-  const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
-  const sizeButtonClick = (sizeIndex, cm, inch) => {
-    console.log(sizeIndex, cm, inch);
-    setSizeButtonIndex(sizeIndex);
-  };
-
-  const AddProductToCart = (sku) => {
-    console.log(sku, "product in product details >>>");
-
-    const data = {
-      items: [
-        {
-          sku: sku,
-          qty: 1,
-        },
-      ],
-    };
-
-    addToCart(data)
-      .then((res) => {
-        console.log(res, "res>>>");
-        dispatch(loadCartData());
-        handleChangeCartPopup(true)
-      })
-      .catch((err) => {
-        console.log(err.response.data.message, "error >>>>");
-        dispatch(services.notifyError({ message: err.response.data.message }));
-      });
   };
   if (loading) {
     return <h1>Product Loading...</h1>;
@@ -14955,7 +14977,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
                   <div className="col-xl-6 mb-1 ps-0 ps-xl-1 pd__addToCart__button__block">
                     <div
                       className="pd__addToCart__button"
-                      onClick={() => AddProductToCart(product.sku)}
+                      onClick={() => AddProductToCart(product.sku,product.id)}
                     >
                       <img
                         src={shopping_cart}
@@ -15118,14 +15140,14 @@ function Product_Details_Page({handleChangeCartPopup}) {
         <div className="pdp__sticky__add__to__cart__block">
           <div className="row pdp__sticky__counter__block">
             <div
-              onClick={() => decreaseCount()}
+              onClick={() => decreaseCount(product.sku)}
               className="col-4 counter__decrease__block"
             >
               <img src={minus} alt="minus" />
             </div>
             <div className="col-4 counter">{count}</div>
             <div
-              onClick={() => increaseCount()}
+              onClick={() => increaseCount(product.sku)}
               className="col-4 counter__increase__block"
             >
               <img src={plus} alt="plus" />
@@ -15142,7 +15164,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
           <button className="build__bundle___button">BUILD BUNDLE</button>
           <button
             className="addToCart__button"
-            onClick={() => AddProductToCart(product.sku)}
+            onClick={() =>  AddProductToCart(product.sku,product.id)}
           >
             <img src={shopping_cart} alt="" className="addToCart__icon" />
             Add To Cart
