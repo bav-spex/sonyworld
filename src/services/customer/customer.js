@@ -56,6 +56,7 @@ export const customerSignUp = (params) => {
       let notifyMsg = { message: 'Customer signup successfully.' }
 
       dispatch(services.notifySuccess(notifyMsg));
+      dispatch(customerSignUpMsgSuccess(true));
     } catch (error) {
 
       let notifyMsg = { message: error.response.data.message }
@@ -67,7 +68,7 @@ export const customerSignUp = (params) => {
 };
 
 // auth reducer
-export const customerSignUpMsg = (data) => {
+export const customerSignUpMsgSuccess = (data) => {
   return {
     type: actionType.CUSTOMER_SIGN_UP_MSG,
     payload: data

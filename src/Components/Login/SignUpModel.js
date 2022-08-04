@@ -34,7 +34,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
 
   const dispatch = useDispatch();
 
-  const { customerSignUpMsg, customerDetails } = useSelector((state) => state.customerReducer);
+  const { customerSignUpMsg, customerSignInMsg } = useSelector((state) => state.customerReducer);
 
   const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
   const [isCheckBox, setIsCheckBox] = useState(false);
@@ -64,6 +64,12 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
     confirmPassword: "",
     policyChecked: true,
   });
+
+  // useEffect(() => {
+  //   if (customerSignUpMsg === true) {
+  //     navigate('/');
+  //   }
+  // }, [customerSignUpMsg]);
 
   useEffect(() => {
     if (updateErrMsg === true) {
@@ -216,7 +222,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
     })
     setErrMsg(blankErrMsg);
     let checkSignUpStatus = false;
-    if (checkValueStatus.length === checkErrStatus.length) {
+    if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
       checkSignUpStatus = true;
     }
     setUpdateErrMsg(true);
@@ -255,7 +261,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
       </div>
       <div className="signupModel__content">
         <div className="main__form__field__block">
-          {customerSignUpMsg && <p className="invalid__message">{customerSignUpMsg}</p>}
+          {/* {customerSignUpMsg && <p className="invalid__message">{customerSignUpMsg}</p>} */}
           {/* <p className="form__label">First Name</p> */}
           <Heading7 text="First Name" marginBottom={10} />
           <div className="field__block">

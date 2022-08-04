@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as types from "./../../redux/actionType";
 import navbar_logo from "./../../assets/Logo/navbar_logo.svg";
 import white_side_menu_icon from "./../../assets/Icon/white_side_menu_icon.svg";
@@ -51,11 +51,13 @@ import Heading7 from "../Font/Heading7";
 import NotifySnackbar from "./notifySnackbar";
 import { getCustomerLoginDetails } from "../helpers/utils/getCustomerLoginDetails";
 import { customerDetailsSuccess } from "../../services/customer/customer";
-import * as services from "./../../services/services";
 import {
   loadApplyFilterData,
   loadCategoryFilterData,
 } from "../../redux/appAction";
+import * as services from './../../services/services';
+import { customerSignInSuccess, customerSignUpMsgSuccess } from "../../services/customer/customer";
+
 // const categoryData = [
 //   {
 //     id: 1,
@@ -1526,6 +1528,13 @@ const cartData = [
 //     },
 //   ],
 // };
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
 function Header({
   reloadingHandle,
   reloadHeader,
@@ -1533,9 +1542,20 @@ function Header({
   handleChangeCartPopup,
   cartIconTotal,
 }) {
-  const { customerDetails } = useSelector((state) => state.customerReducer);
+  const { customerSignUpMsg, customerSignInMsg, customerDetails } = useSelector((state) => state.customerReducer);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // language changing in project //
   // console.log(categoryData);
@@ -1554,6 +1574,20 @@ function Header({
       country_code: "sa",
     },
   ];
+
+  useEffect(() => {
+    if (customerSignUpMsg === true) {
+      setUserLoginPopup(false);
+      customerSignUpMsgSuccess('')
+    }
+  }, [customerSignUpMsg]);
+
+  useEffect(() => {
+    if (customerSignInMsg === true) {
+      setUserLoginPopup(false);
+      customerSignInSuccess('')
+    }
+  }, [customerSignInMsg]);
 
   // Find Current language from {language} object
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -1589,6 +1623,15 @@ function Header({
   const [searchPopup, setSearchPopup] = useState(false);
   const [filterDetails, setFilterDetails] = useState({ filterDetails: {} });
   const [searchProductData, setSearchProductData] = useState();
+  // const [searchData,setSearchData] = useState()
+
+  // mobile-mode then close signin/signup close
+  useEffect(() => {
+    if (windowDimensions.width < 992) {
+      closeLoginPopup()
+    }
+  }, [windowDimensions]);
+
   const openSearchPopup = (e) => {
     console.log(e.target.value);
     setFilterDetails({ filterDetails: { keyword: e.target.value } });
@@ -1669,10 +1712,12 @@ function Header({
   // }, [reloadHeader])
   const openLoginPopup = () => {
     setUserLoginPopup(!userLoginPopup);
-    setLoginPopup(userLoginPopup ? false : true);
-    localStorage.setItem("loginPopup", JSON.stringify(true));
-    setCategoryPopup(false);
-    setLoginMode("");
+    if (windowDimensions.width > 992) {
+      setLoginPopup(userLoginPopup ? false : true);
+      localStorage.setItem("loginPopup", JSON.stringify(true));
+      setCategoryPopup(false);
+      setLoginMode("");
+    }
   };
   const openProductPopup = () => {
     setCategoryPopup(!categoryPopup);
@@ -1680,13 +1725,23 @@ function Header({
   };
 
   const openLoginWrapper = (mode) => {
-    setLoginMode(mode);
-    setLoginWrapper(true);
-    setUserLoginPopup(false);
-    console.log(loginWrapper);
-    localStorage.setItem("loginMode", JSON.stringify(mode));
-    localStorage.setItem("loginWrapper", JSON.stringify(true));
-    localStorage.setItem("loginPopup", JSON.stringify(true));
+    if (windowDimensions.width > 992) {
+      // desktop
+      setLoginMode(mode);
+      setLoginWrapper(true);
+      setUserLoginPopup(false);
+      localStorage.setItem("loginMode", JSON.stringify(mode));
+      localStorage.setItem("loginWrapper", JSON.stringify(true));
+      localStorage.setItem("loginPopup", JSON.stringify(true));
+    } else {
+      //mobile
+      if (mode === "signup") {
+        navigate('/mobile-signup');
+      } else if (mode === "signin") {
+        navigate('/mobile-signin');
+      }
+    }
+
   };
   const closeLoginPopup = () => {
     if (document.querySelector(".login__popup__container")) {
@@ -1861,7 +1916,8 @@ function Header({
   };
   const customerLogout = () => {
     localStorage.removeItem("custDetails");
-    dispatch(customerDetailsSuccess(""));
+    localStorage.removeItem("handShakeToken");
+    dispatch(customerDetailsSuccess(''));
     let params = {
       id: customerDetails.id,
     };
@@ -1902,7 +1958,7 @@ function Header({
                       name="search"
                       className="search__input"
                       placeholder="Type Your Search..."
-                      onChange={(e) => openSearchPopup(e)}
+                      onFocus={(e) => openSearchPopup(e)}
                       autoComplete="off"
                     />
                     <img src={search} alt="" className="header__icon" />
@@ -1915,7 +1971,7 @@ function Header({
                       ? "row search__box__result__popup"
                       : "row search__box__result__popup__disable"
                   }
-                  onMouseLeave={()=>setSearchPopup}
+                  onMouseLeave={()=>setSearchPopup(false)}
                 >
                   <div className="col-xl-5 search__result__left__part">
                     {searchProductData && searchProductData.map((product, productIndex) => {

@@ -14599,7 +14599,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadProductDetailData(id.replace(/[/]/g, "%2F")));
-  }, []);
+  }, [id]);
   const productData = useSelector((state) => state.appData.productData);
   // console.log("before",productData);
   // console.log(Object.values(productData).length);
