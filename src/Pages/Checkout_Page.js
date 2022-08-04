@@ -639,23 +639,26 @@ function Checkout_Page({ reloadingHeader }) {
         ).then((res) => {
           console.log("payfort Information", res.data);
           console.log("Entity", res?.data?.entity_id);
-          
-        let newSendPayfortInformation = {
-          card_number: card.cardNumber,
-          card_holder_name: card.cardHolder,
-          card_security_code: card.cvv,
-          expiry_date: `${card.expiry_date}${card.year}`,
-          merchant_identifier: res.data.params.merchant_identifier,
-          access_code: res.data.params.access_code,
-          merchant_reference: res.data.params.merchant_reference,
-          language: "en",
-          service_command: res.data.params.service_command,
-          return_url: `https://sonyfrontend.sigmasolve.com/user/orders/${res.data.entity_id}`,
-          signature: res.data.params.signature,
-        };
-        console.log("newSendPayfortInformation payfort_fort_cc", newSendPayfortInformation);
-        // debugger
-      //  sendPayfortInformation(newSendPayfortInformation);
+
+          let newSendPayfortInformation = {
+            card_number: card.cardNumber,
+            card_holder_name: card.cardHolder,
+            card_security_code: card.cvv,
+            expiry_date: `${card.expiry_date}${card.year}`,
+            merchant_identifier: res.data.params.merchant_identifier,
+            access_code: res.data.params.access_code,
+            merchant_reference: res.data.params.merchant_reference,
+            language: "en",
+            service_command: res.data.params.service_command,
+            return_url: `https://sonyfrontend.sigmasolve.com/user/orders/${res.data.entity_id}`,
+            signature: res.data.params.signature,
+          };
+          console.log(
+            "newSendPayfortInformation payfort_fort_cc",
+            newSendPayfortInformation
+          );
+          // debugger
+          //  sendPayfortInformation(newSendPayfortInformation);
           setCheckoutClassName("delivery");
           // const response =  fetch("https://sbcheckout.payfort.com/FortAPI/paymentPage", {
           // method: 'POST',
@@ -665,7 +668,7 @@ function Checkout_Page({ reloadingHeader }) {
           // },
           // body: newSendPayfortInformation,
           // });
-          
+
           // response.json().then(data=>{
           //   console.log("responseData",data);
           // })
@@ -708,7 +711,7 @@ function Checkout_Page({ reloadingHeader }) {
         //   },
         //   body: newSendPayfortInformation,
         //   });
-          
+
         //   response.json().then(data=>{
         //     console.log("responseData",data);
         //   })
@@ -1073,7 +1076,7 @@ function Checkout_Page({ reloadingHeader }) {
                               {userPaymentMethod === "payfort_fort_cc" ? (
                                 <div className="address__content__block">
                                   <div className="payment__card__block">
-                                    <div className="row address__form__field__row">
+                                    <div className="row payment__form__field__row">
                                       <div className="col-sm-12 col-md-6 main__form__field__block">
                                         {/* <p className="form__label">First Name</p> */}
                                         <Heading7
@@ -1125,60 +1128,61 @@ function Checkout_Page({ reloadingHeader }) {
                                         )}
                                       </div>
                                     </div>
-                                    <div className="row address__form__field__row">
-                                      <div className="col-sm-12 col-md-6 main__form__field__block">
-                                        {/* <p className="form__label">First Name</p> */}
-                                        <Heading7
-                                          text="Month"
-                                          marginBottom={10}
-                                        />
-                                        <div className="field__block">
-                                          <input
-                                            type="text"
-                                            placeholder="MM"
-                                            className="form__field"
-                                            id="month"
-                                            name="month"
-                                            value={card.month}
-                                            onChange={(e) =>
-                                              handleChangeCard(e)
-                                            }
+                                    <div className="row payment__form__field__row">
+                                      <div className="row col-sm-12 col-md-6 main__form__field__block month__year__form__field__block">
+                                        <div className="col-sm-12 col-md-4 ">
+                                          {/* <p className="form__label">First Name</p> */}
+                                          <Heading7
+                                            text="Month"
+                                            marginBottom={10}
                                           />
+                                          <div className="field__block">
+                                            <input
+                                              type="text"
+                                              placeholder="MM"
+                                              className="form__field"
+                                              id="month"
+                                              name="month"
+                                              value={card.month}
+                                              onChange={(e) =>
+                                                handleChangeCard(e)
+                                              }
+                                            />
+                                          </div>
+                                          {cardErrMsg.month && (
+                                            <p className="invalid__message">
+                                              {cardErrMsg.month}
+                                            </p>
+                                          )}
                                         </div>
-                                        {cardErrMsg.month && (
-                                          <p className="invalid__message">
-                                            {cardErrMsg.month}
-                                          </p>
-                                        )}
-                                      </div>
-                                      <div className="col-sm-12 col-md-6 main__form__field__block">
-                                        {/* <p className="form__label">Mobile Number</p> */}
-                                        <Heading7
-                                          text="Year"
-                                          marginBottom={10}
-                                        />
-                                        <div className="field__block">
-                                          <input
-                                            type="text"
-                                            placeholder="YY"
-                                            className="form__field"
-                                            id="year"
-                                            name="year"
-                                            value={card.year}
-                                            onChange={(e) =>
-                                              handleChangeCard(e)
-                                            }
+                                        <div className="col-sm-12 col-md-4 ">
+                                          {/* <p className="form__label">Mobile Number</p> */}
+                                          <Heading7
+                                            text="Year"
+                                            marginBottom={10}
                                           />
+                                          <div className="field__block">
+                                            <input
+                                              type="text"
+                                              placeholder="YY"
+                                              className="form__field"
+                                              id="year"
+                                              name="year"
+                                              value={card.year}
+                                              onChange={(e) =>
+                                                handleChangeCard(e)
+                                              }
+                                            />
+                                          </div>
+                                          {cardErrMsg.year && (
+                                            <p className="invalid__message">
+                                              {cardErrMsg.year}
+                                            </p>
+                                          )}
                                         </div>
-                                        {cardErrMsg.year && (
-                                          <p className="invalid__message">
-                                            {cardErrMsg.year}
-                                          </p>
-                                        )}
+                                        <div className="col-sm-12 col-md-4"></div> 
                                       </div>
-                                    </div>
-                                    <div className="row address__form__field__row">
-                                      <div className="col-sm-12 col-md-6 main__form__field__block">
+                                      <div className="col-sm-12 col-md-3 main__form__field__block">
                                         {/* <p className="form__label">First Name</p> */}
                                         <Heading7
                                           text="CVV"
@@ -1204,6 +1208,7 @@ function Checkout_Page({ reloadingHeader }) {
                                         )}
                                       </div>
                                     </div>
+                                    <div className="row payment__form__field__row"></div>
                                   </div>
                                 </div>
                               ) : (
