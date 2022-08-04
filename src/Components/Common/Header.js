@@ -1853,6 +1853,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartP
   };
   const customerLogout = () => {
     localStorage.removeItem("custDetails");
+    localStorage.removeItem("handShakeToken");
     dispatch(customerDetailsSuccess(''));
     let params = {
       id: customerDetails.id
