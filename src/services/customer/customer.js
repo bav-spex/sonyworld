@@ -56,6 +56,7 @@ export const customerSignUp = (params) => {
       let notifyMsg = { message: 'Customer signup successfully.' }
 
       dispatch(services.notifySuccess(notifyMsg));
+      dispatch(customerSignUpMsg(true));
     } catch (error) {
 
       let notifyMsg = { message: error.response.data.message }

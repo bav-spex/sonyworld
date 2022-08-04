@@ -13,16 +13,14 @@ import see_password from "./../../assets/Icon/see_password.svg";
 import check_orange from "./../../assets/Icon/check_orange.svg";
 import empty_check_orange from "./../../assets/Icon/empty_check_orange.svg";
 import apple_white from "./../../assets/Icon/apple_white.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Mobile_Sign_In({ }) {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const { customerSignInMsg } = useSelector(
         (state) => state.customerReducer
     );
-
-
 
     const [isPassword, setIsPassword] = useState(true);
     const [isCheckBoxHover, setIsCheckBoxHover] = useState(false);
@@ -36,6 +34,12 @@ function Mobile_Sign_In({ }) {
         onboarding: "",
     });
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        if (customerSignInMsg === true) {
+            navigate('/');
+        }
+    }, [customerSignInMsg]);
 
     const handleChange = (event) => {
         let value = event.target.value;

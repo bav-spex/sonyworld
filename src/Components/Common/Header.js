@@ -1522,9 +1522,9 @@ const searchData = {
     },
   ],
 };
-function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPopup }) {
- 
-  const { customerDetails } = useSelector((state) => state.customerReducer);
+function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartPopup }) {
+
+  const { customerSignUpMsg, customerSignInMsg, customerDetails } = useSelector((state) => state.customerReducer);
 
   const dispatch = useDispatch();
 
@@ -1545,6 +1545,18 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
       country_code: "sa",
     },
   ];
+
+  useEffect(() => {
+    if (customerSignUpMsg === true) {
+      openLogoutPopup();
+    }
+  }, [customerSignUpMsg]);
+
+  useEffect(() => {
+    if (customerSignInMsg === true) {
+      openLogoutPopup();
+    }
+  }, [customerSignInMsg]);
 
   // Find Current language from {language} object
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -2376,7 +2388,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData,handleChangeCartPo
           )}
         </div>
       </div>
-      
+
     </>
   );
 }
