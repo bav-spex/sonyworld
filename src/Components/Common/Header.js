@@ -51,7 +51,8 @@ import Heading7 from "../Font/Heading7";
 import NotifySnackbar from "./notifySnackbar";
 import { getCustomerLoginDetails } from "../helpers/utils/getCustomerLoginDetails";
 import { customerDetailsSuccess } from "../../services/customer/customer";
-import * as services from './../../services/services'
+import * as services from './../../services/services';
+import { customerSignInSuccess, customerSignUpMsgSuccess } from "../../services/customer/customer";
 // const categoryData = [
 //   {
 //     id: 1,
@@ -1548,13 +1549,15 @@ function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartP
 
   useEffect(() => {
     if (customerSignUpMsg === true) {
-      openLogoutPopup();
+      setUserLoginPopup(false);
+      customerSignUpMsgSuccess('')
     }
   }, [customerSignUpMsg]);
 
   useEffect(() => {
     if (customerSignInMsg === true) {
-      openLogoutPopup();
+      setUserLoginPopup(false);
+      customerSignInSuccess('')
     }
   }, [customerSignInMsg]);
 
