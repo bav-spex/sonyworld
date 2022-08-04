@@ -422,7 +422,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
               name="country"
               onChange={(e) => handleChange(e)}
               value={address.country}
-              className="_customselect"
+              className="_customselect form-control"
               disabled={true}
             >
               {/* <option key='no' value=''>Select Country</option> */}
@@ -492,7 +492,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
               name="city"
               onChange={(e) => handleChange(e)}
               value={address.city}
-              className="_customselect"
+              className="_customselect form-control"
             >
               <option key='no' value=''>Select City/Town</option>
               {storeCitiesLocationData && storeCitiesLocationData.map(({ label, value }) => (

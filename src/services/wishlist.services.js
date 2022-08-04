@@ -19,12 +19,12 @@ export const addToWishlist = async(data) => {
 };
 
 export const deleteFromWishlist = async(data) => {
-    console.log(data);
+    // console.log(data);
     const wishlistData = await axios.delete(
         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
         {data:data}
     );
-    console.log(wishlistData,"addToWishlist")
+    // console.log(wishlistData,"addToWishlist")
     return wishlistData;
 };
 

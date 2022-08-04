@@ -38,190 +38,190 @@ import RecommandProducts from "../Components/ProductType/RecommandProducts";
 import Heading2 from "../Components/Font/Heading2";
 import MobileCartPage from "./MobilePages/Mobile_Cart_Page";
 
-const product = {
-  id: 1,
-  logo: sony_logo,
-  name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
-  categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-  rating: 4.6,
-  totalRatings: 6183,
-  price: 799,
-  oldPrice: 1050,
-  saving: 10,
-  monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-  returnPeriod: 15,
-  availableOffer: [
-    {
-      id: 1,
-      offerType: "",
-      offerText: "Save $50-$300 on a sound bar with TV",
-      termsAndConditions: "",
-    },
-    {
-      id: 2,
-      offerType: "Bank Offer",
-      offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-      termsAndConditions: "T&C",
-    },
-    {
-      id: 3,
-      offerType: "Credit Card Offer",
-      offerText: "5% Unlimited Cashback on Sony Credit Card",
-      termsAndConditions: "T&C",
-    },
-  ],
-  warrantyText: "1 Year Warranty on Product",
-  size: [
-    {
-      id: 1,
-      cm: 139,
-      inch: 55,
-    },
-    {
-      id: 2,
-      cm: 164,
-      inch: 65,
-    },
-    {
-      id: 3,
-      cm: 195,
-      inch: 77,
-    },
-  ],
-  delivery: {
-    deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-    pickupStore: [
-      {
-        id: 1,
-        pickupText:
-          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-      },
-      {
-        id: 2,
-        pickupText:
-          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-      },
-      {
-        id: 3,
-        pickupText:
-          "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-      },
-    ],
-  },
-  protection: [
-    {
-      id: 1,
-      protectionText: "2-Year Standard Geek Squad Protection",
-      price: 79,
-      month: 12,
-    },
-    {
-      id: 2,
-      protectionText: "1-Year Standard Geek Squad Protection",
-      price: 89,
-      month: 12,
-    },
-  ],
-};
-const productCategory = [
-  "ExperPicks",
-  "ExpertPicks",
-  "Surge Protectors",
-  "Soundbars",
-  "Universal Remotes",
-  "Expert Picks",
-  "Expert Picks",
-  "Surge Protectors",
-  "Soundbars",
-  "Universal Remotes",
-  "Expert Picks",
-  "Expert Picks",
-  "Surge Protectors",
-  "Soundbars",
-  "Universal Remotes",
-];
-const newArrivalData = [
-  {
-    id: 0,
-    baseImage: newArrivals_01,
-    name: "Camera",
-    rating: 4.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 1,
-    baseImage: newArrivals_02,
-    name: "Silver Porto Headset",
-    rating: 3,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 3,
-    baseImage: newArrivals_03,
-    name: "Car Audio Speaker KM100",
-    rating: 3.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 4,
-    baseImage: newArrivals_04,
-    name: "Sony Viao Laptop",
-    rating: 2.5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 5,
-    baseImage: newArrivals_05,
-    name: "Network Camera",
-    rating: 5,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 6,
-    baseImage: newArrivals_01,
-    name: "Camera",
-    rating: 3.2,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 7,
-    baseImage: newArrivals_02,
-    name: "Silver Porto Headset",
-    rating: 4.8,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 8,
-    baseImage: newArrivals_03,
-    name: "Car Audio Speaker KM100",
-    rating: 2,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 9,
-    baseImage: newArrivals_04,
-    name: "Sony Viao Laptop",
-    rating: 1,
-    oldPrice: 1999,
-    price: 1699,
-  },
-  {
-    id: 10,
-    baseImage: newArrivals_05,
-    name: "Network Camera",
-    rating: 3,
-    oldPrice: 1999,
-    price: 1699,
-  },
-];
+// const product = {
+//   id: 1,
+//   logo: sony_logo,
+//   name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+//   categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+//   rating: 4.6,
+//   totalRatings: 6183,
+//   price: 799,
+//   oldPrice: 1050,
+//   saving: 10,
+//   monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+//   returnPeriod: 15,
+//   availableOffer: [
+//     {
+//       id: 1,
+//       offerType: "",
+//       offerText: "Save $50-$300 on a sound bar with TV",
+//       termsAndConditions: "",
+//     },
+//     {
+//       id: 2,
+//       offerType: "Bank Offer",
+//       offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+//       termsAndConditions: "T&C",
+//     },
+//     {
+//       id: 3,
+//       offerType: "Credit Card Offer",
+//       offerText: "5% Unlimited Cashback on Sony Credit Card",
+//       termsAndConditions: "T&C",
+//     },
+//   ],
+//   warrantyText: "1 Year Warranty on Product",
+//   size: [
+//     {
+//       id: 1,
+//       cm: 139,
+//       inch: 55,
+//     },
+//     {
+//       id: 2,
+//       cm: 164,
+//       inch: 65,
+//     },
+//     {
+//       id: 3,
+//       cm: 195,
+//       inch: 77,
+//     },
+//   ],
+//   delivery: {
+//     deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+//     pickupStore: [
+//       {
+//         id: 1,
+//         pickupText:
+//           "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//       },
+//       {
+//         id: 2,
+//         pickupText:
+//           "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//       },
+//       {
+//         id: 3,
+//         pickupText:
+//           "Available today at Riyadh Act Fast – Only 3 left at your store!>",
+//       },
+//     ],
+//   },
+//   protection: [
+//     {
+//       id: 1,
+//       protectionText: "2-Year Standard Geek Squad Protection",
+//       price: 79,
+//       month: 12,
+//     },
+//     {
+//       id: 2,
+//       protectionText: "1-Year Standard Geek Squad Protection",
+//       price: 89,
+//       month: 12,
+//     },
+//   ],
+// };
+// const productCategory = [
+//   "ExperPicks",
+//   "ExpertPicks",
+//   "Surge Protectors",
+//   "Soundbars",
+//   "Universal Remotes",
+//   "Expert Picks",
+//   "Expert Picks",
+//   "Surge Protectors",
+//   "Soundbars",
+//   "Universal Remotes",
+//   "Expert Picks",
+//   "Expert Picks",
+//   "Surge Protectors",
+//   "Soundbars",
+//   "Universal Remotes",
+// ];
+// const newArrivalData = [
+//   {
+//     id: 0,
+//     baseImage: newArrivals_01,
+//     name: "Camera",
+//     rating: 4.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 1,
+//     baseImage: newArrivals_02,
+//     name: "Silver Porto Headset",
+//     rating: 3,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 3,
+//     baseImage: newArrivals_03,
+//     name: "Car Audio Speaker KM100",
+//     rating: 3.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 4,
+//     baseImage: newArrivals_04,
+//     name: "Sony Viao Laptop",
+//     rating: 2.5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 5,
+//     baseImage: newArrivals_05,
+//     name: "Network Camera",
+//     rating: 5,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 6,
+//     baseImage: newArrivals_01,
+//     name: "Camera",
+//     rating: 3.2,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 7,
+//     baseImage: newArrivals_02,
+//     name: "Silver Porto Headset",
+//     rating: 4.8,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 8,
+//     baseImage: newArrivals_03,
+//     name: "Car Audio Speaker KM100",
+//     rating: 2,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 9,
+//     baseImage: newArrivals_04,
+//     name: "Sony Viao Laptop",
+//     rating: 1,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+//   {
+//     id: 10,
+//     baseImage: newArrivals_05,
+//     name: "Network Camera",
+//     rating: 3,
+//     oldPrice: 1999,
+//     price: 1699,
+//   },
+// ];
 const peopleUltimatelyBoughtData = [
   {
     id: 1,
@@ -688,6 +688,7 @@ function Cart_Page() {
       setCartTotalData(cartData.totals_data);
       setCartItem(cartData.items && cartData.items.length)
       setLoading(false);
+      window.scrollTo(0,0)
       // console.log(product.reviewSummary.totals);
     }
   }, [cartData]);
@@ -718,12 +719,13 @@ console.log(cartItem);
           <div className="row shopping__cart__page__inner__block">
             <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
               {cartProductData &&
-                cartProductData.items.map((product, productIndex) => {
-                  console.log("cartproduct",product);
+                cartProductData.items.map((pro, proIndex) => {
+                  // console.log("cartproduct",pro);
+                  console.log("Cart Pageproduct.qty",pro.qty);
                   return (
                     <ShoppipngCartProduct
-                      key={product.item_id}
-                      product={product}
+                      key={pro.item_id}
+                      product={pro}
                     />
                   );
                 })}
