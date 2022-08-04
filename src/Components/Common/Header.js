@@ -1523,7 +1523,7 @@ const searchData = {
     },
   ],
 };
-function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartPopup }) {
+function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartPopup, cartIconTotal }) {
 
   const { customerSignUpMsg, customerSignInMsg, customerDetails } = useSelector((state) => state.customerReducer);
 
@@ -1593,6 +1593,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartP
   const [loginWrapper, setLoginWrapper] = useState(false);
   const [userLoginPopup, setUserLoginPopup] = useState(false);
   const [searchPopup, setSearchPopup] = useState(false);
+  // const [searchData,setSearchData] = useState()
   const openSearchPopup = (e) => {
     console.log(e.target.value);
     setSearchPopup(true);
@@ -2087,7 +2088,7 @@ function Header({ reloadingHandle, reloadHeader, categoryData, handleChangeCartP
                         alt=""
                         className="shopping_cart header__icon"
                       />
-                      <p className="cart__item__count">{99}</p>
+                      <p className="cart__item__count">{cartIconTotal}</p>
                     </Link>
                   </div>
                 </div>

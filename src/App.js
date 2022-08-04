@@ -50,6 +50,10 @@ function App({ stars }) {
   const [loading, setLoading] = useState(true);
   const getCurrentPageUrl = window.location.href;
   const [reloadHeader, setReloadHeader] = useState(true);
+  const [cartIconTotal,setCartIconTotal] = useState(0)
+  const handleChangeCartIconTotal = (total)=>{
+    setCartIconTotal(total)
+  }
   const reloadingHandle = () => {
     setReloadHeader(!reloadHeader);
   };
@@ -113,6 +117,7 @@ function App({ stars }) {
       </Helmet>
       <div className="main_header">
         <Header
+        cartIconTotal={cartIconTotal}
         handleChangeCartPopup={handleChangeCartPopup}
           reloadingHandle={reloadingHandle}
           categoryData={categoryData}
@@ -139,6 +144,7 @@ function App({ stars }) {
         }
       >
         <CartPopup
+        handleChangeCartIconTotal={handleChangeCartIconTotal}
           // cartData={cartData}
           closeCartPopup={closeCartPopup}
           handleChangeCartPopup={handleChangeCartPopup}

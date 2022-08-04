@@ -21,7 +21,7 @@ import delete_icon from "./../../assets/Icon/delete.svg";
 import { loadCartData } from "../../redux/appAction";
 import { addToCart, deleteFromCart } from "../../services/cart.service";
 function ShoppipngCartProduct({ product }) {
-  console.log(product);
+  // console.log(product);
   const dispatch = useDispatch();
   // console.log(product.product.media.image.featured.image);
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);

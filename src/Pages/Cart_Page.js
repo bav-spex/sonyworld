@@ -692,8 +692,8 @@ function Cart_Page() {
       // console.log(product.reviewSummary.totals);
     }
   }, [cartData]);
-console.log(cartItem);
-  console.log(cartData, "Cart data >>>>>");
+// console.log(cartItem);
+  // console.log(cartData, "Cart data >>>>>");
 
   if (loading) {
     return <h1>Product Loading...</h1>;
@@ -721,7 +721,7 @@ console.log(cartItem);
               {cartProductData &&
                 cartProductData.items.map((pro, proIndex) => {
                   // console.log("cartproduct",pro);
-                  console.log("Cart Pageproduct.qty",pro.qty);
+                  // console.log("Cart Pageproduct.qty",pro.qty);
                   return (
                     <ShoppipngCartProduct
                       key={pro.item_id}
@@ -732,15 +732,15 @@ console.log(cartItem);
               {/* <hr className="sc__page__horizontal__line"></hr>
               <ShoppipngCartProduct product={product} /> */}
               <div className="sc__newArrival__block">
-                <Heading2
+                {/* <Heading2
                   text="People Who Bought Also Bought"
                   marginLeft={40}
                   marginBottom={0}
-                />
+                /> */}
                 {/* <ProductContainer
                   productDetailPage={true}
                   // sectionTitle="People Who Bought Also Bought"
-                  carouselData={newArrivalData}
+                  carouselData={peopleUltimatelyBoughtData}
                   containerClassName="people__also__bought__block"
                 /> */}
               </div>

@@ -451,7 +451,7 @@ const peopleUltimatelyBoughtData = [
     ],
   },
 ];
-function CartPopup({ closeCartPopup }) {
+function CartPopup({ closeCartPopup,handleChangeCartIconTotal }) {
   const [loading, setLoading] = useState(false);
   const [cartProductData, setCartProductData] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
@@ -466,6 +466,7 @@ function CartPopup({ closeCartPopup }) {
     if (Object.values(cartData).length !== 0) {
       setCartProductData(cartData.items);
       setCartTotal(cartData.totals_data.grand_total)
+      handleChangeCartIconTotal(cartData.items.length)
       // setCartTotalData(cartData.totals_data);
       // setLoading(false);
       // console.log(product.reviewSummary.totals);
