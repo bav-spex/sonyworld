@@ -619,7 +619,7 @@ function Checkout_Page({ reloadingHeader }) {
     merchant_reference: "",
     language: "en",
     service_command: "",
-    return_url: "http://localhost:3000/user/order/",
+    return_url: "https://sonyfrontend.sigmasolve.com/user/orders/",
     signature: "",
   });
   const makePayment = async () => {
@@ -650,13 +650,26 @@ function Checkout_Page({ reloadingHeader }) {
           merchant_reference: res.data.params.merchant_reference,
           language: "en",
           service_command: res.data.params.service_command,
-          return_url: "http://localhost:3000",
+          return_url: `https://sonyfrontend.sigmasolve.com/user/orders/${res.data.entity_id}`,
           signature: res.data.params.signature,
         };
-        console.log("newSendPayfortInformation ", newSendPayfortInformation);
-        sendPayfortInformation(newSendPayfortInformation);
+        console.log("newSendPayfortInformation payfort_fort_cc", newSendPayfortInformation);
+        // debugger
+      //  sendPayfortInformation(newSendPayfortInformation);
           setCheckoutClassName("delivery");
-          navigate.push(`/user/orders/${res.data.entity_id}`);
+          // const response =  fetch("https://sbcheckout.payfort.com/FortAPI/paymentPage", {
+          // method: 'POST',
+          // headers: {
+          //   'Accept': 'application/json',
+          //   'Content-Type': 'application/json'
+          // },
+          // body: newSendPayfortInformation,
+          // });
+          
+          // response.json().then(data=>{
+          //   console.log("responseData",data);
+          // })
+          navigate(`/user/orders/${res.data.entity_id}`);
         });
       }
     } else {
@@ -680,14 +693,26 @@ function Checkout_Page({ reloadingHeader }) {
           merchant_reference: res.data.params.merchant_reference,
           language: "en",
           service_command: res.data.params.service_command,
-          return_url: "http://localhost:3000",
+          return_url: `https://sonyfrontend.sigmasolve.com/user/orders/${res.data.entity_id}`,
           signature: res.data.params.signature,
         };
         console.log("newSendPayfortInformation ", newSendPayfortInformation);
+        // debugger
         // sendPayfortInformation(newSendPayfortInformation);
         setCheckoutClassName("delivery");
-
-        navigate.push(`/user/orders/${res.data.entity_id}`);
+        // const response =  fetch("https://sbcheckout.payfort.com/FortAPI/paymentPage", {
+        //   method: 'POST',
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: newSendPayfortInformation,
+        //   });
+          
+        //   response.json().then(data=>{
+        //     console.log("responseData",data);
+        //   })
+        navigate(`/user/orders/${res.data.entity_id}/confirm`);
       });
     }
 

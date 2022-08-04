@@ -75,7 +75,7 @@ export const getPayfortInformation = async (data) => {
 };
 
 export const sendPayfortInformation = async (data) => {
-  console.log("Payment method Data >>>>>>")
+  console.log("Payment method Data >>>>>>",data)
   const payfortInformationData = await axios.post(
     `https://sbcheckout.payfort.com/FortAPI/paymentPage`, data
   );

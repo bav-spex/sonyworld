@@ -50,7 +50,7 @@ function AllRoutes({categoryData,reloadingHandle,homepageData,handleChangeCartPo
       <Route exact path="/dashboard" element={<Dashboard />}></Route>
       <Route exact path="/user/orders" element={<My_Orders />}></Route>
       <Route exact path="/user/orders/:order_id" element={<Order_Details />}></Route>
-      <Route exact path="/user/orders/1/confirm" element={<Confirm_Order_Page />}></Route>
+      <Route exact path="/user/orders/:order_id/confirm" element={<Confirm_Order_Page />}></Route>
       <Route exact path="/user/wishlist" element={<My_Wishlists_Page />}></Route>
       <Route exact path="/user/profile" element={<My_Profile_Page />}></Route>
 
