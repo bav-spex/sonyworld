@@ -3,7 +3,7 @@ import axios from "axios";
 import { getHomePageData } from "../services/homepage.service";
 import { getAllCategoryData } from "../services/category.service";
 import { getProductDetail } from "../services/pdp.service";
-import { getWishlistData } from "../services/wishlist.services";
+import { deleteFromWishlist, getWishlistData } from "../services/wishlist.services";
 import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getStoresLocationData } from "../services/storeLocation.service";
@@ -100,6 +100,22 @@ export const loadApplyFilterData = (filterDetails) => {
   };
 };
 
+// Loading Wishlist  Page Data //
+
+
+export const loadDeleteFromWishlist = (data) => {
+  return async function (dispatch) {
+     await deleteFromWishlist(data).then((res)=>{
+       console.log(res);
+      setTimeout(() => {
+        dispatch(loadWishlistData())
+      }, 1000);
+    }
+      );
+
+    // return wishlistData.data;
+  };
+};
 // Loading Wishlist  Page Data //
 
 const saveWishlistData = (data) => ({

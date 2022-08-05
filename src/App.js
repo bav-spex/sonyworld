@@ -17,7 +17,7 @@ import NewsLetter from "./Components/Common/NewsLetter";
 import { getHandshake } from "./services/auth";
 
 import Heading1 from "./Components/Font/Heading1";
-import { loadAllCategoryData, loadHomePageData } from "./redux/appAction";
+import { loadAllCategoryData, loadCartData, loadHomePageData, loadWishlistData } from "./redux/appAction";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setHeader } from "./services/config";
@@ -65,6 +65,18 @@ function App({ stars }) {
     } else {
       setToken(localStorageHandshakeToken);
       // setHeader("X-Access-Token", localStorageHandshakeToken);
+     
+    }
+  }, []);
+  // useEffect(() => {
+  //   // debugger
+  //     getHandshake().then((res) => setToken(res.data.token));
+  // }, []);
+
+  useEffect(() => {
+    if (token) {
+      setHeader("X-Access-Token", token);
+      localStorage.setItem("handShakeToken", token);
       const data = categoryDispatch(loadAllCategoryData());
       data
         .then((res) => console.log(res))
@@ -79,18 +91,6 @@ function App({ stars }) {
             });
           }
         });
-    }
-  }, []);
-  // useEffect(() => {
-  //   // debugger
-  //     getHandshake().then((res) => setToken(res.data.token));
-  // }, []);
-
-  useEffect(() => {
-    if (token) {
-      setHeader("X-Access-Token", token);
-      localStorage.setItem("handShakeToken", token);
-      categoryDispatch(loadAllCategoryData());
     }
   }, [token]);
 
@@ -110,6 +110,9 @@ function App({ stars }) {
       setLoading(false);
     }
   }, [allCategoryData]);
+  useEffect(()=>{
+    // wishlistDispatch(loadWishlistData())
+  })
   const [cartPopup, setCartPopup] = useState(false);
   const closeCartPopup = () => {
     setCartPopup(false);
