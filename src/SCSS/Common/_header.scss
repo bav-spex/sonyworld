@@ -209,6 +209,24 @@
                 display: none;
               }
             }
+            .wishlist__icon__block {
+              margin-right: 10px;
+              position: relative;
+              .wishlist__item__count {
+                position: absolute;
+                background-color: #818181;
+                width: fit-content;
+                top: -30%;
+                right: -20%;
+                color: white;
+                margin: 0px;
+                border-radius: 20px;
+                padding: 2px 5px;
+                font-size: 12px;
+                text-align: center;
+                min-width: 20px;
+              }
+            }
             .cart__icon__block {
               margin-right: 10px;
               position: relative;
@@ -223,6 +241,8 @@
                 border-radius: 20px;
                 padding: 2px 5px;
                 font-size: 12px;
+                text-align: center;
+                min-width: 20px;
               }
             }
           }

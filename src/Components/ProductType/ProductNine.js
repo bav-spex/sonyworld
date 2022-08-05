@@ -13,25 +13,17 @@ import Price from "../Font/Price";
 import Heading6 from "../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import AwesomeSlider from "react-awesome-slider";
-import product_01 from "./../../assets/Product/product_01.jpg";
-import product_02 from "./../../assets/Product/product_02.jpg";
-import product_03 from "./../../assets/Product/product_03.jpg";
-import product_04 from "./../../assets/Product/product_04.jpg";
-import product_05 from "./../../assets/Product/product_05.jpg";
-import product_06 from "./../../assets/Product/product_06.jpg";
-import product_07 from "./../../assets/Product/product_07.jpg";
-import product_08 from "./../../assets/Product/product_08.jpg";
 import { Link } from "react-router-dom";
 import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
+import { useDispatch } from "react-redux";
+import { loadAddToWishlist, loadDeleteFromWishlist, loadWishlistData } from "../../redux/appAction";
 
 function ProductNine({
   product,
   handleChangeProductPopup,
   handleChangeComparePopup,
 }) {
-  // console.log(product);
-  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
   const [productWarrentyBlock, setProductWarrentyBlock] = useState({
@@ -54,39 +46,59 @@ function ProductNine({
       },
     ],
   });
-  useEffect(async()=>{
-    const isFavouriteData = await checkForWishlist(product?.sku?.replace(/[/]/g, "%2F"));
-    // console.log(isFavouriteData);
-    setIsFavourite(isFavouriteData)
-  },[])
+ 
+  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(async () => {
+    const isFavouriteData = await checkForWishlist(
+      product.sku.replace(/[/]/g, "%2F")
+    );
+    setIsFavourite(isFavouriteData);
+  }, []);
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
-      // console.log(product.sku, "added");
+      setCount(count + 1);
     } else {
       setIsFavourite(true);
-      // console.log(product.sku, "remove");
+      setCount(count + 1);
     }
   };
   useEffect(() => {
     const data = {
-      items: [product?.sku],
+      items: [product.sku],
     };
     if (isFavourite) {
-      addToWishlist(data);
-      // console.log("added Successfully");
+      if (count > 0) {
+        const addToWishlistData = dispatch(loadAddToWishlist(data)).then(
+          (res) => {
+            console.log(res);
+            dispatch(loadWishlistData());
+          }
+        );
+      }
+    } else {
+      if (count > 0) {
+        if (!isFavourite) {
+          removeFromWL(product.sku);
+        }
+      }
     }
-    else{
-      removeFromWL(product?.sku)
-      // console.log("deleted Successfully");
-    }
-  },[isFavourite]);
-  const removeFromWL=(sku)=>{
+  }, [isFavourite]);
+
+  const removeFromWL = (sku) => {
     const data = {
       items: [sku],
     };
-   deleteFromWishlist(data)
-  }
+    const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then(
+      (res) => {
+        console.log(res);
+        dispatch(loadWishlistData());
+      }
+    );
+  };
 
   const handleRating = (score) => {
     setRating(score);

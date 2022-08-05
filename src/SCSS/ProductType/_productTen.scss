@@ -1,7 +1,6 @@
 .productTen__block {
-
   background-color: #ffffff;
- 
+
   .productTen__left__block {
     padding: 0px;
     .productTen__header {
@@ -32,6 +31,7 @@
           margin: 0px 10px 0px 0px;
         }
         .favourite__icon {
+          cursor: pointer;
           display: block;
         }
         .favourite__icon__disable {
@@ -42,7 +42,7 @@
     .productNine__image__slider {
       width: 70%;
       margin: auto;
-      ._product__container_image{
+      ._product__container_image {
         // width: 70%;
       }
       .awssld__content {
@@ -74,22 +74,22 @@
       //   visibility: hidden;
       // }
     }
-    .productNine__quickView__compare__block{
-        margin: 10px 0px 0px;
+    .productNine__quickView__compare__block {
+      margin: 10px 0px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0px 20px 0px;
+      .productNine__button__block {
+        border: none;
+        outline: none;
+        background: none;
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        padding: 0px 20px 0px;
-        .productNine__button__block{
-            border: none;
-            outline: none;
-            background: none;
-            display: flex;
-            align-items: center;
-            .productNine__button__icon{
-                margin: 0px 10px 0px 0px;
-            }
+        .productNine__button__icon {
+          margin: 0px 10px 0px 0px;
         }
+      }
     }
   }
   .productTen__middle__block {
@@ -140,22 +140,26 @@
       }
     }
   }
-  .productTen__right__block{
+  .productTen__right__block {
     padding: 20px;
     .addToCart__button {
-        border-radius: 5px;
-        color: #ffffff;
-        font-size: 16px;
-        font-family: "arialbold";
-        letter-spacing: 0.85px;
-        padding: 10px 0px;
-        background-color: #dc3a1a;
-        text-align: center;
-        text-transform: uppercase;
-        cursor: pointer;
-        .addToCart__icon {
-          margin: 0px 20px 0px 0px;
-        }
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 16px;
+      font-family: "arialbold";
+      letter-spacing: 0.85px;
+      padding: 16px 0px;
+      background-color: #dc3a1a;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .addToCart__icon {
+        margin: 0px 20px 0px 0px;
       }
+    }
   }
 }

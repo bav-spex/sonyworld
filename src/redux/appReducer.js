@@ -4,6 +4,7 @@ const initialState = {
   homepageData: {},
   categoryData: {},
   productData: {},
+  wishlistCount:0,
   wishlistData: [],
   cityLocationData: [],
   countriesLocationData: [],
@@ -60,6 +61,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         orderDetailsData: action.payload,
+      };
+    case types.SET__WISHLIST__COUNT:
+      return {
+        ...state,
+        wishlistCount: action.payload,
       };
     case types.GET__WISHLIST__DATA:
       return {

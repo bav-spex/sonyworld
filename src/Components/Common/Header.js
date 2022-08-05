@@ -1549,6 +1549,7 @@ function Header({
 
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
+  const {wishlistCount} = useSelector(state => state.appData)
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
@@ -1645,7 +1646,7 @@ function Header({
     dispatch(loadApplyFilterData(filterDetails));
   }, [filterDetails]);
   const applyFilterData = useSelector((state) => state.appData.filterData);
-  console.log(applyFilterData);
+  // console.log(applyFilterData);
   useEffect(() => {
     if (applyFilterData) {
       setSearchProductData(applyFilterData.items);
@@ -2082,12 +2083,16 @@ function Header({
                         className="location header__icon"
                       />
                     </Link>
-                    <Link to="/user/wishlist">
+                    <Link 
+                    to="/user/wishlist"
+                    className="wishlist__icon__block"
+                    >
                       <img
                         src={favourite}
                         alt=""
                         className="favourite header__icon"
                       />
+                       <p className="wishlist__item__count">{wishlistCount}</p>
                     </Link>
                     {customerDetails === "" ? (
                       <div className="header__user__block">

@@ -512,7 +512,7 @@ function My_Wishlists_Page() {
                   key={item.wishlist_item_id}
                   className="col-6 col-md-4  col-xl-3 wishlist__product__block"
                 >
-                  <ProductEight item={item} />
+                  <ProductEight product={item.product} />
                 </div>
               );
             })}

@@ -12,6 +12,7 @@
       align-items: center;
 
       .plp__sortby__select__field {
+        cursor: pointer;
         border: 1px solid #000000;
         width: 180px;
         padding: 15px 10px;
@@ -39,8 +40,10 @@
           border-radius: 3px;
           .grid__icon {
           }
+          cursor: pointer;
         }
         .plp__grid__button__active {
+          cursor: pointer;
           height: 50px;
           width: 50px;
           display: flex;
@@ -54,6 +57,7 @@
           }
         }
         .plp__list__button {
+          cursor: pointer;
           height: 50px;
           width: 50px;
           display: flex;
@@ -67,6 +71,7 @@
           }
         }
         .plp__list__button__active {
+          cursor: pointer;
           height: 50px;
           width: 50px;
           display: flex;

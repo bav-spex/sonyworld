@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { loadWishlistData } from "../redux/appAction";
+
 
 export const getWishlistData = async() => {
     const wishlistData = await axios.get(
@@ -12,10 +11,13 @@ export const getWishlistData = async() => {
 
 
 export const addToWishlist = async(data) => {
+    
+   
     const wishlistData = await axios.post(
         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
         data
-    );
+        );
+        
     // console.log(wishlistData,"addToWishlist")
     return wishlistData;
 };
