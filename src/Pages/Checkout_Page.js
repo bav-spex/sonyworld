@@ -198,7 +198,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
-  const [addressData, setAddressData] = useState(false);
+  const [addressData, setAddressData] = useState([]);
   const [editAddressData, setEditAddressData] = useState("");
   const [addressPopupType, setAddressPopupType] = useState("add");
   const [paymentMethods, setPaymentMethods] = useState([]);
@@ -901,7 +901,7 @@ function Checkout_Page({ reloadingHeader }) {
                                 />
                                 <div className="address__button__block">
                                   <button className="delivery__button">
-                                    DELIVER TO THIS ADDRESS
+                                    SELECT THIS ADDRESS FOR DELIVERY
                                   </button>
                                   <div className="inner__address__button__block">
                                     <button
@@ -940,23 +940,25 @@ function Checkout_Page({ reloadingHeader }) {
                 {customerDetails !== "" && (
                   <>
                     {/* <hr className="checkout__page__horizontal__line"></hr> */}
-                    <div className=" add__new__address__block">
-                      <button
-                        onClick={() => openNewAddressPopup("add")}
-                        className="location__button"
-                      >
-                        <img
-                          src={black_location}
-                          alt=""
-                          className="location__icon"
-                        />
-                        <Heading5
-                          text="Add New Address"
-                          marginBottom={0}
-                          color="#000000"
-                        />
-                      </button>
-                    </div>
+                    {addressData && addressData.length < 3 &&
+                      <div className=" add__new__address__block">
+                        <button
+                          onClick={() => openNewAddressPopup("add")}
+                          className="location__button"
+                        >
+                          <img
+                            src={black_location}
+                            alt=""
+                            className="location__icon"
+                          />
+                          <Heading5
+                            text="Add New Address"
+                            marginBottom={0}
+                            color="#000000"
+                          />
+                        </button>
+                      </div>
+                    }
                     <hr className="checkout__page__horizontal__line"></hr>
 
                     <div className="row delivery__selcetion__pickup__store">

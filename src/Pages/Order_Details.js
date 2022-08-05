@@ -13,6 +13,7 @@ import card_05 from "./../assets/Footer/card_05.png";
 import product_01 from "./../assets/Product/product_01.png";
 import "./../SCSS/_orderDetails.scss";
 import Heading5 from "../Components/Font/Heading5";
+import Heading4 from "../Components/Font/Heading4";
 import {
   useParams
 } from "react-router-dom";
@@ -155,7 +156,7 @@ function Order_Details(props) {
         <div className="container-fluid orderDetails__container">
           <div className="orderDetails__block">
             <div className="orderDetails__inner__block">
-              <MyOrderProductV2 product={orderDetails} pageType="order-details"/>
+              <MyOrderProductV2 product={orderDetails} pageType="order-details" />
               {/* <div className="row od__product__block">
               <div className="col-12 col-sm-2 od__product__left__block">
                 <div className="od__product__image__block">
@@ -249,7 +250,11 @@ function Order_Details(props) {
                   <div className="checkout__os__detail__block">
                     <div className="checkout__os__detail__inner__block">
                       <Text3 text="Shipping" color="#000000" />
-                      <Price price={orderDetails.shippingAmount} currency={orderDetails.currency} size="heading7" />
+                      {orderDetails.shippingAmount == 0 ?
+                        <Heading4 text="FREE" color="#FF4F04" />
+                        :
+                        <Price price={orderDetails.shippingAmount} currency={orderDetails.currency} size="heading7" />
+                      }
                     </div>
                     <div className="checkout__os__detail__inner__block">
                       <Text3 text="Sub Total" color="#000000" />
