@@ -48,12 +48,14 @@ function AllRoutes({ categoryData, reloadingHandle, homepageData, handleChangeCa
       <Route exact path="/create_bundle" element={<Create_Bundle_Page />}></Route>
       <Route exact path="/cart" element={<Cart_Page />}></Route>
       <Route exact path="/checkout" element={<Checkout_Page reloadingHandle={reloadingHandle} />}></Route>
-      <Route exact path="/dashboard" element={<Dashboard />}></Route>
-      <Route exact path="/user/orders" element={<My_Orders />}></Route>
-      <Route exact path="/user/orders/:order_id" element={<Order_Details />}></Route>
-      <Route exact path="/user/orders/:order_id/confirm" element={<Confirm_Order_Page />}></Route>
+      <Route exact element={<PrivateRoutes />} >
+        <Route exact path="/dashboard" element={<Dashboard />}></Route>
+        <Route exact path="/user/orders" element={<My_Orders />}></Route>
+        <Route exact path="/user/orders/:order_id" element={<Order_Details />}></Route>
+        <Route exact path="/user/orders/:order_id/confirm" element={<Confirm_Order_Page />}></Route>
+        <Route exact path="/user/profile" element={<My_Profile_Page />}></Route>
+      </Route>
       <Route exact path="/user/wishlist" element={<My_Wishlists_Page />}></Route>
-      <Route exact path="/user/profile" element={<My_Profile_Page />}></Route>
 
       <Route exact path="/findstore" element={<Sony_Store_Page />}></Route>
       <Route exact path="/search" element={<Search__Page />}></Route>

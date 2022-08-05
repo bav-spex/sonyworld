@@ -43,6 +43,8 @@ import { loadHomePageData, loadCreateCart } from "../redux/appAction";
 import { loadLocationData } from "../redux/appAction";
 
 import MobileHomePage from "./MobilePages/Mobile_Home_Page";
+import { getHandshake } from "../services/auth";
+import { setHeader } from "../services/config";
 
 function Home({handleChangeCartPopup}) {
   // const [homepageData, setHomepageData] = useState();
@@ -62,7 +64,22 @@ function Home({handleChangeCartPopup}) {
     useState();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadHomePageData());
+    const data = dispatch(loadHomePageData());
+      data
+        .then((res) =>  dispatch(loadCreateCart()))
+        .catch((err) => {
+          console.log(err);
+          if (err.request.status === 404) {
+            console.log("catch");
+            setHeader("X-Access-Token", "");
+            getHandshake().then((res) => {
+              console.log(res.data.token);
+              setHeader("X-Access-Token", res.data.token);
+              localStorage.setItem("handShakeToken", res.data.token);
+              dispatch(loadCreateCart());
+            });
+          }
+        });
     dispatch(loadCreateCart());
     //  const data = await getAllCategory().then((res) => res);
     // setCategoryData(data);
