@@ -506,6 +506,7 @@ function My_Wishlists_Page() {
           </div>
           <div className="row wishlist__page__product__block">
             {wishlistPageData.map((item, productIndex) => {
+              // console.log(item);
               return (
                 <div
                   key={item.wishlist_item_id}

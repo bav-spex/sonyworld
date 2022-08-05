@@ -77,7 +77,7 @@ function ProductNine({
       // console.log("added Successfully");
     }
     else{
-      removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
+      removeFromWL(product?.sku)
       // console.log("deleted Successfully");
     }
   },[isFavourite]);

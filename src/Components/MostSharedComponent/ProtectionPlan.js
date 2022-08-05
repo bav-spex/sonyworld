@@ -22,7 +22,7 @@ function ProtectionPlan({ title, protection,remove }) {
             </div>
             <div key={protect.id} className="col-9 selected__plan__detail">
               <Text3 text="2-Year Standard Geek Squad Protection" />
-              <Price price={protect.price} size="heading6" span={true} />
+              <Price price={protect.price} size="heading6" span={true}  currency={"SAR"} />
               <OldPrice
                 preText="About"
                 oldPrice={`${protect.price}`}

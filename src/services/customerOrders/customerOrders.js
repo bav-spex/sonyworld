@@ -5,7 +5,8 @@ import * as services from '../services';
 export const getCustomerOrdersList = (params) => {
   return async dispatch => {
     try {
-      let response = await apiHelper(`/V1/customer/orders`, 'get', null, {});
+      let response = await apiHelper(`/V1/customer/orders?sort=${params.sort}&order=${params.order}`, 'get', params, {});
+ console.log("response ", response);
       dispatch(getCustomerOrdersListSuccess(response.data));
     } catch (error) {
  console.log("error ", error);

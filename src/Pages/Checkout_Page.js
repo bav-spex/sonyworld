@@ -366,7 +366,7 @@ function Checkout_Page({ reloadingHeader }) {
       dispatch(
         services.notifyError({
           message:
-            "please add proucts in cart, Empty cart is not can proceed further",
+            "please select delivery info",
         })
       );
     } else {

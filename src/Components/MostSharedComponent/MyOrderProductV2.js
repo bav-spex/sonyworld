@@ -71,9 +71,10 @@ function MyOrderProduct(props) {
         <div className="col-12">
           <div className="row px-4">
             {product.items && product.items.map((val, i) => {
+              let checkBorderBottom = product.items.length !== (i + 1) ? 'border-bottom' : '';
               return (
                 <>
-                  <div className="col-12 mb-3 pb-3 border-bottom">
+                  <div className={`col-12 mb-3 pb-3 ${checkBorderBottom}`}>
                     <div className="row">
                       <div className="col-12 col-sm-2 mo__product__left__block">
                         <div className="mo__product__image__block">
@@ -86,6 +87,18 @@ function MyOrderProduct(props) {
                           <li>
                             <Heading7 text="SKU :" color="#727272" span={true} />
                             <Text3 text={val.product.sku} span={true} />
+                          </li>
+                        </ul>
+                        <ul className="align-align-items-lg-start list-unstyled order__detail__list d-flex">
+                          <li>
+                            <Heading7 text="Price :" color="#727272" span={true} />
+                            <Price price={val.base_price} currency={product.currency} span={true} size="text3" />
+                          </li>
+                        </ul>
+                        <ul className="align-align-items-lg-start list-unstyled order__detail__list d-flex">
+                          <li>
+                            <Heading7 text="Quantity :" color="#727272" span={true} />
+                            <Text3 text={val.qty_ordered} span={true} />
                           </li>
                         </ul>
                       </div>

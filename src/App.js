@@ -17,7 +17,7 @@ import NewsLetter from "./Components/Common/NewsLetter";
 import { getHandshake } from "./services/auth";
 
 import Heading1 from "./Components/Font/Heading1";
-import { loadAllCategoryData, loadHomePageData } from "./redux/appAction";
+import { loadAllCategoryData, loadCartData, loadHomePageData, loadWishlistData } from "./redux/appAction";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setHeader } from "./services/config";
@@ -26,7 +26,6 @@ import { getCustomerLoginDetails } from "./Components/helpers/utils/getCustomerL
 import CartPopup from "./Components/Popup/CartPopup";
 
 function App({ stars }) {
-
   const customerData = getCustomerLoginDetails();
   const dispatch = useDispatch();
 
@@ -34,7 +33,7 @@ function App({ stars }) {
 
   useEffect(() => {
     if (customerData !== "" && customerDetails === "") {
-      dispatch(customerDetailsSuccess(customerData))
+      dispatch(customerDetailsSuccess(customerData));
     }
   }, [customerData]);
 
@@ -50,6 +49,10 @@ function App({ stars }) {
   const [loading, setLoading] = useState(true);
   const getCurrentPageUrl = window.location.href;
   const [reloadHeader, setReloadHeader] = useState(true);
+  const [cartIconTotal, setCartIconTotal] = useState(0);
+  const handleChangeCartIconTotal = (total) => {
+    setCartIconTotal(total);
+  };
   const reloadingHandle = () => {
     setReloadHeader(!reloadHeader);
   };
@@ -61,21 +64,33 @@ function App({ stars }) {
       getHandshake().then((res) => setToken(res.data.token));
     } else {
       setToken(localStorageHandshakeToken);
+      // setHeader("X-Access-Token", localStorageHandshakeToken);
+     
     }
   }, []);
   // useEffect(() => {
   //   // debugger
-
   //     getHandshake().then((res) => setToken(res.data.token));
-
-
   // }, []);
 
   useEffect(() => {
     if (token) {
       setHeader("X-Access-Token", token);
       localStorage.setItem("handShakeToken", token);
-      categoryDispatch(loadAllCategoryData());
+      const data = categoryDispatch(loadAllCategoryData());
+      data
+        .then((res) => console.log(res))
+        .catch((err) => {
+          console.log(err);
+          if (err.message === "Request failed with status code 401") {
+            console.log("catch");
+            setHeader("X-Access-Token", "");
+            getHandshake().then((res) => {
+              console.log(res.data.token);
+              setToken(res.data.token);
+            });
+          }
+        });
     }
   }, [token]);
 
@@ -95,6 +110,9 @@ function App({ stars }) {
       setLoading(false);
     }
   }, [allCategoryData]);
+  useEffect(()=>{
+    // wishlistDispatch(loadWishlistData())
+  })
   const [cartPopup, setCartPopup] = useState(false);
   const closeCartPopup = () => {
     setCartPopup(false);
@@ -113,7 +131,8 @@ function App({ stars }) {
       </Helmet>
       <div className="main_header">
         <Header
-        handleChangeCartPopup={handleChangeCartPopup}
+          cartIconTotal={cartIconTotal}
+          handleChangeCartPopup={handleChangeCartPopup}
           reloadingHandle={reloadingHandle}
           categoryData={categoryData}
           reloadHeader={reloadHeader}
@@ -121,7 +140,7 @@ function App({ stars }) {
       </div>
       <div className="main_wrapper">
         <AllRoutes
-        handleChangeCartPopup={handleChangeCartPopup}
+          handleChangeCartPopup={handleChangeCartPopup}
           homepageData={homepageData}
           categoryData={categoryData}
           reloadingHandle={reloadingHandle}
@@ -139,6 +158,7 @@ function App({ stars }) {
         }
       >
         <CartPopup
+          handleChangeCartIconTotal={handleChangeCartIconTotal}
           // cartData={cartData}
           closeCartPopup={closeCartPopup}
           handleChangeCartPopup={handleChangeCartPopup}
@@ -149,4 +169,3 @@ function App({ stars }) {
 }
 
 export default App;
-

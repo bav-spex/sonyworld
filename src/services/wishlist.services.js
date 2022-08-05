@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loadWishlistData } from "../redux/appAction";
 
 export const getWishlistData = async() => {
     const wishlistData = await axios.get(
