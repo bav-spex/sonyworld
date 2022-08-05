@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 
@@ -6,20 +6,71 @@ import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import productTwo_quality_icon from "./../../assets/Product/productTwo_quality_icon.png";
 import "./../../SCSS/ProductType/_productSeven.scss";
-import Heading7 from "./../Font/Heading7";
 import Text4 from "./../Font/Text4";
 import OldPrice from "./../Font/OldPrice";
 import Price from "./../Font/Price";
 import Heading6 from "./../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
+import { checkForWishlist } from "../../services/wishlist.services";
+import { loadAddToWishlist, loadDeleteFromWishlist, loadWishlistData } from "../../redux/appAction";
+import { useDispatch } from "react-redux";
 
 function ProductSeven({ productDetailPage, product }) {
-  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
+ 
+  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(async () => {
+    const isFavouriteData = await checkForWishlist(
+      product.sku.replace(/[/]/g, "%2F")
+    );
+    setIsFavourite(isFavouriteData);
+  }, []);
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      setCount(count + 1);
+    } else {
+      setIsFavourite(true);
+      setCount(count + 1);
+    }
+  };
+  useEffect(() => {
+    const data = {
+      items: [product.sku],
+    };
+    if (isFavourite) {
+      if (count > 0) {
+        const addToWishlistData = dispatch(loadAddToWishlist(data)).then(
+          (res) => {
+            console.log(res);
+            dispatch(loadWishlistData());
+          }
+        );
+      }
+    } else {
+      if (count > 0) {
+        if (!isFavourite) {
+          removeFromWL(product.sku);
+        }
+      }
+    }
+  }, [isFavourite]);
+
+  const removeFromWL = (sku) => {
+    const data = {
+      items: [sku],
+    };
+    const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then(
+      (res) => {
+        console.log(res);
+        dispatch(loadWishlistData());
+      }
+    );
   };
 
   const handleRating = (score) => {

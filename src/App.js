@@ -79,7 +79,7 @@ function App({ stars }) {
       localStorage.setItem("handShakeToken", token);
       const data = categoryDispatch(loadAllCategoryData());
       data
-        .then((res) => console.log(res))
+        .then((res) => dispatch(loadWishlistData()))
         .catch((err) => {
           console.log(err);
           if (err.message === "Request failed with status code 401") {
@@ -88,6 +88,7 @@ function App({ stars }) {
             getHandshake().then((res) => {
               console.log(res.data.token);
               setToken(res.data.token);
+              dispatch(loadWishlistData())
             });
           }
         });

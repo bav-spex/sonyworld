@@ -14,14 +14,19 @@ import Price from "./../Font/Price";
 import Heading6 from "./../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import { Link } from "react-router-dom";
+import { checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
+import { loadDeleteFromWishlist, loadWishlistData } from "../../redux/appAction";
+import { useDispatch } from "react-redux";
 
-function ProductEight({ item }) {
+function ProductEight({ product }) {
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(true);
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState({});
+  const [count,setCount] = useState(0)
+  const dispatch = useDispatch()
+  // const [loading, setLoading] = useState(true);
+ console.log(product.sku);
   const [productWarrentyBlock, setProductWarrentyBlock] = useState({
     warrantyText: "1 Year Warranty on Product",
     size: [
@@ -42,18 +47,45 @@ function ProductEight({ item }) {
       },
     ],
   });
-  useEffect(() => {
-    if (item) {
-      setProduct(item.product);
-      setLoading(false);
-    }
-  }, [item]);
+ 
+  useEffect(async()=>{
+
+    const isFavouriteData = await checkForWishlist(product?.sku?.replace(/[/]/g, "%2F"));
+    // console.log(isFavouriteData);
+    // debugger
+    setIsFavourite(isFavouriteData)
+   
+  },[product])
+
   // console.log(item);
   // console.log(product);
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    // debugger
+    if (isFavourite) {
+      setIsFavourite(false);
+      setCount(count+1)
+      // console.log(product.sku, "added");
+    } else {
+      setIsFavourite(true);
+      // console.log(product.sku, "remove");
+    }
   };
-
+useEffect(()=>{
+if(count>0){
+  if(!isFavourite){
+    removeFromWL(product.sku)
+  }
+}
+},[count])
+const removeFromWL=(sku)=>{
+  const data = {
+    items: [sku],
+  };
+  const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then((res)=>{
+    console.log(res);
+    dispatch(loadWishlistData())
+  })
+}
   const handleRating = (score) => {
     setRating(score);
   };
@@ -62,11 +94,11 @@ function ProductEight({ item }) {
     console.log(sizeIndex, cm, inch);
     setSizeButtonIndex(sizeIndex);
   };
-  if (loading) {
-    return <h1>wishlist product Loading...</h1>;
-  }
+  // if (loading) {
+  //   return <h1>wishlist product Loading...</h1>;
+  // }
   return (
-    <div key={product.id} className="productEight__block">
+    <div key={product.sku} className="productEight__block">
       <div className="productEight__header__block">
         <div className="productEight__quality__favourite__block">
           <img

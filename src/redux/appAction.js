@@ -1,9 +1,10 @@
 import * as types from "./actionType";
+import * as services from "./../services/services"
 import axios from "axios";
 import { getHomePageData } from "../services/homepage.service";
 import { getAllCategoryData } from "../services/category.service";
 import { getProductDetail } from "../services/pdp.service";
-import { deleteFromWishlist, getWishlistData } from "../services/wishlist.services";
+import { addToWishlist, deleteFromWishlist, getWishlistData } from "../services/wishlist.services";
 import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getStoresLocationData } from "../services/storeLocation.service";
@@ -100,26 +101,34 @@ export const loadApplyFilterData = (filterDetails) => {
   };
 };
 
-// Loading Wishlist  Page Data //
+// Adding Wishlist  Page Data //
 
+export const loadAddToWishlist = (data) => {
+  return async function (dispatch) {
+    const addWishlistData = await addToWishlist(data);
+    dispatch(services.notifySuccess({message:"Added in Wishlist"}))
+    return addWishlistData.data;
+  };
+};
+// Deleting Wishlist  Page Data //
 
 export const loadDeleteFromWishlist = (data) => {
   return async function (dispatch) {
-     await deleteFromWishlist(data).then((res)=>{
-       console.log(res);
-      setTimeout(() => {
-        dispatch(loadWishlistData())
-      }, 1000);
-    }
-      );
-
-    // return wishlistData.data;
+    const deleteWishlistData = await deleteFromWishlist(data);
+    dispatch(services.notifyError({message:"Removed in Wishlist"}))
+    return deleteWishlistData.data;
   };
 };
+
+
 // Loading Wishlist  Page Data //
 
 const saveWishlistData = (data) => ({
   type: types.GET__WISHLIST__DATA,
+  payload: data,
+});
+const saveWishlistCount = (data) => ({
+  type: types.SET__WISHLIST__COUNT,
   payload: data,
 });
 
@@ -127,6 +136,8 @@ export const loadWishlistData = () => {
   return async function (dispatch) {
     const wishlistData = await getWishlistData();
     dispatch(saveWishlistData(wishlistData.data));
+    dispatch(saveWishlistCount(wishlistData.data.length));
+    console.log();
     return wishlistData.data;
   };
 };
