@@ -26,7 +26,6 @@ import { getCustomerLoginDetails } from "./Components/helpers/utils/getCustomerL
 import CartPopup from "./Components/Popup/CartPopup";
 
 function App({ stars }) {
-
   const customerData = getCustomerLoginDetails();
   const dispatch = useDispatch();
 
@@ -34,7 +33,7 @@ function App({ stars }) {
 
   useEffect(() => {
     if (customerData !== "" && customerDetails === "") {
-      dispatch(customerDetailsSuccess(customerData))
+      dispatch(customerDetailsSuccess(customerData));
     }
   }, [customerData]);
 
@@ -50,10 +49,10 @@ function App({ stars }) {
   const [loading, setLoading] = useState(true);
   const getCurrentPageUrl = window.location.href;
   const [reloadHeader, setReloadHeader] = useState(true);
-  const [cartIconTotal,setCartIconTotal] = useState(0)
-  const handleChangeCartIconTotal = (total)=>{
-    setCartIconTotal(total)
-  }
+  const [cartIconTotal, setCartIconTotal] = useState(0);
+  const handleChangeCartIconTotal = (total) => {
+    setCartIconTotal(total);
+  };
   const reloadingHandle = () => {
     setReloadHeader(!reloadHeader);
   };
@@ -65,14 +64,26 @@ function App({ stars }) {
       getHandshake().then((res) => setToken(res.data.token));
     } else {
       setToken(localStorageHandshakeToken);
+      // setHeader("X-Access-Token", localStorageHandshakeToken);
+      const data = categoryDispatch(loadAllCategoryData());
+      data
+        .then((res) => console.log(res))
+        .catch((err) => {
+          console.log(err);
+          if (err.message === "Request failed with status code 401") {
+            console.log("catch");
+            setHeader("X-Access-Token", "");
+            getHandshake().then((res) => {
+              console.log(res.data.token);
+              setToken(res.data.token);
+            });
+          }
+        });
     }
   }, []);
   // useEffect(() => {
   //   // debugger
-
   //     getHandshake().then((res) => setToken(res.data.token));
-
-
   // }, []);
 
   useEffect(() => {
@@ -117,8 +128,8 @@ function App({ stars }) {
       </Helmet>
       <div className="main_header">
         <Header
-        cartIconTotal={cartIconTotal}
-        handleChangeCartPopup={handleChangeCartPopup}
+          cartIconTotal={cartIconTotal}
+          handleChangeCartPopup={handleChangeCartPopup}
           reloadingHandle={reloadingHandle}
           categoryData={categoryData}
           reloadHeader={reloadHeader}
@@ -126,7 +137,7 @@ function App({ stars }) {
       </div>
       <div className="main_wrapper">
         <AllRoutes
-        handleChangeCartPopup={handleChangeCartPopup}
+          handleChangeCartPopup={handleChangeCartPopup}
           homepageData={homepageData}
           categoryData={categoryData}
           reloadingHandle={reloadingHandle}
@@ -144,7 +155,7 @@ function App({ stars }) {
         }
       >
         <CartPopup
-        handleChangeCartIconTotal={handleChangeCartIconTotal}
+          handleChangeCartIconTotal={handleChangeCartIconTotal}
           // cartData={cartData}
           closeCartPopup={closeCartPopup}
           handleChangeCartPopup={handleChangeCartPopup}
@@ -155,4 +166,3 @@ function App({ stars }) {
 }
 
 export default App;
-

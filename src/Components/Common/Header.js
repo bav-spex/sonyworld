@@ -1959,6 +1959,7 @@ function Header({
                       className="search__input"
                       placeholder="Type Your Search..."
                       onFocus={(e) => openSearchPopup(e)}
+                      onChange={(e) => openSearchPopup(e)}
                       autoComplete="off"
                     />
                     <img src={search} alt="" className="header__icon" />
