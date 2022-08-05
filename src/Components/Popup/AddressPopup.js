@@ -7,6 +7,7 @@ import "./../../SCSS/Popup/_addressPopup.scss";
 import * as services from './../../services/services'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCustomerAddressSuccess } from "../../services/customerAddress/customerAddress";
+import { phone } from "phone";
 
 const T_REQ_NAME = 'Name is required';
 const T_REQ_FIRST_NAME = 'First Name is required';
@@ -49,6 +50,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
     state: "",
     postCode: "",
     country: "",
+    primary: false,
     // landmark: "",
   });
 
@@ -125,7 +127,9 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
         city: editAddressData.details.city,
         state: '',
         postCode: editAddressData.details.postcode,
+        primary: editAddressData.details.primary,
       }
+
       setAddress(editData);
       setEditId(editAddressData.details.id)
     }
@@ -142,6 +146,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
       state: "",
       postCode: "",
       country: "SA",
+      primary: false,
     }
     setAddress(formValue);
   }
@@ -244,6 +249,11 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
   const handleChange = async (event) => {
     let value = event.target.value;
     let name = event.target.name;
+    if (name === 'primary') {
+      value = event.target.checked;
+    }
+    console.log("value ", value);
+    console.log("name ", name);
     let manageErrMsg = validateForm(event, errMsg, name, value);
     setErrMsg(manageErrMsg);
     setAddress({ ...address, [name]: value });
@@ -311,7 +321,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
           addressLine2: address.addressLine2,
           city: address.city,
           telephone: address.mobileNumber,
-          primary: true,
+          primary: address.primary,
           // countryId: address.country ? address.country : "SA",
           countryId: "SA",
           postCode: address.postCode,
@@ -328,7 +338,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
           addressLine2: address.addressLine2,
           city: address.city,
           telephone: address.mobileNumber,
-          primary: true,
+          primary: address.primary,
           // countryId: address.country ? address.country : "SA",
           countryId: "SA",
           postCode: address.postCode,
@@ -537,6 +547,19 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
             </div>
             {errMsg.postCode && <p className="invalid__message">{errMsg.postCode}</p>}
           </div>
+        </div>
+        <div class="form-check form-switch">
+          <input
+            type="checkbox"
+            name="primary"
+            value={address.primary}
+            checked={address.primary}
+            onChange={(e) => handleChange(e)}
+            class="form-check-input"
+            role="switch"
+            id="flexSwitchCheckDefault"
+          />
+          <Heading7 text="Default Address" marginBottom={10} />
         </div>
         {/* <div className="row address__form__field__row">
           <div className="col-sm-12 col-md-6 main__form__field__block">
