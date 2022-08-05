@@ -723,7 +723,10 @@ function Checkout_Page({ reloadingHeader }) {
   };
   return (
     <>
+      <div className="d-lg-block d-none">
+
       <BreadCrumbs title="Checkout" />
+      </div>
       <div className="d-block d-lg-none">
         <Mobile_Checkout_Page />
       </div>

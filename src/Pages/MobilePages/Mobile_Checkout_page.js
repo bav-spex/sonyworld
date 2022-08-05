@@ -38,637 +38,921 @@ import AddressPopup from "../../Components/Popup/AddressPopup";
 import { loadCountriesLocationData } from "../../redux/appAction";
 import { loadCitiesLocationData } from "../../redux/appAction";
 import {
-  getAvailablePaymentMethods,
-  getCartData,
-  getEstimateShippingMethods,
-  getPayfortInformation,
-  updateShippingInformation
+	getAvailablePaymentMethods,
+	getCartData,
+	getEstimateShippingMethods,
+	getPayfortInformation,
+	updateShippingInformation
 } from "./../../services/cart.service";
 import { Link } from "react-router-dom";
 import { getCustomerLoginDetails } from "../../Components/helpers/utils/getCustomerLoginDetails";
 import valid from "card-validator";
 
-
-
-
 import './../../SCSS/MobilePages/_mobileCheckoutPage.scss';
 
 
 const product = {
-    id: 1,
-    logo: sony_logo,
-    name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
-    categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
-    rating: 4.6,
-    totalRatings: 6183,
-    price: 799,
-    oldPrice: 1050,
-    saving: 10,
-    monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
-    returnPeriod: 15,
-    availableOffer: [
-      {
-        id: 1,
-        offerType: "",
-        offerText: "Save $50-$300 on a sound bar with TV",
-        termsAndConditions: "",
-      },
-      {
-        id: 2,
-        offerType: "Bank Offer",
-        offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
-        termsAndConditions: "T&C",
-      },
-      {
-        id: 3,
-        offerType: "Credit Card Offer",
-        offerText: "5% Unlimited Cashback on Sony Credit Card",
-        termsAndConditions: "T&C",
-      },
-    ],
-    warrantyText: "1 Year Warranty on Product",
-    size: [
-      {
-        id: 1,
-        cm: 139,
-        inch: 55,
-      },
-      {
-        id: 2,
-        cm: 164,
-        inch: 65,
-      },
-      {
-        id: 3,
-        cm: 195,
-        inch: 77,
-      },
-    ],
-    delivery: {
-      deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
-      pickupStore: [
-        {
-          id: 1,
-          pickupText:
-            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-        },
-        {
-          id: 2,
-          pickupText:
-            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-        },
-        {
-          id: 3,
-          pickupText:
-            "Available today at Riyadh Act Fast – Only 3 left at your store!>",
-        },
-      ],
-    },
-    protection: [
-      {
-        id: 1,
-        protectionText: "2-Year Standard Geek Squad Protection",
-        price: 79,
-        month: 12,
-      },
-      {
-        id: 2,
-        protectionText: "1-Year Standard Geek Squad Protection",
-        price: 89,
-        month: 12,
-      },
-    ],
-  };
+	id: 1,
+	logo: sony_logo,
+	name: "Z8H | Full Array LED | 8K | High Dynamic Range (HDR) | Smart TV (Android TV)",
+	categoryTagline: "Experience the brilliance of big-screen Sony 8K HDR",
+	rating: 4.6,
+	totalRatings: 6183,
+	price: 799,
+	oldPrice: 1050,
+	saving: 10,
+	monthlySavingTagline: "get it for SAR 500 in 6 equal installments",
+	returnPeriod: 15,
+	availableOffer: [
+		{
+			id: 1,
+			offerType: "",
+			offerText: "Save $50-$300 on a sound bar with TV",
+			termsAndConditions: "",
+		},
+		{
+			id: 2,
+			offerType: "Bank Offer",
+			offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+			termsAndConditions: "T&C",
+		},
+		{
+			id: 3,
+			offerType: "Credit Card Offer",
+			offerText: "5% Unlimited Cashback on Sony Credit Card",
+			termsAndConditions: "T&C",
+		},
+	],
+	warrantyText: "1 Year Warranty on Product",
+	size: [
+		{
+			id: 1,
+			cm: 139,
+			inch: 55,
+		},
+		{
+			id: 2,
+			cm: 164,
+			inch: 65,
+		},
+		{
+			id: 3,
+			cm: 195,
+			inch: 77,
+		},
+	],
+	delivery: {
+		deliveryText: "Buy in next 2 hours and receive the TV by Tomorrow",
+		pickupStore: [
+			{
+				id: 1,
+				pickupText:
+					"Available today at Riyadh Act Fast – Only 3 left at your store!>",
+			},
+			{
+				id: 2,
+				pickupText:
+					"Available today at Riyadh Act Fast – Only 3 left at your store!>",
+			},
+			{
+				id: 3,
+				pickupText:
+					"Available today at Riyadh Act Fast – Only 3 left at your store!>",
+			},
+		],
+	},
+	protection: [
+		{
+			id: 1,
+			protectionText: "2-Year Standard Geek Squad Protection",
+			price: 79,
+			month: 12,
+		},
+		{
+			id: 2,
+			protectionText: "1-Year Standard Geek Squad Protection",
+			price: 89,
+			month: 12,
+		},
+	],
+};
 
-function Mobile_Checkout_Page({  }) {
-    const dispatch = useDispatch();
+function Mobile_Checkout_Page({ }) {
+	const dispatch = useDispatch();
 
-  const { customerDetails } = useSelector((state) => state.customerReducer);
-  // console.log(customerDetails);
-  const { customerAddressList, customerAddUpdateManage } = useSelector(
-    (state) => state.customerAddressReducer
-  );
+	const { customerDetails } = useSelector((state) => state.customerReducer);
+	// console.log(customerDetails);
+	const { customerAddressList, customerAddUpdateManage } = useSelector(
+		(state) => state.customerAddressReducer
+	);
 
-  const deliveryShippingInfo = useSelector(
-    (state) => state.appData.deliveryShippingInfo
-  );
-  console.log("deliveryShippingInfo ", deliveryShippingInfo);
-  
-  const [selectedAddressId, setSelectedAddressID] = useState(0);
-  const [couponCode, setCouponCode] = useState("");
-  const [addressPopup, setAddressPopup] = useState(false);
-  const [addressData, setAddressData] = useState(false);
-  const [editAddressData, setEditAddressData] = useState("");
-  const [addressPopupType, setAddressPopupType] = useState("add");
-  const [paymentMethods, setPaymentMethods] = useState([]);
-  const [userPaymentMethod, setUserPaymentMethod] = useState();
-  const [cartDetail, setCartDetail] = useState();
-  const [cartTotalData, setCartTotalData] = useState();
-  const [shippingMethods, setShippingMethods] = useState();
-  const [deliveryType, setDeliveryType] = useState([]);
-  const [paymentMethodForPayfort, setPaymentMethodForPayfort] = useState({
-    method: "",
-    email: "",
-    referer_url: ""
-  })
-  const [deliveryPreferencesType, setDeliveryPreferencesType] = useState('');
+	const deliveryShippingInfo = useSelector(
+		(state) => state.appData.deliveryShippingInfo
+	);
+	console.log("deliveryShippingInfo ", deliveryShippingInfo);
 
-  const [errMsg, setErrMsg] = useState({
-    deliveryAddressList: "",
-    deliveryPreferencesType: "",
-  });
-  // useEffect(() => {
-  //   if (deliveryShippingInfo !== "") {
-     
-  //   }
-  // }, [deliveryShippingInfo]);
-  
-     
+	const [selectedAddressId, setSelectedAddressID] = useState(0);
+	const [couponCode, setCouponCode] = useState("");
+	const [addressPopup, setAddressPopup] = useState(false);
+	const [addressData, setAddressData] = useState(false);
+	const [editAddressData, setEditAddressData] = useState("");
+	const [addressPopupType, setAddressPopupType] = useState("add");
+	const [paymentMethods, setPaymentMethods] = useState([]);
+	const [userPaymentMethod, setUserPaymentMethod] = useState();
+	const [cartDetail, setCartDetail] = useState();
+	const [cartTotalData, setCartTotalData] = useState();
+	const [shippingMethods, setShippingMethods] = useState();
+	const [deliveryType, setDeliveryType] = useState([]);
+	const [paymentMethodForPayfort, setPaymentMethodForPayfort] = useState({
+		method: "",
+		email: "",
+		referer_url: ""
+	})
+	const [deliveryPreferencesType, setDeliveryPreferencesType] = useState('');
 
-  const [card, setCard] = useState({
-    cardNumber: "",
-    cardHolder: "",
-    month: "",
-    year: "",
-    cvv: ""
-  })
+	const [errMsg, setErrMsg] = useState({
+		deliveryAddressList: "",
+		deliveryPreferencesType: "",
+	});
+	// useEffect(() => {
+	//   if (deliveryShippingInfo !== "") {
 
-  const [cardErrMsg, setCardErrMsg] = useState({
-    cardNumber: "",
-    cardHolder: "",
-    month: "",
-    year: "",
-    cvv: ""
-  });
-
-  useEffect(() => {
-    if (deliveryShippingInfo !== "") {
-      setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
-      setCheckoutClassName('payment');
-      setPaymentMethods(deliveryShippingInfo.payment_methods);
-      setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
-    }
-  }, [deliveryShippingInfo]);
-console.log("paymentMethods",paymentMethods);
-  useEffect(async () => {
-    const data = await getAvailablePaymentMethods();
-    if (data) {
-      // setPaymentMethods(data.paymentMethods);
-      // setUserPaymentMethod(data.paymentMethods[0].code);
-      setPaymentMethodForPayfort({
-        method: "",
-        email: customerDetails.email,
-        referer_url: "https://alpha-api.mestores.com",
-      });
-    }
-    const cartData = await getCartData();
-    if (data) {
-      setCartTotalData(cartData.data.totals_data);
-    }
-    // dispatch(services.getCustomerAddressList());
-    // dispatch(loadCountriesLocationData());
-    // dispatch(loadCitiesLocationData());
-  }, []);
-
-  // Delivery Preferences
-  useEffect(async () => {
-    const data = await getEstimateShippingMethods();
-    // console.log(data);
-    if (data) {
-      let shippingMethods = data['shipping-methods']
-      const propertyNames = Object.keys(shippingMethods);
-      let deliveryData = [];
-      propertyNames && propertyNames.map((val, i) => {
-        let deliveryInfo = {
-          id: shippingMethods[val].shipping_method_code,
-          type: shippingMethods[val].title,
-          protectionText: "",
-          price: shippingMethods[val].shipping_cost,
-        }
-        if (shippingMethods[val].is_available === true) {
-          deliveryData.push(deliveryInfo);
-        }
-      })
-      setDeliveryType(deliveryData);
-    }
-  }, []);
-
-  // console.log("cartTotalData", cartTotalData);
-  useEffect(() => {
-    // getAvailablePaymentMethods();
-    dispatch(services.getCustomerAddressList());
-    dispatch(loadCountriesLocationData());
-    dispatch(loadCitiesLocationData());
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    if (customerAddressList) {
-      let updateAddressData = [];
-      customerAddressList &&
-        customerAddressList.map((val, i) => {
-          let addreDetails = {
-            id: val.id,
-            isDefault: val.primary,
-            userName: `${val.firstname} ${val.lastname}`,
-            adddress: `${val.street[0]} ${val.street[1]} ${val.city} ${val.postcode} ${val.country_id}`,
-            contact: val.telephone,
-            details: val,
-          };
-          updateAddressData.push(addreDetails);
-          if (val.primary === true) {
-            setSelectedAddressID(i)
-          }
-        });
-      setAddressData(updateAddressData);
-    }
-  }, [customerAddressList]);
-
-  const handleSubmit = (code) => {
-    // console.log(code);
-  };
-  const selectAddress = (addIndex, addId, add) => {
-    setSelectedAddressID(addIndex);
-    setEditAddressData(add);
-  };
-  const handleChange = (e) => {
-    // console.log("e.target.value ", e.target.value);
-    setUserPaymentMethod(e.target.value);
-  };
-  const handleChangeDeliveryPref = (e) => {
-    setDeliveryPreferencesType(e.target.value);
-  };
-
-  const remove = (id) => {
-    // console.log(id);
-  };
-  const [iconType, setIconType] = useState({
-    signin: "done",
-    delivery: "inprogress",
-    payment: "initial",
-  });
-
-  useEffect(() => {
-    if (customerDetails === "") {
-      openLoginWrapperFromAnywhere();
-      setIconType({ ...iconType, signin: "inprogress" });
-    } else {
-      dispatch(services.getCustomerAddressList());
-      setIconType({ ...iconType, signin: "done" });
-    }
-  }, [customerDetails]);
-
-  const [checkoutClassName, setCheckoutClassName] = useState("delivery");
-  const handleChangeClassName = (className) => {
-    if(className === "payment" && deliveryShippingInfo !== ""){
-      setCheckoutClassName(className);
-    }
-    else if(deliveryShippingInfo === ""){
-      dispatch(services.notifyError({message:"please add proucts in cart, Empty cart is not can proceed further"}))
-    }else{
-      dispatch(services.notifyError({message:"select shipping information"}))
-
-    }
-    // setIconType({ ...iconType, payment: "inprogress" });
-  };
-
-  const continueFromDelivery = (newIconType, className) => {
-
-    let newErrObj = {
-      deliveryPreferencesType: "",
-      deliveryAddressList: ""
-    }
-
-    if (deliveryPreferencesType !== "") {
-      newErrObj = { ...newErrObj, deliveryPreferencesType: "" }
-    } else {
-      newErrObj = { ...newErrObj, deliveryPreferencesType: "Please Select Delivery Preference" }
-    }
-    if (selectedAddressId !== "") {
-      newErrObj = { ...newErrObj, deliveryAddressList: "" }
-    } else {
-      newErrObj = { ...newErrObj, deliveryAddressList: "Please Select Delivery Address" }
-    }
-    setErrMsg(newErrObj);
-
-    let customerLoginDetails = getCustomerLoginDetails();
-    if (deliveryPreferencesType !== "" && selectedAddressId !== "" && customerLoginDetails.email !== "") {
-      let getDeliveryInfo = addressData?.[selectedAddressId]
-      let params = {
-        useAsBilling: true,
-        firstName: getDeliveryInfo.details.firstname,
-        lastName: getDeliveryInfo.details.lastname,
-        email: customerLoginDetails.email,
-        telephone: getDeliveryInfo.details.telephone,
-        city: getDeliveryInfo.details.city,
-        postCode: getDeliveryInfo.details.postcode,
-        countryId: getDeliveryInfo.details.country_id,
-        street: `${getDeliveryInfo.details.street[0]} ${getDeliveryInfo.details.street[1]}`,
-        shippingCarrierCode: deliveryPreferencesType,
-        // pickup_store: '',
-        // region_id: "0"
-      }
-      dispatch(updateShippingInformation(params));
-    }
-
-    // setIconType(newIconType);
-    // setCheckoutClassName(className);
-  };
-
-  const openLoginWrapperFromAnywhere = () => {
-    // console.log(document.querySelector(".login__popup__container__disable"));
-    // reloadingHeader()
-
-    if (customerDetails === "") {
-      const element = document.querySelector(
-        ".login__popup__container__disable"
-      );
-      element.classList.remove("login__popup__container__disable");
-      element.classList.add("login__popup__container");
-      localStorage.setItem("loginWrapper", JSON.stringify(true));
-      localStorage.setItem("loginMode", JSON.stringify("signin"));
-      localStorage.setItem("loginPopup", JSON.stringify(true));
-      window.scrollTo(500, 0);
-    }
-  };
-  const closeLoginPopup = () => {
-    if (document.querySelector(".address__popup__container")) {
-      // reloadingHeader()
-      const element = document.querySelector(".address__popup__container");
-      element.classList.remove("address__popup__container");
-      element.classList.add("address__popup__container__disable");
-    }
-    setAddressPopup(false);
-  };
-
-  const openNewAddressPopup = (popupType, addIndex, addId, add) => {
-    setAddressPopup(true);
-    setAddressPopupType(popupType);
-    if (popupType === 'update') {
-      setSelectedAddressID(addIndex);
-      setEditAddressData(add);
-    }
-  };
-
-  const deleteAddress = (deleteId) => {
-    let params = {
-      addressId: deleteId,
-    };
-    dispatch(services.deleteCustomerAddress(params));
-  };
+	//   }
+	// }, [deliveryShippingInfo]);
 
 
-  const handleChangePaymentMethod = (e) => {
-    console.log(e.target.value);
-    setUserPaymentMethod(e.target.value);
-    setPaymentMethodForPayfort({
-      method: e.target.value,
-      email: customerDetails.email,
-      referer_url: "https://alpha-api.mestores.com",
-    });
-  };
-  console.log(paymentMethodForPayfort);
-  const makePayment = async () => {
 
-    let validateFeild = [
-      "cardNumber",
-      "cardHolder",
-      "month",
-      "year",
-      "cvv",
-    ];
+	const [card, setCard] = useState({
+		cardNumber: "",
+		cardHolder: "",
+		month: "",
+		year: "",
+		cvv: ""
+	})
 
-    let formStatus = allFeildValidate(validateFeild, cardErrMsg);
-    setCardErrMsg(formStatus.allErrMsg);
+	const [cardErrMsg, setCardErrMsg] = useState({
+		cardNumber: "",
+		cardHolder: "",
+		month: "",
+		year: "",
+		cvv: ""
+	});
 
-    if (formStatus.checkCardStatus === true) {
+	useEffect(() => {
+		if (deliveryShippingInfo !== "") {
+			setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
+			setCheckoutClassName('payment');
+			setPaymentMethods(deliveryShippingInfo.payment_methods);
+			setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
+		}
+	}, [deliveryShippingInfo]);
+	console.log("paymentMethods", paymentMethods);
+	useEffect(async () => {
+		const data = await getAvailablePaymentMethods();
+		if (data) {
+			// setPaymentMethods(data.paymentMethods);
+			// setUserPaymentMethod(data.paymentMethods[0].code);
+			setPaymentMethodForPayfort({
+				method: "",
+				email: customerDetails.email,
+				referer_url: "https://alpha-api.mestores.com",
+			});
+		}
+		const cartData = await getCartData();
+		if (data) {
+			setCartTotalData(cartData.data.totals_data);
+		}
+		// dispatch(services.getCustomerAddressList());
+		// dispatch(loadCountriesLocationData());
+		// dispatch(loadCitiesLocationData());
+	}, []);
 
-      const newPaymentMethodForPayfort = { paymentMethod: paymentMethodForPayfort }
-      console.log(newPaymentMethodForPayfort);
-      const data = await getPayfortInformation(newPaymentMethodForPayfort)
-      console.log(data);
+	// Delivery Preferences
+	useEffect(async () => {
+		const data = await getEstimateShippingMethods();
+		// console.log(data);
+		if (data) {
+			let shippingMethods = data['shipping-methods']
+			const propertyNames = Object.keys(shippingMethods);
+			let deliveryData = [];
+			propertyNames && propertyNames.map((val, i) => {
+				let deliveryInfo = {
+					id: shippingMethods[val].shipping_method_code,
+					type: shippingMethods[val].title,
+					protectionText: "",
+					price: shippingMethods[val].shipping_cost,
+				}
+				if (shippingMethods[val].is_available === true) {
+					deliveryData.push(deliveryInfo);
+				}
+			})
+			setDeliveryType(deliveryData);
+		}
+	}, []);
 
-    }
+	// console.log("cartTotalData", cartTotalData);
+	useEffect(() => {
+		// getAvailablePaymentMethods();
+		dispatch(services.getCustomerAddressList());
+		dispatch(loadCountriesLocationData());
+		dispatch(loadCitiesLocationData());
+		window.scrollTo(0, 0);
+	}, []);
 
-  }
+	useEffect(() => {
+		if (customerAddressList) {
+			let updateAddressData = [];
+			customerAddressList &&
+				customerAddressList.map((val, i) => {
+					let addreDetails = {
+						id: val.id,
+						isDefault: val.primary,
+						userName: `${val.firstname} ${val.lastname}`,
+						adddress: `${val.street[0]} ${val.street[1]} ${val.city} ${val.postcode} ${val.country_id}`,
+						contact: val.telephone,
+						details: val,
+					};
+					updateAddressData.push(addreDetails);
+					if (val.primary === true) {
+						setSelectedAddressID(i)
+					}
+				});
+			setAddressData(updateAddressData);
+		}
+	}, [customerAddressList]);
+
+	const handleSubmit = (code) => {
+		// console.log(code);
+	};
+	const selectAddress = (addIndex, addId, add) => {
+		setSelectedAddressID(addIndex);
+		setEditAddressData(add);
+	};
+	const handleChange = (e) => {
+		// console.log("e.target.value ", e.target.value);
+		setUserPaymentMethod(e.target.value);
+	};
+	const handleChangeDeliveryPref = (e) => {
+		setDeliveryPreferencesType(e.target.value);
+	};
+
+	const remove = (id) => {
+		// console.log(id);
+	};
+	const [iconType, setIconType] = useState({
+		signin: "done",
+		delivery: "inprogress",
+		payment: "initial",
+	});
+
+	useEffect(() => {
+		if (customerDetails === "") {
+			openLoginWrapperFromAnywhere();
+			setIconType({ ...iconType, signin: "inprogress" });
+		} else {
+			dispatch(services.getCustomerAddressList());
+			setIconType({ ...iconType, signin: "done" });
+		}
+	}, [customerDetails]);
+
+	const [checkoutClassName, setCheckoutClassName] = useState("delivery");
+	const handleChangeClassName = (className) => {
+		if (className === "payment" && deliveryShippingInfo !== "") {
+			setCheckoutClassName(className);
+		}
+		else if (deliveryShippingInfo === "") {
+			dispatch(services.notifyError({ message: "please add proucts in cart, Empty cart is not can proceed further" }))
+		} else {
+			dispatch(services.notifyError({ message: "select shipping information" }))
+
+		}
+		// setIconType({ ...iconType, payment: "inprogress" });
+	};
+
+	const continueFromDelivery = (newIconType, className) => {
+
+		let newErrObj = {
+			deliveryPreferencesType: "",
+			deliveryAddressList: ""
+		}
+
+		if (deliveryPreferencesType !== "") {
+			newErrObj = { ...newErrObj, deliveryPreferencesType: "" }
+		} else {
+			newErrObj = { ...newErrObj, deliveryPreferencesType: "Please Select Delivery Preference" }
+		}
+		if (selectedAddressId !== "") {
+			newErrObj = { ...newErrObj, deliveryAddressList: "" }
+		} else {
+			newErrObj = { ...newErrObj, deliveryAddressList: "Please Select Delivery Address" }
+		}
+		setErrMsg(newErrObj);
+
+		let customerLoginDetails = getCustomerLoginDetails();
+		if (deliveryPreferencesType !== "" && selectedAddressId !== "" && customerLoginDetails.email !== "") {
+			let getDeliveryInfo = addressData?.[selectedAddressId]
+			let params = {
+				useAsBilling: true,
+				firstName: getDeliveryInfo.details.firstname,
+				lastName: getDeliveryInfo.details.lastname,
+				email: customerLoginDetails.email,
+				telephone: getDeliveryInfo.details.telephone,
+				city: getDeliveryInfo.details.city,
+				postCode: getDeliveryInfo.details.postcode,
+				countryId: getDeliveryInfo.details.country_id,
+				street: `${getDeliveryInfo.details.street[0]} ${getDeliveryInfo.details.street[1]}`,
+				shippingCarrierCode: deliveryPreferencesType,
+				// pickup_store: '',
+				// region_id: "0"
+			}
+			dispatch(updateShippingInformation(params));
+		}
+
+		// setIconType(newIconType);
+		// setCheckoutClassName(className);
+	};
+
+	const openLoginWrapperFromAnywhere = () => {
+		// console.log(document.querySelector(".login__popup__container__disable"));
+		// reloadingHeader()
+
+		if (customerDetails === "") {
+			const element = document.querySelector(
+				".login__popup__container__disable"
+			);
+			element.classList.remove("login__popup__container__disable");
+			element.classList.add("login__popup__container");
+			localStorage.setItem("loginWrapper", JSON.stringify(true));
+			localStorage.setItem("loginMode", JSON.stringify("signin"));
+			localStorage.setItem("loginPopup", JSON.stringify(true));
+			window.scrollTo(500, 0);
+		}
+	};
+	const closeLoginPopup = () => {
+		if (document.querySelector(".address__popup__container")) {
+			// reloadingHeader()
+			const element = document.querySelector(".address__popup__container");
+			element.classList.remove("address__popup__container");
+			element.classList.add("address__popup__container__disable");
+		}
+		setAddressPopup(false);
+	};
+
+	const openNewAddressPopup = (popupType, addIndex, addId, add) => {
+		setAddressPopup(true);
+		setAddressPopupType(popupType);
+		if (popupType === 'update') {
+			setSelectedAddressID(addIndex);
+			setEditAddressData(add);
+		}
+	};
+
+	const deleteAddress = (deleteId) => {
+		let params = {
+			addressId: deleteId,
+		};
+		dispatch(services.deleteCustomerAddress(params));
+	};
 
 
-  const validateForm = (event, newErrObj, name, value) => {
+	const handleChangePaymentMethod = (e) => {
+		console.log(e.target.value);
+		setUserPaymentMethod(e.target.value);
+		setPaymentMethodForPayfort({
+			method: e.target.value,
+			email: customerDetails.email,
+			referer_url: "https://alpha-api.mestores.com",
+		});
+	};
+	console.log(paymentMethodForPayfort);
+	const makePayment = async () => {
 
-    //A function to validate each input values
-    switch (name) {
-      case 'cardNumber':
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Card Number is missing' }
-        } else {
-          let numberValidation = valid.number(value);
-          if (numberValidation.isPotentiallyValid === true && numberValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
-          } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
-          }
-        }
-        break;
-      case 'cardHolder':
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Card Holder is missing' }
-        } else {
-          let holderValidation = valid.cardholderName(value);
-          if (holderValidation.isPotentiallyValid === true && holderValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
-          } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
-          }
-        }
-        break;
-      case 'month':
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Month is missing' }
-        } else {
-          let monthValidation = valid.expirationMonth(value);
-          if (monthValidation.isPotentiallyValid === true && monthValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
-          } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
-          }
-        }
-        break;
-      case 'year':
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'Year is missing' }
-        } else {
-          let yearValidation = valid.expirationYear(value);
-          if (yearValidation.isPotentiallyValid === true && yearValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
-          } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
-          }
-        }
-        break;
-      case 'cvv':
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: 'CVV is missing' }
-        } else {
-          let cvvValidation = valid.cvv(value);
-          if (cvvValidation.isPotentiallyValid === true && cvvValidation.isValid === true) {
-            newErrObj = { ...newErrObj, [name]: '' }
-          } else {
-            newErrObj = { ...newErrObj, [name]: 'invalid' }
-          }
-        }
-        break;
-      default:
-        break;
-    }
-    return newErrObj;
-  }
+		let validateFeild = [
+			"cardNumber",
+			"cardHolder",
+			"month",
+			"year",
+			"cvv",
+		];
 
-  const handleChangeCard = async (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-    let manageErrMsg = validateForm(event, cardErrMsg, name, value);
-    setCardErrMsg(manageErrMsg);
-    setCard({ ...card, [name]: value });
-  };
+		let formStatus = allFeildValidate(validateFeild, cardErrMsg);
+		setCardErrMsg(formStatus.allErrMsg);
 
-  const allFeildValidate = (validateFeild, allErrMsg) => {
+		if (formStatus.checkCardStatus === true) {
 
-    let checkValueStatus = [];
-    let checkErrStatus = [];
+			const newPaymentMethodForPayfort = { paymentMethod: paymentMethodForPayfort }
+			console.log(newPaymentMethodForPayfort);
+			const data = await getPayfortInformation(newPaymentMethodForPayfort)
+			console.log(data);
 
-    validateFeild && validateFeild.map((val, i) => {
-      let keyVal = card[val];
-      let errVal = cardErrMsg[val];
+		}
 
-      allErrMsg = validateForm('', allErrMsg, val, keyVal);
-      if (keyVal !== "") {
-        checkValueStatus.push('suc')
-      }
-      if (errVal === "") {
-        checkErrStatus.push('err')
-      }
+	}
 
-    })
 
-    let checkCardStatus = false;
-    if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
-      checkCardStatus = true;
-    }
+	const validateForm = (event, newErrObj, name, value) => {
 
-    let returnData = {
-      allErrMsg: allErrMsg,
-      checkCardStatus: checkCardStatus
-    }
+		//A function to validate each input values
+		switch (name) {
+			case 'cardNumber':
+				if (value === "") {
+					newErrObj = { ...newErrObj, [name]: 'Card Number is missing' }
+				} else {
+					let numberValidation = valid.number(value);
+					if (numberValidation.isPotentiallyValid === true && numberValidation.isValid === true) {
+						newErrObj = { ...newErrObj, [name]: '' }
+					} else {
+						newErrObj = { ...newErrObj, [name]: 'invalid' }
+					}
+				}
+				break;
+			case 'cardHolder':
+				if (value === "") {
+					newErrObj = { ...newErrObj, [name]: 'Card Holder is missing' }
+				} else {
+					let holderValidation = valid.cardholderName(value);
+					if (holderValidation.isPotentiallyValid === true && holderValidation.isValid === true) {
+						newErrObj = { ...newErrObj, [name]: '' }
+					} else {
+						newErrObj = { ...newErrObj, [name]: 'invalid' }
+					}
+				}
+				break;
+			case 'month':
+				if (value === "") {
+					newErrObj = { ...newErrObj, [name]: 'Month is missing' }
+				} else {
+					let monthValidation = valid.expirationMonth(value);
+					if (monthValidation.isPotentiallyValid === true && monthValidation.isValid === true) {
+						newErrObj = { ...newErrObj, [name]: '' }
+					} else {
+						newErrObj = { ...newErrObj, [name]: 'invalid' }
+					}
+				}
+				break;
+			case 'year':
+				if (value === "") {
+					newErrObj = { ...newErrObj, [name]: 'Year is missing' }
+				} else {
+					let yearValidation = valid.expirationYear(value);
+					if (yearValidation.isPotentiallyValid === true && yearValidation.isValid === true) {
+						newErrObj = { ...newErrObj, [name]: '' }
+					} else {
+						newErrObj = { ...newErrObj, [name]: 'invalid' }
+					}
+				}
+				break;
+			case 'cvv':
+				if (value === "") {
+					newErrObj = { ...newErrObj, [name]: 'CVV is missing' }
+				} else {
+					let cvvValidation = valid.cvv(value);
+					if (cvvValidation.isPotentiallyValid === true && cvvValidation.isValid === true) {
+						newErrObj = { ...newErrObj, [name]: '' }
+					} else {
+						newErrObj = { ...newErrObj, [name]: 'invalid' }
+					}
+				}
+				break;
+			default:
+				break;
+		}
+		return newErrObj;
+	}
 
-    return returnData;
-  };
-    return (
-        <>
-            <div className="mb__checkout__page container-fluid ">
-            <div className="row checkout__login__main__block">
-                <div
-                  onClick={() => openLoginWrapperFromAnywhere()}
-                  className="col-2 checkout__signin__button"
-                >
-                  <img
-                    src={
-                      iconType.signin === "inprogress"
-                        ? signin_inprogress
-                        : iconType.signin === "done"
-                          ? signin_done
-                          : signin_initial
-                    }
-                    alt=""
-                  />
-                  <Heading5
-                    text="SIGN IN"
-                    marginLeft={10}
-                    color={
-                      iconType.signin === "inprogress"
-                        ? "#DC3A1A"
-                        : iconType.signin === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
-                    }
-                    span={true}
-                  />
-                  {iconType.signin === "done" ? (
-                    <img className="done__icon" src={done} alt="done" />
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="col-3 checkout__middle__line__block"></div>
-                <div
-                  onClick={() => handleChangeClassName("delivery")}
-                  className="col-2 checkout__delivery__button"
-                >
-                  <img
-                    src={
-                      iconType.delivery === "inprogress"
-                        ? delivery_inprogress
-                        : iconType.delivery === "done"
-                          ? delivery_done
-                          : delivery_initial
-                    }
-                    alt=""
-                  />
-                  <Heading5
-                    text="DELIVERY"
-                    marginLeft={10}
-                    color={
-                      iconType.delivery === "inprogress"
-                        ? "#DC3A1A"
-                        : iconType.delivery === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
-                    }
-                    span={true}
-                  />
-                  {iconType.delivery === "done" ? (
-                    <img className="done__icon" src={done} alt="done" />
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="col-3 checkout__middle__line__block"></div>
-                <div
-                  onClick={() => handleChangeClassName("payment")}
-                  className="col-2 checkout__payment__button"
-                >
-                  <img
-                    src={
-                      iconType.payment === "inprogress"
-                        ? payment_inprogress
-                        : iconType.payment === "done"
-                          ? payment_done
-                          : payment_initial
-                    }
-                    alt=""
-                  />
-                  <Heading5
-                    text="PAYMENT"
-                    marginLeft={10}
-                    color={
-                      iconType.payment === "inprogress"
-                        ? "#DC3A1A"
-                        : iconType.payment === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
-                    }
-                    span={true}
-                  />
-                  {iconType.payment === "done" ? (
-                    <img className="done__icon" src={done} alt="done" />
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
-          
-                 Mobile_Checkout_Page
-            </div>
-        </>
-    );
+	const handleChangeCard = async (event) => {
+		let value = event.target.value;
+		let name = event.target.name;
+		let manageErrMsg = validateForm(event, cardErrMsg, name, value);
+		setCardErrMsg(manageErrMsg);
+		setCard({ ...card, [name]: value });
+	};
+
+	const allFeildValidate = (validateFeild, allErrMsg) => {
+
+		let checkValueStatus = [];
+		let checkErrStatus = [];
+
+		validateFeild && validateFeild.map((val, i) => {
+			let keyVal = card[val];
+			let errVal = cardErrMsg[val];
+
+			allErrMsg = validateForm('', allErrMsg, val, keyVal);
+			if (keyVal !== "") {
+				checkValueStatus.push('suc')
+			}
+			if (errVal === "") {
+				checkErrStatus.push('err')
+			}
+
+		})
+
+		let checkCardStatus = false;
+		if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
+			checkCardStatus = true;
+		}
+
+		let returnData = {
+			allErrMsg: allErrMsg,
+			checkCardStatus: checkCardStatus
+		}
+
+		return returnData;
+	};
+	return (
+		<>
+			<div className="mb__checkout__page">
+
+				{/* fixed start */}
+				<div className="mb__sc__fixed__btn d-flex justify-content-between">
+					<div>
+						<Price price={3275} size="heading5" />
+						<Text3 text="(4 Items)" color="#fff" />
+					</div>
+					<div>
+						<button className="btn btn__primary__white">Continue</button>
+					</div>
+				</div>
+				{/* fixed end */}
+
+				<ul className="mb__progress__bar d-flex">
+					<li>
+						<div
+							onClick={() => openLoginWrapperFromAnywhere()}
+							className="checkout__signin__button"
+						>
+							<img
+								src={
+									iconType.signin === "inprogress"
+										? signin_inprogress
+										: iconType.signin === "done"
+											? signin_done
+											: signin_initial
+								}
+								alt=""
+							/>
+							<Heading5
+								text="SIGN IN"
+								marginLeft={10}
+								color={
+									iconType.signin === "inprogress"
+										? "#DC3A1A"
+										: iconType.signin === "done"
+											? "#585858"
+											: "#C8C8C8"
+								}
+								span={true}
+							/>
+							{iconType.signin === "done" ? (
+								<img className="done__icon" src={done} alt="done" />
+							) : (
+								""
+							)}
+						</div>
+					</li>
+					<li>
+						<div
+							onClick={() => handleChangeClassName("delivery")}
+							className="checkout__delivery__button"
+						>
+							<img
+								src={
+									iconType.delivery === "inprogress"
+										? delivery_inprogress
+										: iconType.delivery === "done"
+											? delivery_done
+											: delivery_initial
+								}
+								alt=""
+							/>
+							<Heading5
+								text="DELIVERY"
+								marginLeft={10}
+								color={
+									iconType.delivery === "inprogress"
+										? "#DC3A1A"
+										: iconType.delivery === "done"
+											? "#585858"
+											: "#C8C8C8"
+								}
+								span={true}
+							/>
+							{iconType.delivery === "done" ? (
+								<img className="done__icon" src={done} alt="done" />
+							) : (
+								""
+							)}
+						</div>
+					</li>
+					<li>
+						<div
+							onClick={() => handleChangeClassName("payment")}
+							className="checkout__payment__button"
+						>
+							<img
+								src={
+									iconType.payment === "inprogress"
+										? payment_inprogress
+										: iconType.payment === "done"
+											? payment_done
+											: payment_initial
+								}
+								alt=""
+							/>
+							<Heading5
+								text="PAYMENT"
+								marginLeft={10}
+								color={
+									iconType.payment === "inprogress"
+										? "#DC3A1A"
+										: iconType.payment === "done"
+											? "#585858"
+											: "#C8C8C8"
+								}
+								span={true}
+							/>
+							{iconType.payment === "done" ? (
+								<img className="done__icon" src={done} alt="done" />
+							) : (
+								""
+							)}
+						</div>
+					</li>
+				</ul>
+				<hr />
+				{/* progress bar end */}
+				<div className="container-fluid">
+					<div className="row align-items-center">
+						<p className="col-12 mb__pd__size__title">Delivery Address</p>
+
+						<div className="col-8">
+							<p className="col-12 mb__pd__size__title">John Doe</p>
+							<address>
+								21 West 52nd Street New York, New York, 10021 United States
+							</address>
+						</div>
+						<div className="col-4">
+							<button
+								className="btn btn-outline-secondary shadow-none"
+								data-bs-toggle="modal"
+								data-bs-target="#changeAddressModal"
+							>
+								CHANGE
+							</button>
+						</div>
+					</div>
+				</div>
+
+				{/* change address sec end */}
+
+				<hr className="my-5" />
+
+				{/* pro Summary start */}
+				<div className="container-fluid mb__checkout__pro__summary">
+					<div className="row shopping__cart__page__inner__block">
+						<div className="col-md-12  row shopping__cart__left__block">
+							<ShoppipngCartProduct product={product} />
+						</div>
+					</div>
+				</div>
+				
+				{/* pro Summary end */}
+
+			</div>
+			<div className="mb__checkout__modal">
+
+				{/* change address popup start */}
+				{/* <!-- Modal --> */}
+				<div
+					className="modal mb__bottom_popup"
+					id="changeAddressModal"
+					tabindex="-1"
+					aria-labelledby="changeAddressModalLabel"
+					aria-hidden="true"
+				>
+					<div className="modal-dialog mb__dialog__end modal-dialog-scrollable">
+						<div className="modal-content">
+							<div className="modal-header">
+								<Heading5 text="Select Delivery Address" />
+								<button
+									type="button"
+									className="btn-close"
+									data-bs-dismiss="modal"
+									aria-label="Close"
+								></button>
+							</div>
+							<div className="modal-footer border-top-0">
+								<button
+									type="button"
+									className="btn btn-border btn__border__black w-100 d-block mb-2"
+									data-bs-target="#addAddressModal"
+									data-bs-toggle="modal"
+									data-bs-dismiss="modal"
+								>
+									ADD NEW ADDRESS
+								</button>
+							</div>
+							<div className="modal-body">
+								<div className="custom__checkbox mb-3">
+									{/* <input
+										type="checkbox"
+										className="form-check-input"
+										id="exampleCheck1"
+										
+									/> */}
+									<label for="exampleCheck1" className="custom__checkmark p-3">
+										<p className="p-1 d-inline-block mb__adress__tag">
+											Default
+										</p>
+										<div className="row">
+											<div className="col-8">
+												<Heading7 text="John Doe" />
+												<address className="mb-3 text-wrap">
+													21 West 52nd Street New York, New York, 10021 United
+													States
+												</address>
+												<p>+1123456789</p>
+											</div>
+											<div className="col">
+												<button className="btn btn-outline-secondary shadow-none" data-bs-target="#addAddressModal"
+													data-bs-toggle="modal"
+													data-bs-dismiss="modal">Edit</button>
+											</div>
+										</div>
+
+										<button className="btn btn__primary__orange w-100">DELIVER TO THIS ADDRESS</button>
+									</label>
+								</div>
+								<div className="custom__checkbox">
+									{/* <input
+										type="checkbox"
+										className="form-check-input"
+										id="exampleCheck2"
+									/> */}
+									<label for="exampleCheck2" className="custom__checkmark p-3">
+										<p className="p-1 d-inline-block mb__adress__tag">
+											Office
+										</p>
+										<div className="row">
+											<div className="col-8">
+												<Heading7 text="John Doe" />
+												<address className="mb-3 text-wrap">
+													21 West 52nd Street New York, New York, 10021 United
+													States
+												</address>
+												<p>+1123456789</p>
+											</div>
+											<div className="col">
+												<button className="btn btn-outline-secondary shadow-none" data-bs-target="#addAddressModal"
+													data-bs-toggle="modal"
+													data-bs-dismiss="modal">Edit</button>
+											</div>
+										</div>
+										<button className="btn btn__primary__orange w-100">DELIVER TO THIS ADDRESS</button>
+									</label>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				{/* <!-- Modal end--> */}
+				{/* change address popup end */}
+
+				{/* add new address popup  start*/}
+				{/* <!-- Modal --> */}
+				<div
+					className="modal mb__bottom_popup"
+					id="addAddressModal"
+					tabindex="-1"
+					aria-labelledby="addAddressModalLabel"
+					aria-hidden="true"
+				>
+					<div className="modal-dialog mb__dialog__end modal-dialog-scrollable">
+						<div className="modal-content">
+							<div className="modal-header">
+								<Heading5 text="Add New Delivery Address" />
+								<button
+									type="button"
+									className="btn-close"
+									data-bs-dismiss="modal"
+									aria-label="Close"
+								></button>
+							</div>
+							<div className="modal-body">
+								<div className="mb-3">
+									<label for="Name" className="form-label">
+										<strong>Name</strong>
+									</label>
+									<input
+										type="text"
+										className="form-control"
+										id="Name"
+										placeholder="John"
+									/>
+								</div>
+								<div className="mb-3">
+									<label for="Mobile" className="form-label">
+										<strong>Mobile Number</strong>
+									</label>
+									<input
+										type="text"
+										className="form-control"
+										id="Mobile"
+										placeholder="+966 50 655 2835"
+									/>
+								</div>
+								<div className="mb-3">
+									<label for="Mobile" className="form-label">
+										<strong>Address Line 1</strong>
+									</label>
+									<input
+										type="text"
+										className="form-control"
+										id="Mobile"
+										placeholder="21 West 52nd Street New York"
+									/>
+								</div>
+								<div className="mb-3">
+									<label for="Mobile" className="form-label">
+										<strong>Address Line 2</strong>
+									</label>
+									<input
+										type="text"
+										className="form-control"
+										id="Mobile"
+										placeholder="21 West 52nd Street New York"
+									/>
+								</div>
+								<div className="mb-3">
+									<label for="Mobile" className="form-label">
+										<strong>City/Town</strong>
+									</label>
+									<input
+										type="text"
+										className="form-control"
+										id="Mobile"
+										placeholder="Hamilton"
+									/>
+								</div>
+								<div className="mb-3">
+									<label for="Mobile" className="form-label">
+										<strong>State</strong>
+									</label>
+									<input
+										type="text"
+										className="form-control"
+										id="Mobile"
+										placeholder="Newyork"
+									/>
+								</div>
+								<div className="mb-3">
+									<label for="Mobile" className="form-label">
+										<strong>Landmark</strong>
+									</label>
+									<input
+										type="text"
+										className="form-control"
+										id="Mobile"
+										placeholder="Newyork"
+									/>
+								</div>
+								<hr className="my-5" />
+								<Heading5 text="Delivery Time Preferences" />
+								<p>Preferences are used to plan your delivery. However, shipments can sometimes arrive early or later than planned.</p>
+								<div className="mb-3">
+									<label for="Address Type" className="form-label">
+										<strong>Address Type</strong>
+									</label>
+									<select class="form-select">
+										<option>Home (7 am -9 pm delivery)</option>
+										<option>Home (7 am -9 pm delivery)</option>
+										<option>Home (7 am -9 pm delivery)</option>
+									</select>
+								</div>
+							</div>
+							<div className="modal-footer border-top-0 justify-content-center">
+								<button
+									type="button"
+									className="btn__primary__orange btn btn-primary w-25 "
+								>
+									SAVE
+								</button>
+								<button
+									type="button"
+									className="btn btn-border btn__border__black  w-25" data-bs-toggle="modal" data-bs-dismiss="modal"
+								>
+									CANCEL
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				{/* <!-- Modal end--> */}
+				{/* add new address popup  end*/}
+				{/* =============================== */}
+			</div>
+		</>
+	);
 }
 export default Mobile_Checkout_Page;
