@@ -438,8 +438,10 @@ function Checkout_Page({ reloadingHeader }) {
       const element = document.querySelector(
         ".login__popup__container__disable"
       );
-      element.classList.remove("login__popup__container__disable");
-      element.classList.add("login__popup__container");
+      if (element !== null) {
+        element.classList.remove("login__popup__container__disable");
+        element.classList.add("login__popup__container");
+      }
       localStorage.setItem("loginWrapper", JSON.stringify(true));
       localStorage.setItem("loginMode", JSON.stringify("signin"));
       localStorage.setItem("loginPopup", JSON.stringify(true));
@@ -744,8 +746,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                        ? signin_done
-                        : signin_initial
+                          ? signin_done
+                          : signin_initial
                     }
                     alt=""
                   />
@@ -756,8 +758,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -777,8 +779,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                        ? delivery_done
-                        : delivery_initial
+                          ? delivery_done
+                          : delivery_initial
                     }
                     alt=""
                   />
@@ -789,8 +791,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -810,8 +812,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                        ? payment_done
-                        : payment_initial
+                          ? payment_done
+                          : payment_initial
                     }
                     alt=""
                   />
@@ -822,8 +824,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -982,7 +984,7 @@ function Checkout_Page({ reloadingHeader }) {
                                       onChange={(e) =>
                                         handleChangeDeliveryPref(e)
                                       }
-                                      // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
+                                    // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                     />
                                     <p className="delivery__selection__text">
                                       <Heading4 text={delivery.type} />
@@ -1183,7 +1185,7 @@ function Checkout_Page({ reloadingHeader }) {
                                             </p>
                                           )}
                                         </div>
-                                        <div className="col-sm-12 col-md-4"></div> 
+                                        <div className="col-sm-12 col-md-4"></div>
                                       </div>
                                       <div className="col-sm-12 col-md-3 main__form__field__block">
                                         {/* <p className="form__label">First Name</p> */}
