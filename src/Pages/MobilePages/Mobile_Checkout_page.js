@@ -7,6 +7,8 @@ import Heading3 from "../../Components/Font/Heading3";
 import Heading5 from "../../Components/Font/Heading5";
 import Heading6 from "../../Components/Font/Heading6";
 import Price from "../../Components/Font/Price";
+import OldPrice from "../../Components/Font/OldPrice";
+import product_img from './../../assets/Product/product_01.jpg';
 import Text3 from "../../Components/Font/Text3";
 import SuperCoin from "../../Components/MostSharedComponent/SuperCoin";
 
@@ -31,6 +33,7 @@ import black_location from "./../../assets/Icon/black_location.svg";
 
 import PickupStore from "../../Components/MostSharedComponent/PickupStore";
 import AvailableOffers from "../../Components/MostSharedComponent/AvailableOffers";
+import RatingBlock from "../../Components/MostSharedComponent/RatingBlock";
 import ShoppipngCartProduct from "../../Components/MostSharedComponent/ShoppipngCartProduct";
 import Heading2 from "../../Components/Font/Heading2";
 import ProductThree from "../../Components/ProductType/ProductThree";
@@ -49,7 +52,10 @@ import { getCustomerLoginDetails } from "../../Components/helpers/utils/getCusto
 import valid from "card-validator";
 
 import './../../SCSS/MobilePages/_mobileCheckoutPage.scss';
-
+import ProtectionPlan from "./../../Components/MostSharedComponent/ProtectionPlan";
+import SmallWarrantyBlock from "./../../Components/MostSharedComponent/SmallWarrantyBlock";
+import plus from "./../../assets/Icon/plus.svg";
+import minus from "./../../assets/Icon/minus.svg";
 
 const product = {
 	id: 1,
@@ -138,6 +144,55 @@ const product = {
 };
 
 function Mobile_Checkout_Page({ }) {
+	const [count, setCount] = useState(1);
+	const decreaseCount = (sku) => {
+		if (count === 0) {
+			setCount(0);
+		} else {
+			// deleteProductFromCart(product.id)
+			setCount(count - 1);
+			// AddProductToCart(sku,count-1)
+		}
+	};
+	const increaseCount = (sku) => {
+		// deleteProductFromCart(product.id)
+		setCount(count + 1);
+		// AddProductToCart(sku,count+1)
+	};
+	const [availableOffer, setAvailableOffer] = useState([
+		{
+			id: 1,
+			offerType: "",
+			offerText: "Save $50-$300 on a sound bar with TV",
+			termsAndConditions: "",
+		},
+		{
+			id: 2,
+			offerType: "Bank Offer",
+			offerText: "5% Unlimited Cashback on Axis Bank Credit Card",
+			termsAndConditions: "T&C",
+		},
+		{
+			id: 3,
+			offerType: "Credit Card Offer",
+			offerText: "5% Unlimited Cashback on Sony Credit Card",
+			termsAndConditions: "T&C",
+		},
+	]);
+	const [protection, setProtection] = useState([
+		{
+			id: 1,
+			protectionText: "2-Year Standard Geek Squad Protection",
+			price: 79,
+			month: 12,
+		},
+		{
+			id: 2,
+			protectionText: "1-Year Standard Geek Squad Protection",
+			price: 89,
+			month: 12,
+		},
+	]);
 	const dispatch = useDispatch();
 
 	const { customerDetails } = useSelector((state) => state.customerReducer);
@@ -591,7 +646,8 @@ function Mobile_Checkout_Page({ }) {
 								}
 								alt=""
 							/>
-							<Heading5
+							<Text4
+
 								text="SIGN IN"
 								marginLeft={10}
 								color={
@@ -625,7 +681,8 @@ function Mobile_Checkout_Page({ }) {
 								}
 								alt=""
 							/>
-							<Heading5
+							<Text4
+
 								text="DELIVERY"
 								marginLeft={10}
 								color={
@@ -659,7 +716,8 @@ function Mobile_Checkout_Page({ }) {
 								}
 								alt=""
 							/>
-							<Heading5
+							<Text4
+
 								text="PAYMENT"
 								marginLeft={10}
 								color={
@@ -705,17 +763,138 @@ function Mobile_Checkout_Page({ }) {
 
 				{/* change address sec end */}
 
-				<hr className="my-5" />
+				<hr className="my-2" />
 
 				{/* pro Summary start */}
 				<div className="container-fluid mb__checkout__pro__summary">
 					<div className="row shopping__cart__page__inner__block">
-						<div className="col-md-12  row shopping__cart__left__block">
-							<ShoppipngCartProduct product={product} />
+						<div className="col-md-12  shopping__cart__left__block">
+							<div className="row sc__product__block">
+								<div className="col-4 sc__product__left__block">
+									<div className="sc__product__image__block">
+										<img
+											src={product_img}
+											alt=""
+											className="sc__product__image"
+										/>
+									</div>
+									<div className=" row my-3">
+										<div className="mb__sc__counter d-flex">
+											<div
+												onClick={() => decreaseCount(product.sku)}
+												className="col-4 counter__decrease__block"
+											>
+												<img src={minus} alt="minus" />
+											</div>
+											<div className="col-4 counter">{count}</div>
+											<div
+												onClick={() => increaseCount(product.sku)}
+												className="col-4 counter__increase__block"
+											>
+												<img src={plus} alt="plus" />
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div className="col-8 sc__product__middle__block">
+									<Heading7 text={product.name} marginBottom={10} />
+									<OldPrice
+										oldPrice="200"
+
+										size="text3"
+										color="#808080"
+										marginLeft={5}
+										marginBottom={0}
+										lineThrough={true}
+										span={true}
+										currency="SAR"
+									/>
+									<Price
+										price="100"
+										currency="SAR"
+										size="heading6"
+										span={true}
+									/>
+
+									<RatingBlock
+										size={15}
+										rating={4.5}
+										totalRatings={4199}
+										fillColor="#DC3A1A"
+										emptyColor="#C8C8C8"
+									/>
+								</div>
+								<div className="col-12 col-sm-12 sc__product__middle__block mt-3">
+
+									<Text3 text="Order in 22 hrs 0 mins" marginBottom={10} />
+
+									<Heading7
+										text="Free delivery"
+										marginBottom={10}
+										color="#727272"
+										span={true}
+									/>
+									<Text3 text="by" marginLeft={5} marginBottom={10} span={true} />
+									<Heading7
+										text="Mon, Apr 4"
+										marginLeft={5}
+										marginBottom={10}
+										color="#727272"
+										span={true}
+									/>
+									<SmallWarrantyBlock warranty={2} />
+									<ProtectionPlan
+										title="Protection Plan"
+										protection={protection}
+										remove={remove}
+									/>
+									<hr className="sc__page__horizontal__line"></hr>
+									<div className="sc__offers__discounts__block">
+										<AvailableOffers availableOffer={availableOffer} />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<div className="row">
+						{/* package Summary */}
+						<div className="col-md-12 col-xl-3  checkout__right__block">
+							<div className="checkout__package__summary__block">
+								<p className="checkout__os__title">
+									{" "}
+									<Heading3 text="Price Details" />
+								</p>
+								<div className="sc__ps__detail__block mx-3">
+									<div className="sc__ps__detail__inner__block">
+										<Text3 text="Shipping" color="#727272" />
+										<Price price={20} size="heading7" />
+									</div>
+									<div className="sc__ps__detail__inner__block">
+										<Text3 text="Sub Total" color="#727272" />
+										<Price price={195} size="heading7" />
+									</div>
+									<div className="sc__ps__detail__inner__block">
+										<Text3 text="Discount" color="#727272" />
+										<Price price={30} size="heading7" />
+									</div>
+									<div className="sc__ps__detail__inner__block">
+										<Text3 text="Tax" color="#727272" />
+										<Price price={10} size="heading7" />
+									</div>
+									<div className="sc__ps__detail__total__order__block">
+										<Heading6 text="Order Total" color="#000000" />
+										<Price price={3275} size="heading5" />
+									</div>
+								</div>
+							</div>
+							<hr />
+							<SuperCoin />
 						</div>
 					</div>
 				</div>
-				
+
 				{/* pro Summary end */}
 
 			</div>
