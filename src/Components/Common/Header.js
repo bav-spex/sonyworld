@@ -1972,7 +1972,7 @@ function Header({
                       ? "row search__box__result__popup"
                       : "row search__box__result__popup__disable"
                   }
-                  onMouseLeave={()=>setSearchPopup(false)}
+                  onMouseLeave={() => setSearchPopup(false)}
                 >
                   <div className="col-xl-5 search__result__left__part">
                     {searchProductData && searchProductData.map((product, productIndex) => {
@@ -1985,10 +1985,10 @@ function Header({
                       // console.log("firstWord",firstWord,"emainWord", remainWord);
                       return (
                         <Link className="search__Result__title__link" to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
-                        <p key={productIndex}>
-                          {/* <Text2 text={product.name} span={true} />{" "} */}
-                          <Heading5 text={product.name} span={true} />
-                        </p>
+                          <p key={productIndex}>
+                            {/* <Text2 text={product.name} span={true} />{" "} */}
+                            <Heading5 text={product.name} span={true} />
+                          </p>
                         </Link>
                       );
                     })}
@@ -2134,15 +2134,13 @@ function Header({
                                 : "signin__signup__popup__disable"
                             }
                           >
-                            {`${
-                              customerDetails.firstname !== null
+                            {`${customerDetails.firstname !== null
                                 ? customerDetails.firstname
                                 : ""
-                            } ${
-                              customerDetails.lastname !== null
+                              } ${customerDetails.lastname !== null
                                 ? customerDetails.lastname
                                 : ""
-                            }`}
+                              }`}
                             <button
                               onClick={() => customerLogout("signin")}
                               className="signin__button"
