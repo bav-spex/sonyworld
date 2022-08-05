@@ -15,7 +15,7 @@ const apiHelper = async (api, method, data, headers) => {
       method: method,
       url: url,
       data: data,
-      headers: headers
+      // headers: headers
     }).catch(err => {
       reject(err)
     }).then(res => {

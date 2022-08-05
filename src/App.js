@@ -56,6 +56,7 @@ function App({ stars }) {
   const reloadingHandle = () => {
     setReloadHeader(!reloadHeader);
   };
+
   const [token, setToken] = useState();
   useEffect(() => {
     // debugger
@@ -82,11 +83,13 @@ function App({ stars }) {
         .then((res) => dispatch(loadWishlistData()))
         .catch((err) => {
           console.log(err);
-          if (err.message === "Request failed with status code 401") {
+          if (err.request.status === 401) {
             console.log("catch");
             setHeader("X-Access-Token", "");
             getHandshake().then((res) => {
               console.log(res.data.token);
+              setHeader("X-Access-Token", res.data.token);
+              localStorage.setItem("handShakeToken", res.data.token);
               setToken(res.data.token);
               dispatch(loadWishlistData())
             });
@@ -106,7 +109,6 @@ function App({ stars }) {
   // console.log(allCategoryData);
   useEffect(() => {
     if (Object.keys(allCategoryData).length !== 0) {
-      // setHomepageData(data);
       setCategoryData(allCategoryData);
       setLoading(false);
     }
