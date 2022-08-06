@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as types from "./../../redux/actionType";
@@ -55,8 +55,11 @@ import {
   loadApplyFilterData,
   loadCategoryFilterData,
 } from "../../redux/appAction";
-import * as services from './../../services/services';
-import { customerSignInSuccess, customerSignUpMsgSuccess } from "../../services/customer/customer";
+import * as services from "./../../services/services";
+import {
+  customerSignInSuccess,
+  customerSignUpMsgSuccess,
+} from "../../services/customer/customer";
 
 // const categoryData = [
 //   {
@@ -1532,7 +1535,7 @@ function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
-    height
+    height,
   };
 }
 function Header({
@@ -1542,20 +1545,24 @@ function Header({
   handleChangeCartPopup,
   cartIconTotal,
 }) {
-  const { customerSignUpMsg, customerSignInMsg, customerDetails } = useSelector((state) => state.customerReducer);
+  const { customerSignUpMsg, customerSignInMsg, customerDetails } = useSelector(
+    (state) => state.customerReducer
+  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
 
-  const {wishlistCount} = useSelector(state => state.appData)
+  const { wishlistCount } = useSelector((state) => state.appData);
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // language changing in project //
@@ -1579,14 +1586,14 @@ function Header({
   useEffect(() => {
     if (customerSignUpMsg === true) {
       setUserLoginPopup(false);
-      customerSignUpMsgSuccess('')
+      customerSignUpMsgSuccess("");
     }
   }, [customerSignUpMsg]);
 
   useEffect(() => {
     if (customerSignInMsg === true) {
       setUserLoginPopup(false);
-      customerSignInSuccess('')
+      customerSignInSuccess("");
     }
   }, [customerSignInMsg]);
 
@@ -1629,19 +1636,36 @@ function Header({
   // mobile-mode then close signin/signup close
   useEffect(() => {
     if (windowDimensions.width < 992) {
-      closeLoginPopup()
+      closeLoginPopup();
     }
   }, [windowDimensions]);
 
   const openSearchPopup = (e) => {
     console.log(e.target.value);
+    console.log("hello World");
+    // debugger
     setFilterDetails({ filterDetails: { keyword: e.target.value } });
+
     setSearchPopup(true);
 
     if (e.target.value === "") {
       setSearchPopup(false);
     }
   };
+
+  const debounce = (func) => {
+    let timer;
+    return function (...args) {
+      const context = this;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        func.apply(context, args);
+      }, 1000);
+    };
+  };
+  const optimizedFn = useCallback(debounce(openSearchPopup), []);
+
   useEffect(() => {
     dispatch(loadApplyFilterData(filterDetails));
   }, [filterDetails]);
@@ -1737,12 +1761,11 @@ function Header({
     } else {
       //mobile
       if (mode === "signup") {
-        navigate('/mobile-signup');
+        navigate("/mobile-signup");
       } else if (mode === "signin") {
-        navigate('/mobile-signin');
+        navigate("/mobile-signin");
       }
     }
-
   };
   const closeLoginPopup = () => {
     if (document.querySelector(".login__popup__container")) {
@@ -1918,7 +1941,7 @@ function Header({
   const customerLogout = () => {
     localStorage.removeItem("custDetails");
     localStorage.removeItem("handShakeToken");
-    dispatch(customerDetailsSuccess(''));
+    dispatch(customerDetailsSuccess(""));
     let params = {
       id: customerDetails.id,
     };
@@ -1952,15 +1975,15 @@ function Header({
                 <img src={navbar_logo} alt="logo" className="header__logo" />
               </Link>
               <div className="col-0  col-sm-0  col-lg-5 col-xl-7  search__box__block">
-                <form autoComplete="off">
+                <form autoComplete="off" onSubmit={()=>navigate("/search")}>
                   <div className="search__box">
                     <input
                       type="text"
                       name="search"
                       className="search__input"
                       placeholder="Type Your Search..."
-                      onFocus={(e) => openSearchPopup(e)}
-                      onChange={(e) => openSearchPopup(e)}
+                      // onFocus={(e) => openSearchPopup(e)}
+                      onKeyUp={(e) => optimizedFn(e)}
                       autoComplete="off"
                     />
                     <img src={search} alt="" className="header__icon" />
@@ -1976,33 +1999,42 @@ function Header({
                   onMouseLeave={() => setSearchPopup(false)}
                 >
                   <div className="col-xl-5 search__result__left__part">
-                    {searchProductData && searchProductData.map((product, productIndex) => {
-                      // let firstWord = product.name.split(" ")[0].trim();
-                      let remainWord = product.name
-                        .split(" ")
-                        .slice(2, product.name.length)
-                        .join(" ")
-                        .trim();
-                      // console.log("firstWord",firstWord,"emainWord", remainWord);
-                      return (
-                        <Link className="search__Result__title__link" to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
-                          <p key={productIndex}>
-                            {/* <Text2 text={product.name} span={true} />{" "} */}
-                            <Heading5 text={product.name} span={true} />
-                          </p>
-                        </Link>
-                      );
-                    })}
+                    {searchProductData &&
+                      searchProductData.map((product, productIndex) => {
+                        // let firstWord = product.name.split(" ")[0].trim();
+                        let remainWord = product.name
+                          .split(" ")
+                          .slice(2, product.name.length)
+                          .join(" ")
+                          .trim();
+                        // console.log("firstWord",firstWord,"emainWord", remainWord);
+                        return (
+                          <Link
+                            className="search__Result__title__link"
+                            to={`/products/${product.sku.replace(
+                              /[/]/g,
+                              "%2F"
+                            )}`}
+                          >
+                            <p key={productIndex}>
+                              {/* <Text2 text={product.name} span={true} />{" "} */}
+                              <Heading5 text={product.name} span={true} />
+                            </p>
+                          </Link>
+                        );
+                      })}
                   </div>
                   <div className="col-xl-7 search__result__right__part">
                     {searchProductData &&
                       searchProductData.map((product, productIndex) => {
                         return (
                           <Link
-                          
                             key={product.id}
                             className="row search__result__product__block mb-1"
-                            to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}
+                            to={`/products/${product.sku.replace(
+                              /[/]/g,
+                              "%2F"
+                            )}`}
                           >
                             <div className="col-2 search__result__product__image__block">
                               <img
@@ -2013,10 +2045,7 @@ function Header({
                             </div>
                             <div className="col-10 search__result__product__text">
                               <Heading7 text={product.name} />
-                              <RatingBlock
-                                rating={6}
-                                totalRatings={2222}
-                              />
+                              <RatingBlock rating={6} totalRatings={2222} />
                             </div>
                           </Link>
                         );
@@ -2083,16 +2112,13 @@ function Header({
                         className="location header__icon"
                       />
                     </Link>
-                    <Link 
-                    to="/user/wishlist"
-                    className="wishlist__icon__block"
-                    >
+                    <Link to="/user/wishlist" className="wishlist__icon__block">
                       <img
                         src={favourite}
                         alt=""
                         className="favourite header__icon"
                       />
-                       <p className="wishlist__item__count">{wishlistCount}</p>
+                      <p className="wishlist__item__count">{wishlistCount}</p>
                     </Link>
                     {customerDetails === "" ? (
                       <div className="header__user__block">
@@ -2139,13 +2165,15 @@ function Header({
                                 : "signin__signup__popup__disable"
                             }
                           >
-                            {`${customerDetails.firstname !== null
+                            {`${
+                              customerDetails.firstname !== null
                                 ? customerDetails.firstname
                                 : ""
-                              } ${customerDetails.lastname !== null
+                            } ${
+                              customerDetails.lastname !== null
                                 ? customerDetails.lastname
                                 : ""
-                              }`}
+                            }`}
                             <button
                               onClick={() => customerLogout("signin")}
                               className="signin__button"

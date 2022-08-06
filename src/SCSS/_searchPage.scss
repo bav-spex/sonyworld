@@ -22,6 +22,10 @@
           font-family: "arialbold";
           color: #000000;
         }
+        .search__input:focus {
+          outline: none;
+          background: none;
+        }
         .cancel__button {
             cursor: pointer;
         }

@@ -11,13 +11,10 @@ export const getWishlistData = async() => {
 
 
 export const addToWishlist = async(data) => {
-    
-   
     const wishlistData = await axios.post(
         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
         data
         );
-        
     // console.log(wishlistData,"addToWishlist")
     return wishlistData;
 };

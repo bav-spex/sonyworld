@@ -22,11 +22,14 @@ import {
 import { useDispatch } from "react-redux";
 import {
   loadAddToWishlist,
+  loadCartData,
   loadDeleteFromWishlist,
   loadWishlistData,
 } from "../../redux/appAction";
+import * as services from "./../../services/services";
+import { addToCart } from "../../services/cart.service";
 
-function ProductOne({ productDetailPage, product }) {
+function ProductOne({ productDetailPage, product,handleChangeCartPopup }) {
 
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
@@ -88,6 +91,29 @@ function ProductOne({ productDetailPage, product }) {
     setRating(score);
   };
 
+  const AddProductToCart = (sku) => {
+    console.log(sku, "product in product details >>>");
+
+    const data = {
+      items: [
+        {
+          sku: sku,
+          qty: 1,
+        },
+      ],
+    };
+
+    addToCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+        dispatch(loadCartData());
+        handleChangeCartPopup(true)
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+  };
   return (
     <div
       key={product.id}
@@ -154,7 +180,7 @@ function ProductOne({ productDetailPage, product }) {
       </div>
       {/* <button onClick={()=>removeFromWL(product.sku)}>remove</button> */}
       {productDetailPage ? (
-        <div className="addToCart__button">
+        <div className="addToCart__button" onClick={() => AddProductToCart(product.sku)}>
           <img src={shopping_cart} alt="" className="addToCart__icon" />
           Add To Cart
         </div>

@@ -9,7 +9,7 @@ import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getStoresLocationData } from "../services/storeLocation.service";
 import { getApplyFilterData, getCategoryFilterData } from "../services/plp.service";
-import { createCartDetails, getCartData, getPayfortInformation } from "../services/cart.service";
+import { addToCart, createCartDetails, getCartData, getPayfortInformation } from "../services/cart.service";
 import { getOrderDetails } from "../services/order.service";
 
 const setLoading = (data) => ({
@@ -98,6 +98,25 @@ export const loadApplyFilterData = (filterDetails) => {
     // console.log(productData);
     dispatch(saveApplyFilterData(filterData));
     return filterData;
+  };
+};
+
+// Adding Cart Page Data //
+
+export const loadAddToCart = (data) => {
+  return async function (dispatch) {
+    const addToCartData = await addToCart(data);
+    
+    return addToCartData.data;
+  };
+};
+// Removing Cart Page Data //
+
+export const loa = (data) => {
+  return async function (dispatch) {
+    const addToCartData = await addToCart(data);
+    
+    return addToCartData.data;
   };
 };
 

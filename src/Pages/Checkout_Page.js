@@ -36,6 +36,7 @@ import Heading2 from "../Components/Font/Heading2";
 import ProductThree from "../Components/ProductType/ProductThree";
 import AddressPopup from "../Components/Popup/AddressPopup";
 import {
+  loadCartData,
   loadCountriesLocationData,
   loadPayfortInformation,
 } from "../redux/appAction";
@@ -639,6 +640,8 @@ function Checkout_Page({ reloadingHeader }) {
         const data = dispatch(
           loadPayfortInformation(newPaymentMethodForPayfort)
         ).then((res) => {
+          dispatch(loadCartData)
+          setCheckoutClassName("delivery");
           console.log("payfort Information", res.data);
           console.log("Entity", res?.data?.entity_id);
 
@@ -661,7 +664,7 @@ function Checkout_Page({ reloadingHeader }) {
           );
           // debugger
           //  sendPayfortInformation(newSendPayfortInformation);
-          setCheckoutClassName("delivery");
+         
           // const response =  fetch("https://sbcheckout.payfort.com/FortAPI/paymentPage", {
           // method: 'POST',
           // headers: {
@@ -685,6 +688,8 @@ function Checkout_Page({ reloadingHeader }) {
       const data = dispatch(
         loadPayfortInformation(newPaymentMethodForPayfort)
       ).then((res) => {
+        dispatch(loadCartData)
+        setCheckoutClassName("delivery");
         console.log("payfort Information", res.data);
         console.log("Entity", res?.data?.entity_id);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./../SCSS/_searchPage.scss";
 import SearchProduct from "./../Components/ProductType/SearchProduct";
 import Heading3 from "../Components/Font/Heading3";
@@ -26,6 +26,9 @@ import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 
 import PLPBannerTwo from "../Components/ProductListPageComponent/PLPBannerTwo";
 import CarouselTypeTwo from "../Components/CarouselTypeTwo";
+import { useDispatch, useSelector } from "react-redux";
+import { loadApplyFilterData } from "../redux/appAction";
+import { Navigate, useNavigate } from "react-router";
 const searchData = {
   searchResultTitle: [
     "television 24 tv inches",
@@ -639,52 +642,86 @@ const newArrivalData = [
   },
 ];
 function Search__Page() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [loading,setLoading] =useState(true)
+  const [filterDetails, setFilterDetails] = useState({ filterDetails: {} });
+  const [searchProductData, setSearchProductData] = useState();
   const handleChange = (e) => {
+    e.preventDefault()
     setSearch(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(search);
+    setFilterDetails({ filterDetails: { keyword: search } });
+    navigate("/search")
   };
   const clearSearchInput = () => {
     setSearch("");
   };
+  useEffect(() => {
+    dispatch(loadApplyFilterData(filterDetails));
+  }, [filterDetails]);
+
+  const applyFilterData = useSelector((state) => state.appData.filterData);
+  console.log(applyFilterData);
+  useEffect(() => {
+    if (Object.values(applyFilterData).length !== 0) {
+      setSearchProductData(applyFilterData.items);
+      setLoading(false)
+    }
+  }, [applyFilterData]);
+  console.log(searchProductData);
+  if (loading) {
+    return <h1>Search Loading...</h1>;
+  }
   return (
     <>
       <div className="container-fluid search__page__input__container">
         <div className="search__page__input__block">
           <Text4 color="#ffffff" text="SEARCH RESULT" marginBottom={10} />
-          <div className="row main__search__input__block">
-            <div className="col-10 search__input__block">
-              <input
-                type="text"
-                name="search"
-                className="search__input"
-                placeholder="Type Your Search..."
-                // value={search}
-                onChange={() => handleChange()} 
-                autocomplete="false"
-              />
-              <img
-                onClick={() => clearSearchInput()}
-                src={cancel_grey}
-                alt=""
-                className="cancel__button"
-              />
-            </div>
-            <div
-              className="col-2 search__button__block
-            "
+          <div className=" main__search__input__block">
+            <form
+              className="row"
+              autoComplete="off"
+              onSubmit={(e) => handleSubmit(e)}
             >
-              <button className="search__button">SEARCH</button>
-            </div>
+              <div className="col-10 search__input__block">
+                <input
+                  type="text"
+                  name="search"
+                  className="search__input"
+                  placeholder="Type Your Search..."
+                  value={search}
+                  onChange={(e) => handleChange(e)}
+                  autocomplete="false"
+                />
+                <img
+                  onClick={() => clearSearchInput()}
+                  src={cancel_grey}
+                  alt=""
+                  className="cancel__button"
+                />
+              </div>
+              <div
+                className="col-2 search__button__block
+            "
+              >
+                <button onClick={handleSubmit} className="search__button">SEARCH</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
       <div className="container-fluid search__page__content__container">
         <div className="search__page__content__block">
-          <Heading2 text="2192" span={true} />
+          <Heading2 text={searchProductData.length} span={true} />
           <span className="result__text">Results</span>
           <div className="row search__product__container">
             <div className="col-9 main__search__product__block">
-              {searchData.searchResultProduct.map((product, productIdex) => {
+              {searchProductData &&searchProductData.map((product, productIdex) => {
                 return <SearchProduct product={product} />;
               })}
             </div>
@@ -721,13 +758,13 @@ function Search__Page() {
           </div>
           <PLPBannerTwo bannerImage={bannerImg1} />
           <div className="plp__newArrival__block">
-            <CarouselTypeTwo
+            {/* <CarouselTypeTwo
               productDetailPage={true}
               sectionTitle="Recently Viewed Products"
               carouselData={newArrivalData}
               productType="productOne"
               containerClassName="plp__youCanAlsoPurchase__block"
-            />
+            /> */}
           </div>
         </div>
       </div>

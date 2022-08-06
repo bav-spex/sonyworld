@@ -226,7 +226,7 @@ function ProductTwo({ productDetailPage, product,handleChangeCartPopup }) {
           currency={product?.currency}
         />
       </div>
-      <div className="addToCart__button" onClick={() => AddProductToCart()}>
+      <div className="addToCart__button" onClick={() => AddProductToCart(product.sku)}>
         <img src={shopping_cart} alt="" className="addToCart__icon" />
         Add To Cart
       </div>

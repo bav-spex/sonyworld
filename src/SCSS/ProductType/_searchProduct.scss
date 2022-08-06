@@ -6,8 +6,10 @@
   box-shadow: 0px 3px 6px #0000000a;
   border: 1px solid #f1f1f1;
   margin: 20px 0px;
+  text-decoration: none;
+  color: #000000;
   .search__product__image__block {
-    background-color: lightblue;
+    background-color: rgb(237, 246, 248);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,6 +22,10 @@
   }
   .search__product__detail__block {
     padding: 0px 0px 0px 20px;
+    .searchProduct__name {
+      text-decoration: none;
+      color: #000000;
+    }
     .search__product__hightlight__link {
       .search__product__link {
         text-decoration: none;
