@@ -640,7 +640,7 @@ function Checkout_Page({ reloadingHeader }) {
         const data = dispatch(
           loadPayfortInformation(newPaymentMethodForPayfort)
         ).then((res) => {
-          dispatch(loadCartData)
+          dispatch(loadCartData())
           setCheckoutClassName("delivery");
           console.log("payfort Information", res.data);
           console.log("Entity", res?.data?.entity_id);
@@ -688,7 +688,7 @@ function Checkout_Page({ reloadingHeader }) {
       const data = dispatch(
         loadPayfortInformation(newPaymentMethodForPayfort)
       ).then((res) => {
-        dispatch(loadCartData)
+        dispatch(loadCartData())
         setCheckoutClassName("delivery");
         console.log("payfort Information", res.data);
         console.log("Entity", res?.data?.entity_id);
@@ -862,7 +862,7 @@ function Checkout_Page({ reloadingHeader }) {
                           return (
                             <div
                               key={add.id}
-                              className="col-12 col-sm-6 address__block"
+                              className="col-12 col-sm-4 address__block"
                             >
                               <div
                                 className={
