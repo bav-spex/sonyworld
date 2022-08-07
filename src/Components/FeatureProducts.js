@@ -4,7 +4,7 @@ import "./../SCSS/_featureProducts.scss";
 import { useDispatch } from "react-redux";
 
 import { addToCart } from "./../services/cart.service";
-import { loadCartData } from "./../redux/appAction";
+import { loadAddToCart, loadCartData } from "./../redux/appAction";
 import * as services from "./../services/services";
 
 import feature_product_01 from "./../assets/FeatureProduct/feature_product_01.png";
@@ -43,10 +43,11 @@ function FeatureProducts({ featureProductsData,handleChangeCartPopup }) {
       ],
     };
 
-    addToCart(data)
+    const loadAddToCartDAta = dispatch(loadAddToCart(data))
       .then((res) => {
         console.log(res, "res>>>");
         dispatch(loadCartData());
+        // dispatch(services.notifySuccess({message:"Added in Cart"}))
         handleChangeCartPopup(true)
       })
       .catch((err) => {

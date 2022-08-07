@@ -4,11 +4,13 @@ const initialState = {
   homepageData: {},
   categoryData: {},
   productData: {},
+  wishlistCount:0,
   wishlistData: [],
   cityLocationData: [],
   countriesLocationData: [],
   storesLocationData: [],
   filterData: {},
+  applyFilterData: {},
   selectedCategory: {},
   loading: true,
   cartQuoteId: "",
@@ -43,6 +45,11 @@ const appReducer = (state = initialState, action) => {
     case types.GET__PRODUCT__FILTER__DATA:
       return {
         ...state,
+        applyFilterData: action.payload,
+      };
+    case types.GET__APPLY__FILTER__DATA:
+      return {
+        ...state,
         filterData: action.payload,
       };
     case types.SET__ORDER__ID__DATA:
@@ -54,6 +61,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         orderDetailsData: action.payload,
+      };
+    case types.SET__WISHLIST__COUNT:
+      return {
+        ...state,
+        wishlistCount: action.payload,
       };
     case types.GET__WISHLIST__DATA:
       return {

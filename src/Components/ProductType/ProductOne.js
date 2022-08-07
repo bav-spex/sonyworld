@@ -14,26 +14,43 @@ import Heading7 from "./../Font/Heading7";
 import Price from "./../Font/Price";
 import OldPrice from "./../Font/OldPrice";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
-import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
+import {
+  addToWishlist,
+  checkForWishlist,
+  deleteFromWishlist,
+} from "../../services/wishlist.services";
+import { useDispatch } from "react-redux";
+import {
+  loadAddToWishlist,
+  loadCartData,
+  loadDeleteFromWishlist,
+  loadWishlistData,
+} from "../../redux/appAction";
+import * as services from "./../../services/services";
+import { addToCart } from "../../services/cart.service";
 
-function ProductOne({ productDetailPage, product }) {
+function ProductOne({ productDetailPage, product,handleChangeCartPopup }) {
+
+  const [rating, setRating] = useState(0);
+  const dispatch = useDispatch();
+  
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
-  const [rating, setRating] = useState(0);
-  
-  useEffect(async()=>{
+  const [count, setCount] = useState(0);
 
-    const isFavouriteData = await checkForWishlist(product.sku.replace(/[/]/g, "%2F"));
-    // console.log(isFavouriteData);
-    setIsFavourite(isFavouriteData)
-  },[])
+  useEffect(async () => {
+    const isFavouriteData = await checkForWishlist(
+      product.sku.replace(/[/]/g, "%2F")
+    );
+    setIsFavourite(isFavouriteData);
+  }, []);
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
-      // console.log(product.sku, "added");
+      setCount(count + 1);
     } else {
       setIsFavourite(true);
-      // console.log(product.sku, "remove");
+      setCount(count + 1);
     }
   };
   useEffect(() => {
@@ -41,27 +58,62 @@ function ProductOne({ productDetailPage, product }) {
       items: [product.sku],
     };
     if (isFavourite) {
-      addToWishlist(data);
-      // console.log("added Successfully");
+      if (count > 0) {
+        const addToWishlistData = dispatch(loadAddToWishlist(data)).then(
+          (res) => {
+            console.log(res);
+            dispatch(loadWishlistData());
+          }
+        );
+      }
+    } else {
+      if (count > 0) {
+        if (!isFavourite) {
+          removeFromWL(product.sku);
+        }
+      }
     }
-    else{
-      removeFromWL(product.sku.replace(/[/]/g, "%2F"))
-      // console.log("deleted Successfully");
-    }
-  },[isFavourite]);
-  // console.log(isFavourite);
-  const handleRating = (score) => {
-    setRating(score);
-  };
-  const removeFromWL=(sku)=>{
+  }, [isFavourite]);
+
+  const removeFromWL = (sku) => {
     const data = {
       items: [sku],
     };
-    deleteFromWishlist(data)
-  }
-  // console.log(product.sku);
-  // console.log(product.sku.replace(/[/]/g, "%2F"));
+    const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then(
+      (res) => {
+        console.log(res);
+        dispatch(loadWishlistData());
+      }
+    );
+  };
   
+  const handleRating = (score) => {
+    setRating(score);
+  };
+
+  const AddProductToCart = (sku) => {
+    console.log(sku, "product in product details >>>");
+
+    const data = {
+      items: [
+        {
+          sku: sku,
+          qty: 1,
+        },
+      ],
+    };
+
+    addToCart(data)
+      .then((res) => {
+        console.log(res, "res>>>");
+        dispatch(loadCartData());
+        handleChangeCartPopup(true)
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+  };
   return (
     <div
       key={product.id}
@@ -128,7 +180,7 @@ function ProductOne({ productDetailPage, product }) {
       </div>
       {/* <button onClick={()=>removeFromWL(product.sku)}>remove</button> */}
       {productDetailPage ? (
-        <div className="addToCart__button">
+        <div className="addToCart__button" onClick={() => AddProductToCart(product.sku)}>
           <img src={shopping_cart} alt="" className="addToCart__icon" />
           Add To Cart
         </div>

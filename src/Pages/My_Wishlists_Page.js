@@ -506,12 +506,13 @@ function My_Wishlists_Page() {
           </div>
           <div className="row wishlist__page__product__block">
             {wishlistPageData.map((item, productIndex) => {
+              // console.log(item);
               return (
                 <div
                   key={item.wishlist_item_id}
                   className="col-6 col-md-4  col-xl-3 wishlist__product__block"
                 >
-                  <ProductEight item={item} />
+                  <ProductEight product={item.product} />
                 </div>
               );
             })}

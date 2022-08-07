@@ -18,13 +18,15 @@ import product_02 from "./../../assets/Product/product_02.jpg";
 import product_03 from "./../../assets/Product/product_03.jpg";
 import product_04 from "./../../assets/Product/product_04.jpg";
 import { addToWishlist, checkForWishlist, deleteFromWishlist } from "../../services/wishlist.services";
+import { loadAddToWishlist, loadDeleteFromWishlist, loadWishlistData } from "../../redux/appAction";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 function ProductTen({
   product,
   handleChangeProductPopup,
   handleChangeComparePopup,
 }) {
-  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
   const [productWarrentyBlock, setProductWarrentyBlock] = useState({
@@ -47,40 +49,60 @@ function ProductTen({
       },
     ],
   });
-  useEffect(async()=>{
-    const isFavouriteData = await checkForWishlist(product?.sku?.replace(/[/]/g, "%2F"));
-    // console.log(isFavouriteData);
-    setIsFavourite(isFavouriteData)
-  },[])
+
+  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(async () => {
+    const isFavouriteData = await checkForWishlist(
+      product.sku.replace(/[/]/g, "%2F")
+    );
+    setIsFavourite(isFavouriteData);
+  }, []);
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
-      // console.log(product.sku, "added");
+      setCount(count + 1);
     } else {
       setIsFavourite(true);
-      // console.log(product.sku, "remove");
+      setCount(count + 1);
     }
   };
   useEffect(() => {
     const data = {
-      items: [product?.sku],
+      items: [product.sku],
     };
     if (isFavourite) {
-      addToWishlist(data);
-      // console.log("added Successfully");
+      if (count > 0) {
+        const addToWishlistData = dispatch(loadAddToWishlist(data)).then(
+          (res) => {
+            console.log(res);
+            dispatch(loadWishlistData());
+          }
+        );
+      }
+    } else {
+      if (count > 0) {
+        if (!isFavourite) {
+          removeFromWL(product.sku);
+        }
+      }
     }
-    else{
-      removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
-      // console.log("deleted Successfully");
-    }
-  },[isFavourite]);
-  const removeFromWL=(sku)=>{
+  }, [isFavourite]);
+
+  const removeFromWL = (sku) => {
     const data = {
       items: [sku],
     };
-   deleteFromWishlist(data)
-  }
-
+  
+    const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then(
+      (res) => {
+        console.log(res);
+        dispatch(loadWishlistData());
+      }
+    );
+  };
 
   const handleRating = (score) => {
     setRating(score);
@@ -194,6 +216,8 @@ function ProductTen({
         <Heading7 text="May, 7:00 am - 9:00 pm" marginBottom={10} />
       </div>
       <div className="col-xxl-2 col-lg-12 productTen__right__block">
+        <div>
+
         
       <OldPrice
           oldPrice={product?.price_rounded}
@@ -212,10 +236,11 @@ function ProductTen({
           span={true}
           currency="SAR"
         />
-        <div className="addToCart__button">
-          <img src={shopping_cart} alt="" className="addToCart__icon" />
-          Buy
         </div>
+      <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`} className="addToCart__button">
+          <img src={shopping_cart} alt="" className="addToCart__icon" />
+          Buy Now
+        </Link>
       </div>
     </div>
   );

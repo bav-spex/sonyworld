@@ -14599,7 +14599,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadProductDetailData(id.replace(/[/]/g, "%2F")));
-  }, []);
+  }, [id]);
   const productData = useSelector((state) => state.appData.productData);
   // console.log("before",productData);
   // console.log(Object.values(productData).length);
@@ -14607,6 +14607,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
     if (Object.values(productData).length !== 0) {
       setProduct(productData);
       setLoading(false);
+      window.scrollTo(0,0)
       // console.log(product.reviewSummary.totals);
     }
   }, [productData]);
@@ -14708,7 +14709,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
       // console.log("added Successfully");
     }
     else{
-      removeFromWL(product?.sku?.replace(/[/]/g, "%2F"))
+      removeFromWL(product?.sku)
     //   // console.log("deleted Successfully");
     }
   }, [isFavourite]);
@@ -15084,16 +15085,18 @@ function Product_Details_Page({handleChangeCartPopup}) {
             {product.relatedProducts[0].products.map(
               (product, productIndex) => {
                 return (
-                  <div key={product.id} className="row pd__mb__product__block">
-                    <div className="col-xxl-4 pd__mb__product__image__block">
+                  <div  key={product.id} className="row pd__mb__product__block">
+                    <Link to={`/products/${product.sku.replace(/[/]/g, "%2F")}`} className="col-xxl-4 pd__mb__product__image__block">
                       <img
                         src={product.baseImage}
                         alt=""
                         className="pd__mb__product__image"
                       />
-                    </div>
+                    </Link>
                     <div className="col-xxl-8 pd__mb__product__detail__block">
+                      <Link className="pd__mb__product__name" to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
                       <Heading7 text={product.name} />
+                      </Link>
                       <RatingBlock
                         size={15}
                         rating={4.5}

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const getWishlistData = async() => {
     const wishlistData = await axios.get(
         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`
@@ -13,7 +14,7 @@ export const addToWishlist = async(data) => {
     const wishlistData = await axios.post(
         `${process.env.REACT_APP_PROJECT_API_URL}/V1/wishlist`,
         data
-    );
+        );
     // console.log(wishlistData,"addToWishlist")
     return wishlistData;
 };

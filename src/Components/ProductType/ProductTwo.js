@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RatingStar } from "rating-star";
 import { Rating } from "react-simple-star-rating";
 import { useDispatch } from "react-redux";
-
 import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import shopping_cart from "./../../assets/Icon/shopping_cart.svg";
@@ -16,14 +15,14 @@ import Heading6 from "./../Font/Heading6";
 import RatingBlock from "../MostSharedComponent/RatingBlock";
 import { Link } from "react-router-dom";
 import { addToCart } from "./../../services/cart.service";
-import { loadCartData } from "./../../redux/appAction";
+import { loadAddToWishlist, loadCartData, loadDeleteFromWishlist, loadWishlistData } from "./../../redux/appAction";
 import * as services from "./../../services/services";
+import { checkForWishlist } from "../../services/wishlist.services";
 
 function ProductTwo({ productDetailPage, product,handleChangeCartPopup }) {
-  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
   const [rating, setRating] = useState(0);
   const [sizeButtonIndex, setSizeButtonIndex] = useState(0);
+ 
   const [productWarrentyBlock, setProductWarrentyBlock] = useState({
     warrantyText: "1 Year Warranty on Product",
     size: [
@@ -46,8 +45,57 @@ function ProductTwo({ productDetailPage, product,handleChangeCartPopup }) {
   });
   const dispatch = useDispatch();
 
+  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [count, setCount] = useState(0);
+
+  useEffect(async () => {
+    const isFavouriteData = await checkForWishlist(
+      product.sku.replace(/[/]/g, "%2F")
+    );
+    setIsFavourite(isFavouriteData);
+  }, []);
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      setCount(count + 1);
+    } else {
+      setIsFavourite(true);
+      setCount(count + 1);
+    }
+  };
+  useEffect(() => {
+    const data = {
+      items: [product.sku],
+    };
+    if (isFavourite) {
+      if (count > 0) {
+        const addToWishlistData = dispatch(loadAddToWishlist(data)).then(
+          (res) => {
+            console.log(res);
+            dispatch(loadWishlistData());
+          }
+        );
+      }
+    } else {
+      if (count > 0) {
+        if (!isFavourite) {
+          removeFromWL(product.sku);
+        }
+      }
+    }
+  }, [isFavourite]);
+
+  const removeFromWL = (sku) => {
+    const data = {
+      items: [sku],
+    };
+    const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then(
+      (res) => {
+        console.log(res);
+        dispatch(loadWishlistData());
+      }
+    );
   };
 
   const handleRating = (score) => {
@@ -178,7 +226,7 @@ function ProductTwo({ productDetailPage, product,handleChangeCartPopup }) {
           currency={product?.currency}
         />
       </div>
-      <div className="addToCart__button" onClick={() => AddProductToCart()}>
+      <div className="addToCart__button" onClick={() => AddProductToCart(product.sku)}>
         <img src={shopping_cart} alt="" className="addToCart__icon" />
         Add To Cart
       </div>

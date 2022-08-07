@@ -8,14 +8,16 @@ import RatingBlock from '../MostSharedComponent/RatingBlock'
 function SearchProduct({product}) {
   return (
     <div className="row search__product__block">
-        <div className="col-2 search__product__image__block">
-            <img className='search__product__image' src={product.image} alt={product.productName} />
-        </div>
+        <Link  to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}  className="col-2 search__product__image__block">
+            <img className='search__product__image' src={product.baseImage} alt={product.productName} />
+        </Link>
         <div className="col-10 search__product__detail__block">
-            <Heading6 text={product.productName} marginBottom={20} />
+        <Link className='searchProduct__name' to={`/products/${product.sku.replace(/[/]/g, "%2F")}`}>
+            <Heading6 text={product.name} marginBottom={20} />
+        </Link>
             <Text4 text="ZH8 SERIES" color="#808080" marginBottom={20}/>
-            <RatingBlock rating={product.rating}totalRatings={product.totalRatings}/>
-            <Text3 text={product.categoryTagline} marginBottom={20}/>
+            <RatingBlock rating={6}totalRatings={2222}/>
+            <Text3 text={"Experience the brilliance of big-screen Sony 8K HDR"} marginBottom={20}/>
             <div className="row search__product__hightlight__link">
                 <Link to="/products/1" className="col-3 search__product__link">Reviews and Ratings</Link>
                 <Link to="/products/1" className="col-3 search__product__link">Related Products</Link>

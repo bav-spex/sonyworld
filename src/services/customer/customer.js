@@ -56,6 +56,7 @@ export const customerSignUp = (params) => {
       let notifyMsg = { message: 'Customer signup successfully.' }
 
       dispatch(services.notifySuccess(notifyMsg));
+      dispatch(customerSignUpMsgSuccess(true));
     } catch (error) {
 
       let notifyMsg = { message: error.response.data.message }
@@ -67,7 +68,7 @@ export const customerSignUp = (params) => {
 };
 
 // auth reducer
-export const customerSignUpMsg = (data) => {
+export const customerSignUpMsgSuccess = (data) => {
   return {
     type: actionType.CUSTOMER_SIGN_UP_MSG,
     payload: data
@@ -88,9 +89,9 @@ export const customerSignIn = (params) => {
       dispatch(services.notifySuccess(notifyMsg));
       dispatch(customerSignInSuccess(true));
     } catch (error) {
-      let notifyMsg = { message: error.response.data.message }
-      // dispatch(customerSignInSuccess(error.response.data.message));
-      dispatch(services.notifyError(notifyMsg));
+      if (error.request.status === 401) {
+        dispatch(services.notifyError({ message: error.response.data.message }));
+      }
       console.log("error ", error);
     }
   }
@@ -134,9 +135,9 @@ export const customerLogout = (params) => {
         let notifyMsg = { message: 'Logout successfully' }
         dispatch(services.notifySuccess(notifyMsg));
         dispatch(customerSignInSuccess(''));
-        setTimeout(function () {
-          window.location.reload();
-        }, 2000);
+        // setTimeout(function () {
+        //   window.location.reload();
+        // }, 2000);
       }
     } catch (error) {
       // let notifyMsg = { message: error.response.data.message }

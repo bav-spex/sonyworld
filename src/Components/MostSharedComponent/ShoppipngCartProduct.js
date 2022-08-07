@@ -18,17 +18,21 @@ import empty_favourite from "./../../assets/Icon/empty_favourite.svg";
 import fulfill_favourite from "./../../assets/Icon/fulfill_favourite.svg";
 import delete_icon from "./../../assets/Icon/delete.svg";
 
-import { loadCartData } from "../../redux/appAction";
+import { loadAddToWishlist, loadCartData, loadDeleteFromWishlist, loadWishlistData } from "../../redux/appAction";
 import { addToCart, deleteFromCart } from "../../services/cart.service";
+import { checkForWishlist } from "../../services/wishlist.services";
 function ShoppipngCartProduct({ product }) {
   // console.log(product);
   const dispatch = useDispatch();
   // console.log(product.product.media.image.featured.image);
+  
   const [isFavouriteHover, setIsFavouriteHover] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
+  const [wishlistCount, setWishlistCount] = useState(0);
+
   const [couponCode, setCouponCode] = useState("");
   const [count, setCount] = useState(product.qty);
-  const [plusMinusClickOn,setPlusMinusClickOn] = useState(true)
+  const [plusMinusClickOn, setPlusMinusClickOn] = useState(true);
   const [availableOffer, setAvailableOffer] = useState([
     {
       id: 1,
@@ -67,20 +71,51 @@ function ShoppipngCartProduct({ product }) {
     if (count === 0) {
       setCount(0);
     } else {
-      deleteProductFromCart(product.item_id)
+      // deleteProductFromCart(product.item_id)
       setCount(count - 1);
-      setPlusMinusClickOn(false)
-      AddProductToCart(sku,count-1)
+      // setPlusMinusClickOn(false)
+      // AddProductToCart(sku,count-1)
+      AddAfterDeleteFunction(sku, count - 1, product.item_id);
     }
   };
   const increaseCount = (sku) => {
-    deleteProductFromCart(product.item_id)
-    setPlusMinusClickOn(false)
+    // deleteProductFromCart(product.item_id)
+    // setPlusMinusClickOn(false)
     setCount(count + 1);
-    AddProductToCart(sku,count+1)
+    // AddProductToCart(sku,count+1)
+    AddAfterDeleteFunction(sku, count + 1, product.item_id);
   };
 
-  const AddProductToCart = (sku, count,id) => {
+  const AddAfterDeleteFunction = (sku, count, id) => {
+    const addData = {
+      items: [
+        {
+          sku: sku,
+          qty: count,
+        },
+      ],
+    };
+    const deleteData = {
+      // items: [id],
+      items: [id],
+    };
+    deleteFromCart(deleteData)
+      .then((res) => {
+        console.log(res, "res>>>");
+        addToCart(addData).then((res)=>{
+          console.log(res);
+          dispatch(loadCartData());
+          // dispatch(services.notifyError({ message: "Added in Cart" }));
+        })
+        // dispatch(loadCartData());
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        // dispatch(services.notifyError({ message: err.response.data.message }));
+      });
+  };
+
+  const AddProductToCart = (sku, count, id) => {
     const data = {
       items: [
         {
@@ -92,17 +127,65 @@ function ShoppipngCartProduct({ product }) {
     addToCart(data)
       .then((res) => {
         setCount(res.data.filter((pro) => pro.sku === product.sku)[0].qty);
-        dispatch(loadCartData());
-        setPlusMinusClickOn(true)
+        // dispatch(loadCartData());
+        setPlusMinusClickOn(true);
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
         dispatch(services.notifyError({ message: err.response.data.message }));
       });
   };
+
+  useEffect(async () => {
+    const isFavouriteData = await checkForWishlist(
+      product.sku.replace(/[/]/g, "%2F")
+    );
+    setIsFavourite(isFavouriteData);
+  }, []);
   const handleFavourite = () => {
-    setIsFavourite(!isFavourite);
+    if (isFavourite) {
+      setIsFavourite(false);
+      setWishlistCount(wishlistCount + 1);
+    } else {
+      setIsFavourite(true);
+      setWishlistCount(wishlistCount + 1);
+    }
   };
+  useEffect(() => {
+    const data = {
+      items: [product.sku],
+    };
+    if (isFavourite) {
+      if (wishlistCount > 0) {
+        const addToWishlistData = dispatch(loadAddToWishlist(data)).then(
+          (res) => {
+            console.log(res);
+            dispatch(loadWishlistData());
+          }
+        );
+      }
+    } else {
+      if (wishlistCount > 0) {
+        if (!isFavourite) {
+          removeFromWL(product.sku);
+        }
+      }
+    }
+  }, [isFavourite]);
+
+  const removeFromWL = (sku) => {
+    const data = {
+      items: [sku],
+    };
+    const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then(
+      (res) => {
+        console.log(res);
+        dispatch(loadWishlistData());
+      }
+    );
+  };
+  
+
   const handleSubmit = (code) => {
     console.log(code);
   };
@@ -112,7 +195,7 @@ function ShoppipngCartProduct({ product }) {
   const remove = (id) => {
     console.log(id);
   };
-  const deleteProductFromCart = async (id) => {
+  const deleteProductFromCart = (id) => {
     console.log("id ", id);
 
     const data = {
@@ -121,18 +204,18 @@ function ShoppipngCartProduct({ product }) {
     };
     console.log("data ", data);
 
-    await deleteFromCart(data)
+    deleteFromCart(data)
       .then((res) => {
         console.log(res, "res>>>");
+        dispatch(services.notifyError({message:"Removed From Cart"}))
         dispatch(loadCartData());
-        
       })
       .catch((err) => {
         console.log(err.response.data.message, "error >>>>");
         // dispatch(services.notifyError({ message: err.response.data.message }));
       });
   };
-  
+
   return (
     <div className="row sc__product__block">
       <div className="col-12 col-sm-2 sc__product__left__block">

@@ -36,6 +36,7 @@ import Heading2 from "../Components/Font/Heading2";
 import ProductThree from "../Components/ProductType/ProductThree";
 import AddressPopup from "../Components/Popup/AddressPopup";
 import {
+  loadCartData,
   loadCountriesLocationData,
   loadPayfortInformation,
 } from "../redux/appAction";
@@ -198,7 +199,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [selectedAddressId, setSelectedAddressID] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [addressPopup, setAddressPopup] = useState(false);
-  const [addressData, setAddressData] = useState(false);
+  const [addressData, setAddressData] = useState([]);
   const [editAddressData, setEditAddressData] = useState("");
   const [addressPopupType, setAddressPopupType] = useState("add");
   const [paymentMethods, setPaymentMethods] = useState([]);
@@ -438,8 +439,10 @@ function Checkout_Page({ reloadingHeader }) {
       const element = document.querySelector(
         ".login__popup__container__disable"
       );
-      element.classList.remove("login__popup__container__disable");
-      element.classList.add("login__popup__container");
+      if (element !== null) {
+        element.classList.remove("login__popup__container__disable");
+        element.classList.add("login__popup__container");
+      }
       localStorage.setItem("loginWrapper", JSON.stringify(true));
       localStorage.setItem("loginMode", JSON.stringify("signin"));
       localStorage.setItem("loginPopup", JSON.stringify(true));
@@ -637,6 +640,8 @@ function Checkout_Page({ reloadingHeader }) {
         const data = dispatch(
           loadPayfortInformation(newPaymentMethodForPayfort)
         ).then((res) => {
+          dispatch(loadCartData())
+          setCheckoutClassName("delivery");
           console.log("payfort Information", res.data);
           console.log("Entity", res?.data?.entity_id);
 
@@ -659,7 +664,7 @@ function Checkout_Page({ reloadingHeader }) {
           );
           // debugger
           //  sendPayfortInformation(newSendPayfortInformation);
-          setCheckoutClassName("delivery");
+         
           // const response =  fetch("https://sbcheckout.payfort.com/FortAPI/paymentPage", {
           // method: 'POST',
           // headers: {
@@ -683,6 +688,8 @@ function Checkout_Page({ reloadingHeader }) {
       const data = dispatch(
         loadPayfortInformation(newPaymentMethodForPayfort)
       ).then((res) => {
+        dispatch(loadCartData())
+        setCheckoutClassName("delivery");
         console.log("payfort Information", res.data);
         console.log("Entity", res?.data?.entity_id);
 
@@ -741,8 +748,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                        ? signin_done
-                        : signin_initial
+                          ? signin_done
+                          : signin_initial
                     }
                     alt=""
                   />
@@ -753,8 +760,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -774,8 +781,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                        ? delivery_done
-                        : delivery_initial
+                          ? delivery_done
+                          : delivery_initial
                     }
                     alt=""
                   />
@@ -786,8 +793,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -807,8 +814,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                        ? payment_done
-                        : payment_initial
+                          ? payment_done
+                          : payment_initial
                     }
                     alt=""
                   />
@@ -819,8 +826,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -855,7 +862,7 @@ function Checkout_Page({ reloadingHeader }) {
                           return (
                             <div
                               key={add.id}
-                              className="col-12 col-sm-6 address__block"
+                              className="col-12 col-sm-4 address__block"
                             >
                               <div
                                 className={
@@ -899,7 +906,7 @@ function Checkout_Page({ reloadingHeader }) {
                                 />
                                 <div className="address__button__block">
                                   <button className="delivery__button">
-                                    DELIVER TO THIS ADDRESS
+                                    SELECT THIS ADDRESS FOR DELIVERY
                                   </button>
                                   <div className="inner__address__button__block">
                                     <button
@@ -938,23 +945,25 @@ function Checkout_Page({ reloadingHeader }) {
                 {customerDetails !== "" && (
                   <>
                     {/* <hr className="checkout__page__horizontal__line"></hr> */}
-                    <div className=" add__new__address__block">
-                      <button
-                        onClick={() => openNewAddressPopup("add")}
-                        className="location__button"
-                      >
-                        <img
-                          src={black_location}
-                          alt=""
-                          className="location__icon"
-                        />
-                        <Heading5
-                          text="Add New Address"
-                          marginBottom={0}
-                          color="#000000"
-                        />
-                      </button>
-                    </div>
+                    {addressData && addressData.length < 3 &&
+                      <div className=" add__new__address__block">
+                        <button
+                          onClick={() => openNewAddressPopup("add")}
+                          className="location__button"
+                        >
+                          <img
+                            src={black_location}
+                            alt=""
+                            className="location__icon"
+                          />
+                          <Heading5
+                            text="Add New Address"
+                            marginBottom={0}
+                            color="#000000"
+                          />
+                        </button>
+                      </div>
+                    }
                     <hr className="checkout__page__horizontal__line"></hr>
 
                     <div className="row delivery__selcetion__pickup__store">
@@ -979,7 +988,7 @@ function Checkout_Page({ reloadingHeader }) {
                                       onChange={(e) =>
                                         handleChangeDeliveryPref(e)
                                       }
-                                      // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
+                                    // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                     />
                                     <p className="delivery__selection__text">
                                       <Heading4 text={delivery.type} />
@@ -1180,7 +1189,7 @@ function Checkout_Page({ reloadingHeader }) {
                                             </p>
                                           )}
                                         </div>
-                                        <div className="col-sm-12 col-md-4"></div> 
+                                        <div className="col-sm-12 col-md-4"></div>
                                       </div>
                                       <div className="col-sm-12 col-md-3 main__form__field__block">
                                         {/* <p className="form__label">First Name</p> */}
