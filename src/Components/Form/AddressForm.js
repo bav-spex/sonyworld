@@ -300,8 +300,6 @@ function AddressForm({ handleAddressPopup }) {
     if (name === 'primary') {
       value = event.target.checked;
     }
-    console.log("value ", value);
-    console.log("name ", name);
     let manageErrMsg = validateForm(event, errMsg, name, value);
     setErrMsg(manageErrMsg);
     setAddress({ ...address, [name]: value });
