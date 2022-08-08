@@ -472,8 +472,10 @@ function Checkout_Page({ reloadingHeader }) {
     if (document.querySelector(".address__popup__container")) {
       // reloadingHeader()
       const element = document.querySelector(".address__popup__container");
-      element.classList.remove("address__popup__container");
-      element.classList.add("address__popup__container__disable");
+      if (element !== null) {
+        element.classList.remove("address__popup__container");
+        element.classList.add("address__popup__container__disable");
+      }
     }
     setAddressPopup(false);
   };
