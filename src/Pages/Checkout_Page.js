@@ -52,6 +52,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 import valid from "card-validator";
 import Mobile_Checkout_Page from "./MobilePages/Mobile_Checkout_page";
+import {
+  formatCreditCardNumber,
+  formatCVC,
+  formatExpirationDate,
+  formatFormData,
+} from './../Components/helpers/utils/cardValidator';
 
 const errMsgStyle = {
   color: "red",
@@ -214,6 +220,7 @@ function Checkout_Page({ reloadingHeader }) {
     referer_url: "",
   });
   const [deliveryPreferencesType, setDeliveryPreferencesType] = useState("");
+  const [viewMoreAddressBtn, setViewMoreAddressBtn] = useState(false);
 
   const [errMsg, setErrMsg] = useState({
     deliveryAddressList: "",
@@ -228,6 +235,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [card, setCard] = useState({
     cardNumber: "",
     cardHolder: "",
+    monthYear: "",
     month: "",
     year: "",
     cvv: "",
@@ -236,6 +244,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [cardErrMsg, setCardErrMsg] = useState({
     cardNumber: "",
     cardHolder: "",
+    monthYear: "",
     month: "",
     year: "",
     cvv: "",
@@ -520,36 +529,36 @@ function Checkout_Page({ reloadingHeader }) {
           }
         }
         break;
-      case "month":
+      case "monthYear":
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: "Month is missing" };
+          newErrObj = { ...newErrObj, [name]: "Date is missing" };
         } else {
-          let monthValidation = valid.expirationMonth(value);
+          let monthValidation = valid.expirationDate(value);
           if (
             monthValidation.isPotentiallyValid === true &&
             monthValidation.isValid === true
           ) {
-            newErrObj = { ...newErrObj, [name]: "" };
+            newErrObj = { ...newErrObj, [name]: "", month: monthValidation.month, year: monthValidation.year };
           } else {
             newErrObj = { ...newErrObj, [name]: "invalid" };
           }
         }
         break;
-      case "year":
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: "Year is missing" };
-        } else {
-          let yearValidation = valid.expirationYear(value);
-          if (
-            yearValidation.isPotentiallyValid === true &&
-            yearValidation.isValid === true
-          ) {
-            newErrObj = { ...newErrObj, [name]: "" };
-          } else {
-            newErrObj = { ...newErrObj, [name]: "invalid" };
-          }
-        }
-        break;
+      // case "year":
+      //   if (value === "") {
+      //     newErrObj = { ...newErrObj, [name]: "Year is missing" };
+      //   } else {
+      //     let yearValidation = valid.expirationYear(value);
+      //     if (
+      //       yearValidation.isPotentiallyValid === true &&
+      //       yearValidation.isValid === true
+      //     ) {
+      //       newErrObj = { ...newErrObj, [name]: "" };
+      //     } else {
+      //       newErrObj = { ...newErrObj, [name]: "invalid" };
+      //     }
+      //   }
+      //   break;
       case "cvv":
         if (value === "") {
           newErrObj = { ...newErrObj, [name]: "CVV is missing" };
@@ -574,6 +583,15 @@ function Checkout_Page({ reloadingHeader }) {
   const handleChangeCard = async (event) => {
     let value = event.target.value;
     let name = event.target.name;
+
+    if (name === 'cardNumber') {
+      value = formatCreditCardNumber(value);
+    } else if (name === 'monthYear') {
+      value = formatExpirationDate(value);
+    } else if (name === 'cvc') {
+      value = formatCVC(value);
+    }
+
     let manageErrMsg = validateForm(event, cardErrMsg, name, value);
     setCardErrMsg(manageErrMsg);
     setCard({ ...card, [name]: value });
@@ -627,7 +645,7 @@ function Checkout_Page({ reloadingHeader }) {
   });
   const makePayment = async () => {
     console.log("card====>", card);
-    let validateFeild = ["cardNumber", "cardHolder", "month", "year", "cvv"];
+    let validateFeild = ["cardNumber", "cardHolder", "monthYear", "cvv"];
 
     let formStatus = allFeildValidate(validateFeild, cardErrMsg);
     setCardErrMsg(formStatus.allErrMsg);
@@ -664,7 +682,7 @@ function Checkout_Page({ reloadingHeader }) {
           );
           // debugger
           //  sendPayfortInformation(newSendPayfortInformation);
-         
+
           // const response =  fetch("https://sbcheckout.payfort.com/FortAPI/paymentPage", {
           // method: 'POST',
           // headers: {
@@ -732,7 +750,7 @@ function Checkout_Page({ reloadingHeader }) {
     <>
       <div className="d-lg-block d-none">
 
-      <BreadCrumbs title="Checkout" />
+        <BreadCrumbs title="Checkout" />
       </div>
       <div className="d-block d-lg-none">
         <Mobile_Checkout_Page />
@@ -861,7 +879,7 @@ function Checkout_Page({ reloadingHeader }) {
                   {customerDetails !== "" && (
                     <div className="row address__select__block">
                       {addressData &&
-                        addressData.map((add, addIndex) => {
+                        addressData.filter((val, i) => viewMoreAddressBtn === false ? i < 3 : addressData.length).map((add, addIndex) => {
                           return (
                             <div
                               key={add.id}
@@ -948,25 +966,37 @@ function Checkout_Page({ reloadingHeader }) {
                 {customerDetails !== "" && (
                   <>
                     {/* <hr className="checkout__page__horizontal__line"></hr> */}
-                    {addressData && addressData.length < 3 &&
+                    {addressData && addressData.length > 3 && viewMoreAddressBtn === false &&
                       <div className=" add__new__address__block">
                         <button
-                          onClick={() => openNewAddressPopup("add")}
+                          onClick={() => setViewMoreAddressBtn(true)}
                           className="location__button"
                         >
-                          <img
-                            src={black_location}
-                            alt=""
-                            className="location__icon"
-                          />
                           <Heading5
-                            text="Add New Address"
+                            text="View More Address"
                             marginBottom={0}
                             color="#000000"
                           />
                         </button>
                       </div>
                     }
+                    <div className=" add__new__address__block">
+                      <button
+                        onClick={() => openNewAddressPopup("add")}
+                        className="location__button"
+                      >
+                        <img
+                          src={black_location}
+                          alt=""
+                          className="location__icon"
+                        />
+                        <Heading5
+                          text="Add New Address"
+                          marginBottom={0}
+                          color="#000000"
+                        />
+                      </button>
+                    </div>
                     <hr className="checkout__page__horizontal__line"></hr>
 
                     <div className="row delivery__selcetion__pickup__store">
@@ -1117,13 +1147,13 @@ function Checkout_Page({ reloadingHeader }) {
                                       <div className="col-sm-12 col-md-6 main__form__field__block">
                                         {/* <p className="form__label">Mobile Number</p> */}
                                         <Heading7
-                                          text="Credit Holder Name"
+                                          text="Card Holder Name"
                                           marginBottom={10}
                                         />
                                         <div className="field__block">
                                           <input
                                             type="text"
-                                            placeholder="Credit Holder Name"
+                                            placeholder="Card Holder Name"
                                             className="form__field"
                                             id="cardHolder"
                                             name="cardHolder"
@@ -1145,30 +1175,29 @@ function Checkout_Page({ reloadingHeader }) {
                                         <div className="col-sm-12 col-md-4 ">
                                           {/* <p className="form__label">First Name</p> */}
                                           <Heading7
-                                            text="Month"
+                                            text="Month/Year"
                                             marginBottom={10}
                                           />
                                           <div className="field__block">
                                             <input
                                               type="text"
-                                              placeholder="MM"
+                                              placeholder="MM/YY"
                                               className="form__field"
-                                              id="month"
-                                              name="month"
-                                              value={card.month}
+                                              id="monthYear"
+                                              name="monthYear"
+                                              value={card.monthYear}
                                               onChange={(e) =>
                                                 handleChangeCard(e)
                                               }
                                             />
                                           </div>
-                                          {cardErrMsg.month && (
+                                          {cardErrMsg.monthYear && (
                                             <p className="invalid__message">
-                                              {cardErrMsg.month}
+                                              {cardErrMsg.monthYear}
                                             </p>
                                           )}
                                         </div>
-                                        <div className="col-sm-12 col-md-4 ">
-                                          {/* <p className="form__label">Mobile Number</p> */}
+                                        {/* <div className="col-sm-12 col-md-4 ">
                                           <Heading7
                                             text="Year"
                                             marginBottom={10}
@@ -1191,7 +1220,7 @@ function Checkout_Page({ reloadingHeader }) {
                                               {cardErrMsg.year}
                                             </p>
                                           )}
-                                        </div>
+                                        </div> */}
                                         <div className="col-sm-12 col-md-4"></div>
                                       </div>
                                       <div className="col-sm-12 col-md-3 main__form__field__block">
