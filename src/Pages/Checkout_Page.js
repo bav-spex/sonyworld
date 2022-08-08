@@ -57,6 +57,7 @@ import {
   formatExpirationDate,
   formatFormData,
 } from './../Components/helpers/utils/cardValidator';
+import { updateShippingInformationSuccess } from "../services/cart.service";
 
 const errMsgStyle = {
   color: "red",
@@ -283,6 +284,7 @@ function Checkout_Page({ reloadingHeader }) {
       console.log(deliveryShippingInfo.payment_methods);
       setPaymentMethods(deliveryShippingInfo.payment_methods);
       setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
+      dispatch(updateShippingInformationSuccess(''))
     }
   }, [deliveryShippingInfo]);
   // console.log("paymentMethods", paymentMethods);
@@ -784,8 +786,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                        ? signin_done
-                        : signin_initial
+                          ? signin_done
+                          : signin_initial
                     }
                     alt=""
                   />
@@ -796,8 +798,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -817,8 +819,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                        ? delivery_done
-                        : delivery_initial
+                          ? delivery_done
+                          : delivery_initial
                     }
                     alt=""
                   />
@@ -829,8 +831,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -850,8 +852,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                        ? payment_done
-                        : payment_initial
+                          ? payment_done
+                          : payment_initial
                     }
                     alt=""
                   />
@@ -862,8 +864,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                        ? "#585858"
-                        : "#C8C8C8"
+                          ? "#585858"
+                          : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -1048,7 +1050,7 @@ function Checkout_Page({ reloadingHeader }) {
                                       onChange={(e) =>
                                         handleChangeDeliveryPref(e)
                                       }
-                                      // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
+                                    // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                     />
                                     <p className="delivery__selection__text">
                                       <Heading4 text={delivery.type} />
