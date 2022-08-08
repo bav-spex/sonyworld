@@ -706,6 +706,7 @@ function Checkout_Page({ reloadingHeader }) {
           // response.json().then(data=>{
           //   console.log("responseData",data);
           // })
+          setCheckoutClassName("delivery");
           navigate(`/user/orders/${res.data.entity_id}`);
         });
       }
@@ -985,22 +986,26 @@ function Checkout_Page({ reloadingHeader }) {
                 {customerDetails !== "" && (
                   <>
                     {/* <hr className="checkout__page__horizontal__line"></hr> */}
-                    {addressData &&
-                      addressData.length > 3 &&
-                      viewMoreAddressBtn === false && (
-                        <div className=" add__new__address__block">
-                          <button
-                            onClick={() => setViewMoreAddressBtn(true)}
-                            className="location__button"
-                          >
-                            <Heading5
-                              text="View More Address"
-                              marginBottom={0}
-                              color="#000000"
-                            />
-                          </button>
-                        </div>
-                      )}
+                    {addressData && addressData.length > 3 && (
+                      <div className=" add__new__address__block">
+                        <button
+                          onClick={() =>
+                            setViewMoreAddressBtn(!viewMoreAddressBtn)
+                          }
+                          className="view__more__address__button"
+                        >
+                          <Heading5
+                            text={
+                              viewMoreAddressBtn
+                                ? "View Less"
+                                : "View More Address"
+                            }
+                            marginBottom={0}
+                            color="#FF4F04"
+                          />
+                        </button>
+                      </div>
+                    )}
                     <div className=" add__new__address__block">
                       <button
                         onClick={() => openNewAddressPopup("add")}
@@ -1061,6 +1066,7 @@ function Checkout_Page({ reloadingHeader }) {
                                         <Price
                                           price={delivery.price}
                                           size="heading6"
+                                          currency={"SAR"}
                                         />
                                       )}
                                     </p>
@@ -1130,7 +1136,7 @@ function Checkout_Page({ reloadingHeader }) {
                                   className="payment__input__check"
                                   name="paymentType"
                                   value={payment.code}
-                                  onChange={handleChangePaymentMethod}
+                                  onClick={handleChangePaymentMethod}
                                 />
                                 <p className="payment__selection__text">
                                   <Heading4 text={payment.title} />
@@ -1142,7 +1148,7 @@ function Checkout_Page({ reloadingHeader }) {
                                     <div className="address__content__block">
                                       <div className="payment__card__block">
                                         <div className="row payment__form__field__row">
-                                          <div className="col-sm-12 col-md-6 main__form__field__block">
+                                          <div className="col-sm-12 col-md-3 main__form__field__block">
                                             {/* <p className="form__label">First Name</p> */}
                                             <Heading7
                                               text="Credit Card Number"
@@ -1167,7 +1173,7 @@ function Checkout_Page({ reloadingHeader }) {
                                               </p>
                                             )}
                                           </div>
-                                          <div className="col-sm-12 col-md-6 main__form__field__block">
+                                          <div className="col-sm-12 col-md-3 main__form__field__block">
                                             {/* <p className="form__label">Mobile Number</p> */}
                                             <Heading7
                                               text="Card Holder Name"
@@ -1177,7 +1183,7 @@ function Checkout_Page({ reloadingHeader }) {
                                               <input
                                                 type="text"
                                                 placeholder="Card  Holder Name"
-                                                className="form__field"
+                                                className="form__field card__holder__field"
                                                 id="cardHolder"
                                                 name="cardHolder"
                                                 value={card.cardHolder}
@@ -1192,35 +1198,33 @@ function Checkout_Page({ reloadingHeader }) {
                                               </p>
                                             )}
                                           </div>
-                                        </div>
-                                        <div className="row payment__form__field__row">
-                                          <div className="row col-sm-12 col-md-6 main__form__field__block month__year__form__field__block">
-                                            <div className="col-sm-12 col-md-4 ">
-                                              {/* <p className="form__label">First Name</p> */}
-                                              <Heading7
-                                                text="Month/Year"
-                                                marginBottom={10}
+
+                                          <div className="col-sm-12 col-md-3 main__form__field__block ">
+                                            {/* <p className="form__label">First Name</p> */}
+                                            <Heading7
+                                              text="Month/Year"
+                                              marginBottom={10}
+                                            />
+                                            <div className="field__block">
+                                              <input
+                                                type="text"
+                                                placeholder="MM/YY"
+                                                className="form__field"
+                                                id="monthYear"
+                                                name="monthYear"
+                                                value={card.monthYear}
+                                                onChange={(e) =>
+                                                  handleChangeCard(e)
+                                                }
                                               />
-                                              <div className="field__block">
-                                                <input
-                                                  type="text"
-                                                  placeholder="MM/YY"
-                                                  className="form__field"
-                                                  id="monthYear"
-                                                  name="monthYear"
-                                                  value={card.monthYear}
-                                                  onChange={(e) =>
-                                                    handleChangeCard(e)
-                                                  }
-                                                />
-                                              </div>
-                                              {cardErrMsg.monthYear && (
-                                                <p className="invalid__message">
-                                                  {cardErrMsg.monthYear}
-                                                </p>
-                                              )}
                                             </div>
-                                            {/* <div className="col-sm-12 col-md-4 ">
+                                            {cardErrMsg.monthYear && (
+                                              <p className="invalid__message">
+                                                {cardErrMsg.monthYear}
+                                              </p>
+                                            )}
+                                          </div>
+                                          {/* <div className="col-sm-12 col-md-4 ">
                                               <Heading7
                                                 text="Year"
                                                 marginBottom={10}
@@ -1244,8 +1248,7 @@ function Checkout_Page({ reloadingHeader }) {
                                                 </p>
                                               )}
                                             </div> */}
-                                            <div className="col-sm-12 col-md-4"></div>
-                                          </div>
+
                                           <div className="col-sm-12 col-md-3 main__form__field__block">
                                             {/* <p className="form__label">First Name</p> */}
                                             <Heading7
@@ -1359,10 +1362,14 @@ function Checkout_Page({ reloadingHeader }) {
                       );
                     })} */}
 
-<div className="checkout__os__detail__inner__block">
+                  <div className="checkout__os__detail__inner__block">
                     <Text3 text="Sub Total" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_subtotal:0}
+                      price={
+                        cartTotalData && cartTotalData.items_qty !== 0
+                          ? cartTotalData?.base_subtotal
+                          : 0
+                      }
                       size="heading7"
                       currency={
                         cartTotalData && cartTotalData.base_currency_code
@@ -1372,8 +1379,11 @@ function Checkout_Page({ reloadingHeader }) {
                   <div className="checkout__os__detail__inner__block">
                     <Text3 text="Shipping & Handling" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_shipping_amount:0}
-                      
+                      price={
+                        cartTotalData && cartTotalData.items_qty !== 0
+                          ? cartTotalData?.base_shipping_amount
+                          : 0
+                      }
                       size="heading7"
                       currency={
                         cartTotalData && cartTotalData?.base_currency_code
@@ -1383,7 +1393,11 @@ function Checkout_Page({ reloadingHeader }) {
                   <div className="checkout__os__detail__inner__block">
                     <Text3 text="Discount" color="#000000" />
                     <Price
-                       price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.discount_amount:0}
+                      price={
+                        cartTotalData && cartTotalData.items_qty !== 0
+                          ? cartTotalData?.discount_amount
+                          : 0
+                      }
                       size="heading7"
                       currency={
                         cartTotalData && cartTotalData?.base_currency_code
@@ -1393,7 +1407,11 @@ function Checkout_Page({ reloadingHeader }) {
                   <div className="checkout__os__detail__inner__block">
                     <Heading6 text="Grand Total" color="#000000" />
                     <Price
-                      price={cartTotalData === undefined ? 0: cartTotalData?.grand_total}
+                      price={
+                        cartTotalData === undefined
+                          ? 0
+                          : cartTotalData?.grand_total
+                      }
                       size="heading7"
                       currency={
                         cartTotalData && cartTotalData?.base_currency_code

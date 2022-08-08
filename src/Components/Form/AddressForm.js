@@ -724,8 +724,6 @@ function AddressForm({ handleAddressPopup }) {
             </div>
           </div>
         </div>
-        {addressData && addressData.length < 3 &&
-          <>
             <div className="newAddress__form__button__block">
               <button className="form__save__button" onClick={handleSubmit}>
                 SAVE
@@ -734,8 +732,6 @@ function AddressForm({ handleAddressPopup }) {
                 CANCEL
               </button>
             </div>
-          </>
-        }
       </div>
     </>
   );
