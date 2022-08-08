@@ -75,49 +75,49 @@ const dashboardDropdownData = [
     id: 1,
     icon: db_my_order,
     title: "My Orders",
-    link:"/user/orders"
+    link: "/user/orders",
   },
   {
     id: 2,
     icon: db_my_profile,
     title: "My Profile",
-    link:"/user/profile"
+    link: "/user/profile",
   },
   {
     id: 3,
     icon: db_my_payments,
     title: "My Payments",
-    link:"#"
+    link: "#",
   },
   {
     id: 4,
     icon: db_my_wishlist,
     title: "My Wishlists",
-    link:"/user/wishlist"
+    link: "/user/wishlist",
   },
   {
     id: 5,
     icon: db_my_wallet,
     title: "My Wallet",
-    link:"#"
+    link: "#",
   },
   {
     id: 6,
     icon: db_my_tickets,
     title: "My Tickets",
-    link:"#"
+    link: "#",
   },
   {
     id: 7,
     icon: db_my_returns,
     title: "My Returns",
-    link:"#"
+    link: "#",
   },
   {
     id: 8,
     icon: db_my_giftcards,
     title: "Gift Cards",
-    link:"#"
+    link: "#",
   },
 ];
 
@@ -203,10 +203,27 @@ function Header({
   }, [currentLanguage, t]);
 
   // language dropdown open and close
-
+  const [isEnglish, setIsEnglish] = useState(true);
+  useEffect(() => {
+    if (isEnglish) {
+      let lang = {
+        code: "en",
+        name: "English",
+        country_code: "gb",
+      };
+      handleLanguageChange(lang);
+    } else {
+      let lang = {
+        code: "ar",
+        name: "العربية",
+        dir: "rtl",
+        country_code: "sa",
+      };
+      handleLanguageChange(lang);
+    }
+  }, [isEnglish]);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const handleLanguageChange = (lang) => {
-    setIsLanguageMenuOpen(!isLanguageMenuOpen);
     setCurentLanguage(lang);
     i18next.changeLanguage(lang.code);
   };
@@ -655,29 +672,28 @@ function Header({
                       alt=""
                       className="header__search__icon header__icon"
                     />
-                    <div className="main__language__selection">
+                    <div onClick={() => setIsEnglish(!isEnglish)} className="main__language__selection">
                       <img
                         src={language}
                         alt=""
                         className="header__language__icon header__icon"
-                        onClick={() =>
-                          setIsLanguageMenuOpen(!isLanguageMenuOpen)
-                        }
+                        onClick={() => setIsEnglish(!isEnglish)}
                       />
-                      <div
-                        className="language__selction"
-                        onClick={() =>
-                          setIsLanguageMenuOpen(!isLanguageMenuOpen)
-                        }
-                      >
-                        <p className="language">{currentLanguage.name} </p>
-                        <img
+
+                      <p className="language">
+                        {currentLanguage.name === "English"
+                          ? "العربية"
+                          : currentLanguage.name === "العربية"
+                          ? "English"
+                          : "العربية"}{" "}
+                      </p>
+                      {/* <img
                           src={white_down_arrow}
                           alt=""
                           className="down__arrow__icon"
-                        />
-                      </div>
-                      <div
+                        /> */}
+
+                      {/* <div
                         className={
                           isLanguageMenuOpen
                             ? "language__option__dropdown"
@@ -696,7 +712,7 @@ function Header({
                             </p>
                           );
                         })}
-                      </div>
+                      </div> */}
                     </div>
                     <Link to="/findstore">
                       <img
@@ -727,7 +743,7 @@ function Header({
                               ? "signin__signup__popup"
                               : "signin__signup__popup__disable"
                           }
-                          onMouseLeave={()=>setUserLoginPopup(false)}
+                          onMouseLeave={() => setUserLoginPopup(false)}
                         >
                           <button
                             onClick={() => openLoginWrapper("signin")}
@@ -758,10 +774,10 @@ function Header({
                                 ? "user__dropdown__block"
                                 : "signin__signup__popup__disable"
                             }
-                            onMouseLeave={()=>setUserLoginPopup(false)}
+                            onMouseLeave={() => setUserLoginPopup(false)}
                           >
                             <div className="user__dropdown__title__block">
-                              <Heading7 text="My Account"/>
+                              <Heading7 text="My Account" />
                             </div>
                             {/* {`${
                               customerDetails.firstname !== null
@@ -774,7 +790,10 @@ function Header({
                             }`} */}
                             {dashboardDropdownData.map((item, itemIndex) => {
                               return (
-                                <Link to={item.link} className="user__db__menu__block">
+                                <Link
+                                  to={item.link}
+                                  className="user__db__menu__block"
+                                >
                                   <img
                                     className="user__db__icon"
                                     src={item.icon}
@@ -787,13 +806,13 @@ function Header({
                               );
                             })}
                             <div className="user__db__signout__button__block">
-                            <button
-                              onClick={() => customerLogout("signin")}
-                              className="logout__button"
+                              <button
+                                onClick={() => customerLogout("signin")}
+                                className="logout__button"
                               >
-                              Sign Out
-                            </button>
-                              </div>
+                                Sign Out
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </>

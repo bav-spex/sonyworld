@@ -204,7 +204,7 @@ function Mobile_Checkout_Page({ }) {
 	const deliveryShippingInfo = useSelector(
 		(state) => state.appData.deliveryShippingInfo
 	);
-	console.log("deliveryShippingInfo ", deliveryShippingInfo);
+	// console.log("deliveryShippingInfo ", deliveryShippingInfo);
 
 	const [selectedAddressId, setSelectedAddressID] = useState(0);
 	const [couponCode, setCouponCode] = useState("");
@@ -261,7 +261,7 @@ function Mobile_Checkout_Page({ }) {
 			setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
 		}
 	}, [deliveryShippingInfo]);
-	console.log("paymentMethods", paymentMethods);
+	// console.log("paymentMethods", paymentMethods);
 	useEffect(async () => {
 		const data = await getAvailablePaymentMethods();
 		if (data) {
@@ -479,7 +479,7 @@ function Mobile_Checkout_Page({ }) {
 			referer_url: "https://alpha-api.mestores.com",
 		});
 	};
-	console.log(paymentMethodForPayfort);
+	// console.log(paymentMethodForPayfort);
 	const makePayment = async () => {
 
 		let validateFeild = [

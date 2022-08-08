@@ -14697,10 +14697,12 @@ function Product_Details_Page({handleChangeCartPopup}) {
 
   useEffect(async () => {
     const isFavouriteData = await checkForWishlist(
-      product.sku.replace(/[/]/g, "%2F")
+      product?.sku?.replace(/[/]/g, "%2F")
     );
+    console.log(product.sku);
+    console.log(isFavouriteData);
     setIsFavourite(isFavouriteData);
-  }, []);
+  }, [product]);
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
