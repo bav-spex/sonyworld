@@ -25,7 +25,6 @@ import cancel_grey from "./../assets/Icon/cancel_grey.svg";
 import shipping from "./../assets/Icon/shipping.svg";
 import sony_logo from "./../assets/Icon/sony_logo.svg";
 import black_location from "./../assets/Icon/black_location.svg";
-
 import Text5 from "../Components/Font/Text5";
 import Heading7 from "../Components/Font/Heading7";
 import Text4 from "../Components/Font/Text4";
@@ -52,6 +51,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { getCustomerLoginDetails } from "../Components/helpers/utils/getCustomerLoginDetails";
 import valid from "card-validator";
 import Mobile_Checkout_Page from "./MobilePages/Mobile_Checkout_page";
+
+import {
+  formatCreditCardNumber,
+  formatCVC,
+  formatExpirationDate,
+  formatFormData,
+} from "./../Components/helpers/utils/cardValidator";
 
 const errMsgStyle = {
   color: "red",
@@ -215,6 +221,7 @@ function Checkout_Page({ reloadingHeader }) {
     referer_url: "",
   });
   const [deliveryPreferencesType, setDeliveryPreferencesType] = useState("");
+  const [viewMoreAddressBtn, setViewMoreAddressBtn] = useState(false);
 
   const [errMsg, setErrMsg] = useState({
     deliveryAddressList: "",
@@ -229,6 +236,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [card, setCard] = useState({
     cardNumber: "",
     cardHolder: "",
+    monthYear: "",
     month: "",
     year: "",
     cvv: "",
@@ -237,6 +245,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [cardErrMsg, setCardErrMsg] = useState({
     cardNumber: "",
     cardHolder: "",
+    monthYear: "",
     month: "",
     year: "",
     cvv: "",
@@ -253,21 +262,19 @@ function Checkout_Page({ reloadingHeader }) {
         referer_url: "https://alpha-api.mestores.com",
       });
     }
-   
-  
-   
+
     // dispatch(services.getCustomerAddressList());
     // dispatch(loadCountriesLocationData());
     // dispatch(loadCitiesLocationData());
   }, []);
-  const cartData = useSelector(state=>state.appData.cartData)
- console.log("cartData ", cartData);
+  const cartData = useSelector((state) => state.appData.cartData);
+  console.log("cartData ", cartData);
 
   useEffect(() => {
     if (Object.values(cartData).length !== 0) {
       setCartTotalData(cartData.totals_data);
       setLoading(false);
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0);
     }
   }, [cartData]);
   useEffect(() => {
@@ -280,7 +287,7 @@ function Checkout_Page({ reloadingHeader }) {
     }
   }, [deliveryShippingInfo]);
   // console.log("paymentMethods", paymentMethods);
- 
+
   console.log(273, cartTotalData && cartTotalData);
   // Delivery Preferences
   useEffect(async () => {
@@ -531,36 +538,39 @@ function Checkout_Page({ reloadingHeader }) {
           }
         }
         break;
-      case "month":
+      case "monthYear":
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: "Month is missing" };
+          newErrObj = { ...newErrObj, [name]: "Date is missing" };
         } else {
-          let monthValidation = valid.expirationMonth(value);
+          let monthValidation = valid.expirationDate(value);
           if (
             monthValidation.isPotentiallyValid === true &&
             monthValidation.isValid === true
           ) {
-            newErrObj = { ...newErrObj, [name]: "" };
-          } else {
-            newErrObj = { ...newErrObj, [name]: "invalid" };
+            newErrObj = {
+              ...newErrObj,
+              [name]: "",
+              month: monthValidation.month,
+              year: monthValidation.year,
+            };
           }
         }
         break;
-      case "year":
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: "Year is missing" };
-        } else {
-          let yearValidation = valid.expirationYear(value);
-          if (
-            yearValidation.isPotentiallyValid === true &&
-            yearValidation.isValid === true
-          ) {
-            newErrObj = { ...newErrObj, [name]: "" };
-          } else {
-            newErrObj = { ...newErrObj, [name]: "invalid" };
-          }
-        }
-        break;
+      // case "year":
+      //   if (value === "") {
+      //     newErrObj = { ...newErrObj, [name]: "Year is missing" };
+      //   } else {
+      //     let yearValidation = valid.expirationYear(value);
+      //     if (
+      //       yearValidation.isPotentiallyValid === true &&
+      //       yearValidation.isValid === true
+      //     ) {
+      //       newErrObj = { ...newErrObj, [name]: "" };
+      //     } else {
+      //       newErrObj = { ...newErrObj, [name]: "invalid" };
+      //     }
+      //   }
+      //   break;
       case "cvv":
         if (value === "") {
           newErrObj = { ...newErrObj, [name]: "CVV is missing" };
@@ -585,6 +595,14 @@ function Checkout_Page({ reloadingHeader }) {
   const handleChangeCard = async (event) => {
     let value = event.target.value;
     let name = event.target.name;
+    if (name === "cardNumber") {
+      value = formatCreditCardNumber(value);
+    } else if (name === "monthYear") {
+      value = formatExpirationDate(value);
+    } else if (name === "cvc") {
+      value = formatCVC(value);
+    }
+
     let manageErrMsg = validateForm(event, cardErrMsg, name, value);
     setCardErrMsg(manageErrMsg);
     setCard({ ...card, [name]: value });
@@ -638,7 +656,7 @@ function Checkout_Page({ reloadingHeader }) {
   });
   const makePayment = async () => {
     console.log("card====>", card);
-    let validateFeild = ["cardNumber", "cardHolder", "month", "year", "cvv"];
+    let validateFeild = ["cardNumber", "cardHolder", "monthYear", "cvv"];
 
     let formStatus = allFeildValidate(validateFeild, cardErrMsg);
     setCardErrMsg(formStatus.allErrMsg);
@@ -874,82 +892,88 @@ function Checkout_Page({ reloadingHeader }) {
                   {customerDetails !== "" && (
                     <div className="row address__select__block">
                       {addressData &&
-                        addressData.map((add, addIndex) => {
-                          return (
-                            <div
-                              key={add.id}
-                              className="col-12 col-sm-4 address__block"
-                            >
+                        addressData
+                          .filter((val, i) =>
+                            viewMoreAddressBtn === false
+                              ? i < 3
+                              : addressData.length
+                          )
+                          .map((add, addIndex) => {
+                            return (
                               <div
-                                className={
-                                  selectedAddressId === addIndex
-                                    ? "selected__address__inner__block"
-                                    : "address__inner__block"
-                                }
-                                onClick={() =>
-                                  selectAddress(addIndex, add.id, add)
-                                }
+                                key={add.id}
+                                className="col-12 col-sm-4 address__block"
                               >
-                                {add.isDefault ? (
-                                  <div className="address__tag">
-                                    <Heading7 text="DEFAULT" span={true} />
-                                  </div>
-                                ) : (
-                                  <div className="white__address__tag">
-                                    <Text5
-                                      text="NONE"
-                                      span={true}
-                                      color="#ffffff"
+                                <div
+                                  className={
+                                    selectedAddressId === addIndex
+                                      ? "selected__address__inner__block"
+                                      : "address__inner__block"
+                                  }
+                                  onClick={() =>
+                                    selectAddress(addIndex, add.id, add)
+                                  }
+                                >
+                                  {add.isDefault ? (
+                                    <div className="address__tag">
+                                      <Heading7 text="DEFAULT" span={true} />
+                                    </div>
+                                  ) : (
+                                    <div className="white__address__tag">
+                                      <Text5
+                                        text="NONE"
+                                        span={true}
+                                        color="#ffffff"
+                                      />
+                                    </div>
+                                  )}
+                                  <Heading7 text={add.userName} />
+                                  <p className="full__address">
+                                    <Text4
+                                      text={add.adddress}
+                                      marginBottom={20}
                                     />
-                                  </div>
-                                )}
-                                <Heading7 text={add.userName} />
-                                <p className="full__address">
+                                  </p>
+                                  <Heading7
+                                    text="Phone Number:"
+                                    color="#808080"
+                                    span={true}
+                                  />{" "}
                                   <Text4
-                                    text={add.adddress}
-                                    marginBottom={20}
+                                    text={add.contact}
+                                    marginLeft={10}
+                                    span={true}
                                   />
-                                </p>
-                                <Heading7
-                                  text="Phone Number:"
-                                  color="#808080"
-                                  span={true}
-                                />{" "}
-                                <Text4
-                                  text={add.contact}
-                                  marginLeft={10}
-                                  span={true}
-                                />
-                                <div className="address__button__block">
-                                  <button className="delivery__button">
-                                    SELECT THIS ADDRESS FOR DELIVERY
-                                  </button>
-                                  <div className="inner__address__button__block">
-                                    <button
-                                      onClick={() =>
-                                        openNewAddressPopup(
-                                          "update",
-                                          addIndex,
-                                          add.id,
-                                          add
-                                        )
-                                      }
-                                      className="edit__button"
-                                    >
-                                      EDIT
+                                  <div className="address__button__block">
+                                    <button className="delivery__button">
+                                      SELECT THIS ADDRESS FOR DELIVERY
                                     </button>
-                                    <button
-                                      className="delete__button"
-                                      onClick={() => deleteAddress(add.id)}
-                                    >
-                                      DELETE
-                                    </button>
+                                    <div className="inner__address__button__block">
+                                      <button
+                                        onClick={() =>
+                                          openNewAddressPopup(
+                                            "update",
+                                            addIndex,
+                                            add.id,
+                                            add
+                                          )
+                                        }
+                                        className="edit__button"
+                                      >
+                                        EDIT
+                                      </button>
+                                      <button
+                                        className="delete__button"
+                                        onClick={() => deleteAddress(add.id)}
+                                      >
+                                        DELETE
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          })}
                       {errMsg.deliveryAddressList && (
                         <p className="invalid__message" style={errMsgStyle}>
                           {errMsg.deliveryAddressList}
@@ -961,27 +985,41 @@ function Checkout_Page({ reloadingHeader }) {
                 {customerDetails !== "" && (
                   <>
                     {/* <hr className="checkout__page__horizontal__line"></hr> */}
-                    {addressData && addressData.length < 3 && (
-                      <div className=" add__new__address__block">
-                        <button
-                          onClick={() => openNewAddressPopup("add")}
-                          className="location__button"
-                        >
-                          <img
-                            src={black_location}
-                            alt=""
-                            className="location__icon"
-                          />
-                          <Heading5
-                            text="Add New Address"
-                            marginBottom={0}
-                            color="#000000"
-                          />
-                        </button>
-                      </div>
-                    )}
-                    <hr className="checkout__page__horizontal__line"></hr>
+                    {addressData &&
+                      addressData.length > 3 &&
+                      viewMoreAddressBtn === false && (
+                        <div className=" add__new__address__block">
+                          <button
+                            onClick={() => setViewMoreAddressBtn(true)}
+                            className="location__button"
+                          >
+                            <Heading5
+                              text="View More Address"
+                              marginBottom={0}
+                              color="#000000"
+                            />
+                          </button>
+                        </div>
+                      )}
+                    <div className=" add__new__address__block">
+                      <button
+                        onClick={() => openNewAddressPopup("add")}
+                        className="location__button"
+                      >
+                        <img
+                          src={black_location}
+                          alt=""
+                          className="location__icon"
+                        />
+                        <Heading5
+                          text="Add New Address"
+                          marginBottom={0}
+                          color="#000000"
+                        />
+                      </button>
+                    </div>
 
+                    <hr className="checkout__page__horizontal__line"></hr>
                     <div className="row delivery__selcetion__pickup__store">
                       <div className="col-12 col-sm-12 col-md-7 delivery__preferences__block">
                         <div className="delivery__preferences__title__block">
@@ -1132,13 +1170,13 @@ function Checkout_Page({ reloadingHeader }) {
                                           <div className="col-sm-12 col-md-6 main__form__field__block">
                                             {/* <p className="form__label">Mobile Number</p> */}
                                             <Heading7
-                                              text="Credit Holder Name"
+                                              text="Card Holder Name"
                                               marginBottom={10}
                                             />
                                             <div className="field__block">
                                               <input
                                                 type="text"
-                                                placeholder="Credit Holder Name"
+                                                placeholder="Card  Holder Name"
                                                 className="form__field"
                                                 id="cardHolder"
                                                 name="cardHolder"
@@ -1160,30 +1198,29 @@ function Checkout_Page({ reloadingHeader }) {
                                             <div className="col-sm-12 col-md-4 ">
                                               {/* <p className="form__label">First Name</p> */}
                                               <Heading7
-                                                text="Month"
+                                                text="Month/Year"
                                                 marginBottom={10}
                                               />
                                               <div className="field__block">
                                                 <input
                                                   type="text"
-                                                  placeholder="MM"
+                                                  placeholder="MM/YY"
                                                   className="form__field"
-                                                  id="month"
-                                                  name="month"
-                                                  value={card.month}
+                                                  id="monthYear"
+                                                  name="monthYear"
+                                                  value={card.monthYear}
                                                   onChange={(e) =>
                                                     handleChangeCard(e)
                                                   }
                                                 />
                                               </div>
-                                              {cardErrMsg.month && (
+                                              {cardErrMsg.monthYear && (
                                                 <p className="invalid__message">
-                                                  {cardErrMsg.month}
+                                                  {cardErrMsg.monthYear}
                                                 </p>
                                               )}
                                             </div>
-                                            <div className="col-sm-12 col-md-4 ">
-                                              {/* <p className="form__label">Mobile Number</p> */}
+                                            {/* <div className="col-sm-12 col-md-4 ">
                                               <Heading7
                                                 text="Year"
                                                 marginBottom={10}
@@ -1206,7 +1243,7 @@ function Checkout_Page({ reloadingHeader }) {
                                                   {cardErrMsg.year}
                                                 </p>
                                               )}
-                                            </div>
+                                            </div> */}
                                             <div className="col-sm-12 col-md-4"></div>
                                           </div>
                                           <div className="col-sm-12 col-md-3 main__form__field__block">
@@ -1321,45 +1358,46 @@ function Checkout_Page({ reloadingHeader }) {
                         </div>
                       );
                     })} */}
-                   
-                  <div
-                    className="checkout__os__detail__inner__block"
-                  >
+
+<div className="checkout__os__detail__inner__block">
                     <Text3 text="Sub Total" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData?.base_subtotal}
+                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_subtotal:0}
                       size="heading7"
-                      currency={cartTotalData && cartTotalData.base_currency_code}
+                      currency={
+                        cartTotalData && cartTotalData.base_currency_code
+                      }
                     />
                   </div>
-                  <div
-                    className="checkout__os__detail__inner__block"
-                  >
+                  <div className="checkout__os__detail__inner__block">
                     <Text3 text="Shipping & Handling" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData?.base_shipping_amount}
+                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_shipping_amount:0}
+                      
                       size="heading7"
-                      currency={cartTotalData && cartTotalData?.base_currency_code}
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
                     />
                   </div>
-                  <div
-                    className="checkout__os__detail__inner__block"
-                  >
+                  <div className="checkout__os__detail__inner__block">
                     <Text3 text="Discount" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData?.discount_amount}
+                       price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.discount_amount:0}
                       size="heading7"
-                      currency={cartTotalData && cartTotalData?.base_currency_code}
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
                     />
                   </div>
-                  <div
-                    className="checkout__os__detail__inner__block"
-                  >
+                  <div className="checkout__os__detail__inner__block">
                     <Heading6 text="Grand Total" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData?.grand_total}
+                      price={cartTotalData === undefined ? 0: cartTotalData?.grand_total}
                       size="heading7"
-                      currency={cartTotalData && cartTotalData?.base_currency_code}
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
                     />
                   </div>
                 </div>

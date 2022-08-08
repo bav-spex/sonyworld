@@ -770,10 +770,11 @@ function Cart_Page() {
                         </div>
                       );
                     })} */}
+                  
                   <div className="sc__ps__detail__inner__block">
                     <Text3 text="Sub Total" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData?.base_subtotal}
+                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_subtotal:0}
                       size="heading7"
                       currency={
                         cartTotalData && cartTotalData.base_currency_code
@@ -783,9 +784,8 @@ function Cart_Page() {
                   <div className="sc__ps__detail__inner__block">
                     <Text3 text="Shipping & Handling" color="#000000" />
                     <Price
-                      price={
-                        cartTotalData && cartTotalData?.base_shipping_amount
-                      }
+                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_shipping_amount:0}
+                      
                       size="heading7"
                       currency={
                         cartTotalData && cartTotalData?.base_currency_code
@@ -795,7 +795,7 @@ function Cart_Page() {
                   <div className="sc__ps__detail__inner__block">
                     <Text3 text="Discount" color="#000000" />
                     <Price
-                      price={cartTotalData && cartTotalData?.discount_amount}
+                       price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.discount_amount:0}
                       size="heading7"
                       currency={
                         cartTotalData && cartTotalData?.base_currency_code
