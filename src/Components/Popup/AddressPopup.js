@@ -377,6 +377,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
         <div className="row address__form__field__row">
           <div className="col-sm-12 col-md-6 main__form__field__block">
             {/* <p className="form__label">First Name</p> */}
+            {/* <p className="form__label">First Name</p> */}
             <Heading7 text="First Name" marginBottom={10} />
             <div className="field__block">
               <input

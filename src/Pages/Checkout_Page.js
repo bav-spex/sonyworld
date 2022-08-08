@@ -57,7 +57,7 @@ import {
   formatExpirationDate,
   formatFormData,
 } from './../Components/helpers/utils/cardValidator';
-//test1 commit
+
 const errMsgStyle = {
   color: "red",
   margin: "5px 0px 0px",
@@ -211,6 +211,7 @@ function Checkout_Page({ reloadingHeader }) {
   const [userPaymentMethod, setUserPaymentMethod] = useState();
   const [cartDetail, setCartDetail] = useState();
   const [cartTotalData, setCartTotalData] = useState();
+  const [loading, setLoading] = useState(true);
   const [shippingMethods, setShippingMethods] = useState();
   const [deliveryType, setDeliveryType] = useState([]);
   const [paymentMethodForPayfort, setPaymentMethodForPayfort] = useState({
@@ -249,15 +250,6 @@ function Checkout_Page({ reloadingHeader }) {
     cvv: "",
   });
 
-  useEffect(() => {
-    if (deliveryShippingInfo !== "") {
-      setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
-      setCheckoutClassName("payment");
-      setPaymentMethods(deliveryShippingInfo.payment_methods);
-      setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
-    }
-  }, [deliveryShippingInfo]);
-  // console.log("paymentMethods", paymentMethods);
   useEffect(async () => {
     const data = await getAvailablePaymentMethods();
     if (data) {
@@ -269,15 +261,33 @@ function Checkout_Page({ reloadingHeader }) {
         referer_url: "https://alpha-api.mestores.com",
       });
     }
-    const cartData = await getCartData();
-    if (data) {
-      setCartTotalData(cartData.data.totals_data);
-    }
+
     // dispatch(services.getCustomerAddressList());
     // dispatch(loadCountriesLocationData());
     // dispatch(loadCitiesLocationData());
   }, []);
+  const cartData = useSelector((state) => state.appData.cartData);
+  console.log("cartData ", cartData);
 
+  useEffect(() => {
+    if (Object.values(cartData).length !== 0) {
+      setCartTotalData(cartData.totals_data);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    }
+  }, [cartData]);
+  useEffect(() => {
+    if (deliveryShippingInfo !== "") {
+      setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
+      setCheckoutClassName("payment");
+      console.log(deliveryShippingInfo.payment_methods);
+      setPaymentMethods(deliveryShippingInfo.payment_methods);
+      setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
+    }
+  }, [deliveryShippingInfo]);
+  // console.log("paymentMethods", paymentMethods);
+
+  console.log(273, cartTotalData && cartTotalData);
   // Delivery Preferences
   useEffect(async () => {
     const data = await getEstimateShippingMethods();
@@ -374,8 +384,7 @@ function Checkout_Page({ reloadingHeader }) {
     } else if (deliveryShippingInfo === "") {
       dispatch(
         services.notifyError({
-          message:
-            "please select delivery info",
+          message: "please select delivery info",
         })
       );
     } else {
@@ -462,8 +471,10 @@ function Checkout_Page({ reloadingHeader }) {
     if (document.querySelector(".address__popup__container")) {
       // reloadingHeader()
       const element = document.querySelector(".address__popup__container");
-      element.classList.remove("address__popup__container");
-      element.classList.add("address__popup__container__disable");
+      if (element !== null) {
+        element.classList.remove("address__popup__container");
+        element.classList.add("address__popup__container__disable");
+      }
     }
     setAddressPopup(false);
   };
@@ -537,9 +548,12 @@ function Checkout_Page({ reloadingHeader }) {
             monthValidation.isPotentiallyValid === true &&
             monthValidation.isValid === true
           ) {
-            newErrObj = { ...newErrObj, [name]: "", month: monthValidation.month, year: monthValidation.year };
-          } else {
-            newErrObj = { ...newErrObj, [name]: "invalid" };
+            newErrObj = {
+              ...newErrObj,
+              [name]: "",
+              month: monthValidation.month,
+              year: monthValidation.year,
+            };
           }
         }
         break;
@@ -582,12 +596,11 @@ function Checkout_Page({ reloadingHeader }) {
   const handleChangeCard = async (event) => {
     let value = event.target.value;
     let name = event.target.name;
-
-    if (name === 'cardNumber') {
+    if (name === "cardNumber") {
       value = formatCreditCardNumber(value);
-    } else if (name === 'monthYear') {
+    } else if (name === "monthYear") {
       value = formatExpirationDate(value);
-    } else if (name === 'cvc') {
+    } else if (name === "cvc") {
       value = formatCVC(value);
     }
 
@@ -657,7 +670,7 @@ function Checkout_Page({ reloadingHeader }) {
         const data = dispatch(
           loadPayfortInformation(newPaymentMethodForPayfort)
         ).then((res) => {
-          dispatch(loadCartData())
+          dispatch(loadCartData());
           setCheckoutClassName("delivery");
           console.log("payfort Information", res.data);
           console.log("Entity", res?.data?.entity_id);
@@ -694,6 +707,7 @@ function Checkout_Page({ reloadingHeader }) {
           // response.json().then(data=>{
           //   console.log("responseData",data);
           // })
+          setCheckoutClassName("delivery");
           navigate(`/user/orders/${res.data.entity_id}`);
         });
       }
@@ -705,7 +719,7 @@ function Checkout_Page({ reloadingHeader }) {
       const data = dispatch(
         loadPayfortInformation(newPaymentMethodForPayfort)
       ).then((res) => {
-        dispatch(loadCartData())
+        dispatch(loadCartData());
         setCheckoutClassName("delivery");
         console.log("payfort Information", res.data);
         console.log("Entity", res?.data?.entity_id);
@@ -745,10 +759,12 @@ function Checkout_Page({ reloadingHeader }) {
 
     //  history.push("/user/order")
   };
+  if (loading) {
+    return <h1>Product Loading...</h1>;
+  }
   return (
     <>
       <div className="d-lg-block d-none">
-
         <BreadCrumbs title="Checkout" />
       </div>
       <div className="d-block d-lg-none">
@@ -768,8 +784,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? signin_inprogress
                         : iconType.signin === "done"
-                          ? signin_done
-                          : signin_initial
+                        ? signin_done
+                        : signin_initial
                     }
                     alt=""
                   />
@@ -780,8 +796,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.signin === "inprogress"
                         ? "#DC3A1A"
                         : iconType.signin === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -801,8 +817,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? delivery_inprogress
                         : iconType.delivery === "done"
-                          ? delivery_done
-                          : delivery_initial
+                        ? delivery_done
+                        : delivery_initial
                     }
                     alt=""
                   />
@@ -813,8 +829,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.delivery === "inprogress"
                         ? "#DC3A1A"
                         : iconType.delivery === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -834,8 +850,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? payment_inprogress
                         : iconType.payment === "done"
-                          ? payment_done
-                          : payment_initial
+                        ? payment_done
+                        : payment_initial
                     }
                     alt=""
                   />
@@ -846,8 +862,8 @@ function Checkout_Page({ reloadingHeader }) {
                       iconType.payment === "inprogress"
                         ? "#DC3A1A"
                         : iconType.payment === "done"
-                          ? "#585858"
-                          : "#C8C8C8"
+                        ? "#585858"
+                        : "#C8C8C8"
                     }
                     span={true}
                   />
@@ -878,82 +894,88 @@ function Checkout_Page({ reloadingHeader }) {
                   {customerDetails !== "" && (
                     <div className="row address__select__block">
                       {addressData &&
-                        addressData.filter((val, i) => viewMoreAddressBtn === false ? i < 3 : addressData.length).map((add, addIndex) => {
-                          return (
-                            <div
-                              key={add.id}
-                              className="col-12 col-sm-4 address__block"
-                            >
+                        addressData
+                          .filter((val, i) =>
+                            viewMoreAddressBtn === false
+                              ? i < 3
+                              : addressData.length
+                          )
+                          .map((add, addIndex) => {
+                            return (
                               <div
-                                className={
-                                  selectedAddressId === addIndex
-                                    ? "selected__address__inner__block"
-                                    : "address__inner__block"
-                                }
-                                onClick={() =>
-                                  selectAddress(addIndex, add.id, add)
-                                }
+                                key={add.id}
+                                className="col-12 col-sm-4 address__block"
                               >
-                                {add.isDefault ? (
-                                  <div className="address__tag">
-                                    <Heading7 text="DEFAULT" span={true} />
-                                  </div>
-                                ) : (
-                                  <div className="white__address__tag">
-                                    <Text5
-                                      text="NONE"
-                                      span={true}
-                                      color="#ffffff"
+                                <div
+                                  className={
+                                    selectedAddressId === addIndex
+                                      ? "selected__address__inner__block"
+                                      : "address__inner__block"
+                                  }
+                                  onClick={() =>
+                                    selectAddress(addIndex, add.id, add)
+                                  }
+                                >
+                                  {add.isDefault ? (
+                                    <div className="address__tag">
+                                      <Heading7 text="DEFAULT" span={true} />
+                                    </div>
+                                  ) : (
+                                    <div className="white__address__tag">
+                                      <Text5
+                                        text="NONE"
+                                        span={true}
+                                        color="#ffffff"
+                                      />
+                                    </div>
+                                  )}
+                                  <Heading7 text={add.userName} />
+                                  <p className="full__address">
+                                    <Text4
+                                      text={add.adddress}
+                                      marginBottom={20}
                                     />
-                                  </div>
-                                )}
-                                <Heading7 text={add.userName} />
-                                <p className="full__address">
+                                  </p>
+                                  <Heading7
+                                    text="Phone Number:"
+                                    color="#808080"
+                                    span={true}
+                                  />{" "}
                                   <Text4
-                                    text={add.adddress}
-                                    marginBottom={20}
+                                    text={add.contact}
+                                    marginLeft={10}
+                                    span={true}
                                   />
-                                </p>
-                                <Heading7
-                                  text="Phone Number:"
-                                  color="#808080"
-                                  span={true}
-                                />{" "}
-                                <Text4
-                                  text={add.contact}
-                                  marginLeft={10}
-                                  span={true}
-                                />
-                                <div className="address__button__block">
-                                  <button className="delivery__button">
-                                    SELECT THIS ADDRESS FOR DELIVERY
-                                  </button>
-                                  <div className="inner__address__button__block">
-                                    <button
-                                      onClick={() =>
-                                        openNewAddressPopup(
-                                          "update",
-                                          addIndex,
-                                          add.id,
-                                          add
-                                        )
-                                      }
-                                      className="edit__button"
-                                    >
-                                      EDIT
+                                  <div className="address__button__block">
+                                    <button className="delivery__button">
+                                      SELECT THIS ADDRESS FOR DELIVERY
                                     </button>
-                                    <button
-                                      className="delete__button"
-                                      onClick={() => deleteAddress(add.id)}
-                                    >
-                                      DELETE
-                                    </button>
+                                    <div className="inner__address__button__block">
+                                      <button
+                                        onClick={() =>
+                                          openNewAddressPopup(
+                                            "update",
+                                            addIndex,
+                                            add.id,
+                                            add
+                                          )
+                                        }
+                                        className="edit__button"
+                                      >
+                                        EDIT
+                                      </button>
+                                      <button
+                                        className="delete__button"
+                                        onClick={() => deleteAddress(add.id)}
+                                      >
+                                        DELETE
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          })}
                       {errMsg.deliveryAddressList && (
                         <p className="invalid__message" style={errMsgStyle}>
                           {errMsg.deliveryAddressList}
@@ -965,20 +987,26 @@ function Checkout_Page({ reloadingHeader }) {
                 {customerDetails !== "" && (
                   <>
                     {/* <hr className="checkout__page__horizontal__line"></hr> */}
-                    {addressData && addressData.length > 3 && viewMoreAddressBtn === false &&
+                    {addressData && addressData.length > 3 && (
                       <div className=" add__new__address__block">
                         <button
-                          onClick={() => setViewMoreAddressBtn(true)}
-                          className="location__button"
+                          onClick={() =>
+                            setViewMoreAddressBtn(!viewMoreAddressBtn)
+                          }
+                          className="view__more__address__button"
                         >
                           <Heading5
-                            text="View More Address"
+                            text={
+                              viewMoreAddressBtn
+                                ? "View Less"
+                                : "View More Address"
+                            }
                             marginBottom={0}
-                            color="#000000"
+                            color="#FF4F04"
                           />
                         </button>
                       </div>
-                    }
+                    )}
                     <div className=" add__new__address__block">
                       <button
                         onClick={() => openNewAddressPopup("add")}
@@ -996,8 +1024,8 @@ function Checkout_Page({ reloadingHeader }) {
                         />
                       </button>
                     </div>
-                    <hr className="checkout__page__horizontal__line"></hr>
 
+                    <hr className="checkout__page__horizontal__line"></hr>
                     <div className="row delivery__selcetion__pickup__store">
                       <div className="col-12 col-sm-12 col-md-7 delivery__preferences__block">
                         <div className="delivery__preferences__title__block">
@@ -1020,7 +1048,7 @@ function Checkout_Page({ reloadingHeader }) {
                                       onChange={(e) =>
                                         handleChangeDeliveryPref(e)
                                       }
-                                    // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
+                                      // checked={delivery.id !== "" ? 'checked' : 'unchecked'}
                                     />
                                     <p className="delivery__selection__text">
                                       <Heading4 text={delivery.type} />
@@ -1039,6 +1067,7 @@ function Checkout_Page({ reloadingHeader }) {
                                         <Price
                                           price={delivery.price}
                                           size="heading6"
+                                          currency={"SAR"}
                                         />
                                       )}
                                     </p>
@@ -1096,160 +1125,163 @@ function Checkout_Page({ reloadingHeader }) {
                   {paymentMethods &&
                     paymentMethods?.map((payment, paymentIndex) => {
                       return (
-                        <div className="payment__form__main__block">
-                          <div
-                            key={payment.code}
-                            className="payment__form__block"
-                          >
-                            <input
-                              type="radio"
-                              className="payment__input__check"
-                              name="paymentType"
-                              value={payment.code}
-                              onChange={handleChangePaymentMethod}
-                            />
-                            <p className="payment__selection__text">
-                              <Heading4 text={payment.title} />
-                            </p>
-                          </div>
-                          {userPaymentMethod === payment.code ? (
-                            <div className="payment__detail__form__block">
-                              {userPaymentMethod === "payfort_fort_cc" ? (
-                                <div className="address__content__block">
-                                  <div className="payment__card__block">
-                                    <div className="row payment__form__field__row">
-                                      <div className="col-sm-12 col-md-6 main__form__field__block">
-                                        {/* <p className="form__label">First Name</p> */}
-                                        <Heading7
-                                          text="Credit Card Number"
-                                          marginBottom={10}
-                                        />
-                                        <div className="field__block">
-                                          <input
-                                            type="text"
-                                            placeholder="xxxx-xxxx-xxxx-xxxx"
-                                            className="form__field"
-                                            id="name"
-                                            name="cardNumber"
-                                            value={card.cardNumber}
-                                            onChange={(e) =>
-                                              handleChangeCard(e)
-                                            }
-                                          />
+                        <>
+                          {payment.code === "payfort_fort_cc" ? (
+                            <div className="payment__form__main__block">
+                              <div
+                                key={payment.code}
+                                className="payment__form__block"
+                              >
+                                <input
+                                  type="radio"
+                                  className="payment__input__check"
+                                  name="paymentType"
+                                  value={payment.code}
+                                  onClick={handleChangePaymentMethod}
+                                />
+                                <p className="payment__selection__text">
+                                  <Heading4 text={payment.title} />
+                                </p>
+                              </div>
+                              {userPaymentMethod === payment.code ? (
+                                <div className="payment__detail__form__block">
+                                  {userPaymentMethod === "payfort_fort_cc" ? (
+                                    <div className="address__content__block">
+                                      <div className="payment__card__block">
+                                        <div className="row payment__form__field__row">
+                                          <div className="col-sm-12 col-md-3 main__form__field__block">
+                                            {/* <p className="form__label">First Name</p> */}
+                                            <Heading7
+                                              text="Credit Card Number"
+                                              marginBottom={10}
+                                            />
+                                            <div className="field__block">
+                                              <input
+                                                type="text"
+                                                placeholder="xxxx-xxxx-xxxx-xxxx"
+                                                className="form__field"
+                                                id="name"
+                                                name="cardNumber"
+                                                value={card.cardNumber}
+                                                onChange={(e) =>
+                                                  handleChangeCard(e)
+                                                }
+                                              />
+                                            </div>
+                                            {cardErrMsg.cardNumber && (
+                                              <p className="invalid__message">
+                                                {cardErrMsg.cardNumber}
+                                              </p>
+                                            )}
+                                          </div>
+                                          <div className="col-sm-12 col-md-3 main__form__field__block">
+                                            {/* <p className="form__label">Mobile Number</p> */}
+                                            <Heading7
+                                              text="Card Holder Name"
+                                              marginBottom={10}
+                                            />
+                                            <div className="field__block">
+                                              <input
+                                                type="text"
+                                                placeholder="Card  Holder Name"
+                                                className="form__field card__holder__field"
+                                                id="cardHolder"
+                                                name="cardHolder"
+                                                value={card.cardHolder}
+                                                onChange={(e) =>
+                                                  handleChangeCard(e)
+                                                }
+                                              />
+                                            </div>
+                                            {cardErrMsg.cardHolder && (
+                                              <p className="invalid__message">
+                                                {cardErrMsg.cardHolder}
+                                              </p>
+                                            )}
+                                          </div>
+
+                                          <div className="col-sm-12 col-md-3 main__form__field__block ">
+                                            {/* <p className="form__label">First Name</p> */}
+                                            <Heading7
+                                              text="Month/Year"
+                                              marginBottom={10}
+                                            />
+                                            <div className="field__block">
+                                              <input
+                                                type="text"
+                                                placeholder="MM/YY"
+                                                className="form__field"
+                                                id="monthYear"
+                                                name="monthYear"
+                                                value={card.monthYear}
+                                                onChange={(e) =>
+                                                  handleChangeCard(e)
+                                                }
+                                              />
+                                            </div>
+                                            {cardErrMsg.monthYear && (
+                                              <p className="invalid__message">
+                                                {cardErrMsg.monthYear}
+                                              </p>
+                                            )}
+                                          </div>
+                                          {/* <div className="col-sm-12 col-md-4 ">
+                                              <Heading7
+                                                text="Year"
+                                                marginBottom={10}
+                                              />
+                                              <div className="field__block">
+                                                <input
+                                                  type="text"
+                                                  placeholder="YY"
+                                                  className="form__field"
+                                                  id="year"
+                                                  name="year"
+                                                  value={card.year}
+                                                  onChange={(e) =>
+                                                    handleChangeCard(e)
+                                                  }
+                                                />
+                                              </div>
+                                              {cardErrMsg.year && (
+                                                <p className="invalid__message">
+                                                  {cardErrMsg.year}
+                                                </p>
+                                              )}
+                                            </div> */}
+
+                                          <div className="col-sm-12 col-md-3 main__form__field__block">
+                                            {/* <p className="form__label">First Name</p> */}
+                                            <Heading7
+                                              text="CVV"
+                                              marginBottom={10}
+                                            />
+                                            <div className="field__block">
+                                              <input
+                                                type="text"
+                                                placeholder="CVV"
+                                                className="form__field"
+                                                id="cvv"
+                                                name="cvv"
+                                                value={card.cvv}
+                                                onChange={(e) =>
+                                                  handleChangeCard(e)
+                                                }
+                                              />
+                                            </div>
+                                            {cardErrMsg.cvv && (
+                                              <p className="invalid__message">
+                                                {cardErrMsg.cvv}
+                                              </p>
+                                            )}
+                                          </div>
                                         </div>
-                                        {cardErrMsg.cardNumber && (
-                                          <p className="invalid__message">
-                                            {cardErrMsg.cardNumber}
-                                          </p>
-                                        )}
-                                      </div>
-                                      <div className="col-sm-12 col-md-6 main__form__field__block">
-                                        {/* <p className="form__label">Mobile Number</p> */}
-                                        <Heading7
-                                          text="Card Holder Name"
-                                          marginBottom={10}
-                                        />
-                                        <div className="field__block">
-                                          <input
-                                            type="text"
-                                            placeholder="Card Holder Name"
-                                            className="form__field"
-                                            id="cardHolder"
-                                            name="cardHolder"
-                                            value={card.cardHolder}
-                                            onChange={(e) =>
-                                              handleChangeCard(e)
-                                            }
-                                          />
-                                        </div>
-                                        {cardErrMsg.cardHolder && (
-                                          <p className="invalid__message">
-                                            {cardErrMsg.cardHolder}
-                                          </p>
-                                        )}
+                                        <div className="row payment__form__field__row"></div>
                                       </div>
                                     </div>
-                                    <div className="row payment__form__field__row">
-                                      <div className="row col-sm-12 col-md-6 main__form__field__block month__year__form__field__block">
-                                        <div className="col-sm-12 col-md-4 ">
-                                          {/* <p className="form__label">First Name</p> */}
-                                          <Heading7
-                                            text="Month/Year"
-                                            marginBottom={10}
-                                          />
-                                          <div className="field__block">
-                                            <input
-                                              type="text"
-                                              placeholder="MM/YY"
-                                              className="form__field"
-                                              id="monthYear"
-                                              name="monthYear"
-                                              value={card.monthYear}
-                                              onChange={(e) =>
-                                                handleChangeCard(e)
-                                              }
-                                            />
-                                          </div>
-                                          {cardErrMsg.monthYear && (
-                                            <p className="invalid__message">
-                                              {cardErrMsg.monthYear}
-                                            </p>
-                                          )}
-                                        </div>
-                                        {/* <div className="col-sm-12 col-md-4 ">
-                                          <Heading7
-                                            text="Year"
-                                            marginBottom={10}
-                                          />
-                                          <div className="field__block">
-                                            <input
-                                              type="text"
-                                              placeholder="YY"
-                                              className="form__field"
-                                              id="year"
-                                              name="year"
-                                              value={card.year}
-                                              onChange={(e) =>
-                                                handleChangeCard(e)
-                                              }
-                                            />
-                                          </div>
-                                          {cardErrMsg.year && (
-                                            <p className="invalid__message">
-                                              {cardErrMsg.year}
-                                            </p>
-                                          )}
-                                        </div> */}
-                                        <div className="col-sm-12 col-md-4"></div>
-                                      </div>
-                                      <div className="col-sm-12 col-md-3 main__form__field__block">
-                                        {/* <p className="form__label">First Name</p> */}
-                                        <Heading7
-                                          text="CVV"
-                                          marginBottom={10}
-                                        />
-                                        <div className="field__block">
-                                          <input
-                                            type="text"
-                                            placeholder="CVV"
-                                            className="form__field"
-                                            id="cvv"
-                                            name="cvv"
-                                            value={card.cvv}
-                                            onChange={(e) =>
-                                              handleChangeCard(e)
-                                            }
-                                          />
-                                        </div>
-                                        {cardErrMsg.cvv && (
-                                          <p className="invalid__message">
-                                            {cardErrMsg.cvv}
-                                          </p>
-                                        )}
-                                      </div>
-                                    </div>
-                                    <div className="row payment__form__field__row"></div>
-                                  </div>
+                                  ) : (
+                                    ""
+                                  )}
                                 </div>
                               ) : (
                                 ""
@@ -1258,7 +1290,7 @@ function Checkout_Page({ reloadingHeader }) {
                           ) : (
                             ""
                           )}
-                        </div>
+                        </>
                       );
                     })}
                   <div className="continue__button__block">
@@ -1309,8 +1341,8 @@ function Checkout_Page({ reloadingHeader }) {
                     <Text3 text="Shipping" color="#000000" />
                     <Price price={20} size="heading7" />
                   </div> */}
-                  {cartTotalData?.total_segments
-                    .slice(1, 5)
+                  {/* {cartTotalData?.total_segments
+                    // .slice(1, 5)
                     .map((segment, segmentIndex) => {
                       return (
                         <div
@@ -1329,7 +1361,64 @@ function Checkout_Page({ reloadingHeader }) {
                           />
                         </div>
                       );
-                    })}
+                    })} */}
+
+                  <div className="checkout__os__detail__inner__block">
+                    <Text3 text="Sub Total" color="#000000" />
+                    <Price
+                      price={
+                        cartTotalData && cartTotalData.items_qty !== 0
+                          ? cartTotalData?.base_subtotal
+                          : 0
+                      }
+                      size="heading7"
+                      currency={
+                        cartTotalData && cartTotalData.base_currency_code
+                      }
+                    />
+                  </div>
+                  <div className="checkout__os__detail__inner__block">
+                    <Text3 text="Shipping & Handling" color="#000000" />
+                    <Price
+                      price={
+                        cartTotalData && cartTotalData.items_qty !== 0
+                          ? cartTotalData?.base_shipping_amount
+                          : 0
+                      }
+                      size="heading7"
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
+                    />
+                  </div>
+                  <div className="checkout__os__detail__inner__block">
+                    <Text3 text="Discount" color="#000000" />
+                    <Price
+                      price={
+                        cartTotalData && cartTotalData.items_qty !== 0
+                          ? cartTotalData?.discount_amount
+                          : 0
+                      }
+                      size="heading7"
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
+                    />
+                  </div>
+                  <div className="checkout__os__detail__inner__block">
+                    <Heading6 text="Grand Total" color="#000000" />
+                    <Price
+                      price={
+                        cartTotalData === undefined
+                          ? 0
+                          : cartTotalData?.grand_total
+                      }
+                      size="heading7"
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
+                    />
+                  </div>
                 </div>
               </div>
               <SuperCoin />

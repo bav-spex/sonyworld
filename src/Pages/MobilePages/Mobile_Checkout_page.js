@@ -204,7 +204,7 @@ function Mobile_Checkout_Page({ }) {
 	const deliveryShippingInfo = useSelector(
 		(state) => state.appData.deliveryShippingInfo
 	);
-	console.log("deliveryShippingInfo ", deliveryShippingInfo);
+	// console.log("deliveryShippingInfo ", deliveryShippingInfo);
 
 	const [selectedAddressId, setSelectedAddressID] = useState(0);
 	const [couponCode, setCouponCode] = useState("");
@@ -261,7 +261,7 @@ function Mobile_Checkout_Page({ }) {
 			setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
 		}
 	}, [deliveryShippingInfo]);
-	console.log("paymentMethods", paymentMethods);
+	// console.log("paymentMethods", paymentMethods);
 	useEffect(async () => {
 		const data = await getAvailablePaymentMethods();
 		if (data) {
@@ -436,8 +436,10 @@ function Mobile_Checkout_Page({ }) {
 			const element = document.querySelector(
 				".login__popup__container__disable"
 			);
-			element.classList.remove("login__popup__container__disable");
-			element.classList.add("login__popup__container");
+			if(element !== null){
+				element.classList.remove("login__popup__container__disable");
+				element.classList.add("login__popup__container");
+			} 
 			localStorage.setItem("loginWrapper", JSON.stringify(true));
 			localStorage.setItem("loginMode", JSON.stringify("signin"));
 			localStorage.setItem("loginPopup", JSON.stringify(true));
@@ -448,8 +450,10 @@ function Mobile_Checkout_Page({ }) {
 		if (document.querySelector(".address__popup__container")) {
 			// reloadingHeader()
 			const element = document.querySelector(".address__popup__container");
-			element.classList.remove("address__popup__container");
-			element.classList.add("address__popup__container__disable");
+			if(element !== null){
+				element.classList.remove("address__popup__container");
+				element.classList.add("address__popup__container__disable");
+			}
 		}
 		setAddressPopup(false);
 	};
@@ -480,7 +484,7 @@ function Mobile_Checkout_Page({ }) {
 			referer_url: "https://alpha-api.mestores.com",
 		});
 	};
-	console.log(paymentMethodForPayfort);
+	// console.log(paymentMethodForPayfort);
 	const makePayment = async () => {
 
 		let validateFeild = [
