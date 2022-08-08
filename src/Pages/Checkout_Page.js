@@ -57,7 +57,7 @@ import {
   formatExpirationDate,
   formatFormData,
 } from './../Components/helpers/utils/cardValidator';
-//test commit
+//test1 commit
 const errMsgStyle = {
   color: "red",
   margin: "5px 0px 0px",
