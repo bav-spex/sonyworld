@@ -717,7 +717,7 @@ function Cart_Page() {
           </p>
 
           <div className="row shopping__cart__page__inner__block">
-            <div className="col-md-12 col-xl-9 row shopping__cart__left__block">
+            <div className="col-md-12 col-xl-9  shopping__cart__left__block">
               {cartProductData &&
                 cartProductData.items.map((pro, proIndex) => {
                   // console.log("cartproduct",pro);

@@ -698,7 +698,7 @@ function Mobile_Cart_Page() {
           </p>
 
           <div className="row shopping__cart__page__inner__block">
-            <div className="col-md-12  row shopping__cart__left__block">
+            <div className="col-md-12  shopping__cart__left__block">
               <ShoppipngCartProduct product={product} />
 
 
