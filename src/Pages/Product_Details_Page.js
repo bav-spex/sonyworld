@@ -72,10 +72,11 @@ import Heading1 from "../Components/Font/Heading1";
 import Heading6 from "../Components/Font/Heading6";
 import { getProductDetail } from "../services/pdp.service";
 import { addToCart, deleteFromCart } from "../services/cart.service";
-import { loadCartData, loadProductDetailData } from "../redux/appAction";
+import { loadAddToWishlist, loadCartData, loadDeleteFromWishlist, loadProductDetailData, loadWishlistData } from "../redux/appAction";
 import MobileProductDetailPage from "./MobilePages/Mobile_Product_Detail_Page";
 import {
   addToWishlist,
+  checkForWishlist,
   deleteFromWishlist,
 } from "../services/wishlist.services";
 
@@ -14619,8 +14620,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
       return con.type === "slider" && con.title === "New Arrivals";
     }).products
   );
-  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+  
   const [pincode, setPincode] = useState("");
   const [count, setCount] = useState(1);
 
@@ -14691,13 +14691,25 @@ function Product_Details_Page({handleChangeCartPopup}) {
     setSizeButtonIndex(sizeIndex);
   };
 
+  const [isFavouriteHover, setIsFavouriteHover] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [wislistCount, setWislistCount] = useState(0);
+
+  useEffect(async () => {
+    const isFavouriteData = await checkForWishlist(
+      product?.sku?.replace(/[/]/g, "%2F")
+    );
+    console.log(product.sku);
+    console.log(isFavouriteData);
+    setIsFavourite(isFavouriteData);
+  }, [product]);
   const handleFavourite = () => {
     if (isFavourite) {
       setIsFavourite(false);
-      // console.log(product.sku, "added");
+      setWislistCount(wislistCount + 1);
     } else {
       setIsFavourite(true);
-      // console.log(product.sku, "remove");
+      setWislistCount(wislistCount + 1);
     }
   };
   useEffect(() => {
@@ -14705,22 +14717,36 @@ function Product_Details_Page({handleChangeCartPopup}) {
       items: [product.sku],
     };
     if (isFavourite) {
-      addToWishlist(data);
-      // console.log("added Successfully");
-    }
-    else{
-      removeFromWL(product?.sku)
-    //   // console.log("deleted Successfully");
+      if (wislistCount > 0) {
+        const addToWishlistData = dispatch(loadAddToWishlist(data)).then(
+          (res) => {
+            console.log(res);
+            dispatch(loadWishlistData());
+          }
+        );
+      }
+    } else {
+      if (wislistCount > 0) {
+        if (!isFavourite) {
+          removeFromWL(product.sku);
+        }
+      }
     }
   }, [isFavourite]);
-  // console.log(isFavourite);
 
   const removeFromWL = (sku) => {
     const data = {
       items: [sku],
     };
-    deleteFromWishlist(data);
+    const deleteFromWishlistData = dispatch(loadDeleteFromWishlist(data)).then(
+      (res) => {
+        console.log(res);
+        dispatch(loadWishlistData());
+      }
+    );
   };
+  
+  
   if (loading) {
     return <h1>Product Loading...</h1>;
   }

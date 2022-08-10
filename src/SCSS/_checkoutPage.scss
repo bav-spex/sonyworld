@@ -79,7 +79,7 @@
           box-shadow: 0px 3px 6px #0000000a;
           margin: 20px 0px;
           .delivery__address__block {
-            padding: 16px 0px;
+            padding: 16px 0px 0px;
             .delivery__address__title__block {
               display: flex;
               align-items: center;
@@ -95,7 +95,7 @@
                   box-shadow: 0px 3px 6px #00000029;
                   border: 2px solid #000000;
                   padding: 20px 30px;
-                    margin-bottom: 20px;
+                  margin-bottom: 20px;
                   .address__tag {
                     width: fit-content;
                     padding: 10px 20px;
@@ -230,7 +230,21 @@
           }
           .add__new__address__block {
             padding: 10px 16px;
-
+            .view__more__address__button {
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+              text-align: center;
+              min-width: fit-content;
+              font-size: 14px;
+              font-family: "arialbold";
+              border-radius: 5px;
+              border: none;
+              color: #FF4F04;
+              background-color: #ffffff;
+              outline: none;
+              letter-spacing: 0.3px;
+            }
             .location__button {
               display: flex;
               align-items: center;
@@ -350,6 +364,7 @@
                 background: #f2f2f2 0% 0% no-repeat padding-box;
                 border-radius: 5px;
                 .payment__input__check {
+                  cursor: pointer;
                   accent-color: #ff4f04;
                   height: 30px;
                   width: 30px;
@@ -376,13 +391,20 @@
                     .payment__form__field__row {
                       width: 100%;
                       margin: 10px;
-                      .month__year__form__field__block{
+                      .month__year__form__field__block {
                         // width:100%
                         margin: 0px 12px 0px -12px;
                       }
                       .main__form__field__block {
+                        input:focus,textarea:focus {
+                          outline:none !important;
+                          background: none !important;
+                      }
+                        .card__holder__field:focus{
+                        }
                         .field__block {
                           width: 100%;
+
                           .form__field {
                             width: 80%;
                             padding: 10px;
@@ -391,7 +413,7 @@
                             border-radius: 4px;
                           }
                         }
-                        .invalid__message{
+                        .invalid__message {
                           color: red;
                           margin: 5px 0px 0px;
                         }

@@ -686,13 +686,13 @@ function Cart_Page() {
       setCartProductData(cartData);
       // console.log(cartData.totals_data);
       setCartTotalData(cartData.totals_data);
-      setCartItem(cartData.items && cartData.items.length)
+      setCartItem(cartData.items && cartData.items.length);
       setLoading(false);
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0);
       // console.log(product.reviewSummary.totals);
     }
   }, [cartData]);
-// console.log(cartItem);
+  // console.log(cartItem);
   // console.log(cartData, "Cart data >>>>>");
 
   if (loading) {
@@ -723,10 +723,7 @@ function Cart_Page() {
                   // console.log("cartproduct",pro);
                   // console.log("Cart Pageproduct.qty",pro.qty);
                   return (
-                    <ShoppipngCartProduct
-                      key={pro.item_id}
-                      product={pro}
-                    />
+                    <ShoppipngCartProduct key={pro.item_id} product={pro} />
                   );
                 })}
               {/* <hr className="sc__page__horizontal__line"></hr>
@@ -754,7 +751,7 @@ function Cart_Page() {
                 </p>
 
                 <div className="sc__ps__detail__block">
-                  {cartTotalData?.total_segments
+                  {/* {cartTotalData?.total_segments
                     .slice(1, cartTotalData?.total_segments.length + 1)
                     .map((segment, segmentIndex) => {
                       // console.log(segment);
@@ -772,7 +769,47 @@ function Cart_Page() {
                           />
                         </div>
                       );
-                    })}
+                    })} */}
+                  
+                  <div className="sc__ps__detail__inner__block">
+                    <Text3 text="Sub Total" color="#000000" />
+                    <Price
+                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_subtotal:0}
+                      size="heading7"
+                      currency={
+                        cartTotalData && cartTotalData.base_currency_code
+                      }
+                    />
+                  </div>
+                  <div className="sc__ps__detail__inner__block">
+                    <Text3 text="Shipping & Handling" color="#000000" />
+                    <Price
+                      price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.base_shipping_amount:0}
+                      
+                      size="heading7"
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
+                    />
+                  </div>
+                  <div className="sc__ps__detail__inner__block">
+                    <Text3 text="Discount" color="#000000" />
+                    <Price
+                       price={cartTotalData && cartTotalData.items_qty !== 0 ? cartTotalData?.discount_amount:0}
+                      size="heading7"
+                      currency={
+                        cartTotalData && cartTotalData?.base_currency_code
+                      }
+                    />
+                  </div>
+                  <div className="sc__ps__detail__inner__block">
+                     <Heading6 text="Grand Total" color="#000000" />
+                    <Price
+                      price={cartTotalData && cartTotalData?.grand_total}
+                      size="heading7"
+                      currency={cartTotalData && cartTotalData?.base_currency_code}
+                    />
+                  </div>
                 </div>
               </div>
               <Link className="checkout__button__link" to="/checkout">

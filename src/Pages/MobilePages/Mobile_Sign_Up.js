@@ -13,8 +13,9 @@ import see_password from "./../../assets/Icon/see_password.svg";
 import check_orange from "./../../assets/Icon/check_orange.svg";
 import empty_check_orange from "./../../assets/Icon/empty_check_orange.svg";
 import apple_white from "./../../assets/Icon/apple_white.svg";
-import { Link,useNavigate } from "react-router-dom";
-import { emailValidator } from "../../Components/helpers/utils/validators";
+import { Link, useNavigate } from "react-router-dom";
+import { emailValidator, isMobileNumber } from "../../Components/helpers/utils/validators";
+import PhoneInput from 'react-phone-input-2';
 
 const T_REQ_FIRSTNAME = 'Firstname is missing';
 const T_REQ_LASTNAME = 'Lastname is missing';
@@ -26,6 +27,7 @@ const T_WEAK_PASSWORD = 'Password must contain 1 uppercase, 1 lowercase,1 number
 const T_PASSWORD_NOT_MATCHED = 'Password not matched';
 const T_REQ_MOBILE_NUMBER = 'Mobile Number is missing';
 const T_REQ_USERNAME = 'Username is required';
+const T_INVALID_MOBILE_NUMBER = 'Invalid Mobile Number';
 
 function Mobile_Sign_Up({ }) {
     const dispatch = useDispatch();
@@ -111,7 +113,12 @@ function Mobile_Sign_Up({ }) {
                 if (value === "") {
                     setErrMsg({ ...errMsg, [name]: T_REQ_MOBILE_NUMBER });
                 } else {
-                    setErrMsg({ ...errMsg, [name]: '' });
+                    let isValidNumber = isMobileNumber(value);
+                    if (isValidNumber === "error") {
+                        setErrMsg({ ...errMsg, [name]: T_INVALID_MOBILE_NUMBER });
+                    } else {
+                        setErrMsg({ ...errMsg, [name]: '' });
+                    }
                 }
                 break;
             case 'username':
@@ -161,9 +168,16 @@ function Mobile_Sign_Up({ }) {
         }
     }
 
-    const handleChange = async (event) => {
-        let value = event.target.value;
-        let name = event.target.name;
+    const handleChange = async (event, keyName) => {
+        let value = event;
+        let name = event;
+        if (keyName === "mobileNumber") {
+            value = event
+            name = 'mobileNumber'
+        } else {
+            value = event.target.value;
+            name = event.target.name;
+        }
         validateForm(event, name, value);
         setData({ ...data, [name]: value });
     };
@@ -307,7 +321,7 @@ function Mobile_Sign_Up({ }) {
 
                                     <div className="field__block mb-3">
                                         <Heading7 text="Mobile Number" marginBottom={10} />
-                                        <input
+                                        {/* <input
                                             type="text"
                                             placeholder=""
                                             className="form__field form-control"
@@ -315,6 +329,21 @@ function Mobile_Sign_Up({ }) {
                                             name="mobileNumber"
                                             value={data.mobileNumber}
                                             onChange={(e) => handleChange(e)}
+                                        /> */}
+                                        <PhoneInput
+                                            inputProps={{
+                                                name: "mobileNumber",
+                                                required: true,
+                                                className:"profile__mobile__form__field"
+                                            }}
+                                            country="sa"
+                                            onlyCountries={['sa']}
+                                            masks={{ sa: '.. ... ....' }}
+                                            countryCodeEditable={false}
+                                            disableDropdown={true}
+                                            value={data.mobileNumber}
+                                            onChange={(e) => handleChange(e, 'mobileNumber')}
+                                            className=""
                                         />
                                         {errMsg.mobileNumber && (
                                             <p className="invalid__message text-danger">{errMsg.mobileNumber}</p>

@@ -1,310 +1,257 @@
 .mb__signIn__page {
-    padding-top: 150px;
-    background: #F1F1F1;
-    .btn__primary__orange {
-        border-radius: 5px;
-    }
-    .or__block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0px 1.5rem;
-        margin: 20px 0px;
+  padding-top: 150px;
+  background: #F1F1F1;
+  .btn__primary__orange {
+      border-radius: 5px;
+  }
+  .or__block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0px 1.5rem;
+      margin: 20px 0px;
 
-        .mid__line {
-            height: 1px;
-            width: 100%;
-            background-color: #e4e4e4;
-            z-index: 0;
-            transform: translateY(-20px);
-        }
+      .mid__line {
+          height: 1px;
+          width: 100%;
+          background-color: #e4e4e4;
+          z-index: 0;
+          transform: translateY(-20px);
+      }
 
-        .or__text__block {
-            background-color: #f6f6f6;
-            width: fit-content;
-            padding: 10px;
-            border-radius: 50%;
-            z-index: 1;
+      .or__text__block {
+          background-color: #f6f6f6;
+          width: fit-content;
+          padding: 10px;
+          border-radius: 50%;
+          z-index: 1;
 
-            .or__text {
-                font-size: 14px;
-                font-family: "arialbold";
-                margin: 0px;
-            }
-        }
-    }
-        .remember__and__forget__password__block {
+          .or__text {
+              font-size: 14px;
+              font-family: "arialbold";
+              margin: 0px;
+          }
+      }
+  }
+      .remember__and__forget__password__block {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .main__remember__block {
+              width: 60%;
+
+              .remember__block {
+                  display: flex;
+                  align-items: flex-start;
+
+                  .inner__Remember__block {
+                      width: 8%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      margin: 0px 10px 0px 0px;
+
+                      .check__icon {
+                          display: block;
+                          height: 24px;
+                          width: 24px;
+                      }
+
+                      .check__icon__disable {
+                          display: none;
+                      }
+                  }
+
+                  .policy__link {
+                      font-size: 16px;
+                      color: #003cb4;
+                      text-decoration: none;
+                  }
+              }
+          }
+
+          .forgot__password__block {
+              .forgot__password__text {
+                  color: #003cb4;
+                  text-decoration: underline;
+              }
+          }
+      }
+
+      .pwd-field {
+          .field__block {
+              .form-control {
+                  padding-right: 30px;
+              }
+
+              position: relative;
+
+              a.pwd-show {
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  right: 10px;
+              }
+          }
+      }
+
+      .mb__sign__content {
+          box-shadow: 0px 3px 6px #0000000A;
+          border: 1px solid #F1F1F1;
+          background: #fff;
+
+          p.heading3{ line-height: 1; }
+          hr{
+              background-color: #d1d1d1;
+              height: 1.4px;
+          }
+          .signin__button__icon {
+              width: 50px;
+              padding: 13px;
+              height: 50px;
+          }
+
+          button.getOtp__button {
+              background: #ffffff 0% 0% no-repeat padding-box;
+              box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+              border: 2px solid #000000;
+              border-radius: 5px;
+              color: black;
+              outline: none;
+              width: 100%;
+              font-size: 16px;
+              font-family: "arialbold";
+              padding: 16px 0px;
+              margin: 0px 0px 10px;
+          }
+
+          .google__signin__button {
+              background: #ff3d2b 0% 0% no-repeat padding-box;
+              box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+              border-radius: 5px;
+              color: white;
+              outline: none;
+              border: none;
+              width: 100%;
+              font-size: 16px;
+              font-family: "arialregular";
+              padding: 16px 20px;
+              margin: 0px 0px 10px;
+              display: flex;
+              align-items: center;
+          }
+
+          .facebook__signin__button {
+              background: #2c5a98 0% 0% no-repeat padding-box;
+              box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+              border-radius: 5px;
+              color: white;
+              outline: none;
+              border: none;
+              width: 100%;
+              font-size: 16px;
+              font-family: "arialregular";
+              padding: 16px 20px;
+              margin: 0px 0px 10px;
+              display: flex;
+              align-items: center;
+          }
+
+          .apple__signin__button {
+              background: #101010 0% 0% no-repeat padding-box;
+              box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+              border-radius: 5px;
+              color: white;
+              outline: none;
+              border: none;
+              width: 100%;
+              font-size: 16px;
+              font-family: "arialregular";
+              padding: 16px 20px;
+              margin: 0px 0px 10px;
+              display: flex;
+              align-items: center;
+          }
+      }
+
+      .loginModel__footer {
+          padding: 10px 0px 0px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .footer__text {
+              font-size: 18px;
+              font-family: "arialbold";
+              margin: 0px;
+          }
+
+          .footer__link__text {
+              color: #ff4f04;
+              font-size: 18px;
+              font-family: "arialbold";
+              margin: 0px 0px 0px 5px;
+          }
+      }
+      .otpModel__container {
+          margin: 0px 0px 0px 0px;
+          width: 100%;
+          .otpModel__header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            .main__remember__block {
-                width: 60%;
-
-                .remember__block {
-                    display: flex;
-                    align-items: flex-start;
-
-                    .inner__Remember__block {
-                        width: 8%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        margin: 0px 10px 0px 0px;
-
-                        .check__icon {
-                            display: block;
-                            height: 24px;
-                            width: 24px;
-                        }
-
-                        .check__icon__disable {
-                            display: none;
-                        }
-                    }
-
-                    .policy__link {
-                        font-size: 16px;
-                        color: #003cb4;
-                        text-decoration: none;
-                    }
-                }
-            }
-
-            .forgot__password__block {
-                .forgot__password__text {
-                    color: #003cb4;
-                    text-decoration: underline;
-                }
-            }
-        }
-
-        .pwd-field {
-            .field__block {
-                .form-control {
-                    padding-right: 30px;
-                }
-
-                position: relative;
-
-                a.pwd-show {
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    right: 10px;
-                }
-            }
-        }
-
-        .mb__sign__content {
-            box-shadow: 0px 3px 6px #0000000A;
-            border: 1px solid #F1F1F1;
-            background: #fff;
-
-            p.heading3{ line-height: 1; }
-            hr{
-                background-color: #d1d1d1;
-                height: 1.4px;
-            }
-            .signin__button__icon {
-                width: 50px;
-                padding: 13px;
-                height: 50px;
-            }
-
-            button.getOtp__button {
+            padding: 24px 30px;
+            border-bottom: 1px solid #818181;
+            background-color: #ffffff;
+            .cancel__button {
+                cursor: pointer;
+              }
+          }
+          .otpModel__content {
+            padding: 30px 30px;
+            background-color: #ffffff;
+            .otp__number__block {
+              margin: 0px 0px 20px 0px;
+              .change__button {
                 background: #ffffff 0% 0% no-repeat padding-box;
-                box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
+                box-shadow: 0px 3px 6px #00000005;
                 border: 2px solid #000000;
                 border-radius: 5px;
                 color: black;
                 outline: none;
-                width: 100%;
                 font-size: 16px;
                 font-family: "arialbold";
-                padding: 16px 0px;
-                margin: 0px 0px 10px;
-            }
-
-            .google__signin__button {
-                background: #ff3d2b 0% 0% no-repeat padding-box;
-                box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
-                border-radius: 5px;
-                color: white;
-                outline: none;
-                border: none;
-                width: 100%;
-                font-size: 16px;
-                font-family: "arialregular";
-                padding: 16px 20px;
-                margin: 0px 0px 10px;
-                display: flex;
-                align-items: center;
-            }
-
-            .facebook__signin__button {
-                background: #2c5a98 0% 0% no-repeat padding-box;
-                box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
-                border-radius: 5px;
-                color: white;
-                outline: none;
-                border: none;
-                width: 100%;
-                font-size: 16px;
-                font-family: "arialregular";
-                padding: 16px 20px;
-                margin: 0px 0px 10px;
-                display: flex;
-                align-items: center;
-            }
-
-            .apple__signin__button {
-                background: #101010 0% 0% no-repeat padding-box;
-                box-shadow: 0px 3px 6px rgb(0 0 0 / 2%);
-                border-radius: 5px;
-                color: white;
-                outline: none;
-                border: none;
-                width: 100%;
-                font-size: 16px;
-                font-family: "arialregular";
-                padding: 16px 20px;
-                margin: 0px 0px 10px;
-                display: flex;
-                align-items: center;
-            }
-        }
-
-        .loginModel__footer {
-            padding: 10px 0px 0px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            .footer__text {
-                font-size: 18px;
-                font-family: "arialbold";
-                margin: 0px;
-            }
-
-            .footer__link__text {
-                color: #ff4f04;
-                font-size: 18px;
-                font-family: "arialbold";
-                margin: 0px 0px 0px 5px;
-            }
-        }
-        .otpModel__container {
-            margin: 0px 0px 0px 0px;
-            width: 100%;
-            .otpModel__header {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              padding: 24px 30px;
-              border-bottom: 1px solid #818181;
-              background-color: #ffffff;
-              .cancel__button {
-                  cursor: pointer;
-                }
-            }
-            .otpModel__content {
-              padding: 30px 30px;
-              background-color: #ffffff;
-              .otp__number__block {
-                margin: 0px 0px 20px 0px;
-                .change__button {
-                  background: #ffffff 0% 0% no-repeat padding-box;
-                  box-shadow: 0px 3px 6px #00000005;
-                  border: 2px solid #000000;
-                  border-radius: 5px;
-                  color: black;
-                  outline: none;
-                  font-size: 16px;
-                  font-family: "arialbold";
-                  padding: 6px 20px;
-                  margin: 0px 0px 0px 20px;
-                }
+                padding: 6px 20px;
+                margin: 0px 0px 0px 20px;
               }
-              .main__form__field__block {
-                margin: 0px 0px 30px;
-                .form__label {
-                }
-                .field__block {
-                  border: 1px solid #c8c8c8;
-                  border-radius: 4px;
-                  padding: 10px 16px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  .form__field {
-                    width: 100%;
-                    outline: none;
-                    border: none;
-                    font-size: 16px;
-                    letter-spacing: 0.3px;
-                  }
-                }
-                .invalid__message{
-                  color: red;
-                  margin: 5px 0px 0px;
-                }
+            }
+            .main__form__field__block {
+              margin: 0px 0px 30px;
+              .form__label {
               }
-              .signup__button {
-                  background: #dc3a1a 0% 0% no-repeat padding-box;
-                  box-shadow: 0px 3px 6px #00000005;
-                  border-radius: 5px;
-                  color: white;
+              .field__block {
+                border: 1px solid #c8c8c8;
+                border-radius: 4px;
+                padding: 10px 16px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .form__field {
+                  width: 100%;
                   outline: none;
                   border: none;
-                  width: 100%;
                   font-size: 16px;
-                  font-family: "arialbold";
-                  padding: 16px 0px;
-                  
+                  letter-spacing: 0.3px;
                 }
-              .resendOtp__button {
-                background: #ffffff 0% 0% no-repeat padding-box;
-                box-shadow: 0px 3px 6px #00000005;
-                border: none;
-                border-radius: 5px;
-                color: black;
-                outline: none;
-                width: 100%;
-                font-size: 16px;
-                font-family: "arialbold";
-                padding: 16px 0px;
-                margin: 0px 0px 0px;
               }
-              .otp__or__block {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  padding: 0px;
-                  margin: 0px 0px 20px;
-                  .otp__mid__line {
-                    height: 1px;
-                    width: 100%;
-                    background-color: #dbdbdb;
-                    z-index: 0;
-                    transform: translateY(-20px);
-                  }
-                  .otp__or__text__block {
-                    background-color: #f6f6f6;
-                    width: fit-content;
-                    padding: 10px;
-                    border-radius: 50%;
-                    z-index: 1;
-                    .otp__or__text {
-                      font-size: 14px;
-                      font-family: "arialbold";
-                      margin: 0px;
-                    }
-                  }
-                }
-                
-              .google__signin__button {
-                background: #ff3d2b 0% 0% no-repeat padding-box;
+              .invalid__message{
+                color: red;
+                margin: 5px 0px 0px;
+              }
+            }
+            .signup__button {
+                background: #dc3a1a 0% 0% no-repeat padding-box;
                 box-shadow: 0px 3px 6px #00000005;
                 border-radius: 5px;
                 color: white;
@@ -312,44 +259,97 @@
                 border: none;
                 width: 100%;
                 font-size: 16px;
-                font-family: "arialregular";
-                padding: 16px 20px;
-                margin: 0px 0px 10px;
+                font-family: "arialbold";
+                padding: 16px 0px;
+                
+              }
+            .resendOtp__button {
+              background: #ffffff 0% 0% no-repeat padding-box;
+              box-shadow: 0px 3px 6px #00000005;
+              border: none;
+              border-radius: 5px;
+              color: black;
+              outline: none;
+              width: 100%;
+              font-size: 16px;
+              font-family: "arialbold";
+              padding: 16px 0px;
+              margin: 0px 0px 0px;
+            }
+            .otp__or__block {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                .signin__button__icon {
-                  margin: 0px 30px 0px 0px;
+                padding: 0px;
+                margin: 0px 0px 20px;
+                .otp__mid__line {
+                  height: 1px;
+                  width: 100%;
+                  background-color: #dbdbdb;
+                  z-index: 0;
+                  transform: translateY(-20px);
                 }
+                .otp__or__text__block {
+                  background-color: #f6f6f6;
+                  width: fit-content;
+                  padding: 10px;
+                  border-radius: 50%;
+                  z-index: 1;
+                  .otp__or__text {
+                    font-size: 14px;
+                    font-family: "arialbold";
+                    margin: 0px;
+                  }
+                }
+              }
+              
+            .google__signin__button {
+              background: #ff3d2b 0% 0% no-repeat padding-box;
+              box-shadow: 0px 3px 6px #00000005;
+              border-radius: 5px;
+              color: white;
+              outline: none;
+              border: none;
+              width: 100%;
+              font-size: 16px;
+              font-family: "arialregular";
+              padding: 16px 20px;
+              margin: 0px 0px 10px;
+              display: flex;
+              align-items: center;
+              .signin__button__icon {
+                margin: 0px 30px 0px 0px;
               }
             }
           }
-          
+        }
+        
 
-    }
+  }
 
-    @media(max-width:576px) {
-        .mb__signIn__page .mb__sign__content .google__signin__button {
-            font-size: 14px;
-        }
+  @media(max-width:576px) {
+      .mb__signIn__page .mb__sign__content .google__signin__button {
+          font-size: 14px;
+      }
 
-        .mb__signIn__page .mb__sign__content button {
-            padding: 10px 10px !important;
-        }
+      .mb__signIn__page .mb__sign__content button {
+          padding: 10px 10px !important;
+      }
 
-        .mb__signIn__page .mb__sign__content .signin__button__icon {
-            width: 40px;
-            padding: 10px;
-            height: 40px;
-        }
+      .mb__signIn__page .mb__sign__content .signin__button__icon {
+          width: 40px;
+          padding: 10px;
+          height: 40px;
+      }
 
-        .mb__signIn__page .loginModel__footer .footer__text,
-        .mb__signIn__page .loginModel__footer .footer__link__text {
-            font-size: 14px !important;
-        }
-        .mb__signIn__page .remember__and__forget__password__block .main__remember__block .remember__block .inner__Remember__block{
-            width: 45px;
-        }
-        .mb__signIn__page .remember__and__forget__password__block .main__remember__block{
-            width: 100%;
-        }
-    }
+      .mb__signIn__page .loginModel__footer .footer__text,
+      .mb__signIn__page .loginModel__footer .footer__link__text {
+          font-size: 14px !important;
+      }
+      .mb__signIn__page .remember__and__forget__password__block .main__remember__block .remember__block .inner__Remember__block{
+          width: 45px;
+      }
+      .mb__signIn__page .remember__and__forget__password__block .main__remember__block{
+          width: 100%;
+      }
+  }

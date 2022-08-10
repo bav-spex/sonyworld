@@ -7,7 +7,7 @@ import "./../../SCSS/Form/_addressForm.scss";
 import delete_box_white from "./../../assets/Icon/delete_box_white.svg";
 import edit_box_white from "./../../assets/Icon/edit_box_white.svg";
 import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
-import { emailValidator } from "../helpers/utils/validators";
+import { emailValidator, isMobileNumber } from "../helpers/utils/validators";
 import Heading3 from "../Font/Heading4";
 import Heading2 from "../Font/Heading2";
 import Text2 from "../Font/Text2";
@@ -18,6 +18,7 @@ import {
 } from "../../redux/appAction";
 import AddressPopup from "../Popup/AddressPopup";
 import { updateCustomerAddressSuccess } from "../../services/customerAddress/customerAddress";
+import PhoneInput from 'react-phone-input-2';
 
 const T_REQ_NAME = 'Name is required';
 const T_REQ_FIRST_NAME = 'First Name is required';
@@ -30,6 +31,7 @@ const T_REQ_CITY_TOWN = 'City/Town is required';
 const T_REQ_STATE = 'State is required';
 const T_REQ_LANDMARK = 'Landmark is required';
 const T_REQ_POST_CODE = 'Post Code is required';
+const T_INVALID_MOBILE_NUMBER = 'Invalid Mobile Number';
 
 function AddressForm({ handleAddressPopup }) {
 
@@ -236,7 +238,12 @@ function AddressForm({ handleAddressPopup }) {
         if (value === "") {
           newErrObj = { ...newErrObj, [name]: T_REQ_MOBILE_NUMBER }
         } else {
-          newErrObj = { ...newErrObj, [name]: '' }
+          let isValidNumber = isMobileNumber(value);
+          if (isValidNumber === "error") {
+            newErrObj = { ...newErrObj, [name]: T_INVALID_MOBILE_NUMBER }
+          } else {
+            newErrObj = { ...newErrObj, [name]: '' }
+          }
         }
         break;
       // case 'country':
@@ -294,17 +301,21 @@ function AddressForm({ handleAddressPopup }) {
     return newErrObj;
   }
 
-  const handleChange = async (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-    if (name === 'primary') {
+  const handleChange = async (event, keyName) => {
+    let value = event;
+    let name = event;
+    if (keyName === 'primary') {
       value = event.target.checked;
+    } else if (keyName === 'mobileNumber') {
+      value = event
+      name = 'mobileNumber'
+    } else {
+      value = event.target.value;
+      name = event.target.name;
     }
-    console.log("value ", value);
-    console.log("name ", name);
+    setAddress({ ...address, [name]: value });
     let manageErrMsg = validateForm(event, errMsg, name, value);
     setErrMsg(manageErrMsg);
-    setAddress({ ...address, [name]: value });
   };
 
   const allFeildValidate = (validateFeild, allErrMsg) => {
@@ -516,7 +527,7 @@ function AddressForm({ handleAddressPopup }) {
           <div className="col-sm-12 col-md-6 main__form__field__block">
             {/* <p className="form__label">First Name</p> */}
             <Heading7 text="Mobile Number" marginBottom={10} />
-            <div className="field__block">
+            {/* <div className="field__block">
               <input
                 type="text"
                 placeholder=""
@@ -526,7 +537,22 @@ function AddressForm({ handleAddressPopup }) {
                 value={address.mobileNumber}
                 onChange={(e) => handleChange(e)}
               />
-            </div>
+            </div> */}
+            <PhoneInput
+              inputProps={{
+                name: "mobileNumber",
+                required: true,
+                className:"profile__mobile__form__field"
+              }}
+              country="sa"
+              onlyCountries={['sa']}
+              masks={{ sa: '.. ... ....' }}
+              countryCodeEditable={false}
+              disableDropdown={true}
+              value={address.mobileNumber}
+              onChange={(e) => handleChange(e, 'mobileNumber')}
+              className=""
+            />
             {errMsg.mobileNumber && <p className="invalid__message">{errMsg.mobileNumber}</p>}
           </div>
           <div className="col-sm-12 col-md-6 main__form__field__block">
@@ -701,7 +727,7 @@ function AddressForm({ handleAddressPopup }) {
             name="primary"
             value={address.primary}
             checked={address.primary}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChange(e, 'primary')}
           />
           <p className="preferences__select__text">
             Make this my default address
@@ -726,18 +752,14 @@ function AddressForm({ handleAddressPopup }) {
             </div>
           </div>
         </div>
-        {addressData && addressData.length < 3 &&
-          <>
-            <div className="newAddress__form__button__block">
-              <button className="form__save__button" onClick={handleSubmit}>
-                SAVE
-              </button>
-              <button className="form__cancel__button" onClick={closeLoginPopup}>
-                CANCEL
-              </button>
-            </div>
-          </>
-        }
+        <div className="newAddress__form__button__block">
+          <button className="form__save__button" onClick={handleSubmit}>
+            SAVE
+          </button>
+          <button className="form__cancel__button" onClick={closeLoginPopup}>
+            CANCEL
+          </button>
+        </div>
       </div>
     </>
   );
