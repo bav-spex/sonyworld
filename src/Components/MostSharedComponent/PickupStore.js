@@ -30,7 +30,11 @@ function PickupStore({delivery, title}) {
           </div>
         );
       })}
+      {/* <div>
+        dasdasdas
+      </div> */}
     </div>
+   
   );
 }
 
