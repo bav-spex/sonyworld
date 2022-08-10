@@ -400,6 +400,7 @@ function PersonalInfoForm() {
             inputProps={{
               name: "mobileNumber",
               required: true,
+              className:"profile__mobile__form__field"
             }}
             country="sa"
             onlyCountries={['sa']}
@@ -408,7 +409,7 @@ function PersonalInfoForm() {
             disableDropdown={true}
             value={personalData.mobileNumber}
             onChange={(e) => handleChange(e, 'mobileNumber')}
-            className="form__field"
+            className=""
           />
           {/* <div className="field__block">
             <input

@@ -334,6 +334,7 @@ function Mobile_Sign_Up({ }) {
                                             inputProps={{
                                                 name: "mobileNumber",
                                                 required: true,
+                                                className:"profile__mobile__form__field"
                                             }}
                                             country="sa"
                                             onlyCountries={['sa']}
@@ -342,7 +343,7 @@ function Mobile_Sign_Up({ }) {
                                             disableDropdown={true}
                                             value={data.mobileNumber}
                                             onChange={(e) => handleChange(e, 'mobileNumber')}
-                                            className="form__field"
+                                            className=""
                                         />
                                         {errMsg.mobileNumber && (
                                             <p className="invalid__message text-danger">{errMsg.mobileNumber}</p>

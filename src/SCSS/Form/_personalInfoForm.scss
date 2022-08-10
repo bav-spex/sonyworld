@@ -10,6 +10,12 @@
     width: 370px;
     height: 110px;
     margin: 0px 20px 10px 0px;
+    .profile__mobile__form__field{
+      width: 100%;
+      border: 1px solid #c8c8c8;
+      border-radius: 4px;
+      padding: 12px 16px 12px 50px;
+    }
     .form__label {
     }
     .field__block {

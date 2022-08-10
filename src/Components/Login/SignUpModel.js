@@ -341,6 +341,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
             inputProps={{
               name: "mobileNumber",
               required: true,
+              className:"profile__mobile__form__field"
             }}
             country="sa"
             onlyCountries={['sa']}
@@ -349,7 +350,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
             disableDropdown={true}
             value={data.mobileNumber}
             onChange={(e) => handleChange(e, 'mobileNumber')}
-            className="form__field"
+            className=""
           />
           {errMsg.mobileNumber && <p className="invalid__message">{errMsg.mobileNumber}</p>}
         </div>

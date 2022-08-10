@@ -542,6 +542,7 @@ function AddressForm({ handleAddressPopup }) {
               inputProps={{
                 name: "mobileNumber",
                 required: true,
+                className:"profile__mobile__form__field"
               }}
               country="sa"
               onlyCountries={['sa']}
@@ -550,7 +551,7 @@ function AddressForm({ handleAddressPopup }) {
               disableDropdown={true}
               value={address.mobileNumber}
               onChange={(e) => handleChange(e, 'mobileNumber')}
-              className="form__field"
+              className=""
             />
             {errMsg.mobileNumber && <p className="invalid__message">{errMsg.mobileNumber}</p>}
           </div>
