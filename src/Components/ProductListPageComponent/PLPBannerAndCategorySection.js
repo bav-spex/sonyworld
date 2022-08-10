@@ -7,7 +7,7 @@ import white_tv from "./../../assets/Icon/white_tv.svg";
 import red_tv from "./../../assets/Icon/red_tv.svg";
 import white_accessories from "./../../assets/Icon/white_accessories.svg";
 import red_accessories from "./../../assets/Icon/red_accessories.svg";
-const PLPCategorySection = ({ categoryData, selectedMainCategory,updateSelectedSubCategoryId,selectedCategoryId }) => {
+const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,selectedCategoryId }) => {
   const [selectedSubCategory, setSelectedSubCategory] = useState({});
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(selectedCategoryId);
   console.log(selectedMainCategory);

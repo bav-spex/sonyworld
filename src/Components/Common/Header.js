@@ -1086,13 +1086,14 @@ function Header({
             <div className="col-6 col-sm-6 col-md-9 category__popup__right__block">
               <div className="mainCategory__title__block">
                 <p className="mainCategory__right__block">
-                  {selectedCategory?.display_name}
+                  {selectedCategory?.name}
                 </p>
               </div>
               <div className="subCategory__block">
                 {selectedCategory?.children_data?.map((subcat, subcatIndex) => {
                   // console.log(`${subcat.name.toLowerCase().trim().replace(/ /g,"-")}-c-${subcat.id}`);
                   // console.log(.lowerCase().trim().replace(/ /g,"-")}-c-${subcat.id});
+                  console.log(selectedCategory);
                   return (
                     <Link
                       key={subcatIndex}

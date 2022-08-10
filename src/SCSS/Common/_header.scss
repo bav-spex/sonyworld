@@ -489,7 +489,7 @@ cursor: pointer;
       overflow: hidden;
       margin: 0 auto;
       .category__popup__left__block {
-        padding: 40px 30px 0px 46px;
+        padding: 40px 30px 0px 30px;
         background: #f1f1f1 0% 0% no-repeat padding-box;
         height: 100%;
         overflow-y: scroll;
@@ -506,6 +506,7 @@ cursor: pointer;
             margin: 0px;
             font-size: 20px;
             font-family: "arialbold";
+            width: 150px;
           }
           .popup__right__arrow {
             display: none;
@@ -525,6 +526,7 @@ cursor: pointer;
             margin: 0px;
             font-size: 20px;
             font-family: "arialbold";
+            width: 150px;
           }
           .popup__right__arrow {
             display: block;
