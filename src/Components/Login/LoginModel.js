@@ -148,7 +148,7 @@ function LoginModel({ handleChangePopupMode, closeLoginPopup }) {
                   alt=""
                 />
               </div>
-              <p>Remember me</p>
+              <p className="Remember__label">Remember me</p>
             </div>
           </div>
           <div className="forgot__password__block">

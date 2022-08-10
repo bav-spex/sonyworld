@@ -404,7 +404,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               alt=""
             />
           </div>
-          <p>
+          <p className="signUP__policy__label">
             I agree to our
             <Link className="policy__link" to="/termsandconditions">
               {" "}

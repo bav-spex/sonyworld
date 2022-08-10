@@ -10,7 +10,7 @@ import rv_product_06 from "./../assets/FeatureProduct/feature_product_01.png";
 
 import banner_02 from "./../assets/Banner/image_02.jpg";
 
-import Heading6 from "./Font/Heading6";
+import Heading7 from "./Font/Heading7";
 import CarouselTypeTwo from "./CarouselTypeTwo";
 
 function RecentlyViewedProducts({ categoryData,recentlyViewedProductsData, recentlyViewedProductsBanner }) {
@@ -34,7 +34,7 @@ function RecentlyViewedProducts({ categoryData,recentlyViewedProductsData, recen
                           />
                         </Link>
                       </div>
-                      <Heading6 text={`${cat.name.slice(0,20)}...`} textAlign="center"></Heading6>
+                      <Heading7 text={`${cat.name.slice(0,20)}...`} color="#001A33" textAlign="center"></Heading7>
                     </div>
                   );
                 })}

@@ -112,7 +112,7 @@ function Banner({ bannerData }) {
 
         {/* <img className="banner__pin__block" src={white_banner_pin}/> */}
       </div>
-      <img className="banner__image" src="" alt="" />
+      {/* <img className="banner__image" src="" alt="" /> */}
     </>
   );
 }
