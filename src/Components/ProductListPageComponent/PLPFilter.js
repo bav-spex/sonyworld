@@ -168,7 +168,10 @@ const filterData = [
   },
 ];
 
-const PLPFilter = (props) => {
+const PLPFilter = ({filterOptionData}) => {
+  console.log(Object.values(Object.values(filterOptionData)[1]));
+  console.log(Object.keys(Object.values(filterOptionData)[1]));
+
   return (
     filterData && (
       <div className="main__filter__block">

@@ -8,21 +8,22 @@ import red_tv from "./../../assets/Icon/red_tv.svg";
 import white_accessories from "./../../assets/Icon/white_accessories.svg";
 import red_accessories from "./../../assets/Icon/red_accessories.svg";
 const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,selectedCategoryId }) => {
+  // console.log(selectedCategoryId);
   const [selectedSubCategory, setSelectedSubCategory] = useState({});
-  const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(selectedCategoryId);
-  console.log(selectedMainCategory);
-  console.log(selectedSubCategory);
+  // console.log(selectedMainCategory);
+ 
   useEffect(() => {
     if (selectedMainCategory) {
       setSelectedSubCategory(selectedMainCategory.children_data[0]);
     }
   }, []);
 
+
   const onSelectCategory = (item) => {
     // console.log(item);
     updateSelectedSubCategoryId(item)
     setSelectedSubCategory(item);
-    setSelectedSubCategoryId(item.id)
+    // setSelectedSubCategoryId(item.id)
     
   };
 
@@ -39,12 +40,12 @@ const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,
         <div className="plp__inner__category__section">
           <div className="plp__category__section">
             {selectedMainCategory?.children_data.map((cat, catIndex) => {
-             
+            //  console.log(cat.id);
               return (
                 <div
                   key={cat.id}
                   className={
-                    selectedSubCategoryId == cat.id
+                    selectedCategoryId == cat.id
                       ? "selected__plp__category__block"
                       : "plp__category__block"
                   }
@@ -53,7 +54,7 @@ const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,
                   <img
                     className="plp__category__image"
                     src={
-                      selectedSubCategoryId == cat.id
+                      selectedCategoryId == cat.id
                         ? red_tv
                         : white_tv
                     }
@@ -62,7 +63,7 @@ const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,
                   <Text1
                     text={cat.name}
                     color={
-                      selectedSubCategoryId == cat.id
+                      selectedCategoryId == cat.id
                         ? "#DC3A1A"
                         : "#ffffff"
                     }

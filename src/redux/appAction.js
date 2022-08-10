@@ -2,13 +2,13 @@ import * as types from "./actionType";
 import * as services from "./../services/services"
 import axios from "axios";
 import { getHomePageData } from "../services/homepage.service";
-import { getAllCategoryData } from "../services/category.service";
+import { getAllCategoryData, getSingleCategoryData } from "../services/category.service";
 import { getProductDetail } from "../services/pdp.service";
 import { addToWishlist, deleteFromWishlist, getWishlistData } from "../services/wishlist.services";
 import { getCitiesLocationData } from "../services/storeLocation.service";
 import { getCountriesLocationData } from "../services/storeLocation.service";
 import { getStoresLocationData } from "../services/storeLocation.service";
-import { getApplyFilterData, getCategoryFilterData } from "../services/plp.service";
+import { getApplyFilterData, getCategoryFilterData, getFilterData } from "../services/plp.service";
 import { addToCart, createCartDetails, getCartData, getPayfortInformation } from "../services/cart.service";
 import { getOrderDetails } from "../services/order.service";
 
@@ -53,6 +53,19 @@ export const loadAllCategoryData = () => {
   };
 };
 
+export const loadSingleCategoryData = (id) => {
+  return async function (dispatch) {
+    const categorydata = await getSingleCategoryData(id);
+    console.log(categorydata.data);
+    dispatch({
+      type: types.SET__SELECTED__CATEGORY,
+      payload:categorydata.data,
+    });
+
+    return categorydata.data;
+  };
+};
+
 // Loading Product Details Page Data //
 
 const saveProductDetailData = (data) => ({
@@ -71,33 +84,33 @@ export const loadProductDetailData = (id) => {
 
 // Loading Product Details Page Data //
 
-const saveCategoryFilterData = (data) => ({
-  type: types.GET__PRODUCT__FILTER__DATA,
+const saveFilterData = (data) => ({
+  type: types.GET__FILTER__DATA,
   payload: data,
 });
 
-export const loadCategoryFilterData = (filterDetails) => {
+export const loadFilterData = (filterDetails) => {
   return async function (dispatch) {
-    const filterData = await getCategoryFilterData(filterDetails);
+    const filterData = await getFilterData(filterDetails);
     // console.log(productData);
-    dispatch(saveCategoryFilterData(filterData));
+    dispatch(saveFilterData(filterData));
     return filterData;
   };
 };
 
 // Loading Product Details Page Data //
 
-const saveApplyFilterData = (data) => ({
-  type: types.GET__APPLY__FILTER__DATA,
+const saveApplyFilterProductData = (data) => ({
+  type: types.GET__APPLY__FILTER__PRODUCTS__DATA,
   payload: data,
 });
 
-export const loadApplyFilterData = (filterDetails) => {
+export const loadApplyFilterProductsData = (filterDetails) => {
   return async function (dispatch) {
-    const filterData = await getApplyFilterData(filterDetails);
-    // console.log(productData);
-    dispatch(saveApplyFilterData(filterData));
-    return filterData;
+    const applyFilterProductsData = await getApplyFilterData(filterDetails);
+    // console.log(applyFilterProductsData);
+    dispatch(saveApplyFilterProductData(applyFilterProductsData));
+    return applyFilterProductsData;
   };
 };
 

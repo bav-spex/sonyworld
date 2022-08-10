@@ -541,18 +541,19 @@ const peopleUltimatelyBoughtData = [
 ];
 
 const PLPFilterProductBlock = ({
-  filterAndProductsData,
+  filteredProductsData,
   handleChangeProductPopup,
   handleChangeComparePopup,
+  filterOptionData
   
 }) => {
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   const [productListView, setProductListView] = useState("grid");
-  // console.log(filterAndProductsData.items);
-
+  // console.log(filteredProductsData?.items);
+  // console.log(filterOptionData);
 
   const onSelectSortby = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSelectedOption(e.target.value);
   };
 
@@ -569,7 +570,7 @@ const PLPFilterProductBlock = ({
     <>
       <div className="plp__filter__product__container">
         <div className="plp__filter__product__title__block">
-          <Heading3 text={`${filterAndProductsData?.total_count} Products`} />
+          <Heading3 text={`${filteredProductsData?.total_count !== 0 && filteredProductsData?.items.length ?filteredProductsData?.items.length : 0 } Products`} />
           <div className="plp__filter__product__sortby__grid__button">
             <Text3 text="Sort By:" />
             {/* <label className="label">Sort by: &nbsp;</label> */}
@@ -624,13 +625,13 @@ const PLPFilterProductBlock = ({
         </div>
         <div className="row plp__filter__product__block">
           <div className="col-sm-3 plp__filter__block">
-            <PLPFilter />
+            <PLPFilter filterOptionData={filterOptionData}  />
           </div>
           <div className="col-sm-9 plp__product__block">
             <div className="row plp__inner__product__block">
               {productListView === "grid" ? (
                 <>
-                  {filterAndProductsData.items.length !== 0 ? filterAndProductsData?.items.map((product, productIndex) => {
+                  {filteredProductsData?.total_count !== 0 && filteredProductsData?.items.length !== 0 ? filteredProductsData?.items.map((product, productIndex) => {
                     return (
                       <div
                         key={productIndex}
@@ -654,7 +655,7 @@ const PLPFilterProductBlock = ({
                 </>
               ) : productListView === "list" ? (
                 <>
-                  {filterAndProductsData.items.length !== 0 ? filterAndProductsData?.items.map((product, productIndex) => {
+                  {filteredProductsData?.total_count !== 0 && filteredProductsData?.items.length !== 0 ? filteredProductsData?.items.map((product, productIndex) => {
                     return (
                       <div key={productIndex} className="col-sm-12 mb-3">
                         <ProductTen

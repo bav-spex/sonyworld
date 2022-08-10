@@ -27,7 +27,7 @@ import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import PLPBannerTwo from "../Components/ProductListPageComponent/PLPBannerTwo";
 import CarouselTypeTwo from "../Components/CarouselTypeTwo";
 import { useDispatch, useSelector } from "react-redux";
-import { loadApplyFilterData } from "../redux/appAction";
+import { loadApplyFilterProductsData } from "../redux/appAction";
 import { Navigate, useNavigate } from "react-router";
 const searchData = {
   searchResultTitle: [
@@ -662,7 +662,7 @@ function Search__Page() {
     setSearch("");
   };
   useEffect(() => {
-    dispatch(loadApplyFilterData(filterDetails));
+    dispatch(loadApplyFilterProductsData(filterDetails));
   }, [filterDetails]);
 
   const applyFilterData = useSelector((state) => state.appData.filterData);
