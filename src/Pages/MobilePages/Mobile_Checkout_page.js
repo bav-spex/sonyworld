@@ -56,6 +56,7 @@ import SmallWarrantyBlock from "./../../Components/MostSharedComponent/SmallWarr
 import plus from "./../../assets/Icon/plus.svg";
 import minus from "./../../assets/Icon/minus.svg";
 import { paymentCardConfig, socialConfig } from "../../assetsConfig/footer";
+import visacard from './../../assets/Footer/card_06.png';
 
 const product = {
 	id: 1,
@@ -916,13 +917,66 @@ function Mobile_Checkout_Page({ }) {
 						}
 					>
 						<div className="mb__saved__card__block">
-						<Heading5
-									text="SAVED CARDS"
-									color="#808080"
-									marginLeft={10}
-									marginBottom={0}
+							<Heading5
+								text="SAVED CARDS"
+								color="#808080"
+								marginLeft={10}
+								marginBottom={0}
+							/>
+							<div className="d-flex	align-items-start mt-3 ms-2">
+								<input
+									type="radio"
+									className="payment__input__check"
+									name="paymentType1"
 								/>
+								<img src={visacard} alt="visa card" className="card__img" />
+								<div className="ms-4">
+									<Text3 text="ICICI CREDIT CARD" />
+									<Text3 text="xxxx xxxx xxxx 1111" />
+								</div>
+							</div>
+							<div className="ms-2 mt-3">
+								<Heading7 text="Choose an Option" color="#414141" />
+								<div className="mt-2">
+									<input
+										type="radio"
+										className="payment__input__check__small"
+										name="amount" id="fullamount"
+									/>
+									<label className="ms-2" for="fullamount">Pay full amount of SAR1,699.00</label>
+								</div>
+								<div className="mt-2">
+									<input
+										type="radio"
+										className="payment__input__check__small"
+										name="amount" id="emi"
+									/>
+									<label className="ms-2" for="emi">Pay with EMI – EMI at SAR299/month</label>
+								</div>
+							</div>
+							<div className="ms-2 mt-3">
+								<div className="row">
+									<div className="col-4">
+										<input
+											type="text"
+											placeholder="CVV"
+											className="form__field form-control"
+											id="cvv"
+											name="cvv"
+										/>
+									</div>
+
+									<div className="col-6">
+										<button
+											className="continue___button btn btn__primary__orange "
+										>
+											CONTINUE
+										</button>
+									</div>
+								</div>
+							</div>
 						</div>
+						<hr />
 						<div className="payment__block">
 
 							{/* <div className="payment__title__block">
@@ -1110,17 +1164,46 @@ function Mobile_Checkout_Page({ }) {
 
 							</div>
 
-							<div className="continue__button__block">
-								<div></div>
-								<Link className="continue___button__link" to="/checkout">
-									<button
-										onClick={() => makePayment()}
-										className="continue___button"
-									>
-										Continue
-									</button>
-								</Link>
+
+						</div>
+						<hr />
+						{/* package Summary */}
+						<div className="col-md-12 col-xl-3  checkout__right__block">
+							<div className="checkout__package__summary__block">
+								<p className="checkout__os__title">
+									{" "}
+									<Heading3 text="Price Details" />
+								</p>
+								<div className="checkout__os__detail__block">
+									{/* <div className="checkout__os__detail__inner__block">
+                    <Text3 text="Shipping" color="#000000" />
+                    <Price price={20} size="heading7" />
+                  </div> */}
+									{cartTotalData?.total_segments
+										.slice(1, 5)
+										.map((segment, segmentIndex) => {
+											return (
+												<div
+													key={segment.code}
+													className="checkout__os__detail__inner__block"
+												>
+													{segment.code === "grand_total" ? (
+														<Heading6 text={segment.title} color="#000000" />
+													) : (
+														<Text3 text={segment.title} color="#000000" />
+													)}
+													<Price
+														price={segment.value === null ? 0 : segment.value}
+														size="heading7"
+														currency={cartTotalData.base_currency_code}
+													/>
+												</div>
+											);
+										})}
+								</div>
 							</div>
+							<hr />
+							<SuperCoin />
 						</div>
 					</div>
 				}
