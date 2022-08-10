@@ -205,17 +205,21 @@ function Home({handleChangeCartPopup}) {
           carouselData={newArrivalData}
           containerClassName="new__arrival__pc__block"
         />
+        <div className="top__trending__section">
         <ProductContainer
           sectionTitle="Top Trending"
           carouselData={topTrendingData}
           containerClassName="top__trending__pc__block"
         />
+        </div>
         <DealsOfTheWeek dealsOfTheWeekData={dealsOfTheWeekData} />
-        <ProductContainer
-          sectionTitle="Top Rated Products"
-          carouselData={topRatedData}
-          containerClassName="top__rated__pc__block"
-        />
+        <div className="top__ratedProduct__section">
+          <ProductContainer
+            sectionTitle="Top Rated Products"
+            carouselData={topRatedData}
+            containerClassName="top__rated__pc__block"
+          />
+        </div>
         {/* <TopRatedProducts productData={topRatedProductsData} /> */}
         <div className="container-fluid adImage__container">
           <div className=" adImage">

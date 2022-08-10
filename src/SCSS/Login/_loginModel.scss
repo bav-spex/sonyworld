@@ -8,11 +8,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 24px 30px;
-    border-bottom: 1px solid #818181;
+    border-bottom: 1px solid #D1D1D1;
     background-color: #ffffff;
+    p.heading3{
+      line-height: 1;
+    }
     .cancel__button {
       cursor: pointer;
-    }
+    }    
   }
   .loginModel__content {
     padding: 30px 30px;
@@ -45,6 +48,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-top: 15px;
       .main__remember__block {
         width: 60%;
         .remember__block {
@@ -63,6 +67,9 @@
               display: none;
             }
           }
+          .Remember__label {
+            font-size: 15px;
+          }
           .policy__link {
             font-size: 16px;
             color: #003cb4;
@@ -74,12 +81,13 @@
         .forgot__password__text {
           color: #003cb4;
           text-decoration: underline;
+          cursor: pointer;
         }
       }
     }
     
     .signin__button {
-      background: #101010 0% 0% no-repeat padding-box;
+      background: #DC3A1A 0% 0% no-repeat padding-box;
       box-shadow: 0px 3px 6px #00000005;
       border-radius: 5px;
       color: white;
@@ -99,7 +107,7 @@
       .mid__line {
         height: 1px;
         width: 100%;
-        background-color: #dbdbdb;
+        background-color: #e4e4e4;
         z-index: 0;
         transform: translateY(-20px);
       }
@@ -189,7 +197,7 @@
       align-items: center;
       justify-content: center;
       .footer__text {
-        font-size: 18px;
+        font-size: 16px;
         font-family: "arialbold";
         margin: 0px;
       }
@@ -198,6 +206,7 @@
         font-size: 18px;
         font-family: "arialbold";
         margin: 0px 0px 0px 5px;
+        cursor: pointer;
       }
     }
   }
