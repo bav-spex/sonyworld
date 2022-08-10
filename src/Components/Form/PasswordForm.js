@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Heading7 from '../Font/Heading7'
 import see_password from "./../../assets/Icon/see_password.svg"
 import hide_password from "./../../assets/Icon/hide_password.svg"
 import "./../../SCSS/Form/_passwordForm.scss"
 import * as services from './../../services/services'
+import { useDispatch, useSelector } from "react-redux";
+import { customerUpdatePasswordSuccess } from '../../services/customer/customer';
 
 const T_REQ_OLD_PASSWORD = 'Old password is missing';
 const T_REQ_NEW_PASSWORD = 'New password is missing';
@@ -13,9 +15,14 @@ const T_PASSWORD_NOT_MATCHED = 'Password not matched';
 
 function PasswordForm() {
 
+  const dispatch = useDispatch();
+
+  const { customerUpdatePasswordStatus } = useSelector((state) => state.customerReducer);
+
   const [isOldPassword, setIsOldPassword] = useState(true);
   const [isNewPassword, setIsNewPassword] = useState(true);
   const [isConfirmPassword, setIsConfirmPassword] = useState(true);
+  const [updateErrMsg, setUpdateErrMsg] = useState(false);
   const [passwordData, setPasswordData] = useState({
     oldPassword: "",
     newPassword: "",
@@ -27,6 +34,25 @@ function PasswordForm() {
     newPassword: "",
     confirmPassword: ""
   });
+
+  useEffect(() => {
+    if (updateErrMsg === true) {
+      setErrMsg(errMsg);
+      setUpdateErrMsg(!updateErrMsg)
+    }
+  }, [updateErrMsg]);
+
+  useEffect(() => {
+    if (customerUpdatePasswordStatus === true) {
+      customerUpdatePasswordSuccess(false);
+      setPasswordData({
+        ...passwordData,
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: ""
+      })
+    }
+  }, [customerUpdatePasswordStatus]);
 
   const toggleOldPassword = () => setIsOldPassword(!isOldPassword);
   const toggleNewPassword = () => setIsNewPassword(!isNewPassword);
@@ -77,12 +103,12 @@ function PasswordForm() {
   const handleChange = async (event) => {
     let value = event.target.value;
     let name = event.target.name;
+    setPasswordData({ ...passwordData, [name]: value });
     let manageErrMsg = await validateForm(event, errMsg, name, value);
     setErrMsg(manageErrMsg);
-    setPasswordData({ ...passwordData, [name]: value });
   };
 
-  const allFeildValidate = async (validateFeild, allErrMsg) => {
+  const allFeildValidate = (validateFeild, allErrMsg) => {
 
     let checkValueStatus = [];
     let checkErrStatus = [];
@@ -91,7 +117,11 @@ function PasswordForm() {
       let keyVal = passwordData[val];
       let errVal = errMsg[val];
 
-      allErrMsg = validateForm('', allErrMsg, val, keyVal);
+      let allErrMsgManage = validateForm('', allErrMsg, val, keyVal);
+      allErrMsgManage.then(res => {
+        allErrMsg[val] = res[val]
+      });
+
       if (keyVal !== "") {
         checkValueStatus.push('suc')
       }
@@ -101,14 +131,14 @@ function PasswordForm() {
 
     })
 
-    let checkSignUpStatus = false;
+    let checkPwdStatus = false;
     if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
-      checkSignUpStatus = true;
+      checkPwdStatus = true;
     }
 
     let returnData = {
       allErrMsg: allErrMsg,
-      checkSignUpStatus: checkSignUpStatus
+      checkPwdStatus: checkPwdStatus
     }
 
     return returnData;
@@ -124,7 +154,13 @@ function PasswordForm() {
 
     let formStatus = await allFeildValidate(validateFeild, errMsg);
     setErrMsg(formStatus.allErrMsg);
-    if (formStatus.checkSignUpStatus === true) {
+    setUpdateErrMsg(true);
+    if (formStatus.checkPwdStatus === true) {
+      let params = {
+        currentPassword: passwordData.oldPassword,
+        newPassword: passwordData.newPassword
+      }
+      dispatch(services.customerUpdatePassword(params))
       // success
     } else {
       // error

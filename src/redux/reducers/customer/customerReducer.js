@@ -4,7 +4,10 @@ const initialState = {
   customerDetails: '',
   customerSignUpMsg: '',
   customerLogout: '',
-  customerSignInMsg: false
+  customerSignInMsg: false,
+  customerUpdatePasswordStatus: false,
+  customerProfileDetails: '',
+  customerUpdateProfileStatus: false
 };
 
 const customerReducer = (state = initialState, action) => {
@@ -17,6 +20,12 @@ const customerReducer = (state = initialState, action) => {
       return { ...state, customerLogout: action.payload };
     case actionType.CUSTOMER_SIGN_IN_MSG:
       return { ...state, customerSignInMsg: action.payload };
+    case actionType.CUSTOMER_UPDATE_PASSWORD:
+      return { ...state, customerUpdatePasswordStatus: action.payload };
+    case actionType.CUSTOMER_PROFILE_DETAILS:
+      return { ...state, customerProfileDetails: action.payload };
+    case actionType.CUSTOMER_UPDATE_PROFILE:
+      return { ...state, customerUpdateProfileStatus: action.payload };
     default:
       return state;
   }

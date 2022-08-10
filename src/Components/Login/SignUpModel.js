@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Heading3 from "../Font/Heading3";
 import Heading6 from "../Font/Heading6";
 import Heading7 from "../Font/Heading7";
-import { emailValidator } from "../helpers/utils/validators";
+import { emailValidator, isMobileNumber } from "../helpers/utils/validators";
 import cancel_grey from "./../../assets/Icon/cancel_grey.svg";
 import shop from "./../../assets/Icon/shop.svg";
 import hide_password from "./../../assets/Icon/hide_password.svg";
@@ -18,6 +18,7 @@ import apple_white from "./../../assets/Icon/apple_white.svg";
 import "./../../SCSS/Login/_signupModel.scss";
 import Text3 from "../Font/Text3";
 import * as services from './../../services/services'
+import PhoneInput from 'react-phone-input-2';
 
 const T_REQ_FIRSTNAME = 'Firstname is missing';
 const T_REQ_LASTNAME = 'Lastname is missing';
@@ -29,6 +30,7 @@ const T_WEAK_PASSWORD = 'Password must contain 1 uppercase, 1 lowercase,1 number
 const T_PASSWORD_NOT_MATCHED = 'Password not matched';
 const T_REQ_MOBILE_NUMBER = 'Mobile Number is missing';
 const T_REQ_USERNAME = 'Username is required';
+const T_INVALID_MOBILE_NUMBER = 'Invalid Mobile Number';
 
 function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
 
@@ -112,7 +114,12 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
         if (value === "") {
           setErrMsg({ ...errMsg, [name]: T_REQ_MOBILE_NUMBER });
         } else {
-          setErrMsg({ ...errMsg, [name]: '' });
+          let isValidNumber = isMobileNumber(value);
+          if (isValidNumber === "error") {
+            setErrMsg({ ...errMsg, [name]: T_INVALID_MOBILE_NUMBER });
+          } else {
+            setErrMsg({ ...errMsg, [name]: '' });
+          }
         }
         break;
       case 'username':
@@ -162,11 +169,18 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
     }
   }
 
-  const handleChange = async (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-    validateForm(event, name, value);
+  const handleChange = async (event, keyName) => {
+    let value = event;
+    let name = event;
+    if (keyName === "mobileNumber") {
+      value = event
+      name = 'mobileNumber'
+    } else {
+      value = event.target.value;
+      name = event.target.name;
+    }
     setData({ ...data, [name]: value });
+    validateForm(event, name, value);
   };
 
   const allFeildValidate = () => {
@@ -190,7 +204,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
       },
       {
         keyName: "mobileNumber",
-        defaultMsg: T_REQ_USERNAME
+        defaultMsg: T_REQ_MOBILE_NUMBER
       },
       {
         keyName: "password",
@@ -312,7 +326,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
         <div className="main__form__field__block">
           {/* <p className="form__label">Mobile Number</p> */}
           <Heading7 text="Mobile Number" marginBottom={10} />
-          <div className="field__block">
+          {/* <div className="field__block">
             <input
               type="text"
               placeholder=""
@@ -322,7 +336,21 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
               value={data.mobileNumber}
               onChange={(e) => handleChange(e)}
             />
-          </div>
+          </div> */}
+          <PhoneInput
+            inputProps={{
+              name: "mobileNumber",
+              required: true,
+            }}
+            country="sa"
+            onlyCountries={['sa']}
+            masks={{ sa: '.. ... ....' }}
+            countryCodeEditable={false}
+            disableDropdown={true}
+            value={data.mobileNumber}
+            onChange={(e) => handleChange(e, 'mobileNumber')}
+            className="form__field"
+          />
           {errMsg.mobileNumber && <p className="invalid__message">{errMsg.mobileNumber}</p>}
         </div>
         <div className="main__form__field__block">
