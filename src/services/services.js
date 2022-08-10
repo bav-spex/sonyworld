@@ -6,6 +6,9 @@ export {
     isUsernameAvailable,  // is-username-available
     checkPasswordStrength,  // check-password-strength
     customerLogout,  // logout
+    customerUpdatePassword,  // update password
+    customerProfileDetails, // profile details
+    customerUpdateProfile // profile update
 } from './customer/customer';
 
 export {

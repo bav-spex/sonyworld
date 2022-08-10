@@ -202,3 +202,6 @@ img {
   outline: none;
   box-shadow: none;
 }
+.invalid_err_message {
+  color: red;
+}

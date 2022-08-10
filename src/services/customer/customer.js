@@ -155,3 +155,70 @@ export const customerLogoutSuccess = (data) => {
     payload: data
   }
 }
+
+// update password API
+export const customerUpdatePassword = (params) => {
+  return async dispatch => {
+    try {
+      let response = await apiHelper(`/V1/customer/update-password`, 'put', params, {});
+      if (response.data.success === true) {
+        dispatch(services.notifySuccess({ message: 'Password updated successfully' }));
+        dispatch(customerUpdatePasswordSuccess(true));
+      }
+    } catch (error) {
+      if (error.response.status === 401 || error.response.status === 400) {
+        dispatch(services.notifyError({ message: error.response.data.message }));
+      }
+    }
+  }
+};
+
+// auth reducer
+export const customerUpdatePasswordSuccess = (data) => {
+  return {
+    type: actionType.CUSTOMER_UPDATE_PASSWORD,
+    payload: data
+  }
+}
+
+// profile details API
+export const customerProfileDetails = (params) => {
+  return async dispatch => {
+    try {
+      let response = await apiHelper(`/V1/customer`, 'get', params, {});
+ console.log("response ", response);
+      dispatch(customerProfileDetailsSuccess(response.data));
+    } catch (error) {
+      console.log("error ", error);
+    }
+  }
+};
+
+// profile details reducer
+export const customerProfileDetailsSuccess = (data) => {
+  return {
+    type: actionType.CUSTOMER_PROFILE_DETAILS,
+    payload: data
+  }
+}
+
+// update profile API
+export const customerUpdateProfile = (params) => {
+  return async dispatch => {
+    try {
+      let response = await apiHelper(`/V1/customer`, 'put', params, {});
+ console.log("response ", response);
+      dispatch(customerUpdateProfileSuccess(response.data));
+    } catch (error) {
+      console.log("error ", error);
+    }
+  }
+};
+
+// update profile reducer
+export const customerUpdateProfileSuccess = (data) => {
+  return {
+    type: actionType.CUSTOMER_UPDATE_PROFILE,
+    payload: data
+  }
+}
