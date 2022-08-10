@@ -52,7 +52,7 @@ import NotifySnackbar from "./notifySnackbar";
 import { getCustomerLoginDetails } from "../helpers/utils/getCustomerLoginDetails";
 import { customerDetailsSuccess } from "../../services/customer/customer";
 import {
-  loadApplyFilterData,
+  loadApplyFilterProductsData,
   loadCategoryFilterData,
 } from "../../redux/appAction";
 import * as services from "./../../services/services";
@@ -274,7 +274,7 @@ function Header({
   const optimizedFn = useCallback(debounce(openSearchPopup), []);
 
   useEffect(() => {
-    dispatch(loadApplyFilterData(filterDetails));
+    dispatch(loadApplyFilterProductsData(filterDetails));
   }, [filterDetails]);
   const applyFilterData = useSelector((state) => state.appData.filterData);
   // console.log(applyFilterData);
@@ -392,6 +392,9 @@ function Header({
     setLoginMode(loginMode);
   }, [loginWrapper]);
   const [selectedCategory, setSelectedCategory] = useState(
+    categoryData && categoryData?.children_data?.[0]
+  );
+  const [reducerSelectedCategory, setReducerSelectedCategory] = useState(
     categoryData && categoryData?.children_data?.[0]
   );
   const [mobileSelectedCategory, setMobileSelectedCategory] = useState();
@@ -618,6 +621,7 @@ function Header({
                         // console.log("firstWord",firstWord,"emainWord", remainWord);
                         return (
                           <Link
+                          key={product?.sku}
                             className="search__Result__title__link"
                             to={`/products/${product.sku.replace(
                               /[/]/g,
@@ -672,7 +676,10 @@ function Header({
                       alt=""
                       className="header__search__icon header__icon"
                     />
-                    <div onClick={() => setIsEnglish(!isEnglish)} className="main__language__selection">
+                    <div
+                      onClick={() => setIsEnglish(!isEnglish)}
+                      className="main__language__selection"
+                    >
                       <img
                         src={language}
                         alt=""
@@ -791,6 +798,7 @@ function Header({
                             {dashboardDropdownData.map((item, itemIndex) => {
                               return (
                                 <Link
+                                key={item.title}
                                   to={item.link}
                                   className="user__db__menu__block"
                                 >
@@ -1093,7 +1101,7 @@ function Header({
                 {selectedCategory?.children_data?.map((subcat, subcatIndex) => {
                   // console.log(`${subcat.name.toLowerCase().trim().replace(/ /g,"-")}-c-${subcat.id}`);
                   // console.log(.lowerCase().trim().replace(/ /g,"-")}-c-${subcat.id});
-                  console.log(selectedCategory);
+                  // console.log(selectedCategory);
                   return (
                     <Link
                       key={subcatIndex}
@@ -1101,7 +1109,7 @@ function Header({
                       to={`${subcat.name
                         .toLowerCase()
                         .trim()
-                        .replace(/ /g, "-")}-c-${subcat.id}`}
+                        .replace(/ /g, "-")}-c-${subcat.id}-mc-${selectedCategory.id}`}
                       onClick={() =>
                         changeReducerSelectedCategory(selectedCategory)
                       }

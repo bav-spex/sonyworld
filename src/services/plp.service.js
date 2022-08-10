@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getCategoryFilterData =  async(filterDetails) => {
+export const getFilterData =  async(filterDetails) => {
     // console.log(filterDetails);
     let responseData ={}
-    const categoryFilterData =  await axios.post(
+    const filterData =  await axios.post(
       `${process.env.REACT_APP_PROJECT_API_URL}/V1/products/filter/details`,filterDetails
     ).then(res=> responseData = res);
     // console.log(responseData.data,"filter Data");
@@ -28,8 +28,8 @@ export const getProductsOfCategory =  async(filterData) => {
       // `${process.env.REACT_APP_PROJECT_API_URL}/V1/category/${filterData.id}/products?limit=${filterData?.limit}&offset=${filterData?.offset}&sortBy=${filterData?.sortBy}`
       `${process.env.REACT_APP_PROJECT_API_URL}/V1/category/${filterData.id}/products`
     ).then(res=>responseData=res)
+    // console.log(responseData);
     return responseData
-    console.log(responseData);
     // console.table(allCategoryData.data.children_data,"categoryData in identifier")
    
   };

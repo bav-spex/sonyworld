@@ -1,7 +1,7 @@
 import React from "react";
 import "./../../SCSS/ProductListPage/_plpBannerSectionOne.scss"
 const PLPBannerSectionOne = (props) => {
-  console.log(props.bannerImage);
+  // console.log(props.bannerImage);
   return (
     <div>
       <div className="row banner__section__one">
