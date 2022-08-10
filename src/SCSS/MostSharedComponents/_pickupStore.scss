@@ -30,3 +30,23 @@
     }
   }
 }
+
+
+// bottom modal popup ui start
+.mb__bottom_popup {
+	.mb__dialog__end {
+		display: flex;
+		margin-bottom: 0 !important;
+		align-items: flex-end;
+		min-height: calc(100% - 1.8rem);
+		max-width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		.modal-content{
+			border-radius: 0;
+			.modal-header{
+				border-bottom: 0;
+			}
+		}
+	}
+}
