@@ -23,7 +23,7 @@
       .filter__title {
         color: #3b3b3b;
         font-size: 16px;
-        font-family: "arialregular";
+        font-family: "SSTregular";
       }
       .star__rating__block {
         display: flex;
@@ -35,7 +35,8 @@
         .star__rating {
           color: #dc3a1a;
           font-size: 16px;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           margin: 0px 0px 0px 10px ;
         }
       }

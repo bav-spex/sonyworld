@@ -171,7 +171,7 @@ function Mobile_Product_Detail_Page({ product }) {
                 <div className="mb__save__off">{`SAVE SAR${Math.ceil(
                   "45" * 0.1
                 )} off`}</div>
-                <div className="d-flex">
+                <div className="d-flex align-items-center">
                   <OldPrice
                     oldPrice="7878"
                     size="text2"
@@ -180,7 +180,7 @@ function Mobile_Product_Detail_Page({ product }) {
                     lineThrough={true}
                     currency="SAR"
                   />
-                  <Price currency="SAR" price="4545" size="heading1" />
+                  <Price currency="SAR" price="4545" size="heading1" marginLeft={5}/>
                   <div className="mb__off__text">
                     <Heading3 text="40% off" />
                   </div>

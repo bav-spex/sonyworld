@@ -60,14 +60,15 @@
       }
       .productTwo__compare__text {
         font-size: 16px;
-        font-family: "arialregular";
+        font-family: "SSTregular";
         margin: 0px;
       }
     }
   }
 
   .productTwo__name {
-    font-family: "arialbold";
+   font-family: 'SSTbold';
+font-weight: bold;
     font-size: 18px;
     margin: 10px 0px 10px 0px;
     height: 72px ;
@@ -75,7 +76,7 @@
     color: #000000;
   }
   .productTwo__series {
-    font-family: "arialregular";
+    font-family: "SSTregular";
     font-size: 14px;
     margin: 0px 0px 10px 0px;
     color: #808080;
@@ -119,13 +120,14 @@
     display: flex;
     align-items: flex-end;
     .old__prize {
-      font-family: "arialregular";
+      font-family: "SSTregular";
       font-size: 18px;
       text-decoration-line: line-through;
       color: #c8c8c8;
     }
     .new__prize {
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       font-size: 18px;
 
       margin: 0px 0px 0px 5px;
@@ -135,7 +137,8 @@
     border-radius: 5px;
     color: #ffffff;
     font-size: 16px;
-    font-family: "arialbold";
+   font-family: 'SSTbold';
+font-weight: bold;
     letter-spacing: 0.85px;
     padding: 20px 0px;
     background-color: #dc3a1a;

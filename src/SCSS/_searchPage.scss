@@ -19,7 +19,8 @@
           border: none;
           width: 100%;
           font-size: 24px;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           color: #000000;
         }
         .search__input:focus {
@@ -39,7 +40,8 @@
           border-radius: 5px;
           color: #ffffff;
           font-size: 16px;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           letter-spacing: 0.85px;
           padding: 20px 0px;
           background-color: #dc3a1a;
@@ -59,7 +61,7 @@
     margin: 0px auto;
     .result__text {
       font-size: 30px;
-      font-family: "arialRegular";
+      font-family: "SSTregular";
       margin: 0px 0px 0px 10px;
     }
   }

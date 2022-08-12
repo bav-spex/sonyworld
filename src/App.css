@@ -49,9 +49,11 @@ body {
 .main_wrapper {
   /* margin-top: 112px; */
 }
+
 .cart__popup__container__disable {
   display: none;
 }
+
 .cart__popup__container {
   position: fixed;
   top: 0px;
@@ -81,7 +83,8 @@ img {
   background: transparent;
   color: #000000;
   font-size: 16px;
-  font-family: "arialbold";
+  font-family: 'SSTbold';
+  font-weight: bold;
   padding: 20px 20px;
   transition: all 0.3s;
 }
@@ -90,76 +93,92 @@ img {
   background: #DF4E32;
   color: #fff;
   font-size: 16px;
-  font-family: "arialbold";
+  font-family: 'SSTbold';
+  font-weight: bold;
   padding: 20px 20px;
   transition: all 0.3s;
   border-color: #DF4E32;
 }
+
 .btn__primary__black {
   background: #000;
   color: #fff !important;
   font-size: 16px;
-  font-family: "arialbold";
+  font-family: 'SSTbold';
+  font-weight: bold;
   padding: 20px 20px;
   transition: all 0.3s;
   border-color: #000000;
 }
-.btn__primary__white{
+
+.btn__primary__white {
   background: #fff;
   color: #DF4E32 !important;
   font-size: 16px;
-  font-family: "arialbold";
+  font-family: 'SSTbold';
+  font-weight: bold;
   padding: 10px 20px;
   transition: all 0.3s;
   border-color: #fff;
   text-transform: uppercase;
 }
-.btn__primary__white:hover,.btn__primary__white:focus {
+
+.btn__primary__white:hover, .btn__primary__white:focus {
   outline: none;
   box-shadow: none;
 }
-.btn__primary__black:hover,.btn__primary__black:focus {
+
+.btn__primary__black:hover, .btn__primary__black:focus {
   box-shadow: none;
 }
+
 .btn__primary__orange:hover, .btn__primary__orange:focus, .btn__primary__orange:active:focus {
   background: #fff;
   color: #DF4E32;
   border-color: #DF4E32;
   box-shadow: none;
 }
-.btn__grey__solid{
+
+.btn__grey__solid {
   width: 50%;
-    margin: 0 !important;
-    border-radius: 0;
-    text-transform: uppercase;
-    font-size: 16px;
-    font-family: "arialbold";
-    padding: 20px 20px;
-    background: #636363;
-    color: #fff;
+  margin: 0 !important;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: 'SSTbold';
+  font-weight: bold;
+  padding: 20px 20px;
+  background: #636363;
+  color: #fff;
 }
-.custom__checkbox{
+
+.custom__checkbox {
   position: relative;
 }
-.custom__checkbox .form-check-input{
+
+.custom__checkbox .form-check-input {
   opacity: 0;
   display: none;
 }
-.custom__checkbox .form-check-input[type=checkbox]:checked + label{
+
+.custom__checkbox .form-check-input[type=checkbox]:checked+label {
   border-color: #000000;
 }
-.custom__checkbox label.custom__checkmark{
+
+.custom__checkbox label.custom__checkmark {
   width: 100%;
   border: 2px solid #D1D1D1;
   box-shadow: 0px 3px 6px #00000029;
   padding-top: 60px !important;
 }
+
 .counter__decrease__block {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
+
 .counter {
   display: flex;
   align-items: center;
@@ -168,40 +187,48 @@ img {
   border-left: 1px solid #D1D1D1;
   font-size: 20px;
 }
+
 .counter__increase__block {
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
+
 .row.sc__counter__box {
   border: 1px solid #D1D1D1;
   border-radius: 3px;
   margin: 0 20px;
 }
-.common__favourite__button{
-    border: none;
-    border-radius: 3px;
-    background-color: #ffffff;
-    padding: 0;
+
+.common__favourite__button {
+  border: none;
+  border-radius: 3px;
+  background-color: #ffffff;
+  padding: 0;
 }
-.common__favourite__button .pd__favourite__icon{
+
+.common__favourite__button .pd__favourite__icon {
   display: block;
 }
-.common__favourite__button .pd__favourite__icon__disable{
+
+.common__favourite__button .pd__favourite__icon__disable {
   display: none;
 }
 
-.toast .bg-success{
+.toast .bg-success {
   background-color: #27743e !important;
 }
-.toast .bg-danger{
+
+.toast .bg-danger {
   background-color: #d32f2f !important;
 }
-.form-select:focus{
+
+.form-select:focus {
   outline: none;
   box-shadow: none;
 }
+
 .invalid_err_message {
   color: red;
 }

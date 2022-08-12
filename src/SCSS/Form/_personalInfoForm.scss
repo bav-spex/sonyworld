@@ -61,7 +61,7 @@
   }
   .delivery__selection__text {
     margin: 0px 20px 0px 0px;
-    font-family: "arialregular";
+    font-family: "SSTregular";
   }
 }
 .profile__preferences__block {
@@ -81,7 +81,7 @@
     }
     .preferences__select__text {
       font-size: 18px;
-      font-family: "arialregular";
+      font-family: "SSTregular";
       margin: 0px;
       width: 400px;
     }
@@ -92,7 +92,8 @@
   .form__save__button {
     text-align: center;
     font-size: 14px;
-    font-family: "arialbold";
+   font-family: 'SSTbold';
+font-weight: bold;
     border-radius: 5px;
     min-width: 150px;
     color: #ffffff;
@@ -111,7 +112,8 @@
     text-align: center;
     min-width: 150px;
     font-size: 14px;
-    font-family: "arialbold";
+   font-family: 'SSTbold';
+font-weight: bold;
     border: 1px solid #707070;
     border-radius: 5px;
     padding: 10px 25px;

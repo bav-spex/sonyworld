@@ -1,6 +1,7 @@
 .profile__page__container {
   padding: 0px 12px;
   background-color: #f5f5f5;
+
   .profile__page__block {
     padding: 20px 0px;
     width: 1702px;
@@ -14,41 +15,50 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .heading3{
-        @media(max-width:992px){
+
+      .heading3 {
+        @media(max-width:992px) {
           font-size: 20px;
         }
       }
     }
+
     .profile__page__content__block {
       background: #ffffff 0% 0% no-repeat padding-box;
       box-shadow: 0px 3px 6px #0000000a;
       border: 1px solid #f1f1f1;
       margin: 0px auto;
+
       .profile__tab__button__block {
         padding: 16px;
         margin: 0px 0px 20px;
-        @media(max-width:992px){
+
+        @media(max-width:992px) {
           display: flex;
           overflow: scroll;
           overflow-y: hidden;
-          margin: 0px;          
+          margin: 0px;
+
           &::-webkit-scrollbar {
             height: 10px;
           }
+
           &::-webkit-scrollbar-track {
             background-color: #A1A1A1;
             border-radius: 10px;
           }
+
           &::-webkit-scrollbar-thumb {
-            background: #EFEFEF; 
+            background: #EFEFEF;
             border-radius: 10px;
           }
         }
+
         .profile__page__button__active {
           text-align: center;
           font-size: 14px;
-          font-family: "arialbold";
+          font-family: 'SSTbold';
+          font-weight: bold;
           border-radius: 5px;
           min-width: fit-content;
           color: #ffffff;
@@ -60,16 +70,19 @@
           border: none;
           letter-spacing: 0.3px;
           cursor: pointer;
-          @media(max-width:992px){
+
+          @media(max-width:992px) {
             font-size: 13px;
           }
         }
+
         .profile__page__button {
           cursor: pointer;
           text-align: center;
           min-width: fit-content;
           font-size: 14px;
-          font-family: "arialbold";
+          font-family: 'SSTbold';
+          font-weight: bold;
           border: 1px solid #707070;
           border-radius: 5px;
           padding: 10px 25px;
@@ -78,91 +91,109 @@
           margin: 0px 12px 10px 0px;
           outline: none;
           letter-spacing: 0.3px;
-          @media(max-width:992px){
+
+          @media(max-width:992px) {
             font-size: 13px;
           }
         }
       }
+
       .address__select__block {
         border-bottom: none;
         margin: 0px;
         padding: 0px 0px 20px;
       }
-      .newAddress__block{
+
+      .newAddress__block {
         width: 100%;
         max-width: 100%;
+
         .newAddress__title__block {
           padding-bottom: 5px;
           border-bottom: 1px solid #D1D1D1;
           margin: 0px 10px 12px 10px;
           padding-left: 0px;
         }
+
         .newAddress__form__field__row {
           max-width: 67%;
-          @media(max-width:992px){
+
+          @media(max-width:992px) {
             max-width: 100%;
             height: auto;
             margin-bottom: 0px;
           }
-          .main__form__field__block{
 
-            @media(max-width:992px){
+          .main__form__field__block {
+
+            @media(max-width:992px) {
               margin-bottom: 30px;
             }
           }
         }
+
         p.heading2 {
           font-size: 20px;
         }
       }
+
       .personal__block__disable {
         display: none;
       }
+
       .personal__block {
         display: block;
 
-        .profile__email__block,.profile__mobile__block,.profile__firstname__lastname  {          
-          @media(max-width:992px){
+        .profile__email__block,
+        .profile__mobile__block,
+        .profile__firstname__lastname {
+          @media(max-width:992px) {
             align-items: flex-start;
             flex-direction: column;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
           }
+
           .main__form__field__block {
 
-            @media(max-width:992px){
+            @media(max-width:992px) {
               height: auto;
               margin: 0px 0px 30px 0px;
               max-width: 100%;
+
               &:last-child {
                 margin: 0px 0px 15px 0px;
               }
 
             }
-            .heading7{
-              
-              @media(max-width:992px){
-                font-size: 14px;  
+
+            .heading7 {
+
+              @media(max-width:992px) {
+                font-size: 14px;
                 line-height: 1;
               }
             }
+
             .delivery__input__check {
               width: 28px;
               height: 28px;
             }
+
             .delivery__selection__text {
               font-size: 15px;
-            }            
+            }
 
           }
         }
 
         .profile__preferences__block {
 
-          @media(max-width:992px){
+          @media(max-width:992px) {
             margin-bottom: 0px;
           }
+
           .preferences__select__block {
-            @media(max-width:992px){
+            @media(max-width:992px) {
               display: flex;
               align-items: center;
               margin: 0px 0px 0px 0px;
@@ -170,9 +201,10 @@
               flex-wrap: wrap;
               flex-direction: row;
             }
+
             .preferences__select__input__check {
 
-              @media(max-width:992px){
+              @media(max-width:992px) {
                 height: 25px;
                 width: 25px;
                 margin-left: 1px;
@@ -180,6 +212,7 @@
                 accent-color: #DC3A1A;
               }
             }
+
             .preferences__select__text {
               font-size: 15px;
               width: 95%;
@@ -189,40 +222,48 @@
 
           }
         }
+
         .profile__form__button__block {
-          @media(max-width:992px){ 
-            margin-top: 20px; 
+          @media(max-width:992px) {
+            margin-top: 20px;
             text-align: center;
           }
         }
 
       }
+
       .address__block__disable {
         display: none;
       }
+
       .address__block {
         display: block;
       }
+
       .password__block__disable {
         display: none;
       }
+
       .password__block {
         display: block;
       }
     }
   }
 }
+
 @media screen and (max-width: 1702px) {
   .profile__page__block {
     width: 90% !important;
   }
 }
+
 @media screen and (max-width: 1200px) {
   .checkout__right__block {
     padding: 0px !important;
     margin: 10px 0px;
   }
 }
+
 @media screen and (max-width: 992px) {
   .profile__page__block {
     width: 100% !important;

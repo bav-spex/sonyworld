@@ -1,64 +1,83 @@
 .heading1 {
   font-size: 36px;
-  font-family: "arialbold";
-  
+  font-family: 'SSTbold';
+  font-weight: bold;
+
 }
+
 .heading2 {
   font-size: 30px;
-  font-family: "arialbold";
-  
+  font-family: 'SSTbold';
+  font-weight: bold;
+
 }
+
 .heading3 {
   font-size: 24px;
-  font-family: "arialbold";
-  
+  font-family: 'SSTbold';
+  font-weight: bold;
+
 }
+
 .heading4 {
   font-size: 22px;
-  font-family: "arialbold";
-  
+  font-family: 'SSTbold';
+  font-weight: bold;
+
 }
+
 .heading5 {
   font-size: 20px;
-  font-family: "arialbold";
-  
+  font-family: 'SSTbold';
+  font-weight: bold;
+
 }
+
 .heading6 {
   font-size: 18px;
-  font-family: "arialbold";
-  
+  font-family: 'SSTbold';
+  font-weight: bold;
+  line-height: 20px;
+
 }
+
 .heading7 {
   font-size: 16px;
-  font-family: "arialbold";
-  
+  font-family: 'SSTbold';
+  font-weight: bold;
+
 }
 
 
 .text1 {
   font-size: 20px;
-  font-family: "arialregular";
+  font-family: "SSTregular";
 }
+
 .text2 {
   font-size: 18px;
-  font-family: "arialregular";
+  font-family: "SSTregular";
 }
+
 .text3 {
   font-size: 16px;
-  font-family: "arialregular";
+  font-family: "SSTregular";
   overflow: hidden;
 }
+
 .text4 {
   font-size: 14px;
-  font-family: "arialregular";
+  font-family: "SSTregular";
 }
+
 .text5 {
   font-size: 12px;
-  font-family: "arialregular";
+  font-family: "SSTregular";
 }
+
 .text6 {
   font-size: 10px;
-  font-family: "arialregular";
+  font-family: "SSTregular";
 }
 
 @media screen and (max-width: 1600px) {
@@ -66,19 +85,23 @@
     font-size: 30px;
   }
 }
+
 @media screen and (max-width: 992px) {
   .heading1 {
     font-size: 24px;
   }
 }
+
 @media screen and (max-width: 576px) {
   .heading1 {
     font-size: 18px;
   }
+
   .heading3 {
     font-size: 18px;
   }
-  .text2{
-      font-size: 14px;
+
+  .text2 {
+    font-size: 14px;
   }
 }

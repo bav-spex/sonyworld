@@ -29,7 +29,7 @@
             margin: 0px 0px 0px 10px;
             border: 1px solid #dfdfdf;
             border-radius: 5px;
-            font-family: "arialmedium";
+            font-family: "SSTmedium";
             font-size: 14px;
           }
           select:focus {
@@ -86,7 +86,8 @@
             .mo__page__button__active {
               text-align: center;
               font-size: 14px;
-              font-family: "arialbold";
+             font-family: 'SSTbold';
+font-weight: bold;
               border-radius: 3px;
               min-width: fit-content;
               color: #ffffff;
@@ -104,7 +105,8 @@
               text-align: center;
               min-width: fit-content;
               font-size: 14px;
-              font-family: "arialbold";
+             font-family: 'SSTbold';
+font-weight: bold;
               border: 1px solid #707070;
               border-radius: 3px;
               padding: 10px 25px;
