@@ -389,6 +389,11 @@ function AddressForm({ handleAddressPopup }) {
     let formStatus = allFeildValidate(validateFeild, errMsg);
     setErrMsg(formStatus.allErrMsg);
 
+    let distDataManage = "";
+    if (getDistrictList.length > 0 && address.state !== "") {
+      distDataManage = address.state
+    }
+
     if (formStatus.checkSignUpStatus === true) {
 
       let params = {
@@ -401,7 +406,7 @@ function AddressForm({ handleAddressPopup }) {
         primary: address.primary,
         // countryId: address.country ? address.country : "SA",
         countryId: "SA",
-        postCode: getDistrictList.length !== 0 ? address.state : "",
+        postCode: distDataManage,
         regionId: 0,
       }
       dispatch(services.createCustomerAddress(params));

@@ -268,7 +268,7 @@ function Checkout_Page({ reloadingHeader }) {
     // dispatch(loadCitiesLocationData());
   }, []);
   const cartData = useSelector((state) => state.appData.cartData);
-  console.log("cartData ", cartData);
+  // console.log("cartData ", cartData);
 
   useEffect(() => {
     if (Object.values(cartData).length !== 0) {
@@ -281,7 +281,7 @@ function Checkout_Page({ reloadingHeader }) {
     if (deliveryShippingInfo !== "") {
       setIconType({ ...iconType, delivery: "done", payment: "inprogress" });
       setCheckoutClassName("payment");
-      console.log(deliveryShippingInfo.payment_methods);
+      // console.log(deliveryShippingInfo.payment_methods);
       setPaymentMethods(deliveryShippingInfo.payment_methods);
       setUserPaymentMethod(deliveryShippingInfo.payment_methods[0].code);
       dispatch(updateShippingInformationSuccess(''))
@@ -289,7 +289,7 @@ function Checkout_Page({ reloadingHeader }) {
   }, [deliveryShippingInfo]);
   // console.log("paymentMethods", paymentMethods);
 
-  console.log(273, cartTotalData && cartTotalData);
+  // console.log(273, cartTotalData && cartTotalData);
   // Delivery Preferences
   useEffect(async () => {
     const data = await getEstimateShippingMethods();
@@ -498,7 +498,7 @@ function Checkout_Page({ reloadingHeader }) {
   };
 
   const handleChangePaymentMethod = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUserPaymentMethod(e.target.value);
     setPaymentMethodForPayfort({
       method: e.target.value,
@@ -658,7 +658,7 @@ function Checkout_Page({ reloadingHeader }) {
     signature: "",
   });
   const makePayment = async () => {
-    console.log("card====>", card);
+    // console.log("card====>", card);
     let validateFeild = ["cardNumber", "cardHolder", "monthYear", "cvv"];
 
     let formStatus = allFeildValidate(validateFeild, cardErrMsg);
@@ -668,14 +668,14 @@ function Checkout_Page({ reloadingHeader }) {
         const newPaymentMethodForPayfort = {
           paymentMethod: paymentMethodForPayfort,
         };
-        console.log(newPaymentMethodForPayfort);
+        // console.log(newPaymentMethodForPayfort);
         const data = dispatch(
           loadPayfortInformation(newPaymentMethodForPayfort)
         ).then((res) => {
           dispatch(loadCartData());
           setCheckoutClassName("delivery");
-          console.log("payfort Information", res.data);
-          console.log("Entity", res?.data?.entity_id);
+          // console.log("payfort Information", res.data);
+          // console.log("Entity", res?.data?.entity_id);
 
           let newSendPayfortInformation = {
             card_number: card.cardNumber,
@@ -690,10 +690,10 @@ function Checkout_Page({ reloadingHeader }) {
             return_url: `https://sonyfrontend.sigmasolve.com/user/orders/${res.data.entity_id}`,
             signature: res.data.params.signature,
           };
-          console.log(
-            "newSendPayfortInformation payfort_fort_cc",
-            newSendPayfortInformation
-          );
+          // console.log(
+          //   "newSendPayfortInformation payfort_fort_cc",
+          //   newSendPayfortInformation
+          // );
           // debugger
           //  sendPayfortInformation(newSendPayfortInformation);
 
@@ -717,14 +717,14 @@ function Checkout_Page({ reloadingHeader }) {
       const newPaymentMethodForPayfort = {
         paymentMethod: paymentMethodForPayfort,
       };
-      console.log(newPaymentMethodForPayfort);
+      // console.log(newPaymentMethodForPayfort);
       const data = dispatch(
         loadPayfortInformation(newPaymentMethodForPayfort)
       ).then((res) => {
         dispatch(loadCartData());
         setCheckoutClassName("delivery");
-        console.log("payfort Information", res.data);
-        console.log("Entity", res?.data?.entity_id);
+        // console.log("payfort Information", res.data);
+        // console.log("Entity", res?.data?.entity_id);
 
         let newSendPayfortInformation = {
           card_number: card.cardNumber,
@@ -739,7 +739,7 @@ function Checkout_Page({ reloadingHeader }) {
           return_url: `https://sonyfrontend.sigmasolve.com/user/orders/${res.data.entity_id}`,
           signature: res.data.params.signature,
         };
-        console.log("newSendPayfortInformation ", newSendPayfortInformation);
+        // console.log("newSendPayfortInformation ", newSendPayfortInformation);
         // debugger
         // sendPayfortInformation(newSendPayfortInformation);
         setCheckoutClassName("delivery");

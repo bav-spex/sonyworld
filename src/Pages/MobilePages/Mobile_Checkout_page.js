@@ -11,7 +11,6 @@ import OldPrice from "../../Components/Font/OldPrice";
 import product_img from './../../assets/Product/product_01.jpg';
 import Text3 from "../../Components/Font/Text3";
 import SuperCoin from "../../Components/MostSharedComponent/SuperCoin";
-
 import Text5 from "../../Components/Font/Text5";
 import Heading7 from "../../Components/Font/Heading7";
 import Text4 from "../../Components/Font/Text4";
@@ -56,6 +55,8 @@ import ProtectionPlan from "./../../Components/MostSharedComponent/ProtectionPla
 import SmallWarrantyBlock from "./../../Components/MostSharedComponent/SmallWarrantyBlock";
 import plus from "./../../assets/Icon/plus.svg";
 import minus from "./../../assets/Icon/minus.svg";
+import { paymentCardConfig, socialConfig } from "../../assetsConfig/footer";
+import visacard from './../../assets/Footer/card_06.png';
 
 const product = {
 	id: 1,
@@ -915,12 +916,74 @@ function Mobile_Checkout_Page({ }) {
 					<div
 						className={
 							checkoutClassName === "payment"
-								? "user__payment__block"
-								: "user__payment__block__disable"
+								? "mb__user__payment__block"
+								: "mb__user__payment__block__disable"
 						}
 					>
+						<div className="mb__saved__card__block">
+							<Heading5
+								text="SAVED CARDS"
+								color="#808080"
+								marginLeft={10}
+								marginBottom={0}
+							/>
+							<div className="d-flex	align-items-start mt-3 ms-2">
+								<input
+									type="radio"
+									className="payment__input__check"
+									name="paymentType1"
+								/>
+								<img src={visacard} alt="visa card" className="card__img" />
+								<div className="ms-4">
+									<Text3 text="ICICI CREDIT CARD" />
+									<Text3 text="xxxx xxxx xxxx 1111" />
+								</div>
+							</div>
+							<div className="ms-2 mt-3">
+								<Heading7 text="Choose an Option" color="#414141" />
+								<div className="mt-2">
+									<input
+										type="radio"
+										className="payment__input__check__small"
+										name="amount" id="fullamount"
+									/>
+									<label className="ms-2" for="fullamount">Pay full amount of SAR1,699.00</label>
+								</div>
+								<div className="mt-2">
+									<input
+										type="radio"
+										className="payment__input__check__small"
+										name="amount" id="emi"
+									/>
+									<label className="ms-2" for="emi">Pay with EMI – EMI at SAR299/month</label>
+								</div>
+							</div>
+							<div className="ms-2 mt-3">
+								<div className="row">
+									<div className="col-4">
+										<input
+											type="text"
+											placeholder="CVV"
+											className="form__field form-control"
+											id="cvv"
+											name="cvv"
+										/>
+									</div>
+
+									<div className="col-6">
+										<button
+											className="continue___button btn btn__primary__orange "
+										>
+											CONTINUE
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr />
 						<div className="payment__block">
-							<div className="payment__title__block">
+
+							{/* <div className="payment__title__block">
 								<img src={payment_done} alt="" className="user__icon" />
 								<Heading5
 									text="PAYMENT OPTIONS"
@@ -928,7 +991,223 @@ function Mobile_Checkout_Page({ }) {
 									marginLeft={10}
 									marginBottom={0}
 								/>
+							</div> */}
+							{/* {paymentMethods &&
+								paymentMethods?.map((payment, paymentIndex) => {
+									return ( */}
+							<div className="payment__form__main__block">
+								<div
+									// key={payment.code}
+									className="payment__form__block"
+								>
+									<input
+										type="radio"
+										className="payment__input__check"
+										name="paymentType"
+									// value={payment.code}
+									// onChange={handleChangePaymentMethod}
+									/>
+									<p className="payment__selection__text d-flex justify-content-between w-100">
+										<Text4 text="Pay with Card" />
+										<div className="card__block">
+											{paymentCardConfig.map(({ iconPath, alt }, socialIndex) => {
+												return (
+													<img
+														key={alt}
+														src={require(`./../../${iconPath}`)}
+														alt={alt}
+														className="card"
+													/>
+												);
+											})}
+										</div>
+									</p>
+								</div>
+								{/* {userPaymentMethod === payment.code ? ( */}
+								<div className="payment__detail__form__block">
+									{/* {userPaymentMethod === "payfort_fort_cc" ? ( */}
+									<div className="address__content__block">
+										<div className="payment__card__block">
+											<div className="row payment__form__field__row">
+												<div className="col-12 mb-2 main__form__field__block">
+													{/* <p className="form__label">First Name</p> */}
+													<Heading7
+														text="Credit Card Number"
+														marginBottom={10}
+													/>
+													<div className="field__block">
+														<input
+															type="text"
+															placeholder="xxxx-xxxx-xxxx-xxxx"
+															className="form__field w-100"
+															id="name"
+															name="cardNumber"
+															value={card.cardNumber}
+															onChange={(e) =>
+																handleChangeCard(e)
+															}
+														/>
+													</div>
+													{/* {cardErrMsg.cardNumber && ( */}
+													<p className="invalid__message">
+														{cardErrMsg.cardNumber}
+													</p>
+													{/* )} */}
+												</div>
+												<div className="col-12 mb-2 main__form__field__block">
+													{/* <p className="form__label">Mobile Number</p> */}
+													<Heading7
+														text="Credit Holder Name"
+														marginBottom={10}
+													/>
+													<div className="field__block">
+														<input
+															type="text"
+															placeholder="Credit Holder Name"
+															className="form__field w-100"
+															id="cardHolder"
+															name="cardHolder"
+														// value={card.cardHolder}
+														// onChange={(e) =>
+														// 	handleChangeCard(e)
+														// }
+														/>
+													</div>
+													{/* {cardErrMsg.cardHolder && (
+																			<p className="invalid__message">
+																				{cardErrMsg.cardHolder}
+																			</p>
+																		)} */}
+												</div>
+											</div>
+											<div className="row payment__form__field__row">
+												<div className="row col-8 main__form__field__block month__year__form__field__block">
+													<div className="col-6 ">
+														{/* <p className="form__label">First Name</p> */}
+														<Heading7
+															text="Month"
+															marginBottom={10}
+														/>
+														<div className="field__block">
+															<input
+																type="text"
+																placeholder="MM"
+																className="form__field w-100"
+																id="month"
+																name="month"
+															// value={card.month}
+															// onChange={(e) =>
+															// 	handleChangeCard(e)
+															// }
+															/>
+														</div>
+														{cardErrMsg.month && (
+															<p className="invalid__message">
+																{cardErrMsg.month}
+															</p>
+														)}
+													</div>
+													<div className="col-6">
+														{/* <p className="form__label">Mobile Number</p> */}
+														<Heading7
+															text="Year"
+															marginBottom={10}
+														/>
+														<div className="field__block">
+															<input
+																type="text"
+																placeholder="YY"
+																className="form__field w-100"
+																id="year"
+																name="year"
+																value={card.year}
+																onChange={(e) =>
+																	handleChangeCard(e)
+																}
+															/>
+														</div>
+														{cardErrMsg.year && (
+															<p className="invalid__message">
+																{cardErrMsg.year}
+															</p>
+														)}
+													</div>
+
+												</div>
+												<div className="col-4 main__form__field__block">
+													{/* <p className="form__label">First Name</p> */}
+													<Heading7
+														text="CVV"
+														marginBottom={10}
+													/>
+													<div className="field__block">
+														<input
+															type="text"
+															placeholder="CVV"
+															className="form__field"
+															id="cvv"
+															name="cvv"
+															value={card.cvv}
+															onChange={(e) =>
+																handleChangeCard(e)
+															}
+														/>
+													</div>
+													{cardErrMsg.cvv && (
+														<p className="invalid__message">
+															{cardErrMsg.cvv}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className="row payment__form__field__row"></div>
+										</div>
+									</div>
+
+								</div>
+
 							</div>
+
+
+						</div>
+						<hr />
+						{/* package Summary */}
+						<div className="col-md-12 col-xl-3  checkout__right__block">
+							<div className="checkout__package__summary__block">
+								<p className="checkout__os__title">
+									{" "}
+									<Heading3 text="Price Details" />
+								</p>
+								<div className="checkout__os__detail__block">
+									{/* <div className="checkout__os__detail__inner__block">
+                    <Text3 text="Shipping" color="#000000" />
+                    <Price price={20} size="heading7" />
+                  </div> */}
+									{cartTotalData?.total_segments
+										.slice(1, 5)
+										.map((segment, segmentIndex) => {
+											return (
+												<div
+													key={segment.code}
+													className="checkout__os__detail__inner__block"
+												>
+													{segment.code === "grand_total" ? (
+														<Heading6 text={segment.title} color="#000000" />
+													) : (
+														<Text3 text={segment.title} color="#000000" />
+													)}
+													<Price
+														price={segment.value === null ? 0 : segment.value}
+														size="heading7"
+														currency={cartTotalData.base_currency_code}
+													/>
+												</div>
+											);
+										})}
+								</div>
+							</div>
+							<hr />
+							<SuperCoin />
 						</div>
 					</div>
 				}

@@ -20,6 +20,12 @@ function HomePageCategoryBlock() {
   const feature_product_004 = feature_product_04;
   const feature_product_005 = feature_product_05;
   const feature_product_006 = feature_product_06;
+  const feature_product_007 = feature_product_06;
+  const feature_product_008 = feature_product_06;
+  const feature_product_009 = feature_product_06;
+  const feature_product_0010 = feature_product_06;
+  const feature_product_0011 = feature_product_06;
+  const feature_product_0012 = feature_product_06;
   const categoryData =useSelector(state=>state.appData.categoryData)
   const changeReducerSelectedCategory = (catObj) => {
     dispatch({

@@ -15,7 +15,7 @@
     }
   }
   .signupModel__content {
-    padding: 30px 30px;
+    padding: 25px 30px;
     background-color: #ffffff;
     .main__form__field__block {
       margin: 0px 0px 10px;
@@ -50,6 +50,7 @@
     .main__policy__check__block {
       display: flex;
       align-items: flex-start;
+      margin-top:15px;
       .policy__check__block {
         width: 7%;
         display: flex;
@@ -61,6 +62,10 @@
         }
         .check__icon__disable {
           display: none;
+        }
+        .signUP__policy__label {
+          font-size: 15px;
+          color: #101010;
         }
       }
       .policy__link {
@@ -180,7 +185,7 @@
       align-items: center;
       justify-content: center;
       .footer__text {
-        font-size: 18px;
+        font-size: 16px;
         font-family: "arialbold";
         margin: 0px;
       }
@@ -189,6 +194,7 @@
         font-size: 18px;
         font-family: "arialbold";
         margin: 0px 0px 0px 5px;
+        cursor: pointer;
       }
     }
   }

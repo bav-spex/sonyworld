@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import * as types from "./../redux/actionType";
 // import "./../SCSS/ProductListPage/_productListPageFilterProductBlock.scss";
 // import "./../SCSS/ProductListPage/_productListBannerSection.scss";
 // import "./../SCSS/ProductListPage/_productListCategorySection.scss";
@@ -36,68 +37,93 @@ import newArrivals_04 from "./../assets/NewArrivals/newArrivals_04.png";
 import newArrivals_05 from "./../assets/NewArrivals/newArrivals_05.png";
 import MobileProductListPage from "./MobilePages/Mobile_Product_List_Page";
 import { useParams } from "react-router";
-import { loadCategoryFilterData } from "../redux/appAction";
+import {
+  loadApplyFilterData,
+  loadApplyFilterProductsData,
+  loadCategoryFilterData,
+  loadFilterData,
+  loadSingleCategoryData,
+} from "../redux/appAction";
 import { getProductsOfCategory } from "../services/plp.service";
 
-
-
-
-const Product_List_Page = ({handleChangeCartPopup}) => {
+const Product_List_Page = ({ handleChangeCartPopup }) => {
   const { category } = useParams();
+  const[selectedSubCategoryId,setSelectedSubCategoryId] = useState(null)
+  const[selectedSubCategory,setSelectedSubCategory] = useState(null)
   const [selectedCategoryId, setSelectedCategoryId] = useState();
-  const [filterAndProductsData, setfilterAndProductsData] = useState([]);
+  const [filteredProductsData, setFilteredProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [subCategoryId, setSubCategoryId] = useState(
     category.split("-").slice(-1)[0]
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [filterDetails, setFilterDetails] = useState({ filterDetails: {} });
+  const [filterDetails, setFilterDetails] = useState({ filterDetails: {category:[category.split("-").slice(-3)[0]]} });
+  const [meFilterDetails,setMeFilterDetails] = useState({keyword:"",category:[]})
+
+  const selectedCategory = useSelector((state) => state.appData.selectedCategory);
+  const categoryData = useSelector((state) => state.appData.categoryData);
+  const filterOptionData = useSelector((state) => state.appData.filterOptionData);
+  // console.log(filterOptionData);
+  const applyFilterProductsData = useSelector((state) => state.appData.applyFilterProductsData);
+
   useEffect(async () => {
-    const urlCategoryId = category.split("-").slice(-1)[0];
+    const urlCategoryId = category.split("-").slice(-3)[0];
+    setSelectedSubCategoryId(urlCategoryId)
+    const urlSelectedCategoryId = category.split("-").slice(-3)[2];
+    // console.log(category.slice(-10));
+    setMeFilterDetails({keyword:"",category:[category.slice(-10)]})
     setSelectedCategoryId(urlCategoryId);
+    let mainSelectedCategory = categoryData?.children_data.filter(
+      (mainCat) => mainCat.id == urlSelectedCategoryId
+    );
+      dispatch({
+        type: types.SET__SELECTED__CATEGORY,
+        payload: mainSelectedCategory[0],
+      })
     const categoryIdArray = [];
     categoryIdArray.push(urlCategoryId);
     setFilterDetails({ filterDetails: { category: categoryIdArray } });
-    const data = await getProductsOfCategory({
-      id: category.split("-").slice(-1)[0],
-      limit: "",
-      offset: "",
-      sortBy: "",
-    });
-    console.log(data);
-    if (data.data) {
-      setfilterAndProductsData(data.data);
-      setLoading(false);
-      window.scrollTo(0, 0);
-    }
   }, []);
+
+  useEffect(()=>{
+    const urlCategoryId = category.split("-").slice(-3)[0];
+    setSelectedCategoryId(urlCategoryId);
+    setSelectedSubCategoryId(urlCategoryId)
+    setMeFilterDetails({keyword:"",category:[category.slice(-10)]})
+  },[selectedCategory,category])
+
   useEffect(() => {
-    dispatch(loadCategoryFilterData(filterDetails));
-  }, [filterDetails]);
+    dispatch(loadFilterData(filterDetails));
+    dispatch(loadApplyFilterProductsData(filterDetails));
+  }, [filterDetails,category]);
+  
+  useEffect(() => {
+    if (Object.values(applyFilterProductsData).length !== 0) {
+      setFilteredProductsData(applyFilterProductsData);
+      setLoading(false);
+    }
+  }, [applyFilterProductsData]);
 
-  const selectedCategory = useSelector(
-    (state) => state.appData.selectedCategory
-  );
-  const filterData = useSelector((state) => state.appData.filterData);
+  // useEffect(() => {
+  //   if (Object.values(applyFilterProductsData).length !== 0) {
+  //     setFilteredProductsData(applyFilterProductsData);
+  //     setLoading(false);
+  //   }
+  // }, [filterOptionData]);
 
-  const updateSelectedSubCategoryId = async (subCategory) => {
-    // console.log(subCategory);
+  const updateSelectedSubCategoryId = (subCategory) => {
+    setSelectedSubCategory(subCategory)
+    console.log(subCategory);
     setSelectedCategoryId(subCategory.id);
-
-    const data = await getProductsOfCategory({
-      id: subCategory.id,
-      limit: "",
-      offset: "",
-      sortBy: "",
-    });
-    setfilterAndProductsData(data.data);
+    const categoryIdArray = [];
+    categoryIdArray.push(subCategory.id);
+    setFilterDetails({ filterDetails: { category: categoryIdArray } });
     navigate(
       `/${subCategory.name.toLowerCase().trim().replace(/ /g, "-")}-c-${
         subCategory.id
-      }`
+      }-mc-${subCategory.parent_id}`
     );
-    // console.log(data);
   };
 
   //for updating id from filter section
@@ -243,6 +269,10 @@ const Product_List_Page = ({handleChangeCartPopup}) => {
     //   return id !== id
     // })
     // console.log("newCompareData",newCompareData);
+
+
+
+
   };
   if (loading) {
     return <h1>Product Loading...</h1>;
@@ -255,12 +285,16 @@ const Product_List_Page = ({handleChangeCartPopup}) => {
       <div className="container-fluid product__list__page__container d-none d-lg-block">
         <div className="product__list__page__block">
           <PLPBannerAndCategorySection
-           selectedCategoryId={selectedCategoryId}
+            selectedCategoryId={selectedCategoryId}
             updateSelectedSubCategoryId={updateSelectedSubCategoryId}
             selectedMainCategory={selectedCategory}
           />
           <PLPFilterProductBlock
-            filterAndProductsData={filterAndProductsData}
+          categoryInfo={selectedSubCategory}
+          category={selectedSubCategoryId}
+          meFilterDetails={meFilterDetails}
+          searchResult={filteredProductsData}
+            filterOptionData={filterOptionData}
             handleChangeProductPopup={handleChangeProductPopup}
             handleChangeComparePopup={handleChangeComparePopup}
           />
@@ -284,7 +318,7 @@ const Product_List_Page = ({handleChangeCartPopup}) => {
         }
       >
         <PLPProductPopup
-        handleChangeCartPopup={handleChangeCartPopup}
+          handleChangeCartPopup={handleChangeCartPopup}
           product={popupProduct}
           closeProductPopup={closeProductPopup}
         />

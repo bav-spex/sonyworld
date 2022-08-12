@@ -298,14 +298,14 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
 
     })
 
-    let checkSignUpStatus = false;
-    if (checkValueStatus.length === checkErrStatus.length) {
-      checkSignUpStatus = true;
+    let checkAddressStatus = false;
+    if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
+      checkAddressStatus = true;
     }
 
     let returnData = {
       allErrMsg: allErrMsg,
-      checkSignUpStatus: checkSignUpStatus
+      checkAddressStatus: checkAddressStatus
     }
 
     return returnData;
@@ -334,7 +334,11 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
     let formStatus = allFeildValidate(validateFeild, errMsg);
     setErrMsg(formStatus.allErrMsg);
 
-    if (formStatus.checkSignUpStatus === true) {
+    let distDataManage = "";
+    if (getDistrictList.length > 0 && address.state !== "") {
+      distDataManage = address.state
+    }
+    if (formStatus.checkAddressStatus === true) {
 
       if (editId !== "" && popupType === "update") {
 
@@ -349,7 +353,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
           primary: address.primary,
           // countryId: address.country ? address.country : "SA",
           countryId: "SA",
-          postCode: getDistrictList.length !== 0 ? address.state : "",
+          postCode: distDataManage,
           regionId: 0,
         }
 
@@ -367,7 +371,7 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
           primary: address.primary,
           // countryId: address.country ? address.country : "SA",
           countryId: "SA",
-          postCode: getDistrictList.length !== 0 ? address.state : "",
+          postCode: distDataManage,
           regionId: 0,
         }
         dispatch(services.createCustomerAddress(params));
@@ -385,7 +389,6 @@ function AddressPopup({ closeLoginPopup, editAddressData, popupType }) {
     resetFormErr();
   }
 
-  const [errors, setErrors] = useState([]);
   return (
     <div className="address__popup__block">
       <div className="address__title__block">

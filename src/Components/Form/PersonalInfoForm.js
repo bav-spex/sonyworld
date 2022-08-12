@@ -395,20 +395,20 @@ function PersonalInfoForm() {
               id="email"
               name="email"
               value={personalData.email}
-              disabled={!emailEditFeild}
+              disabled={true}
               onChange={(e) => handleChange(e)}
               autoFocus
             />
           </div>
           {errMsg.email && <p className="invalid__message">{errMsg.email}</p>}
         </div>
-        <div
+        {/* <div
           onClick={() => setEmailEditFeild(!emailEditFeild)}
           className="form__edit__block"
         >
           <img src={edit_black} alt="" />
           <Heading6 text="Edit" marginLeft={5} />
-        </div>
+        </div> */}
       </div>
       <div className="profile__mobile__block">
         <div className="main__form__field__block">

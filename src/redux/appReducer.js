@@ -9,8 +9,8 @@ const initialState = {
   cityLocationData: [],
   countriesLocationData: [],
   storesLocationData: [],
-  filterData: {},
-  applyFilterData: {},
+  filterOptionData: {},
+  applyFilterProductsData: {},
   selectedCategory: {},
   loading: true,
   cartQuoteId: "",
@@ -42,15 +42,15 @@ const appReducer = (state = initialState, action) => {
         ...state,
         productData: action.payload,
       };
-    case types.GET__PRODUCT__FILTER__DATA:
+    case types.GET__FILTER__DATA:
       return {
         ...state,
-        applyFilterData: action.payload,
+        filterOptionData: action.payload,
       };
-    case types.GET__APPLY__FILTER__DATA:
+    case types.GET__APPLY__FILTER__PRODUCTS__DATA:
       return {
         ...state,
-        filterData: action.payload,
+        applyFilterProductsData: action.payload,
       };
     case types.SET__ORDER__ID__DATA:
       return {

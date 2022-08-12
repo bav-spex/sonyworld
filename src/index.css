@@ -41,6 +41,36 @@ code {
   font-style: normal;
 
 }
+
+/* sst fonts starts*/
+@font-face {
+  font-family: 'SSTregular';
+  src: url('./font/SST-english/SST-Roman.woff2') format('woff2'),
+      url('./font/SST-english/SST-Roman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SSTbold';
+  src: url('./font/SST-english/SST-Bold.woff2') format('woff2'),
+      url('./font/SST-english/SST-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SSTmedium';
+  src: url('./font/SST-english/SST-Medium.woff2') format('woff2'),
+      url('./font/SST-english/SST-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* sst fonts ends*/
+
 b,strong{
   font-family: "arialbold";
 }

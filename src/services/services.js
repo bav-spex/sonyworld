@@ -30,3 +30,7 @@ export {
     getCustomerOrdersList, // get_api_V1_customer_orders
     getCustomerOrderDetails
 } from './customerOrders/customerOrders';
+
+export {
+    getFlyerPdf
+} from './other/other';
