@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import star from "./../../assets/Icon/orange-review.svg";
 import "./../../SCSS/ProductListPage/_plpFilter.scss";
 import Heading6 from "./../../Components/Font/Heading6";
 import Text2 from "./../../Components/Font/Text2";
+import { getAppliedFilters } from "../helpers/utils/getAppliedFilters";
+import { getFilterData } from "../../services/plp.service";
+import { loadFilterData } from "../../redux/appAction";
+import { useDispatch } from "react-redux";
+import Facets from "./Facets";
 const starArray = [1, 2, 3, 4, 5];
 
 const filterData = [
@@ -168,52 +173,131 @@ const filterData = [
   },
 ];
 
-const PLPFilter = ({filterOptionData}) => {
-  console.log(Object.values(Object.values(filterOptionData)[1]));
-  console.log(Object.keys(Object.values(filterOptionData)[1]));
+const PLPFilter = ({
+  filterOptionData,
+  searchResult,
+  details,
+  category,
+  keyword = "",
+  onFilter,
+  categoryInfo
+}) => {
+  const dispatch = useDispatch();
+  const [facetData, setFacetData] = useState(null);
+  const [clientSideFilter, setClientSideFilter] = useState(null);
 
-  return (
-    filterData && (
-      <div className="main__filter__block">
-        {filterData.map((filter, index) => {
+  // const toggleFilter = () => dispatch({
+  //   type: appActionTypes.MOBILE_FILTER_MODE,
+  //   payload: !mobileFilterMode,
+  // });
 
-          return (
-            <div key={index} className="filter__block">
-              <Heading6 text={filter.filterTitle} marginBottom={10} />
-              {filter.filterItems.map((data,dataIndex) => {
-                return (
-                  <div
-                  key={dataIndex}
-                    className={`filter__checkbox__block ${
-                      filter.filterTitle === "Customer Review" ? "reviews" : ""
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      className="filter__checkbox"
-                      name={data.title}
-                      // onChange={handleChange}
-                    />
-                    {filter.filterTitle === "Customer Review" ? (
-                      <div className="star__rating__block">
-                        {starArray.map((item,itemIndex) => (
-                          <img key={itemIndex} className="star__count" src={star} alt="" />
-                          ))}
-                          <p className="star__rating">{`${data.starRating}.0`}</p>
-                      </div>
-                    ) : (
-                      // <p className="filter__title">{data.title}</p>
-                      <Text2 text={data.title} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
+  useEffect(() => {
+    // console.log("details", details);
+    setFacetData(filterOptionData);
+  }, [category, keyword]);
+
+  useEffect(() => {
+    if (clientSideFilter) {
+      onFilter(clientSideFilter);
+    }
+  }, [clientSideFilter]);
+
+  const createMewObject = (obj) => {
+    var newArray = [];
+    console.log(Object.keys(obj));
+    Object.keys(obj).forEach((key) => {
+      let newObj = {};
+      console.log(key);
+      console.log(obj[key]);
+      newObj["title"] = key;
+      newObj["value"] = obj[key];
+      newArray.push(newObj);
+    });
+    return newArray;
+  };
+
+  return facetData?.facets?.priceRange.max > 0 ? (
+    <>
+      <div>
+        {/* {isMobile && (
+        <div className={styles.header}>
+          <button className="btn btn-icon" onClick={toggleFilter} aria-label="Toggle filter">
+            <div className={styles.closeIcon} />
+          </button>
+          <span className={styles.title}>{t('Sort & Filter')}</span>
+        </div>
+        )} */}
+        {facetData?.total_count > 0 && (
+          <div>
+            {/* {isMobile && <Sort t={t} onSortChange={setClientSideFilter} />} */}
+            <Facets
+              searchResult={searchResult}
+              category={category}
+              facetData={facetData.facets}
+              onFilterChange={setClientSideFilter}
+              keyword={keyword}
+              categoryInfo={categoryInfo}
+            />
+          </div>
+        )}
+        {/* {isMobile && (
+          <div className={styles.footer}>
+            <button className={clsx('btn btn-primary', styles.showButton)} onClick={toggleFilter} aria-label="Show results">{t('Show results', { p1: searchResult?.total_count || 0 })}</button>
+          </div>
+        )} */}
       </div>
-    )
+      {/* {isMobile && <MobileSortFilterBtn t={t} mobileFilterMode={mobileFilterMode} dispatch={dispatch} />} */}
+    </>
+  ) : (
+    <div />
   );
+
+  // return (
+  //   filterData && (
+  //     <div className="main__filter__block">
+  //       {filterData.map((filter, index) => {
+  //         return (
+  //           <div key={index} className="filter__block">
+  //             <Heading6 text={filter.filterTitle} marginBottom={10} />
+  //             {filter.filterItems.map((data, dataIndex) => {
+  //               return (
+  //                 <div
+  //                   key={dataIndex}
+  //                   className={`filter__checkbox__block ${
+  //                     filter.filterTitle === "Customer Review" ? "reviews" : ""
+  //                   }`}
+  //                 >
+  //                   <input
+  //                     type="checkbox"
+  //                     className="filter__checkbox"
+  //                     name={data.title}
+  //                     // onChange={handleChange}
+  //                   />
+  //                   {filter.filterTitle === "Customer Review" ? (
+  //                     <div className="star__rating__block">
+  //                       {starArray.map((item, itemIndex) => (
+  //                         <img
+  //                           key={itemIndex}
+  //                           className="star__count"
+  //                           src={star}
+  //                           alt=""
+  //                         />
+  //                       ))}
+  //                       <p className="star__rating">{`${data.starRating}.0`}</p>
+  //                     </div>
+  //                   ) : (
+  //                     // <p className="filter__title">{data.title}</p>
+  //                     <Text2 text={data.title} />
+  //                   )}
+  //                 </div>
+  //               );
+  //             })}
+  //           </div>
+  //         );
+  //       })}
+  //     </div>
+  //   )
+  // );
 };
 
 export default PLPFilter;

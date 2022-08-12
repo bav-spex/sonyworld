@@ -48,6 +48,8 @@ import { getProductsOfCategory } from "../services/plp.service";
 
 const Product_List_Page = ({ handleChangeCartPopup }) => {
   const { category } = useParams();
+  const[selectedSubCategoryId,setSelectedSubCategoryId] = useState(null)
+  const[selectedSubCategory,setSelectedSubCategory] = useState(null)
   const [selectedCategoryId, setSelectedCategoryId] = useState();
   const [filteredProductsData, setFilteredProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,6 +59,8 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [filterDetails, setFilterDetails] = useState({ filterDetails: {category:[category.split("-").slice(-3)[0]]} });
+  const [meFilterDetails,setMeFilterDetails] = useState({keyword:"",category:[]})
+
   const selectedCategory = useSelector((state) => state.appData.selectedCategory);
   const categoryData = useSelector((state) => state.appData.categoryData);
   const filterOptionData = useSelector((state) => state.appData.filterOptionData);
@@ -65,7 +69,10 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
 
   useEffect(async () => {
     const urlCategoryId = category.split("-").slice(-3)[0];
+    setSelectedSubCategoryId(urlCategoryId)
     const urlSelectedCategoryId = category.split("-").slice(-3)[2];
+    // console.log(category.slice(-10));
+    setMeFilterDetails({keyword:"",category:[category.slice(-10)]})
     setSelectedCategoryId(urlCategoryId);
     let mainSelectedCategory = categoryData?.children_data.filter(
       (mainCat) => mainCat.id == urlSelectedCategoryId
@@ -82,6 +89,8 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   useEffect(()=>{
     const urlCategoryId = category.split("-").slice(-3)[0];
     setSelectedCategoryId(urlCategoryId);
+    setSelectedSubCategoryId(urlCategoryId)
+    setMeFilterDetails({keyword:"",category:[category.slice(-10)]})
   },[selectedCategory,category])
 
   useEffect(() => {
@@ -104,6 +113,7 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   // }, [filterOptionData]);
 
   const updateSelectedSubCategoryId = (subCategory) => {
+    setSelectedSubCategory(subCategory)
     console.log(subCategory);
     setSelectedCategoryId(subCategory.id);
     const categoryIdArray = [];
@@ -259,6 +269,10 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     //   return id !== id
     // })
     // console.log("newCompareData",newCompareData);
+
+
+
+
   };
   if (loading) {
     return <h1>Product Loading...</h1>;
@@ -276,7 +290,10 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
             selectedMainCategory={selectedCategory}
           />
           <PLPFilterProductBlock
-            filteredProductsData={filteredProductsData}
+          categoryInfo={selectedSubCategory}
+          category={selectedSubCategoryId}
+          meFilterDetails={meFilterDetails}
+          searchResult={filteredProductsData}
             filterOptionData={filterOptionData}
             handleChangeProductPopup={handleChangeProductPopup}
             handleChangeComparePopup={handleChangeComparePopup}
