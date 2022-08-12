@@ -20,6 +20,7 @@ const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,
 
 
   const onSelectCategory = (item) => {
+    
     // console.log(item);
     updateSelectedSubCategoryId(item)
     setSelectedSubCategory(item);

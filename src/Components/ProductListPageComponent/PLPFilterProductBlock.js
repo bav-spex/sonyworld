@@ -541,16 +541,18 @@ const peopleUltimatelyBoughtData = [
 ];
 
 const PLPFilterProductBlock = ({
-  filteredProductsData,
+  categoryInfo,
+  searchResult,
   handleChangeProductPopup,
   handleChangeComparePopup,
-  filterOptionData
-  
+  filterOptionData,
+  meFilterDetails,
+  category,
 }) => {
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   const [productListView, setProductListView] = useState("grid");
-  // console.log(filteredProductsData?.items);
-  // console.log(filterOptionData);
+  // console.log(searchResult?.items);
+  // console.log(meFilterDetails);
 
   const onSelectSortby = (e) => {
     // console.log(e.target.value);
@@ -566,11 +568,59 @@ const PLPFilterProductBlock = ({
     }
   };
 
+  const onFilterChange = async ({ query, search }) => {
+    //  console.log("search ", search);
+    //  console.log("query ", query);
+    // const filterBy = [];
+    // // eslint-disable-next-line
+    // Object.keys(query).map((searchKey) => {
+    //   if (query[searchKey].length) {
+    //     const filter = [searchKey, query[searchKey].join(',')].join(':');
+    //     filterBy.push(filter);
+    //   }
+    // });
+    // const filterByStr = [];
+    // let href = screenName === 'shop' ? `${uri.href}?slug=${slug}&category=${category}` : uri.href;
+    // let as = screenName === 'shop' ? uri.as.replace('[slug]', slug).replace('[category]', category) : uri.as;
+    // let sortByStr = '';
+    // filterBy.forEach((param) => {
+    //   filterByStr.push(`filterBy=${param}`);
+    // });
+    // if (search?.sortBy) {
+    //   sortByStr = `sortBy=${search.sortBy}`;
+    // }
+    // if (filterBy.length) {
+    //   const appliedFilterNames = filterBy.map((filter) => {
+    //     const categoryName = filter.split(':')[0];
+    //     return categoryName;
+    //   });
+    //   href += `?${filterByStr.join('&')}`;
+    //   as += `?${filterByStr.join('&')}`;
+    //   filterEvents.applyFilter(screenName, appliedFilterNames);
+    // }
+    // const delimiter = as.match('\\?') ? '&' : '?';
+    // if (sortByStr) {
+    //   href += `&${sortByStr}`;
+    //   as += `${delimiter}${sortByStr}`;
+    // }
+    // if (keyword) {
+    //   href += `&q=${keyword}`;
+    //   as += `${delimiter}q=${keyword}`;
+    // }
+    // Router.push(href, as).then(() => scrollToFilter());
+  };
   return (
     <>
       <div className="plp__filter__product__container">
         <div className="plp__filter__product__title__block">
-          <Heading3 text={`${filteredProductsData?.total_count !== 0 && filteredProductsData?.items.length ?filteredProductsData?.items.length : 0 } Products`} />
+          <Heading3
+            text={`${
+              searchResult?.total_count !== 0 &&
+              searchResult?.items.length
+                ? searchResult?.items.length
+                : 0
+            } Products`}
+          />
           <div className="plp__filter__product__sortby__grid__button">
             <Text3 text="Sort By:" />
             {/* <label className="label">Sort by: &nbsp;</label> */}
@@ -625,52 +675,62 @@ const PLPFilterProductBlock = ({
         </div>
         <div className="row plp__filter__product__block">
           <div className="col-sm-3 plp__filter__block">
-            <PLPFilter filterOptionData={filterOptionData}  />
+            <PLPFilter
+            searchResult={searchResult}
+            categoryInfo={categoryInfo}
+              onFilter={(data) => onFilterChange(data)}
+              category={category}
+              details={meFilterDetails}
+              filterOptionData={filterOptionData}
+            />
           </div>
           <div className="col-sm-9 plp__product__block">
             <div className="row plp__inner__product__block">
               {productListView === "grid" ? (
                 <>
-                  {filteredProductsData?.total_count !== 0 && filteredProductsData?.items.length !== 0 ? filteredProductsData?.items.map((product, productIndex) => {
-                    return (
-                      <div
-                        key={productIndex}
-                        className="col-xxl-4 col-lg-6 mb-3"
-                      >
-                        <ProductNine
-                          product={product}
-                          handleChangeProductPopup={handleChangeProductPopup}
-                          handleChangeComparePopup={handleChangeComparePopup}
-                        />
-                      </div>
-                    );
-                  }): 
-                  <div>
-                   <h1>
-                     No Products Available
-                     </h1>
-                  </div>
-                  }
+                  {searchResult?.total_count !== 0 &&
+                  searchResult?.items.length !== 0 ? (
+                    searchResult?.items.map((product, productIndex) => {
+                      return (
+                        <div
+                          key={productIndex}
+                          className="col-xxl-4 col-lg-6 mb-3"
+                        >
+                          <ProductNine
+                            product={product}
+                            handleChangeProductPopup={handleChangeProductPopup}
+                            handleChangeComparePopup={handleChangeComparePopup}
+                          />
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div>
+                      <h1>No Products Available</h1>
+                    </div>
+                  )}
                   {/* <PLPProduct productsData={peopleUltimatelyBoughtData} /> */}
                 </>
               ) : productListView === "list" ? (
                 <>
-                  {filteredProductsData?.total_count !== 0 && filteredProductsData?.items.length !== 0 ? filteredProductsData?.items.map((product, productIndex) => {
-                    return (
-                      <div key={productIndex} className="col-sm-12 mb-3">
-                        <ProductTen
-                          product={product}
-                          handleChangeProductPopup={handleChangeProductPopup}
-                          handleChangeComparePopup={handleChangeComparePopup}
-                        />
-                      </div>
-                    );
-                  }):
-                  <div>
-                   <h1>
-                     No Products Available
-                     </h1>
-                  </div>}
+                  {searchResult?.total_count !== 0 &&
+                  searchResult?.items.length !== 0 ? (
+                    searchResult?.items.map((product, productIndex) => {
+                      return (
+                        <div key={productIndex} className="col-sm-12 mb-3">
+                          <ProductTen
+                            product={product}
+                            handleChangeProductPopup={handleChangeProductPopup}
+                            handleChangeComparePopup={handleChangeComparePopup}
+                          />
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div>
+                      <h1>No Products Available</h1>
+                    </div>
+                  )}
                 </>
               ) : (
                 ""
