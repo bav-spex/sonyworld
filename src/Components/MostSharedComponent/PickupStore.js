@@ -25,7 +25,7 @@ function PickupStore({ delivery, title }) {
 							{storeIndex === 0 ? (
 								<Link
 									className="product__store__location__link"
-									to="/store" data-bs-toggle="modal" data-bs-target="#exampleModal"
+									to="/store" data-bs-toggle="modal" data-bs-target="#pickupModal"
 								>{`See all pickup locations >`}</Link>
 							) : (
 								""
@@ -36,7 +36,7 @@ function PickupStore({ delivery, title }) {
 			})}
 
 			{/* mobile modal popup for store */}
-			<div class="modal mb__bottom_popup" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal mb__bottom_popup" id="pickupModal" tabindex="-1" aria-labelledby="pickupModalLabel" aria-hidden="true">
 				<div class="modal-dialog mb__dialog__end modal-dialog-scrollable">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -60,7 +60,39 @@ function PickupStore({ delivery, title }) {
 										CONFIRM LOCATION
 									</button>
 								</div>
-								<span className="ms-5 text-center">
+								<span className="ms-sm-5 ps-2 text-center mb__pin__right">
+									<img src={pinMiles} alt="miles"/>
+									<Heading7 text="2 miles" />
+								</span>
+							</div>
+							<div className="d-flex pickup__box">
+								<span>
+									<img src={pinIcon} alt="pinIcon" />
+								</span>
+								<div className="ms-2">
+									<Heading7 text="Sony Showroom / Modern Electronics" />
+									<Text4 text="Akariya Mall, Olaya Street, Riyadh Riyadh" />
+									<button className="btn btn__primary__orange py-2 mt-3">
+										CONFIRM LOCATION
+									</button>
+								</div>
+								<span className="ms-sm-5 ps-2 text-center mb__pin__right">
+									<img src={pinMiles} alt="miles"/>
+									<Heading7 text="2 miles" />
+								</span>
+							</div>
+							<div className="d-flex pickup__box">
+								<span>
+									<img src={pinIcon} alt="pinIcon" />
+								</span>
+								<div className="ms-2">
+									<Heading7 text="Sony Showroom / Modern Electronics" />
+									<Text4 text="Akariya Mall, Olaya Street, Riyadh Riyadh" />
+									<button className="btn btn__primary__orange py-2 mt-3">
+										CONFIRM LOCATION
+									</button>
+								</div>
+								<span className="ms-sm-5 ps-2 text-center mb__pin__right">
 									<img src={pinMiles} alt="miles"/>
 									<Heading7 text="2 miles" />
 								</span>
