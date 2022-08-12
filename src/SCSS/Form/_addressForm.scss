@@ -7,7 +7,8 @@
     .selected__address__inner__block {
       box-shadow: 0px 3px 6px #00000029;
       border: 2px solid #000000;
-      padding: 20px 30px;
+      padding: 10px 10px 30px 30px;
+      margin-bottom: 20px;
       .address__title__block {
         display: flex;
         align-items: center;
@@ -48,7 +49,7 @@
       background: #ffffff;
       box-shadow: 0px 3px 6px #00000029;
       border: 2px solid #d1d1d1;
-      padding: 20px 30px;
+      padding: 10px 10px 30px 30px;
       margin-bottom: 20px;
       .address__title__block {
         display: flex;
@@ -61,6 +62,10 @@
           background: #eeeeee;
           border: 1px solid #eeeeee;
           border-radius: 3px;
+          span {
+            color: #808080;
+            font-size: 14px;
+          }
         }
         .white__address__tag {
           width: fit-content;
