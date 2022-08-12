@@ -32,6 +32,7 @@ const T_REQ_STATE = 'State is required';
 const T_REQ_LANDMARK = 'Landmark is required';
 const T_REQ_POST_CODE = 'Post Code is required';
 const T_INVALID_MOBILE_NUMBER = 'Invalid Mobile Number';
+const T_REQ_DISTRICT = 'District is required';
 
 function AddressForm({ handleAddressPopup }) {
 
@@ -86,6 +87,7 @@ function AddressForm({ handleAddressPopup }) {
     state: "",
     postCode: "",
     country: "",
+    primary: false,
     // landmark: "",
   });
 
@@ -119,6 +121,7 @@ function AddressForm({ handleAddressPopup }) {
       state: "",
       postCode: "",
       country: "",
+      primary: false,
     }
     setErrMsg(formErr)
   }
@@ -160,8 +163,9 @@ function AddressForm({ handleAddressPopup }) {
       let cityList = [];
       cityLocationData && cityLocationData.map((val, i) => {
         let cityData = {
-          value: val.id,
-          label: val.cityName
+          value: val.cityCode,
+          label: val.cityCode,
+          id: val.id
         }
         cityList.push(cityData);
       })
@@ -202,7 +206,7 @@ function AddressForm({ handleAddressPopup }) {
             id: val.id,
             isDefault: val.primary,
             userName: `${val.firstname} ${val.lastname}`,
-            adddress: `${val.street[0]} ${val.street[1]} ${val.city} ${val.postcode} ${val.country_id}`,
+            adddress: `${val.street[0]} ${val.street[1]} ${val.city} ${val.postcode !== undefined ? val.postcode : ""} ${val.country_id}`,
             contact: val.telephone,
             details: val,
           };
@@ -215,6 +219,9 @@ function AddressForm({ handleAddressPopup }) {
     }
   }, [customerAddressList]);
 
+  const getLatestDistrictList = (cityName) => {
+    return cityLocationData.filter((val, i) => val.cityCode === cityName)?.[0]?.districts
+  }
 
   const validateForm = (event, newErrObj, name, value) => {
 
@@ -269,7 +276,15 @@ function AddressForm({ handleAddressPopup }) {
         break;
       case 'city':
         if (value === "") {
-          newErrObj = { ...newErrObj, [name]: T_REQ_CITY_TOWN }
+          newErrObj = { ...newErrObj, [name]: T_REQ_CITY_TOWN, state: "" }
+        } else {
+          newErrObj = { ...newErrObj, [name]: '' }
+        }
+        break;
+      case 'state':
+        let getDistrictList = getLatestDistrictList(address.city);
+        if (value === "" && address.city !== "" && getDistrictList.length !== 0) {
+          newErrObj = { ...newErrObj, [name]: T_REQ_DISTRICT }
         } else {
           newErrObj = { ...newErrObj, [name]: '' }
         }
@@ -281,13 +296,13 @@ function AddressForm({ handleAddressPopup }) {
       //     newErrObj = { ...newErrObj, [name]: '' }
       //   }
       //   break;
-      case 'postCode':
-        if (value === "") {
-          newErrObj = { ...newErrObj, [name]: T_REQ_POST_CODE }
-        } else {
-          newErrObj = { ...newErrObj, [name]: '' }
-        }
-        break;
+      // case 'postCode':
+      //   if (value === "") {
+      //     newErrObj = { ...newErrObj, [name]: T_REQ_POST_CODE }
+      //   } else {
+      //     newErrObj = { ...newErrObj, [name]: '' }
+      //   }
+      //   break;
       // case 'landmark':
       //   if (value === "") {
       //     newErrObj = { ...newErrObj, [name]: T_REQ_LANDMARK }
@@ -306,6 +321,7 @@ function AddressForm({ handleAddressPopup }) {
     let name = event;
     if (keyName === 'primary') {
       value = event.target.checked;
+      name = 'primary';
     } else if (keyName === 'mobileNumber') {
       value = event
       name = 'mobileNumber'
@@ -361,9 +377,14 @@ function AddressForm({ handleAddressPopup }) {
       "city",
       // "state",
       // "country",
-      "postCode",
+      // "postCode",
       // "landmark",
     ];
+
+    let getDistrictList = getLatestDistrictList(address.city);
+    if (getDistrictList.length > 0) {
+      validateFeild.push('state');
+    }
 
     let formStatus = allFeildValidate(validateFeild, errMsg);
     setErrMsg(formStatus.allErrMsg);
@@ -380,7 +401,7 @@ function AddressForm({ handleAddressPopup }) {
         primary: address.primary,
         // countryId: address.country ? address.country : "SA",
         countryId: "SA",
-        postCode: address.postCode,
+        postCode: getDistrictList.length !== 0 ? address.state : "",
         regionId: 0,
       }
       dispatch(services.createCustomerAddress(params));
@@ -542,7 +563,7 @@ function AddressForm({ handleAddressPopup }) {
               inputProps={{
                 name: "mobileNumber",
                 required: true,
-                className:"profile__mobile__form__field"
+                className: "profile__mobile__form__field"
               }}
               country="sa"
               onlyCountries={['sa']}
@@ -643,8 +664,7 @@ function AddressForm({ handleAddressPopup }) {
             </select>
             {errMsg.city && <p className="invalid__message">{errMsg.city}</p>}
           </div>
-          <div className="col-sm-12 col-md-6 main__form__field__block">
-            {/* <p className="form__label">Mobile Number</p> */}
+          {/* <div className="col-sm-12 col-md-6 main__form__field__block">
             <Heading7 text="State" marginBottom={10} />
             <div className="field__block">
               <input
@@ -657,11 +677,29 @@ function AddressForm({ handleAddressPopup }) {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-          </div>
+          </div> */}
+          {getLatestDistrictList(address.city) && getLatestDistrictList(address.city).length > 0 &&
+            <div className="col-sm-12 col-md-6 main__form__field__block">
+              <Heading7 text="District" marginBottom={10} />
+              <select
+                name="state"
+                value={address.state}
+                onChange={(e) => handleChange(e)}
+                className="_customselect form-control"
+              >
+                <option key='' value=''>Select District</option>
+                {getLatestDistrictList(address.city) && getLatestDistrictList(address.city).map(({ label, code }) => (
+                  <option key={code} value={code}>
+                    {code}
+                  </option>
+                ))}
+              </select>
+              {errMsg.state && <p className="invalid__message">{errMsg.state}</p>}
+            </div>
+          }
         </div>
-        <div className="row newAddress__form__field__row">
+        {/* <div className="row newAddress__form__field__row">
           <div className="col-sm-12 col-md-6 main__form__field__block">
-            {/* <p className="form__label">First Name</p> */}
             <Heading7 text="Post Code" marginBottom={10} />
             <div className="field__block">
               <input
@@ -676,7 +714,7 @@ function AddressForm({ handleAddressPopup }) {
             </div>
             {errMsg.postCode && <p className="invalid__message">{errMsg.postCode}</p>}
           </div>
-        </div>
+        </div> */}
         <div className="row newAddress__form__field__row">
           <div className="col-sm-12 col-md-6 main__form__field__block">
             {/* <p className="form__label">First Name</p> */}
@@ -692,9 +730,6 @@ function AddressForm({ handleAddressPopup }) {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            {/* {errors.includes("landmark") && (
-              <p className="invalid__message">invalid landmark</p>
-            )} */}
           </div>
         </div>
         <Heading7 text="Address Type" marginBottom={20} marginLeft={14} />

@@ -79,6 +79,16 @@ function PersonalInfoForm() {
   const [mobileEditFeild, setMobileEditFeild] = useState(false);
   const [updateErrMsg, setUpdateErrMsg] = useState(false);
 
+
+  useEffect(() => {
+    if (customerUpdateProfileStatus === true) {
+      setFLEditFeild(false);
+      setEmailEditFeild(false);
+      setMobileEditFeild(false);
+      dispatch(customerUpdateProfileSuccess(''));
+    }
+  }, [customerUpdateProfileStatus]);
+
   useEffect(() => {
     if (updateErrMsg === true) {
       setErrMsg(errMsg);
@@ -91,16 +101,20 @@ function PersonalInfoForm() {
   }, []);
 
   useEffect(() => {
-    if (customerDetails !== "") {
-      let params = {
-        firstName: customerDetails.firstname,
-        lastName: customerDetails.lastname,
-        gender: customerDetails.gender,
-        email: customerDetails.email,
-        mobileNumber: customerDetails.custom_attributes.mobile,
-      }
+    if (customerProfileDetails !== "") {
+
+      setPersonalData({
+        ...personalData,
+        firstName: customerProfileDetails.firstname,
+        lastName: customerProfileDetails.lastname,
+        gender: genderList.filter(val => val.selectOption === customerProfileDetails.gender)?.[0]?.value,
+        email: customerProfileDetails.email,
+        mobileNumber: customerProfileDetails.custom_attributes.mobile,
+        // mobileNumber: "",
+        preferenceSettings: []
+      })
     }
-  }, [customerDetails]);
+  }, [customerProfileDetails]);
 
   // const handleChange = (event) => {
   //   let value = event.target.value;
@@ -196,16 +210,20 @@ function PersonalInfoForm() {
     return newErrObj;
   }
 
-  const handleChange = async (event, keyName) => {
+  const handleChange = async (event, keyName, valData) => {
     let value = event;
     let name = event;
     if (keyName === "mobileNumber") {
       value = event
       name = 'mobileNumber'
+    } else if (keyName === "gender") {
+      value = valData.value
+      name = 'gender'
     } else {
       value = event.target.value;
       name = event.target.name;
     }
+
     setPersonalData({ ...personalData, [name]: value });
     let manageErrMsg = await validateForm(event, errMsg, name, value);
     setErrMsg(manageErrMsg);
@@ -234,14 +252,14 @@ function PersonalInfoForm() {
 
     })
 
-    let checkPwdStatus = false;
+    let checkProfileStatus = false;
     if (checkValueStatus.length === validateFeild.length && checkErrStatus.length === validateFeild.length) {
-      checkPwdStatus = true;
+      checkProfileStatus = true;
     }
 
     let returnData = {
       allErrMsg: allErrMsg,
-      checkPwdStatus: checkPwdStatus
+      checkProfileStatus: checkProfileStatus
     }
 
     return returnData;
@@ -260,7 +278,14 @@ function PersonalInfoForm() {
     let formStatus = await allFeildValidate(validateFeild, errMsg);
     setErrMsg(formStatus.allErrMsg);
     setUpdateErrMsg(true);
-    if (formStatus.checkPwdStatus === true) {
+    if (formStatus.checkProfileStatus === true) {
+      let params = {
+        firstName: personalData.firstName,
+        lastName: personalData.lastName,
+        gender: personalData.gender,
+        mobile: personalData.mobileNumber
+      }
+      dispatch(services.customerUpdateProfile(params));
       // success
     } else {
       // error
@@ -270,14 +295,7 @@ function PersonalInfoForm() {
   const handleCancel = () => {
     console.log(personalData);
   };
-  const [errors, setErrors] = useState([]);
-  const [currentEditField, setCurrentEditField] = useState("");
-  const handleCurrentEditField = (currentField, focusField) => {
-    console.log("firstLast");
-    setCurrentEditField(currentField);
-    // console.log(document.getElementById(`${focusField}`));
-    // document.getElementById(`${focusField}`).focus()
-  };
+
   return (
 
     <div className="inner__personal__block">
@@ -339,7 +357,7 @@ function PersonalInfoForm() {
                 value={personalData.gender}
                 checked={val.value === personalData.gender ? true : false}
                 id="male"
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleChange(e, 'gender', val)}
               />
               <label className="delivery__selection__text">{val.label}</label>
             </>
@@ -377,7 +395,7 @@ function PersonalInfoForm() {
               id="email"
               name="email"
               value={personalData.email}
-              disabled={currentEditField === "email" ? false : true}
+              disabled={!emailEditFeild}
               onChange={(e) => handleChange(e)}
               autoFocus
             />
@@ -385,7 +403,7 @@ function PersonalInfoForm() {
           {errMsg.email && <p className="invalid__message">{errMsg.email}</p>}
         </div>
         <div
-          onClick={() => handleCurrentEditField("email")}
+          onClick={() => setEmailEditFeild(!emailEditFeild)}
           className="form__edit__block"
         >
           <img src={edit_black} alt="" />
@@ -400,16 +418,19 @@ function PersonalInfoForm() {
             inputProps={{
               name: "mobileNumber",
               required: true,
-              className:"profile__mobile__form__field"
+              className: "profile__mobile__form__field"
             }}
             country="sa"
             onlyCountries={['sa']}
             masks={{ sa: '.. ... ....' }}
             countryCodeEditable={false}
             disableDropdown={true}
+            id="mobileNumber"
+            name="mobileNumber"
             value={personalData.mobileNumber}
             onChange={(e) => handleChange(e, 'mobileNumber')}
             className=""
+            disabled={!mobileEditFeild}
           />
           {/* <div className="field__block">
             <input
@@ -426,7 +447,7 @@ function PersonalInfoForm() {
           {errMsg.mobileNumber && <p className="invalid__message">{errMsg.mobileNumber}</p>}
         </div>
         <div
-          onClick={() => handleCurrentEditField("mobileNumber")}
+          onClick={() => setMobileEditFeild(!mobileEditFeild)}
           className="form__edit__block"
         >
           <img src={edit_black} alt="" />

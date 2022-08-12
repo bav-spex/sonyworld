@@ -332,7 +332,7 @@ function Checkout_Page({ reloadingHeader }) {
             id: val.id,
             isDefault: val.primary,
             userName: `${val.firstname} ${val.lastname}`,
-            adddress: `${val.street[0]} ${val.street[1]} ${val.city} ${val.postcode} ${val.country_id}`,
+            adddress: `${val.street[0]} ${val.street[1]} ${val.city} ${val.postcode !== undefined ? val.postcode : ""} ${val.country_id}`,
             contact: val.telephone,
             details: val,
           };
