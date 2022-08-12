@@ -176,6 +176,7 @@ const filterData = [
 const PLPFilter = ({ filterOptionData, filteredProductsData }) => {
   // console.log(Object.values(Object.values(filterOptionData)[1]));
   // console.log(Object.keys(Object.values(filterOptionData)[1]));
+  
   console.log(Object.keys(filterOptionData));
   return filterOptionData?.facets?.priceRange.max > 0 ? (
     <>
@@ -186,16 +187,16 @@ const PLPFilter = ({ filterOptionData, filteredProductsData }) => {
           return (
             <div key={`facet_group_${key}${index}`}>
               {key === "brand" && (
-                <BrandFacet facetData={filterOptionData.facets} dataKey={key}/>
+                <BrandFacet facetData={filterOptionData.facets} facetKey={key}/>
               )}
               {key === "price" && (
-                <PriceFacet facetData={filterOptionData.facets} dataKey={key} />
+                <PriceFacet facetData={filterOptionData.facets} facetKey={key} />
               )}
               {key === "color" && (
-                <ColorFacet facetData={filterOptionData.facets}dataKey={key} />
+                <ColorFacet facetData={filterOptionData.facets}facetKey={key} />
               )}
               {key === "genre" && (
-                <GenreFacet facetData={filterOptionData.facets} dataKey={key} />
+                <GenreFacet facetData={filterOptionData.facets} facetKey={key} />
               )}
               
               {/* {key === 'price' && <PriceFacet t={t} filterOptionData={filterOptionData.facets} dataKey={key} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}
