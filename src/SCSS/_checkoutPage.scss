@@ -550,8 +550,10 @@ font-weight: bold;
 .address__popup__container {
   position: absolute;
   top: 70px;
+  left: 0px;
   margin: 0px;
   width: 100%;
+  max-width: 100%;
   z-index: 1;
   height: 150vh;
   // overflow-y: scroll;

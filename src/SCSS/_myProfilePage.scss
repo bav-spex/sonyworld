@@ -102,6 +102,9 @@
         border-bottom: none;
         margin: 0px;
         padding: 0px 0px 20px;
+        @media(max-width:992px){
+          padding-top: 30px;
+        }
       }
 
       .newAddress__block {
@@ -238,6 +241,70 @@
 
       .address__block {
         display: block;
+        .selected__address__inner__block,.address__inner__block {
+          padding: 10px 10px 30px 30px;
+
+          @media (min-width:1280px) and (max-width:991px) {
+              padding: 10px 10px 20px 20px;
+              .full__address{
+                p{ min-height: 80px; }
+              }
+          }
+          
+          @media(max-width:992px){  padding: 10px 10px 20px 20px; }
+          .address__title__block {
+              align-items: flex-start;
+            .white__address__tag{
+              @media(max-width:992px){ line-height: 1; }
+            }
+          }
+          .inner__address__button__block{
+
+            .edit__button,.delete__button {
+              img{
+                width: 36px;
+                @media(max-width:992px){ width: 26px; }
+              }
+            }
+          }
+          .address__tag {
+            .heading7{
+              color: #808080;
+              @media(max-width:992px){
+                font-size: 14px;
+              }
+            }
+            @media(max-width:992px){
+              line-height: 1;
+            }
+          }
+          .full__address {
+            .text4 {
+              @media(max-width:992px){
+                font-size: 13px;
+              }
+            }
+          }
+
+        }
+        .address__popup__block{
+          @media(max-width:992px){
+            max-width: 100%;
+          }          
+          .address__content__block{
+            padding: 15px 10px;
+            .address__form__field__row {
+              height: auto;
+              margin-bottom: 0px;
+              .main__form__field__block {
+                margin: 0px 0px 20px;
+              }
+            }
+            .form-check.form-switch {
+              margin: 0px 15px 20px;
+            }
+          }
+        }
       }
 
       .password__block__disable {
