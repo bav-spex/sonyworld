@@ -186,7 +186,6 @@ export const customerProfileDetails = (params) => {
   return async dispatch => {
     try {
       let response = await apiHelper(`/V1/customer`, 'get', params, {});
- console.log("response ", response);
       dispatch(customerProfileDetailsSuccess(response.data));
     } catch (error) {
       console.log("error ", error);
@@ -207,8 +206,9 @@ export const customerUpdateProfile = (params) => {
   return async dispatch => {
     try {
       let response = await apiHelper(`/V1/customer`, 'put', params, {});
- console.log("response ", response);
-      dispatch(customerUpdateProfileSuccess(response.data));
+      dispatch(services.customerProfileDetails());
+      dispatch(customerUpdateProfileSuccess(true));
+      dispatch(services.notifySuccess({ message: 'Profile updated successfully' }));
     } catch (error) {
       console.log("error ", error);
     }

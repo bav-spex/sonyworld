@@ -1099,9 +1099,6 @@ function Header({
               </div>
               <div className="subCategory__block">
                 {selectedCategory?.children_data?.map((subcat, subcatIndex) => {
-                  // console.log(`${subcat.name.toLowerCase().trim().replace(/ /g,"-")}-c-${subcat.id}`);
-                  // console.log(.lowerCase().trim().replace(/ /g,"-")}-c-${subcat.id});
-                  // console.log(selectedCategory);
                   return (
                     <Link
                       key={subcatIndex}

@@ -32,12 +32,14 @@ import Search__Page from "../Pages/Search__Page";
 import Mobile_Sign_In from "../Pages/MobilePages/Mobile_Sign_In";
 import Mobile_Sign_Up from "../Pages/MobilePages/Mobile_Sign_Up";
 import Mobile_Otp_Page from "../Pages/MobilePages/Mobile_Otp_Page";
+import Flyer_Page from "../Pages/Flyer_Page";
 // import PrivateRoute from "../Components/helpers/utils/privateRoutes";
 import { PrivateRoutes, BeforeLoginRoutes } from "../Components/helpers/utils/privateRoutes"
 function AllRoutes({ categoryData, reloadingHandle, homepageData, handleChangeCartPopup }) {
   return (
     <Routes>
-      <Route exact path="/" element={<Home homepageData={homepageData} handleChangeCartPopup={handleChangeCartPopup} log="log" categoryData={categoryData} />}></Route>
+      <Route exact path="/" element={<Home homepageData={homepageData} handleChangeCartPopup={handleChangeCartPopup} log="log" categoryData={categoryData} />}></Route>\
+      <Route exact path="/flyer" element={<Flyer_Page />}></Route>
       <Route exact path="/:category" element={<Product_List_Page handleChangeCartPopup={handleChangeCartPopup} />} ></Route>
       <Route exact path="/products/compare" element={<Product_Comparison handleChangeCartPopup={handleChangeCartPopup} />} ></Route>
       <Route exact path="/allcategories" element={<Category_Page />} ></Route>
