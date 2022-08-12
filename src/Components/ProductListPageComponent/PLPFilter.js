@@ -3,6 +3,11 @@ import star from "./../../assets/Icon/orange-review.svg";
 import "./../../SCSS/ProductListPage/_plpFilter.scss";
 import Heading6 from "./../../Components/Font/Heading6";
 import Text2 from "./../../Components/Font/Text2";
+
+import BrandFacet from "./Facets/BrandFacet";
+import GenreFacet from "./Facets/GenreFacet";
+import PriceFacet from "./Facets/PriceFacet";
+import ColorFacet from "./Facets/ColorFacet";
 const starArray = [1, 2, 3, 4, 5];
 
 const filterData = [
@@ -168,22 +173,51 @@ const filterData = [
   },
 ];
 
-const PLPFilter = ({filterOptionData}) => {
-  console.log(Object.values(Object.values(filterOptionData)[1]));
-  console.log(Object.keys(Object.values(filterOptionData)[1]));
-
+const PLPFilter = ({ filterOptionData, filteredProductsData }) => {
+  // console.log(Object.values(Object.values(filterOptionData)[1]));
+  // console.log(Object.keys(Object.values(filterOptionData)[1]));
+  console.log(Object.keys(filterOptionData));
+  return filterOptionData?.facets?.priceRange.max > 0 ? (
+    <>
+      {filteredProductsData?.total_count > 1 &&
+        filterOptionData &&
+        Object.keys(filterOptionData.facets).map((key, index) => {
+          console.log(key);
+          return (
+            <div key={`facet_group_${key}${index}`}>
+              {key === "brand" && (
+                <BrandFacet facetData={filterOptionData.facets} dataKey={key}/>
+              )}
+              {key === "price" && (
+                <PriceFacet facetData={filterOptionData.facets} dataKey={key} />
+              )}
+              {key === "color" && (
+                <ColorFacet facetData={filterOptionData.facets}dataKey={key} />
+              )}
+              {key === "genre" && (
+                <GenreFacet facetData={filterOptionData.facets} dataKey={key} />
+              )}
+              
+              {/* {key === 'price' && <PriceFacet t={t} filterOptionData={filterOptionData.facets} dataKey={key} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}
+          {key === 'priceRange' && <PriceRange t={t} filterOptionData={filterOptionData} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}
+          {key === 'color' && <ColorFacet t={t} filterOptionData={filterOptionData} dataKey={key} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}
+        {key === 'genre' && <GenreFacet t={t} filterOptionData={filterOptionData} dataKey={key} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />} */}
+            </div>
+          );
+        })}
+    </>):""
+  ;
   return (
     filterData && (
       <div className="main__filter__block">
         {filterData.map((filter, index) => {
-
           return (
             <div key={index} className="filter__block">
               <Heading6 text={filter.filterTitle} marginBottom={10} />
-              {filter.filterItems.map((data,dataIndex) => {
+              {filter.filterItems.map((data, dataIndex) => {
                 return (
                   <div
-                  key={dataIndex}
+                    key={dataIndex}
                     className={`filter__checkbox__block ${
                       filter.filterTitle === "Customer Review" ? "reviews" : ""
                     }`}
@@ -196,10 +230,15 @@ const PLPFilter = ({filterOptionData}) => {
                     />
                     {filter.filterTitle === "Customer Review" ? (
                       <div className="star__rating__block">
-                        {starArray.map((item,itemIndex) => (
-                          <img key={itemIndex} className="star__count" src={star} alt="" />
-                          ))}
-                          <p className="star__rating">{`${data.starRating}.0`}</p>
+                        {starArray.map((item, itemIndex) => (
+                          <img
+                            key={itemIndex}
+                            className="star__count"
+                            src={star}
+                            alt=""
+                          />
+                        ))}
+                        <p className="star__rating">{`${data.starRating}.0`}</p>
                       </div>
                     ) : (
                       // <p className="filter__title">{data.title}</p>
