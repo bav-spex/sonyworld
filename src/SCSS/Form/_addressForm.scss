@@ -7,7 +7,7 @@
     .selected__address__inner__block {
       box-shadow: 0px 3px 6px #00000029;
       border: 2px solid #000000;
-      padding: 10px 10px 30px 30px;
+      padding: 20px 30px;
       margin-bottom: 20px;
       .address__title__block {
         display: flex;
@@ -87,6 +87,7 @@
             letter-spacing: 0.3px;
             cursor: pointer;
             text-transform: uppercase;
+            img{ width: 26px; }
           }
         }
         .full__address {
@@ -176,7 +177,7 @@
     }
     .preferences__select__text {
       font-size: 18px;
-      font-family: "arialregular";
+      font-family: "SSTregular";
       margin: 0px;
       width: 400px;
     }
@@ -187,7 +188,8 @@
     .form__save__button {
       text-align: center;
       font-size: 14px;
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       border-radius: 5px;
       min-width: 150px;
       color: #ffffff;
@@ -205,7 +207,8 @@
       text-align: center;
       min-width: 150px;
       font-size: 14px;
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       border: 1px solid #707070;
       border-radius: 5px;
       padding: 10px 25px;

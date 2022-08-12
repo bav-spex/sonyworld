@@ -5,7 +5,8 @@
     margin: 0px auto;
 
     .section__title {
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       font-size: 48px;
       line-height: 1;
     }
@@ -69,7 +70,8 @@
                 width: 260px;
                 height: 40px;
                 background: transparent linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0% no-repeat padding-box;
-                font-family: "arialbold";
+               font-family: 'SSTbold';
+font-weight: bold;
                 font-size: 25px;
                 display: flex;
                 align-items: center;
@@ -121,7 +123,8 @@
             cursor: pointer;
 
             .product__title {
-              font-family: "arialbold";
+             font-family: 'SSTbold';
+font-weight: bold;
               height: 72px;
               overflow: hidden;
               text-decoration: none;
@@ -171,7 +174,8 @@
           }
 
           .featureProduct__name {
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             font-size: 16px;
             margin: 10px 0px 10px 0px;
             height: 72px;

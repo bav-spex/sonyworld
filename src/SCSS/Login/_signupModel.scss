@@ -83,7 +83,8 @@
       border: none;
       width: 100%;
       font-size: 16px;
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       padding: 16px 0px;
     }
     .signup__or__block {
@@ -107,7 +108,8 @@
         z-index: 1;
         .signup__or__text {
           font-size: 14px;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           margin: 0px;
         }
       }
@@ -121,7 +123,8 @@
       outline: none;
       width: 100%;
       font-size: 16px;
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       padding: 16px 0px;
       margin: 0px 0px 10px;
     }
@@ -134,7 +137,7 @@
       border: none;
       width: 100%;
       font-size: 16px;
-      font-family: "arialregular";
+      font-family: "SSTregular";
       padding: 16px 20px;
       margin: 0px 0px 10px;
       display: flex;
@@ -152,7 +155,7 @@
       border: none;
       width: 100%;
       font-size: 16px;
-      font-family: "arialregular";
+      font-family: "SSTregular";
       padding: 16px 20px;
       margin: 0px 0px 10px;
       display: flex;
@@ -170,7 +173,7 @@
       border: none;
       width: 100%;
       font-size: 16px;
-      font-family: "arialregular";
+      font-family: "SSTregular";
       padding: 16px 20px;
       margin: 0px 0px 10px;
       display: flex;
@@ -186,13 +189,15 @@
       justify-content: center;
       .footer__text {
         font-size: 16px;
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
         margin: 0px;
       }
       .footer__link__text {
         color: #ff4f04;
         font-size: 18px;
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
         margin: 0px 0px 0px 5px;
         cursor: pointer;
       }

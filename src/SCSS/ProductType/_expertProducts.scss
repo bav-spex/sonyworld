@@ -27,7 +27,7 @@
     font-size: 50px;
     top: 30%;
     transform: translateY(-50%);
-    font-family: "arialregular";
+    font-family: "SSTregular";
   }
 
   .exp__product__image__block {
@@ -43,13 +43,14 @@
 
   .exp__rd__product__price {
     font-size: 18px;
-    font-family: "arialbold";
+   font-family: 'SSTbold';
+font-weight: bold;
     margin: 0px;
   }
 
   .exp__rd__product__oldPrice {
     font-size: 18ox;
-    font-family: "arialregular";
+    font-family: "SSTregular";
     color: #808080;
     text-decoration: line-through;
     margin: 0px 0px 20px;
@@ -79,7 +80,8 @@
 
         font-size: 14px;
         color: #dc3a1a;
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
       }
 
       .exp__rd__product__totalRating {

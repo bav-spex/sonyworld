@@ -93,7 +93,8 @@
                 color: #000000;
                 cursor: pointer;
                 .search__Result__title__text {
-                  font-family: "arialbold";
+                 font-family: 'SSTbold';
+font-weight: bold;
                   margin: 0px;
                   color: #000000;
                   margin: 0px 0px 20px;
@@ -186,7 +187,8 @@
                     border: none;
                     width: 100%;
                     font-size: 16px;
-                    font-family: "arialbold";
+                   font-family: 'SSTbold';
+font-weight: bold;
                     padding: 10px 0px;
                   }
                 }
@@ -211,7 +213,8 @@
                   border: none;
                   width: 100%;
                   font-size: 16px;
-                  font-family: "arialbold";
+                 font-family: 'SSTbold';
+font-weight: bold;
                   padding: 16px 0px;
                   margin: 0px 0px 16px;
                 }
@@ -224,7 +227,8 @@
                   outline: none;
                   width: 100%;
                   font-size: 16px;
-                  font-family: "arialbold";
+                 font-family: 'SSTbold';
+font-weight: bold;
                   padding: 16px 0px;
                 }
               }
@@ -332,7 +336,8 @@ cursor: pointer;
           // margin: 0px auto;
           margin-left: 66px;
           .navbar__allCategories {
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             color: white;
             margin: 0px 30px 0px 30px;
             display: flex;
@@ -442,7 +447,8 @@ cursor: pointer;
         &.active__mobile__navbar__link {
           background-color: #000000;
           color: #fff;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           .down__arrow__icon {
             // margin-left: 10px;
             filter: none;
@@ -505,7 +511,8 @@ cursor: pointer;
             text-decoration: none;
             margin: 0px;
             font-size: 20px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             width: 150px;
           }
           .popup__right__arrow {
@@ -525,7 +532,8 @@ cursor: pointer;
             color: #ff4f04;
             margin: 0px;
             font-size: 20px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             width: 150px;
           }
           .popup__right__arrow {
@@ -550,7 +558,8 @@ cursor: pointer;
           .mainCategory__right__block {
             margin: 0px;
             font-size: 24px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
           }
         }
 
@@ -562,7 +571,7 @@ cursor: pointer;
             cursor: pointer;
             margin: 0px 0px 20px;
             font-size: 18px;
-            font-family: "arialregular";
+            font-family: "SSTregular";
           }
         }
       }

@@ -11,13 +11,14 @@
         .sc__ps__detail__title {
             margin: 0px;
             font-size: 16px;
-            font-family: "arialregular";
+            font-family: "SSTregular";
         }
 
         .sc__ps__detail__price {
             margin: 0px;
             font-size: 16px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
         }
     }
 
@@ -29,7 +30,8 @@
 
         .sc__ps__detail__total__order {
             font-size: 18px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             margin: 0px;
         }
     }
@@ -44,7 +46,8 @@
 
         .checkout__os__title {
             font-size: 24px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             padding: 20px;
             border-bottom: 1px solid rgb(224, 224, 224);
             margin: 0px;
@@ -67,13 +70,14 @@
                 .checkout__os__detail__title {
                     margin: 0px;
                     font-size: 16px;
-                    font-family: "arialregular";
+                    font-family: "SSTregular";
                 }
 
                 .checkout__os__detail__price {
                     margin: 0px;
                     font-size: 16px;
-                    font-family: "arialbold";
+                   font-family: 'SSTbold';
+font-weight: bold;
                 }
             }
 
@@ -85,7 +89,8 @@
 
                 .checkout__os__detail__total__order {
                     font-size: 18px;
-                    font-family: "arialbold";
+                   font-family: 'SSTbold';
+font-weight: bold;
                     margin: 0px;
                 }
             }
@@ -363,7 +368,8 @@
                     border-radius: 5px;
                     color: #ffffff;
                     font-size: 16px;
-                    font-family: "arialbold";
+                   font-family: 'SSTbold';
+font-weight: bold;
                     letter-spacing: 0.85px;
                     padding: 10px 60px;
                     background-color: #dc3a1a;
