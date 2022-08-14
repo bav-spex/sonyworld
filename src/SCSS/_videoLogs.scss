@@ -9,7 +9,8 @@
       justify-content: space-between;
       align-items: center;
       .section__title {
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
         font-size: 40px;
       }
       .viewall__button {
@@ -23,7 +24,8 @@
         width: 125px;
         height: 50px;
         text-transform: uppercase;
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
       }
     }
     .videoLogs__row {
@@ -37,7 +39,8 @@
         .videoLogs__title {
           margin: 0px 0px 10px;
           font-size: 18px;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
         }
         
       }

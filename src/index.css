@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'SSTregular';
 }
 
 code {
@@ -9,38 +9,35 @@ code {
 }
 
 
+/* sst fonts starts*/
 @font-face {
-  font-family: 'arialregular';
-  src: url('./font/arial-webfont.woff2') format('woff2'),
-       url('./font/arial-webfont.woff') format('woff');
-  font-weight: normal;
+  font-family: 'SSTregular';
+  src: url('./font/SST-english/SST-Roman.woff2') format('woff2'),
+      url('./font/SST-english/SST-Roman.woff') format('woff');
+  font-weight: 400;
   font-style: normal;
-
+  font-display: swap;
 }
 
-
-
-
 @font-face {
-  font-family: 'arialbold';
-  src: url('./font/arial-bold-webfont.woff2') format('woff2'),
-       url('./font/arial-bold-webfont.woff') format('woff');
-  font-weight: normal;
+  font-family: 'SSTbold';
+  src: url('./font/SST-english/SST-Bold.woff2') format('woff2'),
+      url('./font/SST-english/SST-Bold.woff') format('woff');
+  font-weight: bold;
   font-style: normal;
-
+  font-display: swap;
 }
 
-
-
-
 @font-face {
-  font-family: 'arialmedium';
-  src: url('./font/arial-medium-webfont.woff2') format('woff2'),
-       url('./font/arial-medium-webfont.woff') format('woff');
-  font-weight: normal;
+  font-family: 'SSTmedium';
+  src: url('./font/SST-english/SST-Medium.woff2') format('woff2'),
+      url('./font/SST-english/SST-Medium.woff') format('woff');
+  font-weight: 500;
   font-style: normal;
-
+  font-display: swap;
 }
+/* sst fonts ends*/
+
 b,strong{
-  font-family: "arialbold";
+  font-family: 'SSTbold';
 }

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function BrandFacet({facetData,facetKey}) {
-  console.log(facetData);
-  console.log(facetKey);
-
+function BrandFacet({ facetData, facetKey }) {
+  console.log(facetData[facetKey]);
   const constructParamFn = (item) => `${item.key}`;
 
   const childrenFn = (item) => (
@@ -14,21 +12,24 @@ function BrandFacet({facetData,facetKey}) {
   );
   return (
     <>
-    <h1>Brand</h1>
-    {facetData[facetKey]?.collection?.map((item, itemIndex) => (
-      <div key={`facet_item_${facetKey}${itemIndex}`}>
-        <div >
-          <a
-            className="facet-category-item"
-            // onClick={() => toggleFilter(attrKey, constructParamFn(item), facetData[facetKey].multiple_selectable)}
-            >
-            {childrenFn(item)}
-          </a>
-        </div>
-      </div>
-    ))}
+      <h1>Brand</h1>
+      {facetData[facetKey]?.collection?.map((item, itemIndex) => {
+        console.log(item);
+        return (
+          <div key={`facet_item_${facetKey}${itemIndex}`}>
+            <div>
+              <p
+                className="facet-category-item"
+                // onClick={() => toggleFilter(attrKey, constructParamFn(item), facetData[facetKey].multiple_selectable)}
+              >
+                {childrenFn(item)}
+              </p>
+            </div>
+          </div>
+        );
+      })}
     </>
-  )
+  );
 }
 
-export default BrandFacet
+export default BrandFacet;

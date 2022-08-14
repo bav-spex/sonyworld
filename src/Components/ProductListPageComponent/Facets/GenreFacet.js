@@ -1,8 +1,6 @@
 import React from 'react'
 
 function GenreFacet({facetData,facetKey}) {
-    console.log(facetData);
-    console.log(facetKey);
     const constructParamFn = (item) => `${item.key}`;
   
     const childrenFn = (item) => (

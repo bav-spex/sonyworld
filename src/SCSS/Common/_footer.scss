@@ -27,40 +27,41 @@
           flex-direction: column;
           justify-content: flex-start;
           .footer__link__title {
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             font-size: 18px;
             color: #ffffff;
             margin: 0px 0px 30px 0px;
           }
           .footer___link {
-            font-family: "arialregular";
+            font-family: "SSTregular";
             font-size: 16px;
             color: #ffffff;
             text-decoration: none;
             margin: 0px 0px 10px 0px;
           }
           .footer__email__title {
-            font-family: "arialregular";
+            font-family: "SSTregular";
             font-size: 16px;
             color: #ffffff;
             margin: 0px 0px 4px 0px;
           }
           .footer__email {
-            font-family: "arialmedium";
+            font-family: "SSTmedium";
             font-size: 18px;
             color: #ffffff;
             text-decoration: none;
             margin: 0px 0px 20px 0px;
           }
           .footer__mobile__title {
-            font-family: "arialregular";
+            font-family: "SSTregular";
             font-size: 16px;
             color: #ffffff;
             text-decoration: none;
             margin: 0px 0px 4px 0px;
           }
           .footer__mobile {
-            font-family: "arialmedium";
+            font-family: "SSTmedium";
             font-size: 18px;
             color: #ffffff;
             margin: 0px;

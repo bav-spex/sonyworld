@@ -56,12 +56,20 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [filterDetails, setFilterDetails] = useState({ filterDetails: {category:[category.split("-").slice(-3)[0]]} });
-  const selectedCategory = useSelector((state) => state.appData.selectedCategory);
+  const [filterDetails, setFilterDetails] = useState({
+    filterDetails: { category: [category.split("-").slice(-3)[0]] },
+  });
+  const selectedCategory = useSelector(
+    (state) => state.appData.selectedCategory
+  );
   const categoryData = useSelector((state) => state.appData.categoryData);
-  const filterOptionData = useSelector((state) => state.appData.filterOptionData);
+  const filterOptionData = useSelector(
+    (state) => state.appData.filterOptionData
+  );
   // console.log(filterOptionData);
-  const applyFilterProductsData = useSelector((state) => state.appData.applyFilterProductsData);
+  const applyFilterProductsData = useSelector(
+    (state) => state.appData.applyFilterProductsData
+  );
 
   useEffect(async () => {
     const urlCategoryId = category.split("-").slice(-3)[0];
@@ -70,25 +78,25 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     let mainSelectedCategory = categoryData?.children_data.filter(
       (mainCat) => mainCat.id == urlSelectedCategoryId
     );
-      dispatch({
-        type: types.SET__SELECTED__CATEGORY,
-        payload: mainSelectedCategory[0],
-      })
+    dispatch({
+      type: types.SET__SELECTED__CATEGORY,
+      payload: mainSelectedCategory[0],
+    });
     const categoryIdArray = [];
     categoryIdArray.push(urlCategoryId);
     setFilterDetails({ filterDetails: { category: categoryIdArray } });
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     const urlCategoryId = category.split("-").slice(-3)[0];
     setSelectedCategoryId(urlCategoryId);
-  },[selectedCategory,category])
+  }, [selectedCategory, category]);
 
   useEffect(() => {
     dispatch(loadFilterData(filterDetails));
     dispatch(loadApplyFilterProductsData(filterDetails));
-  }, [filterDetails,category]);
-  
+  }, [filterDetails, category]);
+
   useEffect(() => {
     if (Object.values(applyFilterProductsData).length !== 0) {
       setFilteredProductsData(applyFilterProductsData);
@@ -104,7 +112,7 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   // }, [filterOptionData]);
 
   const updateSelectedSubCategoryId = (subCategory) => {
-    console.log(subCategory);
+    // console.log(subCategory);
     setSelectedCategoryId(subCategory.id);
     const categoryIdArray = [];
     categoryIdArray.push(subCategory.id);
@@ -116,6 +124,10 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     );
   };
 
+
+  const onFilter = ()=>{
+    console.log("onFilter");
+  } 
   //for updating id from filter section
   // useEffect(() => {
   //   let categoryIdArray = []
@@ -254,12 +266,8 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
 
   const removeProductFromCompareData = (id) => {
     console.log(id);
-    // const newCompareData = compareProductsData.filter((id, index)=>{
-    //   console.log(product.id,id);
-    //   return id !== id
-    // })
-    // console.log("newCompareData",newCompareData);
   };
+
   if (loading) {
     return <h1>Product Loading...</h1>;
   }

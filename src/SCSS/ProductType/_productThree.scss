@@ -26,7 +26,8 @@
     }
     .productThree__product__productName {
       font-size: 24px;
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       letter-spacing: 0.24px;
       margin: 0px 0px 14px;
     }
@@ -43,20 +44,22 @@
         margin: 6px 4px 0px;
         font-size: 14px;
         color: #dc3a1a;
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
       }
       .productThree__product__totalRating {
         margin: 6px 0px 0px;
         font-size: 14px;
         color: #101010;
-        font-family: "arialregular";
+        font-family: "SSTregular";
       }
     }
     .productThree__pickup__block {
       margin: 16px 0px;
       .productThree__block__title {
         font-size: 20px;
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
         margin: 0px 0px 30px;
       }
       .productThree__store__block {
@@ -72,10 +75,11 @@
             width: 60%;
             margin: 0px;
             font-size: 16px;
-            font-family: "arialregular";
+            font-family: "SSTregular";
             .productThree__pickup__only__text {
               font-size: 16px;
-              font-family: "arialbold";
+             font-family: 'SSTbold';
+font-weight: bold;
             }
           }
           .productThree__store__location__link {
@@ -93,7 +97,8 @@
     .productThree__addToPackage__button {
       text-align: center;
       font-size: 14px;
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       border-radius: 5px;
       width: 100%;
       color: #000000;
@@ -118,7 +123,7 @@
       }
       .productThree__compare__text {
         font-size: 16px;
-        font-family: "arialregular";
+        font-family: "SSTregular";
         margin: 0px;
       }
     }

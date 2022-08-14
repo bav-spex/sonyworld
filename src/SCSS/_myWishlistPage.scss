@@ -14,6 +14,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      @media(max-width:992px) {
+        display: none;
+      }
       .wishlist__right__part {
         display: flex;
         justify-content: space-between;
@@ -60,9 +63,34 @@
       align-items:  flex-start;
       flex-wrap: wrap;
       justify-content: flex-start;
+      @media(max-width:992px) {
+        background: unset;
+        padding: 0px;
+        border: unset;
+        box-shadow: unset;
+      }
       .wishlist__product__block{
         margin: 0px 0px 20px;
         height: 100%;
+
+        @media(max-width:992px) {
+          &:nth-child(odd){
+            padding-right: 0px;
+          }          
+        }
+        .productEight__size__button__block {
+            margin: 20px 0px 20px 0px;
+            .productEight__size__button__active, .productEight__size__button {
+              font-size: 9px;            
+              border-radius: 3px;
+              padding: 8px 6px;
+              margin-right: 0px;
+          }
+          .prize__block{
+            .text1{ font-size: 22px;margin-bottom: 0px; }
+            .heading3 { font-size: 25px;margin-bottom: 0px; }            
+          }
+        }
       }
     }
   }

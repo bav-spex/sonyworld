@@ -177,13 +177,11 @@ const PLPFilter = ({ filterOptionData, filteredProductsData }) => {
   // console.log(Object.values(Object.values(filterOptionData)[1]));
   // console.log(Object.keys(Object.values(filterOptionData)[1]));
   
-  console.log(Object.keys(filterOptionData));
   return filterOptionData?.facets?.priceRange.max > 0 ? (
     <>
       {filteredProductsData?.total_count > 1 &&
         filterOptionData &&
         Object.keys(filterOptionData.facets).map((key, index) => {
-          console.log(key);
           return (
             <div key={`facet_group_${key}${index}`}>
               {key === "brand" && (

@@ -80,12 +80,14 @@
 		margin: 20px 0px 20px 0px;
 		display: flex;
 		align-items: center;
-
+		button{
+			height: 40px !important;
+		  }
 		.pd__category__button {
 			padding: 4px 24px;
 			margin: 0px 14px 0px 0px;
 			font-size: 18px;
-			font-family: "arialregular";
+			font-family: "SSTregular";
 			letter-spacing: 0.18px;
 			border: 1px solid #707070;
 			border-radius: 3px;
@@ -95,7 +97,7 @@
 		.pd__favourite__button {
 			padding: 6px 12px;
 			font-size: 18px;
-			font-family: "arialregular";
+			font-family: "SSTregular";
 			letter-spacing: 0.18px;
 			border: 1px solid #707070;
 			border-radius: 3px;
@@ -113,12 +115,13 @@
 		.pd__share__button {
 			padding: 5px 12px;
 			font-size: 18px;
-			font-family: "arialregular";
+			font-family: "SSTregular";
 			letter-spacing: 0.18px;
 			border: 1px solid #707070;
 			border-radius: 3px;
 			background-color: #ffffff;
 			margin-left: 14px;
+			line-height: 10px;
 		}
 	}
 
@@ -131,7 +134,8 @@
 			background: #ff4f04;
 			border-radius: 3px;
 			color: #fff;
-			font-family: arialbold;
+			font-family: 'SSTbold';
+			font-weight: bold;
 			font-size: 14px;
 			margin: 4px 0 12px;
 			padding: 2px 10px;
@@ -352,7 +356,8 @@
 		border-radius: 0px 35px 35px 0px;
 		color: #ffffff;
 		font-size: 16px;
-		font-family: "arialbold";
+		font-family: 'SSTbold';
+		font-weight: bold;
 		letter-spacing: 0.85px;
 		padding: 10px 10px;
 		background-color: #000000;
@@ -373,7 +378,8 @@
 		width: 50%;
 		color: #ffffff;
 		font-size: 16px;
-		font-family: "arialbold";
+		font-family: 'SSTbold';
+		font-weight: bold;
 		letter-spacing: 0.85px;
 		padding: 10px 10px;
 		border-radius: 35px 0 0 35px;
@@ -386,6 +392,7 @@
 		align-items: center;
 		height: 64px;
 		cursor: pointer;
+
 		.addToCart__icon {
 			margin: 0px 10px 0px 0px;
 		}
@@ -409,6 +416,7 @@
 	.expert__rd__product__block::after {
 		font-size: 40px;
 	}
+
 	#addAddressModal .modal-footer button {
 		width: 45% !important;
 	}
@@ -425,9 +433,11 @@
 		max-width: 100%;
 		margin-left: 0;
 		margin-right: 0;
-		.modal-content{
+
+		.modal-content {
 			border-radius: 0;
-			.modal-header{
+
+			.modal-header {
 				border-bottom: 0;
 			}
 		}
@@ -443,10 +453,11 @@
 	font-size: 14px;
 	text-transform: uppercase;
 	position: absolute;
-    top: 10px;
+	top: 10px;
 }
-.inner__mobile__dealsOfTheDay__block{
-	.second__md__product__block:first-child{
+
+.inner__mobile__dealsOfTheDay__block {
+	.second__md__product__block:first-child {
 		padding-right: 5px;
 	}
 }

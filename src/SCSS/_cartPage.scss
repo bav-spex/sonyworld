@@ -114,7 +114,8 @@
               .sc__page__button__active {
                 text-align: center;
                 font-size: 14px;
-                font-family: "arialbold";
+               font-family: 'SSTbold';
+font-weight: bold;
                 border-radius: 3px;
                 min-width: fit-content;
                 color: #ffffff;
@@ -132,7 +133,8 @@
                 text-align: center;
                 min-width: fit-content;
                 font-size: 14px;
-                font-family: "arialbold";
+               font-family: 'SSTbold';
+font-weight: bold;
                 border: 1px solid #707070;
                 border-radius: 3px;
                 padding: 10px 15px;
@@ -160,7 +162,8 @@
 
           .sc__ps__title {
             font-size: 24px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             padding: 20px;
             border-bottom: 1px solid rgb(224, 224, 224);
             margin: 0px;
@@ -177,12 +180,13 @@
               .sc__ps__detail__title {
                 margin: 0px;
                 font-size: 16px;
-                font-family: "arialregular";
+                font-family: "SSTregular";
               }
               .sc__ps__detail__price {
                 margin: 0px;
                 font-size: 16px;
-                font-family: "arialbold";
+               font-family: 'SSTbold';
+font-weight: bold;
               }
             }
             .sc__ps__detail__total__order__block {
@@ -192,7 +196,8 @@
               padding: 30px 0px;
               .sc__ps__detail__total__order {
                 font-size: 18px;
-                font-family: "arialbold";
+               font-family: 'SSTbold';
+font-weight: bold;
                 margin: 0px;
               }
             }
@@ -210,7 +215,8 @@
               border-radius: 5px;
               color: #ffffff;
               font-size: 16px;
-              font-family: "arialbold";
+             font-family: 'SSTbold';
+font-weight: bold;
               letter-spacing: 0.85px;
               padding: 18px 30px;
               background-color: #dc3a1a;
@@ -235,7 +241,8 @@
           outline: none;
           width: 100%;
           font-size: 16px;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           padding: 16px 0px;
           margin: 0px 0px 20px;
         }

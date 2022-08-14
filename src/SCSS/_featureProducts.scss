@@ -5,8 +5,10 @@
     margin: 0px auto;
 
     .section__title {
-      font-family: "arialbold";
+     font-family: 'SSTbold';
+font-weight: bold;
       font-size: 48px;
+      line-height: 1;
     }
 
     .inner__feature__category__block {
@@ -29,18 +31,31 @@
           position: relative;
 
           .deal__of__day__container {
-            position: absolute;
+            position: relative;
             display: flex;
-            left: -30px;
+            left: -62px;
+            height: 70px;
 
+            &::before{            
+                content: " ";
+                display: block;
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                bottom: 0px;
+                left: 0px;
+                background-color: #ffaf2e;
+                border-radius: 0px 0px 0px 6px;            
+            }
             .rectangleLeft {
               position: absolute;
-              top: 0px;
-              width: 31px;
-              height: 77px;
+              top: 40px;
+              width: 30px;
+              height: 30px;
               background-color: #cc8a15;
-              border-bottom-left-radius: 30px;
-              border-top-left-radius: 30px;
+              // border-bottom-left-radius: 30px;
+              // border-top-left-radius: 30px;
+              border-radius: 20px 0px 0px 8px / 20px 0px 0px 15px;
             }
 
             .upper__rectangle__block {
@@ -55,10 +70,12 @@
                 width: 260px;
                 height: 40px;
                 background: transparent linear-gradient(271deg, #ffdb3b 0%, #ffad2e 100%) 0% 0% no-repeat padding-box;
-                font-family: "arialbold";
+               font-family: 'SSTbold';
+font-weight: bold;
                 font-size: 25px;
                 display: flex;
                 align-items: center;
+                padding-left: 20px;
                 justify-content: center;
                 border-top-left-radius: 15px;
                 text-transform: uppercase;
@@ -86,16 +103,17 @@
             background: #ffffff;
             margin-left: 0px;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
 
             .first__feature__category__image {
-              object-fit: cover;
-              height: 80%;
-              width: 100%;
+              object-fit: contain;
+              height: 100%;
+              max-width: 70%;
               margin: 0px auto;
-              cursor: pointer // width: 100%;
+              cursor: pointer;
+              display: block;
             }
           }
 
@@ -105,7 +123,8 @@
             cursor: pointer;
 
             .product__title {
-              font-family: "arialbold";
+             font-family: 'SSTbold';
+font-weight: bold;
               height: 72px;
               overflow: hidden;
               text-decoration: none;
@@ -137,9 +156,9 @@
 
           .second__feature__category__image__block {
             width: 100%;
-            margin: 20px auto 20px;
+            margin: 5px auto 5px;
             overflow: hidden;
-            height: 200px;
+            // max-height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -147,17 +166,19 @@
             .second__feature__category__image {
               // height: 72px;
               // margin: 0px auto;
-              height: 200px;
-              width: auto;
+              height: 160px;
+                // width: 100%;
+                // height: 100%;
               // object-fit: contain;
             }
           }
 
           .featureProduct__name {
-            font-family: "arialbold";
-            font-size: 18px;
+           font-family: 'SSTbold';
+font-weight: bold;
+            font-size: 16px;
             margin: 10px 0px 10px 0px;
-            height: 82px;
+            height: 72px;
             text-decoration: none;
             color: #000000;
             display: block;
@@ -166,9 +187,13 @@
 
           .featureProduct__rating__block {
             margin: 0px 0px 20px;
+            .main__rating__block {
+              padding: 0px;
+            }
           }
           .cart_end_icon{
             cursor: pointer;
+            display: none;
           }
         }
       }

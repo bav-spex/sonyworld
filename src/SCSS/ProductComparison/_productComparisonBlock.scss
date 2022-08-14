@@ -43,13 +43,14 @@
       }
 
       .product__comparison__name {
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
         font-size: 18px;
         margin: 10px 0px 10px 0px;
         height: 82px;
       }
       .product__comparison__series {
-        font-family: "arialregular";
+        font-family: "SSTregular";
         font-size: 14px;
         margin: 0px 0px 10px 0px;
         color: #808080;
@@ -66,20 +67,21 @@
         display: flex;
         align-items: flex-end;
         .old__prize {
-          font-family: "arialregular";
+          font-family: "SSTregular";
           font-size: 18px;
           text-decoration-line: line-through;
           color: #c8c8c8;
         }
         .new__prize {
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           font-size: 18px;
 
           margin: 0px 0px 0px 5px;
         }
       }
       .product__comparison__fetureText {
-        font-family: "arial";
+        font-family: 'SSTregular';
         font-size: 16px;
         color: #2b2b2b;
         width: auto;
@@ -88,12 +90,13 @@
         .free__delivery text {
           margin: 0px;
           color: #2b2b2b;
-          font-family: "arial";
+          font-family: 'SSTregular';
           font-size: 12px;
         }
         .delivery__day {
           color: #2b2b2b;
-          font-family: "arialbold";
+         font-family: 'SSTbold';
+font-weight: bold;
           font-size: 14px;
         }
       }
@@ -101,7 +104,8 @@
         border-radius: 5px;
         color: #ffffff;
         font-size: 16px;
-        font-family: "arialbold";
+       font-family: 'SSTbold';
+font-weight: bold;
         letter-spacing: 0.85px;
         padding: 20px 0px;
         background-color: #dc3a1a;
@@ -123,12 +127,12 @@
         background: #f1f4f9;
         text-align: center;
         font-size: 16px;
-        font-family: "arialregular";
+        font-family: "SSTregular";
         margin-bottom: 27px;
         .specification__subcategory__title {
           color: #101010;
           font-size: 16px;
-          font-family: arial;
+          font-family: 'SSTregular';
           padding: 10px 0px;
           border: 1px solid rgba(0, 0, 0, 0.1);
         }
@@ -155,10 +159,11 @@
           .item__text {
             margin: 0px;
             font-size: 16px;
-            font-family: "arialregular";
+            font-family: "SSTregular";
             .item__strong__text {
               font-size: 16px;
-              font-family: "arialbold";
+             font-family: 'SSTbold';
+font-weight: bold;
             }
           }
           .item__store__location__link {
@@ -193,17 +198,19 @@
           .product__offertype {
             margin: 0px;
             font-size: 14px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             .product__offerText {
               margin: 0px 10px 0px 0px;
               font-size: 14px;
-              font-family: "arialregular";
+              font-family: "SSTregular";
             }
           }
           .product__termsAndConditions__link {
             margin: 0px;
             font-size: 14px;
-            font-family: "arialbold";
+           font-family: 'SSTbold';
+font-weight: bold;
             text-decoration: none;
             color: #003cb4;
           }
