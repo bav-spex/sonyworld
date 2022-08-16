@@ -87,7 +87,7 @@ function App({ stars }) {
             console.log("catch");
             setHeader("X-Access-Token", "");
             getHandshake().then((res) => {
-              console.log(res.data.token);
+              // console.log(res.data.token);
               setHeader("X-Access-Token", res.data.token);
               localStorage.setItem("handShakeToken", res.data.token);
               setToken(res.data.token);

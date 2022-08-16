@@ -15,8 +15,8 @@ export const getApplyFilterData =  async(filterDetails) => {
     let responseData ={}
     const categoryFilterData =  await axios.post(
       `${process.env.REACT_APP_PROJECT_API_URL}/V1/products/filter/apply`,filterDetails
-    ).then(res=> responseData = res);
-    // console.log(responseData.data,"filter Data");
+    ).then(res=> responseData = res)
+    // console.log(categoryFilterData);
     // console.table(allCategoryData.data.children_data,"categoryData in identifier")
     return responseData.data;
   };

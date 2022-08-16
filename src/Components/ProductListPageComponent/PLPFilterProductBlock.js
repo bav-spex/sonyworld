@@ -22,21 +22,18 @@ import PLPProductPopup from "../Popup/PLPProductPopup";
 
 const dropdownOptions = [
   {
-    label: "Popularity",
-    value: "popularity",
-  },
-  {
     label: "Low to High",
-    value: "lowtohigh",
+    value: "asc",
   },
   {
     label: "High to Low",
-    value: "hightolow",
+    value: "",
   },
 ];
 
 
 const PLPFilterProductBlock = ({
+  onFilter,
   filteredProductsData,
   handleChangeProductPopup,
   handleChangeComparePopup,
@@ -49,7 +46,8 @@ const PLPFilterProductBlock = ({
   // console.log(filterOptionData);
 
   const onSelectSortby = (e) => {
-    // console.log(e.target.value);
+    onFilter("order",e.target.value)
+    console.log(e.target.value);
     setSelectedOption(e.target.value);
   };
 
@@ -121,7 +119,7 @@ const PLPFilterProductBlock = ({
         </div>
         <div className="row plp__filter__product__block">
           <div className="col-sm-3 plp__filter__block">
-            <PLPFilter filterOptionData={filterOptionData} filteredProductsData={filteredProductsData}  />
+            <PLPFilter onFilter={onFilter} filterOptionData={filterOptionData} filteredProductsData={filteredProductsData}  />
           </div>
           <div className="col-sm-9 plp__product__block">
             <div className="row plp__inner__product__block">

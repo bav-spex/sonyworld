@@ -173,28 +173,29 @@ const filterData = [
   },
 ];
 
-const PLPFilter = ({ filterOptionData, filteredProductsData }) => {
+const PLPFilter = ({ onFilter,filterOptionData, filteredProductsData }) => {
+  // console.log(filterOptionData, filteredProductsData);
   // console.log(Object.values(Object.values(filterOptionData)[1]));
   // console.log(Object.keys(Object.values(filterOptionData)[1]));
   
   return filterOptionData?.facets?.priceRange.max > 0 ? (
     <>
-      {filteredProductsData?.total_count > 1 &&
+      {filterOptionData?.total_count > 1 &&
         filterOptionData &&
         Object.keys(filterOptionData.facets).map((key, index) => {
           return (
             <div key={`facet_group_${key}${index}`}>
               {key === "brand" && (
-                <BrandFacet facetData={filterOptionData.facets} facetKey={key}/>
+                <BrandFacet onFilter={onFilter} facetData={filterOptionData.facets} facetKey={key}/>
               )}
               {key === "price" && (
-                <PriceFacet facetData={filterOptionData.facets} facetKey={key} />
+                <PriceFacet onFilter={onFilter} facetData={filterOptionData.facets} facetKey={key} />
               )}
               {key === "color" && (
-                <ColorFacet facetData={filterOptionData.facets}facetKey={key} />
+                <ColorFacet onFilter={onFilter} facetData={filterOptionData.facets}facetKey={key} />
               )}
               {key === "genre" && (
-                <GenreFacet facetData={filterOptionData.facets} facetKey={key} />
+                <GenreFacet onFilter={onFilter} facetData={filterOptionData.facets} facetKey={key} />
               )}
               
               {/* {key === 'price' && <PriceFacet t={t} filterOptionData={filterOptionData.facets} dataKey={key} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}

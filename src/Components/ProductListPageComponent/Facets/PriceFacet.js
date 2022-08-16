@@ -1,7 +1,10 @@
 import React from "react";
+import "./../../../SCSS/ProductListPage/_facets.scss";
+import SingleFacet from "./SingleFacet";
 
-function PriceFacet({ facetData, facetKey }) {
-  console.log(facetData[facetKey]);
+function PriceFacet({ facetData, facetKey, onFilter }) {
+  // console.log(facetData, facetKey);
+  // console.log(facetData[facetKey]);
   const constructParamFn = (item) => `${item.from}-${item.to}`;
   const childrenFn = (item) => (
     <>
@@ -9,25 +12,16 @@ function PriceFacet({ facetData, facetKey }) {
       <span>{`(${item.count})`}</span>
     </>
   );
+
   return (
-    <>
-      <h1>Price</h1>
+    <div className="main__facets__block">
+      <h1 className="main__facets__title">Price</h1>
       {facetData[facetKey]?.collection?.map((item, itemIndex) => {
-        console.log(item);
         return (
-          <div key={`facet_item_${facetKey}${itemIndex}`}>
-            <div>
-              <p
-                className="facet-category-item"
-                // onClick={() => toggleFilter(attrKey, constructParamFn(item), facetData[facetKey].multiple_selectable)}
-              >
-                {childrenFn(item)}
-              </p>
-            </div>
-          </div>
+        <SingleFacet constructParamFn={constructParamFn} childrenFn={childrenFn}   key={itemIndex} facetData={facetData} facetKey={facetKey} item={item} onFilter={onFilter}/>
         );
       })}
-    </>
+    </div>
   );
 }
 
