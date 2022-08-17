@@ -135,6 +135,10 @@ font-weight: bold;
           font-family: 'SSTregular';
           padding: 10px 0px;
           border: 1px solid rgba(0, 0, 0, 0.1);
+          @media(max-width:992px) {
+            width: 50%;
+            font-size: 14px;
+          }
         }
       }
     }
@@ -148,6 +152,9 @@ font-weight: bold;
       background: #f1f4f9;
       padding: 18px;
       border: 1px solid rgba(0, 0, 0, 0.1);
+      @media(max-width:992px) {
+        margin-bottom: 16px;
+      }
       .product__comparison__availability__block__item {
         display: flex;
         align-items: flex-start;

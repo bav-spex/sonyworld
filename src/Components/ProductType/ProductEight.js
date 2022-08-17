@@ -148,7 +148,7 @@ const removeFromWL=(sku)=>{
         >
          <p className="productEight__name"> {product.name}</p>
         </Link>
-      <Text4 text="Z8H SERIES" color="#808080" marginBottom={10} />
+      <div className="series__labelbox"><Text4 text="Z8H SERIES" color="#808080" marginBottom={10} /></div>
       <div className="rating__block">
         <RatingBlock rating={6} totalRatings={2222} />
       </div>
