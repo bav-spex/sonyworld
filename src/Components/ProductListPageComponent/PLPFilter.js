@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import star from "./../../assets/Icon/orange-review.svg";
 import "./../../SCSS/ProductListPage/_plpFilter.scss";
 import Heading6 from "./../../Components/Font/Heading6";
@@ -173,11 +173,12 @@ const filterData = [
   },
 ];
 
-const PLPFilter = ({ onFilter,filterOptionData, filteredProductsData }) => {
+const PLPFilter = ({ onFilter, filterOptionData }) => {
+  // console.log("here");
   // console.log(filterOptionData, filteredProductsData);
   // console.log(Object.values(Object.values(filterOptionData)[1]));
   // console.log(Object.keys(Object.values(filterOptionData)[1]));
-  
+
   return filterOptionData?.facets?.priceRange.max > 0 ? (
     <>
       {filterOptionData?.total_count > 1 &&
@@ -186,18 +187,34 @@ const PLPFilter = ({ onFilter,filterOptionData, filteredProductsData }) => {
           return (
             <div key={`facet_group_${key}${index}`}>
               {key === "brand" && (
-                <BrandFacet onFilter={onFilter} facetData={filterOptionData.facets} facetKey={key}/>
+                <BrandFacet
+                  onFilter={onFilter}
+                  facetData={filterOptionData.facets}
+                  facetKey={key}
+                />
               )}
               {key === "price" && (
-                <PriceFacet onFilter={onFilter} facetData={filterOptionData.facets} facetKey={key} />
+                <PriceFacet
+                  onFilter={onFilter}
+                  facetData={filterOptionData.facets}
+                  facetKey={key}
+                />
               )}
               {key === "color" && (
-                <ColorFacet onFilter={onFilter} facetData={filterOptionData.facets}facetKey={key} />
+                <ColorFacet
+                  onFilter={onFilter}
+                  facetData={filterOptionData.facets}
+                  facetKey={key}
+                />
               )}
               {key === "genre" && (
-                <GenreFacet onFilter={onFilter} facetData={filterOptionData.facets} facetKey={key} />
+                <GenreFacet
+                  onFilter={onFilter}
+                  facetData={filterOptionData.facets}
+                  facetKey={key}
+                />
               )}
-              
+
               {/* {key === 'price' && <PriceFacet t={t} filterOptionData={filterOptionData.facets} dataKey={key} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}
           {key === 'priceRange' && <PriceRange t={t} filterOptionData={filterOptionData} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}
           {key === 'color' && <ColorFacet t={t} filterOptionData={filterOptionData} dataKey={key} appliedFilters={appliedFilters} toggleFilter={toggleFilter} />}
@@ -205,8 +222,10 @@ const PLPFilter = ({ onFilter,filterOptionData, filteredProductsData }) => {
             </div>
           );
         })}
-    </>):""
-  ;
+    </>
+  ) : (
+    ""
+  );
   return (
     filterData && (
       <div className="main__filter__block">
@@ -254,5 +273,4 @@ const PLPFilter = ({ onFilter,filterOptionData, filteredProductsData }) => {
     )
   );
 };
-
-export default PLPFilter;
+export const MemorisedPLPFilter = React.memo(PLPFilter);

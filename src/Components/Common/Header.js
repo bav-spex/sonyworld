@@ -247,9 +247,21 @@ function Header({
     }
   }, [windowDimensions]);
 
+  const [searchText,setSearchText] = useState("")
+  const handleChange =(e)=>{
+    setSearchText(e.target.value)
+  }
+const redirectToSearchPage =(e)=>{
+  e.preventDefault()
+  setFilterDetails({ filterDetails: { keyword: e.target.value } });
+  navigate("/search")
+  setSearchText("")
+  // optimizedFn(e)
+}
   const openSearchPopup = (e) => {
-    console.log(e.target.value);
-    console.log("hello World");
+    e.preventDefault()
+    // console.log(e.target.value);
+    // console.log("hello World");
     // debugger
     setFilterDetails({ filterDetails: { keyword: e.target.value } });
 
@@ -261,6 +273,7 @@ function Header({
   };
 
   const debounce = (func) => {
+    
     let timer;
     return function (...args) {
       const context = this;
@@ -276,7 +289,7 @@ function Header({
   useEffect(() => {
     dispatch(loadApplyFilterProductsData(filterDetails));
   }, [filterDetails]);
-  const applyFilterData = useSelector((state) => state.appData.filterData);
+  const applyFilterData = useSelector((state) => state.appData.applyFilterProductsData);
   // console.log(applyFilterData);
   useEffect(() => {
     if (applyFilterData) {
@@ -585,13 +598,15 @@ function Header({
                 <img src={navbar_logo} alt="logo" className="header__logo" />
               </Link>
               <div className="col-0  col-sm-0  col-lg-5 col-xl-7  search__box__block">
-                <form autoComplete="off" onSubmit={() => navigate("/search")}>
+                <form autoComplete="off" onSubmit={(e) => redirectToSearchPage(e)}>
                   <div className="search__box">
                     <input
                       type="text"
                       name="search"
                       className="search__input"
                       placeholder="Type Your Search..."
+                      value={searchText}
+                      onChange={(e)=>handleChange(e)}
                       // onFocus={(e) => openSearchPopup(e)}
                       onClickCapture={(e) => setSearchPopup(true)}
                       onKeyUp={(e) => optimizedFn(e)}

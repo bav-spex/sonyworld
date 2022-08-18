@@ -19,6 +19,7 @@ function ColorFacet({ facetData, facetKey, onFilter }) {
           <SingleFacet
             constructParamFn={constructParamFn}
             childrenFn={childrenFn}
+            // key={`${Math.random(Math.random() * 100) + 1}${facetKey}`}
             key={itemIndex}
             facetData={facetData}
             facetKey={facetKey}

@@ -645,35 +645,48 @@ function Search__Page() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [loading,setLoading] =useState(true)
+  const [loading, setLoading] = useState(true);
   const [filterDetails, setFilterDetails] = useState({ filterDetails: {} });
-  const [searchProductData, setSearchProductData] = useState();
+  const [searchProductData, setSearchProductData] = useState([]);
   const handleChange = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setSearch(e.target.value);
   };
+
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(search);
+    e.preventDefault();
+    // console.log(search);
     setFilterDetails({ filterDetails: { keyword: search } });
-    navigate("/search")
+    navigate("/search");
   };
+
   const clearSearchInput = () => {
     setSearch("");
   };
+
   useEffect(() => {
     dispatch(loadApplyFilterProductsData(filterDetails));
   }, [filterDetails]);
 
-  const applyFilterData = useSelector((state) => state.appData.filterData);
-  console.log(applyFilterData);
+  const applyFilterData = useSelector(
+    (state) => state.appData.applyFilterProductsData
+  );
+
+  // console.log(applyFilterData);
+
   useEffect(() => {
-    if (Object.values(applyFilterData).length !== 0) {
+    if (applyFilterData.total_count > 0) {
       setSearchProductData(applyFilterData.items);
-      setLoading(false)
+      setLoading(false);
+    } else if (applyFilterData.total_count === 0) {
+      setSearchProductData([]);
+
+      setLoading(false);
     }
+    // if (applyFilterData.items && Object.values(applyFilterData.items).length !== 0) {
+    // }
   }, [applyFilterData]);
-  console.log(searchProductData);
+  // console.log(searchProductData);
   if (loading) {
     return <h1>Search Loading...</h1>;
   }
@@ -709,7 +722,9 @@ function Search__Page() {
                 className="col-2 search__button__block
             "
               >
-                <button onClick={handleSubmit} className="search__button">SEARCH</button>
+                <button onClick={handleSubmit} className="search__button">
+                  SEARCH
+                </button>
               </div>
             </form>
           </div>
@@ -721,9 +736,10 @@ function Search__Page() {
           <span className="result__text">Results</span>
           <div className="row search__product__container">
             <div className="col-9 main__search__product__block">
-              {searchProductData &&searchProductData.map((product, productIdex) => {
-                return <SearchProduct product={product} />;
-              })}
+              {searchProductData &&
+                searchProductData.map((product, productIdex) => {
+                  return <SearchProduct product={product} />;
+                })}
             </div>
             <div className="col-3 search__link__block">
               <Heading3 text="Related Links" marginBottom={30} />

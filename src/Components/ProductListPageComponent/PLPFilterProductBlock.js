@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PLPFilter from "./PLPFilter";
+import { MemorisedPLPFilter } from "./PLPFilter";
 import "./../../SCSS/ProductListPage/_plpFilterProductBlock.scss";
 
 import list_grey from "./../../assets/Icon/list_grey.svg";
@@ -40,6 +40,7 @@ const PLPFilterProductBlock = ({
   filterOptionData
   
 }) => {
+
   const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
   const [productListView, setProductListView] = useState("grid");
   // console.log(filteredProductsData);
@@ -119,7 +120,7 @@ const PLPFilterProductBlock = ({
         </div>
         <div className="row plp__filter__product__block">
           <div className="col-sm-3 plp__filter__block">
-            <PLPFilter onFilter={onFilter} filterOptionData={filterOptionData} filteredProductsData={filteredProductsData}  />
+            <MemorisedPLPFilter onFilter={onFilter} filterOptionData={filterOptionData}   />
           </div>
           <div className="col-sm-9 plp__product__block">
             <div className="row plp__inner__product__block">

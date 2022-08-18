@@ -15082,6 +15082,7 @@ function Product_Details_Page({handleChangeCartPopup}) {
                 </div>
               </div>
             </div>
+            
             {/* <Accordian data={productOverviewData} isDescription={true} /> */}
             {/* <Accordian data={productSpecificationData} isDescription={false} /> */}
             <div className="pd__newArrival__block">

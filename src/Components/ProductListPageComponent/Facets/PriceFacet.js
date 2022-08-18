@@ -18,7 +18,16 @@ function PriceFacet({ facetData, facetKey, onFilter }) {
       <h1 className="main__facets__title">Price</h1>
       {facetData[facetKey]?.collection?.map((item, itemIndex) => {
         return (
-        <SingleFacet constructParamFn={constructParamFn} childrenFn={childrenFn}   key={itemIndex} facetData={facetData} facetKey={facetKey} item={item} onFilter={onFilter}/>
+          <SingleFacet
+            constructParamFn={constructParamFn}
+            childrenFn={childrenFn}
+            // key={`${Math.random(Math.random() * 100) + 1}${facetKey}`}
+            key={itemIndex}
+            facetData={facetData}
+            facetKey={facetKey}
+            item={item}
+            onFilter={onFilter}
+          />
         );
       })}
     </div>

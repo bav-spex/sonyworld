@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import * as types from "./../redux/actionType";
@@ -129,9 +129,15 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   //     setLoading(false);
   //   }
   // }, [filterOptionData]);
-
+  // useLayoutEffect(()=>{
+  //     document.querySelectorAll('input[type=checkbox]').forEach(el => el.checked = false);
+  //   },[filterCategory])
   const updateSelectedSubCategoryId = (subCategory) => {
     // console.log(subCategory);
+    
+    document
+      .querySelectorAll("input[type=checkbox]")
+      .forEach((el) => (el.checked = false));
     setFilterBrand([]);
     setFilterColor([]);
     setFilterPrice([]);
@@ -222,174 +228,169 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     // console.log(newFilter);
   };
   // console.log(filterPrice);
-  // useEffect(() => {
-  //   // debugger
-  //   if (filterColor.length > 0) {
-  //     let newFilter = {
-  //       ...filterBlock,
-  //       filterDetails: {
-  //         ...filterBlock?.filterDetails,
-  //         category: filterCategory,
-  //         color: filterColor,
-  //       },
-  //     };
-  //     setFilterBlock(newFilter);
-  //   } else if (filterColor.length <= 0) {
-  //     let newFilter = {
-  //       ...filterBlock,
-  //       filterDetails: {
-  //         ...filterBlock?.filterDetails,
-  //         category: filterCategory,
-  //       },
-  //     };
-  //     setFilterBlock(newFilter);
-  //   }
-  // }, [filterColor]);
-  // useEffect(() => {
-  //   if (filterBrand.length > 0) {
-  //     const newFilter = {
-  //       ...filterBlock,
-  //       filterDetails: {
-  //         ...filterBlock?.filterDetails,
-  //         category: filterCategory,
-  //         brand: filterBrand,
-  //       },
-  //     };
-  //     setFilterBlock(newFilter);
-  //   } else if (filterBrand.length <= 0) {
-  //     const newFilter = {
-  //       ...filterBlock,
-  //       filterDetails: {
-  //         ...filterBlock?.filterDetails,
-  //         category: filterCategory,
-  //       },
-  //     };
-  //     setFilterBlock(newFilter);
-  //   }
-  // }, [filterBrand]);
-
-  // useEffect(() => {
-  //   if (filterPrice.length > 0) {
-  //     const newFilter = {
-  //       ...filterBlock,
-  //       filterDetails: {
-  //         ...filterBlock?.filterDetails,
-  //         category: filterCategory,
-  //         display_price: filterPrice,
-  //       },
-  //     };
-  //     setFilterBlock(newFilter);
-  //   } else if (filterPrice.length <= 0) {
-  //     const newFilter = {
-  //       ...filterBlock,
-  //       filterDetails: {
-  //         ...filterBlock?.filterDetails,
-  //         category: filterCategory,
-  //       },
-  //     };
-  //     setFilterBlock(newFilter);
-  //   }
-  // }, [filterPrice]);
+  useEffect(() => {
+    // debugger
+    if (filterColor.length > 0) {
+      let newFilter = {
+        ...filterBlock,
+        filterDetails: {
+          ...filterBlock?.filterDetails,
+          category: filterCategory,
+          color: filterColor,
+        },
+      };
+      setFilterBlock(newFilter);
+    } else if (filterColor.length <= 0) {
+      let newFilter = {
+        ...filterBlock
+      };
+      delete newFilter?.filterDetails?.color
+      console.log(newFilter);
+      setFilterBlock(newFilter);
+    }
+  }, [filterColor]);
+  console.log(filterColor);
+  useEffect(() => {
+    if (filterBrand.length > 0) {
+      const newFilter = {
+        ...filterBlock,
+        filterDetails: {
+          ...filterBlock?.filterDetails,
+          category: filterCategory,
+          brand: filterBrand,
+        },
+      };
+      setFilterBlock(newFilter);
+    } else if (filterBrand.length <= 0) {
+      let newFilter = {
+        ...filterBlock
+      };
+      delete newFilter?.filterDetails?.brand
+      console.log(newFilter);
+      setFilterBlock(newFilter);
+    }
+  }, [filterBrand]);
 
   useEffect(() => {
-    if (filterColor.length > 0) {
-      if (filterPrice.length > 0) {
-        if (filterBrand.length > 0) {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-              display_price: filterPrice,
-              color: filterColor,
-              brand: filterBrand,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("color,price,brand");
-        } else {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-              display_price: filterPrice,
-              color: filterColor,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("color,price");
-        }
-      } else {
-        if (filterBrand.length > 0) {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-              color: filterColor,
-              brand: filterBrand,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("color,brand");
-        } else {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-              color: filterColor,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("color");
-        }
-      }
-    } else {
-      if (filterPrice.length > 0) {
-        if (filterBrand.length > 0) {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-              display_price: filterPrice,
-              brand: filterBrand,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("price,brand");
-        } else {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-              display_price: filterPrice,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("price");
-        }
-      } else {
-        if (filterBrand.length > 0) {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-              brand: filterBrand,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("brand");
-        } else {
-          const newFilter = {
-            ...filterBlock,
-            filterDetails: {
-              category: filterCategory,
-            },
-          };
-          setFilterBlock(newFilter);
-          // console.log("nothing");
-        }
-      }
+    if (filterPrice.length > 0) {
+      const newFilter = {
+        ...filterBlock,
+        filterDetails: {
+          ...filterBlock?.filterDetails,
+          category: filterCategory,
+          display_price: filterPrice,
+        },
+      };
+      setFilterBlock(newFilter);
+    } else if (filterPrice.length <= 0) {
+      let newFilter = {
+        ...filterBlock
+      };
+      delete newFilter?.filterDetails?.display_price
+      console.log(newFilter);
+      setFilterBlock(newFilter);
     }
-  }, [filterBrand, filterColor, filterPrice]);
+  }, [filterPrice]);
+
+  // useEffect(() => {
+  //   if (filterColor.length > 0) {
+  //     if (filterPrice.length > 0) {
+  //       if (filterBrand.length > 0) {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //             display_price: filterPrice,
+  //             color: filterColor,
+  //             brand: filterBrand,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("color,price,brand");
+  //       } else {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //             display_price: filterPrice,
+  //             color: filterColor,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("color,price");
+  //       }
+  //     } else {
+  //       if (filterBrand.length > 0) {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //             color: filterColor,
+  //             brand: filterBrand,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("color,brand");
+  //       } else {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //             color: filterColor,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("color");
+  //       }
+  //     }
+  //   } else {
+  //     if (filterPrice.length > 0) {
+  //       if (filterBrand.length > 0) {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //             display_price: filterPrice,
+  //             brand: filterBrand,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("price,brand");
+  //       } else {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //             display_price: filterPrice,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("price");
+  //       }
+  //     } else {
+  //       if (filterBrand.length > 0) {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //             brand: filterBrand,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("brand");
+  //       } else {
+  //         const newFilter = {
+  //           ...filterBlock,
+  //           filterDetails: {
+  //             category: filterCategory,
+  //           },
+  //         };
+  //         setFilterBlock(newFilter);
+  //         // console.log("nothing");
+  //       }
+  //     }
+  //   }
+  // }, [filterBrand, filterColor, filterPrice]);
   // console.log(filterPrice);
   useEffect(() => {
     dispatch(loadApplyFilterProductsData(filterBlock));
@@ -535,7 +536,7 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   const removeProductFromCompareData = (id) => {
     console.log(id);
   };
-console.table(filteredProductsData.items);
+  // console.table(filteredProductsData.items);
   if (loading) {
     return <h1>Product Loading...</h1>;
   }

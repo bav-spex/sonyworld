@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { SET__WISHLIST__COUNT } from "../../../redux/actionType";
 
 function SingleFacet({
   constructParamFn,
@@ -8,18 +9,30 @@ function SingleFacet({
   item,
   onFilter,
 }) {
-  useEffect(() => {
-    setCheck(false);
-  }, []);
   const [check, setCheck] = useState(false);
+const [count,setCount] = useState(0)
   const handleChange = (facetKey, item) => {
     setCheck(!check);
+    setCount(count+1)
+  
     onFilter(
       facetKey,
       constructParamFn(item),
       facetData[facetKey].multiple_selectable
     );
   };
+
+  useEffect(()=>{
+    if(count ===0){
+      onFilter(
+        facetKey,
+        constructParamFn(item),
+        facetData[facetKey].multiple_selectable
+      );
+    }
+  },[count])
+  // console.log(check);
+  
   return (
     <div className="facet__block" key={`${Math.random()}${facetKey}`}>
       <input
@@ -28,7 +41,8 @@ function SingleFacet({
         className="preferences__select__input__check"
         name="color"
         // value={item.key}
-        defaultChecked={check}
+        checked={check}
+        defaultChecked={false}
         onChange={() => handleChange(facetKey, item)}
       />
 
