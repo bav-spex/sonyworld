@@ -355,7 +355,7 @@
 		text-decoration: none;
 		border-radius: 0px 35px 35px 0px;
 		color: #ffffff;
-		font-size: 16px;
+		font-size: 14px;
 		font-family: 'SSTbold';
 		font-weight: bold;
 		letter-spacing: 0.85px;
@@ -377,7 +377,7 @@
 		text-decoration: none;
 		width: 50%;
 		color: #ffffff;
-		font-size: 16px;
+		font-size: 14px;
 		font-family: 'SSTbold';
 		font-weight: bold;
 		letter-spacing: 0.85px;
@@ -394,7 +394,8 @@
 		cursor: pointer;
 
 		.addToCart__icon {
-			margin: 0px 10px 0px 0px;
+			margin: 0px 7px 0px 0px;
+			height: 19px;
 		}
 	}
 }
@@ -419,6 +420,7 @@
 
 	#addAddressModal .modal-footer button {
 		width: 45% !important;
+		padding: 8px 15px;
 	}
 }
 

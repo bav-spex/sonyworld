@@ -39,12 +39,12 @@ function Flyer_Page() {
     <>
       {pdfDetails !== "" &&
         <>
-          <Container fluid class="h-100 d-inline-block">
-            <Row style={{ height: "500px" }}>
+          <Container fluid class="h-100 w-100 d-inline-block " style={{ padding: "130px 15px 20px" }}>
+            <Row style={{ height: "500px", margin: "0px auto" }} className="wishlist__page__block">
               {htmlParseHelper(pdfDetails.html_data)}
             </Row>
           </Container>
-          <div className="text-center">
+          <div className="text-center mb-4" >
             <button type="button" onClick={() => handleDownloadPDf(pdfDetails.url)} className="btn btn-primary">Download</button>
           </div>
         </>

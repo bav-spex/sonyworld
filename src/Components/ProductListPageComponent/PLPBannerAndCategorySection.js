@@ -29,6 +29,9 @@ const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,
 
   return (
     <>
+
+      {selectedMainCategory !== undefined &&
+      <>      
       <PLPBannerSectionOne
         bannerImage={selectedMainCategory?.categorybanner}
         title={selectedMainCategory.name}
@@ -97,6 +100,8 @@ const PLPCategorySection = ({  selectedMainCategory,updateSelectedSubCategoryId,
         </div>
       </div>
       ):""}
+      </>
+    }
     </>
   );
 };
