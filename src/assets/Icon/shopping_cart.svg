@@ -1,22 +1,24 @@
-<svg id="shopping_cart" xmlns="http://www.w3.org/2000/svg" width="27.505" height="24.537" viewBox="0 0 27.505 24.537">
-  <g id="Group_2169" data-name="Group 2169" transform="translate(7.01 19.864)">
-    <g id="Group_2168" data-name="Group 2168" transform="translate(0 0)">
-      <ellipse id="Ellipse_176" data-name="Ellipse 176" cx="2.337" cy="2.337" rx="2.337" ry="2.337" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="33.629" height="30" viewBox="0 0 33.629 30">
+  <g id="shopping-cart_1_" data-name="shopping-cart (1)" transform="translate(0 -27.093)">
+    <g id="Group_2169" data-name="Group 2169" transform="translate(8.577 51.397)">
+      <g id="Group_2168" data-name="Group 2168">
+        <circle id="Ellipse_176" data-name="Ellipse 176" cx="2.848" cy="2.848" r="2.848" fill="#fff"/>
+      </g>
     </g>
-  </g>
-  <g id="Group_2171" data-name="Group 2171" transform="translate(16.358 19.864)">
-    <g id="Group_2170" data-name="Group 2170" transform="translate(0 0)">
-      <ellipse id="Ellipse_177" data-name="Ellipse 177" cx="2.337" cy="2.337" rx="2.337" ry="2.337" fill="#fff"/>
+    <g id="Group_2171" data-name="Group 2171" transform="translate(20.013 51.397)">
+      <g id="Group_2170" data-name="Group 2170">
+        <circle id="Ellipse_177" data-name="Ellipse 177" cx="2.848" cy="2.848" r="2.848" fill="#fff"/>
+      </g>
     </g>
-  </g>
-  <g id="Group_2173" data-name="Group 2173" transform="translate(0 0)">
-    <g id="Group_2172" data-name="Group 2172">
-      <rect id="Rectangle_17441" data-name="Rectangle 17441" width="4.674" height="2.337" fill="#fff"/>
+    <g id="Group_2173" data-name="Group 2173" transform="translate(0 27.093)">
+      <g id="Group_2172" data-name="Group 2172" transform="translate(0 0)">
+        <rect id="Rectangle_17441" data-name="Rectangle 17441" width="5.695" height="2.848" fill="#fff"/>
+      </g>
     </g>
-  </g>
-  <g id="Group_2175" data-name="Group 2175" transform="translate(3.506 0)">
-    <g id="Group_2174" data-name="Group 2174">
-      <path id="Path_8594" data-name="Path 8594" d="M67.015,31.768l-.68-4.674H65.167L64,27.257,66.488,44.62h15.8L88,31.768ZM80.768,42.283H68.522L67.355,34.1H84.4Z" transform="translate(-64 -27.094)" fill="#fff"/>
+    <g id="Group_2175" data-name="Group 2175" transform="translate(4.272 27.093)">
+      <g id="Group_2174" data-name="Group 2174" transform="translate(0 0)">
+        <path id="Path_8594" data-name="Path 8594" d="M67.687,32.789l-.829-5.7H65.429l-1.429.2,3.044,21.159H86.368l6.989-15.663H67.687ZM84.51,45.6H69.531L68.1,35.637H88.955Z" transform="translate(-64 -27.094)" fill="#fff"/>
+      </g>
     </g>
   </g>
 </svg>

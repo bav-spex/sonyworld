@@ -257,6 +257,7 @@ function SignUpModel({ handleChangePopupMode, closeLoginPopup }) {
       }
       dispatch(services.customerSignUp(params))
     }
+    handleChangePopupMode("otp")
   }
 
   const togglePassword = () => setIsPassword(!isPassword);

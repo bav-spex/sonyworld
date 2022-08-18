@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MemorisedPLPFilter } from "./PLPFilter";
+import PLPFilter  from "./PLPFilter";
 import "./../../SCSS/ProductListPage/_plpFilterProductBlock.scss";
 
 import list_grey from "./../../assets/Icon/list_grey.svg";
@@ -27,7 +27,7 @@ const dropdownOptions = [
   },
   {
     label: "High to Low",
-    value: "",
+    value: "desc",
   },
 ];
 
@@ -120,7 +120,7 @@ const PLPFilterProductBlock = ({
         </div>
         <div className="row plp__filter__product__block">
           <div className="col-sm-3 plp__filter__block">
-            <MemorisedPLPFilter onFilter={onFilter} filterOptionData={filterOptionData}   />
+            <PLPFilter onFilter={onFilter} filterOptionData={filterOptionData}   />
           </div>
           <div className="col-sm-9 plp__product__block">
             <div className="row plp__inner__product__block">

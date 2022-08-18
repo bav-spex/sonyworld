@@ -139,6 +139,7 @@ font-weight: bold;
             .header__icon {
               margin: 0px 5px 0px;
               cursor: pointer;
+              transform: scale(90%) !important;
             }
             .header__user__block {
               position: relative;
@@ -689,6 +690,7 @@ font-weight: bold;
     img.location.header__icon,
     img.favourite.header__icon {
       display: none;
+      
     }
     .navbar__row {
       overflow-x: auto;

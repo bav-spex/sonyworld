@@ -273,4 +273,4 @@ const PLPFilter = ({ onFilter, filterOptionData }) => {
     )
   );
 };
-export const MemorisedPLPFilter = React.memo(PLPFilter);
+export default PLPFilter;

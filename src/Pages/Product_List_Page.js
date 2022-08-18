@@ -44,7 +44,7 @@ import {
   loadFilterData,
   loadSingleCategoryData,
 } from "../redux/appAction";
-import { getProductsOfCategory } from "../services/plp.service";
+import { getFilterData, getProductsOfCategory } from "../services/plp.service";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
 const Product_List_Page = ({ handleChangeCartPopup }) => {
@@ -62,6 +62,7 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   const [filterBrand, setFilterBrand] = useState([]);
   const [filterPrice, setFilterPrice] = useState([]);
   const [filterCategory, setFilterCategory] = useState([]);
+  const [filterOptionData, setFilterOptionData] = useState([]);
 
   const [finalFilter, setFinalFilter] = useState({
     filterDetails: { category: [category.split("-").slice(-3)[0]] },
@@ -70,9 +71,9 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     (state) => state.appData.selectedCategory
   );
   const categoryData = useSelector((state) => state.appData.categoryData);
-  const filterOptionData = useSelector(
-    (state) => state.appData.filterOptionData
-  );
+  // const filterOptionData = useSelector(
+  //   (state) => state.appData.filterOptionData
+  // );
   // console.log(filterOptionData);
   const applyFilterProductsData = useSelector(
     (state) => state.appData.applyFilterProductsData
@@ -93,7 +94,8 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     categoryIdArray.push(urlCategoryId);
     setFilterCategory(categoryIdArray);
     setFinalFilter({
-      filterDetails: { category: categoryIdArray },
+    
+      filterDetails: {  keyword:"", category: categoryIdArray },
       sortBy: {
         price: "asc",
       },
@@ -113,7 +115,16 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     setFilterBlock(finalFilter);
   }, [finalFilter, category]);
   useEffect(() => {
-    dispatch(loadFilterData(finalFilter));
+    getFilterData(finalFilter)
+      .then((res) => {
+        console.log("res", res);
+        setFilterOptionData(res);
+        // handleChangeCartPopup(true)
+      })
+      .catch((err) => {
+        console.log(err.response.data.message, "error >>>>");
+        // dispatch(services.notifyError({ message: err.response.data.message }));
+      });
   }, [category]);
 
   useEffect(() => {
@@ -134,7 +145,7 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   //   },[filterCategory])
   const updateSelectedSubCategoryId = (subCategory) => {
     // console.log(subCategory);
-    
+
     document
       .querySelectorAll("input[type=checkbox]")
       .forEach((el) => (el.checked = false));
@@ -146,7 +157,8 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     categoryIdArray.push(subCategory.id);
     setFilterCategory(categoryIdArray);
     setFinalFilter({
-      filterDetails: { category: categoryIdArray },
+      
+      filterDetails: {keyword:"", category: categoryIdArray },
       sortBy: {
         price: "asc",
       },
@@ -168,18 +180,11 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
     // debugger
     console.log("onFilter===>", attkey, id, selection);
     if (attkey === "order") {
-      if (id === "") {
-        const newFilter = {
-          ...filterBlock,
-        };
-        setFilterBlock(newFilter);
-      } else {
-        const newFilter = {
-          ...filterBlock,
-          sortBy: { price: id },
-        };
-        setFilterBlock(newFilter);
-      }
+      const newFilter = {
+        ...filterBlock,
+        sortBy: { price: id },
+      };
+      setFilterBlock(newFilter);
     }
     if (attkey === "color") {
       if (filterColor.includes(id)) {
@@ -242,14 +247,14 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
       setFilterBlock(newFilter);
     } else if (filterColor.length <= 0) {
       let newFilter = {
-        ...filterBlock
+        ...filterBlock,
       };
-      delete newFilter?.filterDetails?.color
-      console.log(newFilter);
+      delete newFilter?.filterDetails?.color;
+      // console.log(newFilter);
       setFilterBlock(newFilter);
     }
   }, [filterColor]);
-  console.log(filterColor);
+  // console.log(filterColor);
   useEffect(() => {
     if (filterBrand.length > 0) {
       const newFilter = {
@@ -263,10 +268,10 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
       setFilterBlock(newFilter);
     } else if (filterBrand.length <= 0) {
       let newFilter = {
-        ...filterBlock
+        ...filterBlock,
       };
-      delete newFilter?.filterDetails?.brand
-      console.log(newFilter);
+      delete newFilter?.filterDetails?.brand;
+      // console.log(newFilter);
       setFilterBlock(newFilter);
     }
   }, [filterBrand]);
@@ -284,10 +289,10 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
       setFilterBlock(newFilter);
     } else if (filterPrice.length <= 0) {
       let newFilter = {
-        ...filterBlock
+        ...filterBlock,
       };
-      delete newFilter?.filterDetails?.display_price
-      console.log(newFilter);
+      delete newFilter?.filterDetails?.display_price;
+      // console.log(newFilter);
       setFilterBlock(newFilter);
     }
   }, [filterPrice]);
@@ -394,7 +399,7 @@ const Product_List_Page = ({ handleChangeCartPopup }) => {
   // console.log(filterPrice);
   useEffect(() => {
     dispatch(loadApplyFilterProductsData(filterBlock));
-    dispatch(loadFilterData(finalFilter));
+    // dispatch(loadFilterData(finalFilter));
   }, [filterBlock]);
   // console.log(finalFilter);
   //for updating id from filter section
